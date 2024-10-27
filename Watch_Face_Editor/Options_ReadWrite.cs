@@ -4422,6 +4422,7 @@ namespace Watch_Face_Editor
 
             circle_scale.start_angle = (int)uCtrl_Circle_Scale_Opt.numericUpDown_scaleCircle_startAngle.Value;
             circle_scale.end_angle = (int)uCtrl_Circle_Scale_Opt.numericUpDown_scaleCircle_endAngle.Value;
+            circle_scale.start_angle = (int)uCtrl_Circle_Scale_Opt.numericUpDown_scaleCircle_startAngle.Value;
 
             circle_scale.line_cap = uCtrl_Circle_Scale_Opt.GetLineCap();
 
@@ -4456,6 +4457,7 @@ namespace Watch_Face_Editor
 
             uCtrl_Circle_Scale_Opt.numericUpDown_scaleCircle_startAngle.Value = circle_scale.start_angle;
             uCtrl_Circle_Scale_Opt.numericUpDown_scaleCircle_endAngle.Value = circle_scale.end_angle;
+            uCtrl_Circle_Scale_Opt.numericUpDown_Alpha.Value = circle_scale.alpha;
 
             uCtrl_Circle_Scale_Opt.SetLineCap(circle_scale.line_cap);
 
@@ -4481,6 +4483,7 @@ namespace Watch_Face_Editor
 
             linear_scale.lenght = (int)uCtrl_Linear_Scale_Opt.numericUpDown_scaleLinear_length.Value;
             linear_scale.line_width = (int)Math.Abs(uCtrl_Linear_Scale_Opt.numericUpDown_scaleLinear_width.Value);
+            linear_scale.alpha = (int)uCtrl_Linear_Scale_Opt.numericUpDown_Alpha.Value;
             linear_scale.line_cap = uCtrl_Linear_Scale_Opt.GetLineCap();
 
             linear_scale.vertical = uCtrl_Linear_Scale_Opt.radioButton_vertical.Checked;
@@ -4522,6 +4525,7 @@ namespace Watch_Face_Editor
 
             uCtrl_Linear_Scale_Opt.numericUpDown_scaleLinear_length.Value = linear_scale.lenght;
             uCtrl_Linear_Scale_Opt.numericUpDown_scaleLinear_width.Value = linear_scale.line_width;
+            uCtrl_Linear_Scale_Opt.numericUpDown_Alpha.Value = linear_scale.alpha;
             uCtrl_Linear_Scale_Opt.SetLineCap(linear_scale.line_cap);
 
             uCtrl_Linear_Scale_Opt.SetColorScale(StringToColor(linear_scale.color));
@@ -4592,6 +4596,7 @@ namespace Watch_Face_Editor
             img_number.imageY = (int)uCtrl_Text_Weather_Opt.numericUpDown_imageY.Value;
             img_number.space = (int)uCtrl_Text_Weather_Opt.numericUpDown_spacing.Value;
             img_number.angle = (int)uCtrl_Text_Weather_Opt.numericUpDown_angle.Value;
+            img_number.alpha = (int)uCtrl_Text_Weather_Opt.numericUpDown_Alpha.Value;
             img_number.unit = uCtrl_Text_Weather_Opt.GetUnit_C();
             img_number.imperial_unit = uCtrl_Text_Weather_Opt.GetUnit_F();
             img_number.negative_image = uCtrl_Text_Weather_Opt.GetImageMinus();
@@ -4633,6 +4638,7 @@ namespace Watch_Face_Editor
             uCtrl_Text_Weather_Opt.SetSeparator(img_number.dot_image);
             uCtrl_Text_Weather_Opt.numericUpDown_spacing.Value = img_number.space;
             uCtrl_Text_Weather_Opt.numericUpDown_angle.Value = img_number.angle;
+            uCtrl_Text_Weather_Opt.numericUpDown_Alpha.Value = img_number.alpha;
 
             uCtrl_Text_Weather_Opt.SetAlignment(img_number.align);
 
@@ -4653,6 +4659,7 @@ namespace Watch_Face_Editor
             systemFont.text_size = (int)uCtrl_Text_SystemFont_Opt.numericUpDown_Size.Value;
             systemFont.char_space = (int)uCtrl_Text_SystemFont_Opt.numericUpDown_Spacing.Value;
             systemFont.line_space = (int)uCtrl_Text_SystemFont_Opt.numericUpDown_LineSpace.Value;
+            systemFont.alpha = (int)uCtrl_Text_SystemFont_Opt.numericUpDown_Alpha.Value;
 
             systemFont.color = ColorToString(uCtrl_Text_SystemFont_Opt.GetColorText());
 
@@ -4692,6 +4699,7 @@ namespace Watch_Face_Editor
             uCtrl_Text_SystemFont_Opt.numericUpDown_Size.Value = system_font.text_size;
             uCtrl_Text_SystemFont_Opt.numericUpDown_Spacing.Value = system_font.char_space;
             uCtrl_Text_SystemFont_Opt.numericUpDown_LineSpace.Value = system_font.line_space;
+            uCtrl_Text_SystemFont_Opt.numericUpDown_Alpha.Value = system_font.alpha;
 
             uCtrl_Text_SystemFont_Opt.SetColorText(StringToColor(system_font.color));
 

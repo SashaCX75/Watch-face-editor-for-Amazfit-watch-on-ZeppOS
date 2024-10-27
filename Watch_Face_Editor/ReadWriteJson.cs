@@ -17913,7 +17913,7 @@ namespace Watch_Face_Editor
                 options += TabInString(7 + tabOffset) + "x: " + img_number.iconPosX.ToString() + "," + Environment.NewLine;
                 options += TabInString(7 + tabOffset) + "y: " + img_number.iconPosY.ToString() + "," + Environment.NewLine;
                 options += TabInString(7 + tabOffset) + "src: '" + img_number.icon + ".png'," + Environment.NewLine;
-                if (SelectedModel.versionOS >= 2.1 && img_number.alpha != 255)
+                if (SelectedModel.versionOS >= 2.1 && img_number.icon_alpha != 255)
                 {
                     options += TabInString(7 + tabOffset) + "// alpha: " + img_number.icon_alpha.ToString() + "," + Environment.NewLine;
                 }

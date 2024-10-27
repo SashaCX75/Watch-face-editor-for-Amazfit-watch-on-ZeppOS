@@ -113,9 +113,6 @@ namespace Watch_Face_Editor
         /// <summary>Прозрачность иконки</summary>
         public int icon_alpha { get; set; } = 255;
 
-        /// <summary>Прозрачность иконки</summary>
-        public int iconAlpha { get; set; } = 255;
-
         /// <summary>Основной экран или AOD</summary>
         public string show_level = "";
 

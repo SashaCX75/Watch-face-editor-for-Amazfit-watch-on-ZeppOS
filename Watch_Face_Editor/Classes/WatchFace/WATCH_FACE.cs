@@ -220,6 +220,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Second.invalid_image,
                     dot_image = this.Second.dot_image,
                     follow = this.Second.follow,
+                    alpha = this.Second.alpha,
+                    icon_alpha = this.Second.icon_alpha,
 
                     position = this.Second.position,
                     visible = this.Second.visible,
@@ -250,6 +252,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Second_Font.unit_end,
                     centreHorizontally = this.Second_Font.centreHorizontally,
                     centreVertically = this.Second_Font.centreVertically,
+                    alpha = this.Second_Font.alpha,
 
                     position = this.Second_Font.position,
                     visible = this.Second_Font.visible,
@@ -279,6 +282,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Minute.invalid_image,
                     dot_image = this.Minute.dot_image,
                     follow = this.Minute.follow,
+                    alpha = this.Minute.alpha,
+                    icon_alpha = this.Minute.icon_alpha,
 
                     position = this.Minute.position,
                     visible = this.Minute.visible,
@@ -309,6 +314,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Minute_Font.unit_end,
                     centreHorizontally = this.Minute_Font.centreHorizontally,
                     centreVertically = this.Minute_Font.centreVertically,
+                    alpha = this.Minute_Font.alpha,
 
                     position = this.Minute_Font.position,
                     visible = this.Minute_Font.visible,
@@ -338,6 +344,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Hour.invalid_image,
                     dot_image = this.Hour.dot_image,
                     follow = this.Hour.follow,
+                    alpha = this.Hour.alpha,
+                    icon_alpha = this.Hour.icon_alpha,
 
                     position = this.Hour.position,
                     visible = this.Hour.visible,
@@ -368,6 +376,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Hour_Font.unit_end,
                     centreHorizontally = this.Hour_Font.centreHorizontally,
                     centreVertically = this.Hour_Font.centreVertically,
+                    alpha = this.Hour_Font.alpha,
 
                     position = this.Hour_Font.position,
                     visible = this.Hour_Font.visible,
@@ -398,6 +407,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Hour_min_Font.unit_end,
                     centreHorizontally = this.Hour_min_Font.centreHorizontally,
                     centreVertically = this.Hour_min_Font.centreVertically,
+                    alpha = this.Hour_min_Font.alpha,
 
                     position = this.Hour_min_Font.position,
                     visible = this.Hour_min_Font.visible,
@@ -428,6 +438,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Hour_min_sec_Font.unit_end,
                     centreHorizontally = this.Hour_min_sec_Font.centreHorizontally,
                     centreVertically = this.Hour_min_sec_Font.centreVertically,
+                    alpha = this.Hour_min_sec_Font.alpha,
 
                     position = this.Hour_min_sec_Font.position,
                     visible = this.Hour_min_sec_Font.visible,
@@ -475,6 +486,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Second_rotation.invalid_image,
                     dot_image = this.Second_rotation.dot_image,
                     unit_in_alignment = this.Second_rotation.unit_in_alignment,
+                    alpha = this.Second_rotation.alpha,
+                    icon_alpha = this.Second_rotation.icon_alpha,
 
                     position = this.Second_rotation.position,
                     visible = this.Second_rotation.visible,
@@ -504,6 +517,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Minute_rotation.invalid_image,
                     dot_image = this.Minute_rotation.dot_image,
                     unit_in_alignment = this.Minute_rotation.unit_in_alignment,
+                    alpha = this.Minute_rotation.alpha,
+                    icon_alpha = this.Minute_rotation.icon_alpha,
 
                     position = this.Minute_rotation.position,
                     visible = this.Minute_rotation.visible,
@@ -533,6 +548,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Hour_rotation.invalid_image,
                     dot_image = this.Hour_rotation.dot_image,
                     unit_in_alignment = this.Hour_rotation.unit_in_alignment,
+                    alpha = this.Hour_rotation.alpha,
+                    icon_alpha = this.Hour_rotation.icon_alpha,
 
                     position = this.Hour_rotation.position,
                     visible = this.Hour_rotation.visible,
@@ -714,6 +731,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Hour_Min_Font.unit_end,
                     centreHorizontally = this.Hour_Min_Font.centreHorizontally,
                     centreVertically = this.Hour_Min_Font.centreVertically,
+                    alpha = this.Hour_Min_Font.alpha,
 
                     position = this.Hour_Min_Font.position,
                     visible = this.Hour_Min_Font.visible,
@@ -744,6 +762,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Hour_Min_Sec_Font.unit_end,
                     centreHorizontally = this.Hour_Min_Sec_Font.centreHorizontally,
                     centreVertically = this.Hour_Min_Sec_Font.centreVertically,
+                    alpha = this.Hour_Min_Sec_Font.alpha,
 
                     position = this.Hour_Min_Sec_Font.position,
                     visible = this.Hour_Min_Sec_Font.visible,
@@ -822,6 +841,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Number.invalid_image,
                     dot_image = this.Number.dot_image,
                     follow = this.Number.follow,
+                    alpha = this.Number.alpha,
+                    icon_alpha = this.Number.icon_alpha,
 
                     position = this.Number.position,
                     visible = this.Number.visible,
@@ -852,6 +873,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Number_Font.unit_end,
                     centreHorizontally = this.Number_Font.centreHorizontally,
                     centreVertically = this.Number_Font.centreVertically,
+                    alpha = this.Number_Font.alpha,
 
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
@@ -881,6 +903,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Text_rotation.invalid_image,
                     dot_image = this.Text_rotation.dot_image,
                     unit_in_alignment = this.Text_rotation.unit_in_alignment,
+                    alpha = this.Text_rotation.alpha,
+                    icon_alpha = this.Text_rotation.icon_alpha,
 
                     position = this.Text_rotation.position,
                     visible = this.Text_rotation.visible,
@@ -1276,6 +1300,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Number.invalid_image,
                     dot_image = this.Number.dot_image,
                     follow = this.Number.follow,
+                    alpha = this.Number.alpha,
+                    icon_alpha = this.Number.icon_alpha,
 
                     position = this.Number.position,
                     visible = this.Number.visible,
@@ -1306,6 +1332,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Number_Font.unit_end,
                     centreHorizontally = this.Number_Font.centreHorizontally,
                     centreVertically = this.Number_Font.centreVertically,
+                    alpha = this.Number_Font.alpha,
 
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
@@ -1336,6 +1363,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Number_Font.unit_end,
                     centreHorizontally = this.Number_Font.centreHorizontally,
                     centreVertically = this.Number_Font.centreVertically,
+                    alpha = this.Number_Font.alpha,
 
                     position = this.Day_Month_Font.position,
                     visible = this.Day_Month_Font.visible,
@@ -1366,6 +1394,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Day_Month_Year_Font.unit_end,
                     centreHorizontally = this.Day_Month_Year_Font.centreHorizontally,
                     centreVertically = this.Day_Month_Year_Font.centreVertically,
+                    alpha = this.Day_Month_Year_Font.alpha,
 
                     position = this.Day_Month_Year_Font.position,
                     visible = this.Day_Month_Year_Font.visible,
@@ -1395,6 +1424,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Text_rotation.invalid_image,
                     dot_image = this.Text_rotation.dot_image,
                     unit_in_alignment = this.Text_rotation.unit_in_alignment,
+                    alpha = this.Text_rotation.alpha,
+                    icon_alpha = this.Text_rotation.icon_alpha,
 
                     position = this.Text_rotation.position,
                     visible = this.Text_rotation.visible,
@@ -1514,6 +1545,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Number.invalid_image,
                     dot_image = this.Number.dot_image,
                     follow = this.Number.follow,
+                    alpha = this.Number.alpha,
+                    icon_alpha = this.Number.icon_alpha,
 
                     position = this.Number.position,
                     visible = this.Number.visible,
@@ -1544,6 +1577,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Number_Font.unit_end,
                     centreHorizontally = this.Number_Font.centreHorizontally,
                     centreVertically = this.Number_Font.centreVertically,
+                    alpha = this.Number_Font.alpha,
 
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
@@ -1575,6 +1609,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Month_Font.unit_end,
                     centreHorizontally = this.Month_Font.centreHorizontally,
                     centreVertically = this.Month_Font.centreVertically,
+                    alpha = this.Month_Font.alpha,
 
                     position = this.Month_Font.position,
                     visible = this.Month_Font.visible,
@@ -1604,6 +1639,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Text_rotation.invalid_image,
                     dot_image = this.Text_rotation.dot_image,
                     unit_in_alignment = this.Text_rotation.unit_in_alignment,
+                    alpha = this.Text_rotation.alpha,
+                    icon_alpha = this.Text_rotation.icon_alpha,
 
                     position = this.Text_rotation.position,
                     visible = this.Text_rotation.visible,
@@ -1650,6 +1687,7 @@ namespace Watch_Face_Editor
                     Y = this.Images.Y,
                     img_First = this.Images.img_First,
                     image_length = this.Images.image_length,
+                    alpha = this.Images.alpha,
 
                     position = this.Images.position,
                     visible = this.Images.visible,
@@ -1712,6 +1750,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Number.invalid_image,
                     dot_image = this.Number.dot_image,
                     follow = this.Number.follow,
+                    alpha = this.Number.alpha,
+                    icon_alpha = this.Number.icon_alpha,
 
                     position = this.Number.position,
                     visible = this.Number.visible,
@@ -1742,6 +1782,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Number_Font.unit_end,
                     centreHorizontally = this.Number_Font.centreHorizontally,
                     centreVertically = this.Number_Font.centreVertically,
+                    alpha = this.Number_Font.alpha,
 
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
@@ -1771,6 +1812,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Text_rotation.invalid_image,
                     dot_image = this.Text_rotation.dot_image,
                     unit_in_alignment = this.Text_rotation.unit_in_alignment,
+                    alpha = this.Text_rotation.alpha,
+                    icon_alpha = this.Text_rotation.icon_alpha,
 
                     position = this.Text_rotation.position,
                     visible = this.Text_rotation.visible,
@@ -1818,6 +1861,7 @@ namespace Watch_Face_Editor
                     w = this.Icon.w,
                     h = this.Icon.h,
                     src = this.Icon.src,
+                    alpha = this.Icon.alpha,
 
                     position = this.Icon.position,
                     visible = this.Icon.visible,
@@ -1889,6 +1933,7 @@ namespace Watch_Face_Editor
                     Y = this.Images.Y,
                     img_First = this.Images.img_First,
                     image_length = this.Images.image_length,
+                    alpha = this.Images.alpha,
 
                     position = this.Images.position,
                     visible = this.Images.visible,
@@ -1920,6 +1965,7 @@ namespace Watch_Face_Editor
                     unit_string = this.DayOfWeek_Font.unit_string,
                     unit_end = this.DayOfWeek_Font.unit_end,
                     centreHorizontally = this.DayOfWeek_Font.centreHorizontally,
+                    alpha = this.DayOfWeek_Font.alpha,
                     centreVertically = this.DayOfWeek_Font.centreVertically,
 
                     position = this.DayOfWeek_Font.position,
@@ -1966,6 +2012,7 @@ namespace Watch_Face_Editor
                     x = this.Alarm.x,
                     y = this.Alarm.y,
                     src = this.Alarm.src,
+                    alpha = this.Alarm.alpha,
 
                     position = this.Alarm.position,
                     visible = this.Alarm.visible,
@@ -1983,6 +2030,7 @@ namespace Watch_Face_Editor
                     x = this.Bluetooth.x,
                     y = this.Bluetooth.y,
                     src = this.Bluetooth.src,
+                    alpha = this.Bluetooth.alpha,
 
                     position = this.Bluetooth.position,
                     visible = this.Bluetooth.visible,
@@ -2000,6 +2048,7 @@ namespace Watch_Face_Editor
                     x = this.DND.x,
                     y = this.DND.y,
                     src = this.DND.src,
+                    alpha = this.DND.alpha,
 
                     position = this.DND.position,
                     visible = this.DND.visible,
@@ -2017,6 +2066,7 @@ namespace Watch_Face_Editor
                     x = this.Lock.x,
                     y = this.Lock.y,
                     src = this.Lock.src,
+                    alpha = this.Lock.alpha,
 
                     position = this.Lock.position,
                     visible = this.Lock.visible,
@@ -2731,6 +2781,7 @@ namespace Watch_Face_Editor
                     img_First = this.Images.img_First,
                     image_length = this.Images.image_length,
                     shortcut = this.Images.shortcut,
+                    alpha = this.Images.alpha,
 
                     position = this.Images.position,
                     visible = this.Images.visible,
@@ -2777,6 +2828,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Number.invalid_image,
                     dot_image = this.Number.dot_image,
                     follow = this.Number.follow,
+                    alpha = this.Number.alpha,
+                    icon_alpha = this.Number.icon_alpha,
 
                     position = this.Number.position,
                     visible = this.Number.visible,
@@ -2807,6 +2860,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Number_Font.unit_end,
                     centreHorizontally = this.Number_Font.centreHorizontally,
                     centreVertically = this.Number_Font.centreVertically,
+                    alpha = this.Number_Font.alpha,
 
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
@@ -2836,6 +2890,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Text_rotation.invalid_image,
                     dot_image = this.Text_rotation.dot_image,
                     unit_in_alignment = this.Text_rotation.unit_in_alignment,
+                    alpha = this.Text_rotation.alpha,
+                    icon_alpha = this.Text_rotation.icon_alpha,
 
                     position = this.Text_rotation.position,
                     visible = this.Text_rotation.visible,
@@ -2894,6 +2950,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Number_Target.invalid_image,
                     dot_image = this.Number_Target.dot_image,
                     follow = this.Number_Target.follow,
+                    alpha = this.Number_Target.alpha,
+                    icon_alpha = this.Number_Target.icon_alpha,
 
                     position = this.Number_Target.position,
                     visible = this.Number_Target.visible,
@@ -2924,6 +2982,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Number_Target_Font.unit_end,
                     centreHorizontally = this.Number_Target_Font.centreHorizontally,
                     centreVertically = this.Number_Target_Font.centreVertically,
+                    alpha = this.Number_Target_Font.alpha,
 
                     position = this.Number_Target_Font.position,
                     visible = this.Number_Target_Font.visible,
@@ -2953,6 +3012,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Text_rotation_Target.invalid_image,
                     dot_image = this.Text_rotation_Target.dot_image,
                     unit_in_alignment = this.Text_rotation_Target.unit_in_alignment,
+                    alpha = this.Text_rotation_Target.alpha,
+                    icon_alpha = this.Text_rotation_Target.icon_alpha,
 
                     position = this.Text_rotation_Target.position,
                     visible = this.Text_rotation_Target.visible,
@@ -3030,6 +3091,7 @@ namespace Watch_Face_Editor
                     line_cap = this.Circle_Scale.line_cap,
                     mirror = this.Circle_Scale.mirror,
                     inversion = this.Circle_Scale.inversion,
+                    alpha = this.Circle_Scale.alpha,
 
                     position = this.Circle_Scale.position,
                     visible = this.Circle_Scale.visible,
@@ -3052,6 +3114,7 @@ namespace Watch_Face_Editor
                     mirror = this.Linear_Scale.mirror,
                     inversion = this.Linear_Scale.inversion,
                     vertical = this.Linear_Scale.vertical,
+                    alpha = this.Linear_Scale.alpha,
 
                     position = this.Linear_Scale.position,
                     visible = this.Linear_Scale.visible,
@@ -3070,6 +3133,7 @@ namespace Watch_Face_Editor
                     w = this.Icon.w,
                     h = this.Icon.h,
                     src = this.Icon.src,
+                    alpha = this.Icon.alpha,
 
                     position = this.Icon.position,
                     visible = this.Icon.visible,
@@ -3133,6 +3197,7 @@ namespace Watch_Face_Editor
                     Y = this.Images.Y,
                     img_First = this.Images.img_First,
                     image_length = this.Images.image_length,
+                    alpha = this.Images.alpha,
 
                     position = this.Images.position,
                     visible = this.Images.visible,
@@ -3179,6 +3244,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Number.invalid_image,
                     dot_image = this.Number.dot_image,
                     follow = this.Number.follow,
+                    alpha = this.Number.alpha,
+                    icon_alpha = this.Number.icon_alpha,
 
                     position = this.Number.position,
                     visible = this.Number.visible,
@@ -3209,6 +3276,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Number_Font.unit_end,
                     centreHorizontally = this.Number_Font.centreHorizontally,
                     centreVertically = this.Number_Font.centreVertically,
+                    alpha = this.Number_Font.alpha,
 
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
@@ -3238,6 +3306,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Text_rotation.invalid_image,
                     dot_image = this.Text_rotation.dot_image,
                     unit_in_alignment = this.Text_rotation.unit_in_alignment,
+                    alpha = this.Text_rotation.alpha,
+                    icon_alpha = this.Text_rotation.icon_alpha,
 
                     position = this.Text_rotation.position,
                     visible = this.Text_rotation.visible,
@@ -3316,6 +3386,7 @@ namespace Watch_Face_Editor
                     line_cap = this.Circle_Scale.line_cap,
                     mirror = this.Circle_Scale.mirror,
                     inversion = this.Circle_Scale.inversion,
+                    alpha = this.Circle_Scale.alpha,
 
                     position = this.Circle_Scale.position,
                     visible = this.Circle_Scale.visible,
@@ -3338,6 +3409,7 @@ namespace Watch_Face_Editor
                     mirror = this.Linear_Scale.mirror,
                     inversion = this.Linear_Scale.inversion,
                     vertical = this.Linear_Scale.vertical,
+                    alpha = this.Linear_Scale.alpha,
 
                     position = this.Linear_Scale.position,
                     visible = this.Linear_Scale.visible,
@@ -3356,6 +3428,7 @@ namespace Watch_Face_Editor
                     w = this.Icon.w,
                     h = this.Icon.h,
                     src = this.Icon.src,
+                    alpha = this.Icon.alpha,
 
                     position = this.Icon.position,
                     visible = this.Icon.visible,
@@ -3420,6 +3493,7 @@ namespace Watch_Face_Editor
                     img_First = this.Images.img_First,
                     image_length = this.Images.image_length,
                     shortcut = this.Images.shortcut,
+                    alpha = this.Images.alpha,
 
                     position = this.Images.position,
                     visible = this.Images.visible,
@@ -3466,6 +3540,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Number.invalid_image,
                     dot_image = this.Number.dot_image,
                     follow = this.Number.follow,
+                    alpha = this.Number.alpha,
+                    icon_alpha = this.Number.icon_alpha,
 
                     position = this.Number.position,
                     visible = this.Number.visible,
@@ -3496,6 +3572,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Number_Font.unit_end,
                     centreHorizontally = this.Number_Font.centreHorizontally,
                     centreVertically = this.Number_Font.centreVertically,
+                    alpha = this.Number_Font.alpha,
 
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
@@ -3525,6 +3602,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Text_rotation.invalid_image,
                     dot_image = this.Text_rotation.dot_image,
                     unit_in_alignment = this.Text_rotation.unit_in_alignment,
+                    alpha = this.Text_rotation.alpha,
+                    icon_alpha = this.Text_rotation.icon_alpha,
 
                     position = this.Text_rotation.position,
                     visible = this.Text_rotation.visible,
@@ -3583,6 +3662,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Number_Target.invalid_image,
                     dot_image = this.Number_Target.dot_image,
                     follow = this.Number_Target.follow,
+                    alpha = this.Number_Target.alpha,
+                    icon_alpha = this.Number_Target.icon_alpha,
 
                     position = this.Number_Target.position,
                     visible = this.Number_Target.visible,
@@ -3613,6 +3694,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Number_Target_Font.unit_end,
                     centreHorizontally = this.Number_Target_Font.centreHorizontally,
                     centreVertically = this.Number_Target_Font.centreVertically,
+                    alpha = this.Number_Target_Font.alpha,
 
                     position = this.Number_Target_Font.position,
                     visible = this.Number_Target_Font.visible,
@@ -3642,6 +3724,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Text_rotation_Target.invalid_image,
                     dot_image = this.Text_rotation_Target.dot_image,
                     unit_in_alignment = this.Text_rotation_Target.unit_in_alignment,
+                    alpha = this.Text_rotation_Target.alpha,
+                    icon_alpha = this.Text_rotation_Target.icon_alpha,
 
                     position = this.Text_rotation_Target.position,
                     visible = this.Text_rotation_Target.visible,
@@ -3719,6 +3803,7 @@ namespace Watch_Face_Editor
                     line_cap = this.Circle_Scale.line_cap,
                     mirror = this.Circle_Scale.mirror,
                     inversion = this.Circle_Scale.inversion,
+                    alpha = this.Circle_Scale.alpha,
 
                     position = this.Circle_Scale.position,
                     visible = this.Circle_Scale.visible,
@@ -3741,6 +3826,7 @@ namespace Watch_Face_Editor
                     mirror = this.Linear_Scale.mirror,
                     inversion = this.Linear_Scale.inversion,
                     vertical = this.Linear_Scale.vertical,
+                    alpha = this.Linear_Scale.alpha,
 
                     position = this.Linear_Scale.position,
                     visible = this.Linear_Scale.visible,
@@ -3759,6 +3845,7 @@ namespace Watch_Face_Editor
                     w = this.Icon.w,
                     h = this.Icon.h,
                     src = this.Icon.src,
+                    alpha = this.Icon.alpha,
 
                     position = this.Icon.position,
                     visible = this.Icon.visible,
@@ -3823,6 +3910,7 @@ namespace Watch_Face_Editor
                     img_First = this.Images.img_First,
                     image_length = this.Images.image_length,
                     shortcut = this.Images.shortcut,
+                    alpha = this.Images.alpha,
 
                     position = this.Images.position,
                     visible = this.Images.visible,
@@ -3869,6 +3957,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Number.invalid_image,
                     dot_image = this.Number.dot_image,
                     follow = this.Number.follow,
+                    alpha = this.Number.alpha,
+                    icon_alpha = this.Number.icon_alpha,
 
                     position = this.Number.position,
                     visible = this.Number.visible,
@@ -3899,6 +3989,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Number_Font.unit_end,
                     centreHorizontally = this.Number_Font.centreHorizontally,
                     centreVertically = this.Number_Font.centreVertically,
+                    alpha = this.Number_Font.alpha,
 
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
@@ -3928,6 +4019,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Text_rotation.invalid_image,
                     dot_image = this.Text_rotation.dot_image,
                     unit_in_alignment = this.Text_rotation.unit_in_alignment,
+                    alpha = this.Text_rotation.alpha,
+                    icon_alpha = this.Text_rotation.icon_alpha,
 
                     position = this.Text_rotation.position,
                     visible = this.Text_rotation.visible,
@@ -4006,6 +4099,7 @@ namespace Watch_Face_Editor
                     line_cap = this.Circle_Scale.line_cap,
                     mirror = this.Circle_Scale.mirror,
                     inversion = this.Circle_Scale.inversion,
+                    alpha = this.Circle_Scale.alpha,
 
                     position = this.Circle_Scale.position,
                     visible = this.Circle_Scale.visible,
@@ -4028,6 +4122,7 @@ namespace Watch_Face_Editor
                     mirror = this.Linear_Scale.mirror,
                     inversion = this.Linear_Scale.inversion,
                     vertical = this.Linear_Scale.vertical,
+                    alpha = this.Linear_Scale.alpha,
 
                     position = this.Linear_Scale.position,
                     visible = this.Linear_Scale.visible,
@@ -4046,6 +4141,7 @@ namespace Watch_Face_Editor
                     w = this.Icon.w,
                     h = this.Icon.h,
                     src = this.Icon.src,
+                    alpha = this.Icon.alpha,
 
                     position = this.Icon.position,
                     visible = this.Icon.visible,
@@ -4108,6 +4204,7 @@ namespace Watch_Face_Editor
                     img_First = this.Images.img_First,
                     image_length = this.Images.image_length,
                     shortcut = this.Images.shortcut,
+                    alpha = this.Images.alpha,
 
                     position = this.Images.position,
                     visible = this.Images.visible,
@@ -4154,6 +4251,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Number.invalid_image,
                     dot_image = this.Number.dot_image,
                     follow = this.Number.follow,
+                    alpha = this.Number.alpha,
+                    icon_alpha = this.Number.icon_alpha,
 
                     position = this.Number.position,
                     visible = this.Number.visible,
@@ -4161,36 +4260,6 @@ namespace Watch_Face_Editor
                     type = this.Number.type,
                 };
             }
-
-            //hmUI_widget_TEXT Number_Font = null;
-            //if (this.Number_Font != null)
-            //{
-            //    Number_Font = new hmUI_widget_TEXT
-            //    {
-            //        x = this.Number_Font.x,
-            //        y = this.Number_Font.y,
-            //        w = this.Number_Font.w,
-            //        h = this.Number_Font.h,
-            //        color = this.Number_Font.color,
-            //        align_h = this.Number_Font.align_h,
-            //        align_v = this.Number_Font.align_v,
-            //        text_size = this.Number_Font.text_size,
-            //        text_style = this.Number_Font.text_style,
-            //        line_space = this.Number_Font.line_space,
-            //        char_space = this.Number_Font.char_space,
-            //        font = this.Number_Font.font,
-            //        padding = this.Number_Font.padding,
-            //        unit_type = this.Number_Font.unit_type,
-            //        unit_end = this.Number_Font.unit_end,
-            //        centreHorizontally = this.Number_Font.centreHorizontally,
-            //        centreVertically = this.Number_Font.centreVertically,
-
-            //        position = this.Number_Font.position,
-            //        visible = this.Number_Font.visible,
-            //        show_level = this.Number_Font.show_level,
-            //        type = this.Number_Font.type,
-            //    };
-            //}
 
             hmUI_widget_IMG_NUMBER Number_Target = null;
             if (this.Number_Target != null)
@@ -4212,6 +4281,8 @@ namespace Watch_Face_Editor
                     negative_image = this.Number_Target.negative_image,
                     dot_image = this.Number_Target.dot_image,
                     follow = this.Number_Target.follow,
+                    alpha = this.Number_Target.alpha,
+                    icon_alpha = this.Number_Target.icon_alpha,
 
                     position = this.Number_Target.position,
                     visible = this.Number_Target.visible,
@@ -4242,6 +4313,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Number_Target_Font.unit_end,
                     centreHorizontally = this.Number_Target_Font.centreHorizontally,
                     centreVertically = this.Number_Target_Font.centreVertically,
+                    alpha = this.Number_Target_Font.alpha,
 
                     position = this.Number_Target_Font.position,
                     visible = this.Number_Target_Font.visible,
@@ -4271,6 +4343,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Text_rotation_Target.invalid_image,
                     dot_image = this.Text_rotation_Target.dot_image,
                     unit_in_alignment = this.Text_rotation_Target.unit_in_alignment,
+                    alpha = this.Text_rotation_Target.alpha,
+                    icon_alpha = this.Text_rotation_Target.icon_alpha,
 
                     position = this.Text_rotation_Target.position,
                     visible = this.Text_rotation_Target.visible,
@@ -4348,6 +4422,7 @@ namespace Watch_Face_Editor
                     line_cap = this.Circle_Scale.line_cap,
                     mirror = this.Circle_Scale.mirror,
                     inversion = this.Circle_Scale.inversion,
+                    alpha = this.Circle_Scale.alpha,
 
                     position = this.Circle_Scale.position,
                     visible = this.Circle_Scale.visible,
@@ -4370,6 +4445,7 @@ namespace Watch_Face_Editor
                     mirror = this.Linear_Scale.mirror,
                     inversion = this.Linear_Scale.inversion,
                     vertical = this.Linear_Scale.vertical,
+                    alpha = this.Linear_Scale.alpha,
 
                     position = this.Linear_Scale.position,
                     visible = this.Linear_Scale.visible,
@@ -4388,6 +4464,7 @@ namespace Watch_Face_Editor
                     w = this.Icon.w,
                     h = this.Icon.h,
                     src = this.Icon.src,
+                    alpha = this.Icon.alpha,
 
                     position = this.Icon.position,
                     visible = this.Icon.visible,
@@ -4455,6 +4532,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Number.invalid_image,
                     dot_image = this.Number.dot_image,
                     follow = this.Number.follow,
+                    alpha = this.Number.alpha,
+                    icon_alpha = this.Number.icon_alpha,
 
                     position = this.Number.position,
                     visible = this.Number.visible,
@@ -4485,6 +4564,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Number_Font.unit_end,
                     centreHorizontally = this.Number_Font.centreHorizontally,
                     centreVertically = this.Number_Font.centreVertically,
+                    alpha = this.Number_Font.alpha,
 
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
@@ -4514,6 +4594,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Text_rotation.invalid_image,
                     dot_image = this.Text_rotation.dot_image,
                     unit_in_alignment = this.Text_rotation.unit_in_alignment,
+                    alpha = this.Text_rotation.alpha,
+                    icon_alpha = this.Text_rotation.icon_alpha,
 
                     position = this.Text_rotation.position,
                     visible = this.Text_rotation.visible,
@@ -4565,6 +4647,7 @@ namespace Watch_Face_Editor
                     w = this.Icon.w,
                     h = this.Icon.h,
                     src = this.Icon.src,
+                    alpha = this.Icon.alpha,
 
                     position = this.Icon.position,
                     visible = this.Icon.visible,
@@ -4624,6 +4707,7 @@ namespace Watch_Face_Editor
                     img_First = this.Images.img_First,
                     image_length = this.Images.image_length,
                     shortcut = this.Images.shortcut,
+                    alpha = this.Images.alpha,
 
                     position = this.Images.position,
                     visible = this.Images.visible,
@@ -4670,6 +4754,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Number.invalid_image,
                     dot_image = this.Number.dot_image,
                     follow = this.Number.follow,
+                    alpha = this.Number.alpha,
+                    icon_alpha = this.Number.icon_alpha,
 
                     position = this.Number.position,
                     visible = this.Number.visible,
@@ -4700,6 +4786,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Number_Font.unit_end,
                     centreHorizontally = this.Number_Font.centreHorizontally,
                     centreVertically = this.Number_Font.centreVertically,
+                    alpha = this.Number_Font.alpha,
 
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
@@ -4729,6 +4816,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Text_rotation.invalid_image,
                     dot_image = this.Text_rotation.dot_image,
                     unit_in_alignment = this.Text_rotation.unit_in_alignment,
+                    alpha = this.Text_rotation.alpha,
+                    icon_alpha = this.Text_rotation.icon_alpha,
 
                     position = this.Text_rotation.position,
                     visible = this.Text_rotation.visible,
@@ -4787,6 +4876,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Number_Target.invalid_image,
                     dot_image = this.Number_Target.dot_image,
                     follow = this.Number_Target.follow,
+                    alpha = this.Number_Target.alpha,
+                    icon_alpha = this.Number_Target.icon_alpha,
 
                     position = this.Number_Target.position,
                     visible = this.Number_Target.visible,
@@ -4817,6 +4908,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Number_Target_Font.unit_end,
                     centreHorizontally = this.Number_Target_Font.centreHorizontally,
                     centreVertically = this.Number_Target_Font.centreVertically,
+                    alpha = this.Number_Target_Font.alpha,
 
                     position = this.Number_Target_Font.position,
                     visible = this.Number_Target_Font.visible,
@@ -4846,6 +4938,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Text_rotation_Target.invalid_image,
                     dot_image = this.Text_rotation_Target.dot_image,
                     unit_in_alignment = this.Text_rotation_Target.unit_in_alignment,
+                    alpha = this.Text_rotation_Target.alpha,
+                    icon_alpha = this.Text_rotation_Target.icon_alpha,
 
                     position = this.Text_rotation_Target.position,
                     visible = this.Text_rotation_Target.visible,
@@ -4923,6 +5017,7 @@ namespace Watch_Face_Editor
                     line_cap = this.Circle_Scale.line_cap,
                     mirror = this.Circle_Scale.mirror,
                     inversion = this.Circle_Scale.inversion,
+                    alpha = this.Circle_Scale.alpha,
 
                     position = this.Circle_Scale.position,
                     visible = this.Circle_Scale.visible,
@@ -4945,6 +5040,7 @@ namespace Watch_Face_Editor
                     mirror = this.Linear_Scale.mirror,
                     inversion = this.Linear_Scale.inversion,
                     vertical = this.Linear_Scale.vertical,
+                    alpha = this.Linear_Scale.alpha,
 
                     position = this.Linear_Scale.position,
                     visible = this.Linear_Scale.visible,
@@ -4963,6 +5059,7 @@ namespace Watch_Face_Editor
                     w = this.Icon.w,
                     h = this.Icon.h,
                     src = this.Icon.src,
+                    alpha = this.Icon.alpha,
 
                     position = this.Icon.position,
                     visible = this.Icon.visible,
@@ -5030,6 +5127,7 @@ namespace Watch_Face_Editor
                     img_First = this.Images.img_First,
                     image_length = this.Images.image_length,
                     shortcut = this.Images.shortcut,
+                    alpha = this.Images.alpha,
 
                     position = this.Images.position,
                     visible = this.Images.visible,
@@ -5076,6 +5174,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Number.invalid_image,
                     dot_image = this.Number.dot_image,
                     follow = this.Number.follow,
+                    alpha = this.Number.alpha,
+                    icon_alpha = this.Number.icon_alpha,
 
                     position = this.Number.position,
                     visible = this.Number.visible,
@@ -5106,6 +5206,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Number_Font.unit_end,
                     centreHorizontally = this.Number_Font.centreHorizontally,
                     centreVertically = this.Number_Font.centreVertically,
+                    alpha = this.Number_Font.alpha,
 
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
@@ -5135,6 +5236,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Number_Target.invalid_image,
                     dot_image = this.Number_Target.dot_image,
                     follow = this.Number_Target.follow,
+                    alpha = this.Number_Target.alpha,
+                    icon_alpha = this.Number_Target.icon_alpha,
 
                     position = this.Number_Target.position,
                     visible = this.Number_Target.visible,
@@ -5165,6 +5268,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Number_Target_Font.unit_end,
                     centreHorizontally = this.Number_Target_Font.centreHorizontally,
                     centreVertically = this.Number_Target_Font.centreVertically,
+                    alpha = this.Number_Target_Font.alpha,
 
                     position = this.Number_Target_Font.position,
                     visible = this.Number_Target_Font.visible,
@@ -5214,6 +5318,7 @@ namespace Watch_Face_Editor
                     line_cap = this.Circle_Scale.line_cap,
                     mirror = this.Circle_Scale.mirror,
                     inversion = this.Circle_Scale.inversion,
+                    alpha = this.Circle_Scale.alpha,
 
                     position = this.Circle_Scale.position,
                     visible = this.Circle_Scale.visible,
@@ -5236,6 +5341,7 @@ namespace Watch_Face_Editor
                     mirror = this.Linear_Scale.mirror,
                     inversion = this.Linear_Scale.inversion,
                     vertical = this.Linear_Scale.vertical,
+                    alpha = this.Linear_Scale.alpha,
 
                     position = this.Linear_Scale.position,
                     visible = this.Linear_Scale.visible,
@@ -5254,6 +5360,7 @@ namespace Watch_Face_Editor
                     w = this.Icon.w,
                     h = this.Icon.h,
                     src = this.Icon.src,
+                    alpha = this.Icon.alpha,
 
                     position = this.Icon.position,
                     visible = this.Icon.visible,
@@ -5320,6 +5427,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Number.invalid_image,
                     dot_image = this.Number.dot_image,
                     follow = this.Number.follow,
+                    alpha = this.Number.alpha,
+                    icon_alpha = this.Number.icon_alpha,
 
                     position = this.Number.position,
                     visible = this.Number.visible,
@@ -5350,6 +5459,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Number_Font.unit_end,
                     centreHorizontally = this.Number_Font.centreHorizontally,
                     centreVertically = this.Number_Font.centreVertically,
+                    alpha = this.Number_Font.alpha,
 
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
@@ -5379,6 +5489,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Text_rotation.invalid_image,
                     dot_image = this.Text_rotation.dot_image,
                     unit_in_alignment = this.Text_rotation.unit_in_alignment,
+                    alpha = this.Text_rotation.alpha,
+                    icon_alpha = this.Text_rotation.icon_alpha,
 
                     position = this.Text_rotation.position,
                     visible = this.Text_rotation.visible,
@@ -5426,6 +5538,7 @@ namespace Watch_Face_Editor
                     w = this.Icon.w,
                     h = this.Icon.h,
                     src = this.Icon.src,
+                    alpha = this.Icon.alpha,
 
                     position = this.Icon.position,
                     visible = this.Icon.visible,
@@ -5477,6 +5590,7 @@ namespace Watch_Face_Editor
                     img_First = this.Images.img_First,
                     image_length = this.Images.image_length,
                     shortcut = this.Images.shortcut,
+                    alpha = this.Images.alpha,
 
                     position = this.Images.position,
                     visible = this.Images.visible,
@@ -5523,6 +5637,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Number.invalid_image,
                     dot_image = this.Number.dot_image,
                     follow = this.Number.follow,
+                    alpha = this.Number.alpha,
+                    icon_alpha = this.Number.icon_alpha,
 
                     position = this.Number.position,
                     visible = this.Number.visible,
@@ -5553,6 +5669,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Number_Font.unit_end,
                     centreHorizontally = this.Number_Font.centreHorizontally,
                     centreVertically = this.Number_Font.centreVertically,
+                    alpha = this.Number_Font.alpha,
 
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
@@ -5597,6 +5714,7 @@ namespace Watch_Face_Editor
                     w = this.Icon.w,
                     h = this.Icon.h,
                     src = this.Icon.src,
+                    alpha = this.Icon.alpha,
 
                     position = this.Icon.position,
                     visible = this.Icon.visible,
@@ -5657,6 +5775,7 @@ namespace Watch_Face_Editor
                     img_First = this.Images.img_First,
                     image_length = this.Images.image_length,
                     shortcut = this.Images.shortcut,
+                    alpha = this.Images.alpha,
 
                     position = this.Images.position,
                     visible = this.Images.visible,
@@ -5703,6 +5822,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Number.invalid_image,
                     dot_image = this.Number.dot_image,
                     follow = this.Number.follow,
+                    alpha = this.Number.alpha,
+                    icon_alpha = this.Number.icon_alpha,
 
                     position = this.Number.position,
                     visible = this.Number.visible,
@@ -5733,6 +5854,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Number_Font.unit_end,
                     centreHorizontally = this.Number_Font.centreHorizontally,
                     centreVertically = this.Number_Font.centreVertically,
+                    alpha = this.Number_Font.alpha,
 
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
@@ -5762,6 +5884,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Text_rotation.invalid_image,
                     dot_image = this.Text_rotation.dot_image,
                     unit_in_alignment = this.Text_rotation.unit_in_alignment,
+                    alpha = this.Text_rotation.alpha,
+                    icon_alpha = this.Text_rotation.icon_alpha,
 
                     position = this.Text_rotation.position,
                     visible = this.Text_rotation.visible,
@@ -5820,6 +5944,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Number_Target.invalid_image,
                     dot_image = this.Number_Target.dot_image,
                     follow = this.Number_Target.follow,
+                    alpha = this.Number_Target.alpha,
+                    icon_alpha = this.Number_Target.icon_alpha,
 
                     position = this.Number_Target.position,
                     visible = this.Number_Target.visible,
@@ -5850,6 +5976,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Number_Target_Font.unit_end,
                     centreHorizontally = this.Number_Target_Font.centreHorizontally,
                     centreVertically = this.Number_Target_Font.centreVertically,
+                    alpha = this.Number_Target_Font.alpha,
 
                     position = this.Number_Target_Font.position,
                     visible = this.Number_Target_Font.visible,
@@ -5879,6 +6006,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Text_rotation_Target.invalid_image,
                     dot_image = this.Text_rotation_Target.dot_image,
                     unit_in_alignment = this.Text_rotation_Target.unit_in_alignment,
+                    alpha = this.Text_rotation_Target.alpha,
+                    icon_alpha = this.Text_rotation_Target.icon_alpha,
 
                     position = this.Text_rotation_Target.position,
                     visible = this.Text_rotation_Target.visible,
@@ -5956,6 +6085,7 @@ namespace Watch_Face_Editor
                     line_cap = this.Circle_Scale.line_cap,
                     mirror = this.Circle_Scale.mirror,
                     inversion = this.Circle_Scale.inversion,
+                    alpha = this.Circle_Scale.alpha,
 
                     position = this.Circle_Scale.position,
                     visible = this.Circle_Scale.visible,
@@ -5978,6 +6108,7 @@ namespace Watch_Face_Editor
                     mirror = this.Linear_Scale.mirror,
                     inversion = this.Linear_Scale.inversion,
                     vertical = this.Linear_Scale.vertical,
+                    alpha = this.Linear_Scale.alpha,
 
                     position = this.Linear_Scale.position,
                     visible = this.Linear_Scale.visible,
@@ -5996,6 +6127,7 @@ namespace Watch_Face_Editor
                     w = this.Icon.w,
                     h = this.Icon.h,
                     src = this.Icon.src,
+                    alpha = this.Icon.alpha,
 
                     position = this.Icon.position,
                     visible = this.Icon.visible,
@@ -6066,6 +6198,7 @@ namespace Watch_Face_Editor
                     img_First = this.Images.img_First,
                     image_length = this.Images.image_length,
                     shortcut = this.Images.shortcut,
+                    alpha = this.Images.alpha,
 
                     position = this.Images.position,
                     visible = this.Images.visible,
@@ -6095,6 +6228,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Number.invalid_image,
                     dot_image = this.Number.dot_image,
                     follow = this.Number.follow,
+                    alpha = this.Number.alpha,
+                    icon_alpha = this.Number.icon_alpha,
 
                     position = this.Number.position,
                     visible = this.Number.visible,
@@ -6125,6 +6260,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Number_Font.unit_end,
                     centreHorizontally = this.Number_Font.centreHorizontally,
                     centreVertically = this.Number_Font.centreVertically,
+                    alpha = this.Number_Font.alpha,
 
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
@@ -6154,6 +6290,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Number_Min.invalid_image,
                     dot_image = this.Number_Min.dot_image,
                     follow = this.Number_Min.follow,
+                    alpha = this.Number_Min.alpha,
+                    icon_alpha = this.Number_Min.icon_alpha,
 
                     position = this.Number_Min.position,
                     visible = this.Number_Min.visible,
@@ -6184,6 +6322,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Number_Min_Font.unit_end,
                     centreHorizontally = this.Number_Min_Font.centreHorizontally,
                     centreVertically = this.Number_Min_Font.centreVertically,
+                    alpha = this.Number_Min_Font.alpha,
 
                     position = this.Number_Min_Font.position,
                     visible = this.Number_Min_Font.visible,
@@ -6213,6 +6352,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Text_Min_rotation.invalid_image,
                     dot_image = this.Text_Min_rotation.dot_image,
                     unit_in_alignment = this.Text_Min_rotation.unit_in_alignment,
+                    alpha = this.Text_Min_rotation.alpha,
+                    icon_alpha = this.Text_Min_rotation.icon_alpha,
 
                     position = this.Text_Min_rotation.position,
                     visible = this.Text_Min_rotation.visible,
@@ -6275,6 +6416,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Number_Max.invalid_image,
                     dot_image = this.Number_Max.dot_image,
                     follow = this.Number_Max.follow,
+                    alpha = this.Number_Max.alpha,
+                    icon_alpha = this.Number_Max.icon_alpha,
 
                     position = this.Number_Max.position,
                     visible = this.Number_Max.visible,
@@ -6305,6 +6448,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Number_Max_Font.unit_end,
                     centreHorizontally = this.Number_Max_Font.centreHorizontally,
                     centreVertically = this.Number_Max_Font.centreVertically,
+                    alpha = this.Number_Max_Font.alpha,
 
                     position = this.Number_Max_Font.position,
                     visible = this.Number_Max_Font.visible,
@@ -6334,6 +6478,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Text_Max_rotation.invalid_image,
                     dot_image = this.Text_Max_rotation.dot_image,
                     unit_in_alignment = this.Text_Max_rotation.unit_in_alignment,
+                    alpha = this.Text_Max_rotation.alpha,
+                    icon_alpha = this.Text_Max_rotation.icon_alpha,
 
                     position = this.Text_Max_rotation.position,
                     visible = this.Text_Max_rotation.visible,
@@ -6397,6 +6543,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Number_Min_Max_Font.unit_end,
                     centreHorizontally = this.Number_Min_Max_Font.centreHorizontally,
                     centreVertically = this.Number_Min_Max_Font.centreVertically,
+                    alpha = this.Number_Min_Max_Font.alpha,
 
                     position = this.Number_Min_Max_Font.position,
                     visible = this.Number_Min_Max_Font.visible,
@@ -6422,6 +6569,7 @@ namespace Watch_Face_Editor
                     line_space = this.City_Name.line_space,
                     char_space = this.City_Name.char_space,
                     font = this.City_Name.font,
+                    alpha = this.City_Name.alpha,
 
                     position = this.City_Name.position,
                     visible = this.City_Name.visible,
@@ -6440,6 +6588,7 @@ namespace Watch_Face_Editor
                     w = this.Icon.w,
                     h = this.Icon.h,
                     src = this.Icon.src,
+                    alpha = this.Icon.alpha,
 
                     position = this.Icon.position,
                     visible = this.Icon.visible,
@@ -6525,6 +6674,7 @@ namespace Watch_Face_Editor
                     img_First = this.Images.img_First,
                     image_length = this.Images.image_length,
                     shortcut = this.Images.shortcut,
+                    alpha = this.Images.alpha,
 
                     position = this.Images.position,
                     visible = this.Images.visible,
@@ -6550,6 +6700,7 @@ namespace Watch_Face_Editor
                     line_space = this.City_Name.line_space,
                     char_space = this.City_Name.char_space,
                     font = this.City_Name.font,
+                    alpha = this.City_Name.alpha,
 
                     position = this.City_Name.position,
                     visible = this.City_Name.visible,
@@ -6568,6 +6719,7 @@ namespace Watch_Face_Editor
                     w = this.Icon.w,
                     h = this.Icon.h,
                     src = this.Icon.src,
+                    alpha = this.Icon.alpha,
 
                     position = this.Icon.position,
                     visible = this.Icon.visible,
@@ -6669,6 +6821,7 @@ namespace Watch_Face_Editor
                     img_First = this.Images.img_First,
                     image_length = this.Images.image_length,
                     shortcut = this.Images.shortcut,
+                    alpha = this.Images.alpha,
 
                     position = this.Images.position,
                     visible = this.Images.visible,
@@ -6737,6 +6890,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Number_Max.invalid_image,
                     dot_image = this.Number_Max.dot_image,
                     follow = this.Number_Max.follow,
+                    alpha = this.Number_Max.alpha,
+                    icon_alpha = this.Number_Max.icon_alpha,
 
                     position = this.Number_Max.position,
                     visible = this.Number_Max.visible,
@@ -6767,6 +6922,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Number_Font_Max.unit_end,
                     centreHorizontally = this.Number_Font_Max.centreHorizontally,
                     centreVertically = this.Number_Font_Max.centreVertically,
+                    alpha = this.Number_Font_Max.alpha,
 
                     position = this.Number_Font_Max.position,
                     visible = this.Number_Font_Max.visible,
@@ -6796,6 +6952,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Number_Min.invalid_image,
                     dot_image = this.Number_Min.dot_image,
                     follow = this.Number_Min.follow,
+                    alpha = this.Number_Min.alpha,
+                    icon_alpha = this.Number_Min.icon_alpha,
 
                     position = this.Number_Min.position,
                     visible = this.Number_Min.visible,
@@ -6826,6 +6984,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Number_Font_Min.unit_end,
                     centreHorizontally = this.Number_Font_Min.centreHorizontally,
                     centreVertically = this.Number_Font_Min.centreVertically,
+                    alpha = this.Number_Font_Min.alpha,
 
                     position = this.Number_Font_Min.position,
                     visible = this.Number_Font_Min.visible,
@@ -6856,6 +7015,8 @@ namespace Watch_Face_Editor
                     dot_image = this.Number_MaxMin.dot_image,
                     separator_image = this.Number_MaxMin.separator_image,
                     follow = this.Number_MaxMin.follow,
+                    alpha = this.Number_MaxMin.alpha,
+                    icon_alpha = this.Number_MaxMin.icon_alpha,
 
                     position = this.Number_MaxMin.position,
                     visible = this.Number_MaxMin.visible,
@@ -6886,6 +7047,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Number_Font_MaxMin.unit_end,
                     centreHorizontally = this.Number_Font_MaxMin.centreHorizontally,
                     centreVertically = this.Number_Font_MaxMin.centreVertically,
+                    alpha = this.Number_Font_MaxMin.alpha,
 
                     position = this.Number_Font_MaxMin.position,
                     visible = this.Number_Font_MaxMin.visible,
@@ -6915,6 +7077,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Number_Average.invalid_image,
                     dot_image = this.Number_Average.dot_image,
                     follow = this.Number_Average.follow,
+                    alpha = this.Number_Average.alpha,
+                    icon_alpha = this.Number_Average.icon_alpha,
 
                     position = this.Number_Average.position,
                     visible = this.Number_Average.visible,
@@ -6945,6 +7109,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Number_Font_Average.unit_end,
                     centreHorizontally = this.Number_Font_Average.centreHorizontally,
                     centreVertically = this.Number_Font_Average.centreVertically,
+                    alpha = this.Number_Font_Average.alpha,
 
                     position = this.Number_Font_Average.position,
                     visible = this.Number_Font_Average.visible,
@@ -6963,6 +7128,7 @@ namespace Watch_Face_Editor
                     img_First = this.DayOfWeek_Images.img_First,
                     image_length = this.DayOfWeek_Images.image_length,
                     shortcut = this.DayOfWeek_Images.shortcut,
+                    alpha = this.Images.alpha,
 
                     position = this.DayOfWeek_Images.position,
                     visible = this.DayOfWeek_Images.visible,
@@ -6996,6 +7162,7 @@ namespace Watch_Face_Editor
                     //unit_end = this.DayOfWeek_Font.unit_end,
                     //centreHorizontally = this.DayOfWeek_Font.centreHorizontally,
                     //centreVertically = this.DayOfWeek_Font.centreVertically,
+                    alpha = this.DayOfWeek_Font.alpha,
 
                     position = this.DayOfWeek_Font.position,
                     visible = this.DayOfWeek_Font.visible,
@@ -7014,6 +7181,7 @@ namespace Watch_Face_Editor
                     w = this.Icon.w,
                     h = this.Icon.h,
                     src = this.Icon.src,
+                    alpha = this.Icon.alpha,
 
                     position = this.Icon.position,
                     visible = this.Icon.visible,
@@ -7077,6 +7245,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Number.invalid_image,
                     dot_image = this.Number.dot_image,
                     follow = this.Number.follow,
+                    alpha = this.Number.alpha,
+                    icon_alpha = this.Number.icon_alpha,
 
                     position = this.Number.position,
                     visible = this.Number.visible,
@@ -7107,6 +7277,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Number_Font.unit_end,
                     centreHorizontally = this.Number_Font.centreHorizontally,
                     centreVertically = this.Number_Font.centreVertically,
+                    alpha = this.Number_Font.alpha,
 
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
@@ -7136,6 +7307,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Text_rotation.invalid_image,
                     dot_image = this.Text_rotation.dot_image,
                     unit_in_alignment = this.Text_rotation.unit_in_alignment,
+                    alpha = this.Text_rotation.alpha,
+                    icon_alpha = this.Text_rotation.icon_alpha,
 
                     position = this.Text_rotation.position,
                     visible = this.Text_rotation.visible,
@@ -7220,6 +7393,7 @@ namespace Watch_Face_Editor
                     img_First = this.Images.img_First,
                     image_length = this.Images.image_length,
                     shortcut = this.Images.shortcut,
+                    alpha = this.Images.alpha,
 
                     position = this.Images.position,
                     visible = this.Images.visible,
@@ -7266,6 +7440,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Number.invalid_image,
                     dot_image = this.Number.dot_image,
                     follow = this.Number.follow,
+                    alpha = this.Number.alpha,
+                    icon_alpha = this.Number.icon_alpha,
 
                     position = this.Number.position,
                     visible = this.Number.visible,
@@ -7296,6 +7472,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Number_Font.unit_end,
                     centreHorizontally = this.Number_Font.centreHorizontally,
                     centreVertically = this.Number_Font.centreVertically,
+                    alpha = this.Number_Font.alpha,
 
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
@@ -7340,6 +7517,7 @@ namespace Watch_Face_Editor
                     w = this.Icon.w,
                     h = this.Icon.h,
                     src = this.Icon.src,
+                    alpha = this.Icon.alpha,
 
                     position = this.Icon.position,
                     visible = this.Icon.visible,
@@ -7396,6 +7574,7 @@ namespace Watch_Face_Editor
                     img_First = this.Images.img_First,
                     image_length = this.Images.image_length,
                     shortcut = this.Images.shortcut,
+                    alpha = this.Images.alpha,
 
                     position = this.Images.position,
                     visible = this.Images.visible,
@@ -7442,6 +7621,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Number.invalid_image,
                     dot_image = this.Number.dot_image,
                     follow = this.Number.follow,
+                    alpha = this.Number.alpha,
+                    icon_alpha = this.Number.icon_alpha,
 
                     position = this.Number.position,
                     visible = this.Number.visible,
@@ -7472,6 +7653,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Number_Font.unit_end,
                     centreHorizontally = this.Number_Font.centreHorizontally,
                     centreVertically = this.Number_Font.centreVertically,
+                    alpha = this.Number_Font.alpha,
 
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
@@ -7516,6 +7698,7 @@ namespace Watch_Face_Editor
                     w = this.Icon.w,
                     h = this.Icon.h,
                     src = this.Icon.src,
+                    alpha = this.Icon.alpha,
 
                     position = this.Icon.position,
                     visible = this.Icon.visible,
@@ -7580,6 +7763,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Number.invalid_image,
                     dot_image = this.Number.dot_image,
                     follow = this.Number.follow,
+                    alpha = this.Number.alpha,
+                    icon_alpha = this.Number.icon_alpha,
 
                     position = this.Number.position,
                     visible = this.Number.visible,
@@ -7610,6 +7795,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Number_Font.unit_end,
                     centreHorizontally = this.Number_Font.centreHorizontally,
                     centreVertically = this.Number_Font.centreVertically,
+                    alpha = this.Number_Font.alpha,
 
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
@@ -7639,6 +7825,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Number_Target.invalid_image,
                     dot_image = this.Number_Target.dot_image,
                     follow = this.Number_Target.follow,
+                    alpha = this.Number_Target.alpha,
+                    icon_alpha = this.Number_Target.icon_alpha,
 
                     position = this.Number_Target.position,
                     visible = this.Number_Target.visible,
@@ -7669,6 +7857,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Number_Target_Font.unit_end,
                     centreHorizontally = this.Number_Target_Font.centreHorizontally,
                     centreVertically = this.Number_Target_Font.centreVertically,
+                    alpha = this.Number_Target_Font.alpha,
 
                     position = this.Number_Target_Font.position,
                     visible = this.Number_Target_Font.visible,
@@ -7713,6 +7902,7 @@ namespace Watch_Face_Editor
                     w = this.Icon.w,
                     h = this.Icon.h,
                     src = this.Icon.src,
+                    alpha = this.Icon.alpha,
 
                     position = this.Icon.position,
                     visible = this.Icon.visible,
@@ -7772,6 +7962,7 @@ namespace Watch_Face_Editor
                     img_First = this.Images.img_First,
                     image_length = this.Images.image_length,
                     shortcut = this.Images.shortcut,
+                    alpha = this.Images.alpha,
 
                     position = this.Images.position,
                     visible = this.Images.visible,
@@ -7818,6 +8009,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Sunrise.invalid_image,
                     dot_image = this.Sunrise.dot_image,
                     follow = this.Sunrise.follow,
+                    alpha = this.Sunrise.alpha,
+                    icon_alpha = this.Sunrise.icon_alpha,
 
                     position = this.Sunrise.position,
                     visible = this.Sunrise.visible,
@@ -7848,6 +8041,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Sunrise_Font.unit_end,
                     centreHorizontally = this.Sunrise_Font.centreHorizontally,
                     centreVertically = this.Sunrise_Font.centreVertically,
+                    alpha = this.Sunrise_Font.alpha,
 
                     position = this.Sunrise_Font.position,
                     visible = this.Sunrise_Font.visible,
@@ -7877,6 +8071,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Sunrise_rotation.invalid_image,
                     dot_image = this.Sunrise_rotation.dot_image,
                     unit_in_alignment = this.Sunrise_rotation.unit_in_alignment,
+                    alpha = this.Sunrise_rotation.alpha,
+                    icon_alpha = this.Sunrise_rotation.icon_alpha,
 
                     position = this.Sunrise_rotation.position,
                     visible = this.Sunrise_rotation.visible,
@@ -7939,6 +8135,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Sunset.invalid_image,
                     dot_image = this.Sunset.dot_image,
                     follow = this.Sunset.follow,
+                    alpha = this.Sunset.alpha,
+                    icon_alpha = this.Sunset.icon_alpha,
 
                     position = this.Sunset.position,
                     visible = this.Sunset.visible,
@@ -7969,6 +8167,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Sunset_Font.unit_end,
                     centreHorizontally = this.Sunset_Font.centreHorizontally,
                     centreVertically = this.Sunset_Font.centreVertically,
+                    alpha = this.Sunset_Font.alpha,
 
                     position = this.Sunset_Font.position,
                     visible = this.Sunset_Font.visible,
@@ -7998,6 +8197,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Sunset_rotation.invalid_image,
                     dot_image = this.Sunset_rotation.dot_image,
                     unit_in_alignment = this.Sunset_rotation.unit_in_alignment,
+                    alpha = this.Sunset_rotation.alpha,
+                    icon_alpha = this.Sunset_rotation.icon_alpha,
 
                     position = this.Sunset_rotation.position,
                     visible = this.Sunset_rotation.visible,
@@ -8060,6 +8261,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Sunset_Sunrise.invalid_image,
                     dot_image = this.Sunset_Sunrise.dot_image,
                     follow = this.Sunset_Sunrise.follow,
+                    alpha = this.Sunset_Sunrise.alpha,
+                    icon_alpha = this.Sunset_Sunrise.icon_alpha,
 
                     position = this.Sunset_Sunrise.position,
                     visible = this.Sunset_Sunrise.visible,
@@ -8104,6 +8307,7 @@ namespace Watch_Face_Editor
                     w = this.Icon.w,
                     h = this.Icon.h,
                     src = this.Icon.src,
+                    alpha = this.Icon.alpha,
 
                     position = this.Icon.position,
                     visible = this.Icon.visible,
@@ -8164,6 +8368,7 @@ namespace Watch_Face_Editor
                     img_First = this.Images.img_First,
                     image_length = this.Images.image_length,
                     shortcut = this.Images.shortcut,
+                    alpha = this.Images.alpha,
 
                     position = this.Images.position,
                     visible = this.Images.visible,
@@ -8210,6 +8415,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Number.invalid_image,
                     dot_image = this.Number.dot_image,
                     follow = this.Number.follow,
+                    alpha = this.Number.alpha,
+                    icon_alpha = this.Number.icon_alpha,
 
                     position = this.Number.position,
                     visible = this.Number.visible,
@@ -8240,6 +8447,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Number_Font.unit_end,
                     centreHorizontally = this.Number_Font.centreHorizontally,
                     centreVertically = this.Number_Font.centreVertically,
+                    alpha = this.Number_Font.alpha,
 
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
@@ -8284,6 +8492,7 @@ namespace Watch_Face_Editor
                     img_First = this.Direction.img_First,
                     image_length = this.Direction.image_length,
                     shortcut = this.Direction.shortcut,
+                    alpha = this.Images.alpha,
 
                     position = this.Direction.position,
                     visible = this.Direction.visible,
@@ -8302,6 +8511,7 @@ namespace Watch_Face_Editor
                     w = this.Icon.w,
                     h = this.Icon.h,
                     src = this.Icon.src,
+                    alpha = this.Icon.alpha,
 
                     position = this.Icon.position,
                     visible = this.Icon.visible,
@@ -8324,49 +8534,6 @@ namespace Watch_Face_Editor
             };
         }
     }
-
-    //public class ElementMoon : ICloneable
-    //{
-    //    public string elementName = "ElementMoon";
-
-    //    ///// <summary>Позиция в наборе элементов</summary>
-    //    //public int position = -1;
-
-    //    /// <summary>Видимость элемента</summary>
-    //    public bool visible = true;
-
-    //    public hmUI_widget_IMG_LEVEL Images { get; set; }
-
-    //    public object Clone()
-    //    {
-
-    //        hmUI_widget_IMG_LEVEL Images = null;
-    //        if (this.Images != null)
-    //        {
-    //            Images = new hmUI_widget_IMG_LEVEL
-    //            {
-    //                X = this.Images.X,
-    //                Y = this.Images.Y,
-    //                img_First = this.Images.img_First,
-    //                image_length = this.Images.image_length,
-    //                shortcut = this.Images.shortcut,
-
-    //                position = this.Images.position,
-    //                visible = this.Images.visible,
-    //                show_level = this.Images.show_level,
-    //                type = this.Images.type,
-    //            };
-    //        }
-
-    //        return new ElementMoon
-    //        {
-    //            elementName = this.elementName,
-    //            visible = this.visible,
-
-    //            Images = Images,
-    //        };
-    //    }
-    //}
 
     public class ElementMoon : ICloneable
     {
@@ -8405,6 +8572,7 @@ namespace Watch_Face_Editor
                     img_First = this.Images.img_First,
                     image_length = this.Images.image_length,
                     shortcut = this.Images.shortcut,
+                    alpha = this.Images.alpha,
 
                     position = this.Images.position,
                     visible = this.Images.visible,
@@ -8451,6 +8619,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Sunrise.invalid_image,
                     dot_image = this.Sunrise.dot_image,
                     follow = this.Sunrise.follow,
+                    alpha = this.Sunrise.alpha,
+                    icon_alpha = this.Sunrise.icon_alpha,
 
                     position = this.Sunrise.position,
                     visible = this.Sunrise.visible,
@@ -8481,6 +8651,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Sunrise_Font.unit_end,
                     centreHorizontally = this.Sunrise_Font.centreHorizontally,
                     centreVertically = this.Sunrise_Font.centreVertically,
+                    alpha = this.Sunrise_Font.alpha,
 
                     position = this.Sunrise_Font.position,
                     visible = this.Sunrise_Font.visible,
@@ -8488,68 +8659,6 @@ namespace Watch_Face_Editor
                     type = this.Sunrise_Font.type,
                 };
             }
-
-            //hmUI_widget_IMG_NUMBER Sunrise_rotation = null;
-            //if (this.Sunrise_rotation != null)
-            //{
-            //    Sunrise_rotation = new hmUI_widget_IMG_NUMBER
-            //    {
-            //        imageX = this.Sunrise_rotation.imageX,
-            //        imageY = this.Sunrise_rotation.imageY,
-            //        space = this.Sunrise_rotation.space,
-            //        angle = this.Sunrise_rotation.angle,
-            //        zero = this.Sunrise_rotation.zero,
-            //        align = this.Sunrise_rotation.align,
-            //        img_First = this.Sunrise_rotation.img_First,
-            //        unit = this.Sunrise_rotation.unit,
-            //        imperial_unit = this.Sunrise_rotation.imperial_unit,
-            //        icon = this.Sunrise_rotation.icon,
-            //        iconPosX = this.Sunrise_rotation.iconPosX,
-            //        iconPosY = this.Sunrise_rotation.iconPosY,
-            //        negative_image = this.Sunrise_rotation.negative_image,
-            //        invalid_image = this.Sunrise_rotation.invalid_image,
-            //        dot_image = this.Sunrise_rotation.dot_image,
-            //        unit_in_alignment = this.Sunrise_rotation.unit_in_alignment,
-
-            //        position = this.Sunrise_rotation.position,
-            //        visible = this.Sunrise_rotation.visible,
-            //        show_level = this.Sunrise_rotation.show_level,
-            //        type = this.Sunrise_rotation.type,
-            //    };
-            //}
-
-            //Text_Circle Sunrise_circle = null;
-            //if (this.Sunrise_circle != null)
-            //{
-            //    Sunrise_circle = new Text_Circle
-            //    {
-            //        circle_center_X = this.Sunrise_circle.circle_center_X,
-            //        circle_center_Y = this.Sunrise_circle.circle_center_Y,
-            //        radius = this.Sunrise_circle.radius,
-            //        angle = this.Sunrise_circle.angle,
-            //        char_space_angle = this.Sunrise_circle.char_space_angle,
-            //        zero = this.Sunrise_circle.zero,
-            //        img_First = this.Sunrise_circle.img_First,
-            //        //image_width = this.Sunrise_circle.image_width,
-            //        //image_height = this.Sunrise_circle.image_height,
-            //        unit = this.Sunrise_circle.unit,
-            //        //unit_width = this.Sunrise_circle.unit_width,
-            //        imperial_unit = this.Sunrise_circle.imperial_unit,
-            //        dot_image = this.Sunrise_circle.dot_image,
-            //        //dot_image_width = this.Sunrise_circle.dot_image_width,
-            //        error_image = this.Sunrise_circle.error_image,
-            //        //error_width = this.Sunrise_circle.error_width,
-            //        vertical_alignment = this.Sunrise_circle.vertical_alignment,
-            //        horizontal_alignment = this.Sunrise_circle.horizontal_alignment,
-            //        reverse_direction = this.Sunrise_circle.reverse_direction,
-            //        unit_in_alignment = this.Sunrise_circle.unit_in_alignment,
-
-            //        position = this.Sunrise_circle.position,
-            //        visible = this.Sunrise_circle.visible,
-            //        show_level = this.Sunrise_circle.show_level,
-            //        type = this.Sunrise_circle.type,
-            //    };
-            //}
 
             hmUI_widget_IMG_NUMBER Sunset = null;
             if (this.Sunset != null)
@@ -8572,6 +8681,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Sunset.invalid_image,
                     dot_image = this.Sunset.dot_image,
                     follow = this.Sunset.follow,
+                    alpha = this.Sunset.alpha,
+                    icon_alpha = this.Sunset.icon_alpha,
 
                     position = this.Sunset.position,
                     visible = this.Sunset.visible,
@@ -8602,6 +8713,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Sunset_Font.unit_end,
                     centreHorizontally = this.Sunset_Font.centreHorizontally,
                     centreVertically = this.Sunset_Font.centreVertically,
+                    alpha = this.Sunset_Font.alpha,
 
                     position = this.Sunset_Font.position,
                     visible = this.Sunset_Font.visible,
@@ -8609,68 +8721,6 @@ namespace Watch_Face_Editor
                     type = this.Sunset_Font.type,
                 };
             }
-
-            //hmUI_widget_IMG_NUMBER Sunset_rotation = null;
-            //if (this.Sunset_rotation != null)
-            //{
-            //    Sunset_rotation = new hmUI_widget_IMG_NUMBER
-            //    {
-            //        imageX = this.Sunset_rotation.imageX,
-            //        imageY = this.Sunset_rotation.imageY,
-            //        space = this.Sunset_rotation.space,
-            //        angle = this.Sunset_rotation.angle,
-            //        zero = this.Sunset_rotation.zero,
-            //        align = this.Sunset_rotation.align,
-            //        img_First = this.Sunset_rotation.img_First,
-            //        unit = this.Sunset_rotation.unit,
-            //        imperial_unit = this.Sunset_rotation.imperial_unit,
-            //        icon = this.Sunset_rotation.icon,
-            //        iconPosX = this.Sunset_rotation.iconPosX,
-            //        iconPosY = this.Sunset_rotation.iconPosY,
-            //        negative_image = this.Sunset_rotation.negative_image,
-            //        invalid_image = this.Sunset_rotation.invalid_image,
-            //        dot_image = this.Sunset_rotation.dot_image,
-            //        unit_in_alignment = this.Sunset_rotation.unit_in_alignment,
-
-            //        position = this.Sunset_rotation.position,
-            //        visible = this.Sunset_rotation.visible,
-            //        show_level = this.Sunset_rotation.show_level,
-            //        type = this.Sunset_rotation.type,
-            //    };
-            //}
-
-            //Text_Circle Sunset_circle = null;
-            //if (this.Sunset_circle != null)
-            //{
-            //    Sunset_circle = new Text_Circle
-            //    {
-            //        circle_center_X = this.Sunset_circle.circle_center_X,
-            //        circle_center_Y = this.Sunset_circle.circle_center_Y,
-            //        radius = this.Sunset_circle.radius,
-            //        angle = this.Sunset_circle.angle,
-            //        char_space_angle = this.Sunset_circle.char_space_angle,
-            //        zero = this.Sunset_circle.zero,
-            //        img_First = this.Sunset_circle.img_First,
-            //        //image_width = this.Sunset_circle.image_width,
-            //        //image_height = this.Sunset_circle.image_height,
-            //        unit = this.Sunset_circle.unit,
-            //        //unit_width = this.Sunset_circle.unit_width,
-            //        imperial_unit = this.Sunset_circle.imperial_unit,
-            //        dot_image = this.Sunset_circle.dot_image,
-            //        //dot_image_width = this.Sunset_circle.dot_image_width,
-            //        error_image = this.Sunset_circle.error_image,
-            //        //error_width = this.Sunset_circle.error_width,
-            //        vertical_alignment = this.Sunset_circle.vertical_alignment,
-            //        horizontal_alignment = this.Sunset_circle.horizontal_alignment,
-            //        reverse_direction = this.Sunset_circle.reverse_direction,
-            //        unit_in_alignment = this.Sunset_circle.unit_in_alignment,
-
-            //        position = this.Sunset_circle.position,
-            //        visible = this.Sunset_circle.visible,
-            //        show_level = this.Sunset_circle.show_level,
-            //        type = this.Sunset_circle.type,
-            //    };
-            //}
 
             hmUI_widget_IMG_NUMBER Sunset_Sunrise = null;
             if (this.Sunset_Sunrise != null)
@@ -8693,6 +8743,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Sunset_Sunrise.invalid_image,
                     dot_image = this.Sunset_Sunrise.dot_image,
                     follow = this.Sunset_Sunrise.follow,
+                    alpha = this.Sunset_Sunrise.alpha,
+                    icon_alpha = this.Sunset_Sunrise.icon_alpha,
 
                     position = this.Sunset_Sunrise.position,
                     visible = this.Sunset_Sunrise.visible,
@@ -8737,6 +8789,7 @@ namespace Watch_Face_Editor
                     w = this.Icon.w,
                     h = this.Icon.h,
                     src = this.Icon.src,
+                    alpha = this.Icon.alpha,
 
                     position = this.Icon.position,
                     visible = this.Icon.visible,
@@ -8797,6 +8850,7 @@ namespace Watch_Face_Editor
                     img_First = this.Images.img_First,
                     image_length = this.Images.image_length,
                     shortcut = this.Images.shortcut,
+                    alpha = this.Images.alpha,
 
                     position = this.Images.position,
                     visible = this.Images.visible,
@@ -8826,6 +8880,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Number.invalid_image,
                     dot_image = this.Number.dot_image,
                     follow = this.Number.follow,
+                    alpha = this.Number.alpha,
+                    icon_alpha = this.Number.icon_alpha,
 
                     position = this.Number.position,
                     visible = this.Number.visible,
@@ -8856,6 +8912,7 @@ namespace Watch_Face_Editor
                     unit_end = this.Number_Font.unit_end,
                     centreHorizontally = this.Number_Font.centreHorizontally,
                     centreVertically = this.Number_Font.centreVertically,
+                    alpha = this.Number_Font.alpha,
 
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
@@ -8885,6 +8942,8 @@ namespace Watch_Face_Editor
                     invalid_image = this.Text_rotation.invalid_image,
                     dot_image = this.Text_rotation.dot_image,
                     unit_in_alignment = this.Text_rotation.unit_in_alignment,
+                    alpha = this.Text_rotation.alpha,
+                    icon_alpha = this.Text_rotation.icon_alpha,
 
                     position = this.Text_rotation.position,
                     visible = this.Text_rotation.visible,
@@ -8958,6 +9017,7 @@ namespace Watch_Face_Editor
                     w = this.Icon.w,
                     h = this.Icon.h,
                     src = this.Icon.src,
+                    alpha = this.Icon.alpha,
 
                     position = this.Icon.position,
                     visible = this.Icon.visible,
@@ -9006,6 +9066,7 @@ namespace Watch_Face_Editor
                     w = this.Icon.w,
                     h = this.Icon.h,
                     src = this.Icon.src,
+                    alpha = this.Icon.alpha,
 
                     position = this.Icon.position,
                     visible = this.Icon.visible,

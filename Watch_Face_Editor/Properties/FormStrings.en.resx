@@ -219,6 +219,12 @@
   <data name="Message_ARGB_Line2" xml:space="preserve">
     <value>Are you sure you want to convert your images to ARGB format?</value>
   </data>
+  <data name="Message_AutoSave_Caption" xml:space="preserve">
+    <value>Recovery</value>
+  </data>
+  <data name="Message_BG_Not_Image" xml:space="preserve">
+    <value>You need to set the image as the main background.</value>
+  </data>
   <data name="Message_ConvertingCompleted_Text" xml:space="preserve">
     <value>A new watch face has been created.</value>
   </data>
@@ -302,6 +308,9 @@
   </data>
   <data name="Message_LoadPreviewStates_Text" xml:space="preserve">
     <value>Download an existing file with a set of preview settings PreviewStates.json?</value>
+  </data>
+  <data name="Message_Load_AutoSave" xml:space="preserve">
+    <value>Found a file with autosave. Would you like to download it?</value>
   </data>
   <data name="Message_ModelConfig_Error" xml:space="preserve">
     <value>Model configuration not found: </value>
@@ -398,5 +407,8 @@
   </data>
   <data name="Tip_Pointer" xml:space="preserve">
     <value>Pointer </value>
+  </data>
+  <data name="ToastBG" xml:space="preserve">
+    <value>Background %s</value>
   </data>
 </root>

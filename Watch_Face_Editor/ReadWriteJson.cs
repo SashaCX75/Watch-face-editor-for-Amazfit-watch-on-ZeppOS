@@ -16,6 +16,7 @@ using static System.Net.Mime.MediaTypeNames;
 using static Microsoft.WindowsAPICodePack.Shell.PropertySystem.SystemProperties.System;
 using Microsoft.WindowsAPICodePack.Sensors;
 using System.Security.Cryptography;
+using ImageMagick;
 
 namespace Watch_Face_Editor
 {
@@ -858,7 +859,134 @@ namespace Watch_Face_Editor
                     ref compass_update, ref compass_error, ref weather_few_days, ref weather_few_days_end);
             }
 
-            if (items.IndexOf("timeSensor =") >= 0) variables += TabInString(4) + "let timeSensor = ''" + Environment.NewLine;
+            // кнопка переключения экрана
+            if (Watch_Face.SwitchBackground != null && Watch_Face.SwitchBackground.enable && Watch_Face.SwitchBackground.Button != null &&
+                Watch_Face.SwitchBackground.bg_list != null && Watch_Face.SwitchBackground.bg_list.Count > 0)
+            {
+                items += Environment.NewLine + TabInString(6) + "console.log('Watch_Face.SwitchBackground');";
+                AddElementToJS(Watch_Face.SwitchBackground, "ONLY_NORMAL", ref variables, ref items, ref scale_update_function,
+                    ref resume_call, ref pause_call, ref time_update, ref text_update, ref fonts_cache,
+                    ref compass_update, ref compass_error, ref weather_few_days, ref weather_few_days_end);
+
+                bool useInAOD = false;
+                if (Watch_Face.SwitchBackground.use_in_AOD && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Background != null && Watch_Face.ScreenAOD.Background.BackgroundImage != null &&
+                    Watch_Face.ScreenAOD.Background.BackgroundImage.src != null && Watch_Face.ScreenAOD.Background.visible) useInAOD = true;
+
+                variables += Environment.NewLine + TabInString(4) + "let backgroundIndex = 0;";
+                variables += Environment.NewLine + TabInString(4) + "let backgroundList = [" + string.Join(", ", Watch_Face.SwitchBackground.bg_list.Select(item => "'" + item + ".png'")) + "];";
+                variables += Environment.NewLine + TabInString(4) + "let backgroundToastList = [" + string.Join(", ", Watch_Face.SwitchBackground.toast_list.Select(item => "'" + item + "'")) + "];";
+                variables += Environment.NewLine + TabInString(4) + "const watchfaceId = hmApp.packageInfo().watchfaceId;" + Environment.NewLine;
+
+                string switchBG_function = Environment.NewLine + TabInString(6) + "//start of ignored block";
+                switchBG_function += Environment.NewLine + TabInString(6) + "console.log('SwitchBackground');";
+                switchBG_function += Environment.NewLine + TabInString(6) + "function switchBackground() {";
+                switchBG_function += Environment.NewLine + TabInString(7) + "backgroundIndex++;";
+                switchBG_function += Environment.NewLine + TabInString(7) + "if (backgroundIndex >= backgroundList.length) backgroundIndex = 0;";
+                //if (useInAOD) switchBG_function += Environment.NewLine + TabInString(7) + "hmFS.SysProSetInt(`backgroundIndex_${watchfaceId}`, backgroundIndex);";
+                switchBG_function += Environment.NewLine + TabInString(7) + "hmFS.SysProSetInt(`backgroundIndex_${watchfaceId}`, backgroundIndex);";
+                switchBG_function += Environment.NewLine + TabInString(7) + "let toastText = backgroundToastList[backgroundIndex].replace('%s', `${backgroundIndex + 1}`);";
+                switchBG_function += Environment.NewLine + TabInString(7) + "if (toastText.length > 0) hmUI.showToast({text: toastText});";
+                switchBG_function += Environment.NewLine + TabInString(7) + "normal_background_bg_img.setProperty(hmUI.prop.SRC, backgroundList[backgroundIndex]);";
+                if (Watch_Face.SwitchBackground.vibro) switchBG_function += Environment.NewLine + TabInString(7) + "vibro(28);";
+                switchBG_function += Environment.NewLine + TabInString(6) + "};";
+                if (Watch_Face.SwitchBackground.use_crown)
+                {
+                    variables += TabInString(4) + Environment.NewLine;
+                    variables += TabInString(4) + "let degreeSum = 0;" + Environment.NewLine;
+                    variables += TabInString(4) + "let crownSensitivity = 70;  // crown sensitivity level" + Environment.NewLine;
+
+                    switchBG_function += Environment.NewLine + TabInString(6);
+                    switchBG_function += Environment.NewLine + TabInString(6) + "console.log('SwitchBackground use crown');";
+                    //switchBG_function += Environment.NewLine + TabInString(4) + "let degreeSum = 0;";
+                    //switchBG_function += Environment.NewLine + TabInString(4) + "let crownSensitivity = 70;  // crown sensitivity level";
+                    switchBG_function += Environment.NewLine + TabInString(6) + "function onDigitalCrown() {";
+                    switchBG_function += Environment.NewLine + TabInString(7) + "setTimeout(() => {";
+                    switchBG_function += Environment.NewLine + TabInString(8) + "hmApp.registerSpinEvent(function (key, degree) {";
+                    switchBG_function += Environment.NewLine + TabInString(9) + "if (key === hmApp.key.HOME) {";
+                    switchBG_function += Environment.NewLine + TabInString(10) + "degreeSum += degree;";
+                    switchBG_function += Environment.NewLine + TabInString(10) + "if (Math.abs(degreeSum) > crownSensitivity){";
+                    switchBG_function += Environment.NewLine + TabInString(11) + "let step = degreeSum < 0 ? -1 : 1;";
+                    switchBG_function += Environment.NewLine + TabInString(11) + "backgroundIndex += step;";
+                    switchBG_function += Environment.NewLine + TabInString(11) + "backgroundIndex = backgroundIndex < 0 ? backgroundList.length + backgroundIndex : backgroundIndex % backgroundList.length;";
+                    //if (useInAOD) switchBG_function += Environment.NewLine + TabInString(11) + "hmFS.SysProSetInt(`backgroundIndex_${watchfaceId}`, backgroundIndex);";
+                    switchBG_function += Environment.NewLine + TabInString(11) + "hmFS.SysProSetInt(`backgroundIndex_${watchfaceId}`, backgroundIndex);";
+                    switchBG_function += Environment.NewLine + TabInString(11) + "degreeSum = 0;";
+                    switchBG_function += Environment.NewLine + TabInString(11) + "let toastText = backgroundToastList[backgroundIndex].replace('%s', `${backgroundIndex + 1}`);";
+                    switchBG_function += Environment.NewLine + TabInString(11) + "if (toastText.length > 0) hmUI.showToast({text: toastText});";
+                    switchBG_function += Environment.NewLine + TabInString(11) + "normal_background_bg_img.setProperty(hmUI.prop.SRC, backgroundList[backgroundIndex]);";
+                    if (Watch_Face.SwitchBackground.vibro) switchBG_function += Environment.NewLine + TabInString(11) + "vibro(28);";
+                    switchBG_function += Environment.NewLine + TabInString(10) + "}";
+                    switchBG_function += Environment.NewLine + TabInString(9) + "} // key";
+                    switchBG_function += Environment.NewLine + TabInString(8) + "}) // crown";
+                    switchBG_function += Environment.NewLine + TabInString(7) + "}, 250);";
+                    switchBG_function += Environment.NewLine + TabInString(6) + "}";
+
+                    resume_call += Environment.NewLine + TabInString(8) + "onDigitalCrown();";
+                    pause_call += Environment.NewLine + TabInString(8) + "hmApp.unregisterSpinEvent();";
+                }
+                switchBG_function += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
+                //variables = switchBG_function + variables;
+                items = switchBG_function + items;
+
+                if (items.IndexOf("let screenType = hmSetting.getScreenType();") < 0)
+                    items += Environment.NewLine + TabInString(6) + "let screenType = hmSetting.getScreenType();";
+
+                resume_call += Environment.NewLine + TabInString(8) + "//SwitchBackground";
+                resume_call += Environment.NewLine + TabInString(8) + "if (hmFS.SysProGetInt(`backgroundIndex_${watchfaceId}`) === undefined) {";
+                resume_call += Environment.NewLine + TabInString(9) + "backgroundIndex = 0;";
+                resume_call += Environment.NewLine + TabInString(9) + "hmFS.SysProSetInt(`backgroundIndex_${watchfaceId}`, backgroundIndex);";
+                resume_call += Environment.NewLine + TabInString(8) + "} else {";
+                resume_call += Environment.NewLine + TabInString(9) + "backgroundIndex = hmFS.SysProGetInt(`backgroundIndex_${watchfaceId}`);";
+                resume_call += Environment.NewLine + TabInString(8) + "};";
+
+                resume_call += Environment.NewLine + TabInString(8) +
+                    "if (screenType == hmSetting.screen_type.WATCHFACE && normal_background_bg_img) normal_background_bg_img.setProperty(hmUI.prop.SRC, backgroundList[backgroundIndex]);";
+
+                if (useInAOD)
+                {
+                    //if (items.IndexOf("let screenType = hmSetting.getScreenType();") < 0)
+                    //    items += Environment.NewLine + TabInString(6) + "let screenType = hmSetting.getScreenType();";
+
+                    //resume_call += Environment.NewLine + TabInString(8) + "//SwitchBackground";
+                    //resume_call += Environment.NewLine + TabInString(8) + "if (hmFS.SysProGetInt(`backgroundIndex_${watchfaceId}`) === undefined) {";
+                    //resume_call += Environment.NewLine + TabInString(9) + "backgroundIndex = 0;";
+                    //resume_call += Environment.NewLine + TabInString(9) + "hmFS.SysProSetInt(`backgroundIndex_${watchfaceId}`, backgroundIndex);";
+                    //resume_call += Environment.NewLine + TabInString(8) + "} else {";
+                    //resume_call += Environment.NewLine + TabInString(9) + "backgroundIndex = hmFS.SysProGetInt(`backgroundIndex_${watchfaceId}`);";
+                    //resume_call += Environment.NewLine + TabInString(8) + "};";
+                    
+                    //resume_call += Environment.NewLine + TabInString(8) +
+                    //    "if (screenType == hmSetting.screen_type.WATCHFACE && normal_background_bg_img) normal_background_bg_img.setProperty(hmUI.prop.SRC, backgroundList[backgroundIndex]);";
+
+                    resume_call += Environment.NewLine + TabInString(8) +
+                        "if (screenType == hmSetting.screen_type.AOD && idle_background_bg_img) idle_background_bg_img.setProperty(hmUI.prop.SRC, backgroundList[backgroundIndex]);";
+                }
+
+                if (Watch_Face.SwitchBackground.vibro && items.IndexOf("const vibrate = hmSensor.createSensor(hmSensor.id.VIBRATE);") < 0)
+                {
+                    items += TabInString(6) + "// vibrate function" + Environment.NewLine;
+                    items += Environment.NewLine + TabInString(6) + "const vibrate = hmSensor.createSensor(hmSensor.id.VIBRATE);" + Environment.NewLine;
+                    items += TabInString(6) + "let timer_StopVibrate = null;" + Environment.NewLine;
+                    items += Environment.NewLine + Environment.NewLine + TabInString(6) +
+                        "function vibro(scene = 25) {" + Environment.NewLine;
+                    items += TabInString(7) + "let stopDelay = 50;" + Environment.NewLine;
+                    items += TabInString(7) + "stopVibro();" + Environment.NewLine;
+                    items += TabInString(7) + "vibrate.stop();" + Environment.NewLine;
+                    items += TabInString(7) + "vibrate.scene = scene;" + Environment.NewLine;
+                    items += TabInString(7) + "if(scene < 23 || scene > 25) stopDelay = 1300;" + Environment.NewLine;
+                    items += TabInString(7) + "vibrate.start();" + Environment.NewLine;
+                    items += TabInString(7) + "timer_StopVibrate = timer.createTimer(stopDelay, 3000, stopVibro, {});" + Environment.NewLine;
+                    items += TabInString(6) + "}" + Environment.NewLine;
+                    items += Environment.NewLine + TabInString(6) + "function stopVibro(){" + Environment.NewLine;
+                    items += TabInString(7) + "vibrate.stop();" + Environment.NewLine;
+                    items += TabInString(7) + "if(timer_StopVibrate) timer.stopTimer(timer_StopVibrate);" + Environment.NewLine;
+                    items += TabInString(6) + "}" + Environment.NewLine;
+                    items += Environment.NewLine + TabInString(6) + "// end vibrate function" + Environment.NewLine;
+                }
+            }
+
+            if (items.IndexOf("timeSensor =") >= 0) variables += TabInString(4) + "let timeSensor = '';" + Environment.NewLine;
 
             #region script
             // добавляем пользовательские скрипты
@@ -12835,6 +12963,33 @@ namespace Watch_Face_Editor
                     break;
                 #endregion
 
+                #region ElementSwitchBackground
+                case "ElementSwitchBackground":
+                    ElementSwitchBackground switchBG = (ElementSwitchBackground)element;
+
+                    if (!switchBG.enable) return;
+                    if (switchBG.Button == null || switchBG.bg_list == null || switchBG.bg_list.Count == 0) return;
+
+                    Button button_switchBG = switchBG.Button;
+                    if (button_switchBG != null)
+                    {
+                        button_switchBG.click_func = "switchBackground();";
+                        string optionsSwitchBG = Buttons_Options(button_switchBG, show_level);
+                        string optionsСommentedSwitchBG = SwitchBackground_Сommented_Options(switchBG);
+                        if (optionsSwitchBG.Length > 5)
+                        {
+                            string name = "Button_Switch_BG";
+                            items += Environment.NewLine + TabInString(6) + "// " + name + " = hmUI.createWidget(hmUI.widget.SwitchBackground, {" +
+                                optionsСommentedSwitchBG +TabInString(6) + "// });" + Environment.NewLine;
+
+                            variables += TabInString(4) + "let " + name + " = ''" + Environment.NewLine;
+                            items += Environment.NewLine + TabInString(6) + name +
+                                " = hmUI.createWidget(hmUI.widget.BUTTON, {" + optionsSwitchBG + TabInString(6) + "}); // end button" + Environment.NewLine;
+                        }
+                    }
+                    break;
+                #endregion
+
                 #region ElementScript
                 case "ElementScript":
                     ElementScript script = (ElementScript)element;
@@ -20351,6 +20506,42 @@ namespace Watch_Face_Editor
             return options;
         }
 
+        private string SwitchBackground_Сommented_Options(ElementSwitchBackground switchBG)
+        {
+            string options = Environment.NewLine;
+            if (switchBG == null || switchBG.Button == null || 
+                switchBG.bg_list == null || switchBG.bg_list.Count == 0) return options;
+
+            options += TabInString(7) + "// x: " + switchBG.Button.x.ToString() + "," + Environment.NewLine;
+            options += TabInString(7) + "// y: " + switchBG.Button.y.ToString() + "," + Environment.NewLine;
+            options += TabInString(7) + "// w: " + switchBG.Button.w.ToString() + "," + Environment.NewLine;
+            options += TabInString(7) + "// h: " + switchBG.Button.h.ToString() + "," + Environment.NewLine;
+            options += TabInString(7) + "// text: '" + switchBG.Button.text + "'," + Environment.NewLine;
+            options += TabInString(7) + "// color: " + switchBG.Button.color + "," + Environment.NewLine;
+            options += TabInString(7) + "// text_size: " + switchBG.Button.text_size.ToString() + "," + Environment.NewLine;
+
+            if (switchBG.Button.press_src != null && switchBG.Button.press_src.Length > 0 && switchBG.Button.normal_src != null && switchBG.Button.normal_src.Length > 0)
+            {
+                if (switchBG.Button.press_src != null && switchBG.Button.press_src.Length > 0)
+                    options += TabInString(7) + "// press_src: '" + switchBG.Button.press_src + ".png'," + Environment.NewLine;
+                if (switchBG.Button.normal_src != null && switchBG.Button.normal_src.Length > 0)
+                    options += TabInString(7) + "// normal_src: '" + switchBG.Button.normal_src + ".png'," + Environment.NewLine;
+            }
+            else
+            {
+                if (switchBG.Button.radius > 0) options += TabInString(7) + "// radius: " + switchBG.Button.radius.ToString() + "," + Environment.NewLine;
+                options += TabInString(7) + "// press_color: " + switchBG.Button.press_color + "," + Environment.NewLine;
+                options += TabInString(7) + "// normal_color: " + switchBG.Button.normal_color + "," + Environment.NewLine;
+            }
+
+            options += TabInString(7) + "// bg_list: " + string.Join("|", switchBG.bg_list) + "," + Environment.NewLine;
+            options += TabInString(7) + "// toast_list: " + string.Join("|", switchBG.toast_list) + "," + Environment.NewLine;
+            options += TabInString(7) + "// use_crown: " + switchBG.use_crown.ToString() + "," + Environment.NewLine;
+            options += TabInString(7) + "// use_in_AOD: " + switchBG.use_in_AOD.ToString() + "," + Environment.NewLine;
+            options += TabInString(7) + "// vibro: " + switchBG.vibro.ToString() + "," + Environment.NewLine;
+            return options;
+        }
+
         private string TEXT_Options(hmUI_widget_TEXT text, string show_level, int tabOffset = 0)
         {
             string options = Environment.NewLine;
@@ -20634,40 +20825,6 @@ namespace Watch_Face_Editor
             {
                 options += TabInString(7 + tab_offset) + "x: 0," + Environment.NewLine;
                 options += TabInString(7 + tab_offset) + "y: 0," + Environment.NewLine;
-                /*switch (Watch_Face.WatchFace_Info.DeviceName)
-                {
-                    case "GTR3":
-                    case "T_Rex_2":
-                    case "T_Rex_Ultra":
-                        options += TabInString(7 + tab_offset) + "w: 453," + Environment.NewLine;
-                        options += TabInString(7 + tab_offset) + "h: 453," + Environment.NewLine;
-                        break;
-                    case "GTR3_Pro":
-                        options += TabInString(7 + tab_offset) + "w: 479," + Environment.NewLine;
-                        options += TabInString(7 + tab_offset) + "h: 479," + Environment.NewLine;
-                        break;
-                    case "GTS3":
-                        options += TabInString(7 + tab_offset) + "w: 389," + Environment.NewLine;
-                        options += TabInString(7 + tab_offset) + "h: 449," + Environment.NewLine;
-                        break;
-                    case "GTR4":
-                        options += TabInString(7 + tab_offset) + "w: 465," + Environment.NewLine;
-                        options += TabInString(7 + tab_offset) + "h: 465," + Environment.NewLine;
-                        break;
-                    case "Amazfit_Band_7":
-                        options += TabInString(7 + tab_offset) + "w: 194," + Environment.NewLine;
-                        options += TabInString(7 + tab_offset) + "h: 368," + Environment.NewLine;
-                        break;
-                    case "GTS4_mini":
-                        options += TabInString(7 + tab_offset) + "w: 336," + Environment.NewLine;
-                        options += TabInString(7 + tab_offset) + "h: 384," + Environment.NewLine;
-                        break;
-                    case "Falcon":
-                    case "GTR_mini":
-                        options += TabInString(7 + tab_offset) + "w: 415," + Environment.NewLine;
-                        options += TabInString(7 + tab_offset) + "h: 415," + Environment.NewLine;
-                        break;
-                }*/
                 options += TabInString(7 + tab_offset) + "w: " + (SelectedModel.background.w - 1).ToString() + "," + Environment.NewLine;
                 options += TabInString(7 + tab_offset) + "h: " + (SelectedModel.background.h - 1).ToString() + "," + Environment.NewLine;
 
@@ -24647,11 +24804,21 @@ namespace Watch_Face_Editor
 
                         #region BUTTON
                         case "BUTTON":
-                            Button button = Object_BUTTON(parametrs);
+                            if (objectName != "Button_Switch_BG")
+                            {
+                                Button button = Object_BUTTON(parametrs);
 
-                            if (Watch_Face.Buttons == null) Watch_Face.Buttons = new ElementButtons();
-                            if (Watch_Face.Buttons.Button == null) Watch_Face.Buttons.Button = new List<Button>();
-                            Watch_Face.Buttons.Button.Add(button);
+                                if (Watch_Face.Buttons == null) Watch_Face.Buttons = new ElementButtons();
+                                if (Watch_Face.Buttons.Button == null) Watch_Face.Buttons.Button = new List<Button>();
+                                Watch_Face.Buttons.Button.Add(button); 
+                            }
+                            break;
+                        #endregion
+
+                        #region SwitchBackground
+                        case "SwitchBackground":
+                            ElementSwitchBackground switchBG = Object_SwitchBG(parametrs);
+                            Watch_Face.SwitchBackground = switchBG;
                             break;
                         #endregion
 
@@ -24940,7 +25107,7 @@ namespace Watch_Face_Editor
                 if (parametrs.ContainsKey("ObjectName")) objectName = parametrs["ObjectName"];
                 switch (objectType)
                 {
-                   /*#region IMG
+                    #region IMG // иконки в редактируемых элементах.
                     case "IMG":
                         hmUI_widget_IMG img = Object_IMG(parametrs);
 
@@ -25016,7 +25183,7 @@ namespace Watch_Face_Editor
                                     battery.Icon.x = img.x;
                                     battery.Icon.y = img.y;
                                     battery.Icon.visible = true;
-                                    battery.Icon.position = offset; 
+                                    battery.Icon.position = offset;
                                 }
                                 else if (battery.Number != null && battery.Number.icon == null)
                                 {
@@ -25024,7 +25191,7 @@ namespace Watch_Face_Editor
                                     {
                                         battery.Number.icon = img.src;
                                         battery.Number.iconPosX = img.x;
-                                        battery.Number.iconPosY = img.y; 
+                                        battery.Number.iconPosY = img.y;
                                     }
                                     else
                                     {
@@ -25983,7 +26150,7 @@ namespace Watch_Face_Editor
                         }
 
                         break;
-                    #endregion*/
+                    #endregion
 
                     #region IMG_TIME
                     case "IMG_TIME":
@@ -26685,7 +26852,7 @@ namespace Watch_Face_Editor
 
 
 
-                        /*if (imgLevel.type == "WEATHER_CURRENT")
+                        if (imgLevel.type == "WEATHER_CURRENT" && type == "WEATHER") // старый формат для редактируемых элементов
                         {
                             ElementWeather weather = (ElementWeather)elementsList.Find(e => e.GetType().Name == "ElementWeather");
                             if (weather == null)
@@ -26720,9 +26887,10 @@ namespace Watch_Face_Editor
                                 weather.Images.visible = true;
                                 weather.Images.position = offset;
                             }
-                        }*/
+                        }
 
-                        if (imgLevel.type == "WEATHER_CURRENT")
+                        /////
+                        if (imgLevel.type == "WEATHER_CURRENT" && type != "WEATHER")
                         {
                             ElementWeather_v2 weather = (ElementWeather_v2)elementsList.Find(e => e.GetType().Name == "ElementWeather_v2");
                             if (weather == null)
@@ -28220,7 +28388,7 @@ namespace Watch_Face_Editor
 
 
 
-                        /*if (imgNumber.type == "WEATHER_CURRENT")
+                        if (imgNumber.type == "WEATHER_CURRENT" && type == "WEATHER") // старый формат для редактируемых элементов
                         {
                             ElementWeather weather = (ElementWeather)elementsList.Find(e => e.GetType().Name == "ElementWeather");
                             if (weather == null)
@@ -28264,7 +28432,7 @@ namespace Watch_Face_Editor
                             }
                         }
 
-                        if (imgNumber.type == "WEATHER_LOW")
+                        if (imgNumber.type == "WEATHER_LOW" && type == "WEATHER") // старый формат для редактируемых элементов
                         {
                             ElementWeather weather = (ElementWeather)elementsList.Find(e => e.GetType().Name == "ElementWeather");
                             if (weather == null)
@@ -28308,7 +28476,7 @@ namespace Watch_Face_Editor
                             }
                         }
 
-                        if (imgNumber.type == "WEATHER_HIGH")
+                        if (imgNumber.type == "WEATHER_HIGH" && type == "WEATHER") // старый формат для редактируемых элементов
                         {
                             ElementWeather weather = (ElementWeather)elementsList.Find(e => e.GetType().Name == "ElementWeather");
                             if (weather == null)
@@ -28350,9 +28518,10 @@ namespace Watch_Face_Editor
                                 weather.Number_Max.visible = true;
                                 weather.Number_Max.position = offset;
                             }
-                        }*/
+                        }
 
-                        if (imgNumber.type == "WEATHER_CURRENT")
+                        ////////
+                        if (imgNumber.type == "WEATHER_CURRENT" && type != "WEATHER")
                         {
                             ElementWeather_v2 weather = (ElementWeather_v2)elementsList.Find(e => e.GetType().Name == "ElementWeather_v2");
                             if (weather == null)
@@ -28393,7 +28562,7 @@ namespace Watch_Face_Editor
                             }
                         }
 
-                        if (imgNumber.type == "WEATHER_LOW")
+                        if (imgNumber.type == "WEATHER_LOW" && type != "WEATHER")
                         {
                             ElementWeather_v2 weather = (ElementWeather_v2)elementsList.Find(e => e.GetType().Name == "ElementWeather_v2");
                             if (weather == null)
@@ -28434,7 +28603,7 @@ namespace Watch_Face_Editor
                             }
                         }
 
-                        if (imgNumber.type == "WEATHER_HIGH")
+                        if (imgNumber.type == "WEATHER_HIGH" && type != "WEATHER")
                         {
                             ElementWeather_v2 weather = (ElementWeather_v2)elementsList.Find(e => e.GetType().Name == "ElementWeather_v2");
                             if (weather == null)
@@ -30006,7 +30175,7 @@ namespace Watch_Face_Editor
 
 
 
-                        /*if (textRotate.type == "WEATHER_LOW")
+                        if (textRotate.type == "WEATHER_LOW" && type == "WEATHER") // старый формат для редактируемых элементов
                         {
                             ElementWeather weather = (ElementWeather)elementsList.Find(e => e.GetType().Name == "ElementWeather");
                             if (weather == null)
@@ -30051,7 +30220,7 @@ namespace Watch_Face_Editor
                             }
                         }
 
-                        if (textRotate.type == "WEATHER_HIGH")
+                        if (textRotate.type == "WEATHER_HIGH" && type == "WEATHER") // старый формат для редактируемых элементов
                         {
                             ElementWeather weather = (ElementWeather)elementsList.Find(e => e.GetType().Name == "ElementWeather");
                             if (weather == null)
@@ -30094,9 +30263,10 @@ namespace Watch_Face_Editor
                                 weather.Text_Max_rotation.visible = true;
                                 weather.Text_Max_rotation.position = offset;
                             }
-                        }*/
+                        }
 
-                        if (textRotate.type == "WEATHER_CURRENT")
+                        /////
+                        if (textRotate.type == "WEATHER_CURRENT" && type != "WEATHER")
                         {
                             ElementWeather_v2 weather = (ElementWeather_v2)elementsList.Find(e => e.GetType().Name == "ElementWeather_v2");
                             if (weather == null)
@@ -30137,7 +30307,7 @@ namespace Watch_Face_Editor
                             }
                         }
 
-                        if (textRotate.type == "WEATHER_LOW")
+                        if (textRotate.type == "WEATHER_LOW" && type != "WEATHER")
                         {
                             ElementWeather_v2 weather = (ElementWeather_v2)elementsList.Find(e => e.GetType().Name == "ElementWeather_v2");
                             if (weather == null)
@@ -30178,7 +30348,7 @@ namespace Watch_Face_Editor
                             }
                         }
 
-                        if (textRotate.type == "WEATHER_HIGH")
+                        if (textRotate.type == "WEATHER_HIGH" && type != "WEATHER")
                         {
                             ElementWeather_v2 weather = (ElementWeather_v2)elementsList.Find(e => e.GetType().Name == "ElementWeather_v2");
                             if (weather == null)
@@ -30219,7 +30389,7 @@ namespace Watch_Face_Editor
                             }
                         }
 
-                        if (textRotate.type == "WEATHER_HIGH_LOW")
+                        if (textRotate.type == "WEATHER_HIGH_LOW" && type != "WEATHER")
                         {
                             ElementWeather_v2 weather = (ElementWeather_v2)elementsList.Find(e => e.GetType().Name == "ElementWeather_v2");
                             if (weather == null)
@@ -31249,7 +31419,7 @@ namespace Watch_Face_Editor
 
 
 
-                        /*if (textCircle.type == "WEATHER_LOW")
+                        if (textCircle.type == "WEATHER_LOW" && type == "WEATHER") // старый формат для редактируемых элементов
                         {
                             ElementWeather weather = (ElementWeather)elementsList.Find(e => e.GetType().Name == "ElementWeather");
                             if (weather == null)
@@ -31296,7 +31466,7 @@ namespace Watch_Face_Editor
                             }
                         }
 
-                        if (textCircle.type == "WEATHER_HIGH")
+                        if (textCircle.type == "WEATHER_HIGH" && type == "WEATHER") // старый формат для редактируемых элементов
                         {
                             ElementWeather weather = (ElementWeather)elementsList.Find(e => e.GetType().Name == "ElementWeather");
                             if (weather == null)
@@ -31341,9 +31511,10 @@ namespace Watch_Face_Editor
                                 weather.Text_Max_circle.visible = true;
                                 weather.Text_Max_circle.position = offset;
                             }
-                        }*/
+                        }
 
-                        if (textCircle.type == "WEATHER_CURRENT")
+                        /////
+                        if (textCircle.type == "WEATHER_CURRENT" && type != "WEATHER")
                         {
                             ElementWeather_v2 weather = (ElementWeather_v2)elementsList.Find(e => e.GetType().Name == "ElementWeather_v2");
                             if (weather == null)
@@ -31386,7 +31557,7 @@ namespace Watch_Face_Editor
                             }
                         }
 
-                        if (textCircle.type == "WEATHER_LOW")
+                        if (textCircle.type == "WEATHER_LOW" && type != "WEATHER")
                         {
                             ElementWeather_v2 weather = (ElementWeather_v2)elementsList.Find(e => e.GetType().Name == "ElementWeather_v2");
                             if (weather == null)
@@ -31429,7 +31600,7 @@ namespace Watch_Face_Editor
                             }
                         }
 
-                        if (textCircle.type == "WEATHER_HIGH")
+                        if (textCircle.type == "WEATHER_HIGH" && type != "WEATHER")
                         {
                             ElementWeather_v2 weather = (ElementWeather_v2)elementsList.Find(e => e.GetType().Name == "ElementWeather_v2");
                             if (weather == null)
@@ -31472,7 +31643,7 @@ namespace Watch_Face_Editor
                             }
                         }
 
-                        if (textCircle.type == "WEATHER_HIGH_LOW")
+                        if (textCircle.type == "WEATHER_HIGH_LOW" && type != "WEATHER")
                         {
                             ElementWeather_v2 weather = (ElementWeather_v2)elementsList.Find(e => e.GetType().Name == "ElementWeather_v2");
                             if (weather == null)
@@ -33054,7 +33225,7 @@ namespace Watch_Face_Editor
                     case "TEXT":
                         hmUI_widget_TEXT text = Object_TEXT(parametrs);
 
-                        /*if (objectName.EndsWith("city_name_text"))
+                        if (objectName.EndsWith("city_name_text") && type == "WEATHER") // старый формат для редактируемых элементов
                         {
                             ElementWeather weather = (ElementWeather)elementsList.Find(e => e.GetType().Name == "ElementWeather");
                             if (weather == null)
@@ -33100,9 +33271,10 @@ namespace Watch_Face_Editor
                                 weather.City_Name.visible = true;
                                 weather.City_Name.position = offset;
                             }
-                        }*/
+                        }
 
-                        if (objectName.EndsWith("city_name_text"))
+                        /////
+                        if (objectName.EndsWith("city_name_text") && type != "WEATHER")
                         {
                             ElementWeather_v2 weather = (ElementWeather_v2)elementsList.Find(e => e.GetType().Name == "ElementWeather_v2");
                             if (weather == null)
@@ -34908,7 +35080,7 @@ namespace Watch_Face_Editor
 
 
 
-                        /*if (text_font.type == "WEATHER_CURRENT")
+                        if (text_font.type == "WEATHER_CURRENT" && type == "WEATHER") // старый формат для редактируемых элементов
                         {
                             ElementWeather weather = (ElementWeather)elementsList.Find(e => e.GetType().Name == "ElementWeather");
                             if (weather == null)
@@ -34961,7 +35133,7 @@ namespace Watch_Face_Editor
                             }
                         }
 
-                        if (text_font.type == "WEATHER_LOW")
+                        if (text_font.type == "WEATHER_LOW" && type == "WEATHER") // старый формат для редактируемых элементов
                         {
                             ElementWeather weather = (ElementWeather)elementsList.Find(e => e.GetType().Name == "ElementWeather");
                             if (weather == null)
@@ -35014,7 +35186,7 @@ namespace Watch_Face_Editor
                             }
                         }
 
-                        if (text_font.type == "WEATHER_HIGH")
+                        if (text_font.type == "WEATHER_HIGH" && type == "WEATHER") // старый формат для редактируемых элементов
                         {
                             ElementWeather weather = (ElementWeather)elementsList.Find(e => e.GetType().Name == "ElementWeather");
                             if (weather == null)
@@ -35067,7 +35239,7 @@ namespace Watch_Face_Editor
                             }
                         }
 
-                        if (text_font.type == "WEATHER_HIGH_LOW")
+                        if (text_font.type == "WEATHER_HIGH_LOW" && type == "WEATHER") // старый формат для редактируемых элементов
                         {
                             ElementWeather weather = (ElementWeather)elementsList.Find(e => e.GetType().Name == "ElementWeather");
                             if (weather == null)
@@ -35118,9 +35290,10 @@ namespace Watch_Face_Editor
                                 weather.Number_Min_Max_Font.visible = true;
                                 weather.Number_Min_Max_Font.position = offset;
                             }
-                        }*/
+                        }
 
-                        if (text_font.type == "WEATHER_CURRENT")
+                        /////
+                        if (text_font.type == "WEATHER_CURRENT" && type != "WEATHER")
                         {
                             ElementWeather_v2 weather = (ElementWeather_v2)elementsList.Find(e => e.GetType().Name == "ElementWeather_v2");
                             if (weather == null)
@@ -35169,7 +35342,7 @@ namespace Watch_Face_Editor
                             }
                         }
 
-                        if (text_font.type == "WEATHER_LOW")
+                        if (text_font.type == "WEATHER_LOW" && type != "WEATHER")
                         {
                             ElementWeather_v2 weather = (ElementWeather_v2)elementsList.Find(e => e.GetType().Name == "ElementWeather_v2");
                             if (weather == null)
@@ -35218,7 +35391,7 @@ namespace Watch_Face_Editor
                             }
                         }
 
-                        if (text_font.type == "WEATHER_HIGH")
+                        if (text_font.type == "WEATHER_HIGH" && type != "WEATHER")
                         {
                             ElementWeather_v2 weather = (ElementWeather_v2)elementsList.Find(e => e.GetType().Name == "ElementWeather_v2");
                             if (weather == null)
@@ -35267,7 +35440,7 @@ namespace Watch_Face_Editor
                             }
                         }
 
-                        if (text_font.type == "WEATHER_HIGH_LOW")
+                        if (text_font.type == "WEATHER_HIGH_LOW" && type != "WEATHER")
                         {
                             ElementWeather_v2 weather = (ElementWeather_v2)elementsList.Find(e => e.GetType().Name == "ElementWeather_v2");
                             if (weather == null)
@@ -38654,6 +38827,58 @@ namespace Watch_Face_Editor
             button.visible = true;
 
             return button;
+        }
+
+        private ElementSwitchBackground Object_SwitchBG(Dictionary<string, string> parametrs)
+        {
+            ElementSwitchBackground switchBG = new ElementSwitchBackground();
+            switchBG.Button = new Button();
+            int value;
+            if (parametrs.ContainsKey("// normal_src"))
+            {
+                string imgName = parametrs["// normal_src"].Replace("'", "").Replace("\"", "");
+                imgName = Path.GetFileNameWithoutExtension(imgName);
+                switchBG.Button.normal_src = imgName;
+            }
+            if (parametrs.ContainsKey("// press_src"))
+            {
+                string imgName = parametrs["// press_src"].Replace("'", "").Replace("\"", "");
+                imgName = Path.GetFileNameWithoutExtension(imgName);
+                switchBG.Button.press_src = imgName;
+            }
+            if (parametrs.ContainsKey("// x") && Int32.TryParse(parametrs["// x"], out value)) switchBG.Button.x = value;
+            if (parametrs.ContainsKey("// y") && Int32.TryParse(parametrs["// y"], out value)) switchBG.Button.y = value;
+            if (parametrs.ContainsKey("// w") && Int32.TryParse(parametrs["// w"], out value)) switchBG.Button.w = value;
+            if (parametrs.ContainsKey("// h") && Int32.TryParse(parametrs["// h"], out value)) switchBG.Button.h = value;
+            if (parametrs.ContainsKey("// text_size") && Int32.TryParse(parametrs["// text_size"], out value)) switchBG.Button.text_size = value;
+            if (parametrs.ContainsKey("// radius") && Int32.TryParse(parametrs["// radius"], out value)) switchBG.Button.radius = value;
+            if (parametrs.ContainsKey("// text")) switchBG.Button.text = parametrs["// text"].Replace("'", "").Replace("\"", "");
+
+            if (parametrs.ContainsKey("// color") && parametrs["// color"].Length > 3) switchBG.Button.color = parametrs["// color"];
+            if (parametrs.ContainsKey("// normal_color") && parametrs["// normal_color"].Length > 3) switchBG.Button.normal_color = parametrs["// normal_color"];
+            if (parametrs.ContainsKey("// press_color") && parametrs["// press_color"].Length > 3) switchBG.Button.press_color = parametrs["// press_color"];
+
+            if (parametrs.ContainsKey("// use_crown")) switchBG.use_crown = StringToBool(parametrs["// use_crown"]);
+            if (parametrs.ContainsKey("// use_in_AOD")) switchBG.use_in_AOD = StringToBool(parametrs["// use_in_AOD"]);
+            if (parametrs.ContainsKey("// vibro")) switchBG.vibro = StringToBool(parametrs["// vibro"]);
+
+            if (parametrs.ContainsKey("// bg_list"))
+            {
+                string list = parametrs["// bg_list"];
+                switchBG.bg_list = list.Split('|').ToList();
+            }
+            if (parametrs.ContainsKey("// toast_list"))
+            {
+                string list = parametrs["// toast_list"];
+                switchBG.toast_list = list.Split('|').ToList();
+            }
+            while (switchBG.toast_list.Count > switchBG.bg_list.Count ) switchBG.toast_list.RemoveAt(switchBG.toast_list.Count - 1);
+            while (switchBG.bg_list.Count > switchBG.toast_list.Count) switchBG.toast_list.Add("");
+
+
+            switchBG.enable = true;
+
+            return switchBG;
         }
 
         private FewDays Object_FewDays(Dictionary<string, string> parametrs)

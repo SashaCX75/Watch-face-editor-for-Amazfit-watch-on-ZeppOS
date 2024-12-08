@@ -219,6 +219,12 @@
   <data name="Message_ARGB_Line2" xml:space="preserve">
     <value>Вы точно хотите конвертировать изображения в формат ARGB?</value>
   </data>
+  <data name="Message_AutoSave_Caption" xml:space="preserve">
+    <value>Восстановление</value>
+  </data>
+  <data name="Message_BG_Not_Image" xml:space="preserve">
+    <value>Нужно установить изображение в качестве основного фона.</value>
+  </data>
   <data name="Message_ConvertingCompleted_Text" xml:space="preserve">
     <value>Новый циферблат создан.</value>
   </data>
@@ -303,6 +309,9 @@
   </data>
   <data name="Message_LoadPreviewStates_Text" xml:space="preserve">
     <value>Загрузить имеющийся файл с набором параметров предпросмотра PreviewStates.json?</value>
+  </data>
+  <data name="Message_Load_AutoSave" xml:space="preserve">
+    <value>Найден файл с автосохранением. Вы хотите загрузить его?</value>
   </data>
   <data name="Message_ModelConfig_Error" xml:space="preserve">
     <value>Не найдена конфигурация модели: </value>
@@ -402,5 +411,8 @@
   </data>
   <data name="Tip_Pointer" xml:space="preserve">
     <value>Стрелки </value>
+  </data>
+  <data name="ToastBG" xml:space="preserve">
+    <value>Фон %s</value>
   </data>
 </root>

@@ -367,6 +367,24 @@ namespace Watch_Face_Editor.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Восстановление.
+        /// </summary>
+        internal static string Message_AutoSave_Caption {
+            get {
+                return ResourceManager.GetString("Message_AutoSave_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Нужно установить изображение в качестве основного фона..
+        /// </summary>
+        internal static string Message_BG_Not_Image {
+            get {
+                return ResourceManager.GetString("Message_BG_Not_Image", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Новый циферблат создан..
         /// </summary>
         internal static string Message_ConvertingCompleted_Text {
@@ -597,6 +615,15 @@ namespace Watch_Face_Editor.Properties {
         internal static string Message_JsonReadError_Text {
             get {
                 return ResourceManager.GetString("Message_JsonReadError_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Найден файл с автосохранением. Вы хотите загрузить его?.
+        /// </summary>
+        internal static string Message_Load_AutoSave {
+            get {
+                return ResourceManager.GetString("Message_Load_AutoSave", resourceCulture);
             }
         }
         
@@ -912,6 +939,15 @@ namespace Watch_Face_Editor.Properties {
         internal static string Tip_Pointer {
             get {
                 return ResourceManager.GetString("Tip_Pointer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Фон %s.
+        /// </summary>
+        internal static string ToastBG {
+            get {
+                return ResourceManager.GetString("ToastBG", resourceCulture);
             }
         }
     }

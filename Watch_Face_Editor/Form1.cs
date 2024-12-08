@@ -405,6 +405,19 @@ namespace Watch_Face_Editor
             checkBox_CreateZPK.Checked = ProgramSettings.CreateZPK;
             checkBox_Del_Confirm.Checked = ProgramSettings.DelConfirm;
 
+            checkBox_AutoSave.Checked = ProgramSettings.AutoSave;
+            numericUpDown_AutoSave_Time.Value = ProgramSettings.AutoSaveTime;
+            if (ProgramSettings.AutoSave)
+            {
+                if (ProgramSettings.AutoSaveTime > 0)
+                {
+                    timer_AutoSave.Enabled = true;
+                    timer_AutoSave.Interval = ProgramSettings.AutoSaveTime * 1000;
+                }
+                else timer_AutoSave.Enabled = false;
+            }
+            else timer_AutoSave.Enabled = false;
+
             Settings_Load = false;
             JSON_Modified = false;
 
@@ -487,6 +500,7 @@ namespace Watch_Face_Editor
             uCtrl_RepeatingAlert_Opt.AutoSize = true;
             uCtrl_SmoothSeconds_Opt.AutoSize = true;
             uCtrl_Button_Opt.AutoSize = true;
+            uCtrl_Switch_Background_Opt.AutoSize = true;
             uCtrl_Weather_FewDays_Opt.AutoSize = true;
             uCtrl_TemperatureGraph_Opt.AutoSize = true;
             uCtrl_JS_script_Opt.AutoSize = true;
@@ -558,8 +572,18 @@ namespace Watch_Face_Editor
             // Save settings
             Properties.Settings.Default.Save();
 #if !DEBUG
-            if(SaveRequest() == DialogResult.Cancel) e.Cancel = true;
+            if(SaveRequest() == DialogResult.Cancel) 
+            {
+                e.Cancel = true;
+                return;
+            }
+            if (ProjectDir != null && FileName != null)
+            {
+                string fullfilename = Path.Combine(ProjectDir, FileName) + ".temp";
+                if (File.Exists(fullfilename)) File.Delete(fullfilename); 
+            }
 #endif
+            Logger.WriteLine("* FormClosing(end)");
         }
 
         private void SetLanguage()
@@ -1281,7 +1305,8 @@ namespace Watch_Face_Editor
                 int dY = Math.Abs(cursorY - cursorPos.Y);
                 if (panel.Name == "panel_UC_Background" || panel.Name == "panel_UC_Shortcuts" || panel.Name == "panel_UC_DisconnectAlert" || 
                     panel.Name == "panel_UC_EditableTimePointer" || panel.Name == "panel_UC_EditableElements" || 
-                    panel.Name == "panel_UC_RepeatingAlert" || panel.Name == "panel_UC_TopImage" )
+                    panel.Name == "panel_UC_RepeatingAlert" || panel.Name == "panel_UC_TopImage" ||
+                    panel.Name == "panel_UC_Buttons" || panel.Name == "panel_UC_Switch_Background")
                 {
                     panel.DoDragDrop(sender, DragDropEffects.None);
                     return;
@@ -1654,50 +1679,37 @@ namespace Watch_Face_Editor
                         break;
 
                     case "ControlLibrary.UCtrl_EditableElements_Elm":
-                        //EditableElements editableElements =
-                        //    (EditableElements)Elements.Find(e1 => e1.GetType().Name == "ElementEditablePointers");
-                        //index = Elements.IndexOf(editablePointers);
                         draggedUCtrl_Elm = (UCtrl_EditableElements_Elm)e.Data.GetData(typeof(UCtrl_EditableElements_Elm));
                         if (draggedUCtrl_Elm != null) draggedPanel = (Panel)draggedUCtrl_Elm.Parent;
                         break;
 
                     case "ControlLibrary.UCtrl_DisconnectAlert_Elm":
-                        //EditableElements editableElements =
-                        //    (EditableElements)Elements.Find(e1 => e1.GetType().Name == "ElementEditablePointers");
-                        //index = Elements.IndexOf(editablePointers);
                         draggedUCtrl_Elm = (UCtrl_DisconnectAlert_Elm)e.Data.GetData(typeof(UCtrl_DisconnectAlert_Elm));
                         if (draggedUCtrl_Elm != null) draggedPanel = (Panel)draggedUCtrl_Elm.Parent;
                         break;
 
                     case "ControlLibrary.UCtrl_Background_Elm":
-                        //EditableElements editableElements =
-                        //    (EditableElements)Elements.Find(e1 => e1.GetType().Name == "ElementEditablePointers");
-                        //index = Elements.IndexOf(editablePointers);
                         draggedUCtrl_Elm = (UCtrl_Background_Elm)e.Data.GetData(typeof(UCtrl_Background_Elm));
                         if (draggedUCtrl_Elm != null) draggedPanel = (Panel)draggedUCtrl_Elm.Parent;
                         break;
 
                     case "ControlLibrary.UCtrl_RepeatingAlert_Elm":
-                        //EditableElements editableElements =
-                        //    (EditableElements)Elements.Find(e1 => e1.GetType().Name == "ElementEditablePointers");
-                        //index = Elements.IndexOf(editablePointers);
                         draggedUCtrl_Elm = (UCtrl_RepeatingAlert_Elm)e.Data.GetData(typeof(UCtrl_RepeatingAlert_Elm));
                         if (draggedUCtrl_Elm != null) draggedPanel = (Panel)draggedUCtrl_Elm.Parent;
                         break;
 
                     case "ControlLibrary.UCtrl_TopImage_Elm":
-                        //EditableElements editableElements =
-                        //    (EditableElements)Elements.Find(e1 => e1.GetType().Name == "ElementEditablePointers");
-                        //index = Elements.IndexOf(editablePointers);
                         draggedUCtrl_Elm = (UCtrl_TopImage_Elm)e.Data.GetData(typeof(UCtrl_TopImage_Elm));
                         if (draggedUCtrl_Elm != null) draggedPanel = (Panel)draggedUCtrl_Elm.Parent;
                         break;
 
-                    case "ControlLibrary.uCtrl_Buttons_Elm":
-                        //EditableElements editableElements =
-                        //    (EditableElements)Elements.Find(e1 => e1.GetType().Name == "ElementEditablePointers");
-                        //index = Elements.IndexOf(editablePointers);
-                        draggedUCtrl_Elm = (UCtrl_TopImage_Elm)e.Data.GetData(typeof(UCtrl_TopImage_Elm));
+                    case "ControlLibrary.UCtrl_Buttons_Elm":
+                        draggedUCtrl_Elm = (UCtrl_Buttons_Elm)e.Data.GetData(typeof(UCtrl_Buttons_Elm));
+                        if (draggedUCtrl_Elm != null) draggedPanel = (Panel)draggedUCtrl_Elm.Parent;
+                        break;
+
+                    case "ControlLibrary.UCtrl_Switch_Background_Elm":
+                        draggedUCtrl_Elm = (UCtrl_Switch_Background_Elm)e.Data.GetData(typeof(UCtrl_Switch_Background_Elm));
                         if (draggedUCtrl_Elm != null) draggedPanel = (Panel)draggedUCtrl_Elm.Parent;
                         break;
                 }
@@ -1722,6 +1734,7 @@ namespace Watch_Face_Editor
                     if (control.Name == "panel_UC_RepeatingAlert") return;
                     if (control.Name == "panel_UC_TopImage") return;
                     if (control.Name == "panel_UC_Buttons") return;
+                    if (control.Name == "panel_UC_Switch_Background") return;
                     var pos = tableLayoutPanel_ElemetsWatchFace.GetPositionFromControl(control);
                     var posOld = tableLayoutPanel_ElemetsWatchFace.GetPositionFromControl(draggedPanel);
                     int indexNew = tableLayoutPanel_ElemetsWatchFace.RowCount - 2 - pos.Row;
@@ -1846,6 +1859,9 @@ namespace Watch_Face_Editor
                 case "Buttons":
                     uCtrl_Button_Opt.Visible = true;
                     break;
+                case "SwitchBG":
+                    uCtrl_Switch_Background_Opt.Visible = true;
+                    break;
                 case "WeatherFewDays":
                     uCtrl_Weather_FewDays_Opt.Visible = true;
                     break;
@@ -1889,6 +1905,7 @@ namespace Watch_Face_Editor
             uCtrl_RepeatingAlert_Opt.Visible = false;
             uCtrl_SmoothSeconds_Opt.Visible = false;
             uCtrl_Button_Opt.Visible = false;
+            uCtrl_Switch_Background_Opt.Visible = false;
             uCtrl_Weather_FewDays_Opt.Visible = false;
             uCtrl_TemperatureGraph_Opt.Visible = false;
             uCtrl_JS_script_Opt.Visible = false;
@@ -1940,6 +1957,7 @@ namespace Watch_Face_Editor
             if (selectElementName != "RepeatingAlert") uCtrl_RepeatingAlert_Elm.ResetHighlightState();
             if (selectElementName != "TopImage") uCtrl_TopImage_Elm.ResetHighlightState();
             if (selectElementName != "Buttons") uCtrl_Buttons_Elm.ResetHighlightState();
+            if (selectElementName != "SwitchBG") uCtrl_Switch_Background_Elm.ResetHighlightState();
 
 
             if (selectElementName != "Animation") 
@@ -2011,6 +2029,7 @@ namespace Watch_Face_Editor
             uCtrl_RepeatingAlert_Elm.SettingsClear();
             uCtrl_TopImage_Elm.SettingsClear();
             uCtrl_Buttons_Elm.SettingsClear();
+            uCtrl_Switch_Background_Opt.SettingsClear();
         }
 
         private void uCtrl_Background_Elm_SelectChanged(object sender, EventArgs eventArgs)
@@ -2610,6 +2629,12 @@ namespace Watch_Face_Editor
             openFileDialog.Title = Properties.FormStrings.Dialog_Title_Dial_Settings;
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
+                if (ProjectDir != null && FileName != null)
+                {
+                    string fullfilename = Path.Combine(ProjectDir, FileName) + ".temp";
+                    if (File.Exists(fullfilename)) File.Delete(fullfilename); 
+                }
+
                 FileName = Path.GetFileName(openFileDialog.FileName);
                 ProjectDir = Path.GetDirectoryName(openFileDialog.FileName);
 
@@ -2626,6 +2651,18 @@ namespace Watch_Face_Editor
         private void LoadJson(string fileName)
         {
             string text = File.ReadAllText(fileName);
+
+            string autosave_FileName = fileName + ".temp";
+            if (File.Exists(autosave_FileName))
+            {
+                DialogResult dr = MessageBox.Show(Properties.FormStrings.Message_Load_AutoSave,
+                       Properties.FormStrings.Message_AutoSave_Caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dr == DialogResult.Yes)
+                {
+                    text = File.ReadAllText(autosave_FileName);
+                }
+            }
+           
             Watch_Face = TextToJson(text);
 
             // отображение кнопок создания картинки предпросмотра
@@ -2839,6 +2876,7 @@ namespace Watch_Face_Editor
             uCtrl_EditableElements_Opt.ComboBoxAddItems(ListImages, ListImagesFullName);
             uCtrl_EditableTimePointer_Opt.ComboBoxAddItems(ListImages, ListImagesFullName);
             uCtrl_Button_Opt.ComboBoxAddItems(ListImages, ListImagesFullName);
+            uCtrl_Switch_Background_Opt.ComboBoxAddItems(ListImages, ListImagesFullName);
             //uCtrl_Animation_Frame_Opt.ComboBoxAddItems(ListImages, ListImagesFullName);
             //uCtrl_Animation_Motion_Opt.ComboBoxAddItems(ListImages, ListImagesFullName);
             //uCtrl_Animation_Rotate_Opt.ComboBoxAddItems(ListImages, ListImagesFullName);
@@ -3246,7 +3284,23 @@ namespace Watch_Face_Editor
                 NullValueHandling = NullValueHandling.Ignore
             });
 
+            if (ProgramSettings.AutoSave && File.Exists(fullfilename)) { 
+                if (File.Exists(fullfilename + ".bak")) File.Delete(fullfilename + ".bak");
+                File.Move(fullfilename, fullfilename + ".bak"); 
+            }
             File.WriteAllText(fullfilename, JSON_String, Encoding.UTF8);
+        }
+
+        private void autoSave_JSON_File(String fullfilename)
+        {
+            if (Watch_Face == null) return;
+            string JSON_String = JsonConvert.SerializeObject(Watch_Face, Formatting.Indented, new JsonSerializerSettings
+            {
+                //DefaultValueHandling = DefaultValueHandling.Ignore,
+                NullValueHandling = NullValueHandling.Ignore
+            });
+
+            File.WriteAllText(fullfilename + ".temp", JSON_String, Encoding.UTF8);
         }
 
         // формируем изображение для предпросмотра
@@ -3557,6 +3611,54 @@ namespace Watch_Face_Editor
                     }
                 }
             }
+        }
+
+        //private void comboBox_AddBackground_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if (comboBox_AddBackground.SelectedIndex == 0)
+        //    {
+        //        if (!PreviewView) return;
+        //        AddBackground();
+        //        PreviewView = false;
+        //        ShowElemetsWatchFace();
+        //        PreviewView = true;
+        //        JSON_Modified = true;
+        //        FormText(); 
+        //    }
+        //}
+
+        private void comboBox_AddBackground_DropDownClosed(object sender, EventArgs e)
+        {
+            if (comboBox_AddBackground.SelectedIndex == 0)
+            {
+                if (AddBackground())
+                {
+                    PreviewView = false;
+                    ShowElemetsWatchFace();
+                    PreviewView = true;
+                    JSON_Modified = true;
+                    FormText(); 
+                }
+            }
+            if (comboBox_AddBackground.SelectedIndex == 1)
+            {
+                if (radioButton_ScreenNormal.Checked)
+                {
+                    if (AddSwitchBG())
+                    {
+                        ShowElemetsWatchFace();
+                        JSON_Modified = true;
+                        FormText();
+                    }
+                }
+                else MessageBox.Show(Properties.FormStrings.Message_ElementAOD_Text, Properties.FormStrings.Message_Warning_Caption,
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            PreviewView = false;
+            comboBox_AddBackground.Items.Insert(0, Properties.FormStrings.Tip_Background);
+            comboBox_AddBackground.SelectedIndex = 0;
+            PreviewView = true;
         }
 
         private void comboBox_AddTime_DropDownClosed(object sender, EventArgs e)
@@ -4127,175 +4229,54 @@ namespace Watch_Face_Editor
         }
 
         /// <summary>Добавляем фон в циферблат</summary>
-        private void AddBackground()
+        private bool AddBackground()
         {
-            if (!PreviewView) return;
+            if (!PreviewView) return false;
             if (Watch_Face == null) Watch_Face = new WATCH_FACE();
             Classes.AmazfitPlatform currPlatform = AvailableConfigurations[ProgramSettings.Watch_Model];
 
-            // TODO :: Merge blocks !!!
             if (radioButton_ScreenNormal.Checked)
             {
                 if (Watch_Face.ScreenNormal == null) Watch_Face.ScreenNormal = new ScreenNormal();
-                if(Watch_Face.ScreenNormal.Background != null) return;
-                Watch_Face.ScreenNormal.Background = new Background();
-                Watch_Face.ScreenNormal.Background.BackgroundColor = new hmUI_widget_FILL_RECT();
-                //switch (ProgramSettings.Watch_Model)
-                //{
-                //    case "GTR 3":
-                //    case "T-Rex 2":
-                //        Watch_Face.ScreenNormal.Background.BackgroundColor.color = "0xFF000000";
-                //        Watch_Face.ScreenNormal.Background.BackgroundColor.x = 0;
-                //        Watch_Face.ScreenNormal.Background.BackgroundColor.y = 0;
-                //        Watch_Face.ScreenNormal.Background.BackgroundColor.h = 454;
-                //        Watch_Face.ScreenNormal.Background.BackgroundColor.w = 454;
-                //        break;
-                //    case "GTR 3 Pro":
-                //        Watch_Face.ScreenNormal.Background.BackgroundColor.color = "0xFF000000";
-                //        Watch_Face.ScreenNormal.Background.BackgroundColor.x = 0;
-                //        Watch_Face.ScreenNormal.Background.BackgroundColor.y = 0;
-                //        Watch_Face.ScreenNormal.Background.BackgroundColor.h = 480;
-                //        Watch_Face.ScreenNormal.Background.BackgroundColor.w = 480;
-                //        break;
-                //    case "GTS 3":
-                //    case "GTS 4":
-                //        Watch_Face.ScreenNormal.Background.BackgroundColor.color = "0xFF000000";
-                //        Watch_Face.ScreenNormal.Background.BackgroundColor.x = 0;
-                //        Watch_Face.ScreenNormal.Background.BackgroundColor.y = 0;
-                //        Watch_Face.ScreenNormal.Background.BackgroundColor.h = 450;
-                //        Watch_Face.ScreenNormal.Background.BackgroundColor.w = 390;
-                //        break;
-                //    case "GTR 4":
-                //        Watch_Face.ScreenNormal.Background.BackgroundColor.color = "0xFF000000";
-                //        Watch_Face.ScreenNormal.Background.BackgroundColor.x = 0;
-                //        Watch_Face.ScreenNormal.Background.BackgroundColor.y = 0;
-                //        Watch_Face.ScreenNormal.Background.BackgroundColor.h = 466;
-                //        Watch_Face.ScreenNormal.Background.BackgroundColor.w = 466;
-                //        break;
-                //    case "Amazfit Band 7":
-                //        Watch_Face.ScreenNormal.Background.BackgroundColor.color = "0xFF000000";
-                //        Watch_Face.ScreenNormal.Background.BackgroundColor.x = 0;
-                //        Watch_Face.ScreenNormal.Background.BackgroundColor.y = 0;
-                //        Watch_Face.ScreenNormal.Background.BackgroundColor.h = 368;
-                //        Watch_Face.ScreenNormal.Background.BackgroundColor.w = 194;
-                //        break;
-                //    case "GTS 4 mini":
-                //        Watch_Face.ScreenNormal.Background.BackgroundColor.color = "0xFF000000";
-                //        Watch_Face.ScreenNormal.Background.BackgroundColor.x = 0;
-                //        Watch_Face.ScreenNormal.Background.BackgroundColor.y = 0;
-                //        Watch_Face.ScreenNormal.Background.BackgroundColor.h = 384;
-                //        Watch_Face.ScreenNormal.Background.BackgroundColor.w = 336;
-                //        break;
-                //    case "Falcon":
-                //    case "GTR mini":
-                //        Watch_Face.ScreenNormal.Background.BackgroundColor.color = "0xFF000000";
-                //        Watch_Face.ScreenNormal.Background.BackgroundColor.x = 0;
-                //        Watch_Face.ScreenNormal.Background.BackgroundColor.y = 0;
-                //        Watch_Face.ScreenNormal.Background.BackgroundColor.h = 416;
-                //        Watch_Face.ScreenNormal.Background.BackgroundColor.w = 416;
-                //        break;
-                //}
-                /*// StartBlock :: Kartun
-                Logger.WriteLine($"* AddBackground for {ProgramSettings.Watch_Model}");
+                if(Watch_Face.ScreenNormal.Background == null)
+               { 
+                    Watch_Face.ScreenNormal.Background = new Background();
+                    Watch_Face.ScreenNormal.Background.BackgroundColor = new hmUI_widget_FILL_RECT();
+                
+                    Watch_Face.WatchFace_Info.DeviceName = ProgramSettings.Watch_Model;
+                    Watch_Face.ScreenNormal.Background.BackgroundColor.color = "0xFF000000";
+                    Watch_Face.ScreenNormal.Background.BackgroundColor.x = 0;
+                    Watch_Face.ScreenNormal.Background.BackgroundColor.y = 0;
+                    Watch_Face.ScreenNormal.Background.BackgroundColor.h = SelectedModel.background.h;
+                    Watch_Face.ScreenNormal.Background.BackgroundColor.w = SelectedModel.background.w;
 
-                Logger.WriteLine($"Loaded configuration: {currPlatform}");
-                Watch_Face.WatchFace_Info.DeviceName = currPlatform.int_id;
-                Watch_Face.ScreenNormal.Background.BackgroundColor.color = "0xFF000000";
-                Watch_Face.ScreenNormal.Background.BackgroundColor.x = 0;
-                Watch_Face.ScreenNormal.Background.BackgroundColor.y = 0;
-                Watch_Face.ScreenNormal.Background.BackgroundColor.h = currPlatform.background.h;
-                Watch_Face.ScreenNormal.Background.BackgroundColor.w = currPlatform.background.w;
-                // EndBlock :: Kartun*/
-                Watch_Face.WatchFace_Info.DeviceName = ProgramSettings.Watch_Model;
-                Watch_Face.ScreenNormal.Background.BackgroundColor.color = "0xFF000000";
-                Watch_Face.ScreenNormal.Background.BackgroundColor.x = 0;
-                Watch_Face.ScreenNormal.Background.BackgroundColor.y = 0;
-                Watch_Face.ScreenNormal.Background.BackgroundColor.h = SelectedModel.background.h;
-                Watch_Face.ScreenNormal.Background.BackgroundColor.w = SelectedModel.background.w;
-
-                Watch_Face.ScreenNormal.Background.visible = true;
-                JSON_Modified = true;
+                    Watch_Face.ScreenNormal.Background.visible = true;
+                    return true;
+                }
+                else MessageBox.Show(Properties.FormStrings.Message_Widget_Exists, Properties.FormStrings.Message_Warning_Caption,
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
             }
             else
             {
                 if (Watch_Face.ScreenAOD == null) Watch_Face.ScreenAOD = new ScreenAOD();
-                if (Watch_Face.ScreenAOD.Background != null) return;
-                Watch_Face.ScreenAOD.Background = new Background();
-                Watch_Face.ScreenAOD.Background.BackgroundColor = new hmUI_widget_FILL_RECT();
-                //switch (ProgramSettings.Watch_Model)
-                //{
-                //    case "GTR 3":
-                //    case "T-Rex 2":
-                //        Watch_Face.ScreenAOD.Background.BackgroundColor.color = "0xFF000000";
-                //        Watch_Face.ScreenAOD.Background.BackgroundColor.x = 0;
-                //        Watch_Face.ScreenAOD.Background.BackgroundColor.y = 0;
-                //        Watch_Face.ScreenAOD.Background.BackgroundColor.h = 454;
-                //        Watch_Face.ScreenAOD.Background.BackgroundColor.w = 454;
-                //        break;
-                //    case "GTR 3 Pro":
-                //        Watch_Face.ScreenAOD.Background.BackgroundColor.color = "0xFF000000";
-                //        Watch_Face.ScreenAOD.Background.BackgroundColor.x = 0;
-                //        Watch_Face.ScreenAOD.Background.BackgroundColor.y = 0;
-                //        Watch_Face.ScreenAOD.Background.BackgroundColor.h = 480;
-                //        Watch_Face.ScreenAOD.Background.BackgroundColor.w = 480;
-                //        break;
-                //    case "GTS 3":
-                //    case "GTS 4":
-                //        Watch_Face.ScreenAOD.Background.BackgroundColor.color = "0xFF000000";
-                //        Watch_Face.ScreenAOD.Background.BackgroundColor.x = 0;
-                //        Watch_Face.ScreenAOD.Background.BackgroundColor.y = 0;
-                //        Watch_Face.ScreenAOD.Background.BackgroundColor.h = 450;
-                //        Watch_Face.ScreenAOD.Background.BackgroundColor.w = 390;
-                //        break;
-                //    case "GTR 4":
-                //        Watch_Face.ScreenAOD.Background.BackgroundColor.color = "0xFF000000";
-                //        Watch_Face.ScreenAOD.Background.BackgroundColor.x = 0;
-                //        Watch_Face.ScreenAOD.Background.BackgroundColor.y = 0;
-                //        Watch_Face.ScreenAOD.Background.BackgroundColor.h = 466;
-                //        Watch_Face.ScreenAOD.Background.BackgroundColor.w = 466;
-                //        break;
-                //    case "Amazfit Band 7":
-                //        Watch_Face.ScreenAOD.Background.BackgroundColor.color = "0xFF000000";
-                //        Watch_Face.ScreenAOD.Background.BackgroundColor.x = 0;
-                //        Watch_Face.ScreenAOD.Background.BackgroundColor.y = 0;
-                //        Watch_Face.ScreenAOD.Background.BackgroundColor.h = 368;
-                //        Watch_Face.ScreenAOD.Background.BackgroundColor.w = 194;
-                //        break;
-                //    case "GTS 4 mini":
-                //        Watch_Face.ScreenAOD.Background.BackgroundColor.color = "0xFF000000";
-                //        Watch_Face.ScreenAOD.Background.BackgroundColor.x = 0;
-                //        Watch_Face.ScreenAOD.Background.BackgroundColor.y = 0;
-                //        Watch_Face.ScreenAOD.Background.BackgroundColor.h = 384;
-                //        Watch_Face.ScreenAOD.Background.BackgroundColor.w = 336;
-                //        break;
-                //    case "Falcon":
-                //    case "GTR mini":
-                //        Watch_Face.ScreenAOD.Background.BackgroundColor.color = "0xFF000000";
-                //        Watch_Face.ScreenAOD.Background.BackgroundColor.x = 0;
-                //        Watch_Face.ScreenAOD.Background.BackgroundColor.y = 0;
-                //        Watch_Face.ScreenAOD.Background.BackgroundColor.h = 416;
-                //        Watch_Face.ScreenAOD.Background.BackgroundColor.w = 416;
-                //        break;
-                //}
-                /*// StartBlock :: Kartun
-                Logger.WriteLine($"* AddBackground for {ProgramSettings.Watch_Model}");
-
-                Logger.WriteLine($"Loaded configuration: {currPlatform}");
-                Watch_Face.WatchFace_Info.DeviceName = currPlatform.int_id;
-                Watch_Face.ScreenAOD.Background.BackgroundColor.color = "0xFF000000";
-                Watch_Face.ScreenAOD.Background.BackgroundColor.x = 0;
-                Watch_Face.ScreenAOD.Background.BackgroundColor.y = 0;
-                Watch_Face.ScreenAOD.Background.BackgroundColor.h = currPlatform.background.h;
-                Watch_Face.ScreenAOD.Background.BackgroundColor.w = currPlatform.background.w;
-                // EndBlock :: Kartun*/
-                Watch_Face.WatchFace_Info.DeviceName = ProgramSettings.Watch_Model;
-                Watch_Face.ScreenAOD.Background.BackgroundColor.color = "0xFF000000";
-                Watch_Face.ScreenAOD.Background.BackgroundColor.x = 0;
-                Watch_Face.ScreenAOD.Background.BackgroundColor.y = 0;
-                Watch_Face.ScreenAOD.Background.BackgroundColor.h = SelectedModel.background.h;
-                Watch_Face.ScreenAOD.Background.BackgroundColor.w = SelectedModel.background.w;
-                Watch_Face.ScreenAOD.Background.visible = true;
-                JSON_Modified = true;
+                if (Watch_Face.ScreenAOD.Background == null) 
+                {
+                    Watch_Face.ScreenAOD.Background = new Background();
+                    Watch_Face.ScreenAOD.Background.BackgroundColor = new hmUI_widget_FILL_RECT();
+                
+                    Watch_Face.WatchFace_Info.DeviceName = ProgramSettings.Watch_Model;
+                    Watch_Face.ScreenAOD.Background.BackgroundColor.color = "0xFF000000";
+                    Watch_Face.ScreenAOD.Background.BackgroundColor.x = 0;
+                    Watch_Face.ScreenAOD.Background.BackgroundColor.y = 0;
+                    Watch_Face.ScreenAOD.Background.BackgroundColor.h = SelectedModel.background.h;
+                    Watch_Face.ScreenAOD.Background.BackgroundColor.w = SelectedModel.background.w;
+                    Watch_Face.ScreenAOD.Background.visible = true;
+                    return true;
+                }
+                else MessageBox.Show(Properties.FormStrings.Message_Widget_Exists, Properties.FormStrings.Message_Warning_Caption,
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
             }
         }
 
@@ -4518,6 +4499,40 @@ namespace Watch_Face_Editor
             else MessageBox.Show(Properties.FormStrings.Message_Widget_Exists, Properties.FormStrings.Message_Warning_Caption,
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             return false;
+        }
+
+        /// <summary>Добавляем кнопку переключения фона</summary>
+        private bool AddSwitchBG()
+        {
+            if (!PreviewView) return false;
+            if (Watch_Face == null) Watch_Face = new WATCH_FACE();
+
+            if (Watch_Face.ScreenNormal != null && Watch_Face.ScreenNormal.Background != null &&
+                Watch_Face.ScreenNormal.Background.BackgroundImage != null &&
+                Watch_Face.ScreenNormal.Background.BackgroundImage.src != null &&
+                Watch_Face.ScreenNormal.Background.BackgroundImage.src.Length > 0)
+            {
+                if (Watch_Face.SwitchBackground == null)
+                {
+                    Watch_Face.SwitchBackground = new ElementSwitchBackground();
+                    Watch_Face.SwitchBackground.bg_list = new List<string>();
+                    Watch_Face.SwitchBackground.toast_list = new List<string>();
+                    Watch_Face.SwitchBackground.Button = new Button();
+                    Watch_Face.SwitchBackground.enable = true;
+                    Watch_Face.SwitchBackground.bg_list.Add(Watch_Face.ScreenNormal.Background.BackgroundImage.src);
+                    Watch_Face.SwitchBackground.toast_list.Add(Properties.FormStrings.ToastBG);
+                    return true;
+                }
+                else MessageBox.Show(Properties.FormStrings.Message_Widget_Exists, Properties.FormStrings.Message_Warning_Caption,
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+            }
+            else
+            {
+                MessageBox.Show(Properties.FormStrings.Message_BG_Not_Image, Properties.FormStrings.Message_Warning_Caption,
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+            }
         }
 
         /// <summary>Добавляем дату в циферблат</summary>
@@ -5674,6 +5689,7 @@ namespace Watch_Face_Editor
             uCtrl_RepeatingAlert_Elm.Visible = false;
             uCtrl_TopImage_Elm.Visible = false;
             uCtrl_Buttons_Elm.Visible = false;
+            uCtrl_Switch_Background_Elm.Visible = false;
             uCtrl_JSscript_Elm.Visible = false;
 
 
@@ -7899,6 +7915,16 @@ namespace Watch_Face_Editor
                 elementsCount++;
             }
 
+            if (Watch_Face.SwitchBackground != null && radioButton_ScreenNormal.Checked)
+            {
+                ElementSwitchBackground SwitchBG = Watch_Face.SwitchBackground;
+                uCtrl_Switch_Background_Elm.SetVisibilityElementStatus(SwitchBG.enable);
+
+                uCtrl_Switch_Background_Elm.Visible = true;
+                SetElementPositionInGUI("SwitchBG", count - elementsCount - 2);
+                elementsCount++;
+            }
+
             progressBar1.Visible = false;
             tableLayoutPanel_ElemetsWatchFace.Visible = true;
 
@@ -8259,6 +8285,9 @@ namespace Watch_Face_Editor
                 case "Buttons":
                     panel = panel_UC_Buttons;
                     break;
+                case "SwitchBG":
+                    panel = panel_UC_Switch_Background;
+                    break;
 
                 case "DisconnectAlert":
                     panel = panel_UC_DisconnectAlert;
@@ -8302,8 +8331,8 @@ namespace Watch_Face_Editor
         private void radioButton_ScreenNormal_CheckedChanged(object sender, EventArgs e)
         {
             PreviewView = false;
-            comboBox_AddBackground.Visible = !radioButton_ScreenNormal.Checked;
-            pictureBox_IconBackground.Visible = !radioButton_ScreenNormal.Checked;
+            //comboBox_AddBackground.Visible = !radioButton_ScreenNormal.Checked;
+            //pictureBox_IconBackground.Visible = !radioButton_ScreenNormal.Checked;
             button_CopyAOD.Visible = !radioButton_ScreenNormal.Checked;
             ShowElemetsWatchFace(); 
             PreviewView = true;
@@ -8364,23 +8393,12 @@ namespace Watch_Face_Editor
             ProgramSettings.CreateZPK = checkBox_CreateZPK.Checked;
             ProgramSettings.DelConfirm = checkBox_Del_Confirm.Checked;
 
+
             //ProgramSettings.language = comboBox_Language.Text;
             if (comboBox_watch_model.SelectedIndex != -1)
             {
                 ProgramSettings.Watch_Model = comboBox_watch_model.Text;
 
-                // TODO :: Понять зачем ... Перенесли в конфигурацию модели
-                //if (comboBox_watch_model.Text == "GTR 3") ProgramSettings.WatchSkin_GTR_3 = textBox_WatchSkin_Path.Text;
-                //if (comboBox_watch_model.Text == "GTR 3 Pro") ProgramSettings.WatchSkin_GTR_3_Pro = textBox_WatchSkin_Path.Text;
-                //if (comboBox_watch_model.Text == "GTS 3") ProgramSettings.WatchSkin_GTS_3 = textBox_WatchSkin_Path.Text;
-                //if (comboBox_watch_model.Text == "T-Rex 2") ProgramSettings.WatchSkin_T_Rex_2 = textBox_WatchSkin_Path.Text;
-                //if (comboBox_watch_model.Text == "T-Rex Ultra") ProgramSettings.WatchSkin_T_Rex_Ultra = textBox_WatchSkin_Path.Text;
-                //if (comboBox_watch_model.Text == "GTR 4") ProgramSettings.WatchSkin_GTR_4 = textBox_WatchSkin_Path.Text;
-                //if (comboBox_watch_model.Text == "Amazfit Band 7") ProgramSettings.WatchSkin_Amazfit_Band_7 = textBox_WatchSkin_Path.Text;
-                //if (comboBox_watch_model.Text == "GTS 4 mini") ProgramSettings.WatchSkin_GTS_4_mini = textBox_WatchSkin_Path.Text;
-                //if (comboBox_watch_model.Text == "Falcon") ProgramSettings.WatchSkin_Falcon = textBox_WatchSkin_Path.Text;
-                //if (comboBox_watch_model.Text == "GTR mini") ProgramSettings.WatchSkin_GTR_mini = textBox_WatchSkin_Path.Text;
-                //if (comboBox_watch_model.Text == "GTS 4") ProgramSettings.WatchSkin_GTS_3 = textBox_WatchSkin_Path.Text;
             }
 
             string JSON_String = JsonConvert.SerializeObject(ProgramSettings, Formatting.Indented, new JsonSerializerSettings
@@ -8452,19 +8470,53 @@ namespace Watch_Face_Editor
             File.WriteAllText(Application.StartupPath + @"\Settings.json", JSON_String, Encoding.UTF8);
         }
 
+        private void checkBox_AutoSave_CheckedChanged(object sender, EventArgs e)
+        {
+
+            ProgramSettings.AutoSave = checkBox_AutoSave.Checked;
+
+            string JSON_String = JsonConvert.SerializeObject(ProgramSettings, Formatting.Indented, new JsonSerializerSettings
+            {
+                //DefaultValueHandling = DefaultValueHandling.Ignore,
+                NullValueHandling = NullValueHandling.Ignore
+            });
+            File.WriteAllText(Application.StartupPath + @"\Settings.json", JSON_String, Encoding.UTF8);
+
+            numericUpDown_AutoSave_Time.Enabled = ProgramSettings.AutoSave;
+            if (ProgramSettings.AutoSave)
+            {
+                if (ProgramSettings.AutoSaveTime > 0)
+                {
+                    timer_AutoSave.Enabled = true;
+                    timer_AutoSave.Interval = ProgramSettings.AutoSaveTime * 1000;
+                }
+                else timer_AutoSave.Enabled = false;
+            }
+            else timer_AutoSave.Enabled = false;
+        }
+
+        private void numericUpDown_AutoSave_Time_ValueChanged(object sender, EventArgs e)
+        {
+            ProgramSettings.AutoSaveTime = (int)numericUpDown_AutoSave_Time.Value;
+
+            string JSON_String = JsonConvert.SerializeObject(ProgramSettings, Formatting.Indented, new JsonSerializerSettings
+            {
+                //DefaultValueHandling = DefaultValueHandling.Ignore,
+                NullValueHandling = NullValueHandling.Ignore
+            });
+            File.WriteAllText(Application.StartupPath + @"\Settings.json", JSON_String, Encoding.UTF8);
+
+            if (ProgramSettings.AutoSaveTime > 0)
+            {
+                timer_AutoSave.Enabled = true;
+                timer_AutoSave.Interval = ProgramSettings.AutoSaveTime * 1000;
+            }
+            else timer_AutoSave.Enabled = false;
+        }
+
         private void checkBox_WebW_CheckedChanged(object sender, EventArgs e)
         {
             PreviewImage();
-        }
-
-        private void comboBox_AddBackground_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (!PreviewView) return;
-            AddBackground();
-            PreviewView = false;
-            ShowElemetsWatchFace();
-            PreviewView = true;
-            FormText();
         }
 
         private void uCtrl_Background_Elm_VisibleElemenChanged(object sender, EventArgs eventArgs, bool visible)
@@ -9288,6 +9340,28 @@ namespace Watch_Face_Editor
             if (Watch_Face != null && Watch_Face.Buttons != null)
             {
                 Watch_Face.Buttons = null;
+
+                PreviewView = false;
+                ShowElemetsWatchFace();
+                PreviewView = true;
+            }
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_Switch_Background_Elm_DelElement(object sender, EventArgs eventArgs)
+        {
+            if (ProgramSettings.DelConfirm)
+            {
+                DialogResult result = MessageBox.Show(Properties.FormStrings.Message_Delet_Widget, Properties.FormStrings.Message_Delet_Caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.No) return;
+
+            }
+            if (Watch_Face != null && Watch_Face.SwitchBackground != null)
+            {
+                Watch_Face.SwitchBackground = null;
 
                 PreviewView = false;
                 ShowElemetsWatchFace();
@@ -10301,7 +10375,7 @@ namespace Watch_Face_Editor
                     }
                 }
             }
-            if (Watch_Face.ScreenAOD != null) app.module.watchface.lockscreen = 1;
+            if (Watch_Face.ScreenAOD != null && Watch_Face.ScreenAOD.Elements != null && Watch_Face.ScreenAOD.Elements.Count > 0) app.module.watchface.lockscreen = 1;
             if (Watch_Face.ScreenNormal != null && Watch_Face.ScreenNormal.Background != null)
             {
                 if (Watch_Face.ScreenNormal.Background.Editable_Background != null &&
@@ -15787,6 +15861,20 @@ namespace Watch_Face_Editor
             }
         }
 
+        private void uCtrl_Switch_Background_Elm_SelectChanged(object sender, EventArgs eventArgs)
+        {
+            ResetHighlightState("SwitchBG");
+
+            ElementSwitchBackground switchBG = null;
+            if (Watch_Face != null && Watch_Face.SwitchBackground != null) switchBG = Watch_Face.SwitchBackground;
+
+            if (switchBG != null)
+            {
+                Read_SwitchBG_Options(switchBG);
+                ShowElemenrOptions("SwitchBG");
+            }
+        }
+
         #endregion
 
         private void uCtrl_DateDay_Elm_VisibleOptionsChanged(object sender, EventArgs eventArgs)
@@ -19045,6 +19133,21 @@ namespace Watch_Face_Editor
             {
                 //topImage.showInAOD = uCtrl_TopImage_Elm.checkBox_ShowInAOD.Checked;
                 buttons.enable = visible;
+            }
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_Switch_Background_Elm_VisibleElementChanged(object sender, EventArgs eventArgs, bool visible)
+        {
+            ElementSwitchBackground switchBG = null;
+            if (Watch_Face != null && Watch_Face.SwitchBackground != null) switchBG = Watch_Face.SwitchBackground;
+
+            if (switchBG != null)
+            {
+                switchBG.enable = visible;
             }
 
             JSON_Modified = true;
@@ -22832,7 +22935,19 @@ namespace Watch_Face_Editor
             }
         }
 
-       
+        private void timer_AutoSave_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ProjectDir != null && FileName != null) {
+                    string fullfilename = Path.Combine(ProjectDir, FileName);
+                    autoSave_JSON_File(fullfilename);
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
     }
 }
 

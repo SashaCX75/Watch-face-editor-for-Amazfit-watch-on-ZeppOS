@@ -82,7 +82,7 @@ namespace Watch_Face_Editor
             {
                 for (int i = 0; i < Watch_Face_temp.Editable_Elements.Watchface_edit_group.Count; i++)
                 {
-                    List<object> NewElements = ObjectsToElements(Watch_Face_temp.Editable_Elements.Watchface_edit_group[i].Elements);
+                    List<object> NewElements = ObjectsToElements(Watch_Face_temp.Editable_Elements.Watchface_edit_group[i].Elements, true);
                     Watch_Face_return.Editable_Elements.Watchface_edit_group[i].Elements = NewElements;
                 }
             }
@@ -102,11 +102,14 @@ namespace Watch_Face_Editor
             if (Watch_Face_temp.Buttons != null)
                 Watch_Face_return.Buttons = Watch_Face_temp.Buttons;
 
+            if (Watch_Face_temp.SwitchBackground != null)
+                Watch_Face_return.SwitchBackground = Watch_Face_temp.SwitchBackground;
+
             return Watch_Face_return;
         }
 
         /// <summary>Распознаем конкретный тип объекта</summary>
-        private List<object> ObjectsToElements(List<object> elements)
+        private List<object> ObjectsToElements(List<object> elements, bool editableElement = false)
         {
             List<object> NewElements = new List<object>();
             if(elements == null || elements.Count == 0) return NewElements;
@@ -262,6 +265,10 @@ namespace Watch_Face_Editor
                                 //DefaultValueHandling = DefaultValueHandling.Ignore,
                                 NullValueHandling = NullValueHandling.Ignore
                             });
+
+                            //if (DigitalTime_v2.Group_Hour == null) DigitalTime_v2.Group_Hour = new DigitalTimeGroup();
+                            //if (DigitalTime_v2.Group_Minute == null) DigitalTime_v2.Group_Minute = new DigitalTimeGroup();
+                            //if (DigitalTime_v2.Group_Second == null) DigitalTime_v2.Group_Second = new DigitalTimeGroup();
                         }
                         catch (Exception ex)
                         {
@@ -711,96 +718,100 @@ namespace Watch_Face_Editor
                         }
                         if (Weather != null) 
                         {
-                            ElementWeather_v2 Weather_v2_temp = new ElementWeather_v2();
+                            if (!editableElement)
+                            {
+                                ElementWeather_v2 Weather_v2_temp = new ElementWeather_v2();
 
-                            if(Weather.Number != null)
-                            {
-                                if (Weather_v2_temp.Group_Current == null) Weather_v2_temp.Group_Current = new WeatherGroup();
-                                Weather_v2_temp.Group_Current.Number = Weather.Number;
-                                Weather_v2_temp.Group_Current.position = Weather.Number.position;
-                            }
-                            if (Weather.Number_Font != null)
-                            {
-                                if (Weather_v2_temp.Group_Current == null) Weather_v2_temp.Group_Current = new WeatherGroup();
-                                Weather_v2_temp.Group_Current.Number_Font = Weather.Number_Font;
-                                Weather_v2_temp.Group_Current.position = Weather.Number_Font.position;
-                            }
+                                if (Weather.Number != null)
+                                {
+                                    if (Weather_v2_temp.Group_Current == null) Weather_v2_temp.Group_Current = new WeatherGroup();
+                                    Weather_v2_temp.Group_Current.Number = Weather.Number;
+                                    Weather_v2_temp.Group_Current.position = Weather.Number.position;
+                                }
+                                if (Weather.Number_Font != null)
+                                {
+                                    if (Weather_v2_temp.Group_Current == null) Weather_v2_temp.Group_Current = new WeatherGroup();
+                                    Weather_v2_temp.Group_Current.Number_Font = Weather.Number_Font;
+                                    Weather_v2_temp.Group_Current.position = Weather.Number_Font.position;
+                                }
 
-                            if (Weather.Number_Min != null)
-                            {
-                                if (Weather_v2_temp.Group_Min == null) Weather_v2_temp.Group_Min = new WeatherGroup();
-                                Weather_v2_temp.Group_Min.Number = Weather.Number_Min;
-                                Weather_v2_temp.Group_Min.position = Weather.Number_Min.position;
-                            }
-                            if (Weather.Number_Min_Font != null)
-                            {
-                                if (Weather_v2_temp.Group_Min == null) Weather_v2_temp.Group_Min = new WeatherGroup();
-                                Weather_v2_temp.Group_Min.Number_Font = Weather.Number_Min_Font;
-                                Weather_v2_temp.Group_Min.position = Weather.Number_Min_Font.position;
-                            }
-                            if (Weather.Text_Min_rotation != null)
-                            {
-                                if (Weather_v2_temp.Group_Min == null) Weather_v2_temp.Group_Min = new WeatherGroup();
-                                Weather_v2_temp.Group_Min.Text_rotation = Weather.Text_Min_rotation;
-                                Weather_v2_temp.Group_Min.position = Weather.Text_Min_rotation.position;
-                            }
-                            if (Weather.Text_Min_circle != null)
-                            {
-                                if (Weather_v2_temp.Group_Min == null) Weather_v2_temp.Group_Min = new WeatherGroup();
-                                Weather_v2_temp.Group_Min.Text_circle = Weather.Text_Min_circle;
-                                Weather_v2_temp.Group_Min.position = Weather.Text_Min_circle.position;
-                            }
+                                if (Weather.Number_Min != null)
+                                {
+                                    if (Weather_v2_temp.Group_Min == null) Weather_v2_temp.Group_Min = new WeatherGroup();
+                                    Weather_v2_temp.Group_Min.Number = Weather.Number_Min;
+                                    Weather_v2_temp.Group_Min.position = Weather.Number_Min.position;
+                                }
+                                if (Weather.Number_Min_Font != null)
+                                {
+                                    if (Weather_v2_temp.Group_Min == null) Weather_v2_temp.Group_Min = new WeatherGroup();
+                                    Weather_v2_temp.Group_Min.Number_Font = Weather.Number_Min_Font;
+                                    Weather_v2_temp.Group_Min.position = Weather.Number_Min_Font.position;
+                                }
+                                if (Weather.Text_Min_rotation != null)
+                                {
+                                    if (Weather_v2_temp.Group_Min == null) Weather_v2_temp.Group_Min = new WeatherGroup();
+                                    Weather_v2_temp.Group_Min.Text_rotation = Weather.Text_Min_rotation;
+                                    Weather_v2_temp.Group_Min.position = Weather.Text_Min_rotation.position;
+                                }
+                                if (Weather.Text_Min_circle != null)
+                                {
+                                    if (Weather_v2_temp.Group_Min == null) Weather_v2_temp.Group_Min = new WeatherGroup();
+                                    Weather_v2_temp.Group_Min.Text_circle = Weather.Text_Min_circle;
+                                    Weather_v2_temp.Group_Min.position = Weather.Text_Min_circle.position;
+                                }
 
-                            if (Weather.Number_Max != null)
-                            {
-                                if (Weather_v2_temp.Group_Max == null) Weather_v2_temp.Group_Max = new WeatherGroup();
-                                Weather_v2_temp.Group_Max.Number = Weather.Number_Max;
-                                Weather_v2_temp.Group_Max.position = Weather.Number_Max.position;
-                            }
-                            if (Weather.Number_Max_Font != null)
-                            {
-                                if (Weather_v2_temp.Group_Max == null) Weather_v2_temp.Group_Max = new WeatherGroup();
-                                Weather_v2_temp.Group_Max.Number_Font = Weather.Number_Max_Font;
-                                Weather_v2_temp.Group_Max.position = Weather.Number_Max_Font.position;
-                            }
-                            if (Weather.Text_Max_rotation != null)
-                            {
-                                if (Weather_v2_temp.Group_Max == null) Weather_v2_temp.Group_Max = new WeatherGroup();
-                                Weather_v2_temp.Group_Max.Text_rotation = Weather.Text_Max_rotation;
-                                Weather_v2_temp.Group_Max.position = Weather.Text_Max_rotation.position;
-                            }
-                            if (Weather.Text_Max_circle != null)
-                            {
-                                if (Weather_v2_temp.Group_Max == null) Weather_v2_temp.Group_Max = new WeatherGroup();
-                                Weather_v2_temp.Group_Max.Text_circle = Weather.Text_Max_circle;
-                                Weather_v2_temp.Group_Max.position = Weather.Text_Max_circle.position;
-                            }
+                                if (Weather.Number_Max != null)
+                                {
+                                    if (Weather_v2_temp.Group_Max == null) Weather_v2_temp.Group_Max = new WeatherGroup();
+                                    Weather_v2_temp.Group_Max.Number = Weather.Number_Max;
+                                    Weather_v2_temp.Group_Max.position = Weather.Number_Max.position;
+                                }
+                                if (Weather.Number_Max_Font != null)
+                                {
+                                    if (Weather_v2_temp.Group_Max == null) Weather_v2_temp.Group_Max = new WeatherGroup();
+                                    Weather_v2_temp.Group_Max.Number_Font = Weather.Number_Max_Font;
+                                    Weather_v2_temp.Group_Max.position = Weather.Number_Max_Font.position;
+                                }
+                                if (Weather.Text_Max_rotation != null)
+                                {
+                                    if (Weather_v2_temp.Group_Max == null) Weather_v2_temp.Group_Max = new WeatherGroup();
+                                    Weather_v2_temp.Group_Max.Text_rotation = Weather.Text_Max_rotation;
+                                    Weather_v2_temp.Group_Max.position = Weather.Text_Max_rotation.position;
+                                }
+                                if (Weather.Text_Max_circle != null)
+                                {
+                                    if (Weather_v2_temp.Group_Max == null) Weather_v2_temp.Group_Max = new WeatherGroup();
+                                    Weather_v2_temp.Group_Max.Text_circle = Weather.Text_Max_circle;
+                                    Weather_v2_temp.Group_Max.position = Weather.Text_Max_circle.position;
+                                }
 
 
-                            if (Weather.Number_Min_Max_Font != null)
-                            {
-                                if (Weather_v2_temp.Group_Max_Min == null) Weather_v2_temp.Group_Max_Min = new WeatherGroup();
-                                Weather_v2_temp.Group_Max_Min.Number_Font = Weather.Number_Min_Max_Font;
-                                Weather_v2_temp.Group_Max_Min.position = Weather.Number_Min_Max_Font.position;
+                                if (Weather.Number_Min_Max_Font != null)
+                                {
+                                    if (Weather_v2_temp.Group_Max_Min == null) Weather_v2_temp.Group_Max_Min = new WeatherGroup();
+                                    Weather_v2_temp.Group_Max_Min.Number_Font = Weather.Number_Min_Max_Font;
+                                    Weather_v2_temp.Group_Max_Min.position = Weather.Number_Min_Max_Font.position;
+                                }
+
+                                if (Weather.Images != null) Weather_v2_temp.Images = Weather.Images;
+                                if (Weather.City_Name != null) Weather_v2_temp.City_Name = Weather.City_Name;
+                                if (Weather.Icon != null) Weather_v2_temp.Icon = Weather.Icon;
+
+                                int index = 1;
+                                for (int i = 0; i < 25; i++)
+                                {
+                                    if (Weather_v2_temp.Group_Current != null && Weather_v2_temp.Group_Current.position == i) Weather_v2_temp.Group_Current.position = index++;
+                                    if (Weather_v2_temp.Group_Min != null && Weather_v2_temp.Group_Min.position == i) Weather_v2_temp.Group_Min.position = index++;
+                                    if (Weather_v2_temp.Group_Max != null && Weather_v2_temp.Group_Max.position == i) Weather_v2_temp.Group_Max.position = index++;
+                                    if (Weather_v2_temp.Group_Max_Min != null && Weather_v2_temp.Group_Max_Min.position == i) Weather_v2_temp.Group_Max_Min.position = index++;
+                                    if (Weather_v2_temp.Images != null && Weather_v2_temp.Images.position == i) Weather_v2_temp.Images.position = index++;
+                                    if (Weather_v2_temp.City_Name != null && Weather_v2_temp.City_Name.position == i) Weather_v2_temp.City_Name.position = index++;
+                                    if (Weather_v2_temp.Icon != null && Weather_v2_temp.Icon.position == i) Weather_v2_temp.Icon.position = index++;
+                                }
+
+                                NewElements.Add(Weather_v2_temp); 
                             }
-
-                            if (Weather.Images != null) Weather_v2_temp.Images = Weather.Images;
-                            if (Weather.City_Name != null) Weather_v2_temp.City_Name = Weather.City_Name;
-                            if (Weather.Icon != null) Weather_v2_temp.Icon = Weather.Icon;
-
-                            int index = 1;
-                            for (int i = 0; i < 25; i++)
-                            {
-                                if (Weather_v2_temp.Group_Current != null && Weather_v2_temp.Group_Current.position == i) Weather_v2_temp.Group_Current.position = index++;
-                                if (Weather_v2_temp.Group_Min != null && Weather_v2_temp.Group_Min.position == i) Weather_v2_temp.Group_Min.position = index++;
-                                if (Weather_v2_temp.Group_Max != null && Weather_v2_temp.Group_Max.position == i) Weather_v2_temp.Group_Max.position = index++;
-                                if (Weather_v2_temp.Group_Max_Min != null && Weather_v2_temp.Group_Max_Min.position == i) Weather_v2_temp.Group_Max_Min.position = index++;
-                                if (Weather_v2_temp.Images != null && Weather_v2_temp.Images.position == i) Weather_v2_temp.Images.position = index++;
-                                if (Weather_v2_temp.City_Name != null && Weather_v2_temp.City_Name.position == i) Weather_v2_temp.City_Name.position = index++;
-                                if (Weather_v2_temp.Icon != null && Weather_v2_temp.Icon.position == i) Weather_v2_temp.Icon.position = index++;
-                            }
-
-                            NewElements.Add(Weather_v2_temp);
+                            else NewElements.Add(Weather);
                         }
                         break;
                     #endregion
@@ -2213,6 +2224,39 @@ namespace Watch_Face_Editor
             PreviewView = true;
         }
 
+        /// <summary>Читаем перечень кнопок</summary>
+        private void Read_SwitchBG_Options(ElementSwitchBackground switchBG)
+        {
+            PreviewView = false;
+
+            uCtrl_Switch_Background_Opt.SettingsClear();
+            uCtrl_Switch_Background_Opt.Visible = true;
+            uCtrl_Switch_Background_Opt.AddBackgroundImages(switchBG.bg_list, switchBG.toast_list, switchBG.select_index);
+
+            if (switchBG.Button != null)
+            {
+                uCtrl_Switch_Background_Opt.numericUpDown_buttonX.Value = switchBG.Button.x;
+                uCtrl_Switch_Background_Opt.numericUpDown_buttonY.Value = switchBG.Button.y;
+                uCtrl_Switch_Background_Opt.numericUpDown_width.Value = switchBG.Button.w;
+                uCtrl_Switch_Background_Opt.numericUpDown_height.Value = switchBG.Button.h;
+                uCtrl_Switch_Background_Opt.numericUpDown_radius.Value = switchBG.Button.radius;
+                uCtrl_Switch_Background_Opt.numericUpDown_textSize.Value = switchBG.Button.text_size;
+                uCtrl_Switch_Background_Opt.SetColorText(StringToColor(switchBG.Button.color));
+                uCtrl_Switch_Background_Opt.SetText(switchBG.Button.text);
+                uCtrl_Switch_Background_Opt.SetPressImage(switchBG.Button.press_src);
+                uCtrl_Switch_Background_Opt.SetNormalImage(switchBG.Button.normal_src);
+                uCtrl_Switch_Background_Opt.SetColorNormal(StringToColor(switchBG.Button.normal_color));
+                uCtrl_Switch_Background_Opt.SetColorPress(StringToColor(switchBG.Button.press_color));
+
+                uCtrl_Switch_Background_Opt.checkBox_use_crown.Checked = switchBG.use_crown;
+                uCtrl_Switch_Background_Opt.checkBox_use_in_AOD.Checked = switchBG.use_in_AOD;
+                uCtrl_Switch_Background_Opt.checkBox_vibro.Checked = switchBG.vibro;
+            }
+
+
+            PreviewView = true;
+        }
+
         /// <summary>Читаем настройки прогноза погоды</summary>
         private void Read_WeatherFewDay_Options(FewDays fewDays)
         {
@@ -2331,7 +2375,6 @@ namespace Watch_Face_Editor
                 background.BackgroundImage.y = 0;
                 background.BackgroundImage.h = SelectedModel.background.h;
                 background.BackgroundImage.w = SelectedModel.background.w;
-                //background.BackgroundImage.show_level = "ONLY_NORMAL";
                 background.BackgroundColor = null;
                 if (background.Editable_Background != null) background.Editable_Background.enable_edit_bg = false;
 
@@ -2341,6 +2384,11 @@ namespace Watch_Face_Editor
                     {
                         Watch_Face.ScreenNormal.Background.Editable_Background.AOD_show = false;
                     }
+                }
+                else { 
+                    uCtrl_Switch_Background_Elm.EnableElement = true;
+                    if (Watch_Face.SwitchBackground != null && Watch_Face.SwitchBackground.bg_list != null &&
+                        Watch_Face.SwitchBackground.bg_list.Count > 0) Watch_Face.SwitchBackground.bg_list[0] = backgroundImg;
                 }
                 uCtrl_EditableBackground_Opt.Visible = false;
             }
@@ -2365,8 +2413,7 @@ namespace Watch_Face_Editor
                     }
                 }
 
-                if (background.BackgroundColor == null)
-                    background.BackgroundColor = new hmUI_widget_FILL_RECT();
+                if (background.BackgroundColor == null) background.BackgroundColor = new hmUI_widget_FILL_RECT();
                 background.BackgroundColor.color = ColorToString(userCtrl_Background_Options.GetColorBackground());
                 background.BackgroundColor.x = 0;
                 background.BackgroundColor.y = 0;
@@ -2382,6 +2429,10 @@ namespace Watch_Face_Editor
                     {
                         Watch_Face.ScreenNormal.Background.Editable_Background.AOD_show = false;
                     }
+                }
+                else { 
+                    uCtrl_Switch_Background_Elm.EnableElement = false;
+                    uCtrl_Switch_Background_Elm.Visible = false;
                 }
             }
             // настраиваемый фон
@@ -2416,7 +2467,9 @@ namespace Watch_Face_Editor
                     Read_EditableBackground_Options(background.Editable_Background);
                     uCtrl_EditableBackground_Opt.Visible = true;
                     background.BackgroundImage = null;
-                    background.BackgroundColor = null; 
+                    background.BackgroundColor = null;
+                    uCtrl_Switch_Background_Elm.EnableElement = false;
+                    uCtrl_Switch_Background_Elm.Visible = false;
                 }
                 else
                 {
@@ -3963,6 +4016,100 @@ namespace Watch_Face_Editor
                 uCtrl_Button_Opt.SetColorPress(StringToColor(button.press_color));
             }
             PreviewView = true;
+        }
+
+        private void uCtrl_Switch_Background_Opt_ValueChanged(object sender, EventArgs eventArgs)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+            ElementSwitchBackground switchBG = Watch_Face.SwitchBackground;
+            if (switchBG == null) switchBG = new ElementSwitchBackground();
+            Button button = switchBG.Button;
+
+            button.x = (int)uCtrl_Switch_Background_Opt.numericUpDown_buttonX.Value;
+            button.y = (int)uCtrl_Switch_Background_Opt.numericUpDown_buttonY.Value;
+            button.w = (int)uCtrl_Switch_Background_Opt.numericUpDown_width.Value;
+            button.h = (int)uCtrl_Switch_Background_Opt.numericUpDown_height.Value;
+            button.radius = (int)uCtrl_Switch_Background_Opt.numericUpDown_radius.Value;
+            button.text_size = (int)uCtrl_Switch_Background_Opt.numericUpDown_textSize.Value;
+            button.color = ColorToString(uCtrl_Switch_Background_Opt.GetColorText());
+            button.text = uCtrl_Switch_Background_Opt.GetText();
+            button.press_src = uCtrl_Switch_Background_Opt.GetPressImage();
+            button.normal_src = uCtrl_Switch_Background_Opt.GetNormalImage();
+            button.normal_color = ColorToString(uCtrl_Switch_Background_Opt.GetColorNormal());
+            button.press_color = ColorToString(uCtrl_Switch_Background_Opt.GetColorPress());
+
+            switchBG.use_crown = uCtrl_Switch_Background_Opt.checkBox_use_crown.Checked;
+            switchBG.use_in_AOD = uCtrl_Switch_Background_Opt.checkBox_use_in_AOD.Checked;
+            switchBG.vibro = uCtrl_Switch_Background_Opt.checkBox_vibro.Checked;
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_Switch_Background_Opt_SelectImage(int rowIndex)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+            ElementSwitchBackground switchBG = Watch_Face.SwitchBackground;
+            if (switchBG == null) switchBG = new ElementSwitchBackground();
+
+            switchBG.select_index = rowIndex;
+
+            JSON_Modified = true;
+            PreviewImage();
+            //FormText();
+        }
+
+        private void uCtrl_Switch_Background_Opt_AddImage(List<String> BG_images, List<String> Toast_list, int rowIndex)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+            ElementSwitchBackground switchBG = Watch_Face.SwitchBackground;
+            if (switchBG == null) switchBG = new ElementSwitchBackground();
+
+            switchBG.bg_list = BG_images;
+            Toast_list[rowIndex] = Properties.FormStrings.ToastBG;
+            switchBG.toast_list = Toast_list;
+            switchBG.select_index = rowIndex;
+            uCtrl_Switch_Background_Opt.AddBackgroundImages(BG_images, Toast_list, rowIndex);
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_Switch_Background_Opt_DelImage(List<String> BG_images, List<String> Toast_list, int rowIndex)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+            ElementSwitchBackground switchBG = Watch_Face.SwitchBackground;
+            if (switchBG == null) switchBG = new ElementSwitchBackground();
+
+            switchBG.bg_list = BG_images;
+            switchBG.toast_list = Toast_list;
+            switchBG.select_index = rowIndex;
+            uCtrl_Switch_Background_Opt.AddBackgroundImages(BG_images, Toast_list, rowIndex);
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_Switch_Background_Opt_EditToast(string ToastText, int rowIndex)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+            ElementSwitchBackground switchBG = Watch_Face.SwitchBackground;
+            if (switchBG == null) switchBG = new ElementSwitchBackground();
+
+            if (rowIndex < switchBG.toast_list.Count) switchBG.toast_list[rowIndex] = ToastText;
+            uCtrl_Switch_Background_Opt.AddBackgroundImages(switchBG.bg_list, switchBG.toast_list, rowIndex);
+
+            JSON_Modified = true;
+            //PreviewImage();
+            FormText();
         }
 
         private Color StringToColor(string color)

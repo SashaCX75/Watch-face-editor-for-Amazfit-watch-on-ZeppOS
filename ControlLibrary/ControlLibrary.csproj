@@ -55,6 +55,12 @@
     <Compile Include="AddButtonFunction.Designer.cs">
       <DependentUpon>AddButtonFunction.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditToast.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditToast.Designer.cs">
+      <DependentUpon>EditToast.cs</DependentUpon>
+    </Compile>
     <Compile Include="Elements\UCtrl_JSscript_Elm.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -527,6 +533,18 @@
     <Compile Include="UCtrl_SmoothSeconds_Opt.Designer.cs">
       <DependentUpon>UCtrl_SmoothSeconds_Opt.cs</DependentUpon>
     </Compile>
+    <Compile Include="Elements\UCtrl_Switch_Background_Elm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Elements\UCtrl_Switch_Background_Elm.Designer.cs">
+      <DependentUpon>UCtrl_Switch_Background_Elm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCtrl_Switch_Background_Opt.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCtrl_Switch_Background_Opt.Designer.cs">
+      <DependentUpon>UCtrl_Switch_Background_Opt.cs</DependentUpon>
+    </Compile>
     <Compile Include="UCtrl_TemperatureGraph_Opt.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -634,6 +652,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddButtonFunction.zh.resx">
       <DependentUpon>AddButtonFunction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditToast.en.resx">
+      <DependentUpon>EditToast.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditToast.resx">
+      <DependentUpon>EditToast.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditToast.uk.resx">
+      <DependentUpon>EditToast.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_Activity_Elm.cs.resx">
       <DependentUpon>UCtrl_Activity_Elm.cs</DependentUpon>
@@ -1459,6 +1486,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_Sunrise_Elm.zh.resx">
       <DependentUpon>UCtrl_Sunrise_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Switch_Background_Elm.en.resx">
+      <DependentUpon>UCtrl_Switch_Background_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Switch_Background_Elm.resx">
+      <DependentUpon>UCtrl_Switch_Background_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Switch_Background_Elm.uk.resx">
+      <DependentUpon>UCtrl_Switch_Background_Elm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_TopImage_Elm.cs.resx">
       <DependentUpon>UCtrl_TopImage_Elm.cs</DependentUpon>
@@ -2409,6 +2445,15 @@
     <EmbeddedResource Include="UCtrl_SmoothSeconds_Opt.zh.resx">
       <DependentUpon>UCtrl_SmoothSeconds_Opt.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_Switch_Background_Opt.en.resx">
+      <DependentUpon>UCtrl_Switch_Background_Opt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_Switch_Background_Opt.resx">
+      <DependentUpon>UCtrl_Switch_Background_Opt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_Switch_Background_Opt.uk.resx">
+      <DependentUpon>UCtrl_Switch_Background_Opt.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UCtrl_TemperatureGraph_Opt.cs.resx">
       <DependentUpon>UCtrl_TemperatureGraph_Opt.cs</DependentUpon>
     </EmbeddedResource>
@@ -2888,6 +2933,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\health.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wallpaper.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,35 +1,28 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace ControlLibrary
 {
-    public partial class UCtrl_Button_Opt : UserControl
+    public partial class UCtrl_Switch_Background_Opt : UserControl
     {
         private bool setValue; // режим задания параметров
         private List<string> ListImagesFullName = new List<string>(); // перечень путей к файлам с картинками
-        private List<string> ListUserScriptClick;
-        private List<string> ListUserScriptLongPress;
-        private float apiLevel = 0;
+        private List<string> ListBackgroundImages = new List<string>(); // перечень фоновых изображений
+        private List<string> ListToast = new List<string>(); // перечень уведомлений
 
-        public UCtrl_Button_Opt()
+        public UCtrl_Switch_Background_Opt()
         {
             InitializeComponent();
-
-            dataGridView_buttons.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            ListUserScriptClick = new List<string>();
-            ListUserScriptLongPress = new List<string>();
+            setValue = false;
         }
 
         private void groupBox_Paint(object sender, PaintEventArgs e)
@@ -74,32 +67,27 @@ namespace ControlLibrary
         [Browsable(true)]
         [Description("Происходит при изменении выбранной кнопки")]
         public event ValueChangedHandler ValueChanged;
-        public delegate void ValueChangedHandler(object sender, EventArgs eventArgs, int rowIndex);
+        public delegate void ValueChangedHandler(object sender, EventArgs eventArgs);
 
         [Browsable(true)]
-        [Description("Добавление кнопки")]
-        public event AddButtonHandler AddButton;
-        public delegate void AddButtonHandler(int rowIndex);
+        [Description("Добавление изображения")]
+        public event AddImageHandler AddImage;
+        public delegate void AddImageHandler(List<string> BG_images, List<string> Toast, int rowIndex);
 
         [Browsable(true)]
-        [Description("Удаление кнопки")]
-        public event DelButtonHandler DelButton;
-        public delegate void DelButtonHandler(int rowIndex);
+        [Description("Удаление изображения")]
+        public event DelImageHandler DelImage;
+        public delegate void DelImageHandler(List<string> BG_images, List<string> Toast, int rowIndex);
 
         [Browsable(true)]
-        [Description("Выбрали другую кнопку")]
-        public event SelectButtonHandler SelectButton;
-        public delegate void SelectButtonHandler(int rowIndex);
+        [Description("Выбрали другое изображение")]
+        public event SelectImageHandler SelectImage;
+        public delegate void SelectImageHandler(int rowIndex);
 
         [Browsable(true)]
-        [Description("Происходит при изменении функций выбранной кнопки")]
-        public event ScriptChangedHandler ScriptChanged;
-        public delegate void ScriptChangedHandler(int rowIndex, string clickFunc, string longPressFunc);
-
-        [Browsable(true)]
-        [Description("Происходит при изменении видимости кнопки")]
-        public event VisibleButtonChangedHandler VisibleButtonChanged;
-        public delegate void VisibleButtonChangedHandler(int rowIndex, bool visible);
+        [Description("Редактирование уведомления")]
+        public event EditToastHandler EditToast;
+        public delegate void EditToastHandler(string ToastText, int rowIndex);
 
         public void SetNormalImage(string value)
         {
@@ -179,290 +167,14 @@ namespace ControlLibrary
             return textBox_text.Text;
         }
 
-        public void UpdateButtonsList (List<String> buttonsClickFuncList, List<String> buttonsLongPressFuncList, 
-            List<bool> buttonsVisibleList, int rowIndex = 0)
-        {
-            setValue = true;
-
-            ListUserScriptClick = buttonsClickFuncList;
-            ListUserScriptLongPress = buttonsLongPressFuncList;
-            dataGridView_buttons.Rows.Clear();
-
-            for (int index = 0; index < buttonsClickFuncList.Count; index++)
-            {
-                //string scriptTypeClick = Properties.Buttons.Empty;
-                //string scriptTypeLongPress = Properties.Buttons.Empty;
-                string func = buttonsClickFuncList[index];
-                string scriptTypeClick = GetFunctionName(func);
-
-                string scriptTypeLongPress = Properties.Buttons.Empty;
-                if (index < buttonsLongPressFuncList.Count)
-                {
-                    func = buttonsLongPressFuncList[index];
-                    scriptTypeLongPress = GetFunctionName(func);
-                }
-
-                string scriptType = Properties.Buttons.Button + " <" + scriptTypeClick + "; " + scriptTypeLongPress + ">";
-                DataGridViewRow RowNew = new DataGridViewRow();
-                RowNew.Cells.Add(new DataGridViewTextBoxCell() { Value = (index + 1).ToString() });
-                RowNew.Cells.Add(new DataGridViewTextBoxCell() { Value = scriptType });
-                RowNew.Cells.Add(new DataGridViewCheckBoxCell() { Value = buttonsVisibleList[index] });
-                RowNew.Cells[0].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                RowNew.Cells[1].Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
-                RowNew.Cells[2].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                dataGridView_buttons.Rows.Add(RowNew);
-            }
-            
-            if (buttonsClickFuncList.Count > 0) button_del.Enabled = true; 
-            else button_del.Enabled = false;
-            if (buttonsClickFuncList.Count >= 30) button_add.Enabled = false;
-            else button_add.Enabled = true;
-
-            if (rowIndex >= 0 && rowIndex < dataGridView_buttons.Rows.Count)
-            {
-                dataGridView_buttons.Rows[rowIndex].Selected = true;
-                dataGridView_buttons.CurrentCell = dataGridView_buttons.Rows[rowIndex].Cells[0];
-                SelectButton(rowIndex);
-            }
-            setValue = false;
-        }
-
-        private string GetFunctionName(string func)
-        {
-            string functinName = Properties.Buttons.Empty;
-            if (func.Length > 3) functinName = Properties.Buttons.User_script;
-            switch (func)
-            {
-                #region Активности 
-                case "hmApp.startApp({url: 'activityAppScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.Steps;
-                    break;
-                case "hmApp.startApp({url: 'heart_app_Screen', native: true });":
-                    functinName = Properties.ButtonFunctions.HeartRete;
-                    break;
-                case "hmApp.startApp({url: 'PAI_app_Screen', native: true });":
-                    functinName = Properties.ButtonFunctions.PAI;
-                    break;
-                case "hmApp.startApp({url: 'Sleep_HomeScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.Sleep;
-                    break;
-                case "hmApp.startApp({url: 'StressHomeScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.Stress;
-                    break;
-                case "hmApp.startApp({url: 'spo_HomeScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.SPO2;
-                    break;
-                case "hmApp.startApp({url: 'oneKeyAppScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.OneKey;
-                    break;
-                case "hmApp.startApp({url: 'RespirationwidgetScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.Respiration;
-                    break;
-                case "hmApp.startApp({url: 'RespirationControlScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.RespirationControl;
-                    break;
-                case "hmApp.startApp({url: 'SportListScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.SportList;
-                    break;
-                case "hmApp.startApp({url: 'SportScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.Sport;
-                    break;
-                case "hmApp.startApp({url: 'SportRecordListScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.SportRecord;
-                    break;
-                case "hmApp.startApp({url: 'SportStatusScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.SportStatus;
-                    break;
-                case "hmApp.startApp({url: 'activityWeekShowScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.WeekActivity;
-                    break;
-                case "hmApp.startApp({url: 'oneKeyNightMonitorScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.NightMonitor;
-                    break;
-                #endregion
-
-                #region программы
-                case "hmApp.startApp({url: 'AlarmInfoScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.Alarm;
-                    break;
-                case "hmApp.startApp({url: 'ScheduleCalScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.Schedule;
-                    break;
-                case "hmApp.startApp({url: 'WorldClockScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.WorldClock;
-                    break;
-                case "hmApp.startApp({url: 'ScheduleListScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.ScheduleList;
-                    break;
-                case "hmApp.startApp({url: 'todoListScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.ToDoList;
-                    break;
-                case "hmApp.startApp({url: 'LocalMusicScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.LocalMusic;
-                    break;
-                case "hmApp.startApp({url: 'PhoneMusicCtrlScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.PhoneMusic;
-                    break;
-                case "hmApp.startApp({url: 'MusicCommonScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.PhoneMusic_2;
-                    break;
-                case "hmApp.startApp({url: 'FlashLightScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.FlashLight;
-                    break;
-                case "hmApp.startApp({url: 'WeatherScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.Weather;
-                    break;
-                case "hmApp.startApp({url: 'TideScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.Sunset;
-                    break;
-                case "hmApp.startApp({url: 'CompassScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.Compass;
-                    break;
-                case "hmApp.startApp({url: 'BaroAltimeterScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.Baro;
-                    break;
-                case "hmApp.startApp({url: 'ClubCardsScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.ClubCards;
-                    break;
-                case "hmApp.startApp({url: 'StopWatchScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.StopWatch;
-                    break;
-                case "hmApp.startApp({url: 'CountdownAppScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.CountDown;
-                    break;
-                case "hmApp.startApp({url: 'TomatoMainScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.Timer;
-                    break;
-                case "hmApp.startApp({url: 'AppListScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.AppList;
-                    break;
-                case "hmApp.startApp({url: 'DragListScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.DragList;
-                    break;
-                case "hmApp.startApp({url: 'MoreListScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.MoreList;
-                    break;
-                case "hmApp.startApp({url: 'MorningGreetingNewsScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.MorningNews;
-                    break;
-                case "hmApp.startApp({url: 'VoiceMemoScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.VoiceMemo;
-                    break;
-                case "hmApp.startApp({url: 'HidcameraScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.Camera;
-                    break;
-                case "hmApp.startApp({url: 'menstrualAppScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.Menstrual;
-                    break;
-                case "hmApp.startApp({url: 'PhoneHomeScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.Phone;
-                    break;
-                case "hmApp.startApp({url: 'PhoneContactsScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.Contacts;
-                    break;
-                case "hmApp.startApp({url: 'PhoneRecentCallScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.RecentCall;
-                    break;
-                case "hmApp.startApp({url: 'DialCallScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.DialCall;
-                    break;
-                case "hmApp.startApp({url: 'BodyCompositionResultScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.BodyComposition;
-                    break;
-                case "hmApp.startApp({url: 'readinessAppScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.Readiness;
-                    break;
-                case "hmApp.startApp({ appid: 1051195, url: 'page/index', params: { from_wf: true} });":
-                    functinName = Properties.ButtonFunctions.WeatherInformer;
-                    break;
-
-                #endregion
-
-                #region настройки
-                case "hmApp.startApp({url: 'Settings_homeScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.Settings;
-                    break;
-                case "hmApp.startApp({url: 'LowBatteryScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.LowBattery;
-                    break;
-                case "hmApp.startApp({url: 'PowerSaveHintScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.PowerHint;
-                    break;
-                case "hmApp.startApp({url: 'Settings_batteryManagerScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.BatteryManager;
-                    break;
-                case "hmApp.startApp({url: 'PowerSaveModeScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.SaveMode;
-                    break;
-                case "hmApp.startApp({url: 'Settings_lightAdjustScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.Light;
-                    break;
-                case "hmApp.startApp({url: 'Settings_displayBrightScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.Display;
-                    break;
-                case "hmApp.startApp({url: 'Settings_standbyModelScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.AOD;
-                    break;
-                case "hmApp.startApp({url: 'Settings_dndScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.DND;
-                    break;
-                case "hmApp.startApp({url: 'Settings_standbyHomeScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.AODStyle;
-                    break;
-                case "hmApp.startApp({url: 'WatchFaceScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.WatchFace;
-                    break;
-                case "hmApp.startApp({url: 'Settings_systemScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.System;
-                    break;
-                case "hmApp.startApp({url: 'HmReStartScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.ReStart;
-                    break;
-                case "hmApp.startApp({url: 'FindPhoneScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.FindPhone;
-                    break;
-                case "hmApp.startApp({url: 'ControlCenterEditScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.ControlCenter;
-                    break;
-                case "hmApp.startApp({url: 'WidgetEditScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.WidgetEdit;
-                    break;
-                case "hmApp.startApp({url: 'Settings_permissionAppsScreen', native: true });":
-                    functinName = Properties.ButtonFunctions.AppPermission;
-                    break;
-                case "hmApp.startApp({url: 'Test1Screen', native: true });":
-                    functinName = Properties.ButtonFunctions.Test1;
-                    break;
-                case "hmApp.startApp({url: 'Test2Screen', native: true });":
-                    functinName = Properties.ButtonFunctions.Test2;
-                    break;
-                    #endregion
-            }
-            return functinName;
-        }
-
         #region Standard events
 
         private void textBox_text_TextChanged(object sender, EventArgs e)
         {
-            int rowIndex = -1;
-            try
+            if (ValueChanged != null && !setValue)
             {
-                int selectedRowCount = dataGridView_buttons.SelectedCells.Count;
-                if (selectedRowCount > 0)
-                {
-                    DataGridViewSelectedCellCollection selectedCells = dataGridView_buttons.SelectedCells;
-                    rowIndex = selectedCells[0].RowIndex;
-                }
-
-                if (ValueChanged != null && !setValue && rowIndex >= 0)
-                {
-                    EventArgs eventArgs = new EventArgs();
-                    ValueChanged(this, eventArgs, rowIndex);
-                }
-            }
-            catch (Exception)
-            {
+                EventArgs eventArgs = new EventArgs();
+                ValueChanged(this, eventArgs);
             }
         }
 
@@ -474,24 +186,10 @@ namespace ControlLibrary
                 comboBox.Text = "";
                 comboBox.SelectedIndex = -1;
 
-                int rowIndex = -1;
-                try
+                if (ValueChanged != null && !setValue)
                 {
-                    int selectedRowCount = dataGridView_buttons.SelectedCells.Count;
-                    if (selectedRowCount > 0)
-                    {
-                        DataGridViewSelectedCellCollection selectedCells = dataGridView_buttons.SelectedCells;
-                        rowIndex = selectedCells[0].RowIndex;
-                    }
-
-                    if (ValueChanged != null && !setValue && rowIndex >= 0)
-                    {
-                        EventArgs eventArgs = new EventArgs();
-                        ValueChanged(this, eventArgs, rowIndex);
-                    }
-                }
-                catch (Exception)
-                {
+                    EventArgs eventArgs = new EventArgs();
+                    ValueChanged(this, eventArgs);
                 }
             }
         }
@@ -546,28 +244,20 @@ namespace ControlLibrary
 
         private void comboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int rowIndex = -1;
-            try
+            if (ValueChanged != null && !setValue)
             {
-                int selectedRowCount = dataGridView_buttons.SelectedCells.Count;
-                if (selectedRowCount > 0)
-                {
-                    DataGridViewSelectedCellCollection selectedCells = dataGridView_buttons.SelectedCells;
-                    rowIndex = selectedCells[0].RowIndex;
-                }
-
-                if (ValueChanged != null && !setValue && rowIndex >= 0)
-                {
-                    EventArgs eventArgs = new EventArgs();
-                    ValueChanged(this, eventArgs, rowIndex);
-                }
-            }
-            catch (Exception)
-            {
+                EventArgs eventArgs = new EventArgs();
+                ValueChanged(this, eventArgs);
             }
 
-            if(comboBox_normal_image.Text.Length > 0 && comboBox_press_image.Text.Length > 0) groupBox_color.Enabled = false;
+            if (comboBox_normal_image.Text.Length > 0 && comboBox_press_image.Text.Length > 0) groupBox_color.Enabled = false;
             else groupBox_color.Enabled = true;
+
+            ComboBox comboBox = sender as ComboBox;
+            if (comboBox.Name == "comboBox_bg_image")
+            {
+                button_add.Enabled = comboBox.SelectedIndex >= 0;
+            }
         }
 
         private void comboBox_color_Click(object sender, EventArgs e)
@@ -607,24 +297,10 @@ namespace ControlLibrary
                 File.WriteAllText(Application.StartupPath + @"\Settings.json", JSON_String, Encoding.UTF8);
             }
 
-            int rowIndex = -1;
-            try
+            if (ValueChanged != null && !setValue)
             {
-                int selectedRowCount = dataGridView_buttons.SelectedCells.Count;
-                if (selectedRowCount > 0)
-                {
-                    DataGridViewSelectedCellCollection selectedCells = dataGridView_buttons.SelectedCells;
-                    rowIndex = selectedCells[0].RowIndex;
-                }
-
-                if (ValueChanged != null && !setValue && rowIndex >= 0)
-                {
-                    EventArgs eventArgs = new EventArgs();
-                    ValueChanged(this, eventArgs, rowIndex);
-                }
-            }
-            catch (Exception)
-            {
+                EventArgs eventArgs = new EventArgs();
+                ValueChanged(this, eventArgs);
             }
         }
 
@@ -636,12 +312,11 @@ namespace ControlLibrary
         {
             comboBox_normal_image.Items.Clear();
             comboBox_press_image.Items.Clear();
-
-            ListUserScriptClick.Clear();
-            ListUserScriptLongPress.Clear();
+            comboBox_bg_image.Items.Clear();
 
             comboBox_normal_image.Items.AddRange(ListImages.ToArray());
             comboBox_press_image.Items.AddRange(ListImages.ToArray());
+            comboBox_bg_image.Items.AddRange(ListImages.ToArray());
             ListImagesFullName = _ListImagesFullName;
 
             int count = ListImages.Count;
@@ -649,21 +324,50 @@ namespace ControlLibrary
             {
                 comboBox_normal_image.DropDownHeight = 1;
                 comboBox_press_image.DropDownHeight = 1;
+                comboBox_bg_image.DropDownHeight = 1;
             }
             else if (count < 5)
             {
                 comboBox_normal_image.DropDownHeight = 35 * count + 1;
                 comboBox_press_image.DropDownHeight = 35 * count + 1;
+                comboBox_bg_image.DropDownHeight = 35 * count + 1;
             }
             else
             {
                 comboBox_normal_image.DropDownHeight = 106;
                 comboBox_press_image.DropDownHeight = 106;
+                comboBox_bg_image.DropDownHeight = 106;
             }
         }
 
+        /// <summary>Добавляет перечень фоновых изображений</summary>
+        public void AddBackgroundImages(List<string> listImages, List<string> listToast, int select_index)
+        {
+            setValue = true;
+            ListBackgroundImages = listImages;
+            ListToast = listToast;
+            dataGridView_images.Rows.Clear();
+            if (listImages != null)
+            {
+                for (int i = 0; i < listImages.Count; i++)
+                {
+                    DataGridViewRow RowNew = new DataGridViewRow();
+                    RowNew.Cells.Add(new DataGridViewTextBoxCell() { Value = (i + 1).ToString() });
+                    RowNew.Cells.Add(new DataGridViewTextBoxCell() { Value = listImages[i] });
+                    if (listToast != null && i < listToast.Count) RowNew.Cells.Add(new DataGridViewTextBoxCell() { Value = listToast[i] });
+                    dataGridView_images.Rows.Add(RowNew);
+                }
+                if (select_index < dataGridView_images.Rows.Count) { 
+                    dataGridView_images.Rows[select_index].Selected = true; 
+                }
+                else select_index = 0;
+                button_del.Enabled = select_index > 0;
+            }
+            setValue = false;
+        }
+
         /// <summary>Очищает выпадающие списки с картинками, сбрасывает данные на значения по умолчанию</summary>
-        public void SettingsClear(float api_level)
+        public void SettingsClear()
         {
             setValue = true;
 
@@ -677,10 +381,12 @@ namespace ControlLibrary
             numericUpDown_radius.Value = 12;
             numericUpDown_textSize.Value = 25;
 
-            dataGridView_buttons.Rows.Clear();
+            //dataGridView_images.Rows.Clear();
+            button_add.Enabled = false;
             button_del.Enabled = false;
 
-            apiLevel = api_level;
+            checkBox_use_crown.Checked = false;
+            checkBox_use_in_AOD.Checked = false;
 
             setValue = false;
         }
@@ -839,24 +545,10 @@ namespace ControlLibrary
 
         private void numericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            int rowIndex = -1;
-            try
+            if (ValueChanged != null && !setValue)
             {
-                int selectedRowCount = dataGridView_buttons.SelectedCells.Count;
-                if (selectedRowCount > 0)
-                {
-                    DataGridViewSelectedCellCollection selectedCells = dataGridView_buttons.SelectedCells;
-                    rowIndex = selectedCells[0].RowIndex;
-                }
-
-                if (ValueChanged != null && !setValue && rowIndex >= 0)
-                {
-                    EventArgs eventArgs = new EventArgs();
-                    ValueChanged(this, eventArgs, rowIndex);
-                }
-            }
-            catch (Exception)
-            {
+                EventArgs eventArgs = new EventArgs();
+                ValueChanged(this, eventArgs);
             }
         }
 
@@ -964,25 +656,48 @@ namespace ControlLibrary
 
         #endregion
 
+        private void checkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ValueChanged != null && !setValue)
+            {
+                EventArgs eventArgs = new EventArgs();
+                ValueChanged(this, eventArgs);
+            }
+        }
+
         private void button_add_Click(object sender, EventArgs e)
         {
-            int rowIndex = -1;
+            if (comboBox_bg_image.SelectedIndex < 0 || comboBox_bg_image.Text.Length == 0) return;
+            
+            int rowIndex = 0;
             try
             {
-                int selectedRowCount = dataGridView_buttons.SelectedCells.Count;
+                int selectedRowCount = dataGridView_images.SelectedCells.Count;
                 if (selectedRowCount > 0)
                 {
-                    DataGridViewSelectedCellCollection selectedCells = dataGridView_buttons.SelectedCells;
+                    DataGridViewSelectedCellCollection selectedCells = dataGridView_images.SelectedCells;
                     rowIndex = selectedCells[0].RowIndex;
+                }
+                rowIndex++;
+                if (rowIndex < 1 || rowIndex == ListBackgroundImages.Count)
+                {
+                    ListBackgroundImages.Add(comboBox_bg_image.Text);
+                    ListToast.Add("");
+                    rowIndex = ListBackgroundImages.Count - 1;
+                }
+                else
+                {
+                    ListBackgroundImages.Insert(rowIndex, comboBox_bg_image.Text);
+                    ListToast.Insert(rowIndex, "");
                 }
             }
             catch (Exception)
             {
             }
 
-            if (AddButton != null && !setValue)
+            if (AddImage != null && !setValue)
             {
-                AddButton(rowIndex);
+                AddImage(ListBackgroundImages, ListToast, rowIndex);
             }
         }
 
@@ -991,15 +706,19 @@ namespace ControlLibrary
             int rowIndex = -1;
             try
             {
-                int selectedRowCount = dataGridView_buttons.SelectedCells.Count;
+                int selectedRowCount = dataGridView_images.SelectedCells.Count;
                 if (selectedRowCount > 0)
                 {
-                    DataGridViewSelectedCellCollection selectedCells = dataGridView_buttons.SelectedCells;
+                    DataGridViewSelectedCellCollection selectedCells = dataGridView_images.SelectedCells;
                     rowIndex = selectedCells[0].RowIndex;
 
-                    if (DelButton != null && !setValue)
+                    if (DelImage != null && !setValue)
                     {
-                        DelButton(rowIndex);
+                        if (rowIndex >= ListBackgroundImages.Count) rowIndex = ListBackgroundImages.Count - 1;
+                        ListBackgroundImages.RemoveAt(rowIndex);
+                        ListToast.RemoveAt(rowIndex);
+                        if (rowIndex >= ListBackgroundImages.Count) rowIndex = ListBackgroundImages.Count - 1;
+                        DelImage(ListBackgroundImages, ListToast, rowIndex);
                     }
                 }
             }
@@ -1008,21 +727,22 @@ namespace ControlLibrary
             }
         }
 
-        private void dataGridView_bottons_RowEnter(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView_images_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
             int rowIndex = e.RowIndex;
+            button_del.Enabled = rowIndex > 0;
 
-            if (SelectButton != null && !setValue)
+            if (SelectImage != null && !setValue)
             {
-                SelectButton(rowIndex);
+                SelectImage(rowIndex);
             }
         }
 
-        private void dataGridView_buttons_KeyDown(object sender, KeyEventArgs e)
+        private void dataGridView_images_KeyDown(object sender, KeyEventArgs e)
         {
             if ((e.KeyCode == Keys.Delete) || (e.KeyCode == Keys.Back))
             {
-                DataGridView dataGridView = sender as DataGridView; 
+                DataGridView dataGridView = sender as DataGridView;
                 if (dataGridView != null)
                 {
                     try
@@ -1034,9 +754,16 @@ namespace ControlLibrary
                             DataGridViewSelectedCellCollection selectedCells = dataGridView.SelectedCells;
                             rowIndex = selectedCells[0].RowIndex;
 
-                            if (DelButton != null && !setValue)
+                            if (rowIndex >= 0)
                             {
-                                DelButton(rowIndex);
+                                if (rowIndex >= ListBackgroundImages.Count) rowIndex = ListBackgroundImages.Count - 1;
+                                ListBackgroundImages.RemoveAt(rowIndex);
+                                ListToast.RemoveAt(rowIndex);
+                                if (rowIndex >= ListBackgroundImages.Count) rowIndex = ListBackgroundImages.Count - 1;
+                                if (DelImage != null && !setValue)
+                                {
+                                    DelImage(ListBackgroundImages, ListToast, rowIndex);
+                                } 
                             }
                         }
                     }
@@ -1045,14 +772,9 @@ namespace ControlLibrary
                     }
                 }
             }
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.Handled = true;
-                dataGridView_buttons_MouseDoubleClick(dataGridView_buttons, null);
-            }
         }
 
-        private void dataGridView_buttons_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void dataGridView_images_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             DataGridView dataGridView = sender as DataGridView;
             int rowIndex = -1;
@@ -1073,43 +795,21 @@ namespace ControlLibrary
             }
             if (rowIndex >= 0)
             {
-                string scriptClick = "";
-                string scriptLongPress = "";
-                if (rowIndex < ListUserScriptClick.Count) scriptClick = ListUserScriptClick[rowIndex];
-                if (rowIndex < ListUserScriptLongPress.Count) scriptLongPress = ListUserScriptLongPress[rowIndex];
-                AddButtonFunction f = new AddButtonFunction(scriptClick, scriptLongPress, apiLevel);
+                string toastText = "";
+                if (rowIndex < ListToast.Count) toastText = ListToast[rowIndex];
+                EditToast f = new EditToast(toastText);
                 f.ShowDialog();
-                bool dialogResult = f.UpdateFunction; 
+                bool dialogResult = f.UpdateText;
                 if (dialogResult)
                 {
-                    string clickFunc = f.ClickFunc;
-                    string longPressFunc = f.LongPressFunc;
+                    string toastNewText = f.ToastText;
 
-                    if (ScriptChanged != null && !setValue)
+                    if (EditToast != null && !setValue)
                     {
-                        ScriptChanged(rowIndex, clickFunc, longPressFunc);
+                        EditToast(toastNewText, rowIndex);
                     }
                 }
             }
         }
-
-        private void dataGridView_buttons_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            DataGridView senderGrid = (DataGridView)sender;
-            senderGrid.EndEdit();
-            int rowIndex = e.RowIndex;
-
-            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn && e.RowIndex >= 0)
-            {
-
-                DataGridViewCheckBoxCell cbxCell = (DataGridViewCheckBoxCell)senderGrid.Rows[e.RowIndex].Cells[e.ColumnIndex];
-                bool value = !(bool)cbxCell.Value;
-                cbxCell.Value = value;
-
-                if (VisibleButtonChanged != null && !setValue && rowIndex >= 0) VisibleButtonChanged(rowIndex, value);
-            }
-        }
     }
-
-
 }

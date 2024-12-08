@@ -1170,7 +1170,7 @@ namespace Watch_Face_Editor
         public string text = "";
 
         /// <summary>Цвет текста</summary>
-        public string color = "0xFFFFFFFF";
+        public string color = "0xFFFF8C00";
 
         /// <summary>Размер текста</summary>
         public int text_size = 25;
@@ -1182,10 +1182,10 @@ namespace Watch_Face_Editor
         public string normal_src = "";
 
         /// <summary>Цвет кнопки при нажатии</summary>
-        public string press_color = "0xFF000000";
+        public string press_color = "0xFFA0A0A0";
 
         /// <summary>Цвет кнопки в нормальном состоянии</summary>
-        public string normal_color = "0xFF000000";
+        public string normal_color = "0xFF696969";
 
         /// <summary>Радиус углов</summary>
         public int radius = 12;

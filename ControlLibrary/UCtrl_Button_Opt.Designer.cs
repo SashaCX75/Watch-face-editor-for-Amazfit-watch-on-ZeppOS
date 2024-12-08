@@ -70,7 +70,7 @@
             this.comboBox_normal_color = new System.Windows.Forms.ComboBox();
             this.numericUpDown_textSize = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox_script = new System.Windows.Forms.TextBox();
+            this.textBox_text = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.comboBox_Text_color = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -183,7 +183,7 @@
             0});
             this.numericUpDown_width.ValueChanged += new System.EventHandler(this.numericUpDown_ValueChanged);
             this.numericUpDown_width.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericUpDown_size_KeyDown);
-            this.numericUpDown_width.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.numericUpDown_length_MouseDoubleClick);
+            this.numericUpDown_width.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.numericUpDown_width_MouseDoubleClick);
             // 
             // numericUpDown_height
             // 
@@ -206,7 +206,7 @@
             0});
             this.numericUpDown_height.ValueChanged += new System.EventHandler(this.numericUpDown_ValueChanged);
             this.numericUpDown_height.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericUpDown_size_KeyDown);
-            this.numericUpDown_height.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.numericUpDown_width_MouseDoubleClick);
+            this.numericUpDown_height.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.numericUpDown_height_MouseDoubleClick);
             // 
             // label06
             // 
@@ -462,11 +462,11 @@
             resources.ApplyResources(this.label6, "label6");
             this.label6.Name = "label6";
             // 
-            // textBox_script
+            // textBox_text
             // 
-            resources.ApplyResources(this.textBox_script, "textBox_script");
-            this.textBox_script.Name = "textBox_script";
-            this.textBox_script.TextChanged += new System.EventHandler(this.textBox_script_TextChanged);
+            resources.ApplyResources(this.textBox_text, "textBox_text");
+            this.textBox_text.Name = "textBox_text";
+            this.textBox_text.TextChanged += new System.EventHandler(this.textBox_text_TextChanged);
             // 
             // label7
             // 
@@ -501,7 +501,7 @@
             this.Controls.Add(this.label8);
             this.Controls.Add(this.comboBox_Text_color);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.textBox_script);
+            this.Controls.Add(this.textBox_text);
             this.Controls.Add(this.numericUpDown_textSize);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.groupBox_color);
@@ -564,7 +564,7 @@
         private System.Windows.Forms.Label label4;
         public System.Windows.Forms.NumericUpDown numericUpDown_textSize;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox_script;
+        private System.Windows.Forms.TextBox textBox_text;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox comboBox_Text_color;
         private System.Windows.Forms.Label label8;

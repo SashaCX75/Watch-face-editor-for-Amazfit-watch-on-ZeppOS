@@ -121,6 +121,9 @@
     <value>Цвет текста</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 30</value>
+  </data>
   <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 446</value>
   </data>
@@ -145,12 +148,6 @@
   </data>
   <data name="&gt;&gt;label07.Name" xml:space="preserve">
     <value>label07</value>
-  </data>
-  <data name="textBox_script.Location" type="System.Drawing.Point, System.Drawing">
-    <value>144, 252</value>
-  </data>
-  <data name="&gt;&gt;textBox_script.Name" xml:space="preserve">
-    <value>textBox_script</value>
   </data>
   <data name="label8.TabIndex" type="System.Int32, mscorlib">
     <value>161</value>
@@ -189,9 +186,6 @@
   <data name="groupBox_color.Size" type="System.Drawing.Size, System.Drawing">
     <value>147, 160</value>
   </data>
-  <data name="&gt;&gt;textBox_script.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
   <data name="Index.HeaderText" xml:space="preserve">
     <value>№</value>
   </data>
@@ -203,9 +197,6 @@
   </data>
   <data name="&gt;&gt;button_add.Name" xml:space="preserve">
     <value>button_add</value>
-  </data>
-  <data name="&gt;&gt;textBox_script.ZOrder" xml:space="preserve">
-    <value>6</value>
   </data>
   <data name="label5.TabIndex" type="System.Int32, mscorlib">
     <value>147</value>
@@ -270,9 +261,6 @@
   <data name="numericUpDown_buttonX.TabIndex" type="System.Int32, mscorlib">
     <value>146</value>
   </data>
-  <data name="textBox_script.TabIndex" type="System.Int32, mscorlib">
-    <value>158</value>
-  </data>
   <data name="VisibleButton.HeaderText" xml:space="preserve">
     <value />
   </data>
@@ -310,9 +298,6 @@
   </data>
   <data name="comboBox_normal_color.IntegralHeight" type="System.Boolean, mscorlib">
     <value>False</value>
-  </data>
-  <data name="textBox_script.Size" type="System.Drawing.Size, System.Drawing">
-    <value>105, 20</value>
   </data>
   <data name="&gt;&gt;numericUpDown_buttonX.Parent" xml:space="preserve">
     <value>$this</value>
@@ -374,11 +359,14 @@
   <data name="comboBox_press_color.IntegralHeight" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
+  <data name="&gt;&gt;textBox_text.Name" xml:space="preserve">
+    <value>textBox_text</value>
+  </data>
   <data name="&gt;&gt;label06.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;label06.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="button_add.Text" xml:space="preserve">
+    <value>Добавить</value>
   </data>
   <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
     <value>78, 13</value>
@@ -445,14 +433,17 @@
   <data name="label04.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="&gt;&gt;numericUpDown_buttonX.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;label06.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="label3.TabIndex" type="System.Int32, mscorlib">
     <value>143</value>
+  </data>
+  <data name="&gt;&gt;textBox_text.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="numericUpDown_buttonY.Location" type="System.Drawing.Point, System.Drawing">
     <value>86, 191</value>
@@ -501,6 +492,9 @@
   </data>
   <data name="label06.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 30</value>
+  </data>
+  <data name="textBox_text.TabIndex" type="System.Int32, mscorlib">
+    <value>158</value>
   </data>
   <data name="&gt;&gt;contextMenuStrip_Y.Type" xml:space="preserve">
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -640,8 +634,8 @@
   <data name="comboBox_press_color.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 127</value>
   </data>
-  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>78, 30</value>
+  <data name="&gt;&gt;numericUpDown_buttonX.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 21</value>
@@ -664,11 +658,11 @@
   <data name="&gt;&gt;numericUpDown_buttonX.ZOrder" xml:space="preserve">
     <value>17</value>
   </data>
+  <data name="textBox_text.Size" type="System.Drawing.Size, System.Drawing">
+    <value>105, 20</value>
+  </data>
   <data name="&gt;&gt;Button.Name" xml:space="preserve">
     <value>Button</value>
-  </data>
-  <data name="button_add.Text" xml:space="preserve">
-    <value>Добавить</value>
   </data>
   <data name="label8.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -915,6 +909,9 @@
   <data name="&gt;&gt;numericUpDown_radius.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="&gt;&gt;textBox_text.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
   <data name="&gt;&gt;groupBox_color.Name" xml:space="preserve">
     <value>groupBox_color</value>
   </data>
@@ -978,6 +975,9 @@
   <data name="&gt;&gt;label02.ZOrder" xml:space="preserve">
     <value>18</value>
   </data>
+  <data name="textBox_text.Location" type="System.Drawing.Point, System.Drawing">
+    <value>144, 252</value>
+  </data>
   <data name="&gt;&gt;numericUpDown_width.Type" xml:space="preserve">
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -992,9 +992,6 @@
   </data>
   <data name="label9.MaximumSize" type="System.Drawing.Size, System.Drawing">
     <value>255, 0</value>
-  </data>
-  <data name="&gt;&gt;textBox_script.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
     <value>Надпись</value>
@@ -1070,6 +1067,9 @@
   </data>
   <data name="&gt;&gt;label04.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBox_text.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
   <data name="label7.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>TopCenter</value>

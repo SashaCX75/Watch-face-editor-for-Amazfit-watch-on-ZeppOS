@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
@@ -107,10 +108,14 @@ namespace Watch_Face_Editor
 
             #region Background
             Background background = null;
+            ElementSwitchBackground switchBG = null;
             if (link == 0)
             {
                 if (Watch_Face != null && Watch_Face.ScreenNormal != null && Watch_Face.ScreenNormal.Background != null)
                     background = Watch_Face.ScreenNormal.Background;
+                if (Watch_Face != null && Watch_Face.SwitchBackground != null && Watch_Face.SwitchBackground.bg_list != null && 
+                    Watch_Face.SwitchBackground.bg_list.Count > 0 && Watch_Face.SwitchBackground.enable)
+                    switchBG = Watch_Face.SwitchBackground;
             }
             else
             {
@@ -139,7 +144,7 @@ namespace Watch_Face_Editor
                     }
                 }
             }
-            if (background != null)
+            if (background != null && switchBG == null)
             {
                 if (background.Editable_Background != null && background.Editable_Background.enable_edit_bg &&
                     background.Editable_Background.BackgroundList != null &&
@@ -174,6 +179,15 @@ namespace Watch_Face_Editor
                     //int w = background.BackgroundColor.w;
                     //int h = background.BackgroundColor.h;
                     gPanel.Clear(color);
+                }
+            }
+            if (switchBG != null)
+            {
+                int index = switchBG.select_index;
+                if (index >= 0 && index < switchBG.bg_list.Count)
+                {
+                    src = OpenFileStream(switchBG.bg_list[index]);
+                    if (src != null) gPanel.DrawImage(src, 0, 0);
                 }
             }
             #endregion
@@ -590,6 +604,18 @@ namespace Watch_Face_Editor
                     {
                         DrawButton(gPanel, button, false, showButtons, showButtonsArea, showButtonsBorder, Buttons_In_Gif);
                     } 
+                }
+            }
+            #endregion
+
+            #region SwitchBG
+            if (radioButton_ScreenNormal.Checked && Watch_Face != null && Watch_Face.SwitchBackground != null && 
+                Watch_Face.SwitchBackground.Button != null && Watch_Face.SwitchBackground.enable)
+            {
+                if (Watch_Face.SwitchBackground.Button != null)
+                {
+                    Button button = Watch_Face.SwitchBackground.Button;
+                    DrawButton(gPanel, button, false, showButtons, showButtonsArea, showButtonsBorder, Buttons_In_Gif);
                 }
             }
             #endregion
@@ -1813,8 +1839,8 @@ namespace Watch_Face_Editor
                                 //addZero = true;
                                 int alpha = DigitalTime_v2.Group_Minute.Number.alpha;
                                 if (DigitalTime_v2.Group_Minute.Number.follow && time_v2_hour_offsetX > -1 &&
-                                    DigitalTime_v2.Group_Minute.position > DigitalTime_v2.Group_Hour.position &&
-                                    DigitalTime_v2.Group_Second.position > DigitalTime_v2.Group_Minute.position)
+                                    DigitalTime_v2.Group_Hour != null && DigitalTime_v2.Group_Minute.position > DigitalTime_v2.Group_Hour.position &&
+                                    (DigitalTime_v2.Group_Second == null || DigitalTime_v2.Group_Second.position > DigitalTime_v2.Group_Minute.position))
                                 {
                                     x = time_v2_hour_offsetX;
                                     alignment = 0;
@@ -4214,7 +4240,7 @@ namespace Watch_Face_Editor
 
 
 
-                /*#region ElementWeather
+                #region ElementWeather
                 case "ElementWeather":
                     ElementWeather activityElementWeather = (ElementWeather)element;
                     if (!activityElementWeather.visible) return;
@@ -4251,7 +4277,7 @@ namespace Watch_Face_Editor
 
 
                     break;
-                #endregion*/
+                #endregion
 
                 #region ElementWeather_v2
                 case "ElementWeather_v2":
@@ -8292,7 +8318,7 @@ namespace Watch_Face_Editor
                                 align_v = "CENTER_V";
                             }
 
-                            if (weather_FewDays.Number_Font_Average.font != null && weather_FewDays.Number_Font_Average.font.Length > 3 && FontsList.ContainsKey(weather_FewDays.Number_Font_Max.font))
+                            if (weather_FewDays.Number_Font_Average.font != null && weather_FewDays.Number_Font_Average.font.Length > 3 && FontsList.ContainsKey(weather_FewDays.Number_Font_Average.font))
                             {
                                 string font_fileName = FontsList[weather_FewDays.Number_Font_Average.font];
                                 if (SelectedModel.versionOS >= 2 && File.Exists(font_fileName))
@@ -12737,6 +12763,7 @@ namespace Watch_Face_Editor
                     radiusArc -= image_height / 2f;
                     fullAngle = -fullAngle;
                 }
+                if (radiusArc < 1) return;
                 // подсвечивание поле надписи заливкой
                 HatchBrush myHatchBrush = new HatchBrush(HatchStyle.Percent20, Color.White, Color.Transparent);
                 pen.Brush = myHatchBrush;

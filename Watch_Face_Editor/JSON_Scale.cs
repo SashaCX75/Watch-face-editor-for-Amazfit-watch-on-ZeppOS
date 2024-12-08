@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -116,6 +117,11 @@ namespace Watch_Face_Editor
                     Button button = Watch_Face.Buttons.Button[index];
                     Scale_Button(button, scale);
                 }
+            }
+            if (Watch_Face.SwitchBackground != null && Watch_Face.SwitchBackground.Button != null)
+            {
+                Button button = Watch_Face.SwitchBackground.Button;
+                Scale_Button(button, scale);
             }
         }
 

@@ -376,6 +376,15 @@ namespace Watch_Face_Editor.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Нужно установить цвет в качестве основного фона..
+        /// </summary>
+        internal static string Message_BG_Not_Color {
+            get {
+                return ResourceManager.GetString("Message_BG_Not_Color", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Нужно установить изображение в качестве основного фона..
         /// </summary>
         internal static string Message_BG_Not_Image {

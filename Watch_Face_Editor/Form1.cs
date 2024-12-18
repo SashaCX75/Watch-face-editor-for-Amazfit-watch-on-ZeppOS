@@ -501,6 +501,7 @@ namespace Watch_Face_Editor
             uCtrl_SmoothSeconds_Opt.AutoSize = true;
             uCtrl_Button_Opt.AutoSize = true;
             uCtrl_Switch_Background_Opt.AutoSize = true;
+            uCtrl_Switch_BG_Color_Opt.AutoSize = true;
             uCtrl_Weather_FewDays_Opt.AutoSize = true;
             uCtrl_TemperatureGraph_Opt.AutoSize = true;
             uCtrl_JS_script_Opt.AutoSize = true;
@@ -1712,6 +1713,11 @@ namespace Watch_Face_Editor
                         draggedUCtrl_Elm = (UCtrl_Switch_Background_Elm)e.Data.GetData(typeof(UCtrl_Switch_Background_Elm));
                         if (draggedUCtrl_Elm != null) draggedPanel = (Panel)draggedUCtrl_Elm.Parent;
                         break;
+
+                    case "ControlLibrary.UCtrl_Switch_BG_Color_Elm":
+                        draggedUCtrl_Elm = (UCtrl_Switch_BG_Color_Elm)e.Data.GetData(typeof(UCtrl_Switch_BG_Color_Elm));
+                        if (draggedUCtrl_Elm != null) draggedPanel = (Panel)draggedUCtrl_Elm.Parent;
+                        break;
                 }
 
                 if (draggedPanel == null) return;
@@ -1862,6 +1868,9 @@ namespace Watch_Face_Editor
                 case "SwitchBG":
                     uCtrl_Switch_Background_Opt.Visible = true;
                     break;
+                case "SwitchBG_Color":
+                    uCtrl_Switch_BG_Color_Opt.Visible = true;
+                    break;
                 case "WeatherFewDays":
                     uCtrl_Weather_FewDays_Opt.Visible = true;
                     break;
@@ -1906,6 +1915,7 @@ namespace Watch_Face_Editor
             uCtrl_SmoothSeconds_Opt.Visible = false;
             uCtrl_Button_Opt.Visible = false;
             uCtrl_Switch_Background_Opt.Visible = false;
+            uCtrl_Switch_BG_Color_Opt.Visible = false;
             uCtrl_Weather_FewDays_Opt.Visible = false;
             uCtrl_TemperatureGraph_Opt.Visible = false;
             uCtrl_JS_script_Opt.Visible = false;
@@ -1958,6 +1968,7 @@ namespace Watch_Face_Editor
             if (selectElementName != "TopImage") uCtrl_TopImage_Elm.ResetHighlightState();
             if (selectElementName != "Buttons") uCtrl_Buttons_Elm.ResetHighlightState();
             if (selectElementName != "SwitchBG") uCtrl_Switch_Background_Elm.ResetHighlightState();
+            if (selectElementName != "SwitchBG_Color") uCtrl_Switch_BG_Color_Elm.ResetHighlightState();
 
 
             if (selectElementName != "Animation") 
@@ -2030,6 +2041,7 @@ namespace Watch_Face_Editor
             uCtrl_TopImage_Elm.SettingsClear();
             uCtrl_Buttons_Elm.SettingsClear();
             uCtrl_Switch_Background_Opt.SettingsClear();
+            uCtrl_Switch_BG_Color_Opt.SettingsClear();
         }
 
         private void uCtrl_Background_Elm_SelectChanged(object sender, EventArgs eventArgs)
@@ -2877,6 +2889,7 @@ namespace Watch_Face_Editor
             uCtrl_EditableTimePointer_Opt.ComboBoxAddItems(ListImages, ListImagesFullName);
             uCtrl_Button_Opt.ComboBoxAddItems(ListImages, ListImagesFullName);
             uCtrl_Switch_Background_Opt.ComboBoxAddItems(ListImages, ListImagesFullName);
+            uCtrl_Switch_BG_Color_Opt.ComboBoxAddItems(ListImages, ListImagesFullName);
             //uCtrl_Animation_Frame_Opt.ComboBoxAddItems(ListImages, ListImagesFullName);
             //uCtrl_Animation_Motion_Opt.ComboBoxAddItems(ListImages, ListImagesFullName);
             //uCtrl_Animation_Rotate_Opt.ComboBoxAddItems(ListImages, ListImagesFullName);
@@ -3645,6 +3658,20 @@ namespace Watch_Face_Editor
                 if (radioButton_ScreenNormal.Checked)
                 {
                     if (AddSwitchBG())
+                    {
+                        ShowElemetsWatchFace();
+                        JSON_Modified = true;
+                        FormText();
+                    }
+                }
+                else MessageBox.Show(Properties.FormStrings.Message_ElementAOD_Text, Properties.FormStrings.Message_Warning_Caption,
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            if (comboBox_AddBackground.SelectedIndex == 2)
+            {
+                if (radioButton_ScreenNormal.Checked)
+                {
+                    if (AddSwitchBG_Color())
                     {
                         ShowElemetsWatchFace();
                         JSON_Modified = true;
@@ -4530,6 +4557,38 @@ namespace Watch_Face_Editor
             else
             {
                 MessageBox.Show(Properties.FormStrings.Message_BG_Not_Image, Properties.FormStrings.Message_Warning_Caption,
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+            }
+        }
+
+        /// <summary>Добавляем кнопку переключения цвета</summary>
+        private bool AddSwitchBG_Color()
+        {
+            if (!PreviewView) return false;
+            if (Watch_Face == null) Watch_Face = new WATCH_FACE();
+
+            if (Watch_Face.ScreenNormal != null && Watch_Face.ScreenNormal.Background != null &&
+                Watch_Face.ScreenNormal.Background.BackgroundColor != null)
+            {
+                if (Watch_Face.SwitchBG_Color == null)
+                {
+                    Watch_Face.SwitchBG_Color = new ElementSwitchBG_Color();
+                    Watch_Face.SwitchBG_Color.color_list = new List<string>();
+                    Watch_Face.SwitchBG_Color.toast_list = new List<string>();
+                    Watch_Face.SwitchBG_Color.Button = new Button();
+                    Watch_Face.SwitchBG_Color.enable = true;
+                    Watch_Face.SwitchBG_Color.color_list.Add(Watch_Face.ScreenNormal.Background.BackgroundColor.color);
+                    Watch_Face.SwitchBG_Color.toast_list.Add(Properties.FormStrings.ToastBG);
+                    return true;
+                }
+                else MessageBox.Show(Properties.FormStrings.Message_Widget_Exists, Properties.FormStrings.Message_Warning_Caption,
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+            }
+            else
+            {
+                MessageBox.Show(Properties.FormStrings.Message_BG_Not_Color, Properties.FormStrings.Message_Warning_Caption,
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
             }
@@ -5690,6 +5749,7 @@ namespace Watch_Face_Editor
             uCtrl_TopImage_Elm.Visible = false;
             uCtrl_Buttons_Elm.Visible = false;
             uCtrl_Switch_Background_Elm.Visible = false;
+            uCtrl_Switch_BG_Color_Elm.Visible = false;
             uCtrl_JSscript_Elm.Visible = false;
 
 
@@ -7921,7 +7981,24 @@ namespace Watch_Face_Editor
                 uCtrl_Switch_Background_Elm.SetVisibilityElementStatus(SwitchBG.enable);
 
                 uCtrl_Switch_Background_Elm.Visible = true;
+                if (Watch_Face.ScreenNormal != null && Watch_Face.ScreenNormal.Background != null &&
+                    Watch_Face.ScreenNormal.Background.BackgroundImage != null && 
+                    Watch_Face.ScreenNormal.Background.BackgroundImage.src != null) uCtrl_Switch_Background_Elm.EnableElement = true;
+                else uCtrl_Switch_Background_Elm.EnableElement = false;
                 SetElementPositionInGUI("SwitchBG", count - elementsCount - 2);
+                elementsCount++;
+            }
+
+            if (Watch_Face.SwitchBG_Color != null && radioButton_ScreenNormal.Checked)
+            {
+                ElementSwitchBG_Color SwitchBG_Color = Watch_Face.SwitchBG_Color;
+                uCtrl_Switch_BG_Color_Elm.SetVisibilityElementStatus(SwitchBG_Color.enable);
+
+                uCtrl_Switch_BG_Color_Elm.Visible = true;
+                if (Watch_Face.ScreenNormal != null && Watch_Face.ScreenNormal.Background != null &&
+                    Watch_Face.ScreenNormal.Background.BackgroundColor != null) uCtrl_Switch_BG_Color_Elm.EnableElement = true;
+                else uCtrl_Switch_BG_Color_Elm.EnableElement = false;
+                SetElementPositionInGUI("SwitchBG_Color", count - elementsCount - 2);
                 elementsCount++;
             }
 
@@ -9362,6 +9439,28 @@ namespace Watch_Face_Editor
             if (Watch_Face != null && Watch_Face.SwitchBackground != null)
             {
                 Watch_Face.SwitchBackground = null;
+
+                PreviewView = false;
+                ShowElemetsWatchFace();
+                PreviewView = true;
+            }
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_Switch_BG_Color_Elm_DelElement(object sender, EventArgs eventArgs)
+        {
+            if (ProgramSettings.DelConfirm)
+            {
+                DialogResult result = MessageBox.Show(Properties.FormStrings.Message_Delet_Widget, Properties.FormStrings.Message_Delet_Caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.No) return;
+
+            }
+            if (Watch_Face != null && Watch_Face.SwitchBG_Color != null)
+            {
+                Watch_Face.SwitchBG_Color = null;
 
                 PreviewView = false;
                 ShowElemetsWatchFace();
@@ -15875,6 +15974,20 @@ namespace Watch_Face_Editor
             }
         }
 
+        private void uCtrl_Switch_BG_Color_Elm_SelectChanged(object sender, EventArgs eventArgs)
+        {
+            ResetHighlightState("SwitchBG_Color");
+
+            ElementSwitchBG_Color switchBG_Color = null;
+            if (Watch_Face != null && Watch_Face.SwitchBG_Color != null) switchBG_Color = Watch_Face.SwitchBG_Color;
+
+            if (switchBG_Color != null)
+            {
+                Read_SwitchBG_Color_Options(switchBG_Color);
+                ShowElemenrOptions("SwitchBG_Color");
+            }
+        }
+
         #endregion
 
         private void uCtrl_DateDay_Elm_VisibleOptionsChanged(object sender, EventArgs eventArgs)
@@ -19148,6 +19261,21 @@ namespace Watch_Face_Editor
             if (switchBG != null)
             {
                 switchBG.enable = visible;
+            }
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_Switch_BG_Color_Elm_VisibleElementChanged(object sender, EventArgs eventArgs, bool visible)
+        {
+            ElementSwitchBG_Color switchBG_Color = null;
+            if (Watch_Face != null && Watch_Face.SwitchBG_Color != null) switchBG_Color = Watch_Face.SwitchBG_Color;
+
+            if (switchBG_Color != null)
+            {
+                switchBG_Color.enable = visible;
             }
 
             JSON_Modified = true;
@@ -22948,6 +23076,8 @@ namespace Watch_Face_Editor
             {
             }
         }
+
+        
     }
 }
 

@@ -74,30 +74,6 @@ namespace Watch_Face_Editor
 
             #region Black background
             Logger.WriteLine("Preview_screen (Black background)");
-            /*src = OpenFileStream(Application.StartupPath + @"\Mask\mask_gtr_3.png");
-            switch (ProgramSettings.Watch_Model)
-            {
-                case "GTR 3 Pro":
-                    src = OpenFileStream(Application.StartupPath + @"\Mask\mask_gtr_3_pro.png");
-                    break;
-                case "GTS 3":
-                case "GTS 4":
-                    src = OpenFileStream(Application.StartupPath + @"\Mask\mask_gts_3.png");
-                    break;
-                case "GTR 4":
-                    src = OpenFileStream(Application.StartupPath + @"\Mask\mask_gtr_4.png");
-                    break;
-                case "Amazfit Band 7":
-                    src = OpenFileStream(Application.StartupPath + @"\Mask\mask_band_7.png");
-                    break;
-                case "GTS 4 mini":
-                    src = OpenFileStream(Application.StartupPath + @"\Mask\mask_gts_4_mini.png");
-                    break;
-                case "Falcon":
-                case "GTR mini":
-                    src = OpenFileStream(Application.StartupPath + @"\Mask\mask_falcon.png");
-                    break;
-            }*/
             src = OpenFileStream(Application.StartupPath + @"\Mask\" + SelectedModel.maskImage);
             offSet_X = src.Width / 2;
             offSet_Y = src.Height / 2;
@@ -109,13 +85,22 @@ namespace Watch_Face_Editor
             #region Background
             Background background = null;
             ElementSwitchBackground switchBG = null;
+            ElementSwitchBG_Color switchBG_Color = null;
             if (link == 0)
             {
                 if (Watch_Face != null && Watch_Face.ScreenNormal != null && Watch_Face.ScreenNormal.Background != null)
                     background = Watch_Face.ScreenNormal.Background;
-                if (Watch_Face != null && Watch_Face.SwitchBackground != null && Watch_Face.SwitchBackground.bg_list != null && 
-                    Watch_Face.SwitchBackground.bg_list.Count > 0 && Watch_Face.SwitchBackground.enable)
-                    switchBG = Watch_Face.SwitchBackground;
+                if (background != null)
+                {
+                    if (background.BackgroundImage != null && background.BackgroundImage.src != null &&
+                        background.BackgroundImage.src.Length > 0 && background.visible && Watch_Face.SwitchBackground != null && 
+                        Watch_Face.SwitchBackground.bg_list != null && Watch_Face.SwitchBackground.bg_list.Count > 0 && 
+                        Watch_Face.SwitchBackground.enable) switchBG = Watch_Face.SwitchBackground;
+                    if (background.BackgroundColor != null && background.visible && Watch_Face.SwitchBG_Color != null &&
+                        Watch_Face.SwitchBG_Color.color_list != null && Watch_Face.SwitchBG_Color.color_list.Count > 0 &&
+                        Watch_Face.SwitchBG_Color.enable) switchBG_Color = Watch_Face.SwitchBG_Color;
+
+                }
             }
             else
             {
@@ -174,13 +159,10 @@ namespace Watch_Face_Editor
                 if (background.BackgroundColor != null && background.visible)
                 {
                     Color color = StringToColor(background.BackgroundColor.color);
-                    //int x = background.BackgroundColor.x;
-                    //int y = background.BackgroundColor.y;
-                    //int w = background.BackgroundColor.w;
-                    //int h = background.BackgroundColor.h;
                     gPanel.Clear(color);
                 }
             }
+            
             if (switchBG != null)
             {
                 int index = switchBG.select_index;
@@ -188,6 +170,16 @@ namespace Watch_Face_Editor
                 {
                     src = OpenFileStream(switchBG.bg_list[index]);
                     if (src != null) gPanel.DrawImage(src, 0, 0);
+                }
+            }
+
+            if (switchBG_Color != null)
+            {
+                int index = switchBG_Color.select_index;
+                if (index >= 0 && index < switchBG_Color.color_list.Count)
+                {
+                    Color color = StringToColor(switchBG_Color.color_list[index]);
+                    gPanel.Clear(color);
                 }
             }
             #endregion
@@ -608,13 +600,23 @@ namespace Watch_Face_Editor
             }
             #endregion
 
-            #region SwitchBG
-            if (radioButton_ScreenNormal.Checked && Watch_Face != null && Watch_Face.SwitchBackground != null && 
-                Watch_Face.SwitchBackground.Button != null && Watch_Face.SwitchBackground.enable)
+            #region SwitchBG Button
+            if (radioButton_ScreenNormal.Checked && Watch_Face != null && switchBG != null)
             {
-                if (Watch_Face.SwitchBackground.Button != null)
+                if (switchBG.Button != null)
                 {
-                    Button button = Watch_Face.SwitchBackground.Button;
+                    Button button = switchBG.Button;
+                    DrawButton(gPanel, button, false, showButtons, showButtonsArea, showButtonsBorder, Buttons_In_Gif);
+                }
+            }
+            #endregion
+
+            #region SwitchBG_Color Button
+            if (radioButton_ScreenNormal.Checked && Watch_Face != null && switchBG_Color != null)
+            {
+                if (switchBG_Color.Button != null)
+                {
+                    Button button = switchBG_Color.Button;
                     DrawButton(gPanel, button, false, showButtons, showButtonsArea, showButtonsBorder, Buttons_In_Gif);
                 }
             }

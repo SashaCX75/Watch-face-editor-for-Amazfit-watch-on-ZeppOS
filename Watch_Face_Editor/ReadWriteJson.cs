@@ -37,8 +37,11 @@ namespace Watch_Face_Editor
             string compass_error = "";
             string weather_few_days = "";
             string weather_few_days_end = "";
+            string onDigitalCrown = "";
             if (Watch_Face == null) return;
 
+            bool bg_img = false;
+            bool bg_color = false;
             // элементы основного экрана
             if (Watch_Face.ScreenNormal != null)
             {
@@ -61,7 +64,8 @@ namespace Watch_Face_Editor
                         {
                             variables += TabInString(4) + "let normal_background_bg = ''" + Environment.NewLine;
                             items += TabInString(6) + "normal_background_bg = hmUI.createWidget(hmUI.widget.FILL_RECT, {" +
-                                              options + TabInString(6) + "});" + Environment.NewLine; 
+                                              options + TabInString(6) + "});" + Environment.NewLine;
+                            bg_color = true;
                         }
                     }
                     if (Watch_Face.ScreenNormal.Background.BackgroundImage != null)
@@ -73,7 +77,8 @@ namespace Watch_Face_Editor
                         {
                             variables += TabInString(4) + "let normal_background_bg_img = ''" + Environment.NewLine;
                             items += TabInString(6) + "normal_background_bg_img = hmUI.createWidget(hmUI.widget.IMG, {" +
-                                               options + TabInString(6) + "});" + Environment.NewLine; 
+                                               options + TabInString(6) + "});" + Environment.NewLine;
+                            bg_img = true;
                         }
                     }
                     if (Watch_Face.ScreenNormal.Background.Editable_Background != null)
@@ -859,8 +864,8 @@ namespace Watch_Face_Editor
                     ref compass_update, ref compass_error, ref weather_few_days, ref weather_few_days_end);
             }
 
-            // кнопка переключения экрана
-            if (Watch_Face.SwitchBackground != null && Watch_Face.SwitchBackground.enable && Watch_Face.SwitchBackground.Button != null &&
+            // кнопка переключения фонового изображения
+            if (bg_img && Watch_Face.SwitchBackground != null && Watch_Face.SwitchBackground.enable && Watch_Face.SwitchBackground.Button != null &&
                 Watch_Face.SwitchBackground.bg_list != null && Watch_Face.SwitchBackground.bg_list.Count > 0)
             {
                 items += Environment.NewLine + TabInString(6) + "console.log('Watch_Face.SwitchBackground');";
@@ -892,7 +897,16 @@ namespace Watch_Face_Editor
                 switchBG_function += Environment.NewLine + TabInString(6) + "};";
                 if (Watch_Face.SwitchBackground.use_crown)
                 {
-                    variables += TabInString(4) + Environment.NewLine;
+                    onDigitalCrown += Environment.NewLine + TabInString(11) + "console.log('SwitchBackground use crown');";
+                    onDigitalCrown += Environment.NewLine + TabInString(11) + "backgroundIndex += step;";
+                    onDigitalCrown += Environment.NewLine + TabInString(11) + "backgroundIndex = backgroundIndex < 0 ? backgroundList.length + backgroundIndex : backgroundIndex % backgroundList.length;";
+                    onDigitalCrown += Environment.NewLine + TabInString(11) + "hmFS.SysProSetInt(`backgroundIndex_${watchfaceId}`, backgroundIndex);";
+                    onDigitalCrown += Environment.NewLine + TabInString(11) + "let toastText = backgroundToastList[backgroundIndex].replace('%s', `${backgroundIndex + 1}`);";
+                    onDigitalCrown += Environment.NewLine + TabInString(11) + "if (toastText.length > 0) hmUI.showToast({text: toastText});";
+                    onDigitalCrown += Environment.NewLine + TabInString(11) + "normal_background_bg_img.setProperty(hmUI.prop.SRC, backgroundList[backgroundIndex]);";
+                    if (Watch_Face.SwitchBackground.vibro) onDigitalCrown += Environment.NewLine + TabInString(11) + "vibro(28);";
+
+                    /*variables += TabInString(4) + Environment.NewLine;
                     variables += TabInString(4) + "let degreeSum = 0;" + Environment.NewLine;
                     variables += TabInString(4) + "let crownSensitivity = 70;  // crown sensitivity level" + Environment.NewLine;
 
@@ -923,7 +937,7 @@ namespace Watch_Face_Editor
                     switchBG_function += Environment.NewLine + TabInString(6) + "}";
 
                     resume_call += Environment.NewLine + TabInString(8) + "onDigitalCrown();";
-                    pause_call += Environment.NewLine + TabInString(8) + "hmApp.unregisterSpinEvent();";
+                    pause_call += Environment.NewLine + TabInString(8) + "hmApp.unregisterSpinEvent();";*/
                 }
                 switchBG_function += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
                 //variables = switchBG_function + variables;
@@ -945,20 +959,6 @@ namespace Watch_Face_Editor
 
                 if (useInAOD)
                 {
-                    //if (items.IndexOf("let screenType = hmSetting.getScreenType();") < 0)
-                    //    items += Environment.NewLine + TabInString(6) + "let screenType = hmSetting.getScreenType();";
-
-                    //resume_call += Environment.NewLine + TabInString(8) + "//SwitchBackground";
-                    //resume_call += Environment.NewLine + TabInString(8) + "if (hmFS.SysProGetInt(`backgroundIndex_${watchfaceId}`) === undefined) {";
-                    //resume_call += Environment.NewLine + TabInString(9) + "backgroundIndex = 0;";
-                    //resume_call += Environment.NewLine + TabInString(9) + "hmFS.SysProSetInt(`backgroundIndex_${watchfaceId}`, backgroundIndex);";
-                    //resume_call += Environment.NewLine + TabInString(8) + "} else {";
-                    //resume_call += Environment.NewLine + TabInString(9) + "backgroundIndex = hmFS.SysProGetInt(`backgroundIndex_${watchfaceId}`);";
-                    //resume_call += Environment.NewLine + TabInString(8) + "};";
-                    
-                    //resume_call += Environment.NewLine + TabInString(8) +
-                    //    "if (screenType == hmSetting.screen_type.WATCHFACE && normal_background_bg_img) normal_background_bg_img.setProperty(hmUI.prop.SRC, backgroundList[backgroundIndex]);";
-
                     resume_call += Environment.NewLine + TabInString(8) +
                         "if (screenType == hmSetting.screen_type.AOD && idle_background_bg_img) idle_background_bg_img.setProperty(hmUI.prop.SRC, backgroundList[backgroundIndex]);";
                 }
@@ -984,6 +984,159 @@ namespace Watch_Face_Editor
                     items += TabInString(6) + "}" + Environment.NewLine;
                     items += Environment.NewLine + TabInString(6) + "// end vibrate function" + Environment.NewLine;
                 }
+            }
+
+            // кнопка переключения фонового цвета
+            if (bg_color && Watch_Face.SwitchBG_Color != null && Watch_Face.SwitchBG_Color.enable && Watch_Face.SwitchBG_Color.Button != null &&
+                Watch_Face.SwitchBG_Color.color_list != null && Watch_Face.SwitchBG_Color.color_list.Count > 0)
+            {
+                items += Environment.NewLine + TabInString(6) + "console.log('Watch_Face.SwitchBG_Color');";
+                AddElementToJS(Watch_Face.SwitchBG_Color, "ONLY_NORMAL", ref variables, ref items, ref scale_update_function,
+                    ref resume_call, ref pause_call, ref time_update, ref text_update, ref fonts_cache,
+                    ref compass_update, ref compass_error, ref weather_few_days, ref weather_few_days_end);
+
+                bool useInAOD = false;
+                if (Watch_Face.SwitchBG_Color.use_in_AOD && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Background != null && Watch_Face.ScreenAOD.Background.BackgroundColor != null &&
+                    Watch_Face.ScreenAOD.Background.visible) useInAOD = true;
+
+                variables += Environment.NewLine + TabInString(4) + "let bgColorIndex = 0;";
+                variables += Environment.NewLine + TabInString(4) + "let bgColorList = [" + string.Join(", ", Watch_Face.SwitchBG_Color.color_list) + "];";
+                variables += Environment.NewLine + TabInString(4) + "let bgColorToastList = [" + string.Join(", ", Watch_Face.SwitchBG_Color.toast_list.Select(item => "'" + item + "'")) + "];";
+                variables += Environment.NewLine + TabInString(4) + "const watchfaceId = hmApp.packageInfo().watchfaceId;" + Environment.NewLine;
+
+                string switchBG_function = Environment.NewLine + TabInString(6) + "//start of ignored block";
+                switchBG_function += Environment.NewLine + TabInString(6) + "console.log('SwitchBG_Color');";
+                switchBG_function += Environment.NewLine + TabInString(6) + "function switchBG_Color() {";
+                switchBG_function += Environment.NewLine + TabInString(7) + "bgColorIndex++;";
+                switchBG_function += Environment.NewLine + TabInString(7) + "if (bgColorIndex >= bgColorList.length) bgColorIndex = 0;";
+                //if (useInAOD) switchBG_function += Environment.NewLine + TabInString(7) + "hmFS.SysProSetInt(`backgroundIndex_${watchfaceId}`, bgColorIndex);";
+                switchBG_function += Environment.NewLine + TabInString(7) + "hmFS.SysProSetInt(`bgColorIndex_${watchfaceId}`, bgColorIndex);";
+                switchBG_function += Environment.NewLine + TabInString(7) + "let toastText = bgColorToastList[bgColorIndex].replace('%s', `${bgColorIndex + 1}`);";
+                switchBG_function += Environment.NewLine + TabInString(7) + "if (toastText.length > 0) hmUI.showToast({text: toastText});";
+                switchBG_function += Environment.NewLine + TabInString(7) + "normal_background_bg.setProperty(hmUI.prop.COLOR, bgColorList[bgColorIndex]);";
+                if (Watch_Face.SwitchBG_Color.vibro) switchBG_function += Environment.NewLine + TabInString(7) + "vibro(28);";
+                switchBG_function += Environment.NewLine + TabInString(6) + "};";
+                if (Watch_Face.SwitchBG_Color.use_crown)
+                {
+                    onDigitalCrown += Environment.NewLine + TabInString(11) + "console.log('SwitchBgColor use crown');";
+                    onDigitalCrown += Environment.NewLine + TabInString(11) + "bgColorIndex += step;";
+                    onDigitalCrown += Environment.NewLine + TabInString(11) + "bgColorIndex = bgColorIndex < 0 ? bgColorList.length + bgColorIndex : bgColorIndex % bgColorList.length;";
+                    onDigitalCrown += Environment.NewLine + TabInString(11) + "hmFS.SysProSetInt(`bgColorIndex_${watchfaceId}`, bgColorIndex);";
+                    onDigitalCrown += Environment.NewLine + TabInString(11) + "degreeSum = 0;";
+                    onDigitalCrown += Environment.NewLine + TabInString(11) + "let toastText = bgColorToastList[bgColorIndex].replace('%s', `${bgColorIndex + 1}`);";
+                    onDigitalCrown += Environment.NewLine + TabInString(11) + "if (toastText.length > 0) hmUI.showToast({text: toastText});";
+                    onDigitalCrown += Environment.NewLine + TabInString(11) + "normal_background_bg.setProperty(hmUI.prop.COLOR, bgColorList[bgColorIndex]);";
+                    if (Watch_Face.SwitchBG_Color.vibro) onDigitalCrown += Environment.NewLine + TabInString(11) + "vibro(28);";
+
+                    /*variables += TabInString(4) + Environment.NewLine;
+                    variables += TabInString(4) + "let degreeSum = 0;" + Environment.NewLine;
+                    variables += TabInString(4) + "let crownSensitivity = 70;  // crown sensitivity level" + Environment.NewLine;
+
+                    switchBG_function += Environment.NewLine + TabInString(6);
+                    switchBG_function += Environment.NewLine + TabInString(6) + "console.log('SwitchBgColor use crown');";
+                    //switchBG_function += Environment.NewLine + TabInString(4) + "let degreeSum = 0;";
+                    //switchBG_function += Environment.NewLine + TabInString(4) + "let crownSensitivity = 70;  // crown sensitivity level";
+                    switchBG_function += Environment.NewLine + TabInString(6) + "function onDigitalCrown() {";
+                    switchBG_function += Environment.NewLine + TabInString(7) + "setTimeout(() => {";
+                    switchBG_function += Environment.NewLine + TabInString(8) + "hmApp.registerSpinEvent(function (key, degree) {";
+                    switchBG_function += Environment.NewLine + TabInString(9) + "if (key === hmApp.key.HOME) {";
+                    switchBG_function += Environment.NewLine + TabInString(10) + "degreeSum += degree;";
+                    switchBG_function += Environment.NewLine + TabInString(10) + "if (Math.abs(degreeSum) > crownSensitivity){";
+                    switchBG_function += Environment.NewLine + TabInString(11) + "let step = degreeSum < 0 ? -1 : 1;";
+                    switchBG_function += Environment.NewLine + TabInString(11) + "bgColorIndex += step;";
+                    switchBG_function += Environment.NewLine + TabInString(11) + "bgColorIndex = bgColorIndex < 0 ? bgColorList.length + bgColorIndex : bgColorIndex % bgColorList.length;";
+                    //if (useInAOD) switchBG_function += Environment.NewLine + TabInString(11) + "hmFS.SysProSetInt(`bgColorIndex_${watchfaceId}`, bgColorIndex);";
+                    switchBG_function += Environment.NewLine + TabInString(11) + "hmFS.SysProSetInt(`bgColorIndex_${watchfaceId}`, bgColorIndex);";
+                    switchBG_function += Environment.NewLine + TabInString(11) + "degreeSum = 0;";
+                    switchBG_function += Environment.NewLine + TabInString(11) + "let toastText = bgColorToastList[bgColorIndex].replace('%s', `${bgColorIndex + 1}`);";
+                    switchBG_function += Environment.NewLine + TabInString(11) + "if (toastText.length > 0) hmUI.showToast({text: toastText});";
+                    switchBG_function += Environment.NewLine + TabInString(11) + "normal_background_bg.setProperty(hmUI.prop.COLOR, bgColorList[bgColorIndex]);";
+                    if (Watch_Face.SwitchBG_Color.vibro) switchBG_function += Environment.NewLine + TabInString(11) + "vibro(28);";
+                    switchBG_function += Environment.NewLine + TabInString(10) + "}";
+                    switchBG_function += Environment.NewLine + TabInString(9) + "} // key";
+                    switchBG_function += Environment.NewLine + TabInString(8) + "}) // crown";
+                    switchBG_function += Environment.NewLine + TabInString(7) + "}, 250);";
+                    switchBG_function += Environment.NewLine + TabInString(6) + "}";
+
+                    resume_call += Environment.NewLine + TabInString(8) + "onDigitalCrown();";
+                    pause_call += Environment.NewLine + TabInString(8) + "hmApp.unregisterSpinEvent();";*/
+                }
+                switchBG_function += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
+                //variables = switchBG_function + variables;
+                items = switchBG_function + items;
+
+                if (items.IndexOf("let screenType = hmSetting.getScreenType();") < 0)
+                    items += Environment.NewLine + TabInString(6) + "let screenType = hmSetting.getScreenType();";
+
+                resume_call += Environment.NewLine + TabInString(8) + "//SwitchBgColor";
+                resume_call += Environment.NewLine + TabInString(8) + "if (hmFS.SysProGetInt(`bgColorIndex_${watchfaceId}`) === undefined) {";
+                resume_call += Environment.NewLine + TabInString(9) + "bgColorIndex = 0;";
+                resume_call += Environment.NewLine + TabInString(9) + "hmFS.SysProSetInt(`bgColorIndex_${watchfaceId}`, bgColorIndex);";
+                resume_call += Environment.NewLine + TabInString(8) + "} else {";
+                resume_call += Environment.NewLine + TabInString(9) + "bgColorIndex = hmFS.SysProGetInt(`bgColorIndex_${watchfaceId}`);";
+                resume_call += Environment.NewLine + TabInString(8) + "};";
+
+                resume_call += Environment.NewLine + TabInString(8) +
+                    "if (screenType == hmSetting.screen_type.WATCHFACE && normal_background_bg) normal_background_bg.setProperty(hmUI.prop.COLOR, bgColorList[bgColorIndex]);";
+
+                if (useInAOD)
+                {
+                    resume_call += Environment.NewLine + TabInString(8) +
+                        "if (screenType == hmSetting.screen_type.AOD && idle_background_bg) idle_background_bg.setProperty(hmUI.prop.COLOR, bgColorList[bgColorIndex]);";
+                }
+
+                if (Watch_Face.SwitchBG_Color.vibro && items.IndexOf("const vibrate = hmSensor.createSensor(hmSensor.id.VIBRATE);") < 0)
+                {
+                    items += TabInString(6) + "// vibrate function" + Environment.NewLine;
+                    items += Environment.NewLine + TabInString(6) + "const vibrate = hmSensor.createSensor(hmSensor.id.VIBRATE);" + Environment.NewLine;
+                    items += TabInString(6) + "let timer_StopVibrate = null;" + Environment.NewLine;
+                    items += Environment.NewLine + Environment.NewLine + TabInString(6) +
+                        "function vibro(scene = 25) {" + Environment.NewLine;
+                    items += TabInString(7) + "let stopDelay = 50;" + Environment.NewLine;
+                    items += TabInString(7) + "stopVibro();" + Environment.NewLine;
+                    items += TabInString(7) + "vibrate.stop();" + Environment.NewLine;
+                    items += TabInString(7) + "vibrate.scene = scene;" + Environment.NewLine;
+                    items += TabInString(7) + "if(scene < 23 || scene > 25) stopDelay = 1300;" + Environment.NewLine;
+                    items += TabInString(7) + "vibrate.start();" + Environment.NewLine;
+                    items += TabInString(7) + "timer_StopVibrate = timer.createTimer(stopDelay, 3000, stopVibro, {});" + Environment.NewLine;
+                    items += TabInString(6) + "}" + Environment.NewLine;
+                    items += Environment.NewLine + TabInString(6) + "function stopVibro(){" + Environment.NewLine;
+                    items += TabInString(7) + "vibrate.stop();" + Environment.NewLine;
+                    items += TabInString(7) + "if(timer_StopVibrate) timer.stopTimer(timer_StopVibrate);" + Environment.NewLine;
+                    items += TabInString(6) + "}" + Environment.NewLine;
+                    items += Environment.NewLine + TabInString(6) + "// end vibrate function" + Environment.NewLine;
+                }
+            }
+
+            if (onDigitalCrown.Length > 0)
+            {
+                variables += TabInString(4) + Environment.NewLine;
+                variables += TabInString(4) + "let degreeSum = 0;" + Environment.NewLine;
+                variables += TabInString(4) + "let crownSensitivity = 70;  // crown sensitivity level" + Environment.NewLine;
+
+                string crownFunction = Environment.NewLine + TabInString(6) + "//start of ignored block";
+                crownFunction += Environment.NewLine + TabInString(6) + "console.log('onDigitalCrown()');";
+                crownFunction += Environment.NewLine + TabInString(6) + "function onDigitalCrown() {";
+                crownFunction += Environment.NewLine + TabInString(7) + "setTimeout(() => {";
+                crownFunction += Environment.NewLine + TabInString(8) + "hmApp.registerSpinEvent(function (key, degree) {";
+                crownFunction += Environment.NewLine + TabInString(9) + "if (key === hmApp.key.HOME) {";
+                crownFunction += Environment.NewLine + TabInString(10) + "degreeSum += degree;";
+                crownFunction += Environment.NewLine + TabInString(10) + "if (Math.abs(degreeSum) > crownSensitivity){";
+                crownFunction += Environment.NewLine + TabInString(11) + "let step = degreeSum < 0 ? -1 : 1;";
+                crownFunction += Environment.NewLine + TabInString(11) + "degreeSum = 0;";
+                crownFunction += Environment.NewLine + TabInString(11) + onDigitalCrown;
+                crownFunction += Environment.NewLine + TabInString(10) + "}";
+                crownFunction += Environment.NewLine + TabInString(9) + "} // key";
+                crownFunction += Environment.NewLine + TabInString(8) + "}) // crown";
+                crownFunction += Environment.NewLine + TabInString(7) + "}, 250);";
+                crownFunction += Environment.NewLine + TabInString(6) + "}";
+                crownFunction += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
+
+                items = crownFunction + items;
+
+                resume_call += Environment.NewLine + TabInString(8) + "onDigitalCrown();";
+                pause_call += Environment.NewLine + TabInString(8) + "hmApp.unregisterSpinEvent();";
             }
 
             if (items.IndexOf("timeSensor =") >= 0) variables += TabInString(4) + "let timeSensor = '';" + Environment.NewLine;
@@ -12990,6 +13143,33 @@ namespace Watch_Face_Editor
                     break;
                 #endregion
 
+                #region ElementSwitchBG_Color
+                case "ElementSwitchBG_Color":
+                    ElementSwitchBG_Color switchBG_Color = (ElementSwitchBG_Color)element;
+
+                    if (!switchBG_Color.enable) return;
+                    if (switchBG_Color.Button == null || switchBG_Color.color_list == null || switchBG_Color.color_list.Count == 0) return;
+
+                    Button button_switchBG_Color = switchBG_Color.Button;
+                    if (button_switchBG_Color != null)
+                    {
+                        button_switchBG_Color.click_func = "switchBG_Color();";
+                        string optionsSwitchBG = Buttons_Options(button_switchBG_Color, show_level);
+                        string optionsСommentedSwitchBG = SwitchBG_Color_Сommented_Options(switchBG_Color);
+                        if (optionsSwitchBG.Length > 5)
+                        {
+                            string name = "Button_Switch_BG_Color";
+                            items += Environment.NewLine + TabInString(6) + "// " + name + " = hmUI.createWidget(hmUI.widget.SwitchBG_Color, {" +
+                                optionsСommentedSwitchBG + TabInString(6) + "// });" + Environment.NewLine;
+
+                            variables += TabInString(4) + "let " + name + " = ''" + Environment.NewLine;
+                            items += Environment.NewLine + TabInString(6) + name +
+                                " = hmUI.createWidget(hmUI.widget.BUTTON, {" + optionsSwitchBG + TabInString(6) + "}); // end button" + Environment.NewLine;
+                        }
+                    }
+                    break;
+                #endregion
+
                 #region ElementScript
                 case "ElementScript":
                     ElementScript script = (ElementScript)element;
@@ -20542,6 +20722,42 @@ namespace Watch_Face_Editor
             return options;
         }
 
+        private string SwitchBG_Color_Сommented_Options(ElementSwitchBG_Color switchBG_Color)
+        {
+            string options = Environment.NewLine;
+            if (switchBG_Color == null || switchBG_Color.Button == null ||
+                switchBG_Color.color_list == null || switchBG_Color.color_list.Count == 0) return options;
+
+            options += TabInString(7) + "// x: " + switchBG_Color.Button.x.ToString() + "," + Environment.NewLine;
+            options += TabInString(7) + "// y: " + switchBG_Color.Button.y.ToString() + "," + Environment.NewLine;
+            options += TabInString(7) + "// w: " + switchBG_Color.Button.w.ToString() + "," + Environment.NewLine;
+            options += TabInString(7) + "// h: " + switchBG_Color.Button.h.ToString() + "," + Environment.NewLine;
+            options += TabInString(7) + "// text: '" + switchBG_Color.Button.text + "'," + Environment.NewLine;
+            options += TabInString(7) + "// color: " + switchBG_Color.Button.color + "," + Environment.NewLine;
+            options += TabInString(7) + "// text_size: " + switchBG_Color.Button.text_size.ToString() + "," + Environment.NewLine;
+
+            if (switchBG_Color.Button.press_src != null && switchBG_Color.Button.press_src.Length > 0 && switchBG_Color.Button.normal_src != null && switchBG_Color.Button.normal_src.Length > 0)
+            {
+                if (switchBG_Color.Button.press_src != null && switchBG_Color.Button.press_src.Length > 0)
+                    options += TabInString(7) + "// press_src: '" + switchBG_Color.Button.press_src + ".png'," + Environment.NewLine;
+                if (switchBG_Color.Button.normal_src != null && switchBG_Color.Button.normal_src.Length > 0)
+                    options += TabInString(7) + "// normal_src: '" + switchBG_Color.Button.normal_src + ".png'," + Environment.NewLine;
+            }
+            else
+            {
+                if (switchBG_Color.Button.radius > 0) options += TabInString(7) + "// radius: " + switchBG_Color.Button.radius.ToString() + "," + Environment.NewLine;
+                options += TabInString(7) + "// press_color: " + switchBG_Color.Button.press_color + "," + Environment.NewLine;
+                options += TabInString(7) + "// normal_color: " + switchBG_Color.Button.normal_color + "," + Environment.NewLine;
+            }
+
+            options += TabInString(7) + "// color_list: " + string.Join("|", switchBG_Color.color_list) + "," + Environment.NewLine;
+            options += TabInString(7) + "// toast_list: " + string.Join("|", switchBG_Color.toast_list) + "," + Environment.NewLine;
+            options += TabInString(7) + "// use_crown: " + switchBG_Color.use_crown.ToString() + "," + Environment.NewLine;
+            options += TabInString(7) + "// use_in_AOD: " + switchBG_Color.use_in_AOD.ToString() + "," + Environment.NewLine;
+            options += TabInString(7) + "// vibro: " + switchBG_Color.vibro.ToString() + "," + Environment.NewLine;
+            return options;
+        }
+
         private string TEXT_Options(hmUI_widget_TEXT text, string show_level, int tabOffset = 0)
         {
             string options = Environment.NewLine;
@@ -24819,6 +25035,13 @@ namespace Watch_Face_Editor
                         case "SwitchBackground":
                             ElementSwitchBackground switchBG = Object_SwitchBG(parametrs);
                             Watch_Face.SwitchBackground = switchBG;
+                            break;
+                        #endregion
+
+                        #region SwitchBG_Color
+                        case "SwitchBG_Color":
+                            ElementSwitchBG_Color switchBG_Color = Object_SwitchBG_Color(parametrs);
+                            Watch_Face.SwitchBG_Color = switchBG_Color;
                             break;
                         #endregion
 
@@ -38879,6 +39102,58 @@ namespace Watch_Face_Editor
             switchBG.enable = true;
 
             return switchBG;
+        }
+
+        private ElementSwitchBG_Color Object_SwitchBG_Color(Dictionary<string, string> parametrs)
+        {
+            ElementSwitchBG_Color switchBG_Color = new ElementSwitchBG_Color();
+            switchBG_Color.Button = new Button();
+            int value;
+            if (parametrs.ContainsKey("// normal_src"))
+            {
+                string imgName = parametrs["// normal_src"].Replace("'", "").Replace("\"", "");
+                imgName = Path.GetFileNameWithoutExtension(imgName);
+                switchBG_Color.Button.normal_src = imgName;
+            }
+            if (parametrs.ContainsKey("// press_src"))
+            {
+                string imgName = parametrs["// press_src"].Replace("'", "").Replace("\"", "");
+                imgName = Path.GetFileNameWithoutExtension(imgName);
+                switchBG_Color.Button.press_src = imgName;
+            }
+            if (parametrs.ContainsKey("// x") && Int32.TryParse(parametrs["// x"], out value)) switchBG_Color.Button.x = value;
+            if (parametrs.ContainsKey("// y") && Int32.TryParse(parametrs["// y"], out value)) switchBG_Color.Button.y = value;
+            if (parametrs.ContainsKey("// w") && Int32.TryParse(parametrs["// w"], out value)) switchBG_Color.Button.w = value;
+            if (parametrs.ContainsKey("// h") && Int32.TryParse(parametrs["// h"], out value)) switchBG_Color.Button.h = value;
+            if (parametrs.ContainsKey("// text_size") && Int32.TryParse(parametrs["// text_size"], out value)) switchBG_Color.Button.text_size = value;
+            if (parametrs.ContainsKey("// radius") && Int32.TryParse(parametrs["// radius"], out value)) switchBG_Color.Button.radius = value;
+            if (parametrs.ContainsKey("// text")) switchBG_Color.Button.text = parametrs["// text"].Replace("'", "").Replace("\"", "");
+
+            if (parametrs.ContainsKey("// color") && parametrs["// color"].Length > 3) switchBG_Color.Button.color = parametrs["// color"];
+            if (parametrs.ContainsKey("// normal_color") && parametrs["// normal_color"].Length > 3) switchBG_Color.Button.normal_color = parametrs["// normal_color"];
+            if (parametrs.ContainsKey("// press_color") && parametrs["// press_color"].Length > 3) switchBG_Color.Button.press_color = parametrs["// press_color"];
+
+            if (parametrs.ContainsKey("// use_crown")) switchBG_Color.use_crown = StringToBool(parametrs["// use_crown"]);
+            if (parametrs.ContainsKey("// use_in_AOD")) switchBG_Color.use_in_AOD = StringToBool(parametrs["// use_in_AOD"]);
+            if (parametrs.ContainsKey("// vibro")) switchBG_Color.vibro = StringToBool(parametrs["// vibro"]);
+
+            if (parametrs.ContainsKey("// color_list"))
+            {
+                string list = parametrs["// color_list"];
+                switchBG_Color.color_list = list.Split('|').ToList();
+            }
+            if (parametrs.ContainsKey("// toast_list"))
+            {
+                string list = parametrs["// toast_list"];
+                switchBG_Color.toast_list = list.Split('|').ToList();
+            }
+            while (switchBG_Color.toast_list.Count > switchBG_Color.color_list.Count) switchBG_Color.toast_list.RemoveAt(switchBG_Color.toast_list.Count - 1);
+            while (switchBG_Color.color_list.Count > switchBG_Color.toast_list.Count) switchBG_Color.toast_list.Add("");
+
+
+            switchBG_Color.enable = true;
+
+            return switchBG_Color;
         }
 
         private FewDays Object_FewDays(Dictionary<string, string> parametrs)

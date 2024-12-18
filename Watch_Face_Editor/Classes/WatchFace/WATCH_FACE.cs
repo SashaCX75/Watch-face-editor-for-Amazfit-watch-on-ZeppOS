@@ -35,6 +35,8 @@ namespace Watch_Face_Editor
         public ElementButtons Buttons { get; set; }
 
         public ElementSwitchBackground SwitchBackground { get; set; }
+
+        public ElementSwitchBG_Color SwitchBG_Color { get; set; }
 }
 
     public class WatchFace_Info
@@ -9225,6 +9227,33 @@ namespace Watch_Face_Editor
 
         /// <summary>Список изображений для фона</summary>
         public List<string> bg_list { get; set; }
+
+        /// <summary>Список сообщений при переключении</summary>
+        public List<string> toast_list { get; set; }
+
+        /// <summary>Номер выбраного изображения</summary>
+        public bool use_crown { get; set; } = false;
+
+        /// <summary>Номер выбраного изображения</summary>
+        public bool use_in_AOD { get; set; } = false;
+
+        /// <summary>Вибрация при переключении</summary>
+        public bool vibro { get; set; } = false;
+
+        /// <summary>Номер выбраного изображения</summary>
+        public int select_index { get; set; } = 0;
+
+        /// <summary>Использование элемента</summary>
+        public bool enable = true;
+    }
+
+    public class ElementSwitchBG_Color
+    {
+        /// <summary>Кнопка для переключения</summary>
+        public Button Button { get; set; }
+
+        /// <summary>Список цветов для фона</summary>
+        public List<string> color_list { get; set; }
 
         /// <summary>Список сообщений при переключении</summary>
         public List<string> toast_list { get; set; }

@@ -222,6 +222,9 @@
   <data name="Message_AutoSave_Caption" xml:space="preserve">
     <value>Восстановление</value>
   </data>
+  <data name="Message_BG_Not_Color" xml:space="preserve">
+    <value>Нужно установить цвет в качестве основного фона.</value>
+  </data>
   <data name="Message_BG_Not_Image" xml:space="preserve">
     <value>Нужно установить изображение в качестве основного фона.</value>
   </data>

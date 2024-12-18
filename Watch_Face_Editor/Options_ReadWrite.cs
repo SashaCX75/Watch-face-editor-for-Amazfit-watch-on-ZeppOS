@@ -105,6 +105,9 @@ namespace Watch_Face_Editor
             if (Watch_Face_temp.SwitchBackground != null)
                 Watch_Face_return.SwitchBackground = Watch_Face_temp.SwitchBackground;
 
+            if (Watch_Face_temp.SwitchBG_Color != null)
+                Watch_Face_return.SwitchBG_Color = Watch_Face_temp.SwitchBG_Color;
+
             return Watch_Face_return;
         }
 
@@ -2224,7 +2227,7 @@ namespace Watch_Face_Editor
             PreviewView = true;
         }
 
-        /// <summary>Читаем перечень кнопок</summary>
+        /// <summary>Читаем настройки переключаемого фона</summary>
         private void Read_SwitchBG_Options(ElementSwitchBackground switchBG)
         {
             PreviewView = false;
@@ -2251,6 +2254,40 @@ namespace Watch_Face_Editor
                 uCtrl_Switch_Background_Opt.checkBox_use_crown.Checked = switchBG.use_crown;
                 uCtrl_Switch_Background_Opt.checkBox_use_in_AOD.Checked = switchBG.use_in_AOD;
                 uCtrl_Switch_Background_Opt.checkBox_vibro.Checked = switchBG.vibro;
+            }
+
+
+            PreviewView = true;
+        }
+
+        /// <summary>Читаем настройки переключаемого цвета</summary>
+        private void Read_SwitchBG_Color_Options(ElementSwitchBG_Color switchBG_Color)
+        {
+            PreviewView = false;
+
+            uCtrl_Switch_BG_Color_Opt.SettingsClear();
+            uCtrl_Switch_BG_Color_Opt.Visible = true;
+            List<Color> listColors = switchBG_Color.color_list.Select(StringToColor).ToList();
+            uCtrl_Switch_BG_Color_Opt.AddBackgroundColors(listColors, switchBG_Color.toast_list, switchBG_Color.select_index);
+
+            if (switchBG_Color.Button != null)
+            {
+                uCtrl_Switch_BG_Color_Opt.numericUpDown_buttonX.Value = switchBG_Color.Button.x;
+                uCtrl_Switch_BG_Color_Opt.numericUpDown_buttonY.Value = switchBG_Color.Button.y;
+                uCtrl_Switch_BG_Color_Opt.numericUpDown_width.Value = switchBG_Color.Button.w;
+                uCtrl_Switch_BG_Color_Opt.numericUpDown_height.Value = switchBG_Color.Button.h;
+                uCtrl_Switch_BG_Color_Opt.numericUpDown_radius.Value = switchBG_Color.Button.radius;
+                uCtrl_Switch_BG_Color_Opt.numericUpDown_textSize.Value = switchBG_Color.Button.text_size;
+                uCtrl_Switch_BG_Color_Opt.SetColorText(StringToColor(switchBG_Color.Button.color));
+                uCtrl_Switch_BG_Color_Opt.SetText(switchBG_Color.Button.text);
+                uCtrl_Switch_BG_Color_Opt.SetPressImage(switchBG_Color.Button.press_src);
+                uCtrl_Switch_BG_Color_Opt.SetNormalImage(switchBG_Color.Button.normal_src);
+                uCtrl_Switch_BG_Color_Opt.SetColorNormal(StringToColor(switchBG_Color.Button.normal_color));
+                uCtrl_Switch_BG_Color_Opt.SetColorPress(StringToColor(switchBG_Color.Button.press_color));
+
+                uCtrl_Switch_BG_Color_Opt.checkBox_use_crown.Checked = switchBG_Color.use_crown;
+                uCtrl_Switch_BG_Color_Opt.checkBox_use_in_AOD.Checked = switchBG_Color.use_in_AOD;
+                uCtrl_Switch_BG_Color_Opt.checkBox_vibro.Checked = switchBG_Color.vibro;
             }
 
 
@@ -2376,8 +2413,10 @@ namespace Watch_Face_Editor
                 background.BackgroundImage.h = SelectedModel.background.h;
                 background.BackgroundImage.w = SelectedModel.background.w;
                 background.BackgroundColor = null;
+                uCtrl_Switch_BG_Color_Elm.EnableElement = false;
                 if (background.Editable_Background != null) background.Editable_Background.enable_edit_bg = false;
 
+                //uCtrl_Switch_BG_Color_Elm.Visible = false;
                 if (radioButton_ScreenIdle.Checked)
                 {
                     if (Watch_Face.ScreenNormal.Background != null && Watch_Face.ScreenNormal.Background.Editable_Background != null)
@@ -2422,7 +2461,9 @@ namespace Watch_Face_Editor
                 background.BackgroundImage = null;
                 if (background.Editable_Background != null) background.Editable_Background.enable_edit_bg = false;
                 uCtrl_EditableBackground_Opt.Visible = false;
+                uCtrl_Switch_Background_Elm.EnableElement = false;
 
+                //uCtrl_Switch_Background_Elm.Visible = false;
                 if (radioButton_ScreenIdle.Checked)
                 {
                     if (Watch_Face.ScreenNormal.Background != null && Watch_Face.ScreenNormal.Background.Editable_Background != null)
@@ -2430,9 +2471,12 @@ namespace Watch_Face_Editor
                         Watch_Face.ScreenNormal.Background.Editable_Background.AOD_show = false;
                     }
                 }
-                else { 
-                    uCtrl_Switch_Background_Elm.EnableElement = false;
-                    uCtrl_Switch_Background_Elm.Visible = false;
+                else
+                {
+                    uCtrl_Switch_BG_Color_Elm.EnableElement = true;
+                    if (Watch_Face.SwitchBG_Color != null && Watch_Face.SwitchBG_Color.color_list != null && 
+                        Watch_Face.SwitchBG_Color.color_list.Count > 0) 
+                        Watch_Face.SwitchBG_Color.color_list[0] = background.BackgroundColor.color;
                 }
             }
             // настраиваемый фон
@@ -2469,6 +2513,7 @@ namespace Watch_Face_Editor
                     background.BackgroundImage = null;
                     background.BackgroundColor = null;
                     uCtrl_Switch_Background_Elm.EnableElement = false;
+                    uCtrl_Switch_BG_Color_Elm.EnableElement = false;
                     uCtrl_Switch_Background_Elm.Visible = false;
                 }
                 else
@@ -4018,6 +4063,7 @@ namespace Watch_Face_Editor
             PreviewView = true;
         }
 
+        //////
         private void uCtrl_Switch_Background_Opt_ValueChanged(object sender, EventArgs eventArgs)
         {
             if (!PreviewView) return;
@@ -4097,6 +4143,23 @@ namespace Watch_Face_Editor
             FormText();
         }
 
+        private void uCtrl_Switch_Background_Opt_СhangeImage(List<String> BG_images, List<String> Toast_list, int rowIndex)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+            ElementSwitchBackground switchBG = Watch_Face.SwitchBackground;
+            if (switchBG == null) switchBG = new ElementSwitchBackground();
+
+            switchBG.bg_list = BG_images;
+            switchBG.toast_list = Toast_list;
+            switchBG.select_index = rowIndex;
+            uCtrl_Switch_Background_Opt.AddBackgroundImages(BG_images, Toast_list, rowIndex);
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
         private void uCtrl_Switch_Background_Opt_EditToast(string ToastText, int rowIndex)
         {
             if (!PreviewView) return;
@@ -4111,6 +4174,124 @@ namespace Watch_Face_Editor
             //PreviewImage();
             FormText();
         }
+
+        //////
+
+        private void uCtrl_Switch_BG_Color_Opt_ValueChanged(object sender, EventArgs eventArgs)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+            ElementSwitchBG_Color switchBG_Color = Watch_Face.SwitchBG_Color;
+            if (switchBG_Color == null) switchBG_Color = new ElementSwitchBG_Color();
+            Button button = switchBG_Color.Button;
+
+            button.x = (int)uCtrl_Switch_BG_Color_Opt.numericUpDown_buttonX.Value;
+            button.y = (int)uCtrl_Switch_BG_Color_Opt.numericUpDown_buttonY.Value;
+            button.w = (int)uCtrl_Switch_BG_Color_Opt.numericUpDown_width.Value;
+            button.h = (int)uCtrl_Switch_BG_Color_Opt.numericUpDown_height.Value;
+            button.radius = (int)uCtrl_Switch_BG_Color_Opt.numericUpDown_radius.Value;
+            button.text_size = (int)uCtrl_Switch_BG_Color_Opt.numericUpDown_textSize.Value;
+            button.color = ColorToString(uCtrl_Switch_BG_Color_Opt.GetColorText());
+            button.text = uCtrl_Switch_BG_Color_Opt.GetText();
+            button.press_src = uCtrl_Switch_BG_Color_Opt.GetPressImage();
+            button.normal_src = uCtrl_Switch_BG_Color_Opt.GetNormalImage();
+            button.normal_color = ColorToString(uCtrl_Switch_BG_Color_Opt.GetColorNormal());
+            button.press_color = ColorToString(uCtrl_Switch_BG_Color_Opt.GetColorPress());
+
+            switchBG_Color.use_crown = uCtrl_Switch_BG_Color_Opt.checkBox_use_crown.Checked;
+            switchBG_Color.use_in_AOD = uCtrl_Switch_BG_Color_Opt.checkBox_use_in_AOD.Checked;
+            switchBG_Color.vibro = uCtrl_Switch_BG_Color_Opt.checkBox_vibro.Checked;
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+       
+        private void uCtrl_Switch_BG_Color_Opt_SelectColor(int rowIndex)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+            ElementSwitchBG_Color switchBG_Color = Watch_Face.SwitchBG_Color;
+            if (switchBG_Color == null) switchBG_Color = new ElementSwitchBG_Color();
+
+            switchBG_Color.select_index = rowIndex;
+
+            JSON_Modified = true;
+            PreviewImage();
+            //FormText();
+        }
+
+        private void uCtrl_Switch_BG_Color_Opt_AddColor(List<Color> BG_colors, List<String> Toast_list, int rowIndex)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+            ElementSwitchBG_Color switchBG_Color = Watch_Face.SwitchBG_Color;
+            if (switchBG_Color == null) switchBG_Color = new ElementSwitchBG_Color();
+
+            List<string> listColors = BG_colors.Select(ColorToString).ToList();
+            switchBG_Color.color_list = listColors;
+            Toast_list[rowIndex] = Properties.FormStrings.ToastBG;
+            switchBG_Color.toast_list = Toast_list;
+            switchBG_Color.select_index = rowIndex;
+            uCtrl_Switch_BG_Color_Opt.AddBackgroundColors(BG_colors, Toast_list, rowIndex);
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_Switch_BG_Color_Opt_DelColor(List<Color> BG_colors, List<String> Toast_list, int rowIndex)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+            ElementSwitchBG_Color switchBG_Color = Watch_Face.SwitchBG_Color;
+            if (switchBG_Color == null) switchBG_Color = new ElementSwitchBG_Color();
+
+            List<string> listColors = BG_colors.Select(ColorToString).ToList();
+            switchBG_Color.color_list = listColors;
+            switchBG_Color.toast_list = Toast_list;
+            switchBG_Color.select_index = rowIndex;
+            uCtrl_Switch_BG_Color_Opt.AddBackgroundColors(BG_colors, Toast_list, rowIndex);
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_Switch_BG_Color_Opt_СhangeColor(List<Color> BG_colors, List<String> Toast_list, int rowIndex)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+            ElementSwitchBG_Color switchBG_Color = Watch_Face.SwitchBG_Color;
+            if (switchBG_Color == null) switchBG_Color = new ElementSwitchBG_Color();
+
+            List<string> listColors = BG_colors.Select(ColorToString).ToList();
+            switchBG_Color.color_list = listColors;
+            switchBG_Color.toast_list = Toast_list;
+            switchBG_Color.select_index = rowIndex;
+            uCtrl_Switch_BG_Color_Opt.AddBackgroundColors(BG_colors, Toast_list, rowIndex);
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_Switch_BG_Color_Opt_EditToast(string ToastText, int rowIndex)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+            ElementSwitchBG_Color switchBG_Color = Watch_Face.SwitchBG_Color;
+            if (switchBG_Color == null) switchBG_Color = new ElementSwitchBG_Color();
+
+            if (rowIndex < switchBG_Color.toast_list.Count) switchBG_Color.toast_list[rowIndex] = ToastText;
+            List<Color> listColors = switchBG_Color.color_list.Select(StringToColor).ToList();
+            uCtrl_Switch_BG_Color_Opt.AddBackgroundColors(listColors, switchBG_Color.toast_list, rowIndex);
+
+            JSON_Modified = true;
+            //PreviewImage();
+            FormText();
+        }
+        //////
 
         private Color StringToColor(string color)
         {

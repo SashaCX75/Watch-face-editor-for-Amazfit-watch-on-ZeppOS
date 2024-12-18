@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace ControlLibrary
 {
-    public partial class UCtrl_Switch_Background_Elm : UserControl
+    public partial class UCtrl_Switch_BG_Color_Elm : UserControl
     {
         private bool setValue; // режим задания параметров
         bool highlight_element = false;
         bool visibilityElement = true; // элемент оторажается на предпросмотре
         bool enable_element = true;
 
-        public UCtrl_Switch_Background_Elm()
+        public UCtrl_Switch_BG_Color_Elm()
         {
             InitializeComponent();
             setValue = false;

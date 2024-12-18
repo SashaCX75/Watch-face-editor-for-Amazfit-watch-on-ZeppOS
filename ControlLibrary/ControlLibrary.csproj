@@ -545,6 +545,18 @@
     <Compile Include="UCtrl_Switch_Background_Opt.Designer.cs">
       <DependentUpon>UCtrl_Switch_Background_Opt.cs</DependentUpon>
     </Compile>
+    <Compile Include="Elements\UCtrl_Switch_BG_Color_Elm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Elements\UCtrl_Switch_BG_Color_Elm.Designer.cs">
+      <DependentUpon>UCtrl_Switch_BG_Color_Elm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCtrl_Switch_BG_Color_Opt.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCtrl_Switch_BG_Color_Opt.Designer.cs">
+      <DependentUpon>UCtrl_Switch_BG_Color_Opt.cs</DependentUpon>
+    </Compile>
     <Compile Include="UCtrl_TemperatureGraph_Opt.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1495,6 +1507,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_Switch_Background_Elm.uk.resx">
       <DependentUpon>UCtrl_Switch_Background_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Switch_BG_Color_Elm.en.resx">
+      <DependentUpon>UCtrl_Switch_BG_Color_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Switch_BG_Color_Elm.uk.resx">
+      <DependentUpon>UCtrl_Switch_BG_Color_Elm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_TopImage_Elm.cs.resx">
       <DependentUpon>UCtrl_TopImage_Elm.cs</DependentUpon>
@@ -2454,6 +2472,18 @@
     <EmbeddedResource Include="UCtrl_Switch_Background_Opt.uk.resx">
       <DependentUpon>UCtrl_Switch_Background_Opt.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Switch_BG_Color_Elm.resx">
+      <DependentUpon>UCtrl_Switch_BG_Color_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_Switch_BG_Color_Opt.en.resx">
+      <DependentUpon>UCtrl_Switch_BG_Color_Opt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_Switch_BG_Color_Opt.resx">
+      <DependentUpon>UCtrl_Switch_BG_Color_Opt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_Switch_BG_Color_Opt.uk.resx">
+      <DependentUpon>UCtrl_Switch_BG_Color_Opt.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UCtrl_TemperatureGraph_Opt.cs.resx">
       <DependentUpon>UCtrl_TemperatureGraph_Opt.cs</DependentUpon>
     </EmbeddedResource>
@@ -2936,6 +2966,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\wallpaper.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\palette.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

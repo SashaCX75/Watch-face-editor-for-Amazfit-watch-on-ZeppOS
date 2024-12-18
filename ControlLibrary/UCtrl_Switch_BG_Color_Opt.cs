@@ -12,14 +12,14 @@ using System.Windows.Forms;
 
 namespace ControlLibrary
 {
-    public partial class UCtrl_Switch_Background_Opt : UserControl
+    public partial class UCtrl_Switch_BG_Color_Opt : UserControl
     {
         private bool setValue; // режим задания параметров
         private List<string> ListImagesFullName = new List<string>(); // перечень путей к файлам с картинками
-        private List<string> ListBackgroundImages = new List<string>(); // перечень фоновых изображений
+        private List<Color> ListBackgroundColors = new List<Color>(); // перечень цветов
         private List<string> ListToast = new List<string>(); // перечень уведомлений
 
-        public UCtrl_Switch_Background_Opt()
+        public UCtrl_Switch_BG_Color_Opt()
         {
             InitializeComponent();
             setValue = false;
@@ -70,24 +70,24 @@ namespace ControlLibrary
         public delegate void ValueChangedHandler(object sender, EventArgs eventArgs);
 
         [Browsable(true)]
-        [Description("Добавление изображения")]
-        public event AddImageHandler AddImage;
-        public delegate void AddImageHandler(List<string> BG_images, List<string> Toast, int rowIndex);
+        [Description("Добавление цвета")]
+        public event AddColorHandler AddColor;
+        public delegate void AddColorHandler(List<Color> BG_Colors, List<string> Toast, int rowIndex);
 
         [Browsable(true)]
-        [Description("Удаление изображения")]
-        public event DelImageHandler DelImage;
-        public delegate void DelImageHandler(List<string> BG_images, List<string> Toast, int rowIndex);
+        [Description("Удаление цвета")]
+        public event DelColorHandler DelColor;
+        public delegate void DelColorHandler(List<Color> BG_Colors, List<string> Toast, int rowIndex);
 
         [Browsable(true)]
-        [Description("Изменить изображения")]
-        public event СhangeImageHandler СhangeImage;
-        public delegate void СhangeImageHandler(List<string> BG_images, List<string> Toast, int rowIndex);
+        [Description("Изменить цвет")]
+        public event СhangeColorHandler СhangeColor;
+        public delegate void СhangeColorHandler(List<Color> BG_Colors, List<string> Toast, int rowIndex);
 
         [Browsable(true)]
-        [Description("Выбрали другое изображение")]
-        public event SelectImageHandler SelectImage;
-        public delegate void SelectImageHandler(int rowIndex);
+        [Description("Выбрали другой цвет")]
+        public event SelectColorHandler SelectColor;
+        public delegate void SelectColorHandler(int rowIndex);
 
         [Browsable(true)]
         [Description("Редактирование уведомления")]
@@ -258,11 +258,11 @@ namespace ControlLibrary
             if (comboBox_normal_image.Text.Length > 0 && comboBox_press_image.Text.Length > 0) groupBox_color.Enabled = false;
             else groupBox_color.Enabled = true;
 
-            ComboBox comboBox = sender as ComboBox;
-            if (comboBox.Name == "comboBox_bg_image")
-            {
-                button_add.Enabled = comboBox.SelectedIndex >= 0;
-            }
+            //ComboBox comboBox = sender as ComboBox;
+            //if (comboBox.Name == "comboBox_bg_image")
+            //{
+            //    button_add.Enabled = comboBox.SelectedIndex >= 0;
+            //}
         }
 
         private void comboBox_color_Click(object sender, EventArgs e)
@@ -317,11 +317,9 @@ namespace ControlLibrary
         {
             comboBox_normal_image.Items.Clear();
             comboBox_press_image.Items.Clear();
-            comboBox_bg_image.Items.Clear();
 
             comboBox_normal_image.Items.AddRange(ListImages.ToArray());
             comboBox_press_image.Items.AddRange(ListImages.ToArray());
-            comboBox_bg_image.Items.AddRange(ListImages.ToArray());
             ListImagesFullName = _ListImagesFullName;
 
             int count = ListImages.Count;
@@ -329,45 +327,47 @@ namespace ControlLibrary
             {
                 comboBox_normal_image.DropDownHeight = 1;
                 comboBox_press_image.DropDownHeight = 1;
-                comboBox_bg_image.DropDownHeight = 1;
             }
             else if (count < 5)
             {
                 comboBox_normal_image.DropDownHeight = 35 * count + 1;
                 comboBox_press_image.DropDownHeight = 35 * count + 1;
-                comboBox_bg_image.DropDownHeight = 35 * count + 1;
             }
             else
             {
                 comboBox_normal_image.DropDownHeight = 106;
                 comboBox_press_image.DropDownHeight = 106;
-                comboBox_bg_image.DropDownHeight = 106;
             }
         }
 
-        /// <summary>Добавляет перечень фоновых изображений</summary>
-        public void AddBackgroundImages(List<string> listImages, List<string> listToast, int select_index)
+        /// <summary>Добавляет перечень фоновых цветов</summary>
+        public void AddBackgroundColors(List<Color> listColors, List<string> listToast, int select_index)
         {
             setValue = true;
-            ListBackgroundImages = listImages;
+            ListBackgroundColors = listColors;
             ListToast = listToast;
-            dataGridView_images.Rows.Clear();
-            if (listImages != null)
+            dataGridView_colors.Rows.Clear();
+            if (listColors != null)
             {
-                for (int i = 0; i < listImages.Count; i++)
+                for (int i = 0; i < listColors.Count; i++)
                 {
                     DataGridViewRow RowNew = new DataGridViewRow();
                     RowNew.Cells.Add(new DataGridViewTextBoxCell() { Value = (i + 1).ToString() });
-                    RowNew.Cells.Add(new DataGridViewTextBoxCell() { Value = listImages[i] });
+                    DataGridViewTextBoxCell colorCell = new DataGridViewTextBoxCell();
+                    colorCell.Style.BackColor = listColors[i];
+                    colorCell.Style.SelectionBackColor = listColors[i];
+                    RowNew.Cells.Add(colorCell);
+                    //RowNew.Cells.Add(new DataGridViewTextBoxCell() { Style.BackColor = listColors[i] });
                     if (listToast != null && i < listToast.Count) RowNew.Cells.Add(new DataGridViewTextBoxCell() { Value = listToast[i] });
-                    dataGridView_images.Rows.Add(RowNew);
+                    dataGridView_colors.Rows.Add(RowNew);
                 }
-                if (select_index < dataGridView_images.Rows.Count) { 
-                    dataGridView_images.Rows[select_index].Selected = true; 
+                if (select_index < dataGridView_colors.Rows.Count)
+                {
+                    dataGridView_colors.Rows[select_index].Selected = true;
                 }
                 else select_index = 0;
                 button_del.Enabled = select_index > 0;
-                if (listImages.Count > 25) button_add.Enabled = false;
+                if (listColors.Count > 25) button_add.Enabled = false;
             }
             setValue = false;
         }
@@ -388,7 +388,7 @@ namespace ControlLibrary
             numericUpDown_textSize.Value = 25;
 
             //dataGridView_images.Rows.Clear();
-            button_add.Enabled = false;
+            button_add.Enabled = true;
             button_del.Enabled = false;
 
             checkBox_use_crown.Checked = false;
@@ -440,14 +440,6 @@ namespace ControlLibrary
             {
                 contextMenuStrip_Y.Items[2].Enabled = false;
             }
-        }
-
-        private void contextMenuStrip_ChangeBackground_Opening(object sender, CancelEventArgs e)
-        {
-            if (comboBox_bg_image.SelectedIndex < 0 || comboBox_bg_image.Text.Length == 0)
-                contextMenuStrip_ChangeBackground.Items[0].Enabled = false;
-            else
-                contextMenuStrip_ChangeBackground.Items[0].Enabled = true;
         }
 
         private void вставитьКоординатуХToolStripMenuItem_Click(object sender, EventArgs e)
@@ -681,27 +673,25 @@ namespace ControlLibrary
 
         private void button_add_Click(object sender, EventArgs e)
         {
-            if (comboBox_bg_image.SelectedIndex < 0 || comboBox_bg_image.Text.Length == 0) return;
-            
             int rowIndex = 0;
             try
             {
-                int selectedRowCount = dataGridView_images.SelectedCells.Count;
+                int selectedRowCount = dataGridView_colors.SelectedCells.Count;
                 if (selectedRowCount > 0)
                 {
-                    DataGridViewSelectedCellCollection selectedCells = dataGridView_images.SelectedCells;
+                    DataGridViewSelectedCellCollection selectedCells = dataGridView_colors.SelectedCells;
                     rowIndex = selectedCells[0].RowIndex;
                 }
                 rowIndex++;
-                if (rowIndex < 1 || rowIndex == ListBackgroundImages.Count)
+                if (rowIndex < 1 || rowIndex == ListBackgroundColors.Count)
                 {
-                    ListBackgroundImages.Add(comboBox_bg_image.Text);
+                    ListBackgroundColors.Add(comboBox_bg_color.BackColor);
                     ListToast.Add("");
-                    rowIndex = ListBackgroundImages.Count - 1;
+                    rowIndex = ListBackgroundColors.Count - 1;
                 }
                 else
                 {
-                    ListBackgroundImages.Insert(rowIndex, comboBox_bg_image.Text);
+                    ListBackgroundColors.Insert(rowIndex, comboBox_bg_color.BackColor);
                     ListToast.Insert(rowIndex, "");
                 }
             }
@@ -709,9 +699,9 @@ namespace ControlLibrary
             {
             }
 
-            if (AddImage != null && !setValue)
+            if (AddColor != null && !setValue)
             {
-                AddImage(ListBackgroundImages, ListToast, rowIndex);
+                AddColor(ListBackgroundColors, ListToast, rowIndex);
             }
         }
 
@@ -720,19 +710,19 @@ namespace ControlLibrary
             int rowIndex = -1;
             try
             {
-                int selectedRowCount = dataGridView_images.SelectedCells.Count;
+                int selectedRowCount = dataGridView_colors.SelectedCells.Count;
                 if (selectedRowCount > 0)
                 {
-                    DataGridViewSelectedCellCollection selectedCells = dataGridView_images.SelectedCells;
+                    DataGridViewSelectedCellCollection selectedCells = dataGridView_colors.SelectedCells;
                     rowIndex = selectedCells[0].RowIndex;
 
-                    if (DelImage != null && !setValue)
+                    if (DelColor != null && !setValue)
                     {
-                        if (rowIndex >= ListBackgroundImages.Count) rowIndex = ListBackgroundImages.Count - 1;
-                        ListBackgroundImages.RemoveAt(rowIndex);
+                        if (rowIndex >= ListBackgroundColors.Count) rowIndex = ListBackgroundColors.Count - 1;
+                        ListBackgroundColors.RemoveAt(rowIndex);
                         ListToast.RemoveAt(rowIndex);
-                        if (rowIndex >= ListBackgroundImages.Count) rowIndex = ListBackgroundImages.Count - 1;
-                        DelImage(ListBackgroundImages, ListToast, rowIndex);
+                        if (rowIndex >= ListBackgroundColors.Count) rowIndex = ListBackgroundColors.Count - 1;
+                        DelColor(ListBackgroundColors, ListToast, rowIndex);
                     }
                 }
             }
@@ -741,42 +731,18 @@ namespace ControlLibrary
             }
         }
 
-        private void изменитьФонToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (comboBox_bg_image.SelectedIndex < 0 || comboBox_bg_image.Text.Length == 0) return;
-            int rowIndex = -1;
-            try
-            {
-                int selectedRowCount = dataGridView_images.SelectedCells.Count;
-                if (selectedRowCount > 0)
-                {
-                    DataGridViewSelectedCellCollection selectedCells = dataGridView_images.SelectedCells;
-                    rowIndex = selectedCells[0].RowIndex;
-
-                    if (СhangeImage != null && !setValue && rowIndex < ListBackgroundImages.Count)
-                    {
-                        ListBackgroundImages[rowIndex] = comboBox_bg_image.Text;
-                        СhangeImage(ListBackgroundImages, ListToast, rowIndex);
-                    }
-                }
-            }
-            catch (Exception)
-            {
-            }
-        }
-
-        private void dataGridView_images_RowEnter(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView_colors_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
             int rowIndex = e.RowIndex;
             button_del.Enabled = rowIndex > 0;
 
-            if (SelectImage != null && !setValue)
+            if (SelectColor != null && !setValue)
             {
-                SelectImage(rowIndex);
+                SelectColor(rowIndex);
             }
         }
 
-        private void dataGridView_images_KeyDown(object sender, KeyEventArgs e)
+        private void dataGridView_colors_KeyDown(object sender, KeyEventArgs e)
         {
             if ((e.KeyCode == Keys.Delete) || (e.KeyCode == Keys.Back))
             {
@@ -794,14 +760,14 @@ namespace ControlLibrary
 
                             if (rowIndex >= 0)
                             {
-                                if (rowIndex >= ListBackgroundImages.Count) rowIndex = ListBackgroundImages.Count - 1;
-                                ListBackgroundImages.RemoveAt(rowIndex);
+                                if (rowIndex >= ListBackgroundColors.Count) rowIndex = ListBackgroundColors.Count - 1;
+                                ListBackgroundColors.RemoveAt(rowIndex);
                                 ListToast.RemoveAt(rowIndex);
-                                if (rowIndex >= ListBackgroundImages.Count) rowIndex = ListBackgroundImages.Count - 1;
-                                if (DelImage != null && !setValue)
+                                if (rowIndex >= ListBackgroundColors.Count) rowIndex = ListBackgroundColors.Count - 1;
+                                if (DelColor != null && !setValue)
                                 {
-                                    DelImage(ListBackgroundImages, ListToast, rowIndex);
-                                } 
+                                    DelColor(ListBackgroundColors, ListToast, rowIndex);
+                                }
                             }
                         }
                     }
@@ -812,7 +778,7 @@ namespace ControlLibrary
             }
         }
 
-        private void dataGridView_images_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void dataGridView_colors_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             DataGridView dataGridView = sender as DataGridView;
             int rowIndex = -1;
@@ -850,7 +816,7 @@ namespace ControlLibrary
             }
         }
 
-        private void dataGridView_images_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        private void dataGridView_colors_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
@@ -859,6 +825,29 @@ namespace ControlLibrary
                 {
                     dataGridView.CurrentCell = dataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
                 }
+            }
+        }
+
+        private void изменитьФонToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int rowIndex = -1;
+            try
+            {
+                int selectedRowCount = dataGridView_colors.SelectedCells.Count;
+                if (selectedRowCount > 0)
+                {
+                    DataGridViewSelectedCellCollection selectedCells = dataGridView_colors.SelectedCells;
+                    rowIndex = selectedCells[0].RowIndex;
+
+                    if (СhangeColor != null && !setValue && rowIndex < ListBackgroundColors.Count)
+                    {
+                        ListBackgroundColors[rowIndex] = comboBox_bg_color.BackColor;
+                        СhangeColor(ListBackgroundColors, ListToast, rowIndex);
+                    }
+                }
+            }
+            catch (Exception)
+            {
             }
         }
     }

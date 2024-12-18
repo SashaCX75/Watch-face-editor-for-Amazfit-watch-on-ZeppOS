@@ -222,6 +222,9 @@
   <data name="Message_AutoSave_Caption" xml:space="preserve">
     <value>Відновлення</value>
   </data>
+  <data name="Message_BG_Not_Color" xml:space="preserve">
+    <value>Потрібно встановити колір як основний фон.</value>
+  </data>
   <data name="Message_BG_Not_Image" xml:space="preserve">
     <value>Потрібно встановити зображення як основний фон.</value>
   </data>

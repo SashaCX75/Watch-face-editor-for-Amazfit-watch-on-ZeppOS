@@ -583,6 +583,16 @@ namespace ControlLibrary.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap palette {
+            get {
+                object obj = ResourceManager.GetObject("palette", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap paste_prop {
             get {
                 object obj = ResourceManager.GetObject("paste prop", resourceCulture);

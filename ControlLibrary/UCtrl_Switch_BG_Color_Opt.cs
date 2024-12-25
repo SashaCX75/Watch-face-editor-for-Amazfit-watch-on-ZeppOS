@@ -683,7 +683,7 @@ namespace ControlLibrary
                     rowIndex = selectedCells[0].RowIndex;
                 }
                 rowIndex++;
-                if (rowIndex < 1 || rowIndex == ListBackgroundColors.Count)
+                if (rowIndex < 1 || rowIndex >= ListBackgroundColors.Count)
                 {
                     ListBackgroundColors.Add(comboBox_bg_color.BackColor);
                     ListToast.Add("");

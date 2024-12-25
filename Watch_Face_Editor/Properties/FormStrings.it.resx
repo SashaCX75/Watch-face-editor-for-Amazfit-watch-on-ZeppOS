@@ -220,6 +220,15 @@ L'immagine non deve essere monocromatica e deve essere in formato 32bit</value>
   <data name="Message_ARGB_Line2" xml:space="preserve">
     <value>Sei sicuro di voler convertire le tue immagini nel formato ARGB?</value>
   </data>
+  <data name="Message_AutoSave_Caption" xml:space="preserve">
+    <value>Recupero</value>
+  </data>
+  <data name="Message_BG_Not_Color" xml:space="preserve">
+    <value>È necessario impostare il colore come sfondo principale</value>
+  </data>
+  <data name="Message_BG_Not_Image" xml:space="preserve">
+    <value>È necessario impostare una immagine come sfondo principale</value>
+  </data>
   <data name="Message_ConvertingCompleted_Text" xml:space="preserve">
     <value>Una nuova watch face è stata creata</value>
   </data>
@@ -304,6 +313,9 @@ Il numero di immagini per la frequenza cardiaca dovrebbe essere 6.</value>
   </data>
   <data name="Message_LoadPreviewStates_Text" xml:space="preserve">
     <value>Caricare un file PreviewStates.json esistente con una serie di valori di anteprima?</value>
+  </data>
+  <data name="Message_Load_AutoSave" xml:space="preserve">
+    <value>Trovato un file con salvataggio automatico. Vuoi scaricarlo?</value>
   </data>
   <data name="Message_ModelConfig_Error" xml:space="preserve">
     <value>Modello di configurazione non trovato:</value>
@@ -400,5 +412,8 @@ Il numero di immagini per la frequenza cardiaca dovrebbe essere 6.</value>
   </data>
   <data name="Tip_Pointer" xml:space="preserve">
     <value>Puntatore</value>
+  </data>
+  <data name="ToastBG" xml:space="preserve">
+    <value>Sfondo %s</value>
   </data>
 </root>

@@ -665,7 +665,22 @@
     <EmbeddedResource Include="AddButtonFunction.zh.resx">
       <DependentUpon>AddButtonFunction.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EditToast.cs.resx">
+      <DependentUpon>EditToast.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditToast.de.resx">
+      <DependentUpon>EditToast.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditToast.en.resx">
+      <DependentUpon>EditToast.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditToast.es.resx">
+      <DependentUpon>EditToast.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditToast.fr.resx">
+      <DependentUpon>EditToast.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditToast.it.resx">
       <DependentUpon>EditToast.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditToast.resx">
@@ -1499,7 +1514,22 @@
     <EmbeddedResource Include="Elements\UCtrl_Sunrise_Elm.zh.resx">
       <DependentUpon>UCtrl_Sunrise_Elm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Switch_Background_Elm.cs.resx">
+      <DependentUpon>UCtrl_Switch_Background_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Switch_Background_Elm.de.resx">
+      <DependentUpon>UCtrl_Switch_Background_Elm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_Switch_Background_Elm.en.resx">
+      <DependentUpon>UCtrl_Switch_Background_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Switch_Background_Elm.es.resx">
+      <DependentUpon>UCtrl_Switch_Background_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Switch_Background_Elm.fr.resx">
+      <DependentUpon>UCtrl_Switch_Background_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Switch_Background_Elm.it.resx">
       <DependentUpon>UCtrl_Switch_Background_Elm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_Switch_Background_Elm.resx">
@@ -1508,7 +1538,22 @@
     <EmbeddedResource Include="Elements\UCtrl_Switch_Background_Elm.uk.resx">
       <DependentUpon>UCtrl_Switch_Background_Elm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Switch_BG_Color_Elm.cs.resx">
+      <DependentUpon>UCtrl_Switch_BG_Color_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Switch_BG_Color_Elm.de.resx">
+      <DependentUpon>UCtrl_Switch_BG_Color_Elm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_Switch_BG_Color_Elm.en.resx">
+      <DependentUpon>UCtrl_Switch_BG_Color_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Switch_BG_Color_Elm.es.resx">
+      <DependentUpon>UCtrl_Switch_BG_Color_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Switch_BG_Color_Elm.fr.resx">
+      <DependentUpon>UCtrl_Switch_BG_Color_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Switch_BG_Color_Elm.it.resx">
       <DependentUpon>UCtrl_Switch_BG_Color_Elm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_Switch_BG_Color_Elm.uk.resx">
@@ -2463,7 +2508,22 @@
     <EmbeddedResource Include="UCtrl_SmoothSeconds_Opt.zh.resx">
       <DependentUpon>UCtrl_SmoothSeconds_Opt.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_Switch_Background_Opt.cs.resx">
+      <DependentUpon>UCtrl_Switch_Background_Opt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_Switch_Background_Opt.de.resx">
+      <DependentUpon>UCtrl_Switch_Background_Opt.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UCtrl_Switch_Background_Opt.en.resx">
+      <DependentUpon>UCtrl_Switch_Background_Opt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_Switch_Background_Opt.es.resx">
+      <DependentUpon>UCtrl_Switch_Background_Opt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_Switch_Background_Opt.fr.resx">
+      <DependentUpon>UCtrl_Switch_Background_Opt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_Switch_Background_Opt.it.resx">
       <DependentUpon>UCtrl_Switch_Background_Opt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UCtrl_Switch_Background_Opt.resx">
@@ -2475,7 +2535,22 @@
     <EmbeddedResource Include="Elements\UCtrl_Switch_BG_Color_Elm.resx">
       <DependentUpon>UCtrl_Switch_BG_Color_Elm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_Switch_BG_Color_Opt.cs.resx">
+      <DependentUpon>UCtrl_Switch_BG_Color_Opt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_Switch_BG_Color_Opt.de.resx">
+      <DependentUpon>UCtrl_Switch_BG_Color_Opt.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UCtrl_Switch_BG_Color_Opt.en.resx">
+      <DependentUpon>UCtrl_Switch_BG_Color_Opt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_Switch_BG_Color_Opt.es.resx">
+      <DependentUpon>UCtrl_Switch_BG_Color_Opt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_Switch_BG_Color_Opt.fr.resx">
+      <DependentUpon>UCtrl_Switch_BG_Color_Opt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_Switch_BG_Color_Opt.it.resx">
       <DependentUpon>UCtrl_Switch_BG_Color_Opt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UCtrl_Switch_BG_Color_Opt.resx">

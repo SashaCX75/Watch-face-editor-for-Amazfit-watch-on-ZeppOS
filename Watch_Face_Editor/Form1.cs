@@ -23077,7 +23077,6 @@ namespace Watch_Face_Editor
             }
         }
 
-        
     }
 }
 

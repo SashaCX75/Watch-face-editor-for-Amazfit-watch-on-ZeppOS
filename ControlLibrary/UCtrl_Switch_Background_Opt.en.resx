@@ -126,9 +126,6 @@
   <data name="label6.Text" xml:space="preserve">
     <value>Text size</value>
   </data>
-  <data name="groupBox_color.Text" xml:space="preserve">
-    <value>Colour</value>
-  </data>
   <data name="label5.Text" xml:space="preserve">
     <value>Pressed state</value>
   </data>
@@ -138,14 +135,17 @@
   <data name="label3.Text" xml:space="preserve">
     <value>Normal state</value>
   </data>
-  <data name="groupBox_image.Text" xml:space="preserve">
-    <value>Image</value>
+  <data name="groupBox_color.Text" xml:space="preserve">
+    <value>Colour</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>Pressed state</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Normal state</value>
+  </data>
+  <data name="groupBox_image.Text" xml:space="preserve">
+    <value>Image</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label_bg_img.Size" type="System.Drawing.Size, System.Drawing">
@@ -190,9 +190,6 @@
   <data name="label02.Text" xml:space="preserve">
     <value>Coordinates</value>
   </data>
-  <data name="contextMenuStrip_Y.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 82</value>
-  </data>
   <data name="вставитьКоординатуYToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAfxJREFUOE9j
@@ -208,7 +205,7 @@
 </value>
   </data>
   <data name="вставитьКоординатуYToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 26</value>
+    <value>176, 26</value>
   </data>
   <data name="вставитьКоординатуYToolStripMenuItem.Text" xml:space="preserve">
     <value>Paste coordinate Y</value>
@@ -228,6 +225,9 @@
         aTd35+adAzmrI4ijA3Amk+lat7fXT4Snqp0uA/VkLJcUmL06e4e4fy2j0XjJYn28trhoXjWbLasWi/UT
         gfobN285p6dNt5F2ps/+r+K4P4wyYm9nlNBiAAAAAElFTkSuQmCC
 </value>
+  </data>
+  <data name="копироватьToolStripMenuItemY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 26</value>
   </data>
   <data name="копироватьToolStripMenuItemY.Text" xml:space="preserve">
     <value>Copy</value>
@@ -249,10 +249,13 @@
         zqO/TnAxx2CuMF/jKtTrXEWk1Wk1ZkEQhL+gXkz+KXzH3gAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="вставитьToolStripMenuItemY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 26</value>
+  </data>
   <data name="вставитьToolStripMenuItemY.Text" xml:space="preserve">
     <value>Paste</value>
   </data>
-  <data name="contextMenuStrip_X.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="contextMenuStrip_Y.Size" type="System.Drawing.Size, System.Drawing">
     <value>177, 82</value>
   </data>
   <data name="вставитьКоординатуХToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -270,7 +273,7 @@
 </value>
   </data>
   <data name="вставитьКоординатуХToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 26</value>
+    <value>176, 26</value>
   </data>
   <data name="вставитьКоординатуХToolStripMenuItem.Text" xml:space="preserve">
     <value>Paste coordinate X</value>
@@ -290,6 +293,9 @@
         aTd35+adAzmrI4ijA3Amk+lat7fXT4Snqp0uA/VkLJcUmL06e4e4fy2j0XjJYn28trhoXjWbLasWi/UT
         gfobN285p6dNt5F2ps/+r+K4P4wyYm9nlNBiAAAAAElFTkSuQmCC
 </value>
+  </data>
+  <data name="копироватьToolStripMenuItemX.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 26</value>
   </data>
   <data name="копироватьToolStripMenuItemX.Text" xml:space="preserve">
     <value>Copy</value>
@@ -311,8 +317,14 @@
         zqO/TnAxx2CuMF/jKtTrXEWk1Wk1ZkEQhL+gXkz+KXzH3gAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="вставитьToolStripMenuItemX.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 26</value>
+  </data>
   <data name="вставитьToolStripMenuItemX.Text" xml:space="preserve">
     <value>Paste</value>
+  </data>
+  <data name="contextMenuStrip_X.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 82</value>
   </data>
   <data name="checkBox_use_in_AOD.Size" type="System.Drawing.Size, System.Drawing">
     <value>86, 17</value>

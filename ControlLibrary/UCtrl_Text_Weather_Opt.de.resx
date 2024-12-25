@@ -117,12 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="checkBox_addZero.Text" xml:space="preserve">
-    <value>Führende Nullen hinzufügen</value>
-  </data>
-  <data name="checkBox_follow.Text" xml:space="preserve">
-    <value>Folge dem Vorgänger</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label03.Size" type="System.Drawing.Size, System.Drawing">
     <value>46, 13</value>
@@ -136,8 +130,8 @@
   <data name="label07.Text" xml:space="preserve">
     <value>Symbol "-"</value>
   </data>
-  <data name="label10.Text" xml:space="preserve">
-    <value>Einheit (°F)</value>
+  <data name="label_unit_f.Text" xml:space="preserve">
+    <value>Einheit (°F )</value>
   </data>
   <data name="comboBox_alignment.Items" xml:space="preserve">
     <value>Links</value>
@@ -148,7 +142,7 @@
   <data name="comboBox_alignment.Items2" xml:space="preserve">
     <value>Rechts</value>
   </data>
-  <data name="label08.Text" xml:space="preserve">
+  <data name="label_unit_c.Text" xml:space="preserve">
     <value>Einheit (°C )</value>
   </data>
   <data name="label09.Size" type="System.Drawing.Size, System.Drawing">
@@ -317,20 +311,23 @@
   <data name="label_angle.Text" xml:space="preserve">
     <value>Winkel</value>
   </data>
-  <data name="вставитьСвойстваToolStripMenuItem.Text" xml:space="preserve">
-    <value>Eigenschaften einfügen</value>
+  <data name="копироватьСвойстваToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>198, 22</value>
   </data>
   <data name="копироватьСвойстваToolStripMenuItem.Text" xml:space="preserve">
     <value>Eigenschaften kopieren</value>
   </data>
+  <data name="вставитьСвойстваToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>198, 22</value>
+  </data>
+  <data name="вставитьСвойстваToolStripMenuItem.Text" xml:space="preserve">
+    <value>Eigenschaften einfügen</value>
+  </data>
+  <data name="context_WidgetProperty.Size" type="System.Drawing.Size, System.Drawing">
+    <value>199, 48</value>
+  </data>
   <data name="label_separator.Text" xml:space="preserve">
     <value>Trennzeichen</value>
-  </data>
-  <data name="label_unit_c.Text" xml:space="preserve">
-    <value>Einheit (°C )</value>
-  </data>
-  <data name="label_unit_f.Text" xml:space="preserve">
-    <value>Einheit (°F )</value>
   </data>
   <data name="label_alpha.Text" xml:space="preserve">
     <value>Transparenz</value>

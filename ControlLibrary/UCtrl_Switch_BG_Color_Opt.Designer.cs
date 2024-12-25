@@ -64,6 +64,9 @@
             this.label06 = new System.Windows.Forms.Label();
             this.label07 = new System.Windows.Forms.Label();
             this.dataGridView_colors = new System.Windows.Forms.DataGridView();
+            this.Index = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Background = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Toast = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip_ChangeBackground = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.изменитьФонToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.numericUpDown_buttonX = new System.Windows.Forms.NumericUpDown();
@@ -79,9 +82,6 @@
             this.вставитьКоординатуYToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.копироватьToolStripMenuItemY = new System.Windows.Forms.ToolStripMenuItem();
             this.вставитьToolStripMenuItemY = new System.Windows.Forms.ToolStripMenuItem();
-            this.Index = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Background = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Toast = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_textSize)).BeginInit();
             this.groupBox_color.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_radius)).BeginInit();
@@ -404,6 +404,34 @@
             this.dataGridView_colors.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView_colors_KeyDown);
             this.dataGridView_colors.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView_colors_MouseDoubleClick);
             // 
+            // Index
+            // 
+            this.Index.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Index.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Index.FillWeight = 25F;
+            resources.ApplyResources(this.Index, "Index");
+            this.Index.Name = "Index";
+            this.Index.ReadOnly = true;
+            this.Index.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Background
+            // 
+            this.Background.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            resources.ApplyResources(this.Background, "Background");
+            this.Background.Name = "Background";
+            this.Background.ReadOnly = true;
+            this.Background.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Toast
+            // 
+            this.Toast.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Toast.FillWeight = 120F;
+            resources.ApplyResources(this.Toast, "Toast");
+            this.Toast.Name = "Toast";
+            this.Toast.ReadOnly = true;
+            this.Toast.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
             // contextMenuStrip_ChangeBackground
             // 
             resources.ApplyResources(this.contextMenuStrip_ChangeBackground, "contextMenuStrip_ChangeBackground");
@@ -526,34 +554,6 @@
             resources.ApplyResources(this.вставитьToolStripMenuItemY, "вставитьToolStripMenuItemY");
             this.вставитьToolStripMenuItemY.Name = "вставитьToolStripMenuItemY";
             this.вставитьToolStripMenuItemY.Click += new System.EventHandler(this.вставитьToolStripMenuItem_Click);
-            // 
-            // Index
-            // 
-            this.Index.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Index.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Index.FillWeight = 25F;
-            resources.ApplyResources(this.Index, "Index");
-            this.Index.Name = "Index";
-            this.Index.ReadOnly = true;
-            this.Index.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Background
-            // 
-            this.Background.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            resources.ApplyResources(this.Background, "Background");
-            this.Background.Name = "Background";
-            this.Background.ReadOnly = true;
-            this.Background.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Toast
-            // 
-            this.Toast.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Toast.FillWeight = 120F;
-            resources.ApplyResources(this.Toast, "Toast");
-            this.Toast.Name = "Toast";
-            this.Toast.ReadOnly = true;
-            this.Toast.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // UCtrl_Switch_BG_Color_Opt
             // 

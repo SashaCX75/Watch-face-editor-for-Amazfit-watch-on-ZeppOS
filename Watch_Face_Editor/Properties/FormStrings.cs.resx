@@ -219,6 +219,15 @@
   <data name="Message_ARGB_Line2" xml:space="preserve">
     <value>Opravdu chcete převést obrázky do formátu ARGB?</value>
   </data>
+  <data name="Message_AutoSave_Caption" xml:space="preserve">
+    <value>Obnova</value>
+  </data>
+  <data name="Message_BG_Not_Color" xml:space="preserve">
+    <value>Musíte nastavit barvu jako hlavní pozadí.</value>
+  </data>
+  <data name="Message_BG_Not_Image" xml:space="preserve">
+    <value>Musíte nastavit obrázek jako hlavní pozadí.</value>
+  </data>
   <data name="Message_ConvertingCompleted_Text" xml:space="preserve">
     <value>Byl vytvořen nový ciferník.</value>
   </data>
@@ -302,6 +311,9 @@
   </data>
   <data name="Message_LoadPreviewStates_Text" xml:space="preserve">
     <value>Stáhnout existující soubor se sadou nastavení náhledu PreviewStates.json?</value>
+  </data>
+  <data name="Message_Load_AutoSave" xml:space="preserve">
+    <value>Nalezen soubor s automatickým ukládáním. Chcete si ji stáhnout?</value>
   </data>
   <data name="Message_ModelConfig_Error" xml:space="preserve">
     <value>Konfigurace modelu nenalezena:</value>
@@ -398,5 +410,8 @@
   </data>
   <data name="Tip_Pointer" xml:space="preserve">
     <value>Šipky</value>
+  </data>
+  <data name="ToastBG" xml:space="preserve">
+    <value>Pozadí %s</value>
   </data>
 </root>

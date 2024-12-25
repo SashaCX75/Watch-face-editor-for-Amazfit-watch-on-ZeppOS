@@ -117,21 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="tabPage_Edit.Text" xml:space="preserve">
-    <value>Upravit</value>
-  </data>
-  <data name="tabPageConverting.Text" xml:space="preserve">
-    <value>Konverze</value>
-  </data>
-  <data name="tabPage_Settings.Text" xml:space="preserve">
-    <value>Nastavení</value>
-  </data>
-  <data name="tabPage_Tips.Text" xml:space="preserve">
-    <value>Tipy pro použití</value>
-  </data>
-  <data name="tabPage_About.Text" xml:space="preserve">
-    <value>O programu</value>
-  </data>
   <data name="Number.HeaderText" xml:space="preserve">
     <value>#</value>
   </data>
@@ -145,9 +130,6 @@
     <value>Obrázek</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="contextMenuStrip_RemoveImage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>225, 48</value>
-  </data>
   <data name="удалитьИзображениеToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>224, 22</value>
   </data>
@@ -159,6 +141,9 @@
   </data>
   <data name="обновитьСписокИзображенийToolStripMenuItem.Text" xml:space="preserve">
     <value>Aktualizujte seznam obrázků</value>
+  </data>
+  <data name="contextMenuStrip_RemoveImage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>225, 48</value>
   </data>
   <data name="dataGridViewTextBoxColumn1.HeaderText" xml:space="preserve">
     <value>Nr.</value>
@@ -193,14 +178,17 @@
   <data name="button_SaveJson.Text" xml:space="preserve">
     <value>Uložit soubor json</value>
   </data>
-  <data name="tabPage_Edit_Elements.Text" xml:space="preserve">
-    <value>Editace</value>
-  </data>
-  <data name="groupBox_AddElemets.Text" xml:space="preserve">
-    <value>Přidejte položky na ciferník</value>
-  </data>
   <data name="comboBox_AddBackground.Items" xml:space="preserve">
     <value>Pozadí</value>
+  </data>
+  <data name="comboBox_AddBackground.Items1" xml:space="preserve">
+    <value>Pozadí</value>
+  </data>
+  <data name="comboBox_AddBackground.Items2" xml:space="preserve">
+    <value>Přepínatelné pozadí</value>
+  </data>
+  <data name="comboBox_AddBackground.Items3" xml:space="preserve">
+    <value>Přepínatelná barva</value>
   </data>
   <data name="comboBox_AddSystem.Items" xml:space="preserve">
     <value>Systém</value>
@@ -322,6 +310,9 @@
   <data name="comboBox_AddTime.Items4" xml:space="preserve">
     <value>Analogový čas (Pro)</value>
   </data>
+  <data name="groupBox_AddElemets.Text" xml:space="preserve">
+    <value>Přidejte položky na ciferník</value>
+  </data>
   <data name="button_CopyAOD.Text" xml:space="preserve">
     <value>Kopírování položek do AOD</value>
   </data>
@@ -334,8 +325,8 @@
   <data name="radioButton_ScreenNormal.Text" xml:space="preserve">
     <value>Úvodní obrazovka</value>
   </data>
-  <data name="tabPage_Show_Set.Text" xml:space="preserve">
-    <value>Zobrazit náhled dat</value>
+  <data name="tabPage_Edit_Elements.Text" xml:space="preserve">
+    <value>Editace</value>
   </data>
   <data name="userCtrl_Set12.ButtonText" xml:space="preserve">
     <value>Sada parametrů 12</value>
@@ -382,6 +373,12 @@
   <data name="button_JsonPreview_Write.Text" xml:space="preserve">
     <value>Uložte hodnoty</value>
   </data>
+  <data name="tabPage_Show_Set.Text" xml:space="preserve">
+    <value>Zobrazit náhled dat</value>
+  </data>
+  <data name="tabPage_Edit.Text" xml:space="preserve">
+    <value>Upravit</value>
+  </data>
   <data name="label1.Text" xml:space="preserve">
     <value>*** U modelů řady GTS z důvodu různých poměrů stran a různého zaoblení rohů není možné plné měřítko, část obrázku pod a v rozích může být oříznuta.</value>
   </data>
@@ -412,26 +409,44 @@
   <data name="button_Converting.Text" xml:space="preserve">
     <value>Konvertovat</value>
   </data>
+  <data name="comboBox_ConvertingOutput_Model.Items" xml:space="preserve">
+    <value>Vlastní velikost</value>
+  </data>
   <data name="groupBox10.Text" xml:space="preserve">
     <value>Cílový model</value>
   </data>
-  <data name="comboBox_ConvertingOutput_Model.Items" xml:space="preserve">
+  <data name="comboBox_ConvertingInput_Model.Items" xml:space="preserve">
     <value>Vlastní velikost</value>
   </data>
   <data name="groupBox9.Text" xml:space="preserve">
     <value>Výchozí model</value>
   </data>
-  <data name="comboBox_ConvertingInput_Model.Items" xml:space="preserve">
-    <value>Vlastní velikost</value>
+  <data name="tabPageConverting.Text" xml:space="preserve">
+    <value>Konverze</value>
+  </data>
+  <data name="label_AutoSave.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 13</value>
+  </data>
+  <data name="label_AutoSave.Text" xml:space="preserve">
+    <value>minut</value>
+  </data>
+  <data name="checkBox_AutoSave.Size" type="System.Drawing.Size, System.Drawing">
+    <value>162, 17</value>
+  </data>
+  <data name="checkBox_AutoSave.Text" xml:space="preserve">
+    <value>Automatické ukládání každé</value>
+  </data>
+  <data name="checkBox_Del_Confirm.Size" type="System.Drawing.Size, System.Drawing">
+    <value>223, 17</value>
+  </data>
+  <data name="checkBox_Del_Confirm.Text" xml:space="preserve">
+    <value>Při mazání widgetu si vyžádejte potvrzení</value>
   </data>
   <data name="checkBox_CreateZPK.Size" type="System.Drawing.Size, System.Drawing">
     <value>124, 17</value>
   </data>
   <data name="checkBox_CreateZPK.Text" xml:space="preserve">
     <value>Vytvořit soubor *.zpk</value>
-  </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Převádějte obrázky bez ztráty kvality</value>
   </data>
   <data name="checkBox_Use_ARGB.Size" type="System.Drawing.Size, System.Drawing">
     <value>198, 17</value>
@@ -451,8 +466,8 @@
   <data name="radioButton_ARGB_color.Text" xml:space="preserve">
     <value>Pouze s určeným počtem barev</value>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Typ zvýraznění tlačítka</value>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Převádějte obrázky bez ztráty kvality</value>
   </data>
   <data name="button_SavePNG_button.Text" xml:space="preserve">
     <value>Náhled tlačítka Uložit</value>
@@ -475,6 +490,9 @@
   <data name="checkBox_Buttons_Area.Text" xml:space="preserve">
     <value>Vyberte oblast tlačítka</value>
   </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Typ zvýraznění tlačítka</value>
+  </data>
   <data name="button_Reset.Text" xml:space="preserve">
     <value>Resetovat</value>
   </data>
@@ -487,9 +505,6 @@
   <data name="checkBox_AllWidgetsInGif.Text" xml:space="preserve">
     <value>Při ukládání souboru gif zobrazit všechny prvky upravitelných zón</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Obrázek hodin</value>
-  </data>
   <data name="button_WatchSkin_PathGet.Text" xml:space="preserve">
     <value>Procházet</value>
   </data>
@@ -498,6 +513,9 @@
   </data>
   <data name="checkBox_WatchSkin_Use.Text" xml:space="preserve">
     <value>Při ukládání *.png a *.gif použijte obrázek hodin</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Obrázek hodin</value>
   </data>
   <data name="label355.Size" type="System.Drawing.Size, System.Drawing">
     <value>111, 13</value>
@@ -510,9 +528,6 @@
   </data>
   <data name="checkBox_ShowIn12hourFormat.Text" xml:space="preserve">
     <value>Pokud je to možné, zobrazte čas ve 12hodinovém formátu</value>
-  </data>
-  <data name="groupBox8.Text" xml:space="preserve">
-    <value>Zvýraznění typu oblasti zástupce</value>
   </data>
   <data name="button_SavePNG_shortcut.Size" type="System.Drawing.Size, System.Drawing">
     <value>153, 23</value>
@@ -544,6 +559,9 @@
   <data name="checkBox_Shortcuts_Area.Text" xml:space="preserve">
     <value>Tečkovaná mřížka</value>
   </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Zvýraznění typu oblasti zástupce</value>
+  </data>
   <data name="checkBox_JsonWarnings.Size" type="System.Drawing.Size, System.Drawing">
     <value>235, 17</value>
   </data>
@@ -555,9 +573,6 @@
   </data>
   <data name="label356.Text" xml:space="preserve">
     <value>Jazyk:</value>
-  </data>
-  <data name="groupBox7.Text" xml:space="preserve">
-    <value>Akce po vytvoření ciferníku</value>
   </data>
   <data name="radioButton_Settings_Pack_DoNotning.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 17</value>
@@ -577,8 +592,8 @@
   <data name="radioButton_Settings_Pack_Dialog.Text" xml:space="preserve">
     <value>Nabídnout výběr</value>
   </data>
-  <data name="groupBox6.Text" xml:space="preserve">
-    <value>Po otevření projektu</value>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>Akce po vytvoření ciferníku</value>
   </data>
   <data name="button_PreviewStates_PathGet.Text" xml:space="preserve">
     <value>Procházet</value>
@@ -607,8 +622,8 @@
   <data name="radioButton_Settings_Open_Dialog.Text" xml:space="preserve">
     <value>Nabídnout výběr</value>
   </data>
-  <data name="groupBox5.Text" xml:space="preserve">
-    <value>Akce po rozbalení ciferníku</value>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>Po otevření projektu</value>
   </data>
   <data name="radioButton_Settings_AfterUnpack_DoNothing.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 17</value>
@@ -628,8 +643,8 @@
   <data name="radioButton_Settings_AfterUnpack_Dialog.Text" xml:space="preserve">
     <value>Nabídnout výběr</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Akce, pokud se názvy rozbalených ciferníků shodují</value>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Akce po rozbalení ciferníku</value>
   </data>
   <data name="radioButton_Settings_Unpack_Replace.Size" type="System.Drawing.Size, System.Drawing">
     <value>65, 17</value>
@@ -649,6 +664,9 @@
   <data name="radioButton_Settings_Unpack_Dialog.Text" xml:space="preserve">
     <value>Nabídnout výběr</value>
   </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Akce, pokud se názvy rozbalených ciferníků shodují</value>
+  </data>
   <data name="label483.Size" type="System.Drawing.Size, System.Drawing">
     <value>184, 39</value>
   </data>
@@ -656,6 +674,12 @@
     <value>Rychlost animace v náhledu animace
 (vysoká rychlost - plynulejší animace,
 větší zatížení systému)</value>
+  </data>
+  <data name="tabPage_Settings.Text" xml:space="preserve">
+    <value>Nastavení</value>
+  </data>
+  <data name="tabPage_Tips.Text" xml:space="preserve">
+    <value>Tipy pro použití</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>256, 13</value>
@@ -699,6 +723,9 @@ PayPal: sashacx75@gmail.com</value>
   </data>
   <data name="label406.Text" xml:space="preserve">
     <value>Verze:</value>
+  </data>
+  <data name="tabPage_About.Text" xml:space="preserve">
+    <value>O programu</value>
   </data>
   <data name="checkBox_WidgetsArea.Text" xml:space="preserve">
     <value>Zvýrazněte upravitelné oblasti</value>
@@ -749,8 +776,8 @@ PayPal: sashacx75@gmail.com</value>
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
-        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACm
-        DQAAAk1TRnQBSQFMAgEBBgEAASwBNgEwATYBEAEAARABAAT/AQkBEAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACk
+        DQAAAk1TRnQBSQFMAgEBBgEAATwBNgE8ATYBEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAASADAAEBAQABCAYAAQgYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -808,7 +835,7 @@ PayPal: sashacx75@gmail.com</value>
         AX4B4QEPAQ0BhgGAAQEBPgF+AfABDwEGAcICAAI+AfgBHwFDAWABAAEgAT8BPgH4AT8BYQGwAQABQAE/
         AR4B4AEnATAB2AEAAYABPAEeAeEBAwFYAWwBAQEAATwBHgHhAQcBbAE2AQEBAAE/Af4B4QEfATYBGgEB
         AwAB8AEfAQsBDAQAAfgBPwFNAYYBgAEBAgAB/AE/AQIBwgGAAQEBBAEAAf4BHwFDAWABwAEDAYQBAAH+
-        AZ8CAAHwAQ8B9wHnAf4BHxYACw==
+        AZ8CAAHwAQ8B9wHnAf4BHws=
 </value>
   </data>
   <data name="label_watch_model.Size" type="System.Drawing.Size, System.Drawing">
@@ -2076,8 +2103,5 @@ PayPal: sashacx75@gmail.com</value>
         AAAAAAAAAAAAAO+BPCbvgT1I74I+SO+BPSYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD8PwAA4AcAAMAD
         AACAAQAAgAEAAIABAAAAAAAAAAAAAAAAAAAAAAAAgAEAAIABAACAAQAAwAMAAOAHAAD8PwAA
 </value>
-  </data>
-  <data name="checkBox_Del_Confirm.Text" xml:space="preserve">
-    <value>Při mazání widgetu si vyžádejte potvrzení</value>
   </data>
 </root>

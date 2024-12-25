@@ -219,6 +219,15 @@
   <data name="Message_ARGB_Line2" xml:space="preserve">
     <value>Bist du sicher, dass du deine Bilder in das ARGB-Format konvertieren willst?</value>
   </data>
+  <data name="Message_AutoSave_Caption" xml:space="preserve">
+    <value>Wiederherstellung</value>
+  </data>
+  <data name="Message_BG_Not_Color" xml:space="preserve">
+    <value>Du musst eine Farbe als Haupthintergrund festlegen.</value>
+  </data>
+  <data name="Message_BG_Not_Image" xml:space="preserve">
+    <value>Du musst ein Bild als Haupthintergrund festlegen.</value>
+  </data>
   <data name="Message_ConvertingCompleted_Text" xml:space="preserve">
     <value>Es wurde ein neues Zifferblatt erstellt.</value>
   </data>
@@ -302,6 +311,9 @@
   </data>
   <data name="Message_LoadPreviewStates_Text" xml:space="preserve">
     <value>Eine vorhandene Datei mit einer Reihe von Vorschaueinstellungen herunterladen?</value>
+  </data>
+  <data name="Message_Load_AutoSave" xml:space="preserve">
+    <value>Ich habe eine Datei mit automatischer Speicherung gefunden. Möchtest du sie herunterladen?</value>
   </data>
   <data name="Message_ModelConfig_Error" xml:space="preserve">
     <value>Modellkonfiguration nicht gefunden: </value>
@@ -398,5 +410,8 @@
   </data>
   <data name="Tip_Pointer" xml:space="preserve">
     <value>Zeiger</value>
+  </data>
+  <data name="ToastBG" xml:space="preserve">
+    <value>Hintergrund %s</value>
   </data>
 </root>

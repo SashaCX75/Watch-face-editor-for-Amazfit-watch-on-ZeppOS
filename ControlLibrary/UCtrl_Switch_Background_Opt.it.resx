@@ -118,65 +118,77 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="label8.Text" xml:space="preserve">
-    <value>Колір тексту</value>
+    <value>Colore Testo</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
-    <value>Напис</value>
+    <value>Testo</value>
   </data>
   <data name="label6.Text" xml:space="preserve">
-    <value>Розмір тексту</value>
+    <value>Dimensioni Testo</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
-    <value>Натиснутий стан</value>
+    <value>Stato Pressione</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
-    <value>Радіус</value>
+    <value>Raggio</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Нормальний стан</value>
+    <value>Stato Normale</value>
   </data>
   <data name="groupBox_color.Text" xml:space="preserve">
-    <value>Колір</value>
+    <value>Colore</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Натиснутий стан</value>
+    <value>Stato Pressione</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Нормальний стан</value>
+    <value>Stato Normale</value>
   </data>
   <data name="groupBox_image.Text" xml:space="preserve">
-    <value>Зображення</value>
-  </data>
-  <data name="button_add.Text" xml:space="preserve">
-    <value>Додати</value>
-  </data>
-  <data name="button_del.Text" xml:space="preserve">
-    <value>Видалити</value>
-  </data>
-  <data name="label06.Text" xml:space="preserve">
-    <value>Висота кнопки</value>
-  </data>
-  <data name="Background.HeaderText" xml:space="preserve">
-    <value>Зображення </value>
-  </data>
-  <data name="Toast.HeaderText" xml:space="preserve">
-    <value>Повідомлення</value>
+    <value>Immagine</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label_bg_img.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 13</value>
+  </data>
+  <data name="label_bg_img.Text" xml:space="preserve">
+    <value>Sfondo</value>
+  </data>
+  <data name="button_add.Text" xml:space="preserve">
+    <value>Aggiungere</value>
+  </data>
+  <data name="button_del.Text" xml:space="preserve">
+    <value>Eliminare</value>
+  </data>
+  <data name="label06.Text" xml:space="preserve">
+    <value>Altezza Tasto</value>
+  </data>
+  <data name="label07.Text" xml:space="preserve">
+    <value>Larghezza Tasto</value>
+  </data>
+  <data name="Index.HeaderText" xml:space="preserve">
+    <value>N°</value>
+  </data>
+  <data name="Background.HeaderText" xml:space="preserve">
+    <value>Immagine</value>
+  </data>
+  <data name="Toast.HeaderText" xml:space="preserve">
+    <value>Notifica</value>
+  </data>
   <data name="изменитьФонToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 22</value>
+    <value>198, 22</value>
   </data>
   <data name="изменитьФонToolStripMenuItem.Text" xml:space="preserve">
-    <value>Змінити вибраний фон</value>
+    <value>Cambiare Sfondo Selzionato</value>
   </data>
   <data name="contextMenuStrip_ChangeBackground.Size" type="System.Drawing.Size, System.Drawing">
-    <value>178, 26</value>
+    <value>199, 26</value>
   </data>
   <data name="label02.Size" type="System.Drawing.Size, System.Drawing">
-    <value>67, 13</value>
+    <value>58, 13</value>
   </data>
   <data name="label02.Text" xml:space="preserve">
-    <value>Координати</value>
+    <value>Coordinate</value>
   </data>
   <data name="вставитьКоординатуYToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -193,10 +205,10 @@
 </value>
   </data>
   <data name="вставитьКоординатуYToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 26</value>
+    <value>183, 26</value>
   </data>
   <data name="вставитьКоординатуYToolStripMenuItem.Text" xml:space="preserve">
-    <value>Вставити координату Y</value>
+    <value>Incolla coordinata Y</value>
   </data>
   <data name="копироватьToolStripMenuItemY.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -215,10 +227,10 @@
 </value>
   </data>
   <data name="копироватьToolStripMenuItemY.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 26</value>
+    <value>183, 26</value>
   </data>
   <data name="копироватьToolStripMenuItemY.Text" xml:space="preserve">
-    <value>Копіювати</value>
+    <value>Copia</value>
   </data>
   <data name="вставитьToolStripMenuItemY.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -238,13 +250,13 @@
 </value>
   </data>
   <data name="вставитьToolStripMenuItemY.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 26</value>
+    <value>183, 26</value>
   </data>
   <data name="вставитьToolStripMenuItemY.Text" xml:space="preserve">
-    <value>Вставити</value>
+    <value>Incolla</value>
   </data>
   <data name="contextMenuStrip_Y.Size" type="System.Drawing.Size, System.Drawing">
-    <value>205, 82</value>
+    <value>184, 82</value>
   </data>
   <data name="вставитьКоординатуХToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -261,10 +273,10 @@
 </value>
   </data>
   <data name="вставитьКоординатуХToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 26</value>
+    <value>183, 26</value>
   </data>
   <data name="вставитьКоординатуХToolStripMenuItem.Text" xml:space="preserve">
-    <value>Вставити координату X</value>
+    <value>incolla coordinata X</value>
   </data>
   <data name="копироватьToolStripMenuItemX.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -283,10 +295,10 @@
 </value>
   </data>
   <data name="копироватьToolStripMenuItemX.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 26</value>
+    <value>183, 26</value>
   </data>
   <data name="копироватьToolStripMenuItemX.Text" xml:space="preserve">
-    <value>Копіювати</value>
+    <value>Copia</value>
   </data>
   <data name="вставитьToolStripMenuItemX.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -306,30 +318,27 @@
 </value>
   </data>
   <data name="вставитьToolStripMenuItemX.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 26</value>
+    <value>183, 26</value>
   </data>
   <data name="вставитьToolStripMenuItemX.Text" xml:space="preserve">
-    <value>Вставити</value>
+    <value>Incolla</value>
   </data>
   <data name="contextMenuStrip_X.Size" type="System.Drawing.Size, System.Drawing">
-    <value>205, 82</value>
+    <value>184, 82</value>
   </data>
   <data name="checkBox_use_in_AOD.Size" type="System.Drawing.Size, System.Drawing">
-    <value>156, 17</value>
+    <value>82, 17</value>
   </data>
   <data name="checkBox_use_in_AOD.Text" xml:space="preserve">
-    <value>Використовувати на АОД</value>
+    <value>Usa in AOD</value>
   </data>
   <data name="checkBox_use_crown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>219, 17</value>
+    <value>135, 17</value>
   </data>
   <data name="checkBox_use_crown.Text" xml:space="preserve">
-    <value>Використовувати коронку (коліщатко)</value>
-  </data>
-  <data name="checkBox_vibro.Size" type="System.Drawing.Size, System.Drawing">
-    <value>67, 17</value>
+    <value>Usa una corona (ruota)</value>
   </data>
   <data name="checkBox_vibro.Text" xml:space="preserve">
-    <value>Вібрація</value>
+    <value>Vibrazione</value>
   </data>
 </root>

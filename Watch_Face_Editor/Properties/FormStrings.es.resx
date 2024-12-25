@@ -219,6 +219,15 @@
   <data name="Message_ARGB_Line2" xml:space="preserve">
     <value>¿Estás seguro de que quieres convertir tus imágenes al formato ARGB?</value>
   </data>
+  <data name="Message_AutoSave_Caption" xml:space="preserve">
+    <value>Recuperación</value>
+  </data>
+  <data name="Message_BG_Not_Color" xml:space="preserve">
+    <value>Debes establecer el color como fondo principal.</value>
+  </data>
+  <data name="Message_BG_Not_Image" xml:space="preserve">
+    <value>Debes establecer la imagen como fondo principal.</value>
+  </data>
   <data name="Message_ConvertingCompleted_Text" xml:space="preserve">
     <value>Se ha creado una nueva esfera de reloj.</value>
   </data>
@@ -302,6 +311,9 @@
   </data>
   <data name="Message_LoadPreviewStates_Text" xml:space="preserve">
     <value>Descargar un archivo existente con un conjunto de configuraciones de vista previa PreviewStates.json?</value>
+  </data>
+  <data name="Message_Load_AutoSave" xml:space="preserve">
+    <value>Se encontro un archivo con guardado automático. ¿Te gustaría descargarlo?</value>
   </data>
   <data name="Message_ModelConfig_Error" xml:space="preserve">
     <value>Configuración del modelo no encontrada:</value>
@@ -398,5 +410,8 @@
   </data>
   <data name="Tip_Pointer" xml:space="preserve">
     <value>Puntero</value>
+  </data>
+  <data name="ToastBG" xml:space="preserve">
+    <value>Fondo esfera %s</value>
   </data>
 </root>

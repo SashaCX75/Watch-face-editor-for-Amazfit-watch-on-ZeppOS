@@ -965,11 +965,10 @@ namespace Watch_Face_Editor
 
                 if (Watch_Face.SwitchBackground.vibro && items.IndexOf("const vibrate = hmSensor.createSensor(hmSensor.id.VIBRATE);") < 0)
                 {
-                    items += TabInString(6) + "// vibrate function" + Environment.NewLine;
+                    items += Environment.NewLine + TabInString(6) + "// vibrate function";
                     items += Environment.NewLine + TabInString(6) + "const vibrate = hmSensor.createSensor(hmSensor.id.VIBRATE);" + Environment.NewLine;
                     items += TabInString(6) + "let timer_StopVibrate = null;" + Environment.NewLine;
-                    items += Environment.NewLine + Environment.NewLine + TabInString(6) +
-                        "function vibro(scene = 25) {" + Environment.NewLine;
+                    items += Environment.NewLine + TabInString(6) + "function vibro(scene = 25) {" + Environment.NewLine;
                     items += TabInString(7) + "let stopDelay = 50;" + Environment.NewLine;
                     items += TabInString(7) + "stopVibro();" + Environment.NewLine;
                     items += TabInString(7) + "vibrate.stop();" + Environment.NewLine;
@@ -1088,11 +1087,10 @@ namespace Watch_Face_Editor
 
                 if (Watch_Face.SwitchBG_Color.vibro && items.IndexOf("const vibrate = hmSensor.createSensor(hmSensor.id.VIBRATE);") < 0)
                 {
-                    items += TabInString(6) + "// vibrate function" + Environment.NewLine;
+                    items += Environment.NewLine + TabInString(6) + "// vibrate function";
                     items += Environment.NewLine + TabInString(6) + "const vibrate = hmSensor.createSensor(hmSensor.id.VIBRATE);" + Environment.NewLine;
                     items += TabInString(6) + "let timer_StopVibrate = null;" + Environment.NewLine;
-                    items += Environment.NewLine + Environment.NewLine + TabInString(6) +
-                        "function vibro(scene = 25) {" + Environment.NewLine;
+                    items += Environment.NewLine + TabInString(6) + "function vibro(scene = 25) {" + Environment.NewLine;
                     items += TabInString(7) + "let stopDelay = 50;" + Environment.NewLine;
                     items += TabInString(7) + "stopVibro();" + Environment.NewLine;
                     items += TabInString(7) + "vibrate.stop();" + Environment.NewLine;
@@ -25020,7 +25018,7 @@ namespace Watch_Face_Editor
 
                         #region BUTTON
                         case "BUTTON":
-                            if (objectName != "Button_Switch_BG")
+                            if (!objectName.Contains("Button_Switch_BG"))
                             {
                                 Button button = Object_BUTTON(parametrs);
 

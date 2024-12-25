@@ -172,6 +172,9 @@
   <data name="label_bg_img.Text" xml:space="preserve">
     <value>Колір фону</value>
   </data>
+  <data name="button_add.Text" xml:space="preserve">
+    <value>Додати</value>
+  </data>
   <data name="button_del.Text" xml:space="preserve">
     <value>Видалити</value>
   </data>

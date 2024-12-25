@@ -4482,11 +4482,17 @@ namespace Watch_Face_Editor
 
             //if (rowIndex < 0 || rowIndex >= buttonsList.Count) buttonsList.Add(button);
             //else buttonsList.Insert(rowIndex, button);
-            buttonsList.Add(button);
+            //buttonsList.Add(button);
 
             //if (rowIndex < 0 || rowIndex == buttonsList.Count - 1) buttonsList.Add(button);
             //else buttonsList.Insert(rowIndex, button);
             //rowIndex++;
+
+            if (rowIndex < 0 || rowIndex >= buttonsList.Count - 1) { 
+                buttonsList.Add(button);
+                rowIndex = buttonsList.Count - 1;
+            }
+            else buttonsList.Insert(++rowIndex, button);
 
             List<String> scriptClickList = ButtonClickScriptToString(buttonsList);
             List<String> scriptLongPressList = ButtonLongPressScriptToString(buttonsList);
@@ -4504,11 +4510,12 @@ namespace Watch_Face_Editor
             List<Button> buttonsList = Watch_Face.Buttons.Button;
 
             if (rowIndex >= 0 || rowIndex < buttonsList.Count) buttonsList.RemoveAt(rowIndex);
+            if (rowIndex >= buttonsList.Count) rowIndex = buttonsList.Count - 1;
 
             List<String> scriptClickList = ButtonClickScriptToString(buttonsList);
             List<String> scriptLongPressList = ButtonLongPressScriptToString(buttonsList);
             List<bool> visibleList = ButtonVisibleList(buttonsList);
-            uCtrl_Button_Opt.UpdateButtonsList(scriptClickList, scriptLongPressList, visibleList);
+            uCtrl_Button_Opt.UpdateButtonsList(scriptClickList, scriptLongPressList, visibleList, rowIndex);
 
             JSON_Modified = true;
             PreviewImage();
@@ -4548,6 +4555,7 @@ namespace Watch_Face_Editor
             return visibleList;
         }
 
+        ///////////
         private void uCtrl_Text_Opt_WidgetProperty_Copy(object sender, EventArgs eventArgs)
         {
             if (WidgetProperty.ContainsKey("hmUI_widget_IMG_NUMBER")) WidgetProperty.Remove("hmUI_widget_IMG_NUMBER");
@@ -4750,7 +4758,7 @@ namespace Watch_Face_Editor
 
             circle_scale.start_angle = (int)uCtrl_Circle_Scale_Opt.numericUpDown_scaleCircle_startAngle.Value;
             circle_scale.end_angle = (int)uCtrl_Circle_Scale_Opt.numericUpDown_scaleCircle_endAngle.Value;
-            circle_scale.start_angle = (int)uCtrl_Circle_Scale_Opt.numericUpDown_scaleCircle_startAngle.Value;
+            circle_scale.alpha = (int)uCtrl_Circle_Scale_Opt.numericUpDown_Alpha.Value;
 
             circle_scale.line_cap = uCtrl_Circle_Scale_Opt.GetLineCap();
 
@@ -4925,6 +4933,7 @@ namespace Watch_Face_Editor
             img_number.space = (int)uCtrl_Text_Weather_Opt.numericUpDown_spacing.Value;
             img_number.angle = (int)uCtrl_Text_Weather_Opt.numericUpDown_angle.Value;
             img_number.alpha = (int)uCtrl_Text_Weather_Opt.numericUpDown_Alpha.Value;
+            img_number.icon_alpha = (int)uCtrl_Text_Weather_Opt.numericUpDown_iconAlpha.Value;
             img_number.unit = uCtrl_Text_Weather_Opt.GetUnit_C();
             img_number.imperial_unit = uCtrl_Text_Weather_Opt.GetUnit_F();
             img_number.negative_image = uCtrl_Text_Weather_Opt.GetImageMinus();
@@ -4967,6 +4976,7 @@ namespace Watch_Face_Editor
             uCtrl_Text_Weather_Opt.numericUpDown_spacing.Value = img_number.space;
             uCtrl_Text_Weather_Opt.numericUpDown_angle.Value = img_number.angle;
             uCtrl_Text_Weather_Opt.numericUpDown_Alpha.Value = img_number.alpha;
+            uCtrl_Text_Weather_Opt.numericUpDown_iconAlpha.Value = img_number.icon_alpha;
 
             uCtrl_Text_Weather_Opt.SetAlignment(img_number.align);
 

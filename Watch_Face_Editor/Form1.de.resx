@@ -181,6 +181,15 @@
   <data name="comboBox_AddBackground.Items" xml:space="preserve">
     <value>Hintergrund</value>
   </data>
+  <data name="comboBox_AddBackground.Items1" xml:space="preserve">
+    <value>Hintergrund</value>
+  </data>
+  <data name="comboBox_AddBackground.Items2" xml:space="preserve">
+    <value>Hintergrund umschaltbar</value>
+  </data>
+  <data name="comboBox_AddBackground.Items3" xml:space="preserve">
+    <value>Farbe umschaltbar</value>
+  </data>
   <data name="comboBox_AddSystem.Items" xml:space="preserve">
     <value>System</value>
   </data>
@@ -214,6 +223,9 @@
   <data name="comboBox_AddSystem.Items10" xml:space="preserve">
     <value>Buttons</value>
   </data>
+  <data name="comboBox_AddSystem.Items12" xml:space="preserve">
+    <value>Kompass</value>
+  </data>
   <data name="comboBox_AddAir.Items" xml:space="preserve">
     <value>Luft</value>
   </data>
@@ -234,6 +246,12 @@
   </data>
   <data name="comboBox_AddAir.Items6" xml:space="preserve">
     <value>Barometer</value>
+  </data>
+  <data name="comboBox_AddAir.Items7" xml:space="preserve">
+    <value>Mond</value>
+  </data>
+  <data name="comboBox_AddAir.Items8" xml:space="preserve">
+    <value>Wetter (Prognose)</value>
   </data>
   <data name="comboBox_AddActivity.Items" xml:space="preserve">
     <value>Aktivitäten</value>
@@ -405,6 +423,78 @@
   </data>
   <data name="tabPageConverting.Text" xml:space="preserve">
     <value>Umwandlung</value>
+  </data>
+  <data name="label_AutoSave.Location" type="System.Drawing.Point, System.Drawing">
+    <value>207, 628</value>
+  </data>
+  <data name="label_AutoSave.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 13</value>
+  </data>
+  <data name="label_AutoSave.Text" xml:space="preserve">
+    <value>minuten</value>
+  </data>
+  <data name="numericUpDown_AutoSave_Time.Location" type="System.Drawing.Point, System.Drawing">
+    <value>154, 624</value>
+  </data>
+  <data name="checkBox_AutoSave.Text" xml:space="preserve">
+    <value>Automatisch speichern alle</value>
+  </data>
+  <data name="checkBox_Del_Confirm.Size" type="System.Drawing.Size, System.Drawing">
+    <value>269, 17</value>
+  </data>
+  <data name="checkBox_Del_Confirm.Text" xml:space="preserve">
+    <value>Bestätigung beim Löschen eines Widgets anfordern</value>
+  </data>
+  <data name="checkBox_CreateZPK.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 17</value>
+  </data>
+  <data name="checkBox_CreateZPK.Text" xml:space="preserve">
+    <value>*.zpk-Datei erstellen</value>
+  </data>
+  <data name="checkBox_Use_ARGB.Size" type="System.Drawing.Size, System.Drawing">
+    <value>213, 17</value>
+  </data>
+  <data name="checkBox_Use_ARGB.Text" xml:space="preserve">
+    <value>Bilder in das ARGB-Format konvertieren</value>
+  </data>
+  <data name="radioButton_ARGB_forced.Size" type="System.Drawing.Size, System.Drawing">
+    <value>229, 17</value>
+  </data>
+  <data name="radioButton_ARGB_forced.Text" xml:space="preserve">
+    <value>Verwendung des ARGB-Formats erzwingen</value>
+  </data>
+  <data name="radioButton_ARGB_color.Size" type="System.Drawing.Size, System.Drawing">
+    <value>237, 17</value>
+  </data>
+  <data name="radioButton_ARGB_color.Text" xml:space="preserve">
+    <value>Nur mit der angegebenen Anzahl von Farben</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Bilder ohne Qualitätsverlust konvertieren</value>
+  </data>
+  <data name="button_SavePNG_button.Text" xml:space="preserve">
+    <value>Vorschau der Tasten speichern</value>
+  </data>
+  <data name="checkBox_Buttons_In_Gif.Size" type="System.Drawing.Size, System.Drawing">
+    <value>268, 17</value>
+  </data>
+  <data name="checkBox_Buttons_In_Gif.Text" xml:space="preserve">
+    <value>Tasten beim Speichern einer Gif-Datei hervorheben</value>
+  </data>
+  <data name="checkBox_Buttons_Border.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 17</value>
+  </data>
+  <data name="checkBox_Buttons_Border.Text" xml:space="preserve">
+    <value>Rahmen um die Tasten anzeigen</value>
+  </data>
+  <data name="checkBox_Buttons_Area.Size" type="System.Drawing.Size, System.Drawing">
+    <value>115, 17</value>
+  </data>
+  <data name="checkBox_Buttons_Area.Text" xml:space="preserve">
+    <value>Gepunktetes Gitter</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Art der Tastenhervorhebung</value>
   </data>
   <data name="button_Reset.Text" xml:space="preserve">
     <value>Zurücksetzen</value>
@@ -591,6 +681,12 @@ mehr Systembelastung)</value>
   <data name="tabPage_Tips.Text" xml:space="preserve">
     <value>Tipps für die Verwendung</value>
   </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>453, 13</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Das Programm verwendet einen Code zur Konvertierung von Bildern aus dem Dienstprogramm:</value>
+  </data>
   <data name="label_donate.Text" xml:space="preserve">
     <value>Spende an den Autor:
 PayPal: sashacx75@gmail.com</value>
@@ -680,8 +776,8 @@ PayPal: sashacx75@gmail.com</value>
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
-        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACm
-        DQAAAk1TRnQBSQFMAgEBBgEAAXQBNAGMATQBEAEAARABAAT/AQkBEAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACk
+        DQAAAk1TRnQBSQFMAgEBBgEAAZgBNAGYATQBEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAASADAAEBAQABCAYAAQgYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -739,20 +835,23 @@ PayPal: sashacx75@gmail.com</value>
         AX4B4QEPAQ0BhgGAAQEBPgF+AfABDwEGAcICAAI+AfgBHwFDAWABAAEgAT8BPgH4AT8BYQGwAQABQAE/
         AR4B4AEnATAB2AEAAYABPAEeAeEBAwFYAWwBAQEAATwBHgHhAQcBbAE2AQEBAAE/Af4B4QEfATYBGgEB
         AwAB8AEfAQsBDAQAAfgBPwFNAYYBgAEBAgAB/AE/AQIBwgGAAQEBBAEAAf4BHwFDAWABwAEDAYQBAAH+
-        AZ8CAAHwAQ8B9wHnAf4BHxYACw==
+        AZ8CAAHwAQ8B9wHnAf4BHws=
 </value>
-  </data>
-  <data name="button_pack_zip.Text" xml:space="preserve">
-    <value>Packe das Zifferblatt</value>
-  </data>
-  <data name="button_unpack_zip.Text" xml:space="preserve">
-    <value>Zifferblatt entpacken</value>
   </data>
   <data name="label_watch_model.Size" type="System.Drawing.Size, System.Drawing">
     <value>74, 13</value>
   </data>
   <data name="label_watch_model.Text" xml:space="preserve">
     <value>Model der Uhr</value>
+  </data>
+  <data name="checkBox_Show_Buttons.Text" xml:space="preserve">
+    <value>Tasten hervorheben</value>
+  </data>
+  <data name="button_pack_zip.Text" xml:space="preserve">
+    <value>Packe das Zifferblatt</value>
+  </data>
+  <data name="button_unpack_zip.Text" xml:space="preserve">
+    <value>Zifferblatt entpacken</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -2004,53 +2103,5 @@ PayPal: sashacx75@gmail.com</value>
         AAAAAAAAAAAAAO+BPCbvgT1I74I+SO+BPSYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD8PwAA4AcAAMAD
         AACAAQAAgAEAAIABAAAAAAAAAAAAAAAAAAAAAAAAgAEAAIABAACAAQAAwAMAAOAHAAD8PwAA
 </value>
-  </data>
-  <data name="button_SavePNG_button.Text" xml:space="preserve">
-    <value>Vorschau der Tasten speichern</value>
-  </data>
-  <data name="checkBox_Buttons_Area.Text" xml:space="preserve">
-    <value>Gepunktetes Gitter</value>
-  </data>
-  <data name="checkBox_Buttons_Border.Text" xml:space="preserve">
-    <value>Rahmen um die Tasten anzeigen</value>
-  </data>
-  <data name="checkBox_Buttons_In_Gif.Text" xml:space="preserve">
-    <value>Tasten beim Speichern einer Gif-Datei hervorheben</value>
-  </data>
-  <data name="checkBox_Show_Buttons.Text" xml:space="preserve">
-    <value>Tasten hervorheben</value>
-  </data>
-  <data name="checkBox_Use_ARGB.Text" xml:space="preserve">
-    <value>Bilder in das ARGB-Format konvertieren</value>
-  </data>
-  <data name="comboBox_AddAir.Items7" xml:space="preserve">
-    <value>Mond</value>
-  </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Art der Tastenhervorhebung</value>
-  </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Bilder ohne Qualitätsverlust konvertieren</value>
-  </data>
-  <data name="radioButton_ARGB_color.Text" xml:space="preserve">
-    <value>Nur mit der angegebenen Anzahl von Farben</value>
-  </data>
-  <data name="radioButton_ARGB_forced.Text" xml:space="preserve">
-    <value>Verwendung des ARGB-Formats erzwingen</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Das Programm verwendet einen Code zur Konvertierung von Bildern aus dem Dienstprogramm:</value>
-  </data>
-  <data name="checkBox_CreateZPK.Text" xml:space="preserve">
-    <value>*.zpk-Datei erstellen</value>
-  </data>
-  <data name="comboBox_AddSystem.Items12" xml:space="preserve">
-    <value>Kompass</value>
-  </data>
-  <data name="comboBox_AddAir.Items8" xml:space="preserve">
-    <value>Wetter (Prognose)</value>
-  </data>
-  <data name="checkBox_Del_Confirm.Text" xml:space="preserve">
-    <value>Bestätigung beim Löschen eines Widgets anfordern</value>
   </data>
 </root>

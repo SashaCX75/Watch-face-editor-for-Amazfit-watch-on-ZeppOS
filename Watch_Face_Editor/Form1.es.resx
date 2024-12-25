@@ -181,6 +181,15 @@
   <data name="comboBox_AddBackground.Items" xml:space="preserve">
     <value>Fondo esfera</value>
   </data>
+  <data name="comboBox_AddBackground.Items1" xml:space="preserve">
+    <value>Fondo esfera</value>
+  </data>
+  <data name="comboBox_AddBackground.Items2" xml:space="preserve">
+    <value>Fondo intercambiable</value>
+  </data>
+  <data name="comboBox_AddBackground.Items3" xml:space="preserve">
+    <value>Color intercambiable</value>
+  </data>
   <data name="comboBox_AddSystem.Items" xml:space="preserve">
     <value>Sistema</value>
   </data>
@@ -355,9 +364,6 @@
   <data name="userCtrl_Set1.ButtonText" xml:space="preserve">
     <value>Valores 1</value>
   </data>
-  <data name="panel_set.Size" type="System.Drawing.Size, System.Drawing">
-    <value>519, 580</value>
-  </data>
   <data name="button_JsonPreview_Random.Text" xml:space="preserve">
     <value>Valor aleatorio</value>
   </data>
@@ -366,12 +372,6 @@
   </data>
   <data name="button_JsonPreview_Write.Text" xml:space="preserve">
     <value>Guardar valores de vista previa</value>
-  </data>
-  <data name="panel_PreviewStates.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 583</value>
-  </data>
-  <data name="tabPage_Show_Set.Size" type="System.Drawing.Size, System.Drawing">
-    <value>525, 612</value>
   </data>
   <data name="tabPage_Show_Set.Text" xml:space="preserve">
     <value>Datos para vista previa</value>
@@ -423,6 +423,30 @@
   </data>
   <data name="tabPageConverting.Text" xml:space="preserve">
     <value>Convirtiendo</value>
+  </data>
+  <data name="label_AutoSave.Location" type="System.Drawing.Point, System.Drawing">
+    <value>201, 628</value>
+  </data>
+  <data name="label_AutoSave.Size" type="System.Drawing.Size, System.Drawing">
+    <value>43, 13</value>
+  </data>
+  <data name="label_AutoSave.Text" xml:space="preserve">
+    <value>minutos</value>
+  </data>
+  <data name="numericUpDown_AutoSave_Time.Location" type="System.Drawing.Point, System.Drawing">
+    <value>148, 624</value>
+  </data>
+  <data name="checkBox_AutoSave.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 17</value>
+  </data>
+  <data name="checkBox_AutoSave.Text" xml:space="preserve">
+    <value>Guardar automaticamente</value>
+  </data>
+  <data name="checkBox_Del_Confirm.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 17</value>
+  </data>
+  <data name="checkBox_Del_Confirm.Text" xml:space="preserve">
+    <value>Solicitar confirmación al eliminar un widget</value>
   </data>
   <data name="checkBox_CreateZPK.Size" type="System.Drawing.Size, System.Drawing">
     <value>116, 17</value>
@@ -756,7 +780,7 @@ Paypal: sashacx75@gmail.com</value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACm
-        DQAAAk1TRnQBSQFMAgEBBgEAAQQBLgEIAS4BEAEAARABAAT/AQkBEAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        DQAAAk1TRnQBSQFMAgEBBgEAARQBLgEYAS4BEAEAARABAAT/AQkBEAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAASADAAEBAQABCAYAAQgYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -2082,8 +2106,5 @@ Paypal: sashacx75@gmail.com</value>
         AAAAAAAAAAAAAO+BPCbvgT1I74I+SO+BPSYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD8PwAA4AcAAMAD
         AACAAQAAgAEAAIABAAAAAAAAAAAAAAAAAAAAAAAAgAEAAIABAACAAQAAwAMAAOAHAAD8PwAA
 </value>
-  </data>
-  <data name="checkBox_Del_Confirm.Text" xml:space="preserve">
-    <value>Solicitar confirmación al eliminar un widget</value>
   </data>
 </root>

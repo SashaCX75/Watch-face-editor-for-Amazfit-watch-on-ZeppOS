@@ -693,7 +693,7 @@ namespace ControlLibrary
                     rowIndex = selectedCells[0].RowIndex;
                 }
                 rowIndex++;
-                if (rowIndex < 1 || rowIndex == ListBackgroundImages.Count)
+                if (rowIndex < 1 || rowIndex >= ListBackgroundImages.Count)
                 {
                     ListBackgroundImages.Add(comboBox_bg_image.Text);
                     ListToast.Add("");

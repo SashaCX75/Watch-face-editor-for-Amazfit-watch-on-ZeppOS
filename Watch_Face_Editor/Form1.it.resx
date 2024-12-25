@@ -181,6 +181,15 @@
   <data name="comboBox_AddBackground.Items" xml:space="preserve">
     <value>Sfondo</value>
   </data>
+  <data name="comboBox_AddBackground.Items1" xml:space="preserve">
+    <value>Sfondo</value>
+  </data>
+  <data name="comboBox_AddBackground.Items2" xml:space="preserve">
+    <value>Sfondo Commutabile</value>
+  </data>
+  <data name="comboBox_AddBackground.Items3" xml:space="preserve">
+    <value>Colore Commutabile</value>
+  </data>
   <data name="comboBox_AddSystem.Items" xml:space="preserve">
     <value>Sistema</value>
   </data>
@@ -355,9 +364,6 @@
   <data name="userCtrl_Set1.ButtonText" xml:space="preserve">
     <value>Valore 1</value>
   </data>
-  <data name="panel_set.Size" type="System.Drawing.Size, System.Drawing">
-    <value>519, 580</value>
-  </data>
   <data name="button_JsonPreview_Random.Text" xml:space="preserve">
     <value>Valore casuale</value>
   </data>
@@ -366,12 +372,6 @@
   </data>
   <data name="button_JsonPreview_Write.Text" xml:space="preserve">
     <value>Salva i dati dell'anteprima</value>
-  </data>
-  <data name="panel_PreviewStates.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 583</value>
-  </data>
-  <data name="tabPage_Show_Set.Size" type="System.Drawing.Size, System.Drawing">
-    <value>525, 612</value>
   </data>
   <data name="tabPage_Show_Set.Text" xml:space="preserve">
     <value>Valori per l'anteprima</value>
@@ -423,6 +423,24 @@
   </data>
   <data name="tabPageConverting.Text" xml:space="preserve">
     <value>Conversione</value>
+  </data>
+  <data name="label_AutoSave.Size" type="System.Drawing.Size, System.Drawing">
+    <value>34, 13</value>
+  </data>
+  <data name="label_AutoSave.Text" xml:space="preserve">
+    <value>minuti</value>
+  </data>
+  <data name="checkBox_AutoSave.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 17</value>
+  </data>
+  <data name="checkBox_AutoSave.Text" xml:space="preserve">
+    <value>Salvataggio automatico ogni</value>
+  </data>
+  <data name="checkBox_Del_Confirm.Size" type="System.Drawing.Size, System.Drawing">
+    <value>230, 17</value>
+  </data>
+  <data name="checkBox_Del_Confirm.Text" xml:space="preserve">
+    <value>Richiedi conferma quando elimini un widget</value>
   </data>
   <data name="checkBox_CreateZPK.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 17</value>
@@ -759,8 +777,8 @@ PayPal: sashacx75@gmail.com</value>
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
-        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACm
-        DQAAAk1TRnQBSQFMAgEBBgEAAUABLgFEAS4BEAEAARABAAT/AQkBEAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACk
+        DQAAAk1TRnQBSQFMAgEBBgEAAVgBLgFYAS4BEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAASADAAEBAQABCAYAAQgYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -818,7 +836,7 @@ PayPal: sashacx75@gmail.com</value>
         AX4B4QEPAQ0BhgGAAQEBPgF+AfABDwEGAcICAAI+AfgBHwFDAWABAAEgAT8BPgH4AT8BYQGwAQABQAE/
         AR4B4AEnATAB2AEAAYABPAEeAeEBAwFYAWwBAQEAATwBHgHhAQcBbAE2AQEBAAE/Af4B4QEfATYBGgEB
         AwAB8AEfAQsBDAQAAfgBPwFNAYYBgAEBAgAB/AE/AQIBwgGAAQEBBAEAAf4BHwFDAWABwAEDAYQBAAH+
-        AZ8CAAHwAQ8B9wHnAf4BHxYACw==
+        AZ8CAAHwAQ8B9wHnAf4BHws=
 </value>
   </data>
   <data name="label_watch_model.Size" type="System.Drawing.Size, System.Drawing">
@@ -2087,7 +2105,8 @@ PayPal: sashacx75@gmail.com</value>
         AACAAQAAgAEAAIABAAAAAAAAAAAAAAAAAAAAAAAAgAEAAIABAACAAQAAwAMAAOAHAAD8PwAA
 </value>
   </data>
-  <data name="checkBox_Del_Confirm.Text" xml:space="preserve">
-    <value>Richiedi conferma quando elimini un widget</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
 </root>

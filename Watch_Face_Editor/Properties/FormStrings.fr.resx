@@ -219,6 +219,15 @@
   <data name="Message_ARGB_Line2" xml:space="preserve">
     <value>Êtes-vous sûr de vouloir convertir les images au format ARGB ?</value>
   </data>
+  <data name="Message_AutoSave_Caption" xml:space="preserve">
+    <value>Récupération</value>
+  </data>
+  <data name="Message_BG_Not_Color" xml:space="preserve">
+    <value>Vous devez définir la couleur comme arrière-plan principal.</value>
+  </data>
+  <data name="Message_BG_Not_Image" xml:space="preserve">
+    <value>Vous devez définir l'image comme arrière-plan principal.</value>
+  </data>
   <data name="Message_ConvertingCompleted_Text" xml:space="preserve">
     <value>Un nouveau cadran a été créé</value>
   </data>
@@ -302,6 +311,9 @@
   </data>
   <data name="Message_LoadPreviewStates_Text" xml:space="preserve">
     <value>Télécharger un fichier existant avec un ensemble de paramètres d'aperçu PreviewStates.json ?</value>
+  </data>
+  <data name="Message_Load_AutoSave" xml:space="preserve">
+    <value>Fichier de sauvegarde automatique trouvé. Voulez-vous le télécharger ?</value>
   </data>
   <data name="Message_ModelConfig_Error" xml:space="preserve">
     <value>Configuration du modèle introuvable : </value>
@@ -398,5 +410,8 @@
   </data>
   <data name="Tip_Pointer" xml:space="preserve">
     <value>Pointeurs</value>
+  </data>
+  <data name="ToastBG" xml:space="preserve">
+    <value>Arrière-plan %s</value>
   </data>
 </root>

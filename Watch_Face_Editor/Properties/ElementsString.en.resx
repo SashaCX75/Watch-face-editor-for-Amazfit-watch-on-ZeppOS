@@ -117,11 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ElementErrorZone" xml:space="preserve">
+    <value>Element cannot be added to this zone</value>
+  </data>
   <data name="ElementExists" xml:space="preserve">
     <value>This element already exists</value>
   </data>
   <data name="TypeAltimeter" xml:space="preserve">
     <value>Barometer</value>
+  </data>
+  <data name="TypeAppsList" xml:space="preserve">
+    <value>Application shortcut</value>
   </data>
   <data name="TypeBattery" xml:space="preserve">
     <value>Battery</value>
@@ -154,6 +160,9 @@
     <value>Air Pressure</value>
     <comment>Check the translation on the 
 watch</comment>
+  </data>
+  <data name="TypeNameAppsList" xml:space="preserve">
+    <value>App Name</value>
   </data>
   <data name="TypeNameBattery" xml:space="preserve">
     <value>Battery</value>
@@ -205,6 +214,9 @@ watch</comment>
     <comment>Check the translation on the 
 watch</comment>
   </data>
+  <data name="TypeNameSportList" xml:space="preserve">
+    <value>Training</value>
+  </data>
   <data name="TypeNameStand" xml:space="preserve">
     <value>Stand</value>
     <comment>Check the translation on the 
@@ -255,6 +267,9 @@ watch</comment>
   </data>
   <data name="TypeSpO2" xml:space="preserve">
     <value>Oxygen in blood</value>
+  </data>
+  <data name="TypeSportList" xml:space="preserve">
+    <value>Training shortcut</value>
   </data>
   <data name="TypeStand" xml:space="preserve">
     <value>Stand</value>

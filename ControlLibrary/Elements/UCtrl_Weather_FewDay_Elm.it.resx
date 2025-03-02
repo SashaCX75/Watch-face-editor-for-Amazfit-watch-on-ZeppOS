@@ -147,6 +147,37 @@
   <data name="button_Images.Text" xml:space="preserve">
     <value>Immagini</value>
   </data>
+  <data name="button_Images.ToolTip" xml:space="preserve">
+    <value>1. Nuvoloso
+2. Possibili piogge
+3. Possibili Nevicate
+4. Soleggiato
+5. Nuvoloso
+6. Pioggia leggera
+7. Neve leggera
+8. Pioggia moderata
+9. Neve moderata
+10. Nevicate abbondanti
+11. Pioggia battente
+12. Tempesta di sabbia
+13. Nevischio
+14. Nebbia
+15. Foschia
+16. Temporale
+17. Tempesta di neve
+18. Polvere
+19. Tempesta di pioggia straordinaria
+20. Pioggia con grandine
+21. Rovesci temporaleschi con grandine
+22. Forte temporale
+23. Soffiaggio di sabbia
+24. Forte tempesta di sabbia
+25. Tempesta di pioggia
+26. Tempo sconosciuto
+27. Nuvoloso di notte
+28. Pioggia di notte
+29. Notte limpida</value>
+  </data>
   <data name="button_Diagram.Text" xml:space="preserve">
     <value>Grafico Temperatura</value>
   </data>

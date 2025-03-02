@@ -151,9 +151,6 @@
   <data name="groupBox_date.Text" xml:space="preserve">
     <value>Date</value>
   </data>
-  <data name="groupBox_activity.Text" xml:space="preserve">
-    <value>Activity</value>
-  </data>
   <data name="radioButton_stress.Size" type="System.Drawing.Size, System.Drawing">
     <value>54, 17</value>
   </data>
@@ -202,8 +199,8 @@
   <data name="radioButton_steps.Text" xml:space="preserve">
     <value>Steps</value>
   </data>
-  <data name="groupBox_air.Text" xml:space="preserve">
-    <value>Air</value>
+  <data name="groupBox_activity.Text" xml:space="preserve">
+    <value>Activity</value>
   </data>
   <data name="radioButton_moon.Size" type="System.Drawing.Size, System.Drawing">
     <value>89, 17</value>
@@ -247,6 +244,9 @@
   <data name="radioButton_weather.Text" xml:space="preserve">
     <value>Weather</value>
   </data>
+  <data name="groupBox_air.Text" xml:space="preserve">
+    <value>Air</value>
+  </data>
   <data name="button_cancel.Text" xml:space="preserve">
     <value>Cancel</value>
   </data>
@@ -259,8 +259,29 @@
   <data name="groupBox_system.Text" xml:space="preserve">
     <value>System</value>
   </data>
+  <data name="radioButton_sportList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 17</value>
+  </data>
+  <data name="radioButton_sportList.Text" xml:space="preserve">
+    <value>Training shortcut</value>
+  </data>
+  <data name="radioButton_appsList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>118, 17</value>
+  </data>
+  <data name="radioButton_appsList.Text" xml:space="preserve">
+    <value>Application shortcut</value>
+  </data>
   <data name="button_add.Text" xml:space="preserve">
     <value>Add</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>259, 13</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>* You cannot add other elements to the shortcut zone</value>
+  </data>
+  <data name="groupBox_shortcuts.Text" xml:space="preserve">
+    <value>Shortcuts</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

@@ -63,6 +63,16 @@ namespace Watch_Face_Editor.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap apps_icon {
+            get {
+                object obj = ResourceManager.GetObject("apps_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Background_icon {
             get {
                 object obj = ResourceManager.GetObject("Background-icon", resourceCulture);
@@ -196,6 +206,16 @@ namespace Watch_Face_Editor.Properties {
         internal static System.Drawing.Bitmap Sidebar_Search_24 {
             get {
                 object obj = ResourceManager.GetObject("Sidebar-Search_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sport_icon {
+            get {
+                object obj = ResourceManager.GetObject("sport_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

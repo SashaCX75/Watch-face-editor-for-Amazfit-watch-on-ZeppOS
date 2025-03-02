@@ -500,6 +500,9 @@
     <None Include="Resources\tips_uk.rtf" />
     <None Include="Resources\tips_zh.rtf" />
     <None Include="Resources\WatchFace.zpk" />
+    <None Include="Skin\WatchSkin_Active_2.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Skin\WatchSkin_Amazfit_Band_7.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -578,6 +581,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Mask\mask_gts_4_mini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\apps_icon.png" />
+    <None Include="Resources\sport_icon.png" />
+    <Content Include="Skin\Skin_Active_2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Skin\Skin_T-Rex_3.png">

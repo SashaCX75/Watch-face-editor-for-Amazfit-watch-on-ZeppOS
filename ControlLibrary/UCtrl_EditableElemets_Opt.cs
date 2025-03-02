@@ -49,7 +49,7 @@ namespace ControlLibrary
             Logger.WriteLine("* UCtrl_EditableElemets_Opt");
             InitializeComponent();
             setValue = false;
-            currentDPI = tabControl1.Height / 462f;
+            currentDPI = tabControl1.Height / 474f;
             Logger.WriteLine("* currentDPI = " + currentDPI.ToString());
 
             button_collapse.Controls.Add(pictureBox_Arrow_Right); 
@@ -1766,6 +1766,7 @@ namespace ControlLibrary
             panel_Text_CityName.Visible = elementOptions.Contains("CityName") ? true : false;
             panel_Direction.Visible = elementOptions.Contains("Wind_Direction") ? true : false;
             panel_Icon.Visible = elementOptions.Contains("Icon") ? true : false;
+            panel_shortcuts.Visible = elementOptions.Contains("Shortcuts") ? true : false;
 
             if (tabControl1.SelectedTab.Name == "tabPageElementSettings")
             {
@@ -1773,7 +1774,7 @@ namespace ControlLibrary
             }
             else
             {
-                tabControl1.Height = (int)(462 * currentDPI);
+                tabControl1.Height = (int)(474 * currentDPI);
             }
         }
 
@@ -2176,7 +2177,7 @@ namespace ControlLibrary
             }
             else
             {
-                tabControl1.Height = (int)(462 * currentDPI);
+                tabControl1.Height = (int)(474 * currentDPI);
                 button_collapse.Visible = false;
             }
         }
@@ -2190,7 +2191,7 @@ namespace ControlLibrary
             //}
             //else
             //{
-            //    tabControl1.Height = (int)(462 * currentDPI);
+            //    tabControl1.Height = (int)(474 * currentDPI);
             //}
         }
 

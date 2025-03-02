@@ -117,11 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ElementErrorZone" xml:space="preserve">
+    <value>No se puede agregar elemento a esta zona</value>
+  </data>
   <data name="ElementExists" xml:space="preserve">
     <value>Este elemento ya existe</value>
   </data>
   <data name="TypeAltimeter" xml:space="preserve">
     <value>Barómetro</value>
+  </data>
+  <data name="TypeAppsList" xml:space="preserve">
+    <value>Acceso directo a la aplicación</value>
   </data>
   <data name="TypeBattery" xml:space="preserve">
     <value>Bateria</value>
@@ -153,6 +159,9 @@
   <data name="TypeNameAltimeter" xml:space="preserve">
     <value>Presión del aire</value>
   </data>
+  <data name="TypeNameAppsList" xml:space="preserve">
+    <value>Nombre de la aplicación</value>
+  </data>
   <data name="TypeNameBattery" xml:space="preserve">
     <value>Bateria</value>
   </data>
@@ -182,6 +191,9 @@
   </data>
   <data name="TypeNameSpO2" xml:space="preserve">
     <value>Oxigeno en la sangre</value>
+  </data>
+  <data name="TypeNameSportList" xml:space="preserve">
+    <value>Entrenamiento</value>
   </data>
   <data name="TypeNameStand" xml:space="preserve">
     <value>Pararse</value>
@@ -215,6 +227,9 @@
   </data>
   <data name="TypeSpO2" xml:space="preserve">
     <value>Oxígeno en sangre</value>
+  </data>
+  <data name="TypeSportList" xml:space="preserve">
+    <value>Atajo de entrenamiento</value>
   </data>
   <data name="TypeStand" xml:space="preserve">
     <value>Estar de pie</value>

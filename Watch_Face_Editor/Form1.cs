@@ -21581,37 +21581,6 @@ namespace Watch_Face_Editor
             saveFileDialog.Title = Properties.FormStrings.Dialog_Title_SavePNG;
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                //Bitmap bitmap = new Bitmap(Convert.ToInt32(454), Convert.ToInt32(454), PixelFormat.Format32bppArgb);
-                //Bitmap mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gtr_3.png");
-                //switch (ProgramSettings.Watch_Model)
-                //{
-                //    case "GTR 3 Pro":
-                //        bitmap = new Bitmap(Convert.ToInt32(480), Convert.ToInt32(480), PixelFormat.Format32bppArgb);
-                //        mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gtr_3_pro.png");
-                //        break;
-                //    case "GTS 3":
-                //    case "GTS 4":
-                //        bitmap = new Bitmap(Convert.ToInt32(390), Convert.ToInt32(450), PixelFormat.Format32bppArgb);
-                //        mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gts_3.png");
-                //        break;
-                //    case "GTR 4":
-                //        bitmap = new Bitmap(Convert.ToInt32(466), Convert.ToInt32(466), PixelFormat.Format32bppArgb);
-                //        mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gtr_4.png");
-                //        break;
-                //    case "Amazfit Band 7":
-                //        bitmap = new Bitmap(Convert.ToInt32(194), Convert.ToInt32(368), PixelFormat.Format32bppArgb);
-                //        mask = new Bitmap(Application.StartupPath + @"\Mask\mask_band_7.png");
-                //        break;
-                //    case "GTS 4 mini":
-                //        bitmap = new Bitmap(Convert.ToInt32(336), Convert.ToInt32(384), PixelFormat.Format32bppArgb);
-                //        mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gts_4_mini.png");
-                //        break;
-                //    case "Falcon":
-                //    case "GTR mini":
-                //        bitmap = new Bitmap(Convert.ToInt32(416), Convert.ToInt32(416), PixelFormat.Format32bppArgb);
-                //        mask = new Bitmap(Application.StartupPath + @"\Mask\mask_falcon.png");
-                //        break;
-                //}
                 /*// StartBlock :: Kartun
                 Logger.WriteLine($"* button_SavePNG_Click for {ProgramSettings.Watch_Model}");
                 Classes.AmazfitPlatform currPlatform = AvailableConfigurations[ProgramSettings.Watch_Model];
@@ -22122,11 +22091,11 @@ namespace Watch_Face_Editor
                 {
                     case "GTR 3":
                         comboBox_ConvertingInput_Model.Text = "454 (GTR 3)";
-                        comboBox_ConvertingOutput_Model.Text = "480 (GTR 3 Pro)";
+                        comboBox_ConvertingOutput_Model.Text = "480 (Balance)";
                         break;
                     case "T-Rex 2":
                         comboBox_ConvertingInput_Model.Text = "454 (T-Rex 2)";
-                        comboBox_ConvertingOutput_Model.Text = "480 (GTR 3 Pro)";
+                        comboBox_ConvertingOutput_Model.Text = "480 (Balance)";
                         break;
                     case "T-Rex 3":
                         comboBox_ConvertingInput_Model.Text = "480 (T-Rex 2)";
@@ -22134,7 +22103,7 @@ namespace Watch_Face_Editor
                         break;
                     case "T-Rex Ultra":
                         comboBox_ConvertingInput_Model.Text = "454 (T-Rex Ultra)";
-                        comboBox_ConvertingOutput_Model.Text = "480 (GTR 3 Pro)";
+                        comboBox_ConvertingOutput_Model.Text = "480 (Balance)";
                         break;
                     case "GTR 3 Pro":
                         comboBox_ConvertingInput_Model.Text = "480 (GTR 3 Pro)";
@@ -22186,7 +22155,11 @@ namespace Watch_Face_Editor
                         break;
                     case "Active Edge":
                         comboBox_ConvertingInput_Model.Text = "360 (Active Edge)";
-                        comboBox_ConvertingOutput_Model.Text = "480 (GTR 3 Pro)";
+                        comboBox_ConvertingOutput_Model.Text = "480 (Balance)";
+                        break;
+                    case "Active 2":
+                        comboBox_ConvertingInput_Model.Text = "466 (Active 2)";
+                        comboBox_ConvertingOutput_Model.Text = "480 (Balance)";
                         break;
                     default:
                         comboBox_ConvertingInput_Model.SelectedIndex = 0;
@@ -22239,6 +22212,7 @@ namespace Watch_Face_Editor
                     numericUpDown_ConvertingInput_Custom.Value = 454;
                     break;
                 case "466 (GTR 4)":
+                case "466 (Active 2)":
                     numericUpDown_ConvertingInput_Custom.Value = 466;
                     break;
                 case "480 (GTR 3 Pro)":
@@ -22283,6 +22257,7 @@ namespace Watch_Face_Editor
                     numericUpDown_ConvertingOutput_Custom.Value = 454;
                     break;
                 case "466 (GTR 4)":
+                case "466 (Active 2)":
                     numericUpDown_ConvertingOutput_Custom.Value = 466;
                     break;
                 case "480 (GTR 3 Pro)":
@@ -22365,6 +22340,10 @@ namespace Watch_Face_Editor
                     case "466 (GTR 4)":
                         suffix = "_GTR_4";
                         DeviceName = "GTR 4";
+                        break;
+                    case "466 (Active 2)":
+                        suffix = "_Active_2";
+                        DeviceName = "Active 2";
                         break;
                     case "480 (GTR 3 Pro)":
                         suffix = "_GTR_3_Pro";

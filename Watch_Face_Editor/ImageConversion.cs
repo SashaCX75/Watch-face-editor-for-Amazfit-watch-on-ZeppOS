@@ -34,25 +34,41 @@ namespace Watch_Face_Editor
                         _streamBuffer = new byte[fileStream.Length];
                         fileStream.Read(_streamBuffer, 0, (int)fileStream.Length);
 
-                        Header header = new Header(_streamBuffer, fileNameFull, targetFileName);
-                        int colorMap = header.GetExistsColorMap();
-                        int imageType = header.GetImageType();
-                        int bitsPerPixel = header.GetBitsPerPixel();
-                        if (colorMap == 1 && imageType == 1) path = TgaToPng(fileNameFull, targetFileName, fix_color);
-                        if (colorMap == 0 && imageType == 2) 
+                        if (_streamBuffer[0] == 0x89 &&
+                            _streamBuffer[1] == 0x50 && _streamBuffer[2] == 0x4E && _streamBuffer[3] == 0x47 && // PNG
+                            _streamBuffer[4] == 0x0D && _streamBuffer[5] == 0x0A && _streamBuffer[6] == 0x1A)
                         {
-                            if (bitsPerPixel != 32 && fix_color == 1)
-                            {
-                                ZeppOSConverter_VB myLibrary = new ZeppOSConverter_VB();
-                                bool result = myLibrary.MyMethod(fileNameFull, targetFileName);
-                                if(result) path = Path.GetDirectoryName(targetFileName);
-                            }
-                            else
-                            {
-                                path = TgaARGBToPng(fileNameFull, targetFileName, fix_color);
-                            }
+                            //using (var stream = File.OpenRead(fileNameFull))
+                            //{
+                            //    ImageMagick.MagickImage image = new ImageMagick.MagickImage(stream);
+                            //    image.Write(targetFileName, ImageMagick.MagickFormat.Png32);
+                            //    path = targetFileName;
+                            //}
+                            File.Copy(fileNameFull, targetFileName, true);
+                            path = targetFileName;
                         }
-                        if (colorMap == 1 && imageType == 9) path = TgaToPng(fileNameFull, targetFileName, fix_color);
+                        else
+                        {
+                            Header header = new Header(_streamBuffer, fileNameFull, targetFileName);
+                            int colorMap = header.GetExistsColorMap();
+                            int imageType = header.GetImageType();
+                            int bitsPerPixel = header.GetBitsPerPixel();
+                            if (colorMap == 1 && imageType == 1) path = TgaToPng(fileNameFull, targetFileName, fix_color);
+                            if (colorMap == 0 && imageType == 2)
+                            {
+                                if (bitsPerPixel != 32 && fix_color == 1)
+                                {
+                                    ZeppOSConverter_VB myLibrary = new ZeppOSConverter_VB();
+                                    bool result = myLibrary.MyMethod(fileNameFull, targetFileName);
+                                    if (result) path = Path.GetDirectoryName(targetFileName);
+                                }
+                                else
+                                {
+                                    path = TgaARGBToPng(fileNameFull, targetFileName, fix_color);
+                                }
+                            }
+                            if (colorMap == 1 && imageType == 9) path = TgaToPng(fileNameFull, targetFileName, fix_color); 
+                        }
                     }
                 }
                 catch (Exception exp)

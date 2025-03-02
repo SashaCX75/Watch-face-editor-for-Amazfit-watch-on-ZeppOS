@@ -1531,4 +1531,16 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Přidávání elementů</value>
   </data>
+  <data name="groupBox_shortcuts.Text" xml:space="preserve">
+    <value>Zkratky</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>* Do zóny zástupců nemůžete přidat další prvky</value>
+  </data>
+  <data name="radioButton_appsList.Text" xml:space="preserve">
+    <value>Zástupce aplikace</value>
+  </data>
+  <data name="radioButton_sportList.Text" xml:space="preserve">
+    <value>Tréninková zkratka</value>
+  </data>
 </root>

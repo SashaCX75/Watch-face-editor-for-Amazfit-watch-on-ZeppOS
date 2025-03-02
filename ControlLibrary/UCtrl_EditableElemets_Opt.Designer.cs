@@ -129,6 +129,8 @@
             this.panel_Sunset_Sunrise = new System.Windows.Forms.Panel();
             this.button_Sunset_Sunrise = new System.Windows.Forms.Button();
             this.checkBox_Sunset_Sunrise = new System.Windows.Forms.CheckBox();
+            this.panel_shortcuts = new System.Windows.Forms.Panel();
+            this.label_shortcuts_hint = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.comboBox_select_element = new System.Windows.Forms.ComboBox();
@@ -168,6 +170,7 @@
             this.panel_Sunset.SuspendLayout();
             this.panel_Sunrise.SuspendLayout();
             this.panel_Sunset_Sunrise.SuspendLayout();
+            this.panel_shortcuts.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Arrow_Down)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Arrow_Right)).BeginInit();
@@ -689,6 +692,7 @@
             this.tableLayoutPanel_element.Controls.Add(this.panel_Sunset, 0, 6);
             this.tableLayoutPanel_element.Controls.Add(this.panel_Sunrise, 0, 7);
             this.tableLayoutPanel_element.Controls.Add(this.panel_Sunset_Sunrise, 0, 8);
+            this.tableLayoutPanel_element.Controls.Add(this.panel_shortcuts, 0, 15);
             this.tableLayoutPanel_element.Name = "tableLayoutPanel_element";
             this.tableLayoutPanel_element.DragDrop += new System.Windows.Forms.DragEventHandler(this.tableLayoutPanel_element_DragDrop);
             this.tableLayoutPanel_element.DragOver += new System.Windows.Forms.DragEventHandler(this.tableLayoutPanel_element_DragOver);
@@ -1188,6 +1192,17 @@
             this.checkBox_Sunset_Sunrise.UseVisualStyleBackColor = true;
             this.checkBox_Sunset_Sunrise.CheckedChanged += new System.EventHandler(this.checkBox_Elements_CheckedChanged);
             // 
+            // panel_shortcuts
+            // 
+            this.panel_shortcuts.Controls.Add(this.label_shortcuts_hint);
+            resources.ApplyResources(this.panel_shortcuts, "panel_shortcuts");
+            this.panel_shortcuts.Name = "panel_shortcuts";
+            // 
+            // label_shortcuts_hint
+            // 
+            resources.ApplyResources(this.label_shortcuts_hint, "label_shortcuts_hint");
+            this.label_shortcuts_hint.Name = "label_shortcuts_hint";
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.label6);
@@ -1205,7 +1220,7 @@
             // comboBox_select_element
             // 
             this.comboBox_select_element.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_select_element.DropDownWidth = 130;
+            this.comboBox_select_element.DropDownWidth = 160;
             this.comboBox_select_element.FormattingEnabled = true;
             resources.ApplyResources(this.comboBox_select_element, "comboBox_select_element");
             this.comboBox_select_element.Name = "comboBox_select_element";
@@ -1306,6 +1321,7 @@
             this.panel_Sunrise.PerformLayout();
             this.panel_Sunset_Sunrise.ResumeLayout(false);
             this.panel_Sunset_Sunrise.PerformLayout();
+            this.panel_shortcuts.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Arrow_Down)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Arrow_Right)).EndInit();
@@ -1422,5 +1438,7 @@
         private System.Windows.Forms.Panel panel_Direction;
         private System.Windows.Forms.Button button_Direction;
         public System.Windows.Forms.CheckBox checkBox_Direction;
+        private System.Windows.Forms.Panel panel_shortcuts;
+        private System.Windows.Forms.Label label_shortcuts_hint;
     }
 }

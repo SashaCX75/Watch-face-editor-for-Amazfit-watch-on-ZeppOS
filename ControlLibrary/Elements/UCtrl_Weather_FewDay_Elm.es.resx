@@ -147,6 +147,37 @@
   <data name="button_Images.Text" xml:space="preserve">
     <value>Imágenes</value>
   </data>
+  <data name="button_Images.ToolTip" xml:space="preserve">
+    <value>1. Nublado
+2. Probabilidad de lluvia
+3. Probabilidad de nieve
+4. Soleado
+5. Nublado
+6. Lluvia ligera
+7. Nieve ligera
+8. Lluvia moderada
+9. Nieve moderada
+10. Fuertes nevadas
+11. Fuertes lluvias
+12. Tormenta de arena
+13. Aguanieve
+14. Niebla
+15. Neblina
+16. Tormenta
+17. Tormenta de nieve
+18. Polvoriento
+19. Lluvia extrema
+20. Lluvia con granizo
+21. Fuertes lluvias con granizo
+22. Tormenta de lluvia
+23. Tormenta de polvo
+24. Tormenta de arena severa
+25. Lluvia torrencial
+26. Clima desconocido
+27. Noche nublada
+28. Noche lluviosa
+29. Noche clara</value>
+  </data>
   <data name="button_Diagram.Text" xml:space="preserve">
     <value>Gráfico de temperatura</value>
   </data>

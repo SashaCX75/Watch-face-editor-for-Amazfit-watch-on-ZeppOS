@@ -1821,7 +1821,7 @@ namespace Watch_Face_Editor
 
                 if (zonesList != null && zonesList.Elements != null && zonesList.Elements.Count > 0)
                 {
-                    List<string> elementName = GetElementsNameList(zonesList.Elements);
+                    List<string> elementName = GetElementsNameList(zonesList.Elements, zonesList.optional_types_list);
                     uCtrl_EditableElements_Opt.SetElementsCount(elementName);
                     uCtrl_EditableElements_Opt.SetElementsIndex(zonesList.selected_element);
 
@@ -3540,42 +3540,10 @@ namespace Watch_Face_Editor
             }
             if (FileName != null && ProjectDir != null) // проект уже сохранен
             {
-                // формируем картинку для предпросмотра
-                /* Bitmap bitmap = new Bitmap(Convert.ToInt32(454), Convert.ToInt32(454), PixelFormat.Format32bppArgb);
-                 Bitmap mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gtr_3.png");
-                 switch (ProgramSettings.Watch_Model)
-                 {
-                     case "GTR 3 Pro":
-                         bitmap = new Bitmap(Convert.ToInt32(480), Convert.ToInt32(480), PixelFormat.Format32bppArgb);
-                         mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gtr_3_pro.png");
-                         break;
-                     case "GTS 3":
-                     case "GTS 4":
-                         bitmap = new Bitmap(Convert.ToInt32(390), Convert.ToInt32(450), PixelFormat.Format32bppArgb);
-                         mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gts_3.png");
-                         break;
-                     case "GTR 4":
-                         bitmap = new Bitmap(Convert.ToInt32(466), Convert.ToInt32(466), PixelFormat.Format32bppArgb);
-                         mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gtr_4.png");
-                         break;
-                     case "Amazfit Band 7":
-                         bitmap = new Bitmap(Convert.ToInt32(194), Convert.ToInt32(368), PixelFormat.Format32bppArgb);
-                         mask = new Bitmap(Application.StartupPath + @"\Mask\mask_band_7.png");
-                         break;
-                     case "GTS 4 mini":
-                         bitmap = new Bitmap(Convert.ToInt32(336), Convert.ToInt32(384), PixelFormat.Format32bppArgb);
-                         mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gts_4_mini.png");
-                         break;
-                     case "Falcon":
-                     case "GTR mini":
-                         bitmap = new Bitmap(Convert.ToInt32(416), Convert.ToInt32(416), PixelFormat.Format32bppArgb);
-                         mask = new Bitmap(Application.StartupPath + @"\Mask\mask_falcon.png");
-                         break;
-                 }*/
                 Bitmap bitmap = new Bitmap(SelectedModel.background.w, SelectedModel.background.h, PixelFormat.Format32bppArgb);
                 Bitmap mask = new Bitmap(Application.StartupPath + @"\Mask\" + SelectedModel.maskImage);
                 Graphics gPanel = Graphics.FromImage(bitmap);
-                Creat_preview_editable_pointers(gPanel, 1.0f, false);
+                Creat_preview_editable_pointers(gPanel, 1.0f, false, radioButton_ScreenNormal.Checked ? 0 : 1);
                 if (checkBox_crop.Checked) bitmap = ApplyMask(bitmap, mask);
 
                 // определяем имя файла для сохранения и сохраняем файл
@@ -3640,41 +3608,10 @@ namespace Watch_Face_Editor
                     uCtrl_EditableBackground_Opt_PreviewAdd(null, null, index);
                     return;
                 }
-                /* Bitmap bitmap = new Bitmap(Convert.ToInt32(454), Convert.ToInt32(454), PixelFormat.Format32bppArgb);
-                 Bitmap mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gtr_3.png");
-                 switch (ProgramSettings.Watch_Model)
-                 {
-                     case "GTR 3 Pro":
-                         bitmap = new Bitmap(Convert.ToInt32(480), Convert.ToInt32(480), PixelFormat.Format32bppArgb);
-                         mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gtr_3_pro.png");
-                         break;
-                     case "GTS 3":
-                     case "GTS 4":
-                         bitmap = new Bitmap(Convert.ToInt32(390), Convert.ToInt32(450), PixelFormat.Format32bppArgb);
-                         mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gts_3.png");
-                         break;
-                     case "GTR 4":
-                         bitmap = new Bitmap(Convert.ToInt32(466), Convert.ToInt32(466), PixelFormat.Format32bppArgb);
-                         mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gtr_4.png");
-                         break;
-                     case "Amazfit Band 7":
-                         bitmap = new Bitmap(Convert.ToInt32(194), Convert.ToInt32(368), PixelFormat.Format32bppArgb);
-                         mask = new Bitmap(Application.StartupPath + @"\Mask\mask_band_7.png");
-                         break;
-                     case "GTS 4 mini":
-                         bitmap = new Bitmap(Convert.ToInt32(336), Convert.ToInt32(384), PixelFormat.Format32bppArgb);
-                         mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gts_4_mini.png");
-                         break;
-                     case "Falcon":
-                     case "GTR mini":
-                         bitmap = new Bitmap(Convert.ToInt32(416), Convert.ToInt32(416), PixelFormat.Format32bppArgb);
-                         mask = new Bitmap(Application.StartupPath + @"\Mask\mask_falcon.png");
-                         break;
-                 }*/
                 Bitmap bitmap = new Bitmap(SelectedModel.background.w, SelectedModel.background.h, PixelFormat.Format32bppArgb);
                 Bitmap mask = new Bitmap(Application.StartupPath + @"\Mask\" + SelectedModel.maskImage);
                 Graphics gPanel = Graphics.FromImage(bitmap);
-                Creat_preview_editable_pointers(gPanel, 1.0f, false);
+                Creat_preview_editable_pointers(gPanel, 1.0f, false, radioButton_ScreenNormal.Checked ? 0 : 1);
                 if (checkBox_crop.Checked) bitmap = ApplyMask(bitmap, mask);
 
                 //Image loadedImage = null;
@@ -4313,11 +4250,14 @@ namespace Watch_Face_Editor
             return colorStr;
         }
 
-        private List<string> GetElementsNameList(List<Object> elements)
+        private List<string> GetElementsNameList(List<Object> elements, List<Optional_Types_List> types_list)
         {
             List<string> elementName = new List<string>();
-            foreach (Object element in elements)
+
+            for (int i = 0; i < elements.Count; i++)
+            //foreach (Object element in elements)
             {
+                Object element = elements[i];
                 //string elementStr = element.ToString();
                 //string type = GetTypeFromSring(elementStr);
                 string type = element.GetType().Name;
@@ -4454,7 +4394,29 @@ namespace Watch_Face_Editor
                     case "ElementMoon":
                         elementName.Add(Properties.ElementsString.TypeMoon);
                         break;
-                        #endregion
+                    #endregion
+
+                    #region ElementImage
+                    case "ElementImage":
+                        if (types_list != null && types_list.Count > 0 && types_list.Count > i)
+                        {
+                            if (types_list[i].type == "APPLIST") elementName.Add(Properties.ElementsString.TypeAppsList);
+                            if (types_list[i].type == "SPORTSLIST") elementName.Add(Properties.ElementsString.TypeSportList);
+                        }
+                        break;
+                    #endregion
+
+                    //#region ElementAppsList
+                    //case "ElementAppsList":
+                    //    elementName.Add(Properties.ElementsString.TypeAppsList);
+                    //    break;
+                    //#endregion
+
+                    //#region ElementSportList
+                    //case "ElementSportList":
+                    //    elementName.Add(Properties.ElementsString.TypeSportList);
+                    //    break;
+                    //#endregion
                 }
             }
             return elementName;

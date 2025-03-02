@@ -21,9 +21,13 @@ namespace Watch_Face_Editor
                 return type;
             }
         }
-        public FormAddEditableElement()
+        public FormAddEditableElement(float versionOS)
         {
             InitializeComponent();
+            if (versionOS < 3)
+            {
+                groupBox_shortcuts.Enabled = false;
+            }
         }
 
         // объединяем контролы из разных groupBox
@@ -52,75 +56,6 @@ namespace Watch_Face_Editor
                             }
                         }
                 }
-                //switch (name)
-                //{
-                //    case "radioButton_date":
-                //        type = "Date";
-                //        break;
-                //    case "radioButton_month":
-                //        type = "Month";
-                //        break;
-                //    case "radioButton_year":
-                //        type = "Year";
-                //        break;
-                //    case "radioButton_week":
-                //        type = "Week";
-                //        break;
-
-                //    case "radioButton_steps":
-                //        type = "Steps";
-                //        break;
-                //    case "radioButton_calories":
-                //        type = "Calories";
-                //        break;
-                //    case "radioButton_heart":
-                //        type = "Heart";
-                //        break;
-                //    case "radioButton_PAI":
-                //        type = "PAI";
-                //        break;
-                //    case "radioButton_distance":
-                //        type = "Distance";
-                //        break;
-                //    case "radioButton_stand":
-                //        type = "Stand";
-                //        break;
-                //    case "radioButton_stress":
-                //        type = "Stress";
-                //        break;
-                //    case "radioButton_fat_burning":
-                //        type = "FatBurning";
-                //        break;
-                //    case "radioButton_SpO2":
-                //        type = "SpO2";
-                //        break;
-
-                //    case "radioButton_weather":
-                //        type = "Weather";
-                //        break;
-                //    case "radioButton_UVI":
-                //        type = "UVI";
-                //        break;
-                //    case "radioButton_humidity":
-                //        type = "Humidity";
-                //        break;
-                //    case "radioButton_sunrise":
-                //        type = "Sunrise";
-                //        break;
-                //    case "radioButton_wind":
-                //        type = "Wind";
-                //        break;
-                //    case "Altimeter":
-                //        type = "SpO2";
-                //        break;
-                //    case "radioButton_moon":
-                //        type = "Moon";
-                //        break;
-
-                //    default:
-                //        type = "";
-                //        break;
-                //}
             }
         }
 
@@ -247,6 +182,14 @@ namespace Watch_Face_Editor
 
                                     case "radioButton_battery":
                                         type = "Battery";
+                                        break;
+
+                                    case "radioButton_appsList":
+                                        type = "AppsList";
+                                        break;
+
+                                    case "radioButton_sportList":
+                                        type = "SportList";
                                         break;
 
                                     default:

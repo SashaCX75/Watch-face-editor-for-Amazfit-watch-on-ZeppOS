@@ -211,6 +211,24 @@ namespace Watch_Face_Editor
                                 }
                             }
                         }
+                        else if (type == "ElementImage")
+                        {
+                            if (SelectedModel.versionOS >= 3)
+                            {
+                                src = null;
+                                string type_shortcut = edit_group.optional_types_list[selected_element].type;
+                                if (type_shortcut == "APPLIST") src = Properties.Resources.apps_icon;
+                                if (type_shortcut == "SPORTSLIST") src = Properties.Resources.sport_icon;
+                                if (src != null)
+                                {
+                                    int x = edit_group.x;
+                                    int y = edit_group.y;
+                                    int w = edit_group.w;
+                                    int h = edit_group.h;
+                                    gPanel.DrawImage(src, x, y, w, h);
+                                } 
+                            }
+                        }
                         else
                         {
                             Draw_elements(edit_group.Elements[selected_element], gPanel, scale, crop, WMesh, BMesh, BBorder, showShortcuts,
@@ -273,6 +291,24 @@ namespace Watch_Face_Editor
                                 }
                             }
                         }
+                        else if (type == "ElementImage")
+                        {
+                            if (SelectedModel.versionOS >= 3)
+                            {
+                                src = null;
+                                string type_shortcut = edit_group.optional_types_list[selected_element].type;
+                                if (type_shortcut == "APPLIST") src = Properties.Resources.apps_icon;
+                                if (type_shortcut == "SPORTSLIST") src = Properties.Resources.sport_icon;
+                                if (src != null)
+                                {
+                                    int x = edit_group.x;
+                                    int y = edit_group.y;
+                                    int w = edit_group.w;
+                                    int h = edit_group.h;
+                                    gPanel.DrawImage(src, x, y, w, h);
+                                } 
+                            }
+                        }
                         else
                         {
                             Draw_elements(edit_group.Elements[selected_element], gPanel, scale, crop, WMesh, BMesh, BBorder, showShortcuts, 
@@ -328,7 +364,7 @@ namespace Watch_Face_Editor
 
                     if (pointers_list.second != null && pointers_list.second.path != null
                         && pointers_list.second.path.Length > 0 &&
-                        (radioButton_ScreenNormal.Checked || EditablePointers.AOD_show))
+                        (link == 0 || EditablePointers.AOD_show))
                     {
                         int x = pointers_list.second.centerX;
                         int y = pointers_list.second.centerY;
@@ -396,7 +432,7 @@ namespace Watch_Face_Editor
             #endregion
 
             #region ElementShortcuts
-            if (radioButton_ScreenNormal.Checked && Watch_Face != null && Watch_Face.Shortcuts != null && Watch_Face.Shortcuts.visible)
+            if (link == 0 && Watch_Face != null && Watch_Face.Shortcuts != null && Watch_Face.Shortcuts.visible)
             {
                 ElementShortcuts shortcutsElement = Watch_Face.Shortcuts;
 
@@ -588,7 +624,7 @@ namespace Watch_Face_Editor
             #endregion
 
             #region ElementButtons
-            if (radioButton_ScreenNormal.Checked && Watch_Face != null && Watch_Face.Buttons != null && Watch_Face.Buttons.enable)
+            if (link == 0 && Watch_Face != null && Watch_Face.Buttons != null && Watch_Face.Buttons.enable)
             {
                 if (Watch_Face.Buttons.Button != null && Watch_Face.Buttons.Button.Count > 0)
                 {
@@ -601,7 +637,7 @@ namespace Watch_Face_Editor
             #endregion
 
             #region SwitchBG Button
-            if (radioButton_ScreenNormal.Checked && Watch_Face != null && switchBG != null)
+            if (link == 0 && Watch_Face != null && switchBG != null)
             {
                 if (switchBG.Button != null)
                 {
@@ -612,7 +648,7 @@ namespace Watch_Face_Editor
             #endregion
 
             #region SwitchBG_Color Button
-            if (radioButton_ScreenNormal.Checked && Watch_Face != null && switchBG_Color != null)
+            if (link == 0 && Watch_Face != null && switchBG_Color != null)
             {
                 if (switchBG_Color.Button != null)
                 {
@@ -4317,7 +4353,7 @@ namespace Watch_Face_Editor
 
                     bool showTemperature_FewDays = WatchFacePreviewSet.Weather.showTemperature;
 
-                    DrawWeatherFewDays(gPanel, activityElement_Weather_FewDays, WatchFacePreviewSet.Weather.forecastData, BBorder, showTemperature_FewDays);
+                    DrawWeatherFewDays(gPanel, activityElement_Weather_FewDays, WatchFacePreviewSet.Weather.forecastData, BBorder, showTemperature_FewDays, link);
 
 
                     break;
@@ -4815,6 +4851,13 @@ namespace Watch_Face_Editor
                                 w = src.Width; 
                             }
                             src = OpenFileStream(editable_elements.Watchface_edit_group[i].optional_types_list[element_index].preview);
+                            if (SelectedModel.versionOS >= 3)
+                            {
+                                if (editable_elements.Watchface_edit_group[i].optional_types_list[element_index].type == "APPLIST")
+                                    src = Properties.Resources.apps_icon;
+                                if (editable_elements.Watchface_edit_group[i].optional_types_list[element_index].type == "SPORTSLIST")
+                                    src = Properties.Resources.sport_icon; 
+                            }
                             if (src != null)
                             {
                                 int x = editable_elements.Watchface_edit_group[i].x + editable_elements.Watchface_edit_group[i].w / 2 - w / 2;
@@ -4822,17 +4865,23 @@ namespace Watch_Face_Editor
                                 //gPanel.DrawImage(src, x, y);
                                 if (w > 0 && h > 0)
                                 {
-                                    Rectangle cropRect = new Rectangle(0, 0, w, h);
-                                    //Rectangle cropRect = new Rectangle(...);
-                                    //Bitmap src = Image.FromFile(fileName) as Bitmap;
-                                    Bitmap target = new Bitmap(cropRect.Width, cropRect.Height);
-
-                                    using (Graphics g = Graphics.FromImage(target))
+                                    if (SelectedModel.versionOS >= 3 && (editable_elements.Watchface_edit_group[i].optional_types_list[element_index].type == "APPLIST" ||
+                                        editable_elements.Watchface_edit_group[i].optional_types_list[element_index].type == "SPORTSLIST"))
                                     {
-                                        g.DrawImage(src, new Rectangle(0, 0, target.Width, target.Height),
-                                                         cropRect, GraphicsUnit.Pixel);
+                                        gPanel.DrawImage(src, x, y, w, h);
                                     }
-                                    gPanel.DrawImage(target, x, y);
+                                    else
+                                    {
+                                        Rectangle cropRect = new Rectangle(0, 0, w, h);
+                                        Bitmap target = new Bitmap(cropRect.Width, cropRect.Height);
+
+                                        using (Graphics g = Graphics.FromImage(target))
+                                        {
+                                            g.DrawImage(src, new Rectangle(0, 0, target.Width, target.Height),
+                                                             cropRect, GraphicsUnit.Pixel);
+                                        }
+                                        gPanel.DrawImage(target, x, y); 
+                                    }
                                 } 
                             }
                         }
@@ -4840,6 +4889,8 @@ namespace Watch_Face_Editor
                         element_index = editable_elements.selected_zone;
                         if (edit_mode == 2) // рисуем рамки элементов
                         {
+                            int h = editable_elements.Watchface_edit_group[i].h;
+                            int w = editable_elements.Watchface_edit_group[i].w;
                             if (element_index == i) // рамка выделеного элемента
                             {
                                 if (i >= 0 && i < editable_elements.Watchface_edit_group.Count &&
@@ -4861,7 +4912,16 @@ namespace Watch_Face_Editor
                                     int x = editable_elements.Watchface_edit_group[i].x;
                                     int y = editable_elements.Watchface_edit_group[i].y;
                                     src = OpenFileStream(editable_elements.Watchface_edit_group[i].un_select_image);
-                                    gPanel.DrawImage(src, x, y);
+                                    //gPanel.DrawImage(src, x, y);
+                                    Rectangle cropRect = new Rectangle(0, 0, w, h); // обрезаим изображение по размеру зоны
+                                    Bitmap target = new Bitmap(cropRect.Width, cropRect.Height);
+
+                                    using (Graphics g = Graphics.FromImage(target))
+                                    {
+                                        g.DrawImage(src, new Rectangle(0, 0, target.Width, target.Height),
+                                                         cropRect, GraphicsUnit.Pixel);
+                                    }
+                                    gPanel.DrawImage(target, x, y);
                                 }
                             } 
                         }
@@ -5058,6 +5118,13 @@ namespace Watch_Face_Editor
                                     valueStr = Properties.ElementsString.TypeNameMoon;
                                     break;
 
+                                case "APPLIST":
+                                    valueStr = Properties.ElementsString.TypeNameAppsList;
+                                    break;
+                                case "SPORTSLIST":
+                                    valueStr = Properties.ElementsString.TypeNameSportList;
+                                    break;
+
                                 default:
                                     valueStr = "Error";
                                     break;
@@ -5195,7 +5262,7 @@ namespace Watch_Face_Editor
         /// <param name="gPanel">Поверхность для рисования</param>
         /// <param name="scale">Масштаб прорисовки</param>
         /// <param name="crop">Обрезать по форме экрана</param>
-        public void Creat_preview_editable_pointers(Graphics gPanel, float scale, bool crop)
+        public void Creat_preview_editable_pointers(Graphics gPanel, float scale, bool crop, int link)
         {
             Bitmap src = new Bitmap(1, 1);
             gPanel.ScaleTransform(scale, scale, MatrixOrder.Prepend);
@@ -5245,7 +5312,7 @@ namespace Watch_Face_Editor
 
                     if (pointers_list.second != null && pointers_list.second.path != null
                         && pointers_list.second.path.Length > 0 &&
-                        (radioButton_ScreenNormal.Checked || EditablePointers.AOD_show))
+                        (link == 0 || EditablePointers.AOD_show))
                     {
                         int x = pointers_list.second.centerX;
                         int y = pointers_list.second.centerY;
@@ -7867,7 +7934,7 @@ namespace Watch_Face_Editor
         /// <param name="BBorder">Рисовать рамку по координатам, вокруг элементов с выравниванием</param>
         /// <param name="showTemperature">Показывать температуру</param>
         private void DrawWeatherFewDays(Graphics gPanel, Element_Weather_FewDays weather_FewDays, List<ForecastData> forecastData,
-            bool BBorder, bool showTemperature)
+            bool BBorder, bool showTemperature, int link)
         {
             Logger.WriteLine("* DrawWeatherFewDays");
             if (weather_FewDays == null) return;
@@ -7887,7 +7954,7 @@ namespace Watch_Face_Editor
             bool useMinGraphOffset = (weather_FewDays.Diagram != null && weather_FewDays.Diagram.visible && weather_FewDays.Diagram.Use_min_diagram && weather_FewDays.Diagram.PositionOnGraph);
             bool useAverageGraphOffset = (weather_FewDays.Diagram != null && weather_FewDays.Diagram.visible && weather_FewDays.Diagram.Use_average_diagram && weather_FewDays.Diagram.PositionOnGraph);
 
-            if (!radioButton_ScreenNormal.Checked || SelectedModel.versionOS < 3)
+            if (link != 0 || SelectedModel.versionOS < 3)
             {
                 useMaxGraphOffset = false;
                 useMinGraphOffset = false;
@@ -9256,8 +9323,8 @@ namespace Watch_Face_Editor
                 if (sunset_sunrise != null && sunset_sunrise.img_First != null && sunset_sunrise.img_First.Length > 0 &&
                     index == sunset_sunrise.position && sunset_sunrise.visible)
                 {
-                    float sunset_sunrise_value = 5.30f;
-                    if (time_now > time_sunrise && time_now < time_sunset) sunset_sunrise_value = 19.30f;
+                    float sunset_sunrise_value = 3.30f;
+                    if (time_now > time_sunrise && time_now < time_sunset) sunset_sunrise_value = 20.30f;
                     int image_Index = ListImages.IndexOf(sunset_sunrise.img_First);
                     int pos_x = sunset_sunrise.imageX;
                     int pos_y = sunset_sunrise.imageY;
@@ -14022,23 +14089,6 @@ namespace Watch_Face_Editor
             }
             else return bitmap;
 
-            /*Bitmap mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gtr_3.png");
-            if (ProgramSettings.Watch_Model == "GTR 3 Pro")
-                mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gtr_3_pro.png");
-            if (ProgramSettings.Watch_Model == "GTS 3")
-                mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gts_3.png");
-            if (ProgramSettings.Watch_Model == "GTR 4")
-                mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gtr_4.png");
-            if (ProgramSettings.Watch_Model == "Amazfit Band 7")
-                mask = new Bitmap(Application.StartupPath + @"\Mask\mask_band_7.png");
-            if (ProgramSettings.Watch_Model == "GTS 4 mini")
-                mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gts_4_mini.png");
-            if (ProgramSettings.Watch_Model == "Falcon")
-                mask = new Bitmap(Application.StartupPath + @"\Mask\mask_falcon.png");
-            if (ProgramSettings.Watch_Model == "GTR mini")
-                mask = new Bitmap(Application.StartupPath + @"\Mask\mask_falcon.png");
-            if (ProgramSettings.Watch_Model == "GTS 4")
-                mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gts_3.png");*/
             Bitmap mask = new Bitmap(Application.StartupPath + @"\Mask\" + SelectedModel.maskImage);
 
             bitmap = ApplyMask(bitmap, mask);

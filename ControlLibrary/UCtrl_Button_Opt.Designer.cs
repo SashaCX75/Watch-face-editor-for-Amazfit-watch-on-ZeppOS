@@ -486,7 +486,7 @@
             // 
             // VisibleButton
             // 
-            this.VisibleButton.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.VisibleButton.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.VisibleButton.FillWeight = 10F;
             resources.ApplyResources(this.VisibleButton, "VisibleButton");
             this.VisibleButton.Name = "VisibleButton";

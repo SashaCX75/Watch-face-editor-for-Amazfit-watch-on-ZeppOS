@@ -117,6 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="panel_Images.ToolTip" xml:space="preserve">
+    <value>1. Zataženo
+2. Déšť
+3. Déšť a sníh
+4. Slunečno
+5. Zataženo
+6. Slabý déšť
+7. Lehký sníh
+8. Slabý déšť
+9. Lehké sněžení
+10. Silný sníh
+11. Silný déšť
+12. Písečná bouře
+13. Mokrý sníh
+14. Mlha
+15. Opar
+16. Déšť s bouřkou
+17. Vánice
+18. Zaprášený
+19. Silný déšť
+20. Déšť a kroupy
+21. Déšť s kroupami
+22. Silný déšť
+23. Vítr s pískem
+24. Silná písečná bouře
+25. Déšť
+26. Neznámé počasí
+27. V noci zataženo
+28. Déšť v noci
+29. V noci jasno</value>
+  </data>
   <data name="button_Number_Max_Min_Font.Text" xml:space="preserve">
     <value>Data ve fontu</value>
   </data>
@@ -316,37 +347,6 @@
     <value>Obrázky</value>
   </data>
   <data name="button_Images.ToolTip" xml:space="preserve">
-    <value>1. Zataženo
-2. Déšť
-3. Déšť a sníh
-4. Slunečno
-5. Zataženo
-6. Slabý déšť
-7. Lehký sníh
-8. Slabý déšť
-9. Lehké sněžení
-10. Silný sníh
-11. Silný déšť
-12. Písečná bouře
-13. Mokrý sníh
-14. Mlha
-15. Opar
-16. Déšť s bouřkou
-17. Vánice
-18. Zaprášený
-19. Silný déšť
-20. Déšť a kroupy
-21. Déšť s kroupami
-22. Silný déšť
-23. Vítr s pískem
-24. Silná písečná bouře
-25. Déšť
-26. Neznámé počasí
-27. V noci zataženo
-28. Déšť v noci
-29. V noci jasno</value>
-  </data>
-  <data name="panel_Images.ToolTip" xml:space="preserve">
     <value>1. Zataženo
 2. Déšť
 3. Déšť a sníh

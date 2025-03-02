@@ -117,6 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="panel_Images.ToolTip" xml:space="preserve">
+    <value>1. Nuageux
+2. Averse
+3. Averse de neige
+4. Ensoleillé
+5. Couvert
+6. Pluie légère
+7. Légère neige
+8. Pluie modérée
+9. Neige modérée
+10. Neige abondante
+11. Fortes pluies
+12. Tempête de sable
+13. Neige fondue
+14. Brouillard
+15. Brume
+16. Orage
+17. Tempête de neige
+18. Poussière
+19. Très forte pluie
+20. Pluie avec grêle
+21. Orages avec grêle
+22. Forte tempête de pluie
+23. Vent de sable
+24. Forte tempête de sable
+25. Tempête de pluie
+26. Météo inconnue
+27. Nuit nuageuse
+28. Nuit pluvieuse
+29. Nuit claire</value>
+  </data>
   <data name="button_Number_Max_Min_Font.Text" xml:space="preserve">
     <value>Valeur en police</value>
   </data>
@@ -316,37 +347,6 @@
     <value>Images</value>
   </data>
   <data name="button_Images.ToolTip" xml:space="preserve">
-    <value>1. Nuageux
-2. Averse
-3. Averse de neige
-4. Ensoleillé
-5. Couvert
-6. Pluie légère
-7. Légère neige
-8. Pluie modérée
-9. Neige modérée
-10. Neige abondante
-11. Fortes pluies
-12. Tempête de sable
-13. Neige fondue
-14. Brouillard
-15. Brume
-16. Orage
-17. Tempête de neige
-18. Poussière
-19. Très forte pluie
-20. Pluie avec grêle
-21. Orages avec grêle
-22. Forte tempête de pluie
-23. Vent de sable
-24. Forte tempête de sable
-25. Tempête de pluie
-26. Météo inconnue
-27. Nuit nuageuse
-28. Nuit pluvieuse
-29. Nuit claire</value>
-  </data>
-  <data name="panel_Images.ToolTip" xml:space="preserve">
     <value>1. Nuageux
 2. Averse
 3. Averse de neige

@@ -137,7 +137,7 @@
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="VisibleButton.Width" type="System.Int32, mscorlib">
-    <value>18</value>
+    <value>5</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="dataGridView_buttons.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">

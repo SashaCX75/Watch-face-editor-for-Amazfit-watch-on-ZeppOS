@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="tabPageGeneralSettings.Text" xml:space="preserve">
+    <value>Загальні налаштування</value>
+  </data>
+  <data name="tabPageElementSettings.Text" xml:space="preserve">
+    <value>Налаштування елементів</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="checkBox_display_first.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 17</value>
@@ -165,6 +171,9 @@
   </data>
   <data name="label20.Text" xml:space="preserve">
     <value>Координати підказки</value>
+  </data>
+  <data name="contextMenuStrip_Y.Size" type="System.Drawing.Size, System.Drawing">
+    <value>205, 82</value>
   </data>
   <data name="вставитьКоординатуYToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -231,7 +240,7 @@
   <data name="вставитьToolStripMenuItemY.Text" xml:space="preserve">
     <value>Вставити</value>
   </data>
-  <data name="contextMenuStrip_Y.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="contextMenuStrip_X.Size" type="System.Drawing.Size, System.Drawing">
     <value>205, 82</value>
   </data>
   <data name="вставитьКоординатуХToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -299,9 +308,6 @@
   <data name="вставитьToolStripMenuItemX.Text" xml:space="preserve">
     <value>Вставити</value>
   </data>
-  <data name="contextMenuStrip_X.Size" type="System.Drawing.Size, System.Drawing">
-    <value>205, 82</value>
-  </data>
   <data name="label02.Text" xml:space="preserve">
     <value>Координати зони</value>
   </data>
@@ -314,9 +320,6 @@
   <data name="button_zoneDel.Text" xml:space="preserve">
     <value>Видалити зону</value>
   </data>
-  <data name="tabPageGeneralSettings.Text" xml:space="preserve">
-    <value>Загальні налаштування</value>
-  </data>
   <data name="button_PreviewAdd.Text" xml:space="preserve">
     <value>Створити перегляд</value>
   </data>
@@ -325,6 +328,10 @@
   </data>
   <data name="button_PreviewRefresh.Text" xml:space="preserve">
     <value>Оновити перегляд</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="tableLayoutPanel_element.RowCount" type="System.Int32, mscorlib">
+    <value>15</value>
   </data>
   <data name="button_Direction.Text" xml:space="preserve">
     <value>Напрямок вітру</value>
@@ -345,7 +352,7 @@
   <data name="button_Linear_Scale.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DQAACw0B7QfALAAAAHFJREFUOE+l0MEJgDAQRNFcrMea7MBuLEc82II1WIXrfIi3OThk4UH4JoHYqmqI
+        DAAACwwBP0AiyAAAAHFJREFUOE+l0MEJgDAQRNFcrMea7MBuLEc82II1WIXrfIi3OThk4UH4JoHYqmqI
         jQkbEzYmbEzYmGAm2eSSldBnlrNj/Q172MsZzrZFuAqPHLLL3RtY0/jGnq9zdvyCsSe4H5OwMWFjwsaE
         jQkb/6v2AqN4ZEdR2BDOAAAAAElFTkSuQmCC
 </value>
@@ -361,7 +368,7 @@
         xUAa4EouKCoB0n+A2CgltTiZgYHRAMjOLi8pAIozzgGyRZKywewNIHZRSJAzkH0EyOZLh7CvgNhJEPYT
         ELsI6Akg+wtIfTqYzcQBNgfClgGxS1IrQPYyOOcXVBZlpmeUKBhaWloqOKbkJ6UqBFcWl6TmFit45iXn
         FxXkFyWWpKYA1ULcBwaCEIWgENMAarTQZKAyAMUDhPU5EBy+jGJnEGIIkFxaVAZlMjIZE+YjzJgjwcDg
-        v5SBgeUPQsykl4FhgQ4DA/9UhJiaIQODgD4Dw745AMDGT/0ZOjZcAAAACXBIWXMAAAsNAAALDQHtB8As
+        v5SBgeUPQsykl4FhgQ4DA/9UhJiaIQODgD4Dw745AMDGT/0ZOjZcAAAACXBIWXMAAAsMAAALDAE/QCLI
         AAAA3UlEQVQ4T6XTAQ3CQAwF0FnAAlqwMAtYQMu0YAELWMDC6NvSpdxuCYGffNL8/v67HjDM8/wX1489
         xuAUfARPhB56AefgPUh8BZ/BrwMMGzB4DeYgvYs2wMmG64CawSoXQkUNsLPCyS1uwbzZR0gN8GAMR/vS
         hbjJhhqgwQBHO7sJs77AUy8gd2ZuUQOW29SAukKG1XXqCmreqQbUR/RQDAac2j4iD+9YA6B+jYxO00Q1
@@ -380,7 +387,7 @@
         xUAa4EouKCoB0n+A2CgltTiZgYHRAMjOLi8pAIozzgGyRZKywewNIHZRSJAzkH0EyOZLh7CvgNhJEPYT
         ELsI6Akg+wtIfTqYzcQBNgfClgGxS1IrQPYyOOcXVBZlpmeUKBhaWloqOKbkJ6UqBFcWl6TmFit45iXn
         FxXkFyWWpKYA1ULcBwaCEIWgENMAarTQZKAyAMUDhPU5EBy+jGJnEGIIkFxaVAZlMjIZE+YjzJgjwcDg
-        v5SBgeUPQsykl4FhgQ4DA/9UhJiaIQODgD4Dw745AMDGT/0ZOjZcAAAACXBIWXMAAAsNAAALDQHtB8As
+        v5SBgeUPQsykl4FhgQ4DA/9UhJiaIQODgD4Dw745AMDGT/0ZOjZcAAAACXBIWXMAAAsMAAALDAE/QCLI
         AAAAiklEQVQ4T9WSwQ3DIBAE3QItpCe3kBZSXGpxC2kB33AgInn8Ip+MtNLeasE2Zqu1XvTFu6uhXQ0n
         R1dDuxpO/nyDR4gB4b2rYVJC4w3w3tVwwsK2GLSrYfIKfbrw3tUwn8pCBoQv2tXwBxvA0icMlg5xD43f
         iPeuhskzxIDw3tUw4faNM7i5iXU7AR+D/8oPVDlNAAAAAElFTkSuQmCC
@@ -392,7 +399,7 @@
   <data name="button_Icon.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DQAACw0B7QfALAAAALtJREFUOE+9k70NwjAUhBPqiJoSiQjRsAM1K7BExAKMhKBnARagp2EJJLjv+afh
+        DAAACwwBP0AiyAAAALtJREFUOE+9k70NwjAUhBPqiJoSiQjRsAM1K7BExAKMhKBnARagp2EJJLjv+afh
         OZIViZM+2Rf7XWLHbqRWHMTJYRnxxqih1jqfAruINwbUWhqmVtRQ+5+AXlzF3lxQVcAgmHM2F1QV0Imj
         WJkLygH8Jna6VtRQWwzgrWPKAd4SNuIZWzQT29DNKu7BXDwEz2jxzHmJhUhyAziaF4FP3MU79m+Cr0H4
         n4C1wI+RluUG1CgHTL5ME65z034BcVFalb8Ro8sAAAAASUVORK5CYII=
@@ -404,7 +411,7 @@
   <data name="button_Text_CityName.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DQAACw0B7QfALAAAAHJJREFUOE9j+P//P0UYqyApGAQUgBjEIoTnAzFWQLEBHEDsgITbgRik4TmSGAhr
+        DAAACwwBP0AiyAAAAHJJREFUOE9j+P//P0UYqyApGAQUgBjEIoTnAzFWQLEBHEDsgITbgRik4TmSGAhr
         ADFRIB6IQQbcB/MgGpENQsYgyzEAugEgp8O8gY5B3scAVDcABnCJY4BRAxgYJIAYFMcWYB4CYBfHlkFI
         wVgFicf/GQADFwQ0nXOu9AAAAABJRU5ErkJggg==
 </value>
@@ -415,7 +422,7 @@
   <data name="button_Images.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DQAACw0B7QfALAAAAJFJREFUOE/dkzEOQDAYRmvE4gguYXcNcRWJ21gdxWp1CDPfoxIVQjt6yUt/9fva
+        DAAACwwBP0AiyAAAAJFJREFUOE/dkzEOQDAYRmvE4gguYXcNcRWJ21gdxWp1CDPfoxIVQjt6yUt/9fva
         oOZCJGvZfpA++h2YXDyk34FkbnyBPvpNeRR29A44P/TDgNSO0Mh8LzdeAzI5ykJWkvlBJhJeA3pJPcnZ
         1thJoH4MYBU+75OxvA0I+hPPAUFngYsjIAjfbbOgg8+2kZdoMWYFV65pjbJebrAAAAAASUVORK5CYII=
 </value>
@@ -426,7 +433,7 @@
   <data name="button_Segments.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DQAACw0B7QfALAAAAIpJREFUOE9j+P//P0UYqyApGAQcgFgAimFsEDAGYhAfHwapYQAZAxOAsY2gbGIw
+        DAAACwwBP0AiyAAAAIpJREFUOE9j+P//P0UYqyApGAQcgFgAimFsEDAGYhAfHwapYQAZAxOAsY2gbGIw
         mEA3AMbOR+KjY5AcQQNANC4AUzPEDBAGYlUIE66GoAHsQDwNiLmBeAcQXwJiTiCGqSFowGwo+z6UBuH5
         QAxTA1eIrAnGJjsaSUpIIA3kJ2VsGYQUjFWQePyfAQBhKhZtyV05xwAAAABJRU5ErkJggg==
 </value>
@@ -512,9 +519,8 @@
   <data name="button_Sunset_Sunrise.Text" xml:space="preserve">
     <value>Цифрові значення (схід/захід)</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="tableLayoutPanel_element.RowCount" type="System.Int32, mscorlib">
-    <value>15</value>
+  <data name="label_shortcuts_hint.Text" xml:space="preserve">
+    <value>Зображення попереднього перегляду буде замінено іконкою програми такого ж розміру.</value>
   </data>
   <data name="label6.Text" xml:space="preserve">
     <value>Вибір елемента</value>
@@ -524,9 +530,6 @@
   </data>
   <data name="button_elementAdd.Text" xml:space="preserve">
     <value>Додати елемент</value>
-  </data>
-  <data name="tabPageElementSettings.Text" xml:space="preserve">
-    <value>Налаштування елементів</value>
   </data>
   <data name="button_collapse.Text" xml:space="preserve">
     <value>Розгорнути / згорнути</value>
@@ -546,7 +549,7 @@
         xUAa4EouKCoB0n+A2CgltTiZgYHRAMjOLi8pAIozzgGyRZKywewNIHZRSJAzkH0EyOZLh7CvgNhJEPYT
         ELsI6Akg+wtIfTqYzcQBNgfClgGxS1IrQPYyOOcXVBZlpmeUKBhaWloqOKbkJ6UqBFcWl6TmFit45iXn
         FxXkFyWWpKYA1ULcBwaCEIWgENMAarTQZKAyAMUDhPU5EBy+jGJnEGIIkFxaVAZlMjIZE+YjzJgjwcDg
-        v5SBgeUPQsykl4FhgQ4DA/9UhJiaIQODgD4Dw745AMDGT/0ZOjZcAAAACXBIWXMAAAsNAAALDQHtB8As
+        v5SBgeUPQsykl4FhgQ4DA/9UhJiaIQODgD4Dw745AMDGT/0ZOjZcAAAACXBIWXMAAAsMAAALDAE/QCLI
         AAAAjklEQVRIS73UQQqEQAxE0b6Q5/EwLj22i5jGXlTbf2fFwIPhQww4zLSIKIXRCaMTRieMThidMKox
         Zzqej/PQjsKocrZ09Wel5QjtKIxqzJ7wCO0ojEoGj9COwqhesxyhHYVRwUxHaEdhVDClB0pfUemXjA/v
         QzsKo8r55YdW91fxFUYnjE4YnTA6YfSJdgPSvLhM8DVkIAAAAABJRU5ErkJggg==

@@ -23190,6 +23190,14 @@ namespace Watch_Face_Editor
                         #region WATCHFACE_EDIT_GROUP
                         case "WATCHFACE_EDIT_GROUP":
                             WATCHFACE_EDIT_GROUP edit_group = Object_WATCHFACE_EDIT_GROUP(parametrs);
+                            foreach (Optional_Types_List elements in edit_group.optional_types_list)
+                            {
+                                if (elements.type == "APPLIST" || elements.type == "SPORTSLIST")
+                                {
+                                    if (edit_group.Elements == null) edit_group.Elements = new List<object>();
+                                    edit_group.Elements.Add(new ElementImage());
+                                }
+                            }
                             if (Watch_Face.Editable_Elements == null) Watch_Face.Editable_Elements = new EditableElements();
                             Watch_Face.Editable_Elements.visible = true;
                             if (Watch_Face.Editable_Elements.Watchface_edit_group == null)
@@ -23264,10 +23272,10 @@ namespace Watch_Face_Editor
                                 elementsList = Watch_Face.ScreenNormal.Elements;
                             }
                             else if (objectName.StartsWith("idle") ||
-                                ((img_time.Group_Hour != null && img_time.Group_Hour.Number != null && (img_time.Group_Hour.Number.show_level == "ONLY_AOD") || (img_time.Group_Hour.Number.show_level == "ONAL_AOD")) ||
-                                (img_time.Group_Minute != null && img_time.Group_Minute.Number != null && (img_time.Group_Minute.Number.show_level == "ONLY_AOD") || (img_time.Group_Minute.Number.show_level == "ONAL_AOD")) ||
-                                (img_time.Group_Second != null && img_time.Group_Second.Number != null && (img_time.Group_Second.Number.show_level == "ONLY_AOD") || (img_time.Group_Second.Number.show_level == "ONAL_AOD")) ||
-                                (img_time.AmPm != null && (img_time.AmPm.show_level == "ONLY_AOD") || (img_time.AmPm.show_level == "ONAL_AOD"))))
+                                ((img_time.Group_Hour != null && img_time.Group_Hour.Number != null && (img_time.Group_Hour.Number.show_level == "ONLY_AOD" || img_time.Group_Hour.Number.show_level == "ONAL_AOD")) ||
+                                (img_time.Group_Minute != null && img_time.Group_Minute.Number != null && (img_time.Group_Minute.Number.show_level == "ONLY_AOD" || img_time.Group_Minute.Number.show_level == "ONAL_AOD")) ||
+                                (img_time.Group_Second != null && img_time.Group_Second.Number != null && (img_time.Group_Second.Number.show_level == "ONLY_AOD" || img_time.Group_Second.Number.show_level == "ONAL_AOD")) ||
+                                (img_time.AmPm != null && (img_time.AmPm.show_level == "ONLY_AOD" || img_time.AmPm.show_level == "ONAL_AOD"))))
                             {
                                 if (Watch_Face.ScreenAOD.Elements == null)
                                     Watch_Face.ScreenAOD.Elements = new List<object>();
@@ -25182,6 +25190,12 @@ namespace Watch_Face_Editor
                                 break;
                             case "ElementMoon":
                                 editableElementType = "MOON";
+                                break;
+
+                            case "ElementImage":
+                                string typeName = edit_group.optional_types_list[i].type;
+                                if (typeName == "APPLIST") editableElementType = "APPLIST";
+                                if (typeName == "SPORTSLIST") editableElementType = "SPORTSLIST";
                                 break;
                         }
 

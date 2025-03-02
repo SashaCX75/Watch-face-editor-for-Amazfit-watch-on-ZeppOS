@@ -39,6 +39,48 @@
     "fixSize": false,
     "versionOS": 4.0
   },
+  "Active 2": {
+    "name": "Active 2",
+    "designWidth": 466,
+    "deviceSource_ids": [
+      8913152,
+      8913153,
+      8913155,
+      8913159
+    ],
+    "background": {
+      "w": 466,
+      "h": 466
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 230,
+        "h": 230
+      },
+      "scaling_1_0": {
+        "w": 468,
+        "h": 468
+      },
+      "scaling_1_5": {
+        "w": 701,
+        "h": 701
+      },
+      "scaling_2_0": {
+        "w": 933,
+        "h": 933
+      },
+      "scaling_2_5": {
+        "w": 1166,
+        "h": 1166
+      }
+    },
+    "maskImage": "mask_gtr_4.png",
+    "watchSkin": "WatchSkin_Active_2.json",
+    "previewHeight": 314,
+    "colorScheme": 1,
+    "fixSize": true,
+    "versionOS": 4.0
+  },
   "Active Edge": {
     "name": "Amazfit Active Edge",
     "designWidth": 360,
@@ -77,7 +119,7 @@
     "previewHeight": 243,
     "colorScheme": 3,
     "fixSize": false,
-    "versionOS": 2.1
+    "versionOS": 3.5
   },
   "Amazfit Band 7": {
     "name": "Amazfit Band 7",

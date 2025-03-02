@@ -147,6 +147,37 @@
   <data name="button_Images.Text" xml:space="preserve">
     <value>图像</value>
   </data>
+  <data name="button_Images.ToolTip" xml:space="preserve">
+    <value>1. 多云
+2. 阵雨
+3. 阵雪
+4. 晴
+5. 阴
+6. 小雨
+7. 小雪
+8. 中雨
+9. 中雪
+10. 大雪
+11. 大雨
+12. 沙尘暴
+13. 雨夹雪
+14. 雾
+15. 霾
+16. 雷阵雨
+17. 暴雪
+18. 浮尘
+19. 特大暴雨
+20. 雨加冰雹
+21. 雷阵雨伴有冰雹
+22. 大暴雨
+23. 扬沙
+24. 强沙尘暴
+25. 暴雨
+26. 未知天气
+27. 夜间多云
+28. 夜间阵雨
+29. 夜间阵雨</value>
+  </data>
   <data name="button_Diagram.Text" xml:space="preserve">
     <value>温度图</value>
   </data>

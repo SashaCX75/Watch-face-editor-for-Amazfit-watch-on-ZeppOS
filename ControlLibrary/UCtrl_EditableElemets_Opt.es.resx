@@ -118,6 +118,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="checkBox_display_first.Size" type="System.Drawing.Size, System.Drawing">
+    <value>188, 17</value>
+  </data>
+  <data name="checkBox_display_first.Text" xml:space="preserve">
+    <value>Mostrar debajo de otros elementos</value>
+  </data>
   <data name="checkBox_edit_mode.Size" type="System.Drawing.Size, System.Drawing">
     <value>179, 17</value>
   </data>
@@ -330,6 +336,9 @@
   <data name="button_PreviewRefresh.Text" xml:space="preserve">
     <value>Actualizar vista previa</value>
   </data>
+  <data name="button_Direction.Text" xml:space="preserve">
+    <value>Dirección del viento</value>
+  </data>
   <data name="button_Number_Target.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAP5JREFUOE+t
@@ -513,11 +522,14 @@
   <data name="button_Sunset_Sunrise.Text" xml:space="preserve">
     <value>Valores numéricos (hora día/noche)</value>
   </data>
+  <data name="label_shortcuts_hint.Text" xml:space="preserve">
+    <value>La imagen de vista previa será reemplazada por el ícono de la aplicación del mismo tamaño.</value>
+  </data>
   <data name="label6.Text" xml:space="preserve">
     <value>Selección de elementos</value>
   </data>
   <data name="button_elementDel.Text" xml:space="preserve">
-    <value>Del Elemento</value>
+    <value>Eliminar</value>
   </data>
   <data name="button_elementAdd.Text" xml:space="preserve">
     <value>Agregar elemento</value>
@@ -548,11 +560,5 @@
         Zzqej/PQjsKocrZ09Wel5QjtKIxqzJ7wCO0ojEoGj9COwqhesxyhHYVRwUxHaEdhVDClB0pfUemXjA/v
         QzsKo8r55YdW91fxFUYnjE4YnTA6YfSJdgPSvLhM8DVkIAAAAABJRU5ErkJggg==
 </value>
-  </data>
-  <data name="button_Direction.Text" xml:space="preserve">
-    <value>Dirección del viento</value>
-  </data>
-  <data name="checkBox_display_first.Text" xml:space="preserve">
-    <value>Mostrar debajo de otros elementos</value>
   </data>
 </root>

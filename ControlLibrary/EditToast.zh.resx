@@ -119,7 +119,7 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>201, 23</value>
+    <value>125, 23</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>背景切换时弹出提示</value>
@@ -131,7 +131,7 @@
     <value>取消</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 26</value>
+    <value>203, 13</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>* %s字符将被替换为所选背景的编号。</value>

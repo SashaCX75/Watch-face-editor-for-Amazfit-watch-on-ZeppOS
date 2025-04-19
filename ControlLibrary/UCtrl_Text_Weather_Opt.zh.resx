@@ -157,11 +157,23 @@
   <data name="label07.Text" xml:space="preserve">
     <value>符号“-”</value>
   </data>
+  <data name="label08.Text" xml:space="preserve">
+    <value>单位(°C)</value>
+  </data>
   <data name="label09.Text" xml:space="preserve">
     <value>对齐</value>
   </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>单位(°F)</value>
+  </data>
+  <data name="label_alpha.Text" xml:space="preserve">
+    <value>透明度</value>
+  </data>
   <data name="label_angle.Text" xml:space="preserve">
     <value>角度</value>
+  </data>
+  <data name="label_icon_alpha.Text" xml:space="preserve">
+    <value>图标透明度</value>
   </data>
   <data name="label_separator.Text" xml:space="preserve">
     <value>分隔符</value>

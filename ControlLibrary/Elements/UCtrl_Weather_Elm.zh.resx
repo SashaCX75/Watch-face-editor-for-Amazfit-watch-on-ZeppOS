@@ -421,4 +421,7 @@
   <data name="$this.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="button_Number_Min_Font.Text" xml:space="preserve">
+    <value>字体(最小值)</value>
+  </data>
 </root>

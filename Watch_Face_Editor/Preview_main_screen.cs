@@ -707,30 +707,6 @@ namespace Watch_Face_Editor
             if (crop)
             {
                 Logger.WriteLine("PreviewToBitmap (crop)");
-                /*Bitmap mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gtr_3.png");
-                switch (ProgramSettings.Watch_Model)
-                {
-                    case "GTR 3 Pro":
-                        mask = OpenFileStream(Application.StartupPath + @"\Mask\mask_gtr_3_pro.png");
-                        break;
-                    case "GTS 3":
-                    case "GTS 4":
-                        mask = OpenFileStream(Application.StartupPath + @"\Mask\mask_gts_3.png");
-                        break;
-                    case "GTR 4":
-                        mask = OpenFileStream(Application.StartupPath + @"\Mask\mask_gtr_4.png");
-                        break;
-                    case "Amazfit Band 7":
-                        mask = OpenFileStream(Application.StartupPath + @"\Mask\mask_band_7.png");
-                        break;
-                    case "GTS 4 mini":
-                        mask = OpenFileStream(Application.StartupPath + @"\Mask\mask_gts_4_mini.png");
-                        break;
-                    case "Falcon":
-                    case "GTR mini":
-                        mask = OpenFileStream(Application.StartupPath + @"\Mask\mask_falcon.png");
-                        break;
-                }*/
                 Bitmap mask = new Bitmap(Application.StartupPath + @"\Mask\" + SelectedModel.maskImage);
                 mask = FormColor(mask);
                 gPanel.DrawImage(mask, 0, 0);
@@ -1459,8 +1435,7 @@ namespace Watch_Face_Editor
                             if (addZero) valueStr = valueStr.PadLeft(2, '0');
 
                             Draw_dagital_text_on_circle(gPanel, centr_x, centr_y, radius, spacing, angle, addZero,
-                                image_index, *//*int image_width, int image_height,*//* unit_index, *//*int unit_width,*//* dot_image_index, *//*int dot_image_width,*//*
-                                vertical_alignment, horizontal_alignment, reverse_direction, unit_in_alignment,
+                                image_index, vertical_alignment, horizontal_alignment, reverse_direction, unit_in_alignment,
                                 valueStr, 2, BBorder, showCentrHend, -1, -1, false, "ElementDigitalTime");
                         }
 
@@ -1486,8 +1461,7 @@ namespace Watch_Face_Editor
                             if (addZero) valueStr = valueStr.PadLeft(2, '0');
 
                             Draw_dagital_text_on_circle(gPanel, centr_x, centr_y, radius, spacing, angle, addZero,
-                                image_index, *//*int image_width, int image_height,*//* unit_index, *//*int unit_width,*//* dot_image_index, *//*int dot_image_width,*//*
-                                vertical_alignment, horizontal_alignment, reverse_direction, unit_in_alignment,
+                                image_index, vertical_alignment, horizontal_alignment, reverse_direction, unit_in_alignment,
                                 valueStr, 2, BBorder, showCentrHend, -1, -1, false, "ElementDigitalTime");
                         }
 
@@ -1513,8 +1487,7 @@ namespace Watch_Face_Editor
                             if (addZero) valueStr = valueStr.PadLeft(2, '0');
 
                             Draw_dagital_text_on_circle(gPanel, centr_x, centr_y, radius, spacing, angle, addZero,
-                                image_index, *//*int image_width, int image_height,*//* unit_index, *//*int unit_width,*//* dot_image_index, *//*int dot_image_width,*//*
-                                vertical_alignment, horizontal_alignment, reverse_direction, unit_in_alignment,
+                                image_index, vertical_alignment, horizontal_alignment, reverse_direction, unit_in_alignment,
                                 valueStr, 2, BBorder, showCentrHend, -1, -1, false, "ElementDigitalTime");
                         }
                     }
@@ -3777,19 +3750,29 @@ namespace Watch_Face_Editor
                     goal = WatchFacePreviewSet.Activity.StepsGoal;
                     progress = (float)WatchFacePreviewSet.Activity.Steps / WatchFacePreviewSet.Activity.StepsGoal;
 
+                    //if (img_level != null && img_level.image_length > 0)
+                    //{
+                    //    imgCount = img_level.image_length;
+                    //    valueImgIndex = (int)((imgCount - 1) * progress);
+                    //    if (progress < 0.01) valueImgIndex = -1;
+                    //    if (valueImgIndex >= imgCount) valueImgIndex = (int)(imgCount - 1);
+                    //}
+                    //if (img_prorgess != null && img_prorgess.image_length > 0)
+                    //{
+                    //    segmentCount = img_prorgess.image_length;
+                    //    valueSegmentIndex = (int)((segmentCount - 1) * progress);
+                    //    if (progress < 0.01) valueSegmentIndex = -1;
+                    //    if (valueSegmentIndex >= segmentCount) valueSegmentIndex = (int)(segmentCount - 1);
+                    //}
                     if (img_level != null && img_level.image_length > 0)
                     {
                         imgCount = img_level.image_length;
-                        valueImgIndex = (int)((imgCount - 1) * progress);
-                        if (progress < 0.01) valueImgIndex = -1;
-                        if (valueImgIndex >= imgCount) valueImgIndex = (int)(imgCount - 1);
+                        valueImgIndex = IMG_progress_index(elementValue, goal, imgCount, "ElementSteps");
                     }
                     if (img_prorgess != null && img_prorgess.image_length > 0)
                     {
                         segmentCount = img_prorgess.image_length;
-                        valueSegmentIndex = (int)((segmentCount - 1) * progress);
-                        if (progress < 0.01) valueSegmentIndex = -1;
-                        if (valueSegmentIndex >= segmentCount) valueSegmentIndex = (int)(segmentCount - 1);
+                        valueSegmentIndex = IMG_progress_index(elementValue, goal, segmentCount, "ElementSteps");
                     }
 
                     DrawActivity(gPanel, img_level, img_prorgess, img_number, font_number, text_rotation, text_circle, img_number_target, font_number_target,
@@ -3822,23 +3805,34 @@ namespace Watch_Face_Editor
                     goal = 100;
                     progress = (float)WatchFacePreviewSet.Battery / 100f;
 
+                    //if (img_level != null && img_level.image_length > 0)
+                    //{
+                    //    imgCount = img_level.image_length;
+                    //    float imgIndex = imgCount * progress;
+                    //    valueImgIndex = (int)imgIndex;
+                    //    valueImgIndex--;
+                    //    if (valueImgIndex < 0) valueImgIndex = 0;
+                    //    if (valueImgIndex >= imgCount) valueImgIndex = (int)(imgCount - 1);
+                    //}
+                    //if (img_prorgess != null && img_prorgess.image_length > 0)
+                    //{
+                    //    segmentCount = img_prorgess.image_length;
+                    //    float imgIndex = segmentCount * progress;
+                    //    valueSegmentIndex = (int)imgIndex;
+                    //    valueSegmentIndex--;
+                    //    if (valueSegmentIndex < 0) valueSegmentIndex = 0;
+                    //    if (valueSegmentIndex >= segmentCount) valueSegmentIndex = (int)(segmentCount - 1);
+                    //}
+
                     if (img_level != null && img_level.image_length > 0)
                     {
                         imgCount = img_level.image_length;
-                        float imgIndex = imgCount * progress;
-                        valueImgIndex = (int)imgIndex;
-                        valueImgIndex--;
-                        if (valueImgIndex < 0) valueImgIndex = 0;
-                        if (valueImgIndex >= imgCount) valueImgIndex = (int)(imgCount - 1);
+                        valueImgIndex = IMG_progress_index(elementValue, goal, imgCount, "ElementBattery");
                     }
                     if (img_prorgess != null && img_prorgess.image_length > 0)
                     {
                         segmentCount = img_prorgess.image_length;
-                        float imgIndex = segmentCount * progress;
-                        valueSegmentIndex = (int)imgIndex;
-                        valueSegmentIndex--;
-                        if (valueSegmentIndex < 0) valueSegmentIndex = 0;
-                        if (valueSegmentIndex >= segmentCount) valueSegmentIndex = (int)(segmentCount - 1);
+                        valueSegmentIndex = IMG_progress_index(elementValue, goal, segmentCount, "ElementBattery");
                     }
 
                     DrawActivity(gPanel, img_level, img_prorgess, img_number, font_number, text_rotation, text_circle, img_number_target, font_number_target,
@@ -3875,19 +3869,30 @@ namespace Watch_Face_Editor
                     goal = 300;
                     progress = (float)WatchFacePreviewSet.Activity.Calories / 300f;
 
+                    //if (img_level != null && img_level.image_length > 0)
+                    //{
+                    //    imgCount = img_level.image_length;
+                    //    valueImgIndex = (int)((imgCount - 1) * progress);
+                    //    //if (progress < 0.01) valueImgIndex = -1;
+                    //    if (valueImgIndex >= imgCount) valueImgIndex = (int)(imgCount - 1);
+                    //}
+                    //if (img_prorgess != null && img_prorgess.image_length > 0)
+                    //{
+                    //    segmentCount = img_prorgess.image_length;
+                    //    valueSegmentIndex = (int)((segmentCount - 1) * progress);
+                    //    //if (progress < 0.01) valueSegmentIndex = -1;
+                    //    if (valueSegmentIndex >= segmentCount) valueSegmentIndex = (int)(segmentCount - 1);
+                    //}
+
                     if (img_level != null && img_level.image_length > 0)
                     {
                         imgCount = img_level.image_length;
-                        valueImgIndex = (int)((imgCount - 1) * progress);
-                        //if (progress < 0.01) valueImgIndex = -1;
-                        if (valueImgIndex >= imgCount) valueImgIndex = (int)(imgCount - 1);
+                        valueImgIndex = IMG_progress_index(elementValue, goal, imgCount, "ElementCalories");
                     }
                     if (img_prorgess != null && img_prorgess.image_length > 0)
                     {
                         segmentCount = img_prorgess.image_length;
-                        valueSegmentIndex = (int)((segmentCount - 1) * progress);
-                        //if (progress < 0.01) valueSegmentIndex = -1;
-                        if (valueSegmentIndex >= segmentCount) valueSegmentIndex = (int)(segmentCount - 1);
+                        valueSegmentIndex = IMG_progress_index(elementValue, goal, segmentCount, "ElementCalories");
                     }
 
                     DrawActivity(gPanel, img_level, img_prorgess, img_number, font_number, text_rotation, text_circle, img_number_target, font_number_target,
@@ -3918,50 +3923,48 @@ namespace Watch_Face_Editor
                     elementValue = WatchFacePreviewSet.Activity.HeartRate;
                     value_lenght = 3;
                     goal = 179;
-                    progress = (WatchFacePreviewSet.Activity.HeartRate - 71) / (179f - 71);
+                    progress = (WatchFacePreviewSet.Activity.HeartRate - 30) / (184f - 30);
 
-                    //if (img_level != null && img_level.image_length > 0)
+                    //if (elementValue < 90)
                     //{
-                    //    imgCount = img_level.image_length;
-                    //    valueImgIndex = (int)((imgCount - 1) * progress);
-                    //    if (valueImgIndex >= imgCount) valueImgIndex = (int)(imgCount - 1);
+                    //    valueImgIndex = 0;
+                    //    valueSegmentIndex = 0;
                     //}
-                    //if (img_prorgess != null && img_prorgess.image_length > 0)
+                    //if (elementValue >= 90 && elementValue < 108)
                     //{
-                    //    segmentCount = img_prorgess.image_length;
-                    //    valueSegmentIndex = (int)((segmentCount - 1) * progress);
-                    //    if (progress < 0.01) valueSegmentIndex = -1;
-                    //    if (valueSegmentIndex >= segmentCount) valueImgIndex = (int)(segmentCount - 1);
+                    //    valueImgIndex = 1;
+                    //    valueSegmentIndex = 1;
                     //}
-                    if (elementValue < 90)
+                    //if (elementValue >= 108 && elementValue < 126)
+                    //{
+                    //    valueImgIndex = 2;
+                    //    valueSegmentIndex = 2;
+                    //}
+                    //if (elementValue >= 126 && elementValue < 144)
+                    //{
+                    //    valueImgIndex = 3;
+                    //    valueSegmentIndex = 3;
+                    //}
+                    //if (elementValue >= 144 && elementValue < 162)
+                    //{
+                    //    valueImgIndex = 4;
+                    //    valueSegmentIndex = 4;
+                    //}
+                    //if (elementValue >= 162)
+                    //{
+                    //    valueImgIndex = 5;
+                    //    valueSegmentIndex = 5;
+                    //}
+
+                    if (img_level != null && img_level.image_length > 0)
                     {
-                        valueImgIndex = 0;
-                        valueSegmentIndex = 0;
+                        imgCount = img_level.image_length;
+                        valueImgIndex = IMG_progress_index(elementValue, goal, imgCount, "ElementHeart");
                     }
-                    if (elementValue >= 90 && elementValue < 108)
+                    if (img_prorgess != null && img_prorgess.image_length > 0)
                     {
-                        valueImgIndex = 1;
-                        valueSegmentIndex = 1;
-                    }
-                    if (elementValue >= 108 && elementValue < 126)
-                    {
-                        valueImgIndex = 2;
-                        valueSegmentIndex = 2;
-                    }
-                    if (elementValue >= 126 && elementValue < 144)
-                    {
-                        valueImgIndex = 3;
-                        valueSegmentIndex = 3;
-                    }
-                    if (elementValue >= 144 && elementValue < 162)
-                    {
-                        valueImgIndex = 4;
-                        valueSegmentIndex = 4;
-                    }
-                    if (elementValue >= 162)
-                    {
-                        valueImgIndex = 5;
-                        valueSegmentIndex = 5;
+                        segmentCount = img_prorgess.image_length;
+                        valueSegmentIndex = IMG_progress_index(elementValue, goal, segmentCount, "ElementHeart");
                     }
 
                     DrawActivity(gPanel, img_level, img_prorgess, img_number, font_number, text_rotation, text_circle, img_number_target, font_number_target,
@@ -3994,28 +3997,39 @@ namespace Watch_Face_Editor
 
                     //elementValue = WatchFacePreviewSet.Activity.PAI;
                     value_lenght = 3;
-                    goal = WatchFacePreviewSet.Activity.PAI;
-                    elementValue = goal / 7;
+                    int pai_week = WatchFacePreviewSet.Activity.PAI;
+                    int pai_day = pai_week / 7;
                     //value_altitude = 100;
                     progress = (float)WatchFacePreviewSet.Activity.PAI / 100f;
+
+                    //if (img_level != null && img_level.image_length > 0)
+                    //{
+                    //    imgCount = img_level.image_length;
+                    //    valueImgIndex = (int)((imgCount - 1) * progress);
+                    //    //if (progress < 0.01) valueImgIndex = -1;
+                    //    if (valueImgIndex >= imgCount) valueImgIndex = (int)(imgCount - 1);
+                    //}
+                    //if (img_prorgess != null && img_prorgess.image_length > 0)
+                    //{
+                    //    segmentCount = img_prorgess.image_length;
+                    //    valueSegmentIndex = (int)((segmentCount - 1) * progress);
+                    //    //if (progress < 0.01) valueSegmentIndex = -1;
+                    //    if (valueSegmentIndex >= segmentCount) valueSegmentIndex = (int)(segmentCount - 1);
+                    //}
 
                     if (img_level != null && img_level.image_length > 0)
                     {
                         imgCount = img_level.image_length;
-                        valueImgIndex = (int)((imgCount - 1) * progress);
-                        //if (progress < 0.01) valueImgIndex = -1;
-                        if (valueImgIndex >= imgCount) valueImgIndex = (int)(imgCount - 1);
+                        valueImgIndex = IMG_progress_index(pai_week, 525, imgCount, "ElementPAI");
                     }
                     if (img_prorgess != null && img_prorgess.image_length > 0)
                     {
                         segmentCount = img_prorgess.image_length;
-                        valueSegmentIndex = (int)((segmentCount - 1) * progress);
-                        //if (progress < 0.01) valueSegmentIndex = -1;
-                        if (valueSegmentIndex >= segmentCount) valueSegmentIndex = (int)(segmentCount - 1);
+                        valueSegmentIndex = IMG_progress_index(pai_week, 525, segmentCount, "ElementPAI");
                     }
 
                     DrawActivity(gPanel, img_level, img_prorgess, img_number, font_number, text_rotation, text_circle, img_number_target, font_number_target,
-                        text_rotation_target, text_circle_target, img_pointer, circle_scale, linear_scale, icon, elementValue, value_lenght, goal,
+                        text_rotation_target, text_circle_target, img_pointer, circle_scale, linear_scale, icon, pai_day, value_lenght, pai_week,
                         progress, valueImgIndex, valueSegmentIndex, BBorder, showProgressArea,
                         showCentrHend, "ElementPAI");
 
@@ -4067,19 +4081,30 @@ namespace Watch_Face_Editor
                     goal = 12;
                     progress = (float)WatchFacePreviewSet.Activity.StandUp / 12f;
 
+                    //if (img_level != null && img_level.image_length > 0)
+                    //{
+                    //    imgCount = img_level.image_length;
+                    //    valueImgIndex = (int)((imgCount - 1) * progress);
+                    //    //if (progress < 0.01) valueImgIndex = -1;
+                    //    if (valueImgIndex >= imgCount) valueImgIndex = (int)(imgCount - 1);
+                    //}
+                    //if (img_prorgess != null && img_prorgess.image_length > 0)
+                    //{
+                    //    segmentCount = img_prorgess.image_length;
+                    //    valueSegmentIndex = (int)((segmentCount - 1) * progress);
+                    //    //if (progress < 0.01) valueSegmentIndex = -1;
+                    //    if (valueSegmentIndex >= segmentCount) valueSegmentIndex = (int)(segmentCount - 1);
+                    //}
+
                     if (img_level != null && img_level.image_length > 0)
                     {
                         imgCount = img_level.image_length;
-                        valueImgIndex = (int)((imgCount - 1) * progress);
-                        //if (progress < 0.01) valueImgIndex = -1;
-                        if (valueImgIndex >= imgCount) valueImgIndex = (int)(imgCount - 1);
+                        valueImgIndex = IMG_progress_index(elementValue, goal, imgCount, "ElementStand");
                     }
                     if (img_prorgess != null && img_prorgess.image_length > 0)
                     {
                         segmentCount = img_prorgess.image_length;
-                        valueSegmentIndex = (int)((segmentCount - 1) * progress);
-                        //if (progress < 0.01) valueSegmentIndex = -1;
-                        if (valueSegmentIndex >= segmentCount) valueSegmentIndex = (int)(segmentCount - 1);
+                        valueSegmentIndex = IMG_progress_index(elementValue, goal, segmentCount, "ElementStand");
                     }
 
                     DrawActivity(gPanel, img_level, img_prorgess, img_number, font_number, text_rotation, text_circle, img_number_target, font_number_target,
@@ -4112,19 +4137,30 @@ namespace Watch_Face_Editor
                     goal = WatchFacePreviewSet.Activity.StepsGoal;
                     progress = (float)WatchFacePreviewSet.Activity.Steps / WatchFacePreviewSet.Activity.StepsGoal;
 
+                    //if (img_level != null && img_level.image_length > 0)
+                    //{
+                    //    imgCount = img_level.image_length;
+                    //    valueImgIndex = (int)((imgCount - 1) * progress);
+                    //    if (progress < 0.01) valueImgIndex = -1;
+                    //    if (valueImgIndex >= imgCount) valueImgIndex = (int)(imgCount - 1);
+                    //}
+                    //if (img_prorgess != null && img_prorgess.image_length > 0)
+                    //{
+                    //    segmentCount = img_prorgess.image_length;
+                    //    valueSegmentIndex = (int)((segmentCount - 1) * progress);
+                    //    if (progress < 0.01) valueSegmentIndex = -1;
+                    //    if (valueSegmentIndex >= segmentCount) valueSegmentIndex = (int)(segmentCount - 1);
+                    //}
+
                     if (img_level != null && img_level.image_length > 0)
                     {
                         imgCount = img_level.image_length;
-                        valueImgIndex = (int)((imgCount - 1) * progress);
-                        if (progress < 0.01) valueImgIndex = -1;
-                        if (valueImgIndex >= imgCount) valueImgIndex = (int)(imgCount - 1);
+                        valueImgIndex = IMG_progress_index(elementValue, goal, imgCount, "ElementActivity");
                     }
                     if (img_prorgess != null && img_prorgess.image_length > 0)
                     {
                         segmentCount = img_prorgess.image_length;
-                        valueSegmentIndex = (int)((segmentCount - 1) * progress);
-                        if (progress < 0.01) valueSegmentIndex = -1;
-                        if (valueSegmentIndex >= segmentCount) valueSegmentIndex = (int)(segmentCount - 1);
+                        valueSegmentIndex = IMG_progress_index(elementValue, goal, segmentCount, "ElementActivity");
                     }
 
                     // пересчитываем данные если отображаем как калории
@@ -4203,19 +4239,30 @@ namespace Watch_Face_Editor
                     goal = 100;
                     progress = (float)WatchFacePreviewSet.Activity.Stress / 100f;
 
+                    //if (img_level != null && img_level.image_length > 0)
+                    //{
+                    //    imgCount = img_level.image_length;
+                    //    valueImgIndex = (int)((imgCount - 1) * progress);
+                    //    if (valueImgIndex >= imgCount) valueImgIndex = (int)(imgCount - 1);
+                    //    if (elementValue == 0) valueImgIndex = -1;
+                    //}
+                    //if (img_prorgess != null && img_prorgess.image_length > 0)
+                    //{
+                    //    segmentCount = img_prorgess.image_length;
+                    //    valueSegmentIndex = (int)((segmentCount - 1) * progress);
+                    //    if (valueSegmentIndex >= segmentCount) valueSegmentIndex = (int)(segmentCount - 1);
+                    //    if (elementValue == 0) valueSegmentIndex = -1;
+                    //}
+
                     if (img_level != null && img_level.image_length > 0)
                     {
                         imgCount = img_level.image_length;
-                        valueImgIndex = (int)((imgCount - 1) * progress);
-                        if (valueImgIndex >= imgCount) valueImgIndex = (int)(imgCount - 1);
-                        if (elementValue == 0) valueImgIndex = -1;
+                        valueImgIndex = IMG_progress_index(elementValue, goal, imgCount, "ElementStress");
                     }
                     if (img_prorgess != null && img_prorgess.image_length > 0)
                     {
                         segmentCount = img_prorgess.image_length;
-                        valueSegmentIndex = (int)((segmentCount - 1) * progress);
-                        if (valueSegmentIndex >= segmentCount) valueSegmentIndex = (int)(segmentCount - 1);
-                        if (elementValue == 0) valueSegmentIndex = -1;
+                        valueSegmentIndex = IMG_progress_index(elementValue, goal, segmentCount, "ElementStress");
                     }
 
                     DrawActivity(gPanel, img_level, img_prorgess, img_number, font_number, text_rotation, text_circle, img_number_target, font_number_target,
@@ -4252,19 +4299,30 @@ namespace Watch_Face_Editor
                     goal = 30;
                     progress = (float)WatchFacePreviewSet.Activity.FatBurning / 30f;
 
+                    //if (img_level != null && img_level.image_length > 0)
+                    //{
+                    //    imgCount = img_level.image_length;
+                    //    valueImgIndex = (int)((imgCount - 1) * progress);
+                    //    if (valueImgIndex >= imgCount) valueImgIndex = (int)(imgCount - 1);
+                    //    if (elementValue == 0) valueImgIndex = -1;
+                    //}
+                    //if (img_prorgess != null && img_prorgess.image_length > 0)
+                    //{
+                    //    segmentCount = img_prorgess.image_length;
+                    //    valueSegmentIndex = (int)((segmentCount - 1) * progress);
+                    //    if (valueSegmentIndex >= segmentCount) valueSegmentIndex = (int)(segmentCount - 1);
+                    //    if (elementValue == 0) valueSegmentIndex = -1;
+                    //}
+
                     if (img_level != null && img_level.image_length > 0)
                     {
                         imgCount = img_level.image_length;
-                        valueImgIndex = (int)((imgCount - 1) * progress);
-                        if (valueImgIndex >= imgCount) valueImgIndex = (int)(imgCount - 1);
-                        if (elementValue == 0) valueImgIndex = -1;
+                        valueImgIndex = IMG_progress_index(elementValue, goal, imgCount, "ElementFatBurning");
                     }
                     if (img_prorgess != null && img_prorgess.image_length > 0)
                     {
                         segmentCount = img_prorgess.image_length;
-                        valueSegmentIndex = (int)((segmentCount - 1) * progress);
-                        if (valueSegmentIndex >= segmentCount) valueSegmentIndex = (int)(segmentCount - 1);
-                        if (elementValue == 0) valueSegmentIndex = -1;
+                        valueSegmentIndex = IMG_progress_index(elementValue, goal, segmentCount, "ElementFatBurning");
                     }
 
                     DrawActivity(gPanel, img_level, img_prorgess, img_number, font_number, text_rotation, text_circle, img_number_target, font_number_target,
@@ -4449,6 +4507,17 @@ namespace Watch_Face_Editor
                         }
                     }
 
+                    if (img_level != null && img_level.image_length > 0)
+                    {
+                        imgCount = img_level.image_length;
+                        valueImgIndex = IMG_progress_index(elementValue, goal, imgCount, "ElementUVIndex");
+                    }
+                    if (img_prorgess != null && img_prorgess.image_length > 0)
+                    {
+                        segmentCount = img_prorgess.image_length;
+                        valueSegmentIndex = IMG_progress_index(elementValue, goal, segmentCount, "ElementUVIndex");
+                    }
+
                     DrawActivity(gPanel, img_level, img_prorgess, img_number, font_number, text_rotation, text_circle, img_number_target, font_number_target,
                         text_rotation_target, text_circle_target, img_pointer, circle_scale, linear_scale, icon, elementValue, value_lenght, goal,
                         progress, valueImgIndex, valueSegmentIndex, BBorder, showProgressArea,
@@ -4475,21 +4544,32 @@ namespace Watch_Face_Editor
                     goal = 100;
                     progress = (float)WatchFacePreviewSet.Weather.Humidity / 100f;
 
+                    //if (img_level != null && img_level.image_length > 0)
+                    //{
+                    //    imgCount = img_level.image_length;
+                    //    valueImgIndex = (int)(imgCount * progress);
+                    //    valueImgIndex--;
+                    //    if (valueImgIndex < 0) valueImgIndex = 0;
+                    //    if (valueImgIndex >= imgCount) valueImgIndex = (int)(imgCount - 1);
+                    //}
+                    //if (img_prorgess != null && img_prorgess.image_length > 0)
+                    //{
+                    //    segmentCount = img_prorgess.image_length;
+                    //    valueSegmentIndex = (int)(segmentCount * progress);
+                    //    valueSegmentIndex--;
+                    //    if (valueSegmentIndex < 0) valueSegmentIndex = 0;
+                    //    if (valueSegmentIndex >= segmentCount) valueSegmentIndex = (int)(segmentCount - 1);
+                    //}
+
                     if (img_level != null && img_level.image_length > 0)
                     {
                         imgCount = img_level.image_length;
-                        valueImgIndex = (int)(imgCount * progress);
-                        valueImgIndex--;
-                        if (valueImgIndex < 0) valueImgIndex = 0;
-                        if (valueImgIndex >= imgCount) valueImgIndex = (int)(imgCount - 1);
+                        valueImgIndex = IMG_progress_index(elementValue, goal, imgCount, "ElementHumidity");
                     }
                     if (img_prorgess != null && img_prorgess.image_length > 0)
                     {
                         segmentCount = img_prorgess.image_length;
-                        valueSegmentIndex = (int)(segmentCount * progress);
-                        valueSegmentIndex--;
-                        if (valueSegmentIndex < 0) valueSegmentIndex = 0;
-                        if (valueSegmentIndex >= segmentCount) valueSegmentIndex = (int)(segmentCount - 1);
+                        valueSegmentIndex = IMG_progress_index(elementValue, goal, segmentCount, "ElementHumidity");
                     }
 
                     DrawActivity(gPanel, img_level, img_prorgess, img_number, font_number, text_rotation, text_circle, img_number_target, font_number_target,
@@ -4740,6 +4820,58 @@ namespace Watch_Face_Editor
 
             }
             if (src != null) src.Dispose();
+        }
+
+        public int IMG_progress_index(int value, int goal, int imgCount, string elementName)
+        {
+            int imgIndex = -1;
+            if (goal <= 0 || imgCount <= 0 ) return imgIndex;
+
+            if (elementName == "ElementUVIndex" && imgCount == 5)
+            {
+                switch (value)
+                {
+                    case 0:
+                    case 1:
+                    case 2:
+                        imgIndex = 0;
+                        break;
+                    case 3:
+                    case 4:
+                    case 5:
+                        imgIndex = 1;
+                        break;
+                    case 6:
+                    case 7:
+                        imgIndex = 2;
+                        break;
+                    case 8:
+                    case 9:
+                    case 10:
+                        imgIndex = 3;
+                        break;
+                    default:
+                        imgIndex = 4;
+                        break;
+                }
+                return imgIndex;
+            }
+            if (elementName == "ElementHeart" && imgCount == 6)
+            {
+                if (value >= 173) return 5;
+                if (value >= 147) return 4;
+                if (value >= 121) return 3;
+                if (value >= 95) return 2;
+                if (value >= 69) return 1;
+                return 0;
+            }
+            
+            int partSize = goal / imgCount;
+            value -= partSize / 2;
+            if (value < 0) return imgIndex;
+            imgIndex = (int)(value / partSize);
+            if (imgIndex >= imgCount) imgIndex = imgCount - 1;
+            return imgIndex;
         }
 
         /// <param name="edit_mode">Выбор отображаемого режима редактирования. 
@@ -5400,6 +5532,7 @@ namespace Watch_Face_Editor
         {
             if (progress < 0) progress = 0;
             if (progress > 1) progress = 1;
+            int progressPercent = (int)(progress * 100);
             Bitmap src = new Bitmap(1, 1);
             string unit = "";
             switch (elementName)
@@ -5644,7 +5777,7 @@ namespace Watch_Face_Editor
                                 drawFont = new Font(fonts.Families[0], size, GraphicsUnit.World);
                             }
 
-                            Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
+                            Draw_text_userFont_2(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
                                             align_h, align_v, text_style, BBorder);
                         }
                         else
@@ -5876,15 +6009,21 @@ namespace Watch_Face_Editor
                     int startAngle = pointer.start_angle;
                     int endAngle = pointer.end_angle;
                     int image_index = ListImages.IndexOf(pointer.src);
-                    float progressHeart = 57 / 360f;
-                    if (value == 0) progressHeart = 0;
-                    if (value >= 90 && value < 108) progressHeart = 118 / 360f;
-                    if (value >= 108 && value < 126) progressHeart = 180 / 360f;
-                    if (value >= 126 && value < 144) progressHeart = 237 / 360f;
-                    if (value >= 144 && value < 162) progressHeart = 298 / 360f;
-                    if (value >= 162) progressHeart = 359 / 360f;
+                    //float progressHeart = 57 / 360f;
+                    //if (value == 0) progressHeart = 0;
+                    //if (value >= 90 && value < 108) progressHeart = 118 / 360f;
+                    //if (value >= 108 && value < 126) progressHeart = 180 / 360f;
+                    //if (value >= 126 && value < 144) progressHeart = 237 / 360f;
+                    //if (value >= 144 && value < 162) progressHeart = 298 / 360f;
+                    //if (value >= 162) progressHeart = 359 / 360f;
 
-                    float angle = startAngle + progress * (endAngle - startAngle);
+                    //float angle = startAngle + progress * (endAngle - startAngle);
+                    float angle = startAngle + (progressPercent/100f) * (endAngle - startAngle);
+                    if (elementName == "ElementPAI")
+                    {
+                        int tempProgressPercent = (int)(100* goal/525);
+                        angle = startAngle + (tempProgressPercent / 100f) * (endAngle - startAngle);
+                    }
 
                     if (pointer.scale != null && pointer.scale.Length > 0)
                     {
@@ -5896,7 +6035,7 @@ namespace Watch_Face_Editor
                         gPanel.DrawImage(src, x_scale, y_scale);
                     }
 
-                    if (elementName== "ElementHeart") angle = startAngle + progressHeart * (endAngle - startAngle);
+                    //if (elementName== "ElementHeart") angle = startAngle + progressHeart * (endAngle - startAngle);
                     DrawPointer(gPanel, x, y, offsetX, offsetY, image_index, angle, showCentrHend);
 
                     if (pointer.cover_path != null && pointer.cover_path.Length > 0)
@@ -5939,10 +6078,13 @@ namespace Watch_Face_Editor
                         } 
                     }
 
-                    DrawScaleCircle(gPanel, x, y, radius, width, lineCap, startAngle, fullAngle, progress,
+                    float progressCircle = progress;
+                    if (elementName == "ElementHeart") progressCircle = progressPercent / 100f;
+
+                    DrawScaleCircle(gPanel, x, y, radius, width, lineCap, startAngle, fullAngle, progressCircle,
                         color, inversion, alpha, showProgressArea, showCentrHend);
 
-                    if (mirror) DrawScaleCircle(gPanel, x, y, radius, width, lineCap, startAngle, -fullAngle, progress,
+                    if (mirror) DrawScaleCircle(gPanel, x, y, radius, width, lineCap, startAngle, -fullAngle, progressCircle,
                          color, inversion, alpha, showProgressArea, showCentrHend);
                 }
 
@@ -10749,6 +10891,7 @@ namespace Watch_Face_Editor
         public void DrawPointer(Graphics graphics, int x, int y, int offsetX, int offsetY, int image_index, float angle, bool showCentrHend)
         {
             Logger.WriteLine("* DrawPointer");
+            if (image_index < 0) return;
             Bitmap src = OpenFileStream(ListImagesFullName[image_index]);
             graphics.TranslateTransform(x, y);
             graphics.RotateTransform(angle);
@@ -12305,6 +12448,244 @@ namespace Watch_Face_Editor
 
             Logger.WriteLine("* Draw_text (end)");
         }
+
+
+
+        /// <summary>Пишем число внешним шрифтом</summary>
+        /// <param name="graphics">Поверхность для рисования</param>
+        /// <param name="x">Координата X</param>
+        /// <param name="y">Координата y</param>
+        /// <param name="w">Ширина</param>
+        /// <param name="h">Высота</param>
+        /// <param name="drawFont">Шрифт</param>
+        /// <param name="size">Размер шрифта</param>
+        /// <param name="spacing_h">Величина отступа</param>
+        /// <param name="spacing_v">Межстрочный интервал</param>
+        /// <param name="color">Цвет шрифта</param>
+        /// <param name="alpha">Прозрачность</param>
+        /// <param name="value">Отображаемые данные</param>
+        /// <param name="align_h">Горизонтальное выравнивание</param>
+        /// <param name="align_v">Вертикальное выравнивание</param>
+        /// <param name="text_style">Стиль вписывания текста</param>
+        /// <param name="BBorder">Рисовать рамку по координатам, вокруг элементов с выравниванием</param>
+        private void Draw_text_userFont_2(Graphics graphics, int x, int y, int w, int h, Font drawFont, float size, int spacing_h, int spacing_v,
+            Color color, int alpha, string value, string align_h, string align_v, string text_style, bool BBorder)
+        {
+            if (w < 5 || h < 5) return;
+            Bitmap bitmap = new Bitmap(Convert.ToInt32(w), Convert.ToInt32(h), PixelFormat.Format32bppArgb);
+            Graphics gPanel = Graphics.FromImage(bitmap);
+            StringFormat strFormat = new StringFormat();
+            strFormat.FormatFlags = StringFormatFlags.FitBlackBox;
+            strFormat.Alignment = StringAlignment.Near;
+            strFormat.LineAlignment = StringAlignment.Near;
+            SizeF strSize1 = graphics.MeasureString("0", drawFont); // 112.5 nasa 104.931641
+            SizeF strSize2 = graphics.MeasureString("00" + Environment.NewLine + "0", drawFont); // 252.539063 nasa 198.046875
+
+            FontFamily fontFamily = drawFont.FontFamily;
+            int emHeight = fontFamily.GetEmHeight(drawFont.Style);  // 1000 nasa 2048
+            int ascent = fontFamily.GetCellAscent(drawFont.Style);  // 800 nasa 1507
+            int descent = fontFamily.GetCellDescent(drawFont.Style); // 200 nasa 386
+            int lineSpacing = fontFamily.GetLineSpacing(drawFont.Style);  //1200 nasa 1900 
+            int height = drawFont.Height;  // 120 nasa 93
+            float lineHeight = drawFont.GetHeight(gPanel);  // 120 nasa 93
+            int topSpase = emHeight - ascent - descent; // 0 nasa 155
+            float ascentPixel = drawFont.Size * ascent / emHeight;
+
+
+            float chWidth = strSize2.Width - strSize1.Width;
+            float chHeight = strSize2.Height - strSize1.Height; // 140.039063 nasa 93.1152344
+            float offsetX = strSize1.Width - chWidth;
+            float offsetY = (chHeight - lineHeight) / 2; // 20.0390625 nasa 0.341796875
+            chHeight = lineHeight;
+            //float dHeight = chHeight - lineHeight; // 20.0390625 nasa 0.341796875
+            List<string> text = new List<string>();
+            switch (text_style)
+            {
+                case "NONE":
+                    text.Add(value);
+                    break;
+                case "WRAP":
+                    //text.Add(value);
+                    string[] words = value.Split(new char[] { ' ' });
+                    for (int i = 0; i < words.Length; i++)
+                    {
+                        string draw_string = words[i];
+                        Size strSize = TextRenderer.MeasureText(graphics, draw_string, drawFont);
+                        float strLenght = strSize.Width + (draw_string.Length - 1) * spacing_h - offsetX;
+                        //strLenght += (draw_string.Length - 1) * spacing_h;
+                        if (strLenght <= w) // слово помещается в рамку
+                        {
+                            if (i + 1 < words.Length) // есть еще слова
+                            {
+                                while (i + 1 < words.Length && strLenght < w)
+                                {
+                                    string new_draw_string = draw_string + " " + words[i + 1];
+                                    strSize = TextRenderer.MeasureText(graphics, new_draw_string, drawFont);
+                                    strLenght = strSize.Width + (draw_string.Length - 1) * spacing_h - offsetX;
+                                    strLenght += (new_draw_string.Length - 1) * spacing_h;
+                                    if (strLenght <= w)
+                                    {
+                                        i++;
+                                        draw_string = new_draw_string;
+                                    }
+                                }
+                                text.Add(draw_string);
+                            }
+                            else // последнее слово
+                            {
+                                text.Add(draw_string);
+                            }
+                        }
+                        else // слово больше рамки
+                        {
+                            int index = draw_string.Length;
+                            while (strLenght > w && index > 1)
+                            {
+                                index--;
+                                string subStr = draw_string.Substring(0, index);
+                                strSize = TextRenderer.MeasureText(graphics, subStr, drawFont);
+                                strLenght = strSize.Width + (draw_string.Length - 1) * spacing_h - offsetX;
+                                if (strLenght <= w)
+                                {
+                                    text.Add(subStr);
+                                    draw_string = draw_string.Remove(0, index);
+                                    index = draw_string.Length;
+                                    strSize = TextRenderer.MeasureText(graphics, draw_string, drawFont);
+                                    strLenght = strSize.Width + (draw_string.Length - 1) * spacing_h - offsetX;
+                                }
+                            }
+                            text.Add(draw_string);
+                        }
+                    }
+
+                    break;
+                case "CHAR_WRAP":
+                    text.Add(value);
+                    break;
+                case "ELLIPSIS":
+                    text.Add(value);
+                    break;
+
+                default:
+                    text.Add(value);
+                    break;
+            }
+
+            Logger.WriteLine("* Draw_text");
+
+            float PointX = (float)(-0.5 * offsetX);
+            //float PointY = 0;
+            float PointY = offsetY;
+
+            float textHeight = (float)((text.Count * chHeight) + (text.Count * 0.46 * spacing_v));
+            //float textHeight = (float)((text.Count * chHeight) + ((text.Count - 1) * 0.46 * spacing_v));
+            if (align_v == "BOTTOM")
+            {
+                PointY = (float)(PointY + Math.Round(h - textHeight + offsetY));
+            }
+            if (align_v == "CENTER_V")
+            {
+                PointY = (float)(PointY + Math.Round((h - textHeight + offsetY) / 2));
+            }
+
+            Logger.WriteLine("Draw value");
+            color = Color.FromArgb(alpha, color);
+            SolidBrush drawBrush = new SolidBrush(color);
+
+            try
+            {
+                foreach (string draw_string in text)
+                {
+                    //gPanel.DrawString(draw_string, drawFont, drawBrush, PointX, PointY, strFormat);
+                    float posX = PointX;
+                    float posY = PointY;
+                    //float posY = PointY + offsetY;
+
+                    if (align_h == "RIGHT")
+                    {
+                        SizeF strSize = graphics.MeasureString(draw_string, drawFont);
+                        float textLenght = strSize.Width + (draw_string.Length - 1) * spacing_h - offsetX;
+                        posX = (float)(w - 0.5 * offsetX - textLenght);
+                    }
+                    if (align_h == "CENTER_H")
+                    {
+                        SizeF strSize = graphics.MeasureString(draw_string, drawFont);
+                        float textLenght = strSize.Width + (draw_string.Length - 1) * spacing_h - offsetX;
+                        posX = (float)(w / 2 - 0.5 * offsetX - textLenght / 2);
+                    }
+
+                    if (spacing_h == 0)
+                    {
+                        SizeF textSize = graphics.MeasureString(draw_string, drawFont);
+                        float chWidthStr = textSize.Width * 0.98f;
+
+                        gPanel.DrawString(draw_string, drawFont, drawBrush, posX, posY, strFormat);
+
+
+                        posX = posX + chWidthStr + spacing_h;
+                    }
+                    else
+                    {
+                        string lastChar = "0";
+                        foreach (char ch in draw_string)
+                        {
+                            string str = ch.ToString();
+                            string drawStr = lastChar + str;
+                            Size strSize = TextRenderer.MeasureText(graphics, str, drawFont);
+
+                            Size chSize1 = TextRenderer.MeasureText(lastChar, drawFont);
+                            Size chSize2 = TextRenderer.MeasureText(drawStr, drawFont);
+                            chWidth = chSize2.Width - chSize1.Width;
+
+                            SizeF textSize1 = graphics.MeasureString(lastChar, drawFont);
+                            SizeF textSize2 = graphics.MeasureString(drawStr, drawFont);
+                            float chWidth2 = (textSize2.Width - textSize1.Width) * 0.98f;
+                            if (str == " ")
+                            {
+                                textSize2 = graphics.MeasureString(str + lastChar, drawFont);
+                                chWidth2 = (textSize2.Width - textSize1.Width) * 0.98f;
+                            }
+                            if (lastChar == " ")
+                            {
+                                textSize1 = graphics.MeasureString(lastChar + str, drawFont);
+                                textSize2 = graphics.MeasureString(str + lastChar + str, drawFont);
+                                chWidth2 = (textSize2.Width - textSize1.Width) * 0.98f;
+                            }
+
+                            gPanel.DrawString(str, drawFont, drawBrush, posX, posY, strFormat);
+                            lastChar = str;
+
+                            posX = posX + chWidth2 + spacing_h;
+                            //posX = posX + strSize.Width + spacing_h - offsetX;
+                        }
+                    }
+                    PointY += (float)(chHeight + 0.46 * spacing_v);
+                }
+                graphics.DrawImage(bitmap, x, y);
+
+                if (BBorder)
+                {
+                    Rectangle rect = new Rectangle(x, y, w, h);
+                    Logger.WriteLine("DrawBorder");
+                    //Rectangle rect = new Rectangle(0, (int)(-0.75 * size), result - x - 1, (int)(0.75 * size));
+                    using (Pen pen1 = new Pen(Color.White, 1))
+                    {
+                        graphics.DrawRectangle(pen1, rect);
+                    }
+                    using (Pen pen2 = new Pen(Color.Black, 1))
+                    {
+                        pen2.DashStyle = DashStyle.Dot;
+                        graphics.DrawRectangle(pen2, rect);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+            }
+
+            Logger.WriteLine("* Draw_text (end)");
+        }
+
 
         /// <summary>Пишем число под угломи</summary>
         /// <param name="graphics">Поверхность для рисования</param>

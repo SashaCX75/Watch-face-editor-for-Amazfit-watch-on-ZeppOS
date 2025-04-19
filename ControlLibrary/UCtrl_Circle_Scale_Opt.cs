@@ -22,6 +22,7 @@ namespace ControlLibrary
 
         private bool LineCap_mode = false;
         private bool Alpha_mode = false;
+        private bool Inverse_mode = true;
 
         public UCtrl_Circle_Scale_Opt()
         {
@@ -131,7 +132,7 @@ namespace ControlLibrary
             return comboBox_scaleCircle_lineCap.SelectedIndex;
         }
 
-        /// <summary>Режим отображения типа окончания линий</summary>
+        /// <summary>Доступность выбора окончания линии</summary>
         [Description("Доступность выбора окончания линии")]
         public virtual bool LineCap
         {
@@ -144,6 +145,21 @@ namespace ControlLibrary
                 LineCap_mode = value;
                 comboBox_scaleCircle_lineCap.Enabled = value;
                 label2.Enabled = value;
+            }
+        }
+
+        /// <summary>Доступность инверсии шкалы</summary>
+        [Description("Доступность инверсии шкалы")]
+        public virtual bool Inverse
+        {
+            get
+            {
+                return Inverse_mode;
+            }
+            set
+            {
+                Inverse_mode = value;
+                checkBox_inversion.Enabled = value;
             }
         }
 

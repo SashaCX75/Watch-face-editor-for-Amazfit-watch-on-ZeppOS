@@ -5762,7 +5762,8 @@ namespace Watch_Face_Editor
             }
             if (radioButton_ScreenNormal.Checked)
             {
-                if (Watch_Face.ScreenNormal == null) return;
+                //if (Watch_Face.ScreenNormal == null) return;
+                if (Watch_Face.ScreenNormal == null) Watch_Face.ScreenNormal = new ScreenNormal();
                 if (Watch_Face.ScreenNormal.Background != null) 
                 {
                     uCtrl_Background_Elm.Visible_ShowDel(false);
@@ -5772,7 +5773,8 @@ namespace Watch_Face_Editor
             }
             else
             {
-                if (Watch_Face.ScreenAOD == null) return;
+                //if (Watch_Face.ScreenAOD == null) return;
+                if (Watch_Face.ScreenAOD == null) Watch_Face.ScreenAOD = new ScreenAOD();
                 if (Watch_Face.ScreenAOD.Background != null)
                 {
                     uCtrl_Background_Elm.Visible_ShowDel(true);
@@ -5793,6 +5795,7 @@ namespace Watch_Face_Editor
                 if (Watch_Face.ScreenAOD.Elements != null && Watch_Face.ScreenAOD.Elements.Count > 0)
                     elements = Watch_Face.ScreenAOD.Elements;
             }
+            if (elements == null) elements = new List<object>();
 
             Dictionary<int, string> elementOptions;
             if (elements.Count > 0)
@@ -10965,7 +10968,7 @@ namespace Watch_Face_Editor
                 string index_js = @"\watchface\index.js";
                 App_WatchFace appJson = null;
                 bool getID = false;
-                if (File.Exists(tempDir + @"\app.json"))  // читаем путь к файлу с кодом циферблата
+                if (File.Exists(tempDir + @"\app.json"))  // читаем путь к файлу с кодом циферблата и ID модели часов
                 {
                     string appText = File.ReadAllText(tempDir + @"\app.json");
                     try
@@ -13375,7 +13378,7 @@ namespace Watch_Face_Editor
                         if (uCtrl_Heart_Elm.checkBox_Circle_Scale.Checked)
                         {
                             circle_scale = heart.Circle_Scale;
-                            Read_CircleScale_Options(circle_scale);
+                            Read_CircleScale_Options(circle_scale, false);
                             ShowElemenrOptions("Circle_Scale");
                         }
                         else HideAllElemenrOptions();
@@ -14149,7 +14152,7 @@ namespace Watch_Face_Editor
                         if (uCtrl_SpO2_Elm.checkBox_Number.Checked)
                         {
                             img_number = SpO2.Number;
-                            Read_ImgNumber_Options(img_number, false, false, "", false, false, true, true);
+                            Read_ImgNumber_Options(img_number, false, false, "", true, false, true, true);
                             ShowElemenrOptions("Text");
                         }
                         else HideAllElemenrOptions();
@@ -16518,6 +16521,7 @@ namespace Watch_Face_Editor
                 Watch_Face.ScreenAOD = new ScreenAOD();
                 Background background = Watch_Face.ScreenNormal.Background;
                 List<object> elements = Watch_Face.ScreenNormal.Elements;
+                if (elements == null) elements = new List<object>();
                 Watch_Face.ScreenAOD.Background = (Background)background.Clone();
                 if (Watch_Face.ScreenNormal.Background != null && Watch_Face.ScreenNormal.Background.Editable_Background != null)
                     Watch_Face.ScreenNormal.Background.Editable_Background.AOD_show = true;
@@ -22195,6 +22199,7 @@ namespace Watch_Face_Editor
                 case "360 (Active Edge)":
                     numericUpDown_ConvertingInput_Custom.Value = 360;
                     break;
+                case "390 (Bip 6)":
                 case "390 (GTS 3)":
                 case "390 (GTS 4)":
                 case "390 (Cheetah (Square))":
@@ -22240,6 +22245,7 @@ namespace Watch_Face_Editor
                 case "360 (Active Edge)":
                     numericUpDown_ConvertingOutput_Custom.Value = 360;
                     break;
+                case "390 (Bip 6)":
                 case "390 (GTS 3)":
                 case "390 (GTS 4)":
                 case "390 (Cheetah (Square))":
@@ -22296,6 +22302,10 @@ namespace Watch_Face_Editor
                     case "360 (Active Edge)":
                         suffix = "_Active_Edge";
                         DeviceName = "Active Edge";
+                        break;
+                    case "390 (Bip 6)":
+                        suffix = "_Bip_6";
+                        DeviceName = "Bip 6";
                         break;
                     case "390 (GTS 3)":
                         suffix = "_GTS_3";

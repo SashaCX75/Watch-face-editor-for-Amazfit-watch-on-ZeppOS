@@ -219,6 +219,15 @@
   <data name="Message_ARGB_Line2" xml:space="preserve">
     <value>您确定要将图像转换为ARGB格式吗？</value>
   </data>
+  <data name="Message_AutoSave_Caption" xml:space="preserve">
+    <value>恢复</value>
+  </data>
+  <data name="Message_BG_Not_Color" xml:space="preserve">
+    <value>您需要将该颜色设为主背景。</value>
+  </data>
+  <data name="Message_BG_Not_Image" xml:space="preserve">
+    <value>您需要将该图像设为主背景。</value>
+  </data>
   <data name="Message_ConvertingCompleted_Text" xml:space="preserve">
     <value>已创建一个新的表盘。</value>
   </data>
@@ -302,6 +311,9 @@
   </data>
   <data name="Message_LoadPreviewStates_Text" xml:space="preserve">
     <value>下载具有一组预览设置的现有文件PreviewState.json？</value>
+  </data>
+  <data name="Message_Load_AutoSave" xml:space="preserve">
+    <value>发现一个自动保存的文件，是否要下载？</value>
   </data>
   <data name="Message_ModelConfig_Error" xml:space="preserve">
     <value>找不到模型配置：</value>
@@ -398,5 +410,8 @@
   </data>
   <data name="Tip_Pointer" xml:space="preserve">
     <value>指针</value>
+  </data>
+  <data name="ToastBG" xml:space="preserve">
+    <value>背景 %s</value>
   </data>
 </root>

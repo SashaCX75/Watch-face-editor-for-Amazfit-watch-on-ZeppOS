@@ -118,11 +118,95 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="checkBox_vibro.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 17</value>
+  </data>
+  <data name="checkBox_vibro.Text" xml:space="preserve">
+    <value>震动</value>
+  </data>
+  <data name="checkBox_use_crown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>86, 17</value>
+  </data>
+  <data name="checkBox_use_crown.Text" xml:space="preserve">
+    <value>冠</value>
+  </data>
+  <data name="checkBox_use_in_AOD.Size" type="System.Drawing.Size, System.Drawing">
+    <value>86, 17</value>
+  </data>
+  <data name="checkBox_use_in_AOD.Text" xml:space="preserve">
+    <value>操作表冠</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>文字颜色</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>文字</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>文字大小</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>按下状态</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>半径</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>正常状态</value>
+  </data>
+  <data name="groupBox_color.Text" xml:space="preserve">
+    <value>颜色</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>按下状态</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>正常状态</value>
+  </data>
+  <data name="groupBox_image.Text" xml:space="preserve">
+    <value>图像</value>
+  </data>
   <data name="label_bg_img.Size" type="System.Drawing.Size, System.Drawing">
-    <value>67, 13</value>
+    <value>97, 13</value>
   </data>
   <data name="label_bg_img.Text" xml:space="preserve">
-    <value>Цвет фона1</value>
+    <value>背景颜色</value>
+  </data>
+  <data name="button_add.Text" xml:space="preserve">
+    <value>添加</value>
+  </data>
+  <data name="button_del.Text" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="label06.Text" xml:space="preserve">
+    <value>按键高度</value>
+  </data>
+  <data name="label07.Text" xml:space="preserve">
+    <value>按键宽度</value>
+  </data>
+  <data name="Index.HeaderText" xml:space="preserve">
+    <value>#</value>
+  </data>
+  <data name="Background.HeaderText" xml:space="preserve">
+    <value>背景颜色</value>
+  </data>
+  <data name="Toast.HeaderText" xml:space="preserve">
+    <value>提示</value>
+  </data>
+  <data name="изменитьФонToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>173, 22</value>
+  </data>
+  <data name="изменитьФонToolStripMenuItem.Text" xml:space="preserve">
+    <value>更改选定背景</value>
+  </data>
+  <data name="contextMenuStrip_ChangeBackground.Size" type="System.Drawing.Size, System.Drawing">
+    <value>174, 26</value>
+  </data>
+  <data name="label02.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 13</value>
+  </data>
+  <data name="label02.Text" xml:space="preserve">
+    <value>坐标</value>
   </data>
   <data name="вставитьКоординатуХToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -137,6 +221,12 @@
         v//mQ5XiBhMmTGD7+fNn7t+/f/dp9cj+t1mkBvTC7wO/f//OX7hoIQdUGWHw7v27LLcZxv8dZtkCw+Mf
         YZvRQX9/PxvQkJx3797lIWxmYAAA7pt3k8xS7ogAAAAASUVORK5CYII=
 </value>
+  </data>
+  <data name="вставитьКоординатуХToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 26</value>
+  </data>
+  <data name="вставитьКоординатуХToolStripMenuItem.Text" xml:space="preserve">
+    <value>粘贴 X 坐标</value>
   </data>
   <data name="копироватьToolStripMenuItemX.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -153,6 +243,12 @@
         aTd35+adAzmrI4ijA3Amk+lat7fXT4Snqp0uA/VkLJcUmL06e4e4fy2j0XjJYn28trhoXjWbLasWi/UT
         gfobN285p6dNt5F2ps/+r+K4P4wyYm9nlNBiAAAAAElFTkSuQmCC
 </value>
+  </data>
+  <data name="копироватьToolStripMenuItemX.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 26</value>
+  </data>
+  <data name="копироватьToolStripMenuItemX.Text" xml:space="preserve">
+    <value>复制</value>
   </data>
   <data name="вставитьToolStripMenuItemX.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -171,6 +267,15 @@
         zqO/TnAxx2CuMF/jKtTrXEWk1Wk1ZkEQhL+gXkz+KXzH3gAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="вставитьToolStripMenuItemX.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 26</value>
+  </data>
+  <data name="вставитьToolStripMenuItemX.Text" xml:space="preserve">
+    <value>粘贴</value>
+  </data>
+  <data name="contextMenuStrip_X.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 82</value>
+  </data>
   <data name="вставитьКоординатуYToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAfxJREFUOE9j
@@ -184,6 +289,12 @@
         v//mQ5XiBhMmTGD7+fNn7t+/f/dp9cj+t1mkBvTC7wO/f//OX7hoIQdUGWHw7v27LLcZxv8dZtkCw+Mf
         YZvRQX9/PxvQkJx3797lIWxmYAAA7pt3k8xS7ogAAAAASUVORK5CYII=
 </value>
+  </data>
+  <data name="вставитьКоординатуYToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 26</value>
+  </data>
+  <data name="вставитьКоординатуYToolStripMenuItem.Text" xml:space="preserve">
+    <value>粘贴 Y 坐标</value>
   </data>
   <data name="копироватьToolStripMenuItemY.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -201,6 +312,12 @@
         gfobN285p6dNt5F2ps/+r+K4P4wyYm9nlNBiAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="копироватьToolStripMenuItemY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 26</value>
+  </data>
+  <data name="копироватьToolStripMenuItemY.Text" xml:space="preserve">
+    <value>复制</value>
+  </data>
   <data name="вставитьToolStripMenuItemY.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAArVJREFUOE9l
@@ -217,5 +334,14 @@
         Y8zzGh/eD8M37sHH0RGMed9i1DOEoRfP8eyJA9caj0C8cBiVB0taM+WCoBEEM13l01yN4MrXCi5DjuAq
         zqO/TnAxx2CuMF/jKtTrXEWk1Wk1ZkEQhL+gXkz+KXzH3gAAAABJRU5ErkJggg==
 </value>
+  </data>
+  <data name="вставитьToolStripMenuItemY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 26</value>
+  </data>
+  <data name="вставитьToolStripMenuItemY.Text" xml:space="preserve">
+    <value>粘贴</value>
+  </data>
+  <data name="contextMenuStrip_Y.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 82</value>
   </data>
 </root>

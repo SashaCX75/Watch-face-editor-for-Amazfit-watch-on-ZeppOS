@@ -689,6 +689,9 @@
     <EmbeddedResource Include="EditToast.uk.resx">
       <DependentUpon>EditToast.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EditToast.zh.resx">
+      <DependentUpon>EditToast.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_Activity_Elm.cs.resx">
       <DependentUpon>UCtrl_Activity_Elm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1538,6 +1541,9 @@
     <EmbeddedResource Include="Elements\UCtrl_Switch_Background_Elm.uk.resx">
       <DependentUpon>UCtrl_Switch_Background_Elm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Switch_Background_Elm.zh.resx">
+      <DependentUpon>UCtrl_Switch_Background_Elm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_Switch_BG_Color_Elm.cs.resx">
       <DependentUpon>UCtrl_Switch_BG_Color_Elm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1557,6 +1563,9 @@
       <DependentUpon>UCtrl_Switch_BG_Color_Elm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_Switch_BG_Color_Elm.uk.resx">
+      <DependentUpon>UCtrl_Switch_BG_Color_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Switch_BG_Color_Elm.zh.resx">
       <DependentUpon>UCtrl_Switch_BG_Color_Elm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_TopImage_Elm.cs.resx">
@@ -2535,6 +2544,9 @@
     <EmbeddedResource Include="Elements\UCtrl_Switch_BG_Color_Elm.resx">
       <DependentUpon>UCtrl_Switch_BG_Color_Elm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_Switch_Background_Opt.zh.resx">
+      <DependentUpon>UCtrl_Switch_Background_Opt.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UCtrl_Switch_BG_Color_Opt.cs.resx">
       <DependentUpon>UCtrl_Switch_BG_Color_Opt.cs</DependentUpon>
     </EmbeddedResource>
@@ -2557,6 +2569,9 @@
       <DependentUpon>UCtrl_Switch_BG_Color_Opt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UCtrl_Switch_BG_Color_Opt.uk.resx">
+      <DependentUpon>UCtrl_Switch_BG_Color_Opt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_Switch_BG_Color_Opt.zh.resx">
       <DependentUpon>UCtrl_Switch_BG_Color_Opt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UCtrl_TemperatureGraph_Opt.cs.resx">

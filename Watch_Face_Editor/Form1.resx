@@ -5818,51 +5818,54 @@
     <value>360 (Active Edge)</value>
   </data>
   <data name="comboBox_ConvertingOutput_Model.Items5" xml:space="preserve">
-    <value>390 (GTS 3)</value>
+    <value>390 (Bip 6)</value>
   </data>
   <data name="comboBox_ConvertingOutput_Model.Items6" xml:space="preserve">
-    <value>390 (GTS 4)</value>
+    <value>390 (GTS 3)</value>
   </data>
   <data name="comboBox_ConvertingOutput_Model.Items7" xml:space="preserve">
-    <value>390 (Active)</value>
+    <value>390 (GTS 4)</value>
   </data>
   <data name="comboBox_ConvertingOutput_Model.Items8" xml:space="preserve">
-    <value>390 (Cheetah (Square))</value>
+    <value>390 (Active)</value>
   </data>
   <data name="comboBox_ConvertingOutput_Model.Items9" xml:space="preserve">
-    <value>416 (Falcon)</value>
+    <value>390 (Cheetah (Square))</value>
   </data>
   <data name="comboBox_ConvertingOutput_Model.Items10" xml:space="preserve">
-    <value>416 (GTR mini)</value>
+    <value>416 (Falcon)</value>
   </data>
   <data name="comboBox_ConvertingOutput_Model.Items11" xml:space="preserve">
-    <value>454 (T-Rex 2)</value>
+    <value>416 (GTR mini)</value>
   </data>
   <data name="comboBox_ConvertingOutput_Model.Items12" xml:space="preserve">
-    <value>454 (T-Rex Ultra)</value>
+    <value>454 (T-Rex 2)</value>
   </data>
   <data name="comboBox_ConvertingOutput_Model.Items13" xml:space="preserve">
-    <value>454 (Cheetah)</value>
+    <value>454 (T-Rex Ultra)</value>
   </data>
   <data name="comboBox_ConvertingOutput_Model.Items14" xml:space="preserve">
-    <value>454 (GTR 3)</value>
+    <value>454 (Cheetah)</value>
   </data>
   <data name="comboBox_ConvertingOutput_Model.Items15" xml:space="preserve">
-    <value>466 (GTR 4)</value>
+    <value>454 (GTR 3)</value>
   </data>
   <data name="comboBox_ConvertingOutput_Model.Items16" xml:space="preserve">
-    <value>466 (Active 2)</value>
+    <value>466 (GTR 4)</value>
   </data>
   <data name="comboBox_ConvertingOutput_Model.Items17" xml:space="preserve">
-    <value>480 (Balance)</value>
+    <value>466 (Active 2)</value>
   </data>
   <data name="comboBox_ConvertingOutput_Model.Items18" xml:space="preserve">
-    <value>480 (Cheetah Pro)</value>
+    <value>480 (Balance)</value>
   </data>
   <data name="comboBox_ConvertingOutput_Model.Items19" xml:space="preserve">
-    <value>480 (GTR 3 Pro)</value>
+    <value>480 (Cheetah Pro)</value>
   </data>
   <data name="comboBox_ConvertingOutput_Model.Items20" xml:space="preserve">
+    <value>480 (GTR 3 Pro)</value>
+  </data>
+  <data name="comboBox_ConvertingOutput_Model.Items21" xml:space="preserve">
     <value>480 (T-Rex 3)</value>
   </data>
   <data name="comboBox_ConvertingOutput_Model.Location" type="System.Drawing.Point, System.Drawing">
@@ -5950,51 +5953,54 @@
     <value>360 (Active Edge)</value>
   </data>
   <data name="comboBox_ConvertingInput_Model.Items5" xml:space="preserve">
-    <value>390 (GTS 3)</value>
+    <value>390 (Bip 6)</value>
   </data>
   <data name="comboBox_ConvertingInput_Model.Items6" xml:space="preserve">
-    <value>390 (GTS 4)</value>
+    <value>390 (GTS 3)</value>
   </data>
   <data name="comboBox_ConvertingInput_Model.Items7" xml:space="preserve">
-    <value>390 (Active)</value>
+    <value>390 (GTS 4)</value>
   </data>
   <data name="comboBox_ConvertingInput_Model.Items8" xml:space="preserve">
-    <value>390 (Cheetah (Square))</value>
+    <value>390 (Active)</value>
   </data>
   <data name="comboBox_ConvertingInput_Model.Items9" xml:space="preserve">
-    <value>416 (Falcon)</value>
+    <value>390 (Cheetah (Square))</value>
   </data>
   <data name="comboBox_ConvertingInput_Model.Items10" xml:space="preserve">
-    <value>416 (GTR mini)</value>
+    <value>416 (Falcon)</value>
   </data>
   <data name="comboBox_ConvertingInput_Model.Items11" xml:space="preserve">
-    <value>454 (T-Rex 2)</value>
+    <value>416 (GTR mini)</value>
   </data>
   <data name="comboBox_ConvertingInput_Model.Items12" xml:space="preserve">
-    <value>454 (T-Rex Ultra)</value>
+    <value>454 (T-Rex 2)</value>
   </data>
   <data name="comboBox_ConvertingInput_Model.Items13" xml:space="preserve">
-    <value>454 (Cheetah)</value>
+    <value>454 (T-Rex Ultra)</value>
   </data>
   <data name="comboBox_ConvertingInput_Model.Items14" xml:space="preserve">
-    <value>454 (GTR 3)</value>
+    <value>454 (Cheetah)</value>
   </data>
   <data name="comboBox_ConvertingInput_Model.Items15" xml:space="preserve">
-    <value>466 (GTR 4)</value>
+    <value>454 (GTR 3)</value>
   </data>
   <data name="comboBox_ConvertingInput_Model.Items16" xml:space="preserve">
-    <value>466 (Active 2)</value>
+    <value>466 (GTR 4)</value>
   </data>
   <data name="comboBox_ConvertingInput_Model.Items17" xml:space="preserve">
-    <value>480 (Balance)</value>
+    <value>466 (Active 2)</value>
   </data>
   <data name="comboBox_ConvertingInput_Model.Items18" xml:space="preserve">
-    <value>480 (Cheetah Pro)</value>
+    <value>480 (Balance)</value>
   </data>
   <data name="comboBox_ConvertingInput_Model.Items19" xml:space="preserve">
-    <value>480 (GTR 3 Pro)</value>
+    <value>480 (Cheetah Pro)</value>
   </data>
   <data name="comboBox_ConvertingInput_Model.Items20" xml:space="preserve">
+    <value>480 (GTR 3 Pro)</value>
+  </data>
+  <data name="comboBox_ConvertingInput_Model.Items21" xml:space="preserve">
     <value>480 (T-Rex 3)</value>
   </data>
   <data name="comboBox_ConvertingInput_Model.Location" type="System.Drawing.Point, System.Drawing">
@@ -8918,7 +8924,7 @@ Ukrainian - kartoris82</value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACk
-        DQAAAk1TRnQBSQFMAgEBBgEAASABQAEgAUABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        DQAAAk1TRnQBSQFMAgEBBgEAASgBQAEoAUABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAASADAAEBAQABCAYAAQgYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA

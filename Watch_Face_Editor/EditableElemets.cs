@@ -1463,7 +1463,7 @@ namespace Watch_Face_Editor
                             if (uCtrl_EditableElements_Opt.checkBox_Circle_Scale.Checked)
                             {
                                 Circle_Scale circle_scale = heart.Circle_Scale;
-                                Read_CircleScale_Options(circle_scale);
+                                Read_CircleScale_Options(circle_scale, false);
                                 uCtrl_EditableElements_Opt.Collapse = true;
                             }
                             break;

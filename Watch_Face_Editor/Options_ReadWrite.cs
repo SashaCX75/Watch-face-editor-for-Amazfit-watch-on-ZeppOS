@@ -1849,13 +1849,14 @@ namespace Watch_Face_Editor
         }
 
         /// <summary>Читаем настройки для отображения круговой шкалы</summary>
-        private void Read_CircleScale_Options(Circle_Scale circle_scale)
+        private void Read_CircleScale_Options(Circle_Scale circle_scale, bool inverseMode = true)
         {
             PreviewView = false;
 
             uCtrl_Circle_Scale_Opt.SettingsClear();
             uCtrl_Circle_Scale_Opt.LineCap = SelectedModel.versionOS >= 2;
             uCtrl_Circle_Scale_Opt.Alpha = SelectedModel.versionOS >= 2.1;
+            if (!inverseMode) uCtrl_Circle_Scale_Opt.Inverse = false;
 
             uCtrl_Circle_Scale_Opt.Visible = true;
 

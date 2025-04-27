@@ -265,6 +265,9 @@ L'immagine non deve essere monocromatica e deve essere in formato 32bit</value>
   <data name="Message_ElementAOD_Text" xml:space="preserve">
     <value>Non è possibile aggiungere questi elementi alla schermata di AOD</value>
   </data>
+  <data name="Message_ErrorReadBin" xml:space="preserve">
+    <value>Il codice è criptato e non può essere riconosciuto.</value>
+  </data>
   <data name="Message_ErrorReadJS" xml:space="preserve">
     <value>Impossibile ricostruire la struttura della watch face</value>
   </data>

@@ -264,8 +264,11 @@
   <data name="Message_ElementAOD_Text" xml:space="preserve">
     <value>Ви не можете додати цей елемент на екран AOD.</value>
   </data>
+  <data name="Message_ErrorReadBin" xml:space="preserve">
+    <value>Код зашифрований і не може бути розпізнаний.</value>
+  </data>
   <data name="Message_ErrorReadJS" xml:space="preserve">
-    <value>Не вдалося визначити структуру циферблату</value>
+    <value>Не вдалося визначити структуру циферблату.</value>
   </data>
   <data name="Message_Error_Caption" xml:space="preserve">
     <value>Помилка</value>

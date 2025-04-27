@@ -264,6 +264,9 @@
   <data name="Message_ElementAOD_Text" xml:space="preserve">
     <value>Tento prvek nemůžete přidat na obrazovku AOD.</value>
   </data>
+  <data name="Message_ErrorReadBin" xml:space="preserve">
+    <value>Kód je zašifrovaný a nelze jej rozpoznat.</value>
+  </data>
   <data name="Message_ErrorReadJS" xml:space="preserve">
     <value>Nepodařilo se rozpoznat strukturu ciferníku</value>
   </data>

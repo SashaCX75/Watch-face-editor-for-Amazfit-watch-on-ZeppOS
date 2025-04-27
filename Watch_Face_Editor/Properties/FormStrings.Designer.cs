@@ -547,7 +547,16 @@ namespace Watch_Face_Editor.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Не удалось распознать структуру циферблата.
+        ///   Ищет локализованную строку, похожую на Код зашифрован и не может быть распознан..
+        /// </summary>
+        internal static string Message_ErrorReadBin {
+            get {
+                return ResourceManager.GetString("Message_ErrorReadBin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Не удалось распознать структуру циферблата..
         /// </summary>
         internal static string Message_ErrorReadJS {
             get {

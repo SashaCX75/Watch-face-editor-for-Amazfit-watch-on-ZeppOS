@@ -398,6 +398,7 @@ namespace ControlLibrary
 
             LineCap = false;
             Alpha = false;
+            Inverse = true;
 
             setValue = false;
         }

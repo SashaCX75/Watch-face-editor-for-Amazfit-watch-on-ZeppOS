@@ -264,6 +264,9 @@
   <data name="Message_ElementAOD_Text" xml:space="preserve">
     <value>Vous ne pouvez pas ajouter cet élément à un écran AOD.</value>
   </data>
+  <data name="Message_ErrorReadBin" xml:space="preserve">
+    <value>Le code est chiffré et ne peut pas être reconnu.</value>
+  </data>
   <data name="Message_ErrorReadJS" xml:space="preserve">
     <value>Échec de la reconnaissance de la structure du cadran</value>
   </data>

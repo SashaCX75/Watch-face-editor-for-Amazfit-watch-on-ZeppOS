@@ -264,6 +264,9 @@
   <data name="Message_ElementAOD_Text" xml:space="preserve">
     <value>No puede agregar este elemento a una pantalla AOD.</value>
   </data>
+  <data name="Message_ErrorReadBin" xml:space="preserve">
+    <value>El código está encriptado y no se puede reconocer.</value>
+  </data>
   <data name="Message_ErrorReadJS" xml:space="preserve">
     <value>No se puede reconocer la estructura de la esfera del reloj</value>
   </data>

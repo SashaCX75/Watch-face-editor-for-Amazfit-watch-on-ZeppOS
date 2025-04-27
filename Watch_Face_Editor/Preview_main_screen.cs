@@ -5777,7 +5777,7 @@ namespace Watch_Face_Editor
                                 drawFont = new Font(fonts.Families[0], size, GraphicsUnit.World);
                             }
 
-                            Draw_text_userFont_2(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
+                            Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
                                             align_h, align_v, text_style, BBorder);
                         }
                         else

@@ -10982,8 +10982,10 @@ namespace Watch_Face_Editor
                         {
                             if (appJson.module != null)
                             {
+                                //if (appJson.module.watchface != null && appJson.module.watchface.path != null &&
+                                //                        appJson.module.watchface.path.Length > 2) index_js = @"\" + appJson.module.watchface.path + ".js";
                                 if (appJson.module.watchface != null && appJson.module.watchface.path != null &&
-                                                        appJson.module.watchface.path.Length > 2) index_js = @"\" + appJson.module.watchface.path + ".js";
+                                                        appJson.module.watchface.path.Length > 2) index_js = @"\" + appJson.module.watchface.path;
                                 index_js = index_js.Replace("/", @"\");
                             }
                             if (appJson.platforms != null && appJson.platforms.Count > 0)
@@ -11008,6 +11010,7 @@ namespace Watch_Face_Editor
                 string user_script_end = "";
                 string resume_call = "";
                 string pause_call = "";
+                Watch_Face = null;
 
                 JSToJson(tempDir + index_js, out user_functions, out user_script_start, out user_script, out user_script_AOD, out user_script_beforeShortcuts, out user_script_end, out resume_call, out pause_call); // создаем новый json файл циферблата
 
@@ -11051,15 +11054,10 @@ namespace Watch_Face_Editor
 
                 PreviewView = true;
 
-                if (Watch_Face != null && Watch_Face.ScreenNormal != null)
+                if (Watch_Face != null /*&& Watch_Face.ScreenNormal != null*/)
                 {
                     try
                     {
-                        //App_WatchFace appJson = JsonConvert.DeserializeObject<App_WatchFace>(appText, new JsonSerializerSettings
-                        //{
-                        //    DefaultValueHandling = DefaultValueHandling.Ignore,
-                        //    NullValueHandling = NullValueHandling.Ignore
-                        //});
                         if (appJson != null && appJson.app != null)
                         {
                             if (Watch_Face.WatchFace_Info == null) Watch_Face.WatchFace_Info = new WatchFace_Info();
@@ -11476,6 +11474,8 @@ namespace Watch_Face_Editor
                         MessageBox.Show(ex.Message);
                     }
 
+                    if (Watch_Face.ScreenNormal == null) Watch_Face.ScreenNormal = new ScreenNormal();
+
                     if (Watch_Face.ScreenNormal.Background == null) Watch_Face.ScreenNormal.Background = new Background();
                     if (Watch_Face.ScreenNormal.Background.BackgroundImage == null && Watch_Face.ScreenNormal.Background.BackgroundColor == null &&
                         Watch_Face.ScreenNormal.Background.Editable_Background == null)
@@ -11489,23 +11489,6 @@ namespace Watch_Face_Editor
 
 
                     }
-
-                    //if (appJson != null && appJson.app != null)
-                    //{
-                    //    if (Watch_Face.WatchFace_Info == null) Watch_Face.WatchFace_Info = new WatchFace_Info();
-                    //    if (appJson.app.appId > 1000) Watch_Face.WatchFace_Info.WatchFaceId = appJson.app.appId;
-                    //    else
-                    //    {
-                    //        Random rnd = new Random();
-                    //        int ID = rnd.Next(1000, 10000000);
-                    //        Watch_Face.WatchFace_Info.WatchFaceId = ID;
-                    //    }
-                    //    if (appJson.app.icon != null && appJson.app.icon.Length > 3)
-                    //        Watch_Face.WatchFace_Info.Preview = Path.GetFileNameWithoutExtension(appJson.app.icon);
-
-                    //    if (appJson.app.appName != null && appJson.app.appName.Length > 0)
-                    //        projectName = appJson.app.appName;
-                    //}
 
 
                     #region JS script
@@ -11617,8 +11600,8 @@ namespace Watch_Face_Editor
                     ProjectDir = Path.GetDirectoryName(fullProjectName);
                     LoadJson(fullProjectName);
                 }
-                else MessageBox.Show(Properties.FormStrings.Message_ErrorReadJS, Properties.FormStrings.Message_Error_Caption,
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //else MessageBox.Show(Properties.FormStrings.Message_ErrorReadJS, Properties.FormStrings.Message_Error_Caption,
+                //    MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 progressBar1.Visible = false;
 
@@ -13378,7 +13361,7 @@ namespace Watch_Face_Editor
                         if (uCtrl_Heart_Elm.checkBox_Circle_Scale.Checked)
                         {
                             circle_scale = heart.Circle_Scale;
-                            Read_CircleScale_Options(circle_scale, false);
+                            Read_CircleScale_Options(circle_scale);
                             ShowElemenrOptions("Circle_Scale");
                         }
                         else HideAllElemenrOptions();

@@ -164,6 +164,20 @@ namespace Watch_Face_Editor
             this.uCtrl_Switch_Background_Elm = new ControlLibrary.UCtrl_Switch_Background_Elm();
             this.panel_Switch_BG_Color = new System.Windows.Forms.Panel();
             this.uCtrl_Switch_BG_Color_Elm = new ControlLibrary.UCtrl_Switch_BG_Color_Elm();
+            this.panel_UC_AlarmClock = new System.Windows.Forms.Panel();
+            this.uCtrl_AlarmClock_Elm = new ControlLibrary.UCtrl_AlarmClock_Elm();
+            this.panel_UC_TrainingLoad = new System.Windows.Forms.Panel();
+            this.uCtrl_TrainingLoad_Elm = new ControlLibrary.UCtrl_TrainingLoad_Elm();
+            this.panel_UC_VO2Max = new System.Windows.Forms.Panel();
+            this.uCtrl_VO2Max_Elm = new ControlLibrary.UCtrl_VO2Max_Elm();
+            this.panel_UC_AQI = new System.Windows.Forms.Panel();
+            this.uCtrl_AQI_Elm = new ControlLibrary.UCtrl_AQI_Elm();
+            this.panel_UC_BodyTemp = new System.Windows.Forms.Panel();
+            this.uCtrl_BodyTemp_Elm = new ControlLibrary.UCtrl_BodyTemp_Elm();
+            this.panel_UC_Floor = new System.Windows.Forms.Panel();
+            this.uCtrl_Floor_Elm = new ControlLibrary.UCtrl_Floor_Elm();
+            this.panel_UC_Readiness = new System.Windows.Forms.Panel();
+            this.uCtrl_Readiness_Elm = new ControlLibrary.UCtrl_Readiness_Elm();
             this.panel_ElementsOpt = new System.Windows.Forms.Panel();
             this.uCtrl_Switch_BG_Color_Opt = new ControlLibrary.UCtrl_Switch_BG_Color_Opt();
             this.uCtrl_Switch_Background_Opt = new ControlLibrary.UCtrl_Switch_Background_Opt();
@@ -395,6 +409,13 @@ namespace Watch_Face_Editor
             this.panel_UC_DigitalTime_v2.SuspendLayout();
             this.panel_UC_Switch_Background.SuspendLayout();
             this.panel_Switch_BG_Color.SuspendLayout();
+            this.panel_UC_AlarmClock.SuspendLayout();
+            this.panel_UC_TrainingLoad.SuspendLayout();
+            this.panel_UC_VO2Max.SuspendLayout();
+            this.panel_UC_AQI.SuspendLayout();
+            this.panel_UC_BodyTemp.SuspendLayout();
+            this.panel_UC_Floor.SuspendLayout();
+            this.panel_UC_Readiness.SuspendLayout();
             this.panel_ElementsOpt.SuspendLayout();
             this.panel_MainScreen_AOD.SuspendLayout();
             this.tabPage_Show_Set.SuspendLayout();
@@ -774,7 +795,9 @@ namespace Watch_Face_Editor
             resources.GetString("comboBox_AddSystem.Items9"),
             resources.GetString("comboBox_AddSystem.Items10"),
             resources.GetString("comboBox_AddSystem.Items11"),
-            resources.GetString("comboBox_AddSystem.Items12")});
+            resources.GetString("comboBox_AddSystem.Items12"),
+            resources.GetString("comboBox_AddSystem.Items13"),
+            resources.GetString("comboBox_AddSystem.Items14")});
             resources.ApplyResources(this.comboBox_AddSystem, "comboBox_AddSystem");
             this.comboBox_AddSystem.Name = "comboBox_AddSystem";
             this.comboBox_AddSystem.DropDownClosed += new System.EventHandler(this.comboBox_AddSystem_DropDownClosed);
@@ -794,7 +817,8 @@ namespace Watch_Face_Editor
             resources.GetString("comboBox_AddAir.Items5"),
             resources.GetString("comboBox_AddAir.Items6"),
             resources.GetString("comboBox_AddAir.Items7"),
-            resources.GetString("comboBox_AddAir.Items8")});
+            resources.GetString("comboBox_AddAir.Items8"),
+            resources.GetString("comboBox_AddAir.Items9")});
             resources.ApplyResources(this.comboBox_AddAir, "comboBox_AddAir");
             this.comboBox_AddAir.Name = "comboBox_AddAir";
             this.comboBox_AddAir.DropDownClosed += new System.EventHandler(this.comboBox_AddAir_DropDownClosed);
@@ -803,6 +827,7 @@ namespace Watch_Face_Editor
             // comboBox_AddActivity
             // 
             this.comboBox_AddActivity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_AddActivity.DropDownWidth = 150;
             this.comboBox_AddActivity.FormattingEnabled = true;
             this.comboBox_AddActivity.Items.AddRange(new object[] {
             resources.GetString("comboBox_AddActivity.Items"),
@@ -814,7 +839,11 @@ namespace Watch_Face_Editor
             resources.GetString("comboBox_AddActivity.Items6"),
             resources.GetString("comboBox_AddActivity.Items7"),
             resources.GetString("comboBox_AddActivity.Items8"),
-            resources.GetString("comboBox_AddActivity.Items9")});
+            resources.GetString("comboBox_AddActivity.Items9"),
+            resources.GetString("comboBox_AddActivity.Items10"),
+            resources.GetString("comboBox_AddActivity.Items11"),
+            resources.GetString("comboBox_AddActivity.Items12"),
+            resources.GetString("comboBox_AddActivity.Items13")});
             resources.ApplyResources(this.comboBox_AddActivity, "comboBox_AddActivity");
             this.comboBox_AddActivity.Name = "comboBox_AddActivity";
             this.comboBox_AddActivity.DropDownClosed += new System.EventHandler(this.comboBox_AddActivity_DropDownClosed);
@@ -869,7 +898,7 @@ namespace Watch_Face_Editor
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_RepeatingAlert, 0, 4);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_DateMonth, 0, 13);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_DateYear, 0, 14);
-            this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Background, 0, 42);
+            this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Background, 0, 49);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_DateWeek, 0, 15);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Steps, 0, 18);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Statuses, 0, 17);
@@ -892,19 +921,26 @@ namespace Watch_Face_Editor
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Sunrise, 0, 35);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Wind, 0, 36);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Moon, 0, 38);
-            this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Animation, 0, 41);
+            this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Animation, 0, 48);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_DisconnectAlert, 0, 3);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_AnalogTimePro, 0, 7);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Image, 0, 37);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_TopImage, 0, 5);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Buttons, 0, 2);
-            this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_JS, 0, 40);
+            this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_JS, 0, 47);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Compass, 0, 39);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Weather_v2, 0, 28);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Weather_FewDay, 0, 29);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_DigitalTime_v2, 0, 10);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Switch_Background, 0, 0);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_Switch_BG_Color, 0, 1);
+            this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_AlarmClock, 0, 40);
+            this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_TrainingLoad, 0, 41);
+            this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_VO2Max, 0, 42);
+            this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_AQI, 0, 43);
+            this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_BodyTemp, 0, 44);
+            this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Floor, 0, 45);
+            this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Readiness, 0, 46);
             this.tableLayoutPanel_ElemetsWatchFace.Name = "tableLayoutPanel_ElemetsWatchFace";
             this.tableLayoutPanel_ElemetsWatchFace.DragOver += new System.Windows.Forms.DragEventHandler(this.tableLayoutPanel1_DragOver);
             // 
@@ -1711,6 +1747,139 @@ namespace Watch_Face_Editor
             this.uCtrl_Switch_BG_Color_Elm.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Control_MouseMove);
             this.uCtrl_Switch_BG_Color_Elm.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Control_MouseUp);
             // 
+            // panel_UC_AlarmClock
+            // 
+            resources.ApplyResources(this.panel_UC_AlarmClock, "panel_UC_AlarmClock");
+            this.panel_UC_AlarmClock.Controls.Add(this.uCtrl_AlarmClock_Elm);
+            this.panel_UC_AlarmClock.Name = "panel_UC_AlarmClock";
+            // 
+            // uCtrl_AlarmClock_Elm
+            // 
+            resources.ApplyResources(this.uCtrl_AlarmClock_Elm, "uCtrl_AlarmClock_Elm");
+            this.uCtrl_AlarmClock_Elm.Name = "uCtrl_AlarmClock_Elm";
+            this.uCtrl_AlarmClock_Elm.VisibleElementChanged += new ControlLibrary.UCtrl_AlarmClock_Elm.VisibleElementChangedHandler(this.uCtrl_AlarmClock_Elm_VisibleElementChanged);
+            this.uCtrl_AlarmClock_Elm.VisibleOptionsChanged += new ControlLibrary.UCtrl_AlarmClock_Elm.VisibleOptionsChangedHandler(this.uCtrl_AlarmClock_Elm_VisibleOptionsChanged);
+            this.uCtrl_AlarmClock_Elm.OptionsMoved += new ControlLibrary.UCtrl_AlarmClock_Elm.OptionsMovedHandler(this.uCtrl_AlarmClock_Elm_OptionsMoved);
+            this.uCtrl_AlarmClock_Elm.SelectChanged += new ControlLibrary.UCtrl_AlarmClock_Elm.SelectChangedHandler(this.uCtrl_AlarmClock_Elm_SelectChanged);
+            this.uCtrl_AlarmClock_Elm.DelElement += new ControlLibrary.UCtrl_AlarmClock_Elm.DelElementHandler(this.uCtrl_Elm_DelElement);
+            this.uCtrl_AlarmClock_Elm.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Control_MouseDown);
+            this.uCtrl_AlarmClock_Elm.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Control_MouseMove);
+            this.uCtrl_AlarmClock_Elm.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Control_MouseUp);
+            // 
+            // panel_UC_TrainingLoad
+            // 
+            resources.ApplyResources(this.panel_UC_TrainingLoad, "panel_UC_TrainingLoad");
+            this.panel_UC_TrainingLoad.Controls.Add(this.uCtrl_TrainingLoad_Elm);
+            this.panel_UC_TrainingLoad.Name = "panel_UC_TrainingLoad";
+            // 
+            // uCtrl_TrainingLoad_Elm
+            // 
+            resources.ApplyResources(this.uCtrl_TrainingLoad_Elm, "uCtrl_TrainingLoad_Elm");
+            this.uCtrl_TrainingLoad_Elm.Name = "uCtrl_TrainingLoad_Elm";
+            this.uCtrl_TrainingLoad_Elm.VisibleElementChanged += new ControlLibrary.UCtrl_TrainingLoad_Elm.VisibleElementChangedHandler(this.uCtrl_TrainingLoad_Elm_VisibleElementChanged);
+            this.uCtrl_TrainingLoad_Elm.VisibleOptionsChanged += new ControlLibrary.UCtrl_TrainingLoad_Elm.VisibleOptionsChangedHandler(this.uCtrl_TrainingLoad_Elm_VisibleOptionsChanged);
+            this.uCtrl_TrainingLoad_Elm.OptionsMoved += new ControlLibrary.UCtrl_TrainingLoad_Elm.OptionsMovedHandler(this.uCtrl_TrainingLoad_Elm_OptionsMoved);
+            this.uCtrl_TrainingLoad_Elm.SelectChanged += new ControlLibrary.UCtrl_TrainingLoad_Elm.SelectChangedHandler(this.uCtrl_TrainingLoad_Elm_SelectChanged);
+            this.uCtrl_TrainingLoad_Elm.DelElement += new ControlLibrary.UCtrl_TrainingLoad_Elm.DelElementHandler(this.uCtrl_Elm_DelElement);
+            this.uCtrl_TrainingLoad_Elm.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Control_MouseDown);
+            this.uCtrl_TrainingLoad_Elm.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Control_MouseMove);
+            this.uCtrl_TrainingLoad_Elm.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Control_MouseUp);
+            // 
+            // panel_UC_VO2Max
+            // 
+            resources.ApplyResources(this.panel_UC_VO2Max, "panel_UC_VO2Max");
+            this.panel_UC_VO2Max.Controls.Add(this.uCtrl_VO2Max_Elm);
+            this.panel_UC_VO2Max.Name = "panel_UC_VO2Max";
+            // 
+            // uCtrl_VO2Max_Elm
+            // 
+            resources.ApplyResources(this.uCtrl_VO2Max_Elm, "uCtrl_VO2Max_Elm");
+            this.uCtrl_VO2Max_Elm.Name = "uCtrl_VO2Max_Elm";
+            this.uCtrl_VO2Max_Elm.VisibleElementChanged += new ControlLibrary.UCtrl_TrainingLoad_Elm.VisibleElementChangedHandler(this.uCtrl_VO2Max_Elm_VisibleElementChanged);
+            this.uCtrl_VO2Max_Elm.VisibleOptionsChanged += new ControlLibrary.UCtrl_TrainingLoad_Elm.VisibleOptionsChangedHandler(this.uCtrl_VO2Max_Elm_VisibleOptionsChanged);
+            this.uCtrl_VO2Max_Elm.OptionsMoved += new ControlLibrary.UCtrl_TrainingLoad_Elm.OptionsMovedHandler(this.uCtrl_VO2Max_Elm_OptionsMoved);
+            this.uCtrl_VO2Max_Elm.SelectChanged += new ControlLibrary.UCtrl_TrainingLoad_Elm.SelectChangedHandler(this.uCtrl_VO2Max_Elm_SelectChanged);
+            this.uCtrl_VO2Max_Elm.DelElement += new ControlLibrary.UCtrl_TrainingLoad_Elm.DelElementHandler(this.uCtrl_Elm_DelElement);
+            this.uCtrl_VO2Max_Elm.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Control_MouseDown);
+            this.uCtrl_VO2Max_Elm.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Control_MouseMove);
+            this.uCtrl_VO2Max_Elm.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Control_MouseUp);
+            // 
+            // panel_UC_AQI
+            // 
+            resources.ApplyResources(this.panel_UC_AQI, "panel_UC_AQI");
+            this.panel_UC_AQI.Controls.Add(this.uCtrl_AQI_Elm);
+            this.panel_UC_AQI.Name = "panel_UC_AQI";
+            // 
+            // uCtrl_AQI_Elm
+            // 
+            resources.ApplyResources(this.uCtrl_AQI_Elm, "uCtrl_AQI_Elm");
+            this.uCtrl_AQI_Elm.Name = "uCtrl_AQI_Elm";
+            this.uCtrl_AQI_Elm.VisibleElementChanged += new ControlLibrary.UCtrl_TrainingLoad_Elm.VisibleElementChangedHandler(this.uCtrl_AQI_Elm_VisibleElementChanged);
+            this.uCtrl_AQI_Elm.VisibleOptionsChanged += new ControlLibrary.UCtrl_TrainingLoad_Elm.VisibleOptionsChangedHandler(this.uCtrl_AQI_Elm_VisibleOptionsChanged);
+            this.uCtrl_AQI_Elm.OptionsMoved += new ControlLibrary.UCtrl_TrainingLoad_Elm.OptionsMovedHandler(this.uCtrl_AQI_Elm_OptionsMoved);
+            this.uCtrl_AQI_Elm.SelectChanged += new ControlLibrary.UCtrl_TrainingLoad_Elm.SelectChangedHandler(this.uCtrl_AQI_Elm_SelectChanged);
+            this.uCtrl_AQI_Elm.DelElement += new ControlLibrary.UCtrl_TrainingLoad_Elm.DelElementHandler(this.uCtrl_Elm_DelElement);
+            this.uCtrl_AQI_Elm.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Control_MouseDown);
+            this.uCtrl_AQI_Elm.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Control_MouseMove);
+            this.uCtrl_AQI_Elm.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Control_MouseUp);
+            // 
+            // panel_UC_BodyTemp
+            // 
+            resources.ApplyResources(this.panel_UC_BodyTemp, "panel_UC_BodyTemp");
+            this.panel_UC_BodyTemp.Controls.Add(this.uCtrl_BodyTemp_Elm);
+            this.panel_UC_BodyTemp.Name = "panel_UC_BodyTemp";
+            // 
+            // uCtrl_BodyTemp_Elm
+            // 
+            resources.ApplyResources(this.uCtrl_BodyTemp_Elm, "uCtrl_BodyTemp_Elm");
+            this.uCtrl_BodyTemp_Elm.Name = "uCtrl_BodyTemp_Elm";
+            this.uCtrl_BodyTemp_Elm.VisibleElementChanged += new ControlLibrary.UCtrl_AlarmClock_Elm.VisibleElementChangedHandler(this.uCtrl_BodyTemp_Elm_VisibleElementChanged);
+            this.uCtrl_BodyTemp_Elm.VisibleOptionsChanged += new ControlLibrary.UCtrl_AlarmClock_Elm.VisibleOptionsChangedHandler(this.uCtrl_BodyTemp_Elm_VisibleOptionsChanged);
+            this.uCtrl_BodyTemp_Elm.OptionsMoved += new ControlLibrary.UCtrl_AlarmClock_Elm.OptionsMovedHandler(this.uCtrl_BodyTemp_Elm_OptionsMoved);
+            this.uCtrl_BodyTemp_Elm.SelectChanged += new ControlLibrary.UCtrl_AlarmClock_Elm.SelectChangedHandler(this.uCtrl_BodyTemp_Elm_SelectChanged);
+            this.uCtrl_BodyTemp_Elm.DelElement += new ControlLibrary.UCtrl_AlarmClock_Elm.DelElementHandler(this.uCtrl_Elm_DelElement);
+            this.uCtrl_BodyTemp_Elm.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Control_MouseDown);
+            this.uCtrl_BodyTemp_Elm.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Control_MouseMove);
+            this.uCtrl_BodyTemp_Elm.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Control_MouseUp);
+            // 
+            // panel_UC_Floor
+            // 
+            resources.ApplyResources(this.panel_UC_Floor, "panel_UC_Floor");
+            this.panel_UC_Floor.Controls.Add(this.uCtrl_Floor_Elm);
+            this.panel_UC_Floor.Name = "panel_UC_Floor";
+            // 
+            // uCtrl_Floor_Elm
+            // 
+            resources.ApplyResources(this.uCtrl_Floor_Elm, "uCtrl_Floor_Elm");
+            this.uCtrl_Floor_Elm.Name = "uCtrl_Floor_Elm";
+            this.uCtrl_Floor_Elm.VisibleElementChanged += new ControlLibrary.UCtrl_AlarmClock_Elm.VisibleElementChangedHandler(this.uCtrl_Floor_Elm_VisibleElementChanged);
+            this.uCtrl_Floor_Elm.VisibleOptionsChanged += new ControlLibrary.UCtrl_AlarmClock_Elm.VisibleOptionsChangedHandler(this.uCtrl_Floor_Elm_VisibleOptionsChanged);
+            this.uCtrl_Floor_Elm.OptionsMoved += new ControlLibrary.UCtrl_AlarmClock_Elm.OptionsMovedHandler(this.uCtrl_Floor_Elm_OptionsMoved);
+            this.uCtrl_Floor_Elm.SelectChanged += new ControlLibrary.UCtrl_AlarmClock_Elm.SelectChangedHandler(this.uCtrl_Floor_Elm_SelectChanged);
+            this.uCtrl_Floor_Elm.DelElement += new ControlLibrary.UCtrl_AlarmClock_Elm.DelElementHandler(this.uCtrl_Elm_DelElement);
+            this.uCtrl_Floor_Elm.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Control_MouseDown);
+            this.uCtrl_Floor_Elm.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Control_MouseMove);
+            this.uCtrl_Floor_Elm.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Control_MouseUp);
+            // 
+            // panel_UC_Readiness
+            // 
+            resources.ApplyResources(this.panel_UC_Readiness, "panel_UC_Readiness");
+            this.panel_UC_Readiness.Controls.Add(this.uCtrl_Readiness_Elm);
+            this.panel_UC_Readiness.Name = "panel_UC_Readiness";
+            // 
+            // uCtrl_Readiness_Elm
+            // 
+            resources.ApplyResources(this.uCtrl_Readiness_Elm, "uCtrl_Readiness_Elm");
+            this.uCtrl_Readiness_Elm.Name = "uCtrl_Readiness_Elm";
+            this.uCtrl_Readiness_Elm.VisibleElementChanged += new ControlLibrary.UCtrl_TrainingLoad_Elm.VisibleElementChangedHandler(this.uCtrl_Readiness_Elm_VisibleElementChanged);
+            this.uCtrl_Readiness_Elm.VisibleOptionsChanged += new ControlLibrary.UCtrl_TrainingLoad_Elm.VisibleOptionsChangedHandler(this.uCtrl_Readiness_Elm_VisibleOptionsChanged);
+            this.uCtrl_Readiness_Elm.OptionsMoved += new ControlLibrary.UCtrl_TrainingLoad_Elm.OptionsMovedHandler(this.uCtrl_Readiness_Elm_OptionsMoved);
+            this.uCtrl_Readiness_Elm.SelectChanged += new ControlLibrary.UCtrl_TrainingLoad_Elm.SelectChangedHandler(this.uCtrl_Readiness_Elm_SelectChanged);
+            this.uCtrl_Readiness_Elm.DelElement += new ControlLibrary.UCtrl_TrainingLoad_Elm.DelElementHandler(this.uCtrl_Elm_DelElement);
+            this.uCtrl_Readiness_Elm.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Control_MouseDown);
+            this.uCtrl_Readiness_Elm.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Control_MouseMove);
+            this.uCtrl_Readiness_Elm.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Control_MouseUp);
+            // 
             // panel_ElementsOpt
             // 
             resources.ApplyResources(this.panel_ElementsOpt, "panel_ElementsOpt");
@@ -1960,6 +2129,7 @@ namespace Watch_Face_Editor
             // 
             this.uCtrl_Circle_Scale_Opt.Alpha = false;
             resources.ApplyResources(this.uCtrl_Circle_Scale_Opt, "uCtrl_Circle_Scale_Opt");
+            this.uCtrl_Circle_Scale_Opt.Inverse = true;
             this.uCtrl_Circle_Scale_Opt.LineCap = false;
             this.uCtrl_Circle_Scale_Opt.Name = "uCtrl_Circle_Scale_Opt";
             this.uCtrl_Circle_Scale_Opt.ValueChanged += new ControlLibrary.UCtrl_Circle_Scale_Opt.ValueChangedHandler(this.uCtrl_Circle_Scale_Opt_ValueChanged);
@@ -3422,6 +3592,20 @@ namespace Watch_Face_Editor
             this.panel_UC_Switch_Background.PerformLayout();
             this.panel_Switch_BG_Color.ResumeLayout(false);
             this.panel_Switch_BG_Color.PerformLayout();
+            this.panel_UC_AlarmClock.ResumeLayout(false);
+            this.panel_UC_AlarmClock.PerformLayout();
+            this.panel_UC_TrainingLoad.ResumeLayout(false);
+            this.panel_UC_TrainingLoad.PerformLayout();
+            this.panel_UC_VO2Max.ResumeLayout(false);
+            this.panel_UC_VO2Max.PerformLayout();
+            this.panel_UC_AQI.ResumeLayout(false);
+            this.panel_UC_AQI.PerformLayout();
+            this.panel_UC_BodyTemp.ResumeLayout(false);
+            this.panel_UC_BodyTemp.PerformLayout();
+            this.panel_UC_Floor.ResumeLayout(false);
+            this.panel_UC_Floor.PerformLayout();
+            this.panel_UC_Readiness.ResumeLayout(false);
+            this.panel_UC_Readiness.PerformLayout();
             this.panel_ElementsOpt.ResumeLayout(false);
             this.panel_MainScreen_AOD.ResumeLayout(false);
             this.panel_MainScreen_AOD.PerformLayout();
@@ -3769,6 +3953,20 @@ namespace Watch_Face_Editor
         private System.Windows.Forms.Panel panel_Switch_BG_Color;
         private ControlLibrary.UCtrl_Switch_BG_Color_Elm uCtrl_Switch_BG_Color_Elm;
         private ControlLibrary.UCtrl_Switch_BG_Color_Opt uCtrl_Switch_BG_Color_Opt;
+        private System.Windows.Forms.Panel panel_UC_AlarmClock;
+        private System.Windows.Forms.Panel panel_UC_TrainingLoad;
+        private System.Windows.Forms.Panel panel_UC_VO2Max;
+        private System.Windows.Forms.Panel panel_UC_AQI;
+        private System.Windows.Forms.Panel panel_UC_BodyTemp;
+        private System.Windows.Forms.Panel panel_UC_Floor;
+        private System.Windows.Forms.Panel panel_UC_Readiness;
+        private ControlLibrary.UCtrl_AlarmClock_Elm uCtrl_AlarmClock_Elm;
+        private ControlLibrary.UCtrl_TrainingLoad_Elm uCtrl_TrainingLoad_Elm;
+        private ControlLibrary.UCtrl_VO2Max_Elm uCtrl_VO2Max_Elm;
+        private ControlLibrary.UCtrl_AQI_Elm uCtrl_AQI_Elm;
+        private ControlLibrary.UCtrl_BodyTemp_Elm uCtrl_BodyTemp_Elm;
+        private ControlLibrary.UCtrl_Floor_Elm uCtrl_Floor_Elm;
+        private ControlLibrary.UCtrl_Readiness_Elm uCtrl_Readiness_Elm;
     }
 }
 

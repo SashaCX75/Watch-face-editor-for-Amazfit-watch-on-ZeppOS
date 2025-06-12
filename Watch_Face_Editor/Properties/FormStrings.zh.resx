@@ -169,13 +169,13 @@
     <value>GIF 文件 (*.gif)|*.gif</value>
   </data>
   <data name="FilterJson" xml:space="preserve">
-    <value>Json 文件 (*.json) | *.json</value>
+    <value>Json 文件 (*.json)|*.json</value>
   </data>
   <data name="FilterPng" xml:space="preserve">
     <value>PNG 文件 (*.png)|*.png</value>
   </data>
   <data name="FilterZip" xml:space="preserve">
-    <value>Zip 表盘文件 (* .zip) | * .zip</value>
+    <value>Zip 表盘文件 (* .zip)|* .zip</value>
   </data>
   <data name="FollowMinute" xml:space="preserve">
     <value>跟随小时</value>

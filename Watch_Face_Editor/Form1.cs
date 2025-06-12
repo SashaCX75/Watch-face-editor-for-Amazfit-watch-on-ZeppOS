@@ -197,11 +197,26 @@ namespace Watch_Face_Editor
             InitializeComponent();
 
             WatchFacePreviewSet = new Watch_Face_Preview_Set();
+
+            WatchFacePreviewSet.DateTime = new DateTimeSet();
+            WatchFacePreviewSet.DateTime.Date = new DateSet();
+            WatchFacePreviewSet.DateTime.Time = new TimeSet();
+            WatchFacePreviewSet.DateTime.Sunrise = new TimeSet();
+            WatchFacePreviewSet.DateTime.Sunset = new TimeSet();
+            WatchFacePreviewSet.DateTime.Moonrise = new TimeSet();
+            WatchFacePreviewSet.DateTime.Moonset = new TimeSet();
+            WatchFacePreviewSet.DateTime.SleepStart = new TimeSet();
+            WatchFacePreviewSet.DateTime.SleepEnd = new TimeSet();
+            WatchFacePreviewSet.DateTime.AlarmClock = new TimeSet();
+
             WatchFacePreviewSet.Activity = new ActivitySet();
-            WatchFacePreviewSet.Date = new DateSet();
-            WatchFacePreviewSet.Status = new StatusSet();
-            WatchFacePreviewSet.Time = new TimeSet();
-            WatchFacePreviewSet.Weather = new WeatherSet();
+
+            //WatchFacePreviewSet.Date = new DateSet();
+            //WatchFacePreviewSet.Status = new StatusSet();
+            //WatchFacePreviewSet.Time = new TimeSet();
+            WatchFacePreviewSet.Air = new WeatherSet();
+            WatchFacePreviewSet.System = new SystemSet();
+            WatchFacePreviewSet.System.Status = new StatusSet();
 
             PreviewView = true;
             Settings_Load = false;
@@ -923,145 +938,194 @@ namespace Watch_Face_Editor
 
         public void SetPreferences(UCtrl_Set userControl_Set)
         {
-            Dictionary<string, int> Activity = new Dictionary<string, int>();
-            Dictionary<string, int> Air = new Dictionary<string, int>();
-            Dictionary<string, bool> checkValue = new Dictionary<string, bool>();
-            Dictionary<string, List<int>> forecastData = new Dictionary<string, List<int>>();
-            userControl_Set.GetValue(out Activity, out Air, out forecastData, out checkValue);
+            //Dictionary<string, int> DateTime = new Dictionary<string, int>();
+            //Dictionary<string, int> Activity = new Dictionary<string, int>();
+            //Dictionary<string, int> Air = new Dictionary<string, int>();
+            //Dictionary<string, bool> checkValue = new Dictionary<string, bool>();
+            //Dictionary<string, List<int>> forecastData = new Dictionary<string, List<int>>();
+            //Dictionary<string, int> System = new Dictionary<string, int>();
+            //userControl_Set.GetValue(out DateTime, out Activity, out Air, out forecastData, out checkValue, out System);
 
-            int Year = Activity["Year"];
-            int Month = Activity["Month"];
-            int Day = Activity["Day"];
-            int WeekDay = Activity["WeekDay"];
+            //DateTime.TryGetValue("Year", out int Year);
+            //DateTime.TryGetValue("Month", out int Month);
+            //DateTime.TryGetValue("Day", out int Day);
+            //DateTime.TryGetValue("WeekDay", out int WeekDay);
 
-            int Hour = Activity["Hour"];
-            int Minute = Activity["Minute"];
-            int Second = Activity["Second"];
+            //DateTime.TryGetValue("Hour", out int Hour);
+            //DateTime.TryGetValue("Minute", out int Minute);
+            //DateTime.TryGetValue("Second", out int Second);
 
-            int Battery = Activity["Battery"];
-            int Calories = Activity["Calories"];
-            int HeartRate = Activity["HeartRate"];
-            int Distance = Activity["Distance"];
-            int Steps = Activity["Steps"];
-            int StepsGoal = Activity["StepsGoal"];
+            //DateTime.TryGetValue("Hour_Sunrise", out int Hour_Sunrise);
+            //DateTime.TryGetValue("Minute_Sunrise", out int Minute_Sunrise);
+            //DateTime.TryGetValue("Hour_Sunset", out int Hour_Sunset);
+            //DateTime.TryGetValue("Minute_Sunset", out int Minute_Sunset);
 
-            int PAI;
-            Activity.TryGetValue("PAI", out PAI);
-            int StandUp;
-            Activity.TryGetValue("StandUp", out StandUp);
-            int Stress;
-            Activity.TryGetValue("Stress", out Stress);
-            int ActivityGoal;
-            Activity.TryGetValue("ActivityGoal", out ActivityGoal);
-            int FatBurning;
-            Activity.TryGetValue("FatBurning", out FatBurning);
+            //DateTime.TryGetValue("Hour_Moonrise", out int Hour_Moonrise);
+            //DateTime.TryGetValue("Minute_Moonrise", out int Minute_Moonrise);
+            //DateTime.TryGetValue("Hour_Moonset", out int Hour_Moonset);
+            //DateTime.TryGetValue("Minute_Moonset", out int Minute_Moonset);
 
+            //DateTime.TryGetValue("Hour_AlarmClock", out int Hour_AlarmClock);
+            //DateTime.TryGetValue("Minute_AlarmClock", out int Minute_AlarmClock);
 
-            int Weather_Icon;
-            Air.TryGetValue("Weather_Icon", out Weather_Icon);
-            int Temperature;
-            Air.TryGetValue("Temperature", out Temperature);
-            int TemperatureMax;
-            Air.TryGetValue("TemperatureMax", out TemperatureMax);
-            int TemperatureMin;
-            Air.TryGetValue("TemperatureMin", out TemperatureMin);
-
-            int UVindex;
-            Air.TryGetValue("UVindex", out UVindex);
-            int AirQuality;
-            Air.TryGetValue("AirQuality", out AirQuality);
-            int Humidity;
-            Air.TryGetValue("Humidity", out Humidity);
-            int WindForce;
-            Air.TryGetValue("WindForce", out WindForce);
-            int WindDirection;
-            Air.TryGetValue("WindDirection", out WindDirection);
-            int CompassDirection;
-            Air.TryGetValue("CompassDirection", out CompassDirection);
-            int Altitude;
-            Air.TryGetValue("Altitude", out Altitude);
-            int AirPressure;
-            Air.TryGetValue("AirPressure", out AirPressure);
+            //DateTime.TryGetValue("Hour_SleepStart", out int Hour_SleepStart);
+            //DateTime.TryGetValue("Minute_SleepStart", out int Minute_SleepStart);
+            //DateTime.TryGetValue("Hour_SleepEnd", out int Hour_SleepEnd);
+            //DateTime.TryGetValue("Minute_SleepEnd", out int Minute_SleepEnd);
 
 
-            bool Bluetooth;
-            checkValue.TryGetValue("Bluetooth", out Bluetooth);
-            bool Alarm;
-            checkValue.TryGetValue("Alarm", out Alarm);
-            bool Lock;
-            checkValue.TryGetValue("Lock", out Lock);
-            bool DND;
-            checkValue.TryGetValue("DND", out DND);
+            //Activity.TryGetValue("Calories", out int Calories);
+            //Activity.TryGetValue("HeartRate", out int HeartRate);
+            //Activity.TryGetValue("Distance", out int Distance);
+            //Activity.TryGetValue("Steps", out int Steps);
+            //Activity.TryGetValue("StepsGoal", out int StepsGoal);
 
-            bool ShowTemperature;
-            checkValue.TryGetValue("ShowTemperature", out ShowTemperature);
+            //Activity.TryGetValue("PAI", out int PAI);
+            //Activity.TryGetValue("StandUp", out int StandUp);
+            //Activity.TryGetValue("Stress", out int Stress);
+            ////Activity.TryGetValue("ActivityGoal", out int ActivityGoal);
+            //Activity.TryGetValue("FatBurning", out int FatBurning);
 
-            WatchFacePreviewSet.Date.Year = Year;
-            WatchFacePreviewSet.Date.Month = Month;
-            WatchFacePreviewSet.Date.Day = Day;
-            WatchFacePreviewSet.Date.WeekDay = WeekDay;
-            if (WatchFacePreviewSet.Date.WeekDay == 0) WatchFacePreviewSet.Date.WeekDay = 7;
-
-            WatchFacePreviewSet.Time.Hours = Hour;
-            WatchFacePreviewSet.Time.Minutes = Minute;
-            WatchFacePreviewSet.Time.Seconds = Second;
-
-            WatchFacePreviewSet.Battery = Battery;
-            WatchFacePreviewSet.Activity.Calories = Calories;
-            WatchFacePreviewSet.Activity.HeartRate = HeartRate;
-            WatchFacePreviewSet.Activity.Distance = Distance;
-            WatchFacePreviewSet.Activity.Steps = Steps;
-            WatchFacePreviewSet.Activity.StepsGoal = StepsGoal;
-            WatchFacePreviewSet.Activity.PAI = PAI;
-            WatchFacePreviewSet.Activity.StandUp = StandUp;
-            WatchFacePreviewSet.Activity.Stress = Stress;
-            //WatchFacePreviewSet.Activity.ActivityGoal = ActivityGoal;
-            WatchFacePreviewSet.Activity.FatBurning = FatBurning;
-
-            WatchFacePreviewSet.Status.Bluetooth = Bluetooth;
-            WatchFacePreviewSet.Status.Alarm = Alarm;
-            WatchFacePreviewSet.Status.Lock = Lock;
-            WatchFacePreviewSet.Status.DoNotDisturb = DND;
-
-            WatchFacePreviewSet.Weather.Temperature = Temperature;
-            WatchFacePreviewSet.Weather.TemperatureMax = TemperatureMax;
-            WatchFacePreviewSet.Weather.TemperatureMin = TemperatureMin;
-            //WatchFacePreviewSet.Weather.TemperatureNoData = !checkBox_WeatherSet_Temp.Checked;
-            //WatchFacePreviewSet.Weather.TemperatureMinMaxNoData = !checkBox_WeatherSet_MaxMinTemp.Checked;
-            WatchFacePreviewSet.Weather.Icon = Weather_Icon;
-
-            WatchFacePreviewSet.Weather.showTemperature = ShowTemperature;
-
-            WatchFacePreviewSet.Weather.UVindex = UVindex;
-            WatchFacePreviewSet.Weather.AirQuality = AirQuality;
-            WatchFacePreviewSet.Weather.Humidity = Humidity;
-            WatchFacePreviewSet.Weather.WindForce = WindForce;
-            WatchFacePreviewSet.Weather.WindDirection = WindDirection;
-            WatchFacePreviewSet.Weather.CompassDirection = CompassDirection;
-            WatchFacePreviewSet.Weather.Altitude = Altitude;
-            WatchFacePreviewSet.Weather.AirPressure = AirPressure;
-            WatchFacePreviewSet.SetNumber = userControl_Set.SetNumber;
+            //Activity.TryGetValue("SpO2", out int SpO2);
+            //Activity.TryGetValue("TrainingLoad", out int TrainingLoad);
+            //Activity.TryGetValue("TrainingLoadGoal", out int TrainingLoadGoal);
+            //Activity.TryGetValue("VO2Max", out int VO2Max);
+            //Activity.TryGetValue("Floor", out int Floor);
+            //Activity.TryGetValue("Readiness", out int Readiness);
 
 
-            List<int> high = new List<int>() { -2, 0, 3, -1, -5, -2, -4 };
-            List<int> low = new List<int>() { -3, 0, 1, -5, -6, -5, -6 };
-            List<int> index = new List<int>() { 1, 2, 3, 1, 2, 3, 1 };
-            if (forecastData.Count == 3)
+            //Air.TryGetValue("Weather_Icon", out int Weather_Icon);
+            //Air.TryGetValue("Temperature", out int Temperature);
+            //Air.TryGetValue("TemperatureMax", out int TemperatureMax);
+            //Air.TryGetValue("TemperatureMin", out int TemperatureMin);
+
+            //Air.TryGetValue("UVindex", out int UVindex);
+            //Air.TryGetValue("AirQuality", out int AirQuality);
+            //Air.TryGetValue("Humidity", out int Humidity);
+            //Air.TryGetValue("WindForce", out int WindForce);
+            //Air.TryGetValue("WindDirection", out int WindDirection);
+            //Air.TryGetValue("CompassDirection", out int CompassDirection);
+            //Air.TryGetValue("Altitude", out int Altitude);
+            //Air.TryGetValue("AirPressure", out int AirPressure);
+            //Air.TryGetValue("AQI", out int AQI);
+
+            //checkValue.TryGetValue("ShowTemperature", out bool ShowTemperature);
+
+
+            //checkValue.TryGetValue("Bluetooth", out bool Bluetooth);
+            //checkValue.TryGetValue("Alarm", out bool Alarm);
+            //checkValue.TryGetValue("Lock", out bool Lock);
+            //checkValue.TryGetValue("DND", out bool DND);
+
+            //System.TryGetValue("Battery", out int Battery);
+            //System.TryGetValue("BodyTemp", out int BodyTemp);
+
+
+            //WatchFacePreviewSet.DateTime.Date.Year = Year;
+            //WatchFacePreviewSet.DateTime.Date.Month = Month;
+            //WatchFacePreviewSet.DateTime.Date.Day = Day;
+            //WatchFacePreviewSet.DateTime.Date.WeekDay = WeekDay;
+            //if (WatchFacePreviewSet.DateTime.Date.WeekDay == 0) WatchFacePreviewSet.DateTime.Date.WeekDay = 7;
+
+            //WatchFacePreviewSet.DateTime.Time.Hour = Hour;
+            //WatchFacePreviewSet.DateTime.Time.Minute = Minute;
+            //WatchFacePreviewSet.DateTime.Time.Second = Second;
+
+            //WatchFacePreviewSet.Activity.Calories = Calories;
+            //WatchFacePreviewSet.Activity.HeartRate = HeartRate;
+            //WatchFacePreviewSet.Activity.Distance = Distance;
+            //WatchFacePreviewSet.Activity.Steps = Steps;
+            //WatchFacePreviewSet.Activity.StepsGoal = StepsGoal;
+            //WatchFacePreviewSet.Activity.PAI = PAI;
+            //WatchFacePreviewSet.Activity.StandUp = StandUp;
+            //WatchFacePreviewSet.Activity.Stress = Stress;
+            //WatchFacePreviewSet.Activity.FatBurning = FatBurning;
+
+            //WatchFacePreviewSet.System.Status.Bluetooth = Bluetooth;
+            //WatchFacePreviewSet.System.Status.Alarm = Alarm;
+            //WatchFacePreviewSet.System.Status.Lock = Lock;
+            //WatchFacePreviewSet.System.Status.DoNotDisturb = DND;
+            //WatchFacePreviewSet.System.Battery = Battery;
+            //WatchFacePreviewSet.System.BodyTemp = BodyTemp;
+
+            //WatchFacePreviewSet.Air.Temperature = Temperature;
+            //WatchFacePreviewSet.Air.TemperatureMax = TemperatureMax;
+            //WatchFacePreviewSet.Air.TemperatureMin = TemperatureMin;
+            ////WatchFacePreviewSet.Weather.TemperatureNoData = !checkBox_WeatherSet_Temp.Checked;
+            ////WatchFacePreviewSet.Weather.TemperatureMinMaxNoData = !checkBox_WeatherSet_MaxMinTemp.Checked;
+            //WatchFacePreviewSet.Air.WeatherIcon = Weather_Icon;
+
+            //WatchFacePreviewSet.Air.showTemperature = ShowTemperature;
+
+            //WatchFacePreviewSet.Air.UVindex = UVindex;
+            //WatchFacePreviewSet.Air.AirQuality = AirQuality;
+            //WatchFacePreviewSet.Air.Humidity = Humidity;
+            //WatchFacePreviewSet.Air.WindForce = WindForce;
+            //WatchFacePreviewSet.Air.WindDirection = WindDirection;
+            //WatchFacePreviewSet.Air.CompassDirection = CompassDirection;
+            //WatchFacePreviewSet.Air.Altitude = Altitude;
+            //WatchFacePreviewSet.Air.AirPressure = AirPressure;
+            //WatchFacePreviewSet.SetNumber = userControl_Set.SetNumber;
+
+
+            //List<int> high = new List<int>() { -2, 0, 3, -1, -5, -2, -4 };
+            //List<int> low = new List<int>() { -3, 0, 1, -5, -6, -5, -6 };
+            //List<int> index = new List<int>() { 1, 2, 3, 1, 2, 3, 1 };
+            //if (forecastData.Count == 3)
+            //{
+            //    forecastData.TryGetValue("high", out high);
+            //    forecastData.TryGetValue("low", out low);
+            //    forecastData.TryGetValue("index", out index); 
+            //}
+            //int minCount = new[] { high.Count, low.Count, index.Count }.Min();
+            //WatchFacePreviewSet.Air.forecastData = new List<ForecastData>();
+            //for (int i = 0; i < minCount; i++)
+            //{
+            //    ForecastData fd = new ForecastData { high = high[i], low = low[i], index = index[i] };
+            //    WatchFacePreviewSet.Air.forecastData.Add(fd);
+            //}
+
+            //WatchFacePreviewSet.Activity.SpO2 = SpO2;
+            //WatchFacePreviewSet.Activity.TrainingLoad = TrainingLoad;
+            //WatchFacePreviewSet.Activity.TrainingLoadGoal = TrainingLoadGoal;
+            //WatchFacePreviewSet.Activity.VO2Max = VO2Max;
+            ////WatchFacePreviewSet.Weather.AQI = AQI;
+            //WatchFacePreviewSet.Activity.Floor = Floor;
+            //WatchFacePreviewSet.Activity.Readiness = Readiness;
+
+            string jsonStr = userControl_Set.GetValue();
+            JObject previewSet = JObject.Parse(jsonStr);
+            DateTimeSet DateTime = previewSet["DateTime"].ToObject<DateTimeSet>();
+            ActivitySet Activity = previewSet["Activity"].ToObject<ActivitySet>();
+            SystemSet System = previewSet["System"].ToObject<SystemSet>();
+
+            JObject air = (JObject)previewSet["Air"];
+            JObject forecastData = (JObject)previewSet["Air"]["forecastData"];
+            JArray forecastDataHigh = (JArray)forecastData["high"];
+
+            List<int> high = forecastData["high"].ToObject<List<int>>();
+            List<int> low = forecastData["low"].ToObject<List<int>>();
+            List<int> index = forecastData["index"].ToObject<List<int>>();
+
+            previewSet["Air"]["forecastData"].Replace(null);
+            WeatherSet Air = previewSet["Air"].ToObject<WeatherSet>();
+
+            if (high.Count > 0)
             {
-                forecastData.TryGetValue("high", out high);
-                forecastData.TryGetValue("low", out low);
-                forecastData.TryGetValue("index", out index); 
-            }
-            int minCount = new[] { high.Count, low.Count, index.Count }.Min();
-            WatchFacePreviewSet.Weather.forecastData = new List<ForecastData>();
-            for (int i = 0; i < minCount; i++)
-            {
-                ForecastData fd = new ForecastData { high = high[i], low = low[i], index = index[i] };
-                WatchFacePreviewSet.Weather.forecastData.Add(fd);
+                Air.forecastData = new List<ForecastData>();
+                for (int i = 0; i < high.Count; i++)
+                {
+                    ForecastData fd = new ForecastData { high = high[i], low = low[i], index = index[i] };
+                    Air.forecastData.Add(fd);
+                }
             }
 
+            //Watch_Face_Preview_Set wps = previewSet.ToObject<Watch_Face_Preview_Set>();
 
-            //SetDigitForPrewiev();
+            WatchFacePreviewSet.DateTime = DateTime;
+            WatchFacePreviewSet.Activity = Activity;
+            WatchFacePreviewSet.Air = Air;
+            WatchFacePreviewSet.System = System;
         }
 
         private void userCtrl_Set1_Collapse(object sender, EventArgs eventArgs, int setNumber)
@@ -1366,6 +1430,15 @@ namespace Watch_Face_Editor
             if (e.Data.GetDataPresent(typeof(UCtrl_Moon_Elm))) typeReturn = false;
             if (e.Data.GetDataPresent(typeof(UCtrl_Image_Elm))) typeReturn = false;
             if (e.Data.GetDataPresent(typeof(UCtrl_Compass_Elm))) typeReturn = false;
+
+            if (e.Data.GetDataPresent(typeof(UCtrl_AlarmClock_Elm))) typeReturn = false;
+            if (e.Data.GetDataPresent(typeof(UCtrl_TrainingLoad_Elm))) typeReturn = false;
+            if (e.Data.GetDataPresent(typeof(UCtrl_VO2Max_Elm))) typeReturn = false;
+            if (e.Data.GetDataPresent(typeof(UCtrl_AQI_Elm))) typeReturn = false;
+            if (e.Data.GetDataPresent(typeof(UCtrl_BodyTemp_Elm))) typeReturn = false;
+            if (e.Data.GetDataPresent(typeof(UCtrl_Floor_Elm))) typeReturn = false;
+            if (e.Data.GetDataPresent(typeof(UCtrl_Readiness_Elm))) typeReturn = false;
+
             if (e.Data.GetDataPresent(typeof(UCtrl_JSscript_Elm))) typeReturn = false;
             //if (typeReturn) return;
             int dY = tableLayoutPanel_ElemetsWatchFace.PointToScreen(Point.Empty).Y;
@@ -1671,6 +1744,66 @@ namespace Watch_Face_Editor
                         if (draggedUCtrl_Elm != null) draggedPanel = (Panel)draggedUCtrl_Elm.Parent;
                         break;
 
+
+
+                    case "ControlLibrary.UCtrl_AlarmClock_Elm":
+                        ElementAlarmClock alarmClock =
+                            (ElementAlarmClock)Elements.Find(e1 => e1.GetType().Name == "ElementAlarmClock");
+                        index = Elements.IndexOf(alarmClock);
+                        draggedUCtrl_Elm = (UCtrl_AlarmClock_Elm)e.Data.GetData(typeof(UCtrl_AlarmClock_Elm));
+                        if (draggedUCtrl_Elm != null) draggedPanel = (Panel)draggedUCtrl_Elm.Parent;
+                        break;
+
+                    case "ControlLibrary.UCtrl_TrainingLoad_Elm":
+                        ElementTrainingLoad trainingLoad =
+                            (ElementTrainingLoad)Elements.Find(e1 => e1.GetType().Name == "ElementTrainingLoad");
+                        index = Elements.IndexOf(trainingLoad);
+                        draggedUCtrl_Elm = (UCtrl_TrainingLoad_Elm)e.Data.GetData(typeof(UCtrl_TrainingLoad_Elm));
+                        if (draggedUCtrl_Elm != null) draggedPanel = (Panel)draggedUCtrl_Elm.Parent;
+                        break;
+
+                    case "ControlLibrary.UCtrl_VO2Max_Elm":
+                        ElementVO2Max vo2max =
+                            (ElementVO2Max)Elements.Find(e1 => e1.GetType().Name == "ElementVO2Max");
+                        index = Elements.IndexOf(vo2max);
+                        draggedUCtrl_Elm = (UCtrl_VO2Max_Elm)e.Data.GetData(typeof(UCtrl_VO2Max_Elm));
+                        if (draggedUCtrl_Elm != null) draggedPanel = (Panel)draggedUCtrl_Elm.Parent;
+                        break;
+
+                    case "ControlLibrary.UCtrl_AQI_Elm":
+                        ElementAQI aqi =
+                            (ElementAQI)Elements.Find(e1 => e1.GetType().Name == "ElementAQI");
+                        index = Elements.IndexOf(aqi);
+                        draggedUCtrl_Elm = (UCtrl_AQI_Elm)e.Data.GetData(typeof(UCtrl_AQI_Elm));
+                        if (draggedUCtrl_Elm != null) draggedPanel = (Panel)draggedUCtrl_Elm.Parent;
+                        break;
+
+                    case "ControlLibrary.UCtrl_BodyTemp_Elm":
+                        ElementBodyTemp bodyTemp =
+                            (ElementBodyTemp)Elements.Find(e1 => e1.GetType().Name == "ElementBodyTemp");
+                        index = Elements.IndexOf(bodyTemp);
+                        draggedUCtrl_Elm = (UCtrl_BodyTemp_Elm)e.Data.GetData(typeof(UCtrl_BodyTemp_Elm));
+                        if (draggedUCtrl_Elm != null) draggedPanel = (Panel)draggedUCtrl_Elm.Parent;
+                        break;
+
+                    case "ControlLibrary.UCtrl_Floor_Elm":
+                        ElementFloor floor =
+                            (ElementFloor)Elements.Find(e1 => e1.GetType().Name == "ElementFloor");
+                        index = Elements.IndexOf(floor);
+                        draggedUCtrl_Elm = (UCtrl_Floor_Elm)e.Data.GetData(typeof(UCtrl_Floor_Elm));
+                        if (draggedUCtrl_Elm != null) draggedPanel = (Panel)draggedUCtrl_Elm.Parent;
+                        break;
+
+                    case "ControlLibrary.UCtrl_Readiness_Elm":
+                        ElementReadiness readiness =
+                            (ElementReadiness)Elements.Find(e1 => e1.GetType().Name == "ElementReadiness");
+                        index = Elements.IndexOf(readiness);
+                        draggedUCtrl_Elm = (UCtrl_Readiness_Elm)e.Data.GetData(typeof(UCtrl_Readiness_Elm));
+                        if (draggedUCtrl_Elm != null) draggedPanel = (Panel)draggedUCtrl_Elm.Parent;
+                        break;
+
+
+
                     case "ControlLibrary.UCtrl_JSscript_Elm":
                         ElementScript script =
                             (ElementScript)Elements.Find(e1 => e1.GetType().Name == "ElementScript");
@@ -1963,6 +2096,14 @@ namespace Watch_Face_Editor
             if (selectElementName != "Script") uCtrl_JSscript_Elm.ResetHighlightState();
             if (selectElementName != "Compass") uCtrl_Compass_Elm.ResetHighlightState();
 
+            if (selectElementName != "AlarmClock") uCtrl_AlarmClock_Elm.ResetHighlightState();
+            if (selectElementName != "TrainingLoad") uCtrl_TrainingLoad_Elm.ResetHighlightState();
+            if (selectElementName != "VO2Max") uCtrl_VO2Max_Elm.ResetHighlightState();
+            if (selectElementName != "AQI") uCtrl_AQI_Elm.ResetHighlightState();
+            if (selectElementName != "BodyTemp") uCtrl_BodyTemp_Elm.ResetHighlightState();
+            if (selectElementName != "Floor") uCtrl_Floor_Elm.ResetHighlightState();
+            if (selectElementName != "Readiness") uCtrl_Readiness_Elm.ResetHighlightState();
+
             if (selectElementName != "DisconnectAlert") uCtrl_DisconnectAlert_Elm.ResetHighlightState();
             if (selectElementName != "RepeatingAlert") uCtrl_RepeatingAlert_Elm.ResetHighlightState();
             if (selectElementName != "TopImage") uCtrl_TopImage_Elm.ResetHighlightState();
@@ -2035,6 +2176,14 @@ namespace Watch_Face_Editor
             uCtrl_Moon_Elm.SettingsClear();
             uCtrl_Image_Elm.SettingsClear();
             uCtrl_Compass_Elm.SettingsClear();
+
+            uCtrl_AlarmClock_Elm.SettingsClear();
+            uCtrl_TrainingLoad_Elm.SettingsClear();
+            uCtrl_VO2Max_Elm.SettingsClear();
+            uCtrl_AQI_Elm.SettingsClear();
+            uCtrl_BodyTemp_Elm.SettingsClear();
+            uCtrl_Floor_Elm.SettingsClear();
+            uCtrl_Readiness_Elm.SettingsClear();
 
             uCtrl_DisconnectAlert_Elm.SettingsClear();
             uCtrl_RepeatingAlert_Elm.SettingsClear();
@@ -3927,6 +4076,58 @@ namespace Watch_Face_Editor
                         panel_WatchfaceElements.VerticalScroll.Maximum);
                 }
             }
+            if (comboBox_AddActivity.SelectedIndex == 9)
+            {
+                if (AddReadiness())
+                {
+                    ShowElemetsWatchFace();
+                    JSON_Modified = true;
+                    FormText();
+
+                    panel_WatchfaceElements.AutoScrollPosition = new Point(
+                        Math.Abs(panel_WatchfaceElements.AutoScrollPosition.X),
+                        panel_WatchfaceElements.VerticalScroll.Maximum);
+                }
+            }
+            if (comboBox_AddActivity.SelectedIndex == 10)
+            {
+                if (AddTrainingLoad())
+                {
+                    ShowElemetsWatchFace();
+                    JSON_Modified = true;
+                    FormText();
+
+                    panel_WatchfaceElements.AutoScrollPosition = new Point(
+                        Math.Abs(panel_WatchfaceElements.AutoScrollPosition.X),
+                        panel_WatchfaceElements.VerticalScroll.Maximum);
+                }
+            }
+            if (comboBox_AddActivity.SelectedIndex == 11)
+            {
+                if (AddVO2Max())
+                {
+                    ShowElemetsWatchFace();
+                    JSON_Modified = true;
+                    FormText();
+
+                    panel_WatchfaceElements.AutoScrollPosition = new Point(
+                        Math.Abs(panel_WatchfaceElements.AutoScrollPosition.X),
+                        panel_WatchfaceElements.VerticalScroll.Maximum);
+                }
+            }
+            if (comboBox_AddActivity.SelectedIndex == 12)
+            {
+                if (AddFloor())
+                {
+                    ShowElemetsWatchFace();
+                    JSON_Modified = true;
+                    FormText();
+
+                    panel_WatchfaceElements.AutoScrollPosition = new Point(
+                        Math.Abs(panel_WatchfaceElements.AutoScrollPosition.X),
+                        panel_WatchfaceElements.VerticalScroll.Maximum);
+                }
+            }
 
             PreviewView = false;
             comboBox_AddActivity.Items.Insert(0, Properties.FormStrings.Elemet_Activity);
@@ -4030,6 +4231,19 @@ namespace Watch_Face_Editor
             if (comboBox_AddAir.SelectedIndex == 7)
             {
                 if (AddWeather_FewDays())
+                {
+                    ShowElemetsWatchFace();
+                    JSON_Modified = true;
+                    FormText();
+
+                    panel_WatchfaceElements.AutoScrollPosition = new Point(
+                        Math.Abs(panel_WatchfaceElements.AutoScrollPosition.X),
+                        panel_WatchfaceElements.VerticalScroll.Maximum);
+                }
+            }
+            if (comboBox_AddAir.SelectedIndex == 8)
+            {
+                if (AddAQI())
                 {
                     ShowElemetsWatchFace();
                     JSON_Modified = true;
@@ -4219,6 +4433,32 @@ namespace Watch_Face_Editor
                 }
                 else MessageBox.Show(Properties.FormStrings.Message_Old_OS, Properties.FormStrings.Message_Warning_Caption,
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            if (comboBox_AddSystem.SelectedIndex == 12)
+            {
+                if (AddAlarmClock())
+                {
+                    ShowElemetsWatchFace();
+                    JSON_Modified = true;
+                    FormText();
+
+                    panel_WatchfaceElements.AutoScrollPosition = new Point(
+                        Math.Abs(panel_WatchfaceElements.AutoScrollPosition.X),
+                        panel_WatchfaceElements.VerticalScroll.Maximum);
+                }
+            }
+            if (comboBox_AddSystem.SelectedIndex == 13)
+            {
+                if (AddBodyTemp())
+                {
+                    ShowElemetsWatchFace();
+                    JSON_Modified = true;
+                    FormText();
+
+                    panel_WatchfaceElements.AutoScrollPosition = new Point(
+                        Math.Abs(panel_WatchfaceElements.AutoScrollPosition.X),
+                        panel_WatchfaceElements.VerticalScroll.Maximum);
+                }
             }
 
             PreviewView = false;
@@ -5191,10 +5431,10 @@ namespace Watch_Face_Editor
             bool exists = Elements.Exists(e => e.GetType().Name == "ElementStress"); // проверяем что такого элемента нет
             if (!exists)
             {
-                ElementStress steps = new ElementStress();
-                steps.visible = true;
+                ElementStress stress = new ElementStress();
+                stress.visible = true;
 
-                Elements.Insert(0, steps);
+                Elements.Insert(0, stress);
                 uCtrl_Stress_Elm.SettingsClear();
                 return true;
             }
@@ -5233,6 +5473,154 @@ namespace Watch_Face_Editor
 
                 Elements.Insert(0, steps);
                 uCtrl_FatBurning_Elm.SettingsClear();
+                return true;
+            }
+            else MessageBox.Show(Properties.FormStrings.Message_Widget_Exists, Properties.FormStrings.Message_Warning_Caption,
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return false;
+        }
+
+        /// <summary>Добавляем готовность в циферблат</summary>
+        private bool AddReadiness()
+        {
+            if (!PreviewView) return false;
+            List<object> Elements = new List<object>();
+            if (Watch_Face == null) Watch_Face = new WATCH_FACE();
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face.ScreenNormal == null) Watch_Face.ScreenNormal = new ScreenNormal();
+                if (Watch_Face.ScreenNormal.Elements == null) Watch_Face.ScreenNormal.Elements = new List<object>();
+                Elements = Watch_Face.ScreenNormal.Elements;
+            }
+            else
+            {
+                if (Watch_Face.ScreenAOD == null) Watch_Face.ScreenAOD = new ScreenAOD();
+                if (Watch_Face.ScreenAOD.Elements == null) Watch_Face.ScreenAOD.Elements = new List<object>();
+                Elements = Watch_Face.ScreenAOD.Elements;
+
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null) Elements = Watch_Face.ScreenAOD.Elements;
+            }
+
+            bool exists = Elements.Exists(e => e.GetType().Name == "ElementReadiness"); // проверяем что такого элемента нет
+            if (!exists)
+            {
+                ElementReadiness readiness = new ElementReadiness();
+                readiness.visible = true;
+
+                Elements.Insert(0, readiness);
+                uCtrl_Readiness_Elm.SettingsClear();
+                return true;
+            }
+            else MessageBox.Show(Properties.FormStrings.Message_Widget_Exists, Properties.FormStrings.Message_Warning_Caption,
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return false;
+        }
+
+        /// <summary>Добавляем тренировочная нагрузка в циферблат</summary>
+        private bool AddTrainingLoad()
+        {
+            if (!PreviewView) return false;
+            List<object> Elements = new List<object>();
+            if (Watch_Face == null) Watch_Face = new WATCH_FACE();
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face.ScreenNormal == null) Watch_Face.ScreenNormal = new ScreenNormal();
+                if (Watch_Face.ScreenNormal.Elements == null) Watch_Face.ScreenNormal.Elements = new List<object>();
+                Elements = Watch_Face.ScreenNormal.Elements;
+            }
+            else
+            {
+                if (Watch_Face.ScreenAOD == null) Watch_Face.ScreenAOD = new ScreenAOD();
+                if (Watch_Face.ScreenAOD.Elements == null) Watch_Face.ScreenAOD.Elements = new List<object>();
+                Elements = Watch_Face.ScreenAOD.Elements;
+
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null) Elements = Watch_Face.ScreenAOD.Elements;
+            }
+
+            bool exists = Elements.Exists(e => e.GetType().Name == "ElementTrainingLoad"); // проверяем что такого элемента нет
+            if (!exists)
+            {
+                ElementTrainingLoad trainingLoad = new ElementTrainingLoad();
+                trainingLoad.visible = true;
+
+                Elements.Insert(0, trainingLoad);
+                uCtrl_TrainingLoad_Elm.SettingsClear();
+                return true;
+            }
+            else MessageBox.Show(Properties.FormStrings.Message_Widget_Exists, Properties.FormStrings.Message_Warning_Caption,
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return false;
+        }
+
+        /// <summary>Добавляем VO2Max в циферблат</summary>
+        private bool AddVO2Max()
+        {
+            if (!PreviewView) return false;
+            List<object> Elements = new List<object>();
+            if (Watch_Face == null) Watch_Face = new WATCH_FACE();
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face.ScreenNormal == null) Watch_Face.ScreenNormal = new ScreenNormal();
+                if (Watch_Face.ScreenNormal.Elements == null) Watch_Face.ScreenNormal.Elements = new List<object>();
+                Elements = Watch_Face.ScreenNormal.Elements;
+            }
+            else
+            {
+                if (Watch_Face.ScreenAOD == null) Watch_Face.ScreenAOD = new ScreenAOD();
+                if (Watch_Face.ScreenAOD.Elements == null) Watch_Face.ScreenAOD.Elements = new List<object>();
+                Elements = Watch_Face.ScreenAOD.Elements;
+
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null) Elements = Watch_Face.ScreenAOD.Elements;
+            }
+
+            bool exists = Elements.Exists(e => e.GetType().Name == "ElementVO2Max"); // проверяем что такого элемента нет
+            if (!exists)
+            {
+                ElementVO2Max vo2max = new ElementVO2Max();
+                vo2max.visible = true;
+
+                Elements.Insert(0, vo2max);
+                uCtrl_VO2Max_Elm.SettingsClear();
+                return true;
+            }
+            else MessageBox.Show(Properties.FormStrings.Message_Widget_Exists, Properties.FormStrings.Message_Warning_Caption,
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return false;
+        }
+
+        /// <summary>Добавляем этажи в циферблат</summary>
+        private bool AddFloor()
+        {
+            if (!PreviewView) return false;
+            List<object> Elements = new List<object>();
+            if (Watch_Face == null) Watch_Face = new WATCH_FACE();
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face.ScreenNormal == null) Watch_Face.ScreenNormal = new ScreenNormal();
+                if (Watch_Face.ScreenNormal.Elements == null) Watch_Face.ScreenNormal.Elements = new List<object>();
+                Elements = Watch_Face.ScreenNormal.Elements;
+            }
+            else
+            {
+                if (Watch_Face.ScreenAOD == null) Watch_Face.ScreenAOD = new ScreenAOD();
+                if (Watch_Face.ScreenAOD.Elements == null) Watch_Face.ScreenAOD.Elements = new List<object>();
+                Elements = Watch_Face.ScreenAOD.Elements;
+
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null) Elements = Watch_Face.ScreenAOD.Elements;
+            }
+
+            bool exists = Elements.Exists(e => e.GetType().Name == "ElementFloor"); // проверяем что такого элемента нет
+            if (!exists)
+            {
+                ElementFloor floor = new ElementFloor();
+                floor.visible = true;
+
+                Elements.Insert(0, floor);
+                uCtrl_Floor_Elm.SettingsClear();
                 return true;
             }
             else MessageBox.Show(Properties.FormStrings.Message_Widget_Exists, Properties.FormStrings.Message_Warning_Caption,
@@ -5575,6 +5963,43 @@ namespace Watch_Face_Editor
             return false;
         }
 
+        /// <summary>Добавляем AQI в циферблат</summary>
+        private bool AddAQI()
+        {
+            if (!PreviewView) return false;
+            List<object> Elements = new List<object>();
+            if (Watch_Face == null) Watch_Face = new WATCH_FACE();
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face.ScreenNormal == null) Watch_Face.ScreenNormal = new ScreenNormal();
+                if (Watch_Face.ScreenNormal.Elements == null) Watch_Face.ScreenNormal.Elements = new List<object>();
+                Elements = Watch_Face.ScreenNormal.Elements;
+            }
+            else
+            {
+                if (Watch_Face.ScreenAOD == null) Watch_Face.ScreenAOD = new ScreenAOD();
+                if (Watch_Face.ScreenAOD.Elements == null) Watch_Face.ScreenAOD.Elements = new List<object>();
+                Elements = Watch_Face.ScreenAOD.Elements;
+
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null) Elements = Watch_Face.ScreenAOD.Elements;
+            }
+
+            bool exists = Elements.Exists(e => e.GetType().Name == "ElementAQI"); // проверяем что такого элемента нет
+            if (!exists)
+            {
+                ElementAQI aqi = new ElementAQI();
+                aqi.visible = true;
+
+                Elements.Insert(0, aqi);
+                uCtrl_AQI_Elm.SettingsClear();
+                return true;
+            }
+            else MessageBox.Show(Properties.FormStrings.Message_Widget_Exists, Properties.FormStrings.Message_Warning_Caption,
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return false;
+        }
+
         /// <summary>Добавляем изображение в циферблат</summary>
         private bool AddImage()
         {
@@ -5689,6 +6114,78 @@ namespace Watch_Face_Editor
             return false;
         }
 
+        /// <summary>Добавляем будильник в циферблат</summary>
+        private bool AddAlarmClock()
+        {
+            if (!PreviewView) return false;
+            List<object> Elements = new List<object>();
+            if (Watch_Face == null) Watch_Face = new WATCH_FACE();
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face.ScreenNormal == null) Watch_Face.ScreenNormal = new ScreenNormal();
+                if (Watch_Face.ScreenNormal.Elements == null) Watch_Face.ScreenNormal.Elements = new List<object>();
+                Elements = Watch_Face.ScreenNormal.Elements;
+            }
+            else
+            {
+                if (Watch_Face.ScreenAOD == null) Watch_Face.ScreenAOD = new ScreenAOD();
+                if (Watch_Face.ScreenAOD.Elements == null) Watch_Face.ScreenAOD.Elements = new List<object>();
+                Elements = Watch_Face.ScreenAOD.Elements;
+
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null) Elements = Watch_Face.ScreenAOD.Elements;
+            }
+
+            bool exists = Elements.Exists(e => e.GetType().Name == "ElementAlarmClock"); // проверяем что такого элемента нет
+            if (!exists)
+            {
+                ElementAlarmClock alarmClock = new ElementAlarmClock();
+                alarmClock.visible = true;
+                Elements.Insert(0, alarmClock);
+                uCtrl_AlarmClock_Elm.SettingsClear();
+                return true;
+            }
+            else MessageBox.Show(Properties.FormStrings.Message_Widget_Exists, Properties.FormStrings.Message_Warning_Caption,
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return false;
+        }
+
+        /// <summary>Добавляем компас в циферблат</summary>
+        private bool AddBodyTemp()
+        {
+            if (!PreviewView) return false;
+            List<object> Elements = new List<object>();
+            if (Watch_Face == null) Watch_Face = new WATCH_FACE();
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face.ScreenNormal == null) Watch_Face.ScreenNormal = new ScreenNormal();
+                if (Watch_Face.ScreenNormal.Elements == null) Watch_Face.ScreenNormal.Elements = new List<object>();
+                Elements = Watch_Face.ScreenNormal.Elements;
+            }
+            else
+            {
+                if (Watch_Face.ScreenAOD == null) Watch_Face.ScreenAOD = new ScreenAOD();
+                if (Watch_Face.ScreenAOD.Elements == null) Watch_Face.ScreenAOD.Elements = new List<object>();
+                Elements = Watch_Face.ScreenAOD.Elements;
+
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null) Elements = Watch_Face.ScreenAOD.Elements;
+            }
+
+            bool exists = Elements.Exists(e => e.GetType().Name == "ElementBodyTemp"); // проверяем что такого элемента нет
+            if (!exists)
+            {
+                ElementBodyTemp bodyTemp = new ElementBodyTemp();
+                bodyTemp.visible = true;
+                Elements.Insert(0, bodyTemp);
+                uCtrl_BodyTemp_Elm.SettingsClear();
+                return true;
+            }
+            else MessageBox.Show(Properties.FormStrings.Message_Widget_Exists, Properties.FormStrings.Message_Warning_Caption,
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return false;
+        }
+
 
         /// <summary>Отображаем элемынты в соответствии с json файлом</summary>
         private void ShowElemetsWatchFace()
@@ -5743,6 +6240,14 @@ namespace Watch_Face_Editor
             uCtrl_Compass_Elm.Visible = false;
             uCtrl_Image_Elm.Visible = false;
             uCtrl_Compass_Elm.Visible = false;
+
+            uCtrl_AlarmClock_Elm.Visible = false;
+            uCtrl_TrainingLoad_Elm.Visible = false;
+            uCtrl_VO2Max_Elm.Visible = false;
+            uCtrl_AQI_Elm.Visible = false;
+            uCtrl_BodyTemp_Elm.Visible = false;
+            uCtrl_Floor_Elm.Visible = false;
+            uCtrl_Readiness_Elm.Visible = false;
 
             uCtrl_DisconnectAlert_Elm.Visible = false;
             uCtrl_RepeatingAlert_Elm.Visible = false;
@@ -7746,8 +8251,292 @@ namespace Watch_Face_Editor
                                 //else uCtrl_Compass_Elm.Enabled = true;
 
                                 break;
+                        #endregion
+
+
+                            #region ElementAlarmClock
+                            case "ElementAlarmClock":
+                                ElementAlarmClock AlarmClock = (ElementAlarmClock)element;
+                                uCtrl_AlarmClock_Elm.SetVisibilityElementStatus(AlarmClock.visible);
+                                elementOptions = new Dictionary<int, string>();
+                                if (AlarmClock.Number != null)
+                                {
+                                    uCtrl_AlarmClock_Elm.checkBox_Number.Checked = AlarmClock.Number.visible;
+                                    elementOptions.Add(AlarmClock.Number.position, "Number");
+                                }
+                                if (AlarmClock.Number_Font != null)
+                                {
+                                    uCtrl_AlarmClock_Elm.checkBox_Number_Font.Checked = AlarmClock.Number_Font.visible;
+                                    elementOptions.Add(AlarmClock.Number_Font.position, "Number_Font");
+                                }
+                                if (AlarmClock.Icon != null)
+                                {
+                                    uCtrl_AlarmClock_Elm.checkBox_Icon.Checked = AlarmClock.Icon.visible;
+                                    elementOptions.Add(AlarmClock.Icon.position, "Icon");
+                                }
+
+                                uCtrl_AlarmClock_Elm.SetOptionsPosition(elementOptions);
+
+                                uCtrl_AlarmClock_Elm.Visible = true;
+                                SetElementPositionInGUI(type, count - i - 2);
+                                //SetElementPositionInGUI(type, i + 1);
+                                break;
+                        #endregion
+
+                            #region ElementTrainingLoad
+                            case "ElementTrainingLoad":
+                                ElementTrainingLoad TrainingLoad = (ElementTrainingLoad)element;
+                                uCtrl_TrainingLoad_Elm.SetVisibilityElementStatus(TrainingLoad.visible);
+                                elementOptions = new Dictionary<int, string>();
+                                if (TrainingLoad.Images != null)
+                                {
+                                    uCtrl_TrainingLoad_Elm.checkBox_Images.Checked = TrainingLoad.Images.visible;
+                                    elementOptions.Add(TrainingLoad.Images.position, "Images");
+                                }
+                                if (TrainingLoad.Segments != null)
+                                {
+                                    uCtrl_TrainingLoad_Elm.checkBox_Segments.Checked = TrainingLoad.Segments.visible;
+                                    elementOptions.Add(TrainingLoad.Segments.position, "Segments");
+                                }
+                                if (TrainingLoad.Number != null)
+                                {
+                                    uCtrl_TrainingLoad_Elm.checkBox_Number.Checked = TrainingLoad.Number.visible;
+                                    elementOptions.Add(TrainingLoad.Number.position, "Number");
+                                }
+                                if (TrainingLoad.Number_Font != null)
+                                {
+                                    uCtrl_TrainingLoad_Elm.checkBox_Number_Font.Checked = TrainingLoad.Number_Font.visible;
+                                    elementOptions.Add(TrainingLoad.Number_Font.position, "Number_Font");
+                                }
+                                if (TrainingLoad.Pointer != null)
+                                {
+                                    uCtrl_TrainingLoad_Elm.checkBox_Pointer.Checked = TrainingLoad.Pointer.visible;
+                                    elementOptions.Add(TrainingLoad.Pointer.position, "Pointer");
+                                }
+                                if (TrainingLoad.Circle_Scale != null)
+                                {
+                                    uCtrl_TrainingLoad_Elm.checkBox_Circle_Scale.Checked = TrainingLoad.Circle_Scale.visible;
+                                    elementOptions.Add(TrainingLoad.Circle_Scale.position, "Circle_Scale");
+                                }
+                                if (TrainingLoad.Icon != null)
+                                {
+                                    uCtrl_TrainingLoad_Elm.checkBox_Icon.Checked = TrainingLoad.Icon.visible;
+                                    elementOptions.Add(TrainingLoad.Icon.position, "Icon");
+                                }
+
+                                uCtrl_TrainingLoad_Elm.SetOptionsPosition(elementOptions);
+
+                                uCtrl_TrainingLoad_Elm.Visible = true;
+                                SetElementPositionInGUI(type, count - i - 2);
+                                //SetElementPositionInGUI(type, i + 1);
+                                break;
+                        #endregion
+
+                            #region ElementVO2Max
+                            case "ElementVO2Max":
+                                ElementVO2Max VO2Max = (ElementVO2Max)element;
+                                uCtrl_VO2Max_Elm.SetVisibilityElementStatus(VO2Max.visible);
+                                elementOptions = new Dictionary<int, string>();
+                                if (VO2Max.Images != null)
+                                {
+                                    uCtrl_VO2Max_Elm.checkBox_Images.Checked = VO2Max.Images.visible;
+                                    elementOptions.Add(VO2Max.Images.position, "Images");
+                                }
+                                if (VO2Max.Segments != null)
+                                {
+                                    uCtrl_VO2Max_Elm.checkBox_Segments.Checked = VO2Max.Segments.visible;
+                                    elementOptions.Add(VO2Max.Segments.position, "Segments");
+                                }
+                                if (VO2Max.Number != null)
+                                {
+                                    uCtrl_VO2Max_Elm.checkBox_Number.Checked = VO2Max.Number.visible;
+                                    elementOptions.Add(VO2Max.Number.position, "Number");
+                                }
+                                if (VO2Max.Number_Font != null)
+                                {
+                                    uCtrl_VO2Max_Elm.checkBox_Number_Font.Checked = VO2Max.Number_Font.visible;
+                                    elementOptions.Add(VO2Max.Number_Font.position, "Number_Font");
+                                }
+                                if (VO2Max.Pointer != null)
+                                {
+                                    uCtrl_VO2Max_Elm.checkBox_Pointer.Checked = VO2Max.Pointer.visible;
+                                    elementOptions.Add(VO2Max.Pointer.position, "Pointer");
+                                }
+                                if (VO2Max.Circle_Scale != null)
+                                {
+                                    uCtrl_VO2Max_Elm.checkBox_Circle_Scale.Checked = VO2Max.Circle_Scale.visible;
+                                    elementOptions.Add(VO2Max.Circle_Scale.position, "Circle_Scale");
+                                }
+                                if (VO2Max.Icon != null)
+                                {
+                                    uCtrl_VO2Max_Elm.checkBox_Icon.Checked = VO2Max.Icon.visible;
+                                    elementOptions.Add(VO2Max.Icon.position, "Icon");
+                                }
+
+                                uCtrl_VO2Max_Elm.SetOptionsPosition(elementOptions);
+
+                                uCtrl_VO2Max_Elm.Visible = true;
+                                SetElementPositionInGUI(type, count - i - 2);
+                                //SetElementPositionInGUI(type, i + 1);
+                                break;
+                            #endregion
+
+                            #region ElementAQI
+                            case "ElementAQI":
+                                ElementAQI AQI = (ElementAQI)element;
+                                uCtrl_AQI_Elm.SetVisibilityElementStatus(AQI.visible);
+                                elementOptions = new Dictionary<int, string>();
+                                if (AQI.Images != null)
+                                {
+                                    uCtrl_AQI_Elm.checkBox_Images.Checked = AQI.Images.visible;
+                                    elementOptions.Add(AQI.Images.position, "Images");
+                                }
+                                if (AQI.Segments != null)
+                                {
+                                    uCtrl_AQI_Elm.checkBox_Segments.Checked = AQI.Segments.visible;
+                                    elementOptions.Add(AQI.Segments.position, "Segments");
+                                }
+                                if (AQI.Number != null)
+                                {
+                                    uCtrl_AQI_Elm.checkBox_Number.Checked = AQI.Number.visible;
+                                    elementOptions.Add(AQI.Number.position, "Number");
+                                }
+                                if (AQI.Number_Font != null)
+                                {
+                                    uCtrl_AQI_Elm.checkBox_Number_Font.Checked = AQI.Number_Font.visible;
+                                    elementOptions.Add(AQI.Number_Font.position, "Number_Font");
+                                }
+                                if (AQI.Pointer != null)
+                                {
+                                    uCtrl_AQI_Elm.checkBox_Pointer.Checked = AQI.Pointer.visible;
+                                    elementOptions.Add(AQI.Pointer.position, "Pointer");
+                                }
+                                if (AQI.Circle_Scale != null)
+                                {
+                                    uCtrl_AQI_Elm.checkBox_Circle_Scale.Checked = AQI.Circle_Scale.visible;
+                                    elementOptions.Add(AQI.Circle_Scale.position, "Circle_Scale");
+                                }
+                                if (AQI.Icon != null)
+                                {
+                                    uCtrl_AQI_Elm.checkBox_Icon.Checked = AQI.Icon.visible;
+                                    elementOptions.Add(AQI.Icon.position, "Icon");
+                                }
+
+                                uCtrl_AQI_Elm.SetOptionsPosition(elementOptions);
+
+                                uCtrl_AQI_Elm.Visible = true;
+                                SetElementPositionInGUI(type, count - i - 2);
+                                //SetElementPositionInGUI(type, i + 1);
+                                break;
+                            #endregion
+
+                            #region ElementBodyTemp
+                            case "ElementBodyTemp":
+                                ElementBodyTemp BodyTemp = (ElementBodyTemp)element;
+                                uCtrl_BodyTemp_Elm.SetVisibilityElementStatus(BodyTemp.visible);
+                                elementOptions = new Dictionary<int, string>();
+                                if (BodyTemp.Number != null)
+                                {
+                                    uCtrl_BodyTemp_Elm.checkBox_Number.Checked = BodyTemp.Number.visible;
+                                    elementOptions.Add(BodyTemp.Number.position, "Number");
+                                }
+                                if (BodyTemp.Number_Font != null)
+                                {
+                                    uCtrl_BodyTemp_Elm.checkBox_Number_Font.Checked = BodyTemp.Number_Font.visible;
+                                    elementOptions.Add(BodyTemp.Number_Font.position, "Number_Font");
+                                }
+                                if (BodyTemp.Icon != null)
+                                {
+                                    uCtrl_BodyTemp_Elm.checkBox_Icon.Checked = BodyTemp.Icon.visible;
+                                    elementOptions.Add(BodyTemp.Icon.position, "Icon");
+                                }
+
+                                uCtrl_BodyTemp_Elm.SetOptionsPosition(elementOptions);
+
+                                uCtrl_BodyTemp_Elm.Visible = true;
+                                SetElementPositionInGUI(type, count - i - 2);
+                                //SetElementPositionInGUI(type, i + 1);
+                                break;
+                        #endregion
+
+                            #region ElementFloor
+                            case "ElementFloor":
+                                ElementFloor Floor = (ElementFloor)element;
+                                uCtrl_Floor_Elm.SetVisibilityElementStatus(Floor.visible);
+                                elementOptions = new Dictionary<int, string>();
+                                if (Floor.Number != null)
+                                {
+                                    uCtrl_Floor_Elm.checkBox_Number.Checked = Floor.Number.visible;
+                                    elementOptions.Add(Floor.Number.position, "Number");
+                                }
+                                if (Floor.Number_Font != null)
+                                {
+                                    uCtrl_Floor_Elm.checkBox_Number_Font.Checked = Floor.Number_Font.visible;
+                                    elementOptions.Add(Floor.Number_Font.position, "Number_Font");
+                                }
+                                if (Floor.Icon != null)
+                                {
+                                    uCtrl_Floor_Elm.checkBox_Icon.Checked = Floor.Icon.visible;
+                                    elementOptions.Add(Floor.Icon.position, "Icon");
+                                }
+
+                                uCtrl_Floor_Elm.SetOptionsPosition(elementOptions);
+
+                                uCtrl_Floor_Elm.Visible = true;
+                                SetElementPositionInGUI(type, count - i - 2);
+                                //SetElementPositionInGUI(type, i + 1);
+                                break;
+                        #endregion
+
+                            #region ElementReadiness
+                            case "ElementReadiness":
+                                ElementReadiness Readiness = (ElementReadiness)element;
+                                uCtrl_Readiness_Elm.SetVisibilityElementStatus(Readiness.visible);
+                                elementOptions = new Dictionary<int, string>();
+                                if (Readiness.Images != null)
+                                {
+                                    uCtrl_Readiness_Elm.checkBox_Images.Checked = Readiness.Images.visible;
+                                    elementOptions.Add(Readiness.Images.position, "Images");
+                                }
+                                if (Readiness.Segments != null)
+                                {
+                                    uCtrl_Readiness_Elm.checkBox_Segments.Checked = Readiness.Segments.visible;
+                                    elementOptions.Add(Readiness.Segments.position, "Segments");
+                                }
+                                if (Readiness.Number != null)
+                                {
+                                    uCtrl_Readiness_Elm.checkBox_Number.Checked = Readiness.Number.visible;
+                                    elementOptions.Add(Readiness.Number.position, "Number");
+                                }
+                                if (Readiness.Number_Font != null)
+                                {
+                                    uCtrl_Readiness_Elm.checkBox_Number_Font.Checked = Readiness.Number_Font.visible;
+                                    elementOptions.Add(Readiness.Number_Font.position, "Number_Font");
+                                }
+                                if (Readiness.Pointer != null)
+                                {
+                                    uCtrl_Readiness_Elm.checkBox_Pointer.Checked = Readiness.Pointer.visible;
+                                    elementOptions.Add(Readiness.Pointer.position, "Pointer");
+                                }
+                                if (Readiness.Circle_Scale != null)
+                                {
+                                    uCtrl_Readiness_Elm.checkBox_Circle_Scale.Checked = Readiness.Circle_Scale.visible;
+                                    elementOptions.Add(Readiness.Circle_Scale.position, "Circle_Scale");
+                                }
+                                if (Readiness.Icon != null)
+                                {
+                                    uCtrl_Readiness_Elm.checkBox_Icon.Checked = Readiness.Icon.visible;
+                                    elementOptions.Add(Readiness.Icon.position, "Icon");
+                                }
+
+                                uCtrl_Readiness_Elm.SetOptionsPosition(elementOptions);
+
+                                uCtrl_Readiness_Elm.Visible = true;
+                                SetElementPositionInGUI(type, count - i - 2);
+                                //SetElementPositionInGUI(type, i + 1);
+                                break;
                                 #endregion
-                        }
+                    }
 
 #if !DEBUG
                     }
@@ -8362,6 +9151,29 @@ namespace Watch_Face_Editor
                 case "ElementCompass":
                     panel = panel_UC_Compass;
                     break;
+
+                case "ElementAlarmClock":
+                    panel = panel_UC_AlarmClock;
+                    break;
+                case "ElementTrainingLoad":
+                    panel = panel_UC_TrainingLoad;
+                    break;
+                case "ElementVO2Max":
+                    panel = panel_UC_VO2Max;
+                    break;
+                case "ElementAQI":
+                    panel = panel_UC_AQI;
+                    break;
+                case "ElementBodyTemp":
+                    panel = panel_UC_BodyTemp;
+                    break;
+                case "ElementFloor":
+                    panel = panel_UC_Floor;
+                    break;
+                case "ElementReadiness":
+                    panel = panel_UC_Readiness;
+                    break;
+
                 case "Buttons":
                     panel = panel_UC_Buttons;
                     break;
@@ -9236,6 +10048,29 @@ namespace Watch_Face_Editor
                 case "UCtrl_Compass_Elm":
                     objectName = "ElementCompass";
                     break;
+
+                case "UCtrl_AlarmClock_Elm":
+                    objectName = "ElementAlarmClock";
+                    break;
+                case "UCtrl_TrainingLoad_Elm":
+                    objectName = "ElementTrainingLoad";
+                    break;
+                case "UCtrl_VO2Max_Elm":
+                    objectName = "ElementVO2Max";
+                    break;
+                case "UCtrl_AQI_Elm":
+                    objectName = "ElementAQI";
+                    break;
+                case "UCtrl_BodyTemp_Elm":
+                    objectName = "ElementBodyTemp";
+                    break;
+                case "UCtrl_Floor_Elm":
+                    objectName = "ElementFloor";
+                    break;
+                case "UCtrl_Readiness_Elm":
+                    objectName = "ElementReadiness";
+                    break;
+
                 case "UCtrl_JSscript_Elm":
                     objectName = "ElementScript";
                     break;
@@ -9622,7 +10457,6 @@ namespace Watch_Face_Editor
             int hour = rnd.Next(0, 24);
             int min = rnd.Next(0, 60);
             int sec = rnd.Next(0, 60);
-            int battery = rnd.Next(0, 101);
             int calories = rnd.Next(0, 500);
             int pulse = rnd.Next(45, 180);
             int distance = rnd.Next(0, 15000);
@@ -9632,19 +10466,24 @@ namespace Watch_Face_Editor
             int standUp = rnd.Next(0, 13);
             int stress = rnd.Next(0, 101);
             int fatBurning = rnd.Next(0, 35);
+
             bool bluetooth = rnd.Next(2) == 0 ? false : true;
             bool alarm = rnd.Next(2) == 0 ? false : true;
             bool unlocked = rnd.Next(2) == 0 ? false : true;
             bool dnd = rnd.Next(2) == 0 ? false : true;
+
+            int battery = rnd.Next(0, 101);
+            int bodyTemp = rnd.Next(300, 380);
 
             int temperature = rnd.Next(-25, 35);
             int temperatureMax = rnd.Next(-25, 35);
             int temperatureMin = temperatureMax - rnd.Next(3, 10);
             int temperatureIcon = rnd.Next(0, 29);
             bool showTemperature = rnd.Next(7) == 0 ? false : true;
+            int aqi = rnd.Next(0, 350);
 
             int airPressure = rnd.Next(800, 1200);
-            int airQuality = rnd.Next(0, 650);
+            int airQuality = rnd.Next(0, 350);
             int altitude = rnd.Next(-100, 300);
             int humidity = rnd.Next(30, 100);
             int UVindex = rnd.Next(0, 13);
@@ -9652,16 +10491,22 @@ namespace Watch_Face_Editor
             int windDirection = rnd.Next(0, 8);
             int compassDirection = rnd.Next(0, 360);
 
-            WatchFacePreviewSet.Date.Year = year;
-            WatchFacePreviewSet.Date.Month = month;
-            WatchFacePreviewSet.Date.Day = day;
-            WatchFacePreviewSet.Date.WeekDay = weekDay;
+            int spo2 = rnd.Next(80, 101);
+            int trainingLoad = rnd.Next(280, 600);
+            int trainingLoadGoal = rnd.Next(300, 600);
+            int vo2max = rnd.Next(30, 70);
+            int floor = rnd.Next(0, 30);
+            int readiness = rnd.Next(50, 101);
 
-            WatchFacePreviewSet.Time.Hours = hour;
-            WatchFacePreviewSet.Time.Minutes = min;
-            WatchFacePreviewSet.Time.Seconds = sec;
+            WatchFacePreviewSet.DateTime.Date.Year = year;
+            WatchFacePreviewSet.DateTime.Date.Month = month;
+            WatchFacePreviewSet.DateTime.Date.Day = day;
+            WatchFacePreviewSet.DateTime.Date.WeekDay = weekDay;
 
-            WatchFacePreviewSet.Battery = battery;
+            WatchFacePreviewSet.DateTime.Time.Hour = hour;
+            WatchFacePreviewSet.DateTime.Time.Minute = min;
+            WatchFacePreviewSet.DateTime.Time.Second = sec;
+
             WatchFacePreviewSet.Activity.Steps = steps;
             WatchFacePreviewSet.Activity.StepsGoal = goal;
             WatchFacePreviewSet.Activity.Calories = calories;
@@ -9672,27 +10517,37 @@ namespace Watch_Face_Editor
             WatchFacePreviewSet.Activity.Stress = stress;
             WatchFacePreviewSet.Activity.FatBurning = fatBurning;
 
-            WatchFacePreviewSet.Status.Bluetooth = bluetooth;
-            WatchFacePreviewSet.Status.Alarm = alarm;
-            WatchFacePreviewSet.Status.Lock = unlocked;
-            WatchFacePreviewSet.Status.DoNotDisturb = dnd;
+            WatchFacePreviewSet.Activity.SpO2 = spo2;
+            WatchFacePreviewSet.Activity.TrainingLoad = trainingLoad;
+            WatchFacePreviewSet.Activity.TrainingLoadGoal = trainingLoadGoal;
+            WatchFacePreviewSet.Activity.VO2Max = vo2max;
+            WatchFacePreviewSet.Activity.Floor = floor;
+            WatchFacePreviewSet.Activity.Readiness = readiness;
 
-            WatchFacePreviewSet.Weather.Temperature = temperature;
-            WatchFacePreviewSet.Weather.TemperatureMin = temperatureMin;
-            WatchFacePreviewSet.Weather.TemperatureMax = temperatureMax;
-            WatchFacePreviewSet.Weather.Icon = temperatureIcon;
-            WatchFacePreviewSet.Weather.showTemperature = showTemperature;
 
-            WatchFacePreviewSet.Weather.AirPressure = airPressure;
-            WatchFacePreviewSet.Weather.AirQuality = airQuality;
-            WatchFacePreviewSet.Weather.Altitude = altitude;
-            WatchFacePreviewSet.Weather.Humidity = humidity;
-            WatchFacePreviewSet.Weather.UVindex = UVindex;
-            WatchFacePreviewSet.Weather.WindForce = windForce;
-            WatchFacePreviewSet.Weather.WindDirection = windDirection;
-            WatchFacePreviewSet.Weather.CompassDirection = compassDirection;
+            WatchFacePreviewSet.System.Status.Bluetooth = bluetooth;
+            WatchFacePreviewSet.System.Status.Alarm = alarm;
+            WatchFacePreviewSet.System.Status.Lock = unlocked;
+            WatchFacePreviewSet.System.Status.DoNotDisturb = dnd;
+            WatchFacePreviewSet.System.Battery = battery;
+            WatchFacePreviewSet.System.BodyTemp = bodyTemp;
 
-            WatchFacePreviewSet.Weather.forecastData = new List<ForecastData>();
+            WatchFacePreviewSet.Air.Temperature = temperature;
+            WatchFacePreviewSet.Air.TemperatureMin = temperatureMin;
+            WatchFacePreviewSet.Air.TemperatureMax = temperatureMax;
+            WatchFacePreviewSet.Air.WeatherIcon = temperatureIcon;
+            WatchFacePreviewSet.Air.showTemperature = showTemperature;
+
+            WatchFacePreviewSet.Air.AirPressure = airPressure;
+            WatchFacePreviewSet.Air.AirQuality = airQuality;
+            WatchFacePreviewSet.Air.Altitude = altitude;
+            WatchFacePreviewSet.Air.Humidity = humidity;
+            WatchFacePreviewSet.Air.UVindex = UVindex;
+            WatchFacePreviewSet.Air.WindForce = windForce;
+            WatchFacePreviewSet.Air.WindDirection = windDirection;
+            WatchFacePreviewSet.Air.CompassDirection = compassDirection;
+
+            WatchFacePreviewSet.Air.forecastData = new List<ForecastData>();
             int tempOffset = rnd.Next(-25, 25);
             for (int i = 0; i < 9; i++)
             {
@@ -9700,8 +10555,9 @@ namespace Watch_Face_Editor
                 int minTemp = maxTemp - rnd.Next(3, 7);
                 int iconIndex = rnd.Next(0, 25);
 
-                WatchFacePreviewSet.Weather.forecastData.Add(new ForecastData { high = maxTemp, low = minTemp, index = iconIndex });
+                WatchFacePreviewSet.Air.forecastData.Add(new ForecastData { high = maxTemp, low = minTemp, index = iconIndex });
             }
+
 
             PreviewImage();
         }
@@ -9854,172 +10710,421 @@ namespace Watch_Face_Editor
             Prewiev_States_Json ps = new Prewiev_States_Json();
             try
             {
-                var objson = JsonConvert.DeserializeObject<object[]>(text);
+                //var objson = JsonConvert.DeserializeObject<object[]>(text);
 
-                int count = objson.Count();
+                //int count = objson.Count();
 
-                string JSON_Text = JsonConvert.SerializeObject(objson, Formatting.Indented, new JsonSerializerSettings
+                //string JSON_Text = JsonConvert.SerializeObject(objson, Formatting.Indented, new JsonSerializerSettings
+                //{
+                //    //DefaultValueHandling = DefaultValueHandling.Ignore,
+                //    NullValueHandling = NullValueHandling.Ignore
+                //});
+                ////richTextBox_JsonText.Text = JSON_Text;
+
+                //if (count == 0) return;
+                //if (count > 12) count = 12;
+                //for (int i = 0; i < count; i++)
+                //{
+                //    ps = JsonConvert.DeserializeObject<Prewiev_States_Json>(objson[i].ToString(), new JsonSerializerSettings
+                //    {
+                //        //DefaultValueHandling = DefaultValueHandling.Ignore,
+                //        NullValueHandling = NullValueHandling.Ignore
+                //    });
+
+                //    Dictionary<string, int> Activity = new Dictionary<string, int>();
+                //    Dictionary<string, int> Air = new Dictionary<string, int>();
+                //    Dictionary<string, List<int>> forecastData = new Dictionary<string, List<int>>();
+                //    Dictionary<string, bool> checkValue = new Dictionary<string, bool>();
+
+                //    Activity.Add("Year", ps.Time.Year);
+                //    Activity.Add("Month", ps.Time.Month);
+                //    Activity.Add("Day", ps.Time.Day);
+
+                //    Activity.Add("Hour", ps.Time.Hour);
+                //    Activity.Add("Minute", ps.Time.Minute);
+                //    Activity.Add("Second", ps.Time.Second);
+
+                //    Activity.Add("Battery", ps.BatteryLevel);
+                //    Activity.Add("Calories", ps.Calories);
+                //    Activity.Add("HeartRate", ps.Pulse);
+                //    Activity.Add("Distance", ps.Distance);
+                //    Activity.Add("Steps", ps.Steps);
+                //    Activity.Add("StepsGoal", ps.Goal);
+
+                //    Activity.Add("PAI", ps.PAI);
+                //    Activity.Add("StandUp", ps.Stand);
+                //    Activity.Add("Stress", ps.Stress);
+                //    //Activity.Add("ActivityGoal", ps.ActivityGoal);
+                //    Activity.Add("FatBurning", ps.FatBurning);
+
+
+                //    Air.Add("Weather_Icon", ps.CurrentWeather);
+                //    Air.Add("Temperature", ps.CurrentTemperature);
+                //    Air.Add("TemperatureMax", ps.TemperatureMax);
+                //    Air.Add("TemperatureMin", ps.TemperatureMin);
+
+                //    Air.Add("UVindex", ps.UVindex);
+                //    Air.Add("AirQuality", ps.AirQuality);
+                //    Air.Add("Humidity", ps.Humidity);
+                //    Air.Add("WindForce", ps.WindForce);
+                //    Air.Add("WindDirection", ps.WindDirection);
+                //    Air.Add("CompassDirection", ps.CompassDirection);
+                //    Air.Add("Altitude", ps.Altitude);
+                //    Air.Add("AirPressure", ps.AirPressure);
+
+
+                //    checkValue.Add("Bluetooth", ps.Bluetooth);
+                //    checkValue.Add("Alarm", ps.Alarm);
+                //    checkValue.Add("Lock", ps.Unlocked);
+                //    checkValue.Add("DND", ps.DoNotDisturb);
+
+                //    checkValue.Add("ShowTemperature", ps.ShowTemperature);
+
+                //    if (ps.forecastData != null && ps.forecastData.Count > 0)
+                //    {
+                //        List<int> high = new List<int>();
+                //        List<int> low = new List<int>();
+                //        List<int> index = new List<int>();
+                //        for (int j = 0; j < ps.forecastData.Count; j++)
+                //        {
+                //            high.Add(ps.forecastData[j].high);
+                //            low.Add(ps.forecastData[j].low);
+                //            index.Add(ps.forecastData[j].index);
+                //        }
+                //        forecastData.Add("high", high);
+                //        forecastData.Add("low", low);
+                //        forecastData.Add("index", index); 
+                //    }
+
+                //    Activity.Add("SpO2", ps.SpO2);
+                //    Activity.Add("TrainingLoad", ps.TrainingLoad);
+                //    Activity.Add("TrainingLoadGoal", ps.TrainingLoadGoal);
+                //    Activity.Add("VO2Max", ps.VO2Max);
+                //    Activity.Add("BodyTemp", ps.BodyTemp);
+                //    Activity.Add("Floor", ps.Floor);
+                //    Activity.Add("Readiness", ps.Readiness);
+
+                //    switch (i)
+                //    {
+                //        case 0:
+                //            userCtrl_Set1.SetValue(Activity, Air, forecastData, checkValue);
+                //            break;
+                //        case 1:
+                //            userCtrl_Set2.SetValue(Activity, Air, forecastData, checkValue);
+                //            break;
+                //        case 2:
+                //            userCtrl_Set3.SetValue(Activity, Air, forecastData, checkValue);
+                //            break;
+                //        case 3:
+                //            userCtrl_Set4.SetValue(Activity, Air, forecastData, checkValue);
+                //            break;
+                //        case 4:
+                //            userCtrl_Set5.SetValue(Activity, Air, forecastData, checkValue);
+                //            break;
+                //        case 5:
+                //            userCtrl_Set6.SetValue(Activity, Air, forecastData, checkValue);
+                //            break;
+                //        case 6:
+                //            userCtrl_Set7.SetValue(Activity, Air, forecastData, checkValue);
+                //            break;
+                //        case 7:
+                //            userCtrl_Set8.SetValue(Activity, Air, forecastData, checkValue);
+                //            break;
+                //        case 8:
+                //            userCtrl_Set9.SetValue(Activity, Air, forecastData, checkValue);
+                //            break;
+                //        case 9:
+                //            userCtrl_Set10.SetValue(Activity, Air, forecastData, checkValue);
+                //            break;
+                //        case 10:
+                //            userCtrl_Set11.SetValue(Activity, Air, forecastData, checkValue);
+                //            break;
+                //        case 11:
+                //            userCtrl_Set12.SetValue(Activity, Air, forecastData, checkValue);
+                //            break;
+                //    }
+                //}
+
+                //switch (count)
+                //{
+                //    case 1:
+                //        SetPreferences(userCtrl_Set1);
+                //        break;
+                //    case 2:
+                //        SetPreferences(userCtrl_Set2);
+                //        break;
+                //    case 3:
+                //        SetPreferences(userCtrl_Set3);
+                //        break;
+                //    case 4:
+                //        SetPreferences(userCtrl_Set4);
+                //        break;
+                //    case 5:
+                //        SetPreferences(userCtrl_Set5);
+                //        break;
+                //    case 6:
+                //        SetPreferences(userCtrl_Set6);
+                //        break;
+                //    case 7:
+                //        SetPreferences(userCtrl_Set7);
+                //        break;
+                //    case 8:
+                //        SetPreferences(userCtrl_Set8);
+                //        break;
+                //    case 9:
+                //        SetPreferences(userCtrl_Set9);
+                //        break;
+                //    case 10:
+                //        SetPreferences(userCtrl_Set10);
+                //        break;
+                //    case 11:
+                //        SetPreferences(userCtrl_Set11);
+                //        break;
+                //    case 12:
+                //        SetPreferences(userCtrl_Set12);
+                //        break;
+                //}
+
+                if (text.IndexOf("\"version\": 2") > 0)
                 {
-                    //DefaultValueHandling = DefaultValueHandling.Ignore,
-                    NullValueHandling = NullValueHandling.Ignore
-                });
-                //richTextBox_JsonText.Text = JSON_Text;
+                    JObject json = JObject.Parse(text);
+                    int count = json["previewSet"].Count();
 
-                if (count == 0) return;
-                if (count > 12) count = 12;
-                for (int i = 0; i < count; i++)
+                    if (count == 0) return;
+                    if (count > 12) count = 12;
+                    for (int i = 0; i < count; i++)
+                    {
+                        //JToken previewSet = json["previewSet"][i];
+
+                        //Watch_Face_Preview_Set wps = previewSet.ToObject<Watch_Face_Preview_Set>();
+
+                        string previewSetStr = json["previewSet"][i].ToString();
+                        switch (i)
+                        {
+                            case 0:
+                                userCtrl_Set1.SetValue(previewSetStr);
+                                break;
+                            case 1:
+                                userCtrl_Set2.SetValue(previewSetStr);
+                                break;
+                            case 2:
+                                userCtrl_Set3.SetValue(previewSetStr);
+                                break;
+                            case 3:
+                                userCtrl_Set4.SetValue(previewSetStr);
+                                break;
+                            case 4:
+                                userCtrl_Set5.SetValue(previewSetStr);
+                                break;
+                            case 5:
+                                userCtrl_Set6.SetValue(previewSetStr);
+                                break;
+                            case 6:
+                                userCtrl_Set7.SetValue(previewSetStr);
+                                break;
+                            case 7:
+                                userCtrl_Set8.SetValue(previewSetStr);
+                                break;
+                            case 8:
+                                userCtrl_Set9.SetValue(previewSetStr);
+                                break;
+                            case 9:
+                                userCtrl_Set10.SetValue(previewSetStr);
+                                break;
+                            case 10:
+                                userCtrl_Set11.SetValue(previewSetStr);
+                                break;
+                            case 11:
+                                userCtrl_Set12.SetValue(previewSetStr);
+                                break;
+                        }
+
+                        //Watch_Face_Preview_Set previewSet = JsonConvert.DeserializeObject<Watch_Face_Preview_Set>(str, new JsonSerializerSettings
+                        //{
+                        //    //DefaultValueHandling = DefaultValueHandling.Ignore,
+                        //    NullValueHandling = NullValueHandling.Ignore
+                        //});
+                    }
+                }
+                else
                 {
-                    ps = JsonConvert.DeserializeObject<Prewiev_States_Json>(objson[i].ToString(), new JsonSerializerSettings
+                    var objson = JsonConvert.DeserializeObject<object[]>(text);
+
+                    int count = objson.Count();
+
+                    string JSON_Text = JsonConvert.SerializeObject(objson, Formatting.Indented, new JsonSerializerSettings
                     {
                         //DefaultValueHandling = DefaultValueHandling.Ignore,
                         NullValueHandling = NullValueHandling.Ignore
                     });
+                    //richTextBox_JsonText.Text = JSON_Text;
 
-                    Dictionary<string, int> Activity = new Dictionary<string, int>();
-                    Dictionary<string, int> Air = new Dictionary<string, int>();
-                    Dictionary<string, List<int>> forecastData = new Dictionary<string, List<int>>();
-                    Dictionary<string, bool> checkValue = new Dictionary<string, bool>();
-
-                    Activity.Add("Year", ps.Time.Year);
-                    Activity.Add("Month", ps.Time.Month);
-                    Activity.Add("Day", ps.Time.Day);
-
-                    Activity.Add("Hour", ps.Time.Hour);
-                    Activity.Add("Minute", ps.Time.Minute);
-                    Activity.Add("Second", ps.Time.Second);
-
-                    Activity.Add("Battery", ps.BatteryLevel);
-                    Activity.Add("Calories", ps.Calories);
-                    Activity.Add("HeartRate", ps.Pulse);
-                    Activity.Add("Distance", ps.Distance);
-                    Activity.Add("Steps", ps.Steps);
-                    Activity.Add("StepsGoal", ps.Goal);
-
-                    Activity.Add("PAI", ps.PAI);
-                    Activity.Add("StandUp", ps.Stand);
-                    Activity.Add("Stress", ps.Stress);
-                    //Activity.Add("ActivityGoal", ps.ActivityGoal);
-                    Activity.Add("FatBurning", ps.FatBurning);
-
-
-                    Air.Add("Weather_Icon", ps.CurrentWeather);
-                    Air.Add("Temperature", ps.CurrentTemperature);
-                    Air.Add("TemperatureMax", ps.TemperatureMax);
-                    Air.Add("TemperatureMin", ps.TemperatureMin);
-
-                    Air.Add("UVindex", ps.UVindex);
-                    Air.Add("AirQuality", ps.AirQuality);
-                    Air.Add("Humidity", ps.Humidity);
-                    Air.Add("WindForce", ps.WindForce);
-                    Air.Add("WindDirection", ps.WindDirection);
-                    Air.Add("CompassDirection", ps.CompassDirection);
-                    Air.Add("Altitude", ps.Altitude);
-                    Air.Add("AirPressure", ps.AirPressure);
-
-
-                    checkValue.Add("Bluetooth", ps.Bluetooth);
-                    checkValue.Add("Alarm", ps.Alarm);
-                    checkValue.Add("Lock", ps.Unlocked);
-                    checkValue.Add("DND", ps.DoNotDisturb);
-
-                    checkValue.Add("ShowTemperature", ps.ShowTemperature);
-
-                    if (ps.forecastData != null && ps.forecastData.Count > 0)
+                    if (count == 0) return;
+                    if (count > 12) count = 12;
+                    for (int i = 0; i < count; i++)
                     {
-                        List<int> high = new List<int>();
-                        List<int> low = new List<int>();
-                        List<int> index = new List<int>();
-                        for (int j = 0; j < ps.forecastData.Count; j++)
+                        string str = objson[i].ToString();
+                        ps = JsonConvert.DeserializeObject<Prewiev_States_Json>(objson[i].ToString(), new JsonSerializerSettings
                         {
-                            high.Add(ps.forecastData[j].high);
-                            low.Add(ps.forecastData[j].low);
-                            index.Add(ps.forecastData[j].index);
+                            //DefaultValueHandling = DefaultValueHandling.Ignore,
+                            NullValueHandling = NullValueHandling.Ignore
+                        });
+
+                        Dictionary<string, int> Activity = new Dictionary<string, int>();
+                        Dictionary<string, int> Air = new Dictionary<string, int>();
+                        Dictionary<string, List<int>> forecastData = new Dictionary<string, List<int>>();
+                        Dictionary<string, bool> checkValue = new Dictionary<string, bool>();
+
+                        Activity.Add("Year", ps.Time.Year);
+                        Activity.Add("Month", ps.Time.Month);
+                        Activity.Add("Day", ps.Time.Day);
+
+                        Activity.Add("Hour", ps.Time.Hour);
+                        Activity.Add("Minute", ps.Time.Minute);
+                        Activity.Add("Second", ps.Time.Second);
+
+                        Activity.Add("Battery", ps.BatteryLevel);
+                        Activity.Add("Calories", ps.Calories);
+                        Activity.Add("HeartRate", ps.Pulse);
+                        Activity.Add("Distance", ps.Distance);
+                        Activity.Add("Steps", ps.Steps);
+                        Activity.Add("StepsGoal", ps.Goal);
+
+                        Activity.Add("PAI", ps.PAI);
+                        Activity.Add("StandUp", ps.Stand);
+                        Activity.Add("Stress", ps.Stress);
+                        //Activity.Add("ActivityGoal", ps.ActivityGoal);
+                        Activity.Add("FatBurning", ps.FatBurning);
+
+
+                        Air.Add("Weather_Icon", ps.CurrentWeather);
+                        Air.Add("Temperature", ps.CurrentTemperature);
+                        Air.Add("TemperatureMax", ps.TemperatureMax);
+                        Air.Add("TemperatureMin", ps.TemperatureMin);
+
+                        Air.Add("UVindex", ps.UVindex);
+                        Air.Add("AirQuality", ps.AirQuality);
+                        Air.Add("Humidity", ps.Humidity);
+                        Air.Add("WindForce", ps.WindForce);
+                        Air.Add("WindDirection", ps.WindDirection);
+                        Air.Add("CompassDirection", ps.CompassDirection);
+                        Air.Add("Altitude", ps.Altitude);
+                        Air.Add("AirPressure", ps.AirPressure);
+
+
+                        checkValue.Add("Bluetooth", ps.Bluetooth);
+                        checkValue.Add("Alarm", ps.Alarm);
+                        checkValue.Add("Lock", ps.Unlocked);
+                        checkValue.Add("DND", ps.DoNotDisturb);
+
+                        checkValue.Add("ShowTemperature", ps.ShowTemperature);
+
+                        if (ps.forecastData != null && ps.forecastData.Count > 0)
+                        {
+                            List<int> high = new List<int>();
+                            List<int> low = new List<int>();
+                            List<int> index = new List<int>();
+                            for (int j = 0; j < ps.forecastData.Count; j++)
+                            {
+                                high.Add(ps.forecastData[j].high);
+                                low.Add(ps.forecastData[j].low);
+                                index.Add(ps.forecastData[j].index);
+                            }
+                            forecastData.Add("high", high);
+                            forecastData.Add("low", low);
+                            forecastData.Add("index", index);
                         }
-                        forecastData.Add("high", high);
-                        forecastData.Add("low", low);
-                        forecastData.Add("index", index); 
+
+                        Activity.Add("SpO2", ps.SpO2);
+                        Activity.Add("TrainingLoad", ps.TrainingLoad);
+                        Activity.Add("TrainingLoadGoal", ps.TrainingLoadGoal);
+                        Activity.Add("VO2Max", ps.VO2Max);
+                        Activity.Add("BodyTemp", ps.BodyTemp);
+                        Activity.Add("Floor", ps.Floor);
+                        Activity.Add("Readiness", ps.Readiness);
+
+                        switch (i)
+                        {
+                            case 0:
+                                userCtrl_Set1.SetValue(Activity, Air, forecastData, checkValue);
+                                break;
+                            case 1:
+                                userCtrl_Set2.SetValue(Activity, Air, forecastData, checkValue);
+                                break;
+                            case 2:
+                                userCtrl_Set3.SetValue(Activity, Air, forecastData, checkValue);
+                                break;
+                            case 3:
+                                userCtrl_Set4.SetValue(Activity, Air, forecastData, checkValue);
+                                break;
+                            case 4:
+                                userCtrl_Set5.SetValue(Activity, Air, forecastData, checkValue);
+                                break;
+                            case 5:
+                                userCtrl_Set6.SetValue(Activity, Air, forecastData, checkValue);
+                                break;
+                            case 6:
+                                userCtrl_Set7.SetValue(Activity, Air, forecastData, checkValue);
+                                break;
+                            case 7:
+                                userCtrl_Set8.SetValue(Activity, Air, forecastData, checkValue);
+                                break;
+                            case 8:
+                                userCtrl_Set9.SetValue(Activity, Air, forecastData, checkValue);
+                                break;
+                            case 9:
+                                userCtrl_Set10.SetValue(Activity, Air, forecastData, checkValue);
+                                break;
+                            case 10:
+                                userCtrl_Set11.SetValue(Activity, Air, forecastData, checkValue);
+                                break;
+                            case 11:
+                                userCtrl_Set12.SetValue(Activity, Air, forecastData, checkValue);
+                                break;
+                        }
                     }
 
-                    switch (i)
+                    switch (count)
                     {
-                        case 0:
-                            userCtrl_Set1.SetValue(Activity, Air, forecastData, checkValue);
-                            break;
                         case 1:
-                            userCtrl_Set2.SetValue(Activity, Air, forecastData, checkValue);
+                            SetPreferences(userCtrl_Set1);
                             break;
                         case 2:
-                            userCtrl_Set3.SetValue(Activity, Air, forecastData, checkValue);
+                            SetPreferences(userCtrl_Set2);
                             break;
                         case 3:
-                            userCtrl_Set4.SetValue(Activity, Air, forecastData, checkValue);
+                            SetPreferences(userCtrl_Set3);
                             break;
                         case 4:
-                            userCtrl_Set5.SetValue(Activity, Air, forecastData, checkValue);
+                            SetPreferences(userCtrl_Set4);
                             break;
                         case 5:
-                            userCtrl_Set6.SetValue(Activity, Air, forecastData, checkValue);
+                            SetPreferences(userCtrl_Set5);
                             break;
                         case 6:
-                            userCtrl_Set7.SetValue(Activity, Air, forecastData, checkValue);
+                            SetPreferences(userCtrl_Set6);
                             break;
                         case 7:
-                            userCtrl_Set8.SetValue(Activity, Air, forecastData, checkValue);
+                            SetPreferences(userCtrl_Set7);
                             break;
                         case 8:
-                            userCtrl_Set9.SetValue(Activity, Air, forecastData, checkValue);
+                            SetPreferences(userCtrl_Set8);
                             break;
                         case 9:
-                            userCtrl_Set10.SetValue(Activity, Air, forecastData, checkValue);
+                            SetPreferences(userCtrl_Set9);
                             break;
                         case 10:
-                            userCtrl_Set11.SetValue(Activity, Air, forecastData, checkValue);
+                            SetPreferences(userCtrl_Set10);
                             break;
                         case 11:
-                            userCtrl_Set12.SetValue(Activity, Air, forecastData, checkValue);
+                            SetPreferences(userCtrl_Set11);
+                            break;
+                        case 12:
+                            SetPreferences(userCtrl_Set12);
                             break;
                     }
                 }
 
-                switch (count)
-                {
-                    case 1:
-                        SetPreferences(userCtrl_Set1);
-                        break;
-                    case 2:
-                        SetPreferences(userCtrl_Set2);
-                        break;
-                    case 3:
-                        SetPreferences(userCtrl_Set3);
-                        break;
-                    case 4:
-                        SetPreferences(userCtrl_Set4);
-                        break;
-                    case 5:
-                        SetPreferences(userCtrl_Set5);
-                        break;
-                    case 6:
-                        SetPreferences(userCtrl_Set6);
-                        break;
-                    case 7:
-                        SetPreferences(userCtrl_Set7);
-                        break;
-                    case 8:
-                        SetPreferences(userCtrl_Set8);
-                        break;
-                    case 9:
-                        SetPreferences(userCtrl_Set9);
-                        break;
-                    case 10:
-                        SetPreferences(userCtrl_Set10);
-                        break;
-                    case 11:
-                        SetPreferences(userCtrl_Set11);
-                        break;
-                    case 12:
-                        SetPreferences(userCtrl_Set12);
-                        break;
-                }
             }
             catch (Exception)
             {
@@ -10071,153 +11176,220 @@ namespace Watch_Face_Editor
             saveFileDialog.Filter = "PreviewStates file | *.States";
             saveFileDialog.RestoreDirectory = true;
             saveFileDialog.Title = Properties.FormStrings.Dialog_Title_PreviewStates;
+            //if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            //{
+            //    object[] objson = new object[] { };
+            //    int count = 0;
+            //    for (int i = 0; i < 12; i++)
+            //    {
+            //        Prewiev_States_Json ps = new Prewiev_States_Json();
+            //        ps.Time = new TimePreview();
+            //        Dictionary<string, int> Activity = new Dictionary<string, int>();
+            //        Dictionary<string, int> Air = new Dictionary<string, int>();
+            //        Dictionary<string, List<int>> forecastData = new Dictionary<string, List<int>>();
+            //        Dictionary<string, bool> checkValue = new Dictionary<string, bool>();
+            //        switch (i)
+            //        {
+            //            case 0:
+            //                userCtrl_Set1.GetValue(out Activity, out Air, out forecastData, out checkValue);
+            //                break;
+            //            case 1:
+            //                userCtrl_Set2.GetValue(out Activity, out Air, out forecastData, out checkValue);
+            //                break;
+            //            case 2:
+            //                userCtrl_Set3.GetValue(out Activity, out Air, out forecastData, out checkValue);
+            //                break;
+            //            case 3:
+            //                userCtrl_Set4.GetValue(out Activity, out Air, out forecastData, out checkValue);
+            //                break;
+            //            case 4:
+            //                userCtrl_Set5.GetValue(out Activity, out Air, out forecastData, out checkValue);
+            //                break;
+            //            case 5:
+            //                userCtrl_Set6.GetValue(out Activity, out Air, out forecastData, out checkValue);
+            //                break;
+            //            case 6:
+            //                userCtrl_Set7.GetValue(out Activity, out Air, out forecastData, out checkValue);
+            //                break;
+            //            case 7:
+            //                userCtrl_Set8.GetValue(out Activity, out Air, out forecastData, out checkValue);
+            //                break;
+            //            case 8:
+            //                userCtrl_Set9.GetValue(out Activity, out Air, out forecastData, out checkValue);
+            //                break;
+            //            case 9:
+            //                userCtrl_Set10.GetValue(out Activity, out Air, out forecastData, out checkValue);
+            //                break;
+            //            case 10:
+            //                userCtrl_Set11.GetValue(out Activity, out Air, out forecastData, out checkValue);
+            //                break;
+            //            case 11:
+            //                userCtrl_Set12.GetValue(out Activity, out Air, out forecastData, out checkValue);
+            //                break;
+            //        }
+
+            //        ps.Time.Year = Activity["Year"];
+            //        ps.Time.Month = Activity["Month"];
+            //        ps.Time.Day = Activity["Day"];
+
+            //        ps.Time.Hour = Activity["Hour"];
+            //        ps.Time.Minute = Activity["Minute"];
+            //        ps.Time.Second = Activity["Second"];
+
+            //        ps.BatteryLevel = Activity["Battery"];
+            //        ps.Calories = Activity["Calories"];
+            //        ps.Pulse = Activity["HeartRate"];
+            //        ps.Distance = Activity["Distance"];
+            //        ps.Steps = Activity["Steps"];
+            //        ps.Goal = Activity["StepsGoal"];
+
+            //        ps.PAI = Activity["PAI"];
+            //        ps.Stand = Activity["StandUp"];
+            //        ps.Stress = Activity["Stress"];
+            //        //ps.ActivityGoal = Activity["ActivityGoal"];
+            //        ps.FatBurning = Activity["FatBurning"];
+
+
+            //        ps.CurrentWeather = Air["Weather_Icon"];
+            //        ps.CurrentTemperature = Air["Temperature"];
+            //        ps.TemperatureMax = Air["TemperatureMax"];
+            //        ps.TemperatureMin = Air["TemperatureMin"];
+
+            //        ps.UVindex = Air["UVindex"];
+            //        ps.AirQuality = Air["AirQuality"];
+            //        ps.Humidity = Air["Humidity"];
+            //        ps.WindForce = Air["WindForce"];
+            //        ps.WindDirection = Air["WindDirection"];
+            //        ps.CompassDirection = Air["CompassDirection"];
+            //        ps.Altitude = Air["Altitude"];
+            //        ps.AirPressure = Air["AirPressure"];
+
+
+            //        ps.Bluetooth = checkValue["Bluetooth"];
+            //        ps.Alarm = checkValue["Alarm"];
+            //        ps.Unlocked = checkValue["Lock"];
+            //        ps.DoNotDisturb = checkValue["DND"];
+
+            //        ps.ShowTemperature = checkValue["ShowTemperature"];
+
+
+            //        List<int> high;
+            //        forecastData.TryGetValue("high", out high);
+            //        List<int> low;
+            //        forecastData.TryGetValue("low", out low);
+            //        List<int> index;
+            //        forecastData.TryGetValue("index", out index);
+            //        int minCount = new[] { high.Count, low.Count, index.Count }.Min();
+            //        ps.forecastData = new List<ForecastData>();
+            //        for (int j = 0; j < minCount; j++)
+            //        {
+            //            ForecastData fd = new ForecastData { high = high[j], low = low[j], index = index[j] };
+            //            ps.forecastData.Add(fd);
+            //        }
+
+            //        ps.SpO2 = Activity["SpO2"];
+            //        ps.TrainingLoad = Activity["TrainingLoad"];
+            //        ps.TrainingLoadGoal = Activity["TrainingLoadGoal"];
+            //        ps.VO2Max = Activity["VO2Max"];
+            //        ps.AQI = Air["AQI"];
+            //        ps.BodyTemp = Activity["BodyTemp"];
+            //        ps.Floor = Activity["Floor"];
+            //        ps.Readiness = Activity["Readiness"];
+
+            //        //if (ps.Calories != 1234)
+            //        //{
+            //            Array.Resize(ref objson, objson.Length + 1);
+            //            objson[count] = ps;
+            //            count++;
+            //        //}
+            //    }
+
+            //    string string_json_temp = JsonConvert.SerializeObject(objson, Formatting.None, new JsonSerializerSettings
+            //    {
+            //        //DefaultValueHandling = DefaultValueHandling.Ignore,
+            //        NullValueHandling = NullValueHandling.Ignore
+            //    });
+            //    var objsontemp = JsonConvert.DeserializeObject<object[]>(string_json_temp);
+
+            //    string formatted = JsonConvert.SerializeObject(objsontemp, Formatting.Indented);
+            //    //richTextBox_JsonText.Text = formatted;
+
+
+            //    if (formatted.Length < 10)
+            //    {
+            //        MessageBox.Show(Properties.FormStrings.Message_SaveOnly1234_Text);
+            //        return;
+            //    }
+
+            //    string fullfilename = saveFileDialog.FileName;
+            //    //richTextBox_JsonText.Text = formatted;
+            //    File.WriteAllText(fullfilename, formatted, Encoding.UTF8);
+            //}
+
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                object[] objson = new object[] { };
-                int count = 0;
+                JObject json = new JObject
+                {
+                    ["version"] = 2,
+                };
+
+                var previewSet = new JArray();
                 for (int i = 0; i < 12; i++)
                 {
-                    Prewiev_States_Json ps = new Prewiev_States_Json();
-                    ps.Time = new TimePreview();
-                    Dictionary<string, int> Activity = new Dictionary<string, int>();
-                    Dictionary<string, int> Air = new Dictionary<string, int>();
-                    Dictionary<string, List<int>> forecastData = new Dictionary<string, List<int>>();
-                    Dictionary<string, bool> checkValue = new Dictionary<string, bool>();
+                    string previewSetStr = "";
                     switch (i)
                     {
                         case 0:
-                            userCtrl_Set1.GetValue(out Activity, out Air, out forecastData, out checkValue);
+                            previewSetStr = userCtrl_Set1.GetValue();
                             break;
                         case 1:
-                            userCtrl_Set2.GetValue(out Activity, out Air, out forecastData, out checkValue);
+                            previewSetStr = userCtrl_Set2.GetValue();
                             break;
                         case 2:
-                            userCtrl_Set3.GetValue(out Activity, out Air, out forecastData, out checkValue);
+                            previewSetStr = userCtrl_Set3.GetValue();
                             break;
                         case 3:
-                            userCtrl_Set4.GetValue(out Activity, out Air, out forecastData, out checkValue);
+                            previewSetStr = userCtrl_Set4.GetValue();
                             break;
                         case 4:
-                            userCtrl_Set5.GetValue(out Activity, out Air, out forecastData, out checkValue);
+                            previewSetStr = userCtrl_Set5.GetValue();
                             break;
                         case 5:
-                            userCtrl_Set6.GetValue(out Activity, out Air, out forecastData, out checkValue);
+                            previewSetStr = userCtrl_Set6.GetValue();
                             break;
                         case 6:
-                            userCtrl_Set7.GetValue(out Activity, out Air, out forecastData, out checkValue);
+                            previewSetStr = userCtrl_Set7.GetValue();
                             break;
                         case 7:
-                            userCtrl_Set8.GetValue(out Activity, out Air, out forecastData, out checkValue);
+                            previewSetStr = userCtrl_Set8.GetValue();
                             break;
                         case 8:
-                            userCtrl_Set9.GetValue(out Activity, out Air, out forecastData, out checkValue);
+                            previewSetStr = userCtrl_Set9.GetValue();
                             break;
                         case 9:
-                            userCtrl_Set10.GetValue(out Activity, out Air, out forecastData, out checkValue);
+                            previewSetStr = userCtrl_Set10.GetValue();
                             break;
                         case 10:
-                            userCtrl_Set11.GetValue(out Activity, out Air, out forecastData, out checkValue);
+                            previewSetStr = userCtrl_Set11.GetValue();
                             break;
                         case 11:
-                            userCtrl_Set12.GetValue(out Activity, out Air, out forecastData, out checkValue);
+                            previewSetStr = userCtrl_Set12.GetValue();
                             break;
                     }
 
-                    ps.Time.Year = Activity["Year"];
-                    ps.Time.Month = Activity["Month"];
-                    ps.Time.Day = Activity["Day"];
-
-                    ps.Time.Hour = Activity["Hour"];
-                    ps.Time.Minute = Activity["Minute"];
-                    ps.Time.Second = Activity["Second"];
-
-                    ps.BatteryLevel = Activity["Battery"];
-                    ps.Calories = Activity["Calories"];
-                    ps.Pulse = Activity["HeartRate"];
-                    ps.Distance = Activity["Distance"];
-                    ps.Steps = Activity["Steps"];
-                    ps.Goal = Activity["StepsGoal"];
-
-                    ps.PAI = Activity["PAI"];
-                    ps.Stand = Activity["StandUp"];
-                    ps.Stress = Activity["Stress"];
-                    //ps.ActivityGoal = Activity["ActivityGoal"];
-                    ps.FatBurning = Activity["FatBurning"];
-
-
-                    ps.CurrentWeather = Air["Weather_Icon"];
-                    ps.CurrentTemperature = Air["Temperature"];
-                    ps.TemperatureMax = Air["TemperatureMax"];
-                    ps.TemperatureMin = Air["TemperatureMin"];
-
-                    ps.UVindex = Air["UVindex"];
-                    ps.AirQuality = Air["AirQuality"];
-                    ps.Humidity = Air["Humidity"];
-                    ps.WindForce = Air["WindForce"];
-                    ps.WindDirection = Air["WindDirection"];
-                    ps.CompassDirection = Air["CompassDirection"];
-                    ps.Altitude = Air["Altitude"];
-                    ps.AirPressure = Air["AirPressure"];
-
-
-                    ps.Bluetooth = checkValue["Bluetooth"];
-                    ps.Alarm = checkValue["Alarm"];
-                    ps.Unlocked = checkValue["Lock"];
-                    ps.DoNotDisturb = checkValue["DND"];
-
-                    ps.ShowTemperature = checkValue["ShowTemperature"];
-
-
-                    List<int> high;
-                    forecastData.TryGetValue("high", out high);
-                    List<int> low;
-                    forecastData.TryGetValue("low", out low);
-                    List<int> index;
-                    forecastData.TryGetValue("index", out index);
-                    int minCount = new[] { high.Count, low.Count, index.Count }.Min();
-                    ps.forecastData = new List<ForecastData>();
-                    for (int j = 0; j < minCount; j++)
+                    if (previewSetStr.Length > 5)
                     {
-                        ForecastData fd = new ForecastData { high = high[j], low = low[j], index = index[j] };
-                        ps.forecastData.Add(fd);
+                        JObject previewSetJSON = JObject.Parse(previewSetStr);
+                        previewSet.Add(previewSetJSON);
                     }
-
-                    //if (ps.Calories != 1234)
-                    //{
-                        Array.Resize(ref objson, objson.Length + 1);
-                        objson[count] = ps;
-                        count++;
-                    //}
                 }
 
-                string string_json_temp = JsonConvert.SerializeObject(objson, Formatting.None, new JsonSerializerSettings
-                {
-                    //DefaultValueHandling = DefaultValueHandling.Ignore,
-                    NullValueHandling = NullValueHandling.Ignore
-                });
-                var objsontemp = JsonConvert.DeserializeObject<object[]>(string_json_temp);
-
-                string formatted = JsonConvert.SerializeObject(objsontemp, Formatting.Indented);
-                //richTextBox_JsonText.Text = formatted;
-
-
-                if (formatted.Length < 10)
-                {
-                    MessageBox.Show(Properties.FormStrings.Message_SaveOnly1234_Text);
-                    return;
-                }
-                //text = text.Replace(@"\", "");
-                //text = text.Replace("\"{", "{");
-                //text = text.Replace("}\"", "}");
-                //text = text.Replace(",", ",\r\n");
-                //text = text.Replace(":", ": ");
-                //text = text.Replace(": {", ": {\r\n");
-                //string formatted = JsonConvert.SerializeObject(text, Formatting.Indented);
+                json["previewSet"] = previewSet;
 
                 string fullfilename = saveFileDialog.FileName;
-                //richTextBox_JsonText.Text = formatted;
-                File.WriteAllText(fullfilename, formatted, Encoding.UTF8);
+                File.WriteAllText(fullfilename, json.ToString(), Encoding.UTF8);
             }
+            //}
         }
 
         private void button_JsonPreview_Random_Click(object sender, EventArgs e)
@@ -15819,6 +16991,608 @@ namespace Watch_Face_Editor
             }
         }
 
+        private void uCtrl_AlarmClock_Elm_SelectChanged(object sender, EventArgs eventArgs)
+        {
+            string selectElement = uCtrl_AlarmClock_Elm.selectedElement;
+            if (selectElement.Length == 0) HideAllElemenrOptions();
+            ResetHighlightState("AlarmClock");
+
+            ElementAlarmClock alarmClock = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    alarmClock = (ElementAlarmClock)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementAlarmClock");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    alarmClock = (ElementAlarmClock)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementAlarmClock");
+                }
+            }
+            if (alarmClock != null)
+            {
+                hmUI_widget_IMG_NUMBER img_number = null;
+                hmUI_widget_IMG icon = null;
+                hmUI_widget_TEXT text = null;
+
+                switch (selectElement)
+                {
+                    case "Number":
+                        if (uCtrl_AlarmClock_Elm.checkBox_Number.Checked)
+                        {
+                            img_number = alarmClock.Number;
+                            Read_ImgNumber_Options(img_number, false, false, "", true, false, true, true);
+                            ShowElemenrOptions("Text");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Number_Font":
+                        if (uCtrl_AlarmClock_Elm.checkBox_Number_Font.Checked)
+                        {
+                            text = alarmClock.Number_Font;
+                            Read_Text_Options(text, false, false);
+                            ShowElemenrOptions("SystemFont");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Icon":
+                        if (uCtrl_AlarmClock_Elm.checkBox_Icon.Checked)
+                        {
+                            icon = alarmClock.Icon;
+                            Read_Icon_Options(icon);
+                            ShowElemenrOptions("Icon");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                }
+
+            }
+        }
+
+        private void uCtrl_TrainingLoad_Elm_SelectChanged(object sender, EventArgs eventArgs)
+        {
+            string selectElement = uCtrl_TrainingLoad_Elm.selectedElement;
+            if (selectElement.Length == 0) HideAllElemenrOptions();
+            ResetHighlightState("TrainingLoad");
+
+            ElementTrainingLoad trainingLoad = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    trainingLoad = (ElementTrainingLoad)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementTrainingLoad");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    trainingLoad = (ElementTrainingLoad)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementTrainingLoad");
+                }
+            }
+            if (trainingLoad != null)
+            {
+                hmUI_widget_IMG_LEVEL img_level = null;
+                hmUI_widget_IMG_PROGRESS img_prorgess = null;
+                hmUI_widget_IMG_NUMBER img_number = null;
+                hmUI_widget_IMG_POINTER img_pointer = null;
+                Circle_Scale circle_scale = null;
+                hmUI_widget_IMG icon = null;
+                hmUI_widget_TEXT text = null;
+
+                switch (selectElement)
+                {
+                    case "Images":
+                        if (uCtrl_TrainingLoad_Elm.checkBox_Images.Checked)
+                        {
+                            img_level = trainingLoad.Images;
+                            Read_ImgLevel_Options(img_level, 3, false, true);
+                            ShowElemenrOptions("Images");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Segments":
+                        if (uCtrl_TrainingLoad_Elm.checkBox_Segments.Checked)
+                        {
+                            img_prorgess = trainingLoad.Segments;
+                            Read_ImgProrgess_Options(img_prorgess, 3, true);
+                            ShowElemenrOptions("Segments");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Number":
+                        if (uCtrl_TrainingLoad_Elm.checkBox_Number.Checked)
+                        {
+                            img_number = trainingLoad.Number;
+                            Read_ImgNumber_Options(img_number, false, false, "", true, false, true, true);
+                            ShowElemenrOptions("Text");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Number_Font":
+                        if (uCtrl_TrainingLoad_Elm.checkBox_Number_Font.Checked)
+                        {
+                            text = trainingLoad.Number_Font;
+                            Read_Text_Options(text, false, true);
+                            ShowElemenrOptions("SystemFont");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Pointer":
+                        if (uCtrl_TrainingLoad_Elm.checkBox_Pointer.Checked)
+                        {
+                            img_pointer = trainingLoad.Pointer;
+                            Read_ImgPointer_Options(img_pointer, false);
+                            ShowElemenrOptions("Pointer");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Circle_Scale":
+                        if (uCtrl_TrainingLoad_Elm.checkBox_Circle_Scale.Checked)
+                        {
+                            circle_scale = trainingLoad.Circle_Scale;
+                            Read_CircleScale_Options(circle_scale);
+                            ShowElemenrOptions("Circle_Scale");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Icon":
+                        if (uCtrl_TrainingLoad_Elm.checkBox_Icon.Checked)
+                        {
+                            icon = trainingLoad.Icon;
+                            Read_Icon_Options(icon);
+                            ShowElemenrOptions("Icon");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                }
+
+            }
+        }
+
+        private void uCtrl_VO2Max_Elm_SelectChanged(object sender, EventArgs eventArgs)
+        {
+            string selectElement = uCtrl_VO2Max_Elm.selectedElement;
+            if (selectElement.Length == 0) HideAllElemenrOptions();
+            ResetHighlightState("VO2Max");
+
+            ElementVO2Max vo2max = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    //bool exists = Elements.Exists(e => e.GetType().Name == "ElementDigitalTime");
+                    vo2max = (ElementVO2Max)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementVO2Max");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    vo2max = (ElementVO2Max)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementVO2Max");
+                }
+            }
+            if (vo2max != null)
+            {
+                hmUI_widget_IMG_LEVEL img_level = null;
+                hmUI_widget_IMG_PROGRESS img_prorgess = null;
+                hmUI_widget_IMG_NUMBER img_number = null;
+                hmUI_widget_IMG_POINTER img_pointer = null;
+                Circle_Scale circle_scale = null;
+                hmUI_widget_IMG icon = null;
+                hmUI_widget_TEXT text = null;
+
+                switch (selectElement)
+                {
+                    case "Images":
+                        if (uCtrl_VO2Max_Elm.checkBox_Images.Checked)
+                        {
+                            img_level = vo2max.Images;
+                            Read_ImgLevel_Options(img_level, 7, false, true);
+                            ShowElemenrOptions("Images");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Segments":
+                        if (uCtrl_VO2Max_Elm.checkBox_Segments.Checked)
+                        {
+                            img_prorgess = vo2max.Segments;
+                            Read_ImgProrgess_Options(img_prorgess, 7, true);
+                            ShowElemenrOptions("Segments");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Number":
+                        if (uCtrl_VO2Max_Elm.checkBox_Number.Checked)
+                        {
+                            img_number = vo2max.Number;
+                            Read_ImgNumber_Options(img_number, false, false, "", true, false, true, true);
+                            ShowElemenrOptions("Text");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Number_Font":
+                        if (uCtrl_VO2Max_Elm.checkBox_Number_Font.Checked)
+                        {
+                            text = vo2max.Number_Font;
+                            Read_Text_Options(text, false, true);
+                            ShowElemenrOptions("SystemFont");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Pointer":
+                        if (uCtrl_VO2Max_Elm.checkBox_Pointer.Checked)
+                        {
+                            img_pointer = vo2max.Pointer;
+                            Read_ImgPointer_Options(img_pointer, false);
+                            ShowElemenrOptions("Pointer");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Circle_Scale":
+                        if (uCtrl_VO2Max_Elm.checkBox_Circle_Scale.Checked)
+                        {
+                            circle_scale = vo2max.Circle_Scale;
+                            Read_CircleScale_Options(circle_scale);
+                            ShowElemenrOptions("Circle_Scale");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Icon":
+                        if (uCtrl_VO2Max_Elm.checkBox_Icon.Checked)
+                        {
+                            icon = vo2max.Icon;
+                            Read_Icon_Options(icon);
+                            ShowElemenrOptions("Icon");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                }
+
+            }
+        }
+
+        private void uCtrl_AQI_Elm_SelectChanged(object sender, EventArgs eventArgs)
+        {
+            string selectElement = uCtrl_AQI_Elm.selectedElement;
+            if (selectElement.Length == 0) HideAllElemenrOptions();
+            ResetHighlightState("AQI");
+
+            ElementAQI aqi = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    aqi = (ElementAQI)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementAQI");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    aqi = (ElementAQI)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementAQI");
+                }
+            }
+            if (aqi != null)
+            {
+                hmUI_widget_IMG_LEVEL img_level = null;
+                hmUI_widget_IMG_PROGRESS img_prorgess = null;
+                hmUI_widget_IMG_NUMBER img_number = null;
+                hmUI_widget_IMG_POINTER img_pointer = null;
+                Circle_Scale circle_scale = null;
+                hmUI_widget_IMG icon = null;
+                hmUI_widget_TEXT text = null;
+
+                switch (selectElement)
+                {
+                    case "Images":
+                        if (uCtrl_AQI_Elm.checkBox_Images.Checked)
+                        {
+                            img_level = aqi.Images;
+                            Read_ImgLevel_Options(img_level, 6, false, true);
+                            ShowElemenrOptions("Images");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Segments":
+                        if (uCtrl_AQI_Elm.checkBox_Segments.Checked)
+                        {
+                            img_prorgess = aqi.Segments;
+                            Read_ImgProrgess_Options(img_prorgess, 6, true);
+                            ShowElemenrOptions("Segments");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Number":
+                        if (uCtrl_AQI_Elm.checkBox_Number.Checked)
+                        {
+                            img_number = aqi.Number;
+                            Read_ImgNumber_Options(img_number, false, false, "", true, false, true, true);
+                            ShowElemenrOptions("Text");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Number_Font":
+                        if (uCtrl_AQI_Elm.checkBox_Number_Font.Checked)
+                        {
+                            text = aqi.Number_Font;
+                            Read_Text_Options(text, false, true);
+                            ShowElemenrOptions("SystemFont");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Pointer":
+                        if (uCtrl_AQI_Elm.checkBox_Pointer.Checked)
+                        {
+                            img_pointer = aqi.Pointer;
+                            Read_ImgPointer_Options(img_pointer, false);
+                            ShowElemenrOptions("Pointer");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Circle_Scale":
+                        if (uCtrl_AQI_Elm.checkBox_Circle_Scale.Checked)
+                        {
+                            circle_scale = aqi.Circle_Scale;
+                            Read_CircleScale_Options(circle_scale);
+                            ShowElemenrOptions("Circle_Scale");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Icon":
+                        if (uCtrl_AQI_Elm.checkBox_Icon.Checked)
+                        {
+                            icon = aqi.Icon;
+                            Read_Icon_Options(icon);
+                            ShowElemenrOptions("Icon");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                }
+
+            }
+        }
+
+        private void uCtrl_BodyTemp_Elm_SelectChanged(object sender, EventArgs eventArgs)
+        {
+            string selectElement = uCtrl_BodyTemp_Elm.selectedElement;
+            if (selectElement.Length == 0) HideAllElemenrOptions();
+            ResetHighlightState("BodyTemp");
+
+            ElementBodyTemp bodyTemp = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    bodyTemp = (ElementBodyTemp)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementBodyTemp");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    bodyTemp = (ElementBodyTemp)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementBodyTemp");
+                }
+            }
+            if (bodyTemp != null)
+            {
+                hmUI_widget_IMG_NUMBER img_number = null;
+                hmUI_widget_IMG icon = null;
+                hmUI_widget_TEXT text = null;
+
+                switch (selectElement)
+                {
+                    case "Number":
+                        if (uCtrl_BodyTemp_Elm.checkBox_Number.Checked)
+                        {
+                            img_number = bodyTemp.Number;
+                            Read_ImgNumber_Options(img_number, false, false, "", true, false, true, true);
+                            ShowElemenrOptions("Text");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Number_Font":
+                        if (uCtrl_BodyTemp_Elm.checkBox_Number_Font.Checked)
+                        {
+                            text = bodyTemp.Number_Font;
+                            Read_Text_Options(text, true, true);
+                            ShowElemenrOptions("SystemFont");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Icon":
+                        if (uCtrl_BodyTemp_Elm.checkBox_Icon.Checked)
+                        {
+                            icon = bodyTemp.Icon;
+                            Read_Icon_Options(icon);
+                            ShowElemenrOptions("Icon");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                }
+
+            }
+        }
+
+        private void uCtrl_Floor_Elm_SelectChanged(object sender, EventArgs eventArgs)
+        {
+            string selectElement = uCtrl_Floor_Elm.selectedElement;
+            if (selectElement.Length == 0) HideAllElemenrOptions();
+            ResetHighlightState("Floor");
+
+            ElementFloor floor = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    floor = (ElementFloor)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementFloor");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    floor = (ElementFloor)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementFloor");
+                }
+            }
+            if (floor != null)
+            {
+                hmUI_widget_IMG_NUMBER img_number = null;
+                hmUI_widget_IMG icon = null;
+                hmUI_widget_TEXT text = null;
+
+                switch (selectElement)
+                {
+                    case "Number":
+                        if (uCtrl_Floor_Elm.checkBox_Number.Checked)
+                        {
+                            img_number = floor.Number;
+                            Read_ImgNumber_Options(img_number, false, false, "", true, false, true, true);
+                            ShowElemenrOptions("Text");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Number_Font":
+                        if (uCtrl_Floor_Elm.checkBox_Number_Font.Checked)
+                        {
+                            text = floor.Number_Font;
+                            Read_Text_Options(text, true, true);
+                            ShowElemenrOptions("SystemFont");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Icon":
+                        if (uCtrl_Floor_Elm.checkBox_Icon.Checked)
+                        {
+                            icon = floor.Icon;
+                            Read_Icon_Options(icon);
+                            ShowElemenrOptions("Icon");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                }
+
+            }
+        }
+
+        private void uCtrl_Readiness_Elm_SelectChanged(object sender, EventArgs eventArgs)
+        {
+            string selectElement = uCtrl_Readiness_Elm.selectedElement;
+            if (selectElement.Length == 0) HideAllElemenrOptions();
+            ResetHighlightState("Readiness");
+
+            ElementReadiness readiness = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    readiness = (ElementReadiness)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementReadiness");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    readiness = (ElementReadiness)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementReadiness");
+                }
+            }
+            if (readiness != null)
+            {
+                hmUI_widget_IMG_LEVEL img_level = null;
+                hmUI_widget_IMG_PROGRESS img_prorgess = null;
+                hmUI_widget_IMG_NUMBER img_number = null;
+                hmUI_widget_IMG_POINTER img_pointer = null;
+                Circle_Scale circle_scale = null;
+                hmUI_widget_IMG icon = null;
+                hmUI_widget_TEXT text = null;
+
+                switch (selectElement)
+                {
+                    case "Images":
+                        if (uCtrl_Readiness_Elm.checkBox_Images.Checked)
+                        {
+                            img_level = readiness.Images;
+                            Read_ImgLevel_Options(img_level, 10, true, true);
+                            ShowElemenrOptions("Images");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Segments":
+                        if (uCtrl_Readiness_Elm.checkBox_Segments.Checked)
+                        {
+                            img_prorgess = readiness.Segments;
+                            Read_ImgProrgess_Options(img_prorgess, 10, false);
+                            ShowElemenrOptions("Segments");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Number":
+                        if (uCtrl_Readiness_Elm.checkBox_Number.Checked)
+                        {
+                            img_number = readiness.Number;
+                            Read_ImgNumber_Options(img_number, false, false, "", true, false, true, true);
+                            ShowElemenrOptions("Text");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Number_Font":
+                        if (uCtrl_Readiness_Elm.checkBox_Number_Font.Checked)
+                        {
+                            text = readiness.Number_Font;
+                            Read_Text_Options(text, false, true);
+                            ShowElemenrOptions("SystemFont");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Pointer":
+                        if (uCtrl_Readiness_Elm.checkBox_Pointer.Checked)
+                        {
+                            img_pointer = readiness.Pointer;
+                            Read_ImgPointer_Options(img_pointer, false);
+                            ShowElemenrOptions("Pointer");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Circle_Scale":
+                        if (uCtrl_Readiness_Elm.checkBox_Circle_Scale.Checked)
+                        {
+                            circle_scale = readiness.Circle_Scale;
+                            Read_CircleScale_Options(circle_scale);
+                            ShowElemenrOptions("Circle_Scale");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Icon":
+                        if (uCtrl_Readiness_Elm.checkBox_Icon.Checked)
+                        {
+                            icon = readiness.Icon;
+                            Read_Icon_Options(icon);
+                            ShowElemenrOptions("Icon");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                }
+
+            }
+        }
+
         private void uCtrl_Image_Elm_SelectChanged(object sender, EventArgs eventArgs)
         {
             ResetHighlightState("Image");
@@ -16741,7 +18515,58 @@ namespace Watch_Face_Editor
                             ElementCompass compassElement = (ElementCompass)element;
                             Watch_Face.ScreenAOD.Elements.Add((ElementCompass)compassElement.Clone());
                             break;
-#endregion*/
+                        #endregion*/
+
+
+                        #region ElementAlarmClock
+                        case "ElementAlarmClock":
+                            ElementAlarmClock alarmClockElement = (ElementAlarmClock)element;
+                            Watch_Face.ScreenAOD.Elements.Add((ElementAlarmClock)alarmClockElement.Clone());
+                            break;
+                        #endregion
+
+                        #region ElementTrainingLoad
+                        case "ElementTrainingLoad":
+                            ElementTrainingLoad trainingLoadElement = (ElementTrainingLoad)element;
+                            Watch_Face.ScreenAOD.Elements.Add((ElementTrainingLoad)trainingLoadElement.Clone());
+                            break;
+                        #endregion
+
+                        #region ElementVO2Max
+                        case "ElementVO2Max":
+                            ElementVO2Max vo2maxElement = (ElementVO2Max)element;
+                            Watch_Face.ScreenAOD.Elements.Add((ElementVO2Max)vo2maxElement.Clone());
+                            break;
+                        #endregion
+
+                        #region ElementAQI
+                        case "ElementAQI":
+                            ElementAQI aqiElement = (ElementAQI)element;
+                            Watch_Face.ScreenAOD.Elements.Add((ElementAQI)aqiElement.Clone());
+                            break;
+                        #endregion
+
+                        #region ElementBodyTemp
+                        case "ElementBodyTemp":
+                            ElementBodyTemp bodyTempElement = (ElementBodyTemp)element;
+                            Watch_Face.ScreenAOD.Elements.Add((ElementBodyTemp)bodyTempElement.Clone());
+                            break;
+                        #endregion
+
+                        #region ElementFloor
+                        case "ElementFloor":
+                            ElementFloor floorElement = (ElementFloor)element;
+                            Watch_Face.ScreenAOD.Elements.Add((ElementFloor)floorElement.Clone());
+                            break;
+                        #endregion
+
+                        #region ElementReadiness
+                        case "ElementReadiness":
+                            ElementReadiness readinessElement = (ElementReadiness)element;
+                            Watch_Face.ScreenAOD.Elements.Add((ElementReadiness)readinessElement.Clone());
+                            break;
+                        #endregion
+
                     }
                 }
 
@@ -18219,6 +20044,360 @@ namespace Watch_Face_Editor
             FormText();
         }
 
+        private void uCtrl_AlarmClock_Elm_OptionsMoved(object sender, EventArgs eventArgs, Dictionary<string, int> elementOptions)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+
+            ElementAlarmClock alarmClock = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenNormal.Elements.Exists(e => e.GetType().Name == "ElementAlarmClock");
+                    //digitalTime = (ElementAnalogTime)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementAnalogTime");
+                    if (!exists) Watch_Face.ScreenNormal.Elements.Add(new ElementAlarmClock());
+                    alarmClock = (ElementAlarmClock)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementAlarmClock");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenAOD.Elements.Exists(e => e.GetType().Name == "ElementAlarmClock");
+                    //digitalTime = (ElementAnalogTime)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementAnalogTime");
+                    if (!exists) Watch_Face.ScreenAOD.Elements.Add(new ElementAlarmClock());
+                    alarmClock = (ElementAlarmClock)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementAlarmClock");
+                }
+            }
+
+            if (alarmClock != null)
+            {
+                if (alarmClock.Number == null) alarmClock.Number = new hmUI_widget_IMG_NUMBER();
+                if (alarmClock.Number_Font == null) alarmClock.Number_Font = new hmUI_widget_TEXT();
+                if (alarmClock.Icon == null) alarmClock.Icon = new hmUI_widget_IMG();
+
+                if (elementOptions.ContainsKey("Number")) alarmClock.Number.position = elementOptions["Number"];
+                if (elementOptions.ContainsKey("Number_Font")) alarmClock.Number_Font.position = elementOptions["Number_Font"];
+                if (elementOptions.ContainsKey("Icon")) alarmClock.Icon.position = elementOptions["Icon"];
+
+            }
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_TrainingLoad_Elm_OptionsMoved(object sender, EventArgs eventArgs, Dictionary<string, int> elementOptions)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+
+            ElementTrainingLoad trainingLoad = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenNormal.Elements.Exists(e => e.GetType().Name == "ElementTrainingLoad");
+                    //digitalTime = (ElementAnalogTime)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementAnalogTime");
+                    if (!exists) Watch_Face.ScreenNormal.Elements.Add(new ElementTrainingLoad());
+                    trainingLoad = (ElementTrainingLoad)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementTrainingLoad");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenAOD.Elements.Exists(e => e.GetType().Name == "ElementTrainingLoad");
+                    //digitalTime = (ElementAnalogTime)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementAnalogTime");
+                    if (!exists) Watch_Face.ScreenAOD.Elements.Add(new ElementTrainingLoad());
+                    trainingLoad = (ElementTrainingLoad)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementTrainingLoad");
+                }
+            }
+
+            if (trainingLoad != null)
+            {
+                if (trainingLoad.Images == null) trainingLoad.Images = new hmUI_widget_IMG_LEVEL();
+                if (trainingLoad.Segments == null) trainingLoad.Segments = new hmUI_widget_IMG_PROGRESS();
+                if (trainingLoad.Number == null) trainingLoad.Number = new hmUI_widget_IMG_NUMBER();
+                if (trainingLoad.Number_Font == null) trainingLoad.Number_Font = new hmUI_widget_TEXT();
+                if (trainingLoad.Pointer == null) trainingLoad.Pointer = new hmUI_widget_IMG_POINTER();
+                if (trainingLoad.Circle_Scale == null) trainingLoad.Circle_Scale = new Circle_Scale();
+                if (trainingLoad.Icon == null) trainingLoad.Icon = new hmUI_widget_IMG();
+
+                if (elementOptions.ContainsKey("Images")) trainingLoad.Images.position = elementOptions["Images"];
+                if (elementOptions.ContainsKey("Segments")) trainingLoad.Segments.position = elementOptions["Segments"];
+                if (elementOptions.ContainsKey("Number")) trainingLoad.Number.position = elementOptions["Number"];
+                if (elementOptions.ContainsKey("Number_Font")) trainingLoad.Number_Font.position = elementOptions["Number_Font"];
+                if (elementOptions.ContainsKey("Pointer")) trainingLoad.Pointer.position = elementOptions["Pointer"];
+                if (elementOptions.ContainsKey("Circle_Scale")) trainingLoad.Circle_Scale.position = elementOptions["Circle_Scale"];
+                if (elementOptions.ContainsKey("Icon")) trainingLoad.Icon.position = elementOptions["Icon"];
+
+            }
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_VO2Max_Elm_OptionsMoved(object sender, EventArgs eventArgs, Dictionary<string, int> elementOptions)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+
+            ElementVO2Max vo2max = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenNormal.Elements.Exists(e => e.GetType().Name == "ElementVO2Max");
+                    //digitalTime = (ElementAnalogTime)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementAnalogTime");
+                    if (!exists) Watch_Face.ScreenNormal.Elements.Add(new ElementVO2Max());
+                    vo2max = (ElementVO2Max)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementVO2Max");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenAOD.Elements.Exists(e => e.GetType().Name == "ElementVO2Max");
+                    //digitalTime = (ElementAnalogTime)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementAnalogTime");
+                    if (!exists) Watch_Face.ScreenAOD.Elements.Add(new ElementVO2Max());
+                    vo2max = (ElementVO2Max)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementVO2Max");
+                }
+            }
+
+            if (vo2max != null)
+            {
+                if (vo2max.Images == null) vo2max.Images = new hmUI_widget_IMG_LEVEL();
+                if (vo2max.Segments == null) vo2max.Segments = new hmUI_widget_IMG_PROGRESS();
+                if (vo2max.Number == null) vo2max.Number = new hmUI_widget_IMG_NUMBER();
+                if (vo2max.Number_Font == null) vo2max.Number_Font = new hmUI_widget_TEXT();
+                if (vo2max.Pointer == null) vo2max.Pointer = new hmUI_widget_IMG_POINTER();
+                if (vo2max.Circle_Scale == null) vo2max.Circle_Scale = new Circle_Scale();
+                if (vo2max.Icon == null) vo2max.Icon = new hmUI_widget_IMG();
+
+                if (elementOptions.ContainsKey("Images")) vo2max.Images.position = elementOptions["Images"];
+                if (elementOptions.ContainsKey("Segments")) vo2max.Segments.position = elementOptions["Segments"];
+                if (elementOptions.ContainsKey("Number")) vo2max.Number.position = elementOptions["Number"];
+                if (elementOptions.ContainsKey("Number_Font")) vo2max.Number_Font.position = elementOptions["Number_Font"];
+                if (elementOptions.ContainsKey("Pointer")) vo2max.Pointer.position = elementOptions["Pointer"];
+                if (elementOptions.ContainsKey("Circle_Scale")) vo2max.Circle_Scale.position = elementOptions["Circle_Scale"];
+                if (elementOptions.ContainsKey("Icon")) vo2max.Icon.position = elementOptions["Icon"];
+
+            }
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_AQI_Elm_OptionsMoved(object sender, EventArgs eventArgs, Dictionary<string, int> elementOptions)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+
+            ElementAQI aqi = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenNormal.Elements.Exists(e => e.GetType().Name == "ElementAQI");
+                    //digitalTime = (ElementAnalogTime)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementAnalogTime");
+                    if (!exists) Watch_Face.ScreenNormal.Elements.Add(new ElementAQI());
+                    aqi = (ElementAQI)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementAQI");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenAOD.Elements.Exists(e => e.GetType().Name == "ElementAQI");
+                    //digitalTime = (ElementAnalogTime)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementAnalogTime");
+                    if (!exists) Watch_Face.ScreenAOD.Elements.Add(new ElementAQI());
+                    aqi = (ElementAQI)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementAQI");
+                }
+            }
+
+            if (aqi != null)
+            {
+                if (aqi.Images == null) aqi.Images = new hmUI_widget_IMG_LEVEL();
+                if (aqi.Segments == null) aqi.Segments = new hmUI_widget_IMG_PROGRESS();
+                if (aqi.Number == null) aqi.Number = new hmUI_widget_IMG_NUMBER();
+                if (aqi.Number_Font == null) aqi.Number_Font = new hmUI_widget_TEXT();
+                if (aqi.Pointer == null) aqi.Pointer = new hmUI_widget_IMG_POINTER();
+                if (aqi.Circle_Scale == null) aqi.Circle_Scale = new Circle_Scale();
+                if (aqi.Icon == null) aqi.Icon = new hmUI_widget_IMG();
+
+                if (elementOptions.ContainsKey("Images")) aqi.Images.position = elementOptions["Images"];
+                if (elementOptions.ContainsKey("Segments")) aqi.Segments.position = elementOptions["Segments"];
+                if (elementOptions.ContainsKey("Number")) aqi.Number.position = elementOptions["Number"];
+                if (elementOptions.ContainsKey("Number_Font")) aqi.Number_Font.position = elementOptions["Number_Font"];
+                if (elementOptions.ContainsKey("Pointer")) aqi.Pointer.position = elementOptions["Pointer"];
+                if (elementOptions.ContainsKey("Circle_Scale")) aqi.Circle_Scale.position = elementOptions["Circle_Scale"];
+                if (elementOptions.ContainsKey("Icon")) aqi.Icon.position = elementOptions["Icon"];
+
+            }
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_BodyTemp_Elm_OptionsMoved(object sender, EventArgs eventArgs, Dictionary<string, int> elementOptions)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+
+            ElementBodyTemp bodyTemp = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenNormal.Elements.Exists(e => e.GetType().Name == "ElementBodyTemp");
+                    //digitalTime = (ElementAnalogTime)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementAnalogTime");
+                    if (!exists) Watch_Face.ScreenNormal.Elements.Add(new ElementBodyTemp());
+                    bodyTemp = (ElementBodyTemp)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementBodyTemp");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenAOD.Elements.Exists(e => e.GetType().Name == "ElementBodyTemp");
+                    //digitalTime = (ElementAnalogTime)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementAnalogTime");
+                    if (!exists) Watch_Face.ScreenAOD.Elements.Add(new ElementBodyTemp());
+                    bodyTemp = (ElementBodyTemp)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementBodyTemp");
+                }
+            }
+
+            if (bodyTemp != null)
+            {
+                if (bodyTemp.Number == null) bodyTemp.Number = new hmUI_widget_IMG_NUMBER();
+                if (bodyTemp.Number_Font == null) bodyTemp.Number_Font = new hmUI_widget_TEXT();
+                if (bodyTemp.Icon == null) bodyTemp.Icon = new hmUI_widget_IMG();
+
+                if (elementOptions.ContainsKey("Number")) bodyTemp.Number.position = elementOptions["Number"];
+                if (elementOptions.ContainsKey("Number_Font")) bodyTemp.Number_Font.position = elementOptions["Number_Font"];
+                if (elementOptions.ContainsKey("Icon")) bodyTemp.Icon.position = elementOptions["Icon"];
+
+            }
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_Floor_Elm_OptionsMoved(object sender, EventArgs eventArgs, Dictionary<string, int> elementOptions)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+
+            ElementFloor floor = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenNormal.Elements.Exists(e => e.GetType().Name == "ElementFloor");
+                    //digitalTime = (ElementAnalogTime)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementAnalogTime");
+                    if (!exists) Watch_Face.ScreenNormal.Elements.Add(new ElementFloor());
+                    floor = (ElementFloor)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementFloor");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenAOD.Elements.Exists(e => e.GetType().Name == "ElementFloor");
+                    //digitalTime = (ElementAnalogTime)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementAnalogTime");
+                    if (!exists) Watch_Face.ScreenAOD.Elements.Add(new ElementFloor());
+                    floor = (ElementFloor)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementFloor");
+                }
+            }
+
+            if (floor != null)
+            {
+                if (floor.Number == null) floor.Number = new hmUI_widget_IMG_NUMBER();
+                if (floor.Number_Font == null) floor.Number_Font = new hmUI_widget_TEXT();
+                if (floor.Icon == null) floor.Icon = new hmUI_widget_IMG();
+
+                if (elementOptions.ContainsKey("Number")) floor.Number.position = elementOptions["Number"];
+                if (elementOptions.ContainsKey("Number_Font")) floor.Number_Font.position = elementOptions["Number_Font"];
+                if (elementOptions.ContainsKey("Icon")) floor.Icon.position = elementOptions["Icon"];
+
+            }
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_Readiness_Elm_OptionsMoved(object sender, EventArgs eventArgs, Dictionary<string, int> elementOptions)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+
+            ElementReadiness readiness = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenNormal.Elements.Exists(e => e.GetType().Name == "ElementReadiness");
+                    //digitalTime = (ElementAnalogTime)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementAnalogTime");
+                    if (!exists) Watch_Face.ScreenNormal.Elements.Add(new ElementReadiness());
+                    readiness = (ElementReadiness)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementReadiness");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenAOD.Elements.Exists(e => e.GetType().Name == "ElementReadiness");
+                    //digitalTime = (ElementAnalogTime)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementAnalogTime");
+                    if (!exists) Watch_Face.ScreenAOD.Elements.Add(new ElementReadiness());
+                    readiness = (ElementReadiness)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementReadiness");
+                }
+            }
+
+            if (readiness != null)
+            {
+                if (readiness.Images == null) readiness.Images = new hmUI_widget_IMG_LEVEL();
+                if (readiness.Segments == null) readiness.Segments = new hmUI_widget_IMG_PROGRESS();
+                if (readiness.Number == null) readiness.Number = new hmUI_widget_IMG_NUMBER();
+                if (readiness.Number_Font == null) readiness.Number_Font = new hmUI_widget_TEXT();
+                if (readiness.Pointer == null) readiness.Pointer = new hmUI_widget_IMG_POINTER();
+                if (readiness.Circle_Scale == null) readiness.Circle_Scale = new Circle_Scale();
+                if (readiness.Icon == null) readiness.Icon = new hmUI_widget_IMG();
+
+                if (elementOptions.ContainsKey("Images")) readiness.Images.position = elementOptions["Images"];
+                if (elementOptions.ContainsKey("Segments")) readiness.Segments.position = elementOptions["Segments"];
+                if (elementOptions.ContainsKey("Number")) readiness.Number.position = elementOptions["Number"];
+                if (elementOptions.ContainsKey("Number_Font")) readiness.Number_Font.position = elementOptions["Number_Font"];
+                if (elementOptions.ContainsKey("Pointer")) readiness.Pointer.position = elementOptions["Pointer"];
+                if (elementOptions.ContainsKey("Circle_Scale")) readiness.Circle_Scale.position = elementOptions["Circle_Scale"];
+                if (elementOptions.ContainsKey("Icon")) readiness.Icon.position = elementOptions["Icon"];
+
+            }
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
         #endregion
 
         private void uCtrl_Shortcuts_Elm_VisibleElementChanged(object sender, EventArgs eventArgs, bool visible)
@@ -18937,6 +21116,210 @@ namespace Watch_Face_Editor
             if (compass != null)
             {
                 compass.visible = visible;
+            }
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_AlarmClock_Elm_VisibleElementChanged(object sender, EventArgs eventArgs, bool visible)
+        {
+            ElementAlarmClock alarmClock = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    alarmClock = (ElementAlarmClock)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementAlarmClock");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    alarmClock = (ElementAlarmClock)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementAlarmClock");
+                }
+            }
+            if (alarmClock != null)
+            {
+                alarmClock.visible = visible;
+            }
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_TrainingLoad_Elm_VisibleElementChanged(object sender, EventArgs eventArgs, bool visible)
+        {
+            ElementTrainingLoad trainingLoad = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    trainingLoad = (ElementTrainingLoad)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementTrainingLoad");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    trainingLoad = (ElementTrainingLoad)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementTrainingLoad");
+                }
+            }
+            if (trainingLoad != null)
+            {
+                trainingLoad.visible = visible;
+            }
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_VO2Max_Elm_VisibleElementChanged(object sender, EventArgs eventArgs, bool visible)
+        {
+            ElementVO2Max vo2max = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    vo2max = (ElementVO2Max)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementVO2Max");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    vo2max = (ElementVO2Max)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementVO2Max");
+                }
+            }
+            if (vo2max != null)
+            {
+                vo2max.visible = visible;
+            }
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_AQI_Elm_VisibleElementChanged(object sender, EventArgs eventArgs, bool visible)
+        {
+            ElementAQI aqi = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    aqi = (ElementAQI)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementAQI");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    aqi = (ElementAQI)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementAQI");
+                }
+            }
+            if (aqi != null)
+            {
+                aqi.visible = visible;
+            }
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_BodyTemp_Elm_VisibleElementChanged(object sender, EventArgs eventArgs, bool visible)
+        {
+            ElementBodyTemp bodyTemp = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    bodyTemp = (ElementBodyTemp)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementBodyTemp");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    bodyTemp = (ElementBodyTemp)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementBodyTemp");
+                }
+            }
+            if (bodyTemp != null)
+            {
+                bodyTemp.visible = visible;
+            }
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_Floor_Elm_VisibleElementChanged(object sender, EventArgs eventArgs, bool visible)
+        {
+            ElementFloor floor = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    floor = (ElementFloor)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementFloor");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    floor = (ElementFloor)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementFloor");
+                }
+            }
+            if (floor != null)
+            {
+                floor.visible = visible;
+            }
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_Readiness_Elm_VisibleElementChanged(object sender, EventArgs eventArgs, bool visible)
+        {
+            ElementReadiness readiness = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    //bool exists = Elements.Exists(e => e.GetType().Name == "ElementAnalogTime");
+                    readiness = (ElementReadiness)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementReadiness");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    readiness = (ElementReadiness)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementReadiness");
+                }
+            }
+            if (readiness != null)
+            {
+                readiness.visible = visible;
             }
 
             JSON_Modified = true;
@@ -21554,6 +23937,520 @@ namespace Watch_Face_Editor
             FormText();
         }
 
+        private void uCtrl_AlarmClock_Elm_VisibleOptionsChanged(object sender, EventArgs eventArgs)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+
+            ElementAlarmClock alarmClock = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenNormal.Elements.Exists(e => e.GetType().Name == "ElementAlarmClock");
+                    if (!exists) Watch_Face.ScreenNormal.Elements.Add(new ElementAlarmClock());
+                    alarmClock = (ElementAlarmClock)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementAlarmClock");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenAOD.Elements.Exists(e => e.GetType().Name == "ElementAlarmClock");
+                    if (!exists) Watch_Face.ScreenAOD.Elements.Add(new ElementAlarmClock());
+                    alarmClock = (ElementAlarmClock)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementAlarmClock");
+                }
+            }
+
+            if (alarmClock != null)
+            {
+                if (alarmClock.Number == null) alarmClock.Number = new hmUI_widget_IMG_NUMBER();
+                if (alarmClock.Number_Font == null) alarmClock.Number_Font = new hmUI_widget_TEXT();
+                if (alarmClock.Icon == null) alarmClock.Icon = new hmUI_widget_IMG();
+
+                Dictionary<string, int> elementOptions = uCtrl_AlarmClock_Elm.GetOptionsPosition();
+                if (elementOptions.ContainsKey("Number")) alarmClock.Number.position = elementOptions["Number"];
+                if (elementOptions.ContainsKey("Number_Font")) alarmClock.Number_Font.position = elementOptions["Number_Font"];
+                if (elementOptions.ContainsKey("Icon")) alarmClock.Icon.position = elementOptions["Icon"];
+
+                CheckBox checkBox = (CheckBox)sender;
+                string name = checkBox.Name;
+                switch (name)
+                {
+                    case "checkBox_Number":
+                        alarmClock.Number.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Number_Font":
+                        alarmClock.Number_Font.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Icon":
+                        alarmClock.Icon.visible = checkBox.Checked;
+                        break;
+                }
+
+            }
+
+            uCtrl_AlarmClock_Elm_SelectChanged(sender, eventArgs);
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_TrainingLoad_Elm_VisibleOptionsChanged(object sender, EventArgs eventArgs)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+
+            ElementTrainingLoad trainingLoad = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenNormal.Elements.Exists(e => e.GetType().Name == "ElementTrainingLoad");
+                    if (!exists) Watch_Face.ScreenNormal.Elements.Add(new ElementTrainingLoad());
+                    trainingLoad = (ElementTrainingLoad)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementTrainingLoad");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenAOD.Elements.Exists(e => e.GetType().Name == "ElementTrainingLoad");
+                    if (!exists) Watch_Face.ScreenAOD.Elements.Add(new ElementTrainingLoad());
+                    trainingLoad = (ElementTrainingLoad)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementTrainingLoad");
+                }
+            }
+
+            if (trainingLoad != null)
+            {
+                if (trainingLoad.Images == null) trainingLoad.Images = new hmUI_widget_IMG_LEVEL();
+                if (trainingLoad.Segments == null) trainingLoad.Segments = new hmUI_widget_IMG_PROGRESS();
+                if (trainingLoad.Number == null) trainingLoad.Number = new hmUI_widget_IMG_NUMBER();
+                if (trainingLoad.Number_Font == null) trainingLoad.Number_Font = new hmUI_widget_TEXT();
+                if (trainingLoad.Pointer == null) trainingLoad.Pointer = new hmUI_widget_IMG_POINTER();
+                if (trainingLoad.Circle_Scale == null) trainingLoad.Circle_Scale = new Circle_Scale();
+                if (trainingLoad.Icon == null) trainingLoad.Icon = new hmUI_widget_IMG();
+
+                Dictionary<string, int> elementOptions = uCtrl_TrainingLoad_Elm.GetOptionsPosition();
+                if (elementOptions.ContainsKey("Images")) trainingLoad.Images.position = elementOptions["Images"];
+                if (elementOptions.ContainsKey("Segments")) trainingLoad.Segments.position = elementOptions["Segments"];
+                if (elementOptions.ContainsKey("Number")) trainingLoad.Number.position = elementOptions["Number"];
+                if (elementOptions.ContainsKey("Number_Font")) trainingLoad.Number_Font.position = elementOptions["Number_Font"];
+                if (elementOptions.ContainsKey("Pointer")) trainingLoad.Pointer.position = elementOptions["Pointer"];
+                if (elementOptions.ContainsKey("Circle_Scale")) trainingLoad.Circle_Scale.position = elementOptions["Circle_Scale"];
+                if (elementOptions.ContainsKey("Icon")) trainingLoad.Icon.position = elementOptions["Icon"];
+
+                CheckBox checkBox = (CheckBox)sender;
+                string name = checkBox.Name;
+                switch (name)
+                {
+                    case "checkBox_Images":
+                        trainingLoad.Images.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Segments":
+                        trainingLoad.Segments.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Number":
+                        trainingLoad.Number.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Number_Font":
+                        trainingLoad.Number_Font.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Pointer":
+                        trainingLoad.Pointer.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Circle_Scale":
+                        trainingLoad.Circle_Scale.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Icon":
+                        trainingLoad.Icon.visible = checkBox.Checked;
+                        break;
+                }
+
+            }
+
+            uCtrl_TrainingLoad_Elm_SelectChanged(sender, eventArgs);
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_VO2Max_Elm_VisibleOptionsChanged(object sender, EventArgs eventArgs)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+
+            ElementVO2Max vo2max = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenNormal.Elements.Exists(e => e.GetType().Name == "ElementVO2Max");
+                    if (!exists) Watch_Face.ScreenNormal.Elements.Add(new ElementVO2Max());
+                    vo2max = (ElementVO2Max)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementVO2Max");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenAOD.Elements.Exists(e => e.GetType().Name == "ElementVO2Max");
+                    if (!exists) Watch_Face.ScreenAOD.Elements.Add(new ElementVO2Max());
+                    vo2max = (ElementVO2Max)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementVO2Max");
+                }
+            }
+
+            if (vo2max != null)
+            {
+                if (vo2max.Images == null) vo2max.Images = new hmUI_widget_IMG_LEVEL();
+                if (vo2max.Segments == null) vo2max.Segments = new hmUI_widget_IMG_PROGRESS();
+                if (vo2max.Number == null) vo2max.Number = new hmUI_widget_IMG_NUMBER();
+                if (vo2max.Number_Font == null) vo2max.Number_Font = new hmUI_widget_TEXT();
+                if (vo2max.Pointer == null) vo2max.Pointer = new hmUI_widget_IMG_POINTER();
+                if (vo2max.Circle_Scale == null) vo2max.Circle_Scale = new Circle_Scale();
+                if (vo2max.Icon == null) vo2max.Icon = new hmUI_widget_IMG();
+
+                Dictionary<string, int> elementOptions = uCtrl_VO2Max_Elm.GetOptionsPosition();
+                if (elementOptions.ContainsKey("Images")) vo2max.Images.position = elementOptions["Images"];
+                if (elementOptions.ContainsKey("Segments")) vo2max.Segments.position = elementOptions["Segments"];
+                if (elementOptions.ContainsKey("Number")) vo2max.Number.position = elementOptions["Number"];
+                if (elementOptions.ContainsKey("Number_Font")) vo2max.Number_Font.position = elementOptions["Number_Font"];
+                if (elementOptions.ContainsKey("Pointer")) vo2max.Pointer.position = elementOptions["Pointer"];
+                if (elementOptions.ContainsKey("Circle_Scale")) vo2max.Circle_Scale.position = elementOptions["Circle_Scale"];
+                if (elementOptions.ContainsKey("Icon")) vo2max.Icon.position = elementOptions["Icon"];
+
+                CheckBox checkBox = (CheckBox)sender;
+                string name = checkBox.Name;
+                switch (name)
+                {
+                    case "checkBox_Images":
+                        vo2max.Images.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Segments":
+                        vo2max.Segments.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Number":
+                        vo2max.Number.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Number_Font":
+                        vo2max.Number_Font.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Pointer":
+                        vo2max.Pointer.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Circle_Scale":
+                        vo2max.Circle_Scale.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Icon":
+                        vo2max.Icon.visible = checkBox.Checked;
+                        break;
+                }
+
+            }
+
+            uCtrl_VO2Max_Elm_SelectChanged(sender, eventArgs);
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_AQI_Elm_VisibleOptionsChanged(object sender, EventArgs eventArgs)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+
+            ElementAQI aqi = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenNormal.Elements.Exists(e => e.GetType().Name == "ElementAQI");
+                    if (!exists) Watch_Face.ScreenNormal.Elements.Add(new ElementAQI());
+                    aqi = (ElementAQI)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementAQI");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenAOD.Elements.Exists(e => e.GetType().Name == "ElementAQI");
+                    if (!exists) Watch_Face.ScreenAOD.Elements.Add(new ElementAQI());
+                    aqi = (ElementAQI)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementAQI");
+                }
+            }
+
+            if (aqi != null)
+            {
+                if (aqi.Images == null) aqi.Images = new hmUI_widget_IMG_LEVEL();
+                if (aqi.Segments == null) aqi.Segments = new hmUI_widget_IMG_PROGRESS();
+                if (aqi.Number == null) aqi.Number = new hmUI_widget_IMG_NUMBER();
+                if (aqi.Number_Font == null) aqi.Number_Font = new hmUI_widget_TEXT();
+                if (aqi.Pointer == null) aqi.Pointer = new hmUI_widget_IMG_POINTER();
+                if (aqi.Circle_Scale == null) aqi.Circle_Scale = new Circle_Scale();
+                if (aqi.Icon == null) aqi.Icon = new hmUI_widget_IMG();
+
+                Dictionary<string, int> elementOptions = uCtrl_AQI_Elm.GetOptionsPosition();
+                if (elementOptions.ContainsKey("Images")) aqi.Images.position = elementOptions["Images"];
+                if (elementOptions.ContainsKey("Segments")) aqi.Segments.position = elementOptions["Segments"];
+                if (elementOptions.ContainsKey("Number")) aqi.Number.position = elementOptions["Number"];
+                if (elementOptions.ContainsKey("Number_Font")) aqi.Number_Font.position = elementOptions["Number_Font"];
+                if (elementOptions.ContainsKey("Pointer")) aqi.Pointer.position = elementOptions["Pointer"];
+                if (elementOptions.ContainsKey("Circle_Scale")) aqi.Circle_Scale.position = elementOptions["Circle_Scale"];
+                if (elementOptions.ContainsKey("Icon")) aqi.Icon.position = elementOptions["Icon"];
+
+                CheckBox checkBox = (CheckBox)sender;
+                string name = checkBox.Name;
+                switch (name)
+                {
+                    case "checkBox_Images":
+                        aqi.Images.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Segments":
+                        aqi.Segments.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Number":
+                        aqi.Number.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Number_Font":
+                        aqi.Number_Font.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Pointer":
+                        aqi.Pointer.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Circle_Scale":
+                        aqi.Circle_Scale.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Icon":
+                        aqi.Icon.visible = checkBox.Checked;
+                        break;
+                }
+
+            }
+
+            uCtrl_AQI_Elm_SelectChanged(sender, eventArgs);
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_BodyTemp_Elm_VisibleOptionsChanged(object sender, EventArgs eventArgs)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+
+            ElementBodyTemp bodyTemp = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenNormal.Elements.Exists(e => e.GetType().Name == "ElementBodyTemp");
+                    if (!exists) Watch_Face.ScreenNormal.Elements.Add(new ElementBodyTemp());
+                    bodyTemp = (ElementBodyTemp)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementBodyTemp");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenAOD.Elements.Exists(e => e.GetType().Name == "ElementBodyTemp");
+                    if (!exists) Watch_Face.ScreenAOD.Elements.Add(new ElementBodyTemp());
+                    bodyTemp = (ElementBodyTemp)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementBodyTemp");
+                }
+            }
+
+            if (bodyTemp != null)
+            {
+                if (bodyTemp.Number == null) bodyTemp.Number = new hmUI_widget_IMG_NUMBER();
+                if (bodyTemp.Number_Font == null) bodyTemp.Number_Font = new hmUI_widget_TEXT();
+                if (bodyTemp.Icon == null) bodyTemp.Icon = new hmUI_widget_IMG();
+
+                Dictionary<string, int> elementOptions = uCtrl_BodyTemp_Elm.GetOptionsPosition();
+                if (elementOptions.ContainsKey("Number")) bodyTemp.Number.position = elementOptions["Number"];
+                if (elementOptions.ContainsKey("Number_Font")) bodyTemp.Number_Font.position = elementOptions["Number_Font"];
+                if (elementOptions.ContainsKey("Icon")) bodyTemp.Icon.position = elementOptions["Icon"];
+
+                CheckBox checkBox = (CheckBox)sender;
+                string name = checkBox.Name;
+                switch (name)
+                {
+                    case "checkBox_Number":
+                        bodyTemp.Number.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Number_Font":
+                        bodyTemp.Number_Font.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Icon":
+                        bodyTemp.Icon.visible = checkBox.Checked;
+                        break;
+                }
+
+            }
+
+            uCtrl_BodyTemp_Elm_SelectChanged(sender, eventArgs);
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_Floor_Elm_VisibleOptionsChanged(object sender, EventArgs eventArgs)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+
+            ElementFloor floor = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenNormal.Elements.Exists(e => e.GetType().Name == "ElementFloor");
+                    if (!exists) Watch_Face.ScreenNormal.Elements.Add(new ElementFloor());
+                    floor = (ElementFloor)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementFloor");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenAOD.Elements.Exists(e => e.GetType().Name == "ElementFloor");
+                    if (!exists) Watch_Face.ScreenAOD.Elements.Add(new ElementFloor());
+                    floor = (ElementFloor)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementFloor");
+                }
+            }
+
+            if (floor != null)
+            {
+                if (floor.Number == null) floor.Number = new hmUI_widget_IMG_NUMBER();
+                if (floor.Number_Font == null) floor.Number_Font = new hmUI_widget_TEXT();
+                if (floor.Icon == null) floor.Icon = new hmUI_widget_IMG();
+
+                Dictionary<string, int> elementOptions = uCtrl_Floor_Elm.GetOptionsPosition();
+                if (elementOptions.ContainsKey("Number")) floor.Number.position = elementOptions["Number"];
+                if (elementOptions.ContainsKey("Number_Font")) floor.Number_Font.position = elementOptions["Number_Font"];
+                if (elementOptions.ContainsKey("Icon")) floor.Icon.position = elementOptions["Icon"];
+
+                CheckBox checkBox = (CheckBox)sender;
+                string name = checkBox.Name;
+                switch (name)
+                {
+                    case "checkBox_Number":
+                        floor.Number.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Number_Font":
+                        floor.Number_Font.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Icon":
+                        floor.Icon.visible = checkBox.Checked;
+                        break;
+                }
+
+            }
+
+            uCtrl_Floor_Elm_SelectChanged(sender, eventArgs);
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_Readiness_Elm_VisibleOptionsChanged(object sender, EventArgs eventArgs)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+
+            ElementReadiness readiness = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenNormal.Elements.Exists(e => e.GetType().Name == "ElementReadiness");
+                    if (!exists) Watch_Face.ScreenNormal.Elements.Add(new ElementReadiness());
+                    readiness = (ElementReadiness)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementReadiness");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenAOD.Elements.Exists(e => e.GetType().Name == "ElementReadiness");
+                    if (!exists) Watch_Face.ScreenAOD.Elements.Add(new ElementReadiness());
+                    readiness = (ElementReadiness)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementReadiness");
+                }
+            }
+
+            if (readiness != null)
+            {
+                if (readiness.Images == null) readiness.Images = new hmUI_widget_IMG_LEVEL();
+                if (readiness.Segments == null) readiness.Segments = new hmUI_widget_IMG_PROGRESS();
+                if (readiness.Number == null) readiness.Number = new hmUI_widget_IMG_NUMBER();
+                if (readiness.Number_Font == null) readiness.Number_Font = new hmUI_widget_TEXT();
+                if (readiness.Pointer == null) readiness.Pointer = new hmUI_widget_IMG_POINTER();
+                if (readiness.Circle_Scale == null) readiness.Circle_Scale = new Circle_Scale();
+                if (readiness.Icon == null) readiness.Icon = new hmUI_widget_IMG();
+
+                Dictionary<string, int> elementOptions = uCtrl_Readiness_Elm.GetOptionsPosition();
+                if (elementOptions.ContainsKey("Images")) readiness.Images.position = elementOptions["Images"];
+                if (elementOptions.ContainsKey("Segments")) readiness.Segments.position = elementOptions["Segments"];
+                if (elementOptions.ContainsKey("Number")) readiness.Number.position = elementOptions["Number"];
+                if (elementOptions.ContainsKey("Number_Font")) readiness.Number_Font.position = elementOptions["Number_Font"];
+                if (elementOptions.ContainsKey("Pointer")) readiness.Pointer.position = elementOptions["Pointer"];
+                if (elementOptions.ContainsKey("Circle_Scale")) readiness.Circle_Scale.position = elementOptions["Circle_Scale"];
+                if (elementOptions.ContainsKey("Icon")) readiness.Icon.position = elementOptions["Icon"];
+
+                CheckBox checkBox = (CheckBox)sender;
+                string name = checkBox.Name;
+                switch (name)
+                {
+                    case "checkBox_Images":
+                        readiness.Images.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Segments":
+                        readiness.Segments.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Number":
+                        readiness.Number.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Number_Font":
+                        readiness.Number_Font.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Pointer":
+                        readiness.Pointer.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Circle_Scale":
+                        readiness.Circle_Scale.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Icon":
+                        readiness.Icon.visible = checkBox.Checked;
+                        break;
+                }
+
+            }
+
+            uCtrl_Readiness_Elm_SelectChanged(sender, eventArgs);
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
         #endregion
 
         private void button_SavePNG_Click(object sender, EventArgs e)
@@ -23048,7 +25945,6 @@ namespace Watch_Face_Editor
             {
             }
         }
-
     }
 }
 

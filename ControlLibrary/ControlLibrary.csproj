@@ -208,6 +208,12 @@
     <Compile Include="Elements\UCtrl_Activity_Elm.Designer.cs">
       <DependentUpon>UCtrl_Activity_Elm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Elements\UCtrl_AlarmClock_Elm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Elements\UCtrl_AlarmClock_Elm.Designer.cs">
+      <DependentUpon>UCtrl_AlarmClock_Elm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UCtrl_AmPm_Opt.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -255,6 +261,12 @@
     </Compile>
     <Compile Include="UCtrl_Animation_Rotate_Opt.Designer.cs">
       <DependentUpon>UCtrl_Animation_Rotate_Opt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Elements\UCtrl_AQI_Elm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Elements\UCtrl_AQI_Elm.Designer.cs">
+      <DependentUpon>UCtrl_AQI_Elm.cs</DependentUpon>
     </Compile>
     <Compile Include="UCtrl_Background_Opt.cs">
       <SubType>UserControl</SubType>
@@ -309,6 +321,12 @@
     </Compile>
     <Compile Include="Elements\UCtrl_Buttons_Elm.Designer.cs">
       <DependentUpon>UCtrl_Buttons_Elm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Elements\UCtrl_BodyTemp_Elm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Elements\UCtrl_BodyTemp_Elm.Designer.cs">
+      <DependentUpon>UCtrl_BodyTemp_Elm.cs</DependentUpon>
     </Compile>
     <Compile Include="UCtrl_Button_Opt.cs">
       <SubType>UserControl</SubType>
@@ -406,6 +424,12 @@
     <Compile Include="UCtrl_EditableTimePointer_Opt.Designer.cs">
       <DependentUpon>UCtrl_EditableTimePointer_Opt.cs</DependentUpon>
     </Compile>
+    <Compile Include="Elements\UCtrl_Floor_Elm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Elements\UCtrl_Floor_Elm.Designer.cs">
+      <DependentUpon>UCtrl_Floor_Elm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UCtrl_Icon_Opt.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -459,6 +483,12 @@
     </Compile>
     <Compile Include="Elements\UCtrl_RepeatingAlert_Elm.Designer.cs">
       <DependentUpon>UCtrl_RepeatingAlert_Elm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Elements\UCtrl_Readiness_Elm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Elements\UCtrl_Readiness_Elm.Designer.cs">
+      <DependentUpon>UCtrl_Readiness_Elm.cs</DependentUpon>
     </Compile>
     <Compile Include="UCtrl_RepeatingAlert_Opt.cs">
       <SubType>UserControl</SubType>
@@ -628,6 +658,18 @@
     </Compile>
     <Compile Include="Elements\UCtrl_Weather_FewDay_Elm.Designer.cs">
       <DependentUpon>UCtrl_Weather_FewDay_Elm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Elements\UCtrl_TrainingLoad_Elm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Elements\UCtrl_TrainingLoad_Elm.Designer.cs">
+      <DependentUpon>UCtrl_TrainingLoad_Elm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Elements\UCtrl_VO2Max_Elm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Elements\UCtrl_VO2Max_Elm.Designer.cs">
+      <DependentUpon>UCtrl_VO2Max_Elm.cs</DependentUpon>
     </Compile>
     <Compile Include="UCtrl_Weather_FewDays_Opt.cs">
       <SubType>UserControl</SubType>
@@ -1329,6 +1371,9 @@
     <EmbeddedResource Include="Elements\UCtrl_PAI_Elm.zh.resx">
       <DependentUpon>UCtrl_PAI_Elm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Readiness_Elm.resx">
+      <DependentUpon>UCtrl_Readiness_Elm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_RepeatingAlert_Elm.cs.resx">
       <DependentUpon>UCtrl_RepeatingAlert_Elm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1829,6 +1874,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_AlarmClock_Elm.resx">
+      <DependentUpon>UCtrl_AlarmClock_Elm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UCtrl_AmPm_Opt.cs.resx">
       <DependentUpon>UCtrl_AmPm_Opt.cs</DependentUpon>
     </EmbeddedResource>
@@ -1957,6 +2005,9 @@
     <EmbeddedResource Include="UCtrl_Animation_Rotate_Opt.zh.resx">
       <DependentUpon>UCtrl_Animation_Rotate_Opt.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_AQI_Elm.resx">
+      <DependentUpon>UCtrl_AQI_Elm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UCtrl_Background_Opt.cs.resx">
       <DependentUpon>UCtrl_Background_Opt.cs</DependentUpon>
     </EmbeddedResource>
@@ -2025,6 +2076,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_Buttons_Elm.resx">
       <DependentUpon>UCtrl_Buttons_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_BodyTemp_Elm.resx">
+      <DependentUpon>UCtrl_BodyTemp_Elm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UCtrl_Button_Opt.cs.resx">
       <DependentUpon>UCtrl_Button_Opt.cs</DependentUpon>
@@ -2216,6 +2270,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UCtrl_EditableTimePointer_Opt.zh.resx">
       <DependentUpon>UCtrl_EditableTimePointer_Opt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Floor_Elm.resx">
+      <DependentUpon>UCtrl_Floor_Elm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UCtrl_Icon_Opt.cs.resx">
       <DependentUpon>UCtrl_Icon_Opt.cs</DependentUpon>
@@ -2757,6 +2814,12 @@
     <EmbeddedResource Include="Elements\UCtrl_Weather_FewDay_Elm.resx">
       <DependentUpon>UCtrl_Weather_FewDay_Elm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_TrainingLoad_Elm.resx">
+      <DependentUpon>UCtrl_TrainingLoad_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_VO2Max_Elm.resx">
+      <DependentUpon>UCtrl_VO2Max_Elm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UCtrl_Weather_FewDays_Opt.cs.resx">
       <DependentUpon>UCtrl_Weather_FewDays_Opt.cs</DependentUpon>
     </EmbeddedResource>
@@ -3064,6 +3127,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\palette.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\alarm_clock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\training_load.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vo2_max.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\air_quality.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\body_temp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\floor.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

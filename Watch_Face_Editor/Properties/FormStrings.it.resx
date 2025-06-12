@@ -169,13 +169,13 @@
     <value>GIF Files (*.gif)|*.gif</value>
   </data>
   <data name="FilterJson" xml:space="preserve">
-    <value>Json files (*.json) | *.json</value>
+    <value>Json files (*.json)|*.json</value>
   </data>
   <data name="FilterPng" xml:space="preserve">
     <value>PNG Files (*.png)|*.png</value>
   </data>
   <data name="FilterZip" xml:space="preserve">
-    <value>Zip file della watch face (* .zip) | * .zip</value>
+    <value>Zip file della watch face (*.zip)|*.zip</value>
   </data>
   <data name="FollowMinute" xml:space="preserve">
     <value>Segui le ore</value>

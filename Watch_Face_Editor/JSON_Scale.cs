@@ -508,6 +508,7 @@ namespace Watch_Face_Editor
                 case "Element_Weather_FewDays":
                     Element_Weather_FewDays elementWeather_FewDays = (Element_Weather_FewDays)elements;
 
+                    Scale_WeatherFewDays(elementWeather_FewDays.FewDays, scale);
                     Scale_Diagram(elementWeather_FewDays.Diagram, scale);
                     Scale_IMG_NUMBER(elementWeather_FewDays.Number_Max, scale);
                     Scale_TEXT(elementWeather_FewDays.Number_Font_Max, scale);
@@ -616,6 +617,65 @@ namespace Watch_Face_Editor
                     Scale_Text_Circle(elementCompass.Text_circle, scale);
                     Scale_IMG_POINTER(elementCompass.Pointer, scale);
                     Scale_IMG(elementCompass.Icon, scale);
+                    break;
+
+                case "ElementAlarmClock":
+                    ElementAlarmClock elementAlarmClock = (ElementAlarmClock)elements;
+                    Scale_IMG_NUMBER(elementAlarmClock.Number, scale);
+                    Scale_TEXT(elementAlarmClock.Number_Font, scale);
+                    Scale_IMG(elementAlarmClock.Icon, scale);
+                    break;
+                case "ElementTrainingLoad":
+                    ElementTrainingLoad elementTrainingLoad = (ElementTrainingLoad)elements;
+                    Scale_IMG_LEVEL(elementTrainingLoad.Images, scale);
+                    Scale_IMG_PROGRESS(elementTrainingLoad.Segments, scale);
+                    Scale_IMG_NUMBER(elementTrainingLoad.Number, scale);
+                    Scale_TEXT(elementTrainingLoad.Number_Font, scale);
+                    Scale_IMG_POINTER(elementTrainingLoad.Pointer, scale);
+                    Scale_Circle_Scale(elementTrainingLoad.Circle_Scale, scale);
+                    Scale_IMG(elementTrainingLoad.Icon, scale);
+                    break;
+                case "ElementVO2Max":
+                    ElementVO2Max elementVO2Max = (ElementVO2Max)elements;
+                    Scale_IMG_LEVEL(elementVO2Max.Images, scale);
+                    Scale_IMG_PROGRESS(elementVO2Max.Segments, scale);
+                    Scale_IMG_NUMBER(elementVO2Max.Number, scale);
+                    Scale_TEXT(elementVO2Max.Number_Font, scale);
+                    Scale_IMG_POINTER(elementVO2Max.Pointer, scale);
+                    Scale_Circle_Scale(elementVO2Max.Circle_Scale, scale);
+                    Scale_IMG(elementVO2Max.Icon, scale);
+                    break;
+                case "ElementAQI":
+                    ElementAQI elementAQI = (ElementAQI)elements;
+                    Scale_IMG_LEVEL(elementAQI.Images, scale);
+                    Scale_IMG_PROGRESS(elementAQI.Segments, scale);
+                    Scale_IMG_NUMBER(elementAQI.Number, scale);
+                    Scale_TEXT(elementAQI.Number_Font, scale);
+                    Scale_IMG_POINTER(elementAQI.Pointer, scale);
+                    Scale_Circle_Scale(elementAQI.Circle_Scale, scale);
+                    Scale_IMG(elementAQI.Icon, scale);
+                    break;
+                case "ElementBodyTemp":
+                    ElementBodyTemp elementBodyTemp = (ElementBodyTemp)elements;
+                    Scale_IMG_NUMBER(elementBodyTemp.Number, scale);
+                    Scale_TEXT(elementBodyTemp.Number_Font, scale);
+                    Scale_IMG(elementBodyTemp.Icon, scale);
+                    break;
+                case "ElementFloor":
+                    ElementFloor elementFloor = (ElementFloor)elements;
+                    Scale_IMG_NUMBER(elementFloor.Number, scale);
+                    Scale_TEXT(elementFloor.Number_Font, scale);
+                    Scale_IMG(elementFloor.Icon, scale);
+                    break;
+                case "ElementReadiness":
+                    ElementReadiness elementReadiness = (ElementReadiness)elements;
+                    Scale_IMG_LEVEL(elementReadiness.Images, scale);
+                    Scale_IMG_PROGRESS(elementReadiness.Segments, scale);
+                    Scale_IMG_NUMBER(elementReadiness.Number, scale);
+                    Scale_TEXT(elementReadiness.Number_Font, scale);
+                    Scale_IMG_POINTER(elementReadiness.Pointer, scale);
+                    Scale_Circle_Scale(elementReadiness.Circle_Scale, scale);
+                    Scale_IMG(elementReadiness.Icon, scale);
                     break;
             }
         }

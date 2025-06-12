@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Reflection;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace ControlLibrary
 {
@@ -15,7 +17,17 @@ namespace ControlLibrary
     {
         private int setNumber;
         private bool setValue;
+
+        // Скрытые значения, не меняются через интерфейс
         Dictionary<string, List<int>> ForecastData = new Dictionary<string, List<int>>();
+        private int SpO2 = 97;
+        private int TrainingLoad = 280;
+        private int TrainingLoadGoal = 560;
+        private int VO2Max = 47;
+        private int Floor = 7;
+        private int Readiness = 87;
+        private int BodyTemp = 320;
+
         public UCtrl_Set()
         {
             InitializeComponent();
@@ -164,32 +176,64 @@ namespace ControlLibrary
         }
 
         /// <summary>Возвращает данные для предпросмотра из выбранного набора параметров</summary>
-        /// <param name="Activity">Данные активностей (год, число, день, день недели, часы, минуты, секунды,
-        /// заряд, калории, ЧСС,  путь, шаги, цель шагов, PAI, StandUp, стресс, жиросжигание)</param>
+        /// <param name="DateTime">Дата и время, время различных событий</param>
+        /// <param name="Activity">Данные активностей (калории, ЧСС,  путь, шаги, цель шагов, PAI, StandUp, стресс, жиросжигание)</param>
         /// <param name="Air">Атмосферные данные (иконка погоды, текущая температура, максимальная температура, 
-        /// минимальная температура, УФ индекс, качество воздуха, влажность, сила ветра,
-        /// высота, давление)</param>
-        /// <param name="checkValue">Дначение переключателей (Bluetooth, будильник, блокировка, DND, показ температуры)</param>
-        public void GetValue(out Dictionary<string, int> Activity, out Dictionary<string, int> Air, out Dictionary<string, List<int>> ForecastData,
-            out Dictionary<string, bool> checkValue)
+        /// минимальная температура, УФ индекс, качество воздуха, влажность, сила ветра, направление ветра, высота, давление)</param>
+        /// <param name="checkValue">Значение переключателей (Bluetooth, будильник, блокировка, DND, показ температуры)</param>
+        /// <param name="System">Системные показатели (Заряд, температураы)</param>
+        public void GetValue(out Dictionary<string, int> DateTime, out Dictionary<string, int> Activity, 
+            out Dictionary<string, int> Air, out Dictionary<string, List<int>> ForecastData,
+            out Dictionary<string, bool> checkValue, out Dictionary<string, int> System)
         {
+            DateTime = new Dictionary<string, int>();
             Activity = new Dictionary<string, int>();
             Air = new Dictionary<string, int>();
             ForecastData = this.ForecastData;
             checkValue = new Dictionary<string, bool>();
+            System = new Dictionary<string, int>();
 
-            Activity.Add("Year", dateTimePicker_Date_Set.Value.Year);
-            Activity.Add("Month", dateTimePicker_Date_Set.Value.Month);
-            Activity.Add("Day", dateTimePicker_Date_Set.Value.Day);
+            DateTime.Add("Year", dateTimePicker_Date_Set.Value.Year);
+            DateTime.Add("Month", dateTimePicker_Date_Set.Value.Month);
+            DateTime.Add("Day", dateTimePicker_Date_Set.Value.Day);
             int WeekDay = (int)dateTimePicker_Date_Set.Value.DayOfWeek;
             if (WeekDay == 0) WeekDay = 7;
-            Activity.Add("WeekDay", WeekDay);
+            DateTime.Add("WeekDay", WeekDay);
 
-            Activity.Add("Hour", dateTimePicker_Time_Set.Value.Hour);
-            Activity.Add("Minute", dateTimePicker_Time_Set.Value.Minute);
-            Activity.Add("Second", dateTimePicker_Time_Set.Value.Second);
+            DateTime.Add("Hour", dateTimePicker_Time_Set.Value.Hour);
+            DateTime.Add("Minute", dateTimePicker_Time_Set.Value.Minute);
+            DateTime.Add("Second", dateTimePicker_Time_Set.Value.Second);
 
-            Activity.Add("Battery", (int)numericUpDown_Battery_Set.Value);
+            //DateTime.Add("Hour_Sunrise", dateTimePicker_Time_Set.Value.Hour);
+            //DateTime.Add("Minute_Sunrise", dateTimePicker_Time_Set.Value.Minute);
+            DateTime.Add("Hour_Sunrise", 3);
+            DateTime.Add("Minute_Sunrise", 30);
+            //DateTime.Add("Hour_Sunset", dateTimePicker_Time_Set.Value.Hour);
+            //DateTime.Add("Minute_Sunset", dateTimePicker_Time_Set.Value.Minute);
+            DateTime.Add("Hour_Sunset", 20);
+            DateTime.Add("Minute_Sunset", 30);
+
+            //DateTime.Add("Hour_Moonrise", dateTimePicker_Time_Set.Value.Hour);
+            //DateTime.Add("Minute_Moonrise", dateTimePicker_Time_Set.Value.Minute);
+            DateTime.Add("Hour_Moonrise", 18);
+            DateTime.Add("Minute_Moonrise", 30);
+            //DateTime.Add("Hour_Moonset", dateTimePicker_Time_Set.Value.Hour);
+            //DateTime.Add("Minute_Moonset", dateTimePicker_Time_Set.Value.Minute);
+            DateTime.Add("Hour_Moonset", 5);
+            DateTime.Add("Minute_Moonset", 30);
+
+            DateTime.Add("Hour_AlarmClock", 9);
+            DateTime.Add("Minute_AlarmClock", 43);
+
+            //DateTime.Add("Hour_SleepStart", dateTimePicker_Time_Set.Value.Hour);
+            //DateTime.Add("Minute_SleepStart", dateTimePicker_Time_Set.Value.Minute);
+            DateTime.Add("Hour_SleepStart", 21);
+            DateTime.Add("Minute_SleepStart", 7);
+            //DateTime.Add("Hour_SleepEnd", dateTimePicker_Time_Set.Value.Hour);
+            //DateTime.Add("Minute_SleepEnd", dateTimePicker_Time_Set.Value.Minute);
+            DateTime.Add("Hour_SleepEnd", 7);
+            DateTime.Add("Minute_SleepEnd", 3);
+
             Activity.Add("Calories", (int)numericUpDown_Calories_Set.Value);
             Activity.Add("HeartRate", (int)numericUpDown_HeartRate_Set.Value);
             Activity.Add("Distance", (int)numericUpDown_Distance_Set.Value);
@@ -199,8 +243,14 @@ namespace ControlLibrary
             Activity.Add("PAI", (int)numericUpDown_PAI_Set.Value);
             Activity.Add("StandUp", (int)numericUpDown_StandUp_Set.Value);
             Activity.Add("Stress", (int)numericUpDown_Stress_Set.Value);
-            //Activity.Add("ActivityGoal", (int)numericUpDown_ActivityGoal_Set.Value);
             Activity.Add("FatBurning", (int)numericUpDown_FatBurning_Set.Value);
+
+            Activity.Add("SpO2", SpO2);
+            Activity.Add("TrainingLoad", TrainingLoad);
+            Activity.Add("TrainingLoadGoal", TrainingLoadGoal);
+            Activity.Add("VO2Max", VO2Max);
+            Activity.Add("Floor", Floor);
+            Activity.Add("Readiness", Readiness);
 
 
             Air.Add("Weather_Icon", comboBox_WeatherSet_Icon.SelectedIndex);
@@ -224,6 +274,160 @@ namespace ControlLibrary
             checkValue.Add("DND", checkBox_DND_Set.Checked);
 
             checkValue.Add("ShowTemperature", checkBox_WeatherSet_Temp.Checked);
+
+            System.Add("Battery", (int)numericUpDown_Battery_Set.Value);
+            System.Add("BodyTemp", BodyTemp);
+
+        }
+
+        public string GetValue()
+        {
+            int WeekDay = (int)dateTimePicker_Date_Set.Value.DayOfWeek;
+            if (WeekDay == 0) WeekDay = 7;
+
+            JObject forecastDataObject = new JObject();
+            foreach (var kvp in ForecastData)
+            {
+                forecastDataObject[kvp.Key] = new JArray(kvp.Value);
+            }
+
+            JObject DateTime = new JObject
+            {
+                ["Date"] = new JObject
+                {
+                    ["Year"] = dateTimePicker_Date_Set.Value.Year,
+                    ["Month"] = dateTimePicker_Date_Set.Value.Month,
+                    ["Day"] = dateTimePicker_Date_Set.Value.Day,
+                    ["WeekDay"] = WeekDay
+                },
+                ["Time"] = new JObject
+                {
+                    ["Hour"] = dateTimePicker_Time_Set.Value.Hour,
+                    ["Minute"] = dateTimePicker_Time_Set.Value.Minute,
+                    ["Second"] = dateTimePicker_Time_Set.Value.Second
+                },
+
+                ["Sunrise"] = new JObject
+                {
+                    ["Hour"] = 3,
+                    ["Minute"] = 30
+                    //["Hour"] = dateTimePicker_Time_Set.Value.Hour,
+                    //["Minute"] = dateTimePicker_Time_Set.Value.Minute
+                },
+                ["Sunset"] = new JObject
+                {
+                    ["Hour"] = 20,
+                    ["Minute"] = 30
+                    //["Hour"] = dateTimePicker_Time_Set.Value.Hour,
+                    //["Minute"] = dateTimePicker_Time_Set.Value.Minute
+                },
+
+                ["Moonrise"] = new JObject
+                {
+                    ["Hour"] = 18,
+                    ["Minute"] = 30
+                    //["Hour"] = dateTimePicker_Time_Set.Value.Hour,
+                    //["Minute"] = dateTimePicker_Time_Set.Value.Minute
+                },
+                ["Moonset"] = new JObject
+                {
+                    ["Hour"] = 5,
+                    ["Minute"] = 30
+                    //["Hour"] = dateTimePicker_Time_Set.Value.Hour,
+                    //["Minute"] = dateTimePicker_Time_Set.Value.Minute
+                },
+
+                ["SleepStart"] = new JObject
+                {
+                    ["Hour"] = 21,
+                    ["Minute"] = 7
+                    //["Hour"] = dateTimePicker_Time_Set.Value.Hour,
+                    //["Minute"] = dateTimePicker_Time_Set.Value.Minute
+                },
+                ["SleepEnd"] = new JObject
+                {
+                    ["Hour"] = 7,
+                    ["Minute"] = 3
+                    //["Hour"] = dateTimePicker_Time_Set.Value.Hour,
+                    //["Minute"] = dateTimePicker_Time_Set.Value.Minute
+                },
+
+                ["AlarmClock"] = new JObject
+                {
+                    ["Hour"] = 9,
+                    ["Minute"] = 43
+                    //["Hour"] = dateTimePicker_Time_Set.Value.Hour,
+                    //["Minute"] = dateTimePicker_Time_Set.Value.Minute
+                },
+
+            };
+
+            JObject Activity = new JObject
+            {
+                ["Steps"] = (int)numericUpDown_Steps_Set.Value,
+                ["StepsGoal"] = (int)numericUpDown_Goal_Set.Value,
+                ["Calories"] = (int)numericUpDown_Calories_Set.Value,
+                ["HeartRate"] = (int)numericUpDown_HeartRate_Set.Value,
+                ["PAI"] = (int)numericUpDown_PAI_Set.Value,
+                ["Distance"] = (int)numericUpDown_Distance_Set.Value,
+                ["StandUp"] = (int)numericUpDown_StandUp_Set.Value,
+                ["Stress"] = (int)numericUpDown_Stress_Set.Value,
+                ["FatBurning"] = (int)numericUpDown_FatBurning_Set.Value,
+
+                ["SpO2"] = SpO2,
+                ["TrainingLoad"] = TrainingLoad,
+                ["TrainingLoadGoal"] = TrainingLoadGoal,
+                ["VO2Max"] = VO2Max,
+                ["Floor"] = Floor,
+                ["Readiness"] = Readiness,
+
+            };
+
+            JObject Air = new JObject
+            {
+                ["Temperature"] = (int)numericUpDown_WeatherSet_Temp.Value,
+                ["TemperatureMin"] = (int)numericUpDown_WeatherSet_MinTemp.Value,
+                ["TemperatureMax"] = (int)numericUpDown_WeatherSet_MaxTemp.Value,
+                ["WeatherIcon"] = comboBox_WeatherSet_Icon.SelectedIndex,
+
+                ["UVindex"] = comboBox_WeatherSet_Icon.SelectedIndex,
+                ["UVindex"] = (int)numericUp_UVindex_Set.Value,
+                ["AirQuality"] = (int)numericUpDown_AirQuality_Set.Value,
+                ["Humidity"] = (int)numericUpDown_Humidity_Set.Value,
+                ["WindForce"] = (int)numericUpDown_WindForce.Value,
+                ["WindDirection"] = comboBox_WindDirection.SelectedIndex,
+                ["CompassDirection"] = (int)numericUpDown_Compass_Set.Value,
+                ["Altitude"] = (int)numericUpDown_Altitude_Set.Value,
+                ["AirPressure"] = (int)numericUpDown_AirPressure_Set.Value,
+                ["showTemperature"] = checkBox_WeatherSet_Temp.Checked,
+
+                ["forecastData"] = forecastDataObject,
+
+            };
+
+            JObject System = new JObject
+            {
+                ["Status"] = new JObject
+                {
+                    ["Bluetooth"] = checkBox_Bluetooth_Set.Checked,
+                    ["Alarm"] = checkBox_Alarm_Set.Checked,
+                    ["Lock"] = checkBox_Lock_Set.Checked,
+                    ["DoNotDisturb"] = checkBox_DND_Set.Checked
+                },
+                ["Battery"] = (int)numericUpDown_Battery_Set.Value,
+                ["BodyTemp"] = BodyTemp,
+            };
+
+            JObject json = new JObject
+            {
+                ["DateTime"] = DateTime,
+                ["Activity"] = Activity,
+                ["Air"] = Air,
+                ["System"] = System,
+            };
+
+            string jsonStr = json.ToString();
+            return jsonStr;
 
         }
 
@@ -312,6 +516,14 @@ namespace ControlLibrary
             bool showTemperature;
             checkValue.TryGetValue("ShowTemperature", out showTemperature);
 
+            Activity.TryGetValue("SpO2", out SpO2);
+            Activity.TryGetValue("TrainingLoad", out TrainingLoad);
+            Activity.TryGetValue("TrainingLoadGoal", out TrainingLoadGoal);
+            Activity.TryGetValue("VO2Max", out VO2Max);
+            Activity.TryGetValue("BodyTemp", out BodyTemp);
+            Activity.TryGetValue("Floor", out Floor);
+            Activity.TryGetValue("Readiness", out Readiness);
+
             try
             {
                 setValue = true;
@@ -387,6 +599,134 @@ namespace ControlLibrary
 
         }
 
+        public void SetValue(string jsonStr)
+        {
+            JObject json = null;
+            setValue = true;
+            try
+            {
+                json = JObject.Parse(jsonStr);
+            }
+            catch { }
+
+            if (json != null)
+            {
+                try
+                {
+                    setValue = true;
+                    if (json["DateTime"] != null)
+                    {
+                        int year = 2025;
+                        int month = 12;
+                        int day = 25;
+                        int hour = 10;
+                        int min = 50;
+                        int sec = 30;
+
+                        if(json["DateTime"]["Date"] != null)
+                        {
+                            if (json["DateTime"]["Date"]["Year"] != null) year = json["DateTime"]["Date"]["Year"].Value<int>();
+                            if (json["DateTime"]["Date"]["Month"] != null) month = json["DateTime"]["Date"]["Month"].Value<int>();
+                            if (json["DateTime"]["Date"]["Day"] != null) day = json["DateTime"]["Date"]["Day"].Value<int>();
+                        }
+
+                        if (json["DateTime"]["Time"] != null)
+                        {
+                            if (json["DateTime"]["Time"]["Hour"] != null) hour = json["DateTime"]["Time"]["Hour"].Value<int>();
+                            if (json["DateTime"]["Time"]["Minute"] != null) min = json["DateTime"]["Time"]["Minute"].Value<int>();
+                            if (json["DateTime"]["Time"]["Second"] != null) sec = json["DateTime"]["Time"]["Second"].Value<int>();
+                        }
+
+                        dateTimePicker_Date_Set.Value = new DateTime(year, month, day, hour, min, sec);
+                        dateTimePicker_Time_Set.Value = new DateTime(year, month, day, hour, min, sec);
+                    }
+
+                    if (json["Activity"] != null)
+                    {
+                        if (json["Activity"]["Steps"] != null) numericUpDown_Steps_Set.Value = json["Activity"]["Steps"].Value<int>();
+                        if (json["Activity"]["StepsGoal"] != null) numericUpDown_Goal_Set.Value = json["Activity"]["StepsGoal"].Value<int>();
+                        if (json["Activity"]["Calories"] != null) numericUpDown_Calories_Set.Value = json["Activity"]["Calories"].Value<int>();
+                        if (json["Activity"]["HeartRate"] != null) numericUpDown_HeartRate_Set.Value = json["Activity"]["HeartRate"].Value<int>();
+                        if (json["Activity"]["Distance"] != null) numericUpDown_Distance_Set.Value = json["Activity"]["Distance"].Value<int>();
+                        if (json["Activity"]["PAI"] != null) numericUpDown_PAI_Set.Value = json["Activity"]["PAI"].Value<int>();
+                        if (json["Activity"]["StandUp"] != null) numericUpDown_StandUp_Set.Value = json["Activity"]["StandUp"].Value<int>();
+                        if (json["Activity"]["Stress"] != null) numericUpDown_Stress_Set.Value = json["Activity"]["Stress"].Value<int>();
+                        if (json["Activity"]["FatBurning"] != null) numericUpDown_FatBurning_Set.Value = json["Activity"]["FatBurning"].Value<int>();
+
+                        if (json["Activity"]["SpO2"] != null) SpO2 = json["Activity"]["SpO2"].Value<int>();
+                        if (json["Activity"]["TrainingLoad"] != null) TrainingLoad = json["Activity"]["TrainingLoad"].Value<int>();
+                        if (json["Activity"]["TrainingLoadGoal"] != null) TrainingLoadGoal = json["Activity"]["TrainingLoadGoal"].Value<int>();
+                        if (json["Activity"]["VO2Max"] != null) VO2Max = json["Activity"]["VO2Max"].Value<int>();
+                        if (json["Activity"]["Floor"] != null) Floor = json["Activity"]["Floor"].Value<int>();
+                        if (json["Activity"]["Readiness"] != null) Readiness = json["Activity"]["Readiness"].Value<int>();
+                    }
+
+                    if (json["Air"] != null)
+                    {
+                        if (json["Air"]["Temperature"] != null) numericUpDown_WeatherSet_Temp.Value = json["Air"]["Temperature"].Value<int>();
+                        if (json["Air"]["TemperatureMax"] != null) numericUpDown_WeatherSet_MaxTemp.Value = json["Air"]["TemperatureMax"].Value<int>();
+                        if (json["Air"]["TemperatureMin"] != null) numericUpDown_WeatherSet_MinTemp.Value = json["Air"]["TemperatureMin"].Value<int>();
+                        if (json["Air"]["WeatherIcon"] != null) comboBox_WeatherSet_Icon.SelectedIndex = json["Air"]["WeatherIcon"].Value<int>();
+                        if (json["Air"]["showTemperature"] != null) checkBox_WeatherSet_Temp.Checked = json["Air"]["showTemperature"].Value<bool>();
+
+                        if (json["Air"]["UVindex"] != null) numericUp_UVindex_Set.Value = json["Air"]["UVindex"].Value<int>();
+                        if (json["Air"]["AirQuality"] != null) numericUpDown_AirQuality_Set.Value = json["Air"]["AirQuality"].Value<int>();
+                        if (json["Air"]["Humidity"] != null) numericUpDown_Humidity_Set.Value = json["Air"]["Humidity"].Value<int>();
+                        if (json["Air"]["WindForce"] != null) numericUpDown_WindForce.Value = json["Air"]["WindForce"].Value<int>();
+                        if (json["Air"]["WindDirection"] != null) comboBox_WindDirection.SelectedIndex = json["Air"]["WindDirection"].Value<int>();
+                        if (json["Air"]["CompassDirection"] != null) numericUpDown_Compass_Set.Value = json["Air"]["CompassDirection"].Value<int>();
+                        if (json["Air"]["Altitude"] != null) numericUpDown_Altitude_Set.Value = json["Air"]["Altitude"].Value<int>();
+                        if (json["Air"]["AirPressure"] != null) numericUpDown_AirPressure_Set.Value = json["Air"]["AirPressure"].Value<int>();
+                        
+                        Dictionary<string, List<int>> forecastData = new Dictionary<string, List<int>>();
+                        if (json["Air"]["forecastData"] != null) forecastData = json["Air"]["forecastData"].ToObject<Dictionary<string, List<int>>>();
+                        if (forecastData != null && forecastData.Count > 0) ForecastData = forecastData;
+                        else
+                        {
+                            Dictionary<string, List<int>> ForecastDataTemp = new Dictionary<string, List<int>>();
+                            List<int> high = new List<int>();
+                            List<int> low = new List<int>();
+                            List<int> index = new List<int>();
+                            Random rnd = new Random();
+                            int tempOffset = rnd.Next(-25, 25);
+                            for (int i = 0; i < 9; i++)
+                            {
+                                int maxTemp = rnd.Next(-5, 5) + tempOffset;
+                                int minTemp = maxTemp - rnd.Next(3, 7);
+                                int iconIndex = rnd.Next(0, 25);
+
+                                high.Add(maxTemp);
+                                low.Add(minTemp);
+                                index.Add(iconIndex);
+                            }
+                            ForecastDataTemp.Add("high", high);
+                            ForecastDataTemp.Add("low", low);
+                            ForecastDataTemp.Add("index", index);
+                            ForecastData = ForecastDataTemp;
+                        }
+                    }
+
+                    if (json["System"] != null)
+                    {
+                        if (json["System"]["Battery"] != null) numericUpDown_Battery_Set.Value = json["System"]["Battery"].Value<int>();
+                        if (json["System"]["BodyTemp"] != null) BodyTemp = json["System"]["BodyTemp"].Value<int>();
+                        if (json["System"]["Status"] != null)
+                        {
+                            if (json["System"]["Status"]["Bluetooth"] != null) checkBox_Bluetooth_Set.Checked = json["System"]["Status"]["Bluetooth"].Value<bool>();
+                            if (json["System"]["Status"]["Alarm"] != null) checkBox_Alarm_Set.Checked = json["System"]["Status"]["Alarm"].Value<bool>();
+                            if (json["System"]["Status"]["Lock"] != null) checkBox_Lock_Set.Checked = json["System"]["Status"]["Lock"].Value<bool>();
+                            if (json["System"]["Status"]["DoNotDisturb"] != null) checkBox_DND_Set.Checked = json["System"]["Status"]["DoNotDisturb"].Value<bool>();
+                        }
+                    }
+
+                }
+                finally
+                {
+                    setValue = false;
+                }
+            }
+        }
+
         /// <summary>Устанавливает случайные данные для значений</summary>
         public void RandomValue(Random rnd)
         {
@@ -425,7 +765,7 @@ namespace ControlLibrary
 
 
             numericUp_UVindex_Set.Value = rnd.Next(0, 13);
-            numericUpDown_AirQuality_Set.Value = rnd.Next(0, 650);
+            numericUpDown_AirQuality_Set.Value = rnd.Next(0, 350);
             numericUpDown_Humidity_Set.Value = rnd.Next(30, 100);
             numericUpDown_WindForce.Value = rnd.Next(0, 13);
             comboBox_WindDirection.SelectedIndex = rnd.Next(0, 8);
@@ -459,6 +799,14 @@ namespace ControlLibrary
             ForecastData.Add("low", low);
             ForecastData.Add("index", index);
             this.ForecastData = ForecastData;
+
+            SpO2 = rnd.Next(80, 101);
+            TrainingLoad = rnd.Next(280, 600);
+            TrainingLoadGoal = rnd.Next(300, 600);
+            VO2Max = rnd.Next(30, 70);
+            BodyTemp = rnd.Next(300, 380);
+            Floor = rnd.Next(0, 30);
+            Readiness = rnd.Next(50, 101);
 
             setValue = false;
         }

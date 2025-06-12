@@ -1019,6 +1019,148 @@ namespace Watch_Face_Editor
                         break;
                     #endregion
 
+
+                    #region ElementAlarmClock
+                    case "ElementAlarmClock":
+                        ElementAlarmClock AlarmClock = null;
+                        try
+                        {
+                            AlarmClock = JsonConvert.DeserializeObject<ElementAlarmClock>(elementStr, new JsonSerializerSettings
+                            {
+                                //DefaultValueHandling = DefaultValueHandling.Ignore,
+                                NullValueHandling = NullValueHandling.Ignore
+                            });
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(Properties.FormStrings.Message_JsonError_Text + Environment.NewLine + ex,
+                                Properties.FormStrings.Message_Error_Caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        if (AlarmClock != null) NewElements.Add(AlarmClock);
+                        break;
+                    #endregion
+
+                    #region ElementTrainingLoad
+                    case "ElementTrainingLoad":
+                        ElementTrainingLoad TrainingLoad = null;
+                        try
+                        {
+                            TrainingLoad = JsonConvert.DeserializeObject<ElementTrainingLoad>(elementStr, new JsonSerializerSettings
+                            {
+                                //DefaultValueHandling = DefaultValueHandling.Ignore,
+                                NullValueHandling = NullValueHandling.Ignore
+                            });
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(Properties.FormStrings.Message_JsonError_Text + Environment.NewLine + ex,
+                                Properties.FormStrings.Message_Error_Caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        if (TrainingLoad != null) NewElements.Add(TrainingLoad);
+                        break;
+                    #endregion
+
+                    #region ElementVO2Max
+                    case "ElementVO2Max":
+                        ElementVO2Max VO2Max = null;
+                        try
+                        {
+                            VO2Max = JsonConvert.DeserializeObject<ElementVO2Max>(elementStr, new JsonSerializerSettings
+                            {
+                                //DefaultValueHandling = DefaultValueHandling.Ignore,
+                                NullValueHandling = NullValueHandling.Ignore
+                            });
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(Properties.FormStrings.Message_JsonError_Text + Environment.NewLine + ex,
+                                Properties.FormStrings.Message_Error_Caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        if (VO2Max != null) NewElements.Add(VO2Max);
+                        break;
+                    #endregion
+
+                    #region ElementAQI
+                    case "ElementAQI":
+                        ElementAQI AQI = null;
+                        try
+                        {
+                            AQI = JsonConvert.DeserializeObject<ElementAQI>(elementStr, new JsonSerializerSettings
+                            {
+                                //DefaultValueHandling = DefaultValueHandling.Ignore,
+                                NullValueHandling = NullValueHandling.Ignore
+                            });
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(Properties.FormStrings.Message_JsonError_Text + Environment.NewLine + ex,
+                                Properties.FormStrings.Message_Error_Caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        if (AQI != null) NewElements.Add(AQI);
+                        break;
+                    #endregion
+
+                    #region ElementBodyTemp
+                    case "ElementBodyTemp":
+                        ElementBodyTemp BodyTemp = null;
+                        try
+                        {
+                            BodyTemp = JsonConvert.DeserializeObject<ElementBodyTemp>(elementStr, new JsonSerializerSettings
+                            {
+                                //DefaultValueHandling = DefaultValueHandling.Ignore,
+                                NullValueHandling = NullValueHandling.Ignore
+                            });
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(Properties.FormStrings.Message_JsonError_Text + Environment.NewLine + ex,
+                                Properties.FormStrings.Message_Error_Caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        if (BodyTemp != null) NewElements.Add(BodyTemp);
+                        break;
+                    #endregion
+
+                    #region ElementFloor
+                    case "ElementFloor":
+                        ElementFloor Floor = null;
+                        try
+                        {
+                            Floor = JsonConvert.DeserializeObject<ElementFloor>(elementStr, new JsonSerializerSettings
+                            {
+                                //DefaultValueHandling = DefaultValueHandling.Ignore,
+                                NullValueHandling = NullValueHandling.Ignore
+                            });
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(Properties.FormStrings.Message_JsonError_Text + Environment.NewLine + ex,
+                                Properties.FormStrings.Message_Error_Caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        if (Floor != null) NewElements.Add(Floor);
+                        break;
+                    #endregion
+
+                    #region ElementReadiness
+                    case "ElementReadiness":
+                        ElementReadiness Readiness = null;
+                        try
+                        {
+                            Readiness = JsonConvert.DeserializeObject<ElementReadiness>(elementStr, new JsonSerializerSettings
+                            {
+                                //DefaultValueHandling = DefaultValueHandling.Ignore,
+                                NullValueHandling = NullValueHandling.Ignore
+                            });
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(Properties.FormStrings.Message_JsonError_Text + Environment.NewLine + ex,
+                                Properties.FormStrings.Message_Error_Caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        if (Readiness != null) NewElements.Add(Readiness);
+                        break;
+                    #endregion
+
+
                     #region ElementScript
                     case "ElementScript":
                         ElementScript Script = null;

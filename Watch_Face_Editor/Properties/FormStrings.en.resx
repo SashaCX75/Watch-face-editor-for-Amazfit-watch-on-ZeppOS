@@ -169,13 +169,13 @@
     <value>GIF Files (*.gif)|*.gif</value>
   </data>
   <data name="FilterJson" xml:space="preserve">
-    <value>Json files (*.json) | *.json</value>
+    <value>Json files (*.json)|*.json</value>
   </data>
   <data name="FilterPng" xml:space="preserve">
     <value>PNG Files (*.png)|*.png</value>
   </data>
   <data name="FilterZip" xml:space="preserve">
-    <value>Zip file of the watch face (* .zip) | * .zip</value>
+    <value>Zip file of the watch face (*.zip)|*.zip</value>
   </data>
   <data name="FollowMinute" xml:space="preserve">
     <value>Follow the hours</value>
@@ -212,6 +212,9 @@
   </data>
   <data name="Message_AnimationAOD_Text" xml:space="preserve">
     <value>You cannot add animation to the AOD screen.</value>
+  </data>
+  <data name="Message_AQI_Image_Count_Error" xml:space="preserve">
+    <value>The number of images for the AQI should be 6.</value>
   </data>
   <data name="Message_ARGB_Line1" xml:space="preserve">
     <value>Converting images to ARGB format takes longer.</value>
@@ -350,6 +353,12 @@
   </data>
   <data name="Message_ShortcutsAOD_Text" xml:space="preserve">
     <value>You cannot add shortcuts to the AOD screen.</value>
+  </data>
+  <data name="Message_TrainingLoad_Image_Count_Error" xml:space="preserve">
+    <value>The number of images for the training load should be 3.</value>
+  </data>
+  <data name="Message_VO2Max_Image_Count_Error" xml:space="preserve">
+    <value>The number of images for the VO2Max should be 7.</value>
   </data>
   <data name="Message_WarningConverting_Text1" xml:space="preserve">
     <value>Directory </value>

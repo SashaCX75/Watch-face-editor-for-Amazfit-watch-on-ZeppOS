@@ -169,13 +169,13 @@
     <value>Fichiers GIF (*.gif)|*.gif</value>
   </data>
   <data name="FilterJson" xml:space="preserve">
-    <value>Fichier Json (*.json) | *.json</value>
+    <value>Fichier Json (*.json)|*.json</value>
   </data>
   <data name="FilterPng" xml:space="preserve">
     <value>Fichiers PNG (*.png)|*.png</value>
   </data>
   <data name="FilterZip" xml:space="preserve">
-    <value>Fichier zip pour le cadran (*.zip) | *.Zip</value>
+    <value>Fichier zip pour le cadran (*.zip)|*.zip</value>
   </data>
   <data name="FollowMinute" xml:space="preserve">
     <value>Suit les heures</value>

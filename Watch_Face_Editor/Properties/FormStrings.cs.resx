@@ -169,13 +169,13 @@
     <value>Soubory GIF (*.gif)|*.gif</value>
   </data>
   <data name="FilterJson" xml:space="preserve">
-    <value>Soubor Json (*.json) | *.json</value>
+    <value>Soubor Json (*.json)|*.json</value>
   </data>
   <data name="FilterPng" xml:space="preserve">
     <value>Soubor PNG (*.png)|*.png</value>
   </data>
   <data name="FilterZip" xml:space="preserve">
-    <value>Zip soubor ciferníku (*.zip) | *.zip</value>
+    <value>Zip soubor ciferníku (*.zip)|*.zip</value>
   </data>
   <data name="FollowMinute" xml:space="preserve">
     <value>Postupujte podle hodin</value>

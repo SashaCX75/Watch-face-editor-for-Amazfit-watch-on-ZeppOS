@@ -341,8 +341,8 @@ namespace Watch_Face_Editor
                         int offsetX = pointers_list.hour.posX;
                         int offsetY = pointers_list.hour.posY;
                         int image_index = ListImages.IndexOf(pointers_list.hour.path);
-                        int hour = WatchFacePreviewSet.Time.Hours;
-                        int min = WatchFacePreviewSet.Time.Minutes;
+                        int hour = WatchFacePreviewSet.DateTime.Time.Hour;
+                        int min = WatchFacePreviewSet.DateTime.Time.Minute;
                         //int sec = Watch_Face_Preview_Set.TimeW.Seconds;
                         if (hour >= 12) hour = hour - 12;
                         float angle = 360 * hour / 12 + 360 * min / (60 * 12);
@@ -357,7 +357,7 @@ namespace Watch_Face_Editor
                         int offsetX = pointers_list.minute.posX;
                         int offsetY = pointers_list.minute.posY;
                         int image_index = ListImages.IndexOf(pointers_list.minute.path);
-                        int min = WatchFacePreviewSet.Time.Minutes;
+                        int min = WatchFacePreviewSet.DateTime.Time.Minute;
                         float angle = 360 * min / 60;
                         DrawPointer(gPanel, x, y, offsetX, offsetY, image_index, angle, showCentrHend);
                     }
@@ -371,7 +371,7 @@ namespace Watch_Face_Editor
                         int offsetX = pointers_list.second.posX;
                         int offsetY = pointers_list.second.posY;
                         int image_index = ListImages.IndexOf(pointers_list.second.path);
-                        int sec = WatchFacePreviewSet.Time.Seconds;
+                        int sec = WatchFacePreviewSet.DateTime.Time.Second;
                         float angle = 360 * sec / 60;
                         DrawPointer(gPanel, x, y, offsetX, offsetY, image_index, angle, showCentrHend);
                     }
@@ -1533,7 +1533,7 @@ namespace Watch_Face_Editor
                                 bool reverse_direction = DigitalTime_v2.Group_Hour.Text_circle.reverse_direction;
                                 bool unit_in_alignment = DigitalTime_v2.Group_Hour.Text_circle.unit_in_alignment;
 
-                                int value = WatchFacePreviewSet.Time.Hours;
+                                int value = WatchFacePreviewSet.DateTime.Time.Hour;
                                 if (ProgramSettings.ShowIn12hourFormat && DigitalTime_v2.AmPm != null)
                                 {
                                     if (am_pm_v2)
@@ -1565,7 +1565,7 @@ namespace Watch_Face_Editor
                                 string horizontal_alignment = DigitalTime_v2.Group_Hour.Text_rotation.align;
                                 bool unit_in_alignment = DigitalTime_v2.Group_Hour.Text_rotation.unit_in_alignment;
 
-                                int value = WatchFacePreviewSet.Time.Hours;
+                                int value = WatchFacePreviewSet.DateTime.Time.Hour;
                                 if (ProgramSettings.ShowIn12hourFormat && DigitalTime_v2.AmPm != null)
                                 {
                                     if (am_pm_v2)
@@ -1601,7 +1601,7 @@ namespace Watch_Face_Editor
                                 string align_h = number_font.align_h;
                                 string align_v = number_font.align_v;
                                 string text_style = number_font.text_style;
-                                int value = WatchFacePreviewSet.Time.Hours;
+                                int value = WatchFacePreviewSet.DateTime.Time.Hour;
                                 if (ProgramSettings.ShowIn12hourFormat && DigitalTime_v2.AmPm != null)
                                 {
                                     if (value > 11) value -= 12;
@@ -1668,7 +1668,7 @@ namespace Watch_Face_Editor
                                 int alignment = AlignmentToInt(DigitalTime_v2.Group_Hour.Number.align);
                                 bool addZero = DigitalTime_v2.Group_Hour.Number.zero;
                                 //addZero = true;
-                                int value = WatchFacePreviewSet.Time.Hours;
+                                int value = WatchFacePreviewSet.DateTime.Time.Hour;
                                 int alpha = DigitalTime_v2.Group_Hour.Number.alpha;
                                 int separator_index = -1;
                                 if (DigitalTime_v2.Group_Hour.Number.unit != null && DigitalTime_v2.Group_Hour.Number.unit.Length > 0)
@@ -1736,7 +1736,7 @@ namespace Watch_Face_Editor
                                 bool reverse_direction = DigitalTime_v2.Group_Minute.Text_circle.reverse_direction;
                                 bool unit_in_alignment = DigitalTime_v2.Group_Minute.Text_circle.unit_in_alignment;
 
-                                int value = WatchFacePreviewSet.Time.Minutes;
+                                int value = WatchFacePreviewSet.DateTime.Time.Minute;
                                 string valueStr = value.ToString();
                                 if (addZero) valueStr = valueStr.PadLeft(2, '0');
 
@@ -1760,7 +1760,7 @@ namespace Watch_Face_Editor
                                 string horizontal_alignment = DigitalTime_v2.Group_Minute.Text_rotation.align;
                                 bool unit_in_alignment = DigitalTime_v2.Group_Minute.Text_rotation.unit_in_alignment;
 
-                                int value = WatchFacePreviewSet.Time.Minutes;
+                                int value = WatchFacePreviewSet.DateTime.Time.Minute;
                                 string valueStr = value.ToString();
                                 if (addZero) valueStr = valueStr.PadLeft(2, '0');
 
@@ -1788,7 +1788,7 @@ namespace Watch_Face_Editor
                                 string align_h = number_font.align_h;
                                 string align_v = number_font.align_v;
                                 string text_style = number_font.text_style;
-                                string valueStr = WatchFacePreviewSet.Time.Minutes.ToString();
+                                string valueStr = WatchFacePreviewSet.DateTime.Time.Minute.ToString();
                                 string unitStr = "min";
                                 if (number_font.padding) valueStr = valueStr.PadLeft(value_lenght, '0');
                                 if (number_font.unit_type > 0)
@@ -1859,7 +1859,7 @@ namespace Watch_Face_Editor
                                     spasing = time_v2_spasing;
                                 }
                                 time_v2_minute_offsetY = y;
-                                int value = WatchFacePreviewSet.Time.Minutes;
+                                int value = WatchFacePreviewSet.DateTime.Time.Minute;
                                 int separator_index = -1;
                                 if (DigitalTime_v2.Group_Minute.Number.unit != null && DigitalTime_v2.Group_Minute.Number.unit.Length > 0)
                                     separator_index = ListImages.IndexOf(DigitalTime_v2.Group_Minute.Number.unit);
@@ -1917,7 +1917,7 @@ namespace Watch_Face_Editor
                                 bool reverse_direction = DigitalTime_v2.Group_Second.Text_circle.reverse_direction;
                                 bool unit_in_alignment = DigitalTime_v2.Group_Second.Text_circle.unit_in_alignment;
 
-                                int value = WatchFacePreviewSet.Time.Seconds;
+                                int value = WatchFacePreviewSet.DateTime.Time.Second;
                                 string valueStr = value.ToString();
                                 if (addZero) valueStr = valueStr.PadLeft(2, '0');
 
@@ -1941,7 +1941,7 @@ namespace Watch_Face_Editor
                                 string horizontal_alignment = DigitalTime_v2.Group_Second.Text_rotation.align;
                                 bool unit_in_alignment = DigitalTime_v2.Group_Second.Text_rotation.unit_in_alignment;
 
-                                int value = WatchFacePreviewSet.Time.Seconds;
+                                int value = WatchFacePreviewSet.DateTime.Time.Second;
                                 string valueStr = value.ToString();
                                 if (addZero) valueStr = valueStr.PadLeft(2, '0');
 
@@ -1969,7 +1969,7 @@ namespace Watch_Face_Editor
                                 string align_h = number_font.align_h;
                                 string align_v = number_font.align_v;
                                 string text_style = number_font.text_style;
-                                string valueStr = WatchFacePreviewSet.Time.Seconds.ToString();
+                                string valueStr = WatchFacePreviewSet.DateTime.Time.Second.ToString();
                                 string unitStr = "sec";
                                 if (number_font.padding) valueStr = valueStr.PadLeft(value_lenght, '0');
                                 if (number_font.unit_type > 0)
@@ -2040,7 +2040,7 @@ namespace Watch_Face_Editor
                                     spasing = time_v2_spasing;
                                 }
                                 //time_v2_hour_offsetY = y;
-                                int value = WatchFacePreviewSet.Time.Seconds;
+                                int value = WatchFacePreviewSet.DateTime.Time.Second;
                                 int separator_index = -1;
                                 if (DigitalTime_v2.Group_Second.Number.unit != null && DigitalTime_v2.Group_Second.Number.unit.Length > 0)
                                     separator_index = ListImages.IndexOf(DigitalTime_v2.Group_Second.Number.unit);
@@ -2081,7 +2081,7 @@ namespace Watch_Face_Editor
 
                         if (am_pm_v2 && index == DigitalTime_v2.AmPm.position)
                         {
-                            if (WatchFacePreviewSet.Time.Hours > 11)
+                            if (WatchFacePreviewSet.DateTime.Time.Hour > 11)
                             {
                                 int imageIndex = ListImages.IndexOf(DigitalTime_v2.AmPm.pm_img);
                                 int x = DigitalTime_v2.AmPm.pm_x;
@@ -2124,7 +2124,7 @@ namespace Watch_Face_Editor
                             string align_v = number_font.align_v;
                             string text_style = number_font.text_style;
                             string unitStr = "Am";
-                            int value = WatchFacePreviewSet.Time.Hours;
+                            int value = WatchFacePreviewSet.DateTime.Time.Hour;
                             if (ProgramSettings.ShowIn12hourFormat)
                             {
                                 if (value > 11)
@@ -2136,7 +2136,7 @@ namespace Watch_Face_Editor
                             }
                             string valueHourStr = value.ToString();
                             if (number_font.padding) valueHourStr = valueHourStr.PadLeft(value_lenght, '0');
-                            string valueMinStr = WatchFacePreviewSet.Time.Minutes.ToString();
+                            string valueMinStr = WatchFacePreviewSet.DateTime.Time.Minute.ToString();
                             valueMinStr = valueMinStr.PadLeft(value_lenght, '0');
 
                             string delimeter = ":";
@@ -2211,7 +2211,7 @@ namespace Watch_Face_Editor
                             string align_v = number_font.align_v;
                             string text_style = number_font.text_style;
                             string unitStr = "Am";
-                            int value = WatchFacePreviewSet.Time.Hours;
+                            int value = WatchFacePreviewSet.DateTime.Time.Hour;
                             if (ProgramSettings.ShowIn12hourFormat)
                             {
                                 if (value > 11)
@@ -2223,9 +2223,9 @@ namespace Watch_Face_Editor
                             }
                             string valueHourStr = value.ToString();
                             if (number_font.padding) valueHourStr = valueHourStr.PadLeft(value_lenght, '0');
-                            string valueMinStr = WatchFacePreviewSet.Time.Minutes.ToString();
+                            string valueMinStr = WatchFacePreviewSet.DateTime.Time.Minute.ToString();
                             valueMinStr = valueMinStr.PadLeft(value_lenght, '0');
-                            string valueSecStr = WatchFacePreviewSet.Time.Seconds.ToString();
+                            string valueSecStr = WatchFacePreviewSet.DateTime.Time.Second.ToString();
                             valueSecStr = valueSecStr.PadLeft(value_lenght, '0');
 
                             string delimeter = ":";
@@ -2301,8 +2301,8 @@ namespace Watch_Face_Editor
                             int offsetX = AnalogTime.Hour.pos_x;
                             int offsetY = AnalogTime.Hour.pos_y;
                             int image_index = ListImages.IndexOf(AnalogTime.Hour.src);
-                            int hour = WatchFacePreviewSet.Time.Hours;
-                            int min = WatchFacePreviewSet.Time.Minutes;
+                            int hour = WatchFacePreviewSet.DateTime.Time.Hour;
+                            int min = WatchFacePreviewSet.DateTime.Time.Minute;
                             //int sec = Watch_Face_Preview_Set.TimeW.Seconds;
                             if (hour >= 12) hour = hour - 12;
                             float angle = 360 * hour / 12 + 360 * min / (60 * 12);
@@ -2328,7 +2328,7 @@ namespace Watch_Face_Editor
                             int offsetX = AnalogTime.Minute.pos_x;
                             int offsetY = AnalogTime.Minute.pos_y;
                             int image_index = ListImages.IndexOf(AnalogTime.Minute.src);
-                            int min = WatchFacePreviewSet.Time.Minutes;
+                            int min = WatchFacePreviewSet.DateTime.Time.Minute;
                             float angle = 360 * min / 60;
                             DrawPointer(gPanel, x, y, offsetX, offsetY, image_index, angle, showCentrHend);
 
@@ -2352,7 +2352,7 @@ namespace Watch_Face_Editor
                             int offsetX = AnalogTime.Second.pos_x;
                             int offsetY = AnalogTime.Second.pos_y;
                             int image_index = ListImages.IndexOf(AnalogTime.Second.src);
-                            int sec = WatchFacePreviewSet.Time.Seconds;
+                            int sec = WatchFacePreviewSet.DateTime.Time.Second;
                             float angle = 360 * sec / 60;
                             DrawPointer(gPanel, x, y, offsetX, offsetY, image_index, angle, showCentrHend);
 
@@ -2387,8 +2387,8 @@ namespace Watch_Face_Editor
                             int offsetX = AnalogTimePro.Hour.pos_x;
                             int offsetY = AnalogTimePro.Hour.pos_y;
                             int image_index = ListImages.IndexOf(AnalogTimePro.Hour.src);
-                            int hour = WatchFacePreviewSet.Time.Hours;
-                            int min = WatchFacePreviewSet.Time.Minutes;
+                            int hour = WatchFacePreviewSet.DateTime.Time.Hour;
+                            int min = WatchFacePreviewSet.DateTime.Time.Minute;
                             //int sec = Watch_Face_Preview_Set.TimeW.Seconds;
                             int startAngl = AnalogTimePro.Hour.start_angle;
                             int endAngl = AnalogTimePro.Hour.end_angle;
@@ -2425,7 +2425,7 @@ namespace Watch_Face_Editor
                             int endAngl = AnalogTimePro.Minute.end_angle;
                             int fullAngl = endAngl - startAngl;
                             int image_index = ListImages.IndexOf(AnalogTimePro.Minute.src);
-                            int min = WatchFacePreviewSet.Time.Minutes;
+                            int min = WatchFacePreviewSet.DateTime.Time.Minute;
                             float angle = startAngl + fullAngl * min / 60;
                             DrawPointer(gPanel, x, y, offsetX, offsetY, image_index, angle, showCentrHend);
 
@@ -2452,7 +2452,7 @@ namespace Watch_Face_Editor
                             int endAngl = AnalogTimePro.Second.end_angle;
                             int fullAngl = endAngl - startAngl;
                             int image_index = ListImages.IndexOf(AnalogTimePro.Second.src);
-                            int sec = WatchFacePreviewSet.Time.Seconds;
+                            int sec = WatchFacePreviewSet.DateTime.Time.Second;
                             float angle = startAngl + fullAngl * sec / 60;
                             DrawPointer(gPanel, x, y, offsetX, offsetY, image_index, angle, showCentrHend);
 
@@ -2577,7 +2577,7 @@ namespace Watch_Face_Editor
                             bool addZero = DateDay.Number.zero;
                             //addZero = true;
                             int alpha = DateDay.Number.alpha;
-                            int value = WatchFacePreviewSet.Date.Day;
+                            int value = WatchFacePreviewSet.DateTime.Date.Day;
                             int separator_index = -1;
                             if (DateDay.Number.unit != null && DateDay.Number.unit.Length > 0)
                                 separator_index = ListImages.IndexOf(DateDay.Number.unit);
@@ -2631,7 +2631,7 @@ namespace Watch_Face_Editor
                             string align_h = number_font.align_h;
                             string align_v = number_font.align_v;
                             string text_style = number_font.text_style;
-                            string valueStr = WatchFacePreviewSet.Date.Day.ToString();
+                            string valueStr = WatchFacePreviewSet.DateTime.Date.Day.ToString();
                             string unitStr = "day";
                             if (number_font.padding) valueStr = valueStr.PadLeft(2, '0');
                             if (number_font.unit_type > 0)
@@ -2698,8 +2698,8 @@ namespace Watch_Face_Editor
                             string align_h = number_font.align_h;
                             string align_v = number_font.align_v;
                             string text_style = number_font.text_style;
-                            string valueDayStr = WatchFacePreviewSet.Date.Day.ToString();
-                            string valueMonthStr = WatchFacePreviewSet.Date.Month.ToString();
+                            string valueDayStr = WatchFacePreviewSet.DateTime.Date.Day.ToString();
+                            string valueMonthStr = WatchFacePreviewSet.DateTime.Date.Month.ToString();
                             string delimeter = "/";
                             if (number_font.unit_string != null && number_font.unit_string.Length > 0) delimeter = number_font.unit_string;
 
@@ -2771,9 +2771,9 @@ namespace Watch_Face_Editor
                             string align_h = number_font.align_h;
                             string align_v = number_font.align_v;
                             string text_style = number_font.text_style;
-                            string valueDayStr = WatchFacePreviewSet.Date.Day.ToString();
-                            string valueMonthStr = WatchFacePreviewSet.Date.Month.ToString();
-                            string valueYearStr = (WatchFacePreviewSet.Date.Year % 100).ToString();
+                            string valueDayStr = WatchFacePreviewSet.DateTime.Date.Day.ToString();
+                            string valueMonthStr = WatchFacePreviewSet.DateTime.Date.Month.ToString();
+                            string valueYearStr = (WatchFacePreviewSet.DateTime.Date.Year % 100).ToString();
                             string delimeter = "/";
                             if (number_font.unit_string != null && number_font.unit_string.Length > 0) delimeter = number_font.unit_string;
 
@@ -2783,7 +2783,7 @@ namespace Watch_Face_Editor
                                 valueMonthStr = valueMonthStr.PadLeft(2, '0');
                                 if (number_font.unit_type == 2) yearFull = true;
                             }
-                            if (yearFull) valueYearStr = WatchFacePreviewSet.Date.Year.ToString();
+                            if (yearFull) valueYearStr = WatchFacePreviewSet.DateTime.Date.Year.ToString();
 
                             if (number_font.centreHorizontally)
                             {
@@ -2841,7 +2841,7 @@ namespace Watch_Face_Editor
                             string horizontal_alignment = DateDay.Text_rotation.align;
                             bool unit_in_alignment = DateDay.Text_rotation.unit_in_alignment;
 
-                            string valueStr = (WatchFacePreviewSet.Date.Day).ToString();
+                            string valueStr = (WatchFacePreviewSet.DateTime.Date.Day).ToString();
                             if (addZero) valueStr = valueStr.PadLeft(value_lenght, '0');
 
                             Draw_dagital_text_rotate(gPanel, pos_x, pos_y, spacing, angle, addZero,
@@ -2867,7 +2867,7 @@ namespace Watch_Face_Editor
                             bool reverse_direction = DateDay.Text_circle.reverse_direction;
                             bool unit_in_alignment = DateDay.Text_circle.unit_in_alignment;
 
-                            string valueStr = (WatchFacePreviewSet.Date.Day).ToString();
+                            string valueStr = (WatchFacePreviewSet.DateTime.Date.Day).ToString();
                             if (addZero) valueStr = valueStr.PadLeft(value_lenght, '0');
 
                             Draw_dagital_text_on_circle(gPanel, centr_x, centr_y, radius, spacing, angle, addZero,
@@ -2886,7 +2886,7 @@ namespace Watch_Face_Editor
                             int startAngle = DateDay.Pointer.start_angle;
                             int endAngle = DateDay.Pointer.end_angle;
                             int image_index = ListImages.IndexOf(DateDay.Pointer.src);
-                            int Day = WatchFacePreviewSet.Date.Day;
+                            int Day = WatchFacePreviewSet.DateTime.Date.Day;
                             //Day--;
                             int angle = (int)(startAngle + Day * (endAngle - startAngle) / 31f);
 
@@ -2936,7 +2936,7 @@ namespace Watch_Face_Editor
                             bool addZero = DateMonth.Number.zero;
                             //addZero = true;
                             int alpha = DateMonth.Number.alpha;
-                            int value = WatchFacePreviewSet.Date.Month;
+                            int value = WatchFacePreviewSet.DateTime.Date.Month;
                             int separator_index = -1;
                             if (DateMonth.Number.unit != null && DateMonth.Number.unit.Length > 0)
                                 separator_index = ListImages.IndexOf(DateMonth.Number.unit);
@@ -2988,7 +2988,7 @@ namespace Watch_Face_Editor
                             string align_h = number_font.align_h;
                             string align_v = number_font.align_v;
                             string text_style = number_font.text_style;
-                            string valueStr = WatchFacePreviewSet.Date.Month.ToString();
+                            string valueStr = WatchFacePreviewSet.DateTime.Date.Month.ToString();
                             string unitStr = "month";
                             if (number_font.padding) valueStr = valueStr.PadLeft(2, '0');
                             if (number_font.unit_type > 0)
@@ -3043,7 +3043,7 @@ namespace Watch_Face_Editor
 
                             if (dowArrey.Length == 12)
                             {
-                                int strIndex = WatchFacePreviewSet.Date.Month - 1;
+                                int strIndex = WatchFacePreviewSet.DateTime.Date.Month - 1;
                                 string valueStr = dowArrey[strIndex].Trim();
 
                                 int x = month_font.x;
@@ -3116,7 +3116,7 @@ namespace Watch_Face_Editor
                             string horizontal_alignment = DateMonth.Text_rotation.align;
                             bool unit_in_alignment = DateMonth.Text_rotation.unit_in_alignment;
 
-                            string valueStr = (WatchFacePreviewSet.Date.Month).ToString();
+                            string valueStr = (WatchFacePreviewSet.DateTime.Date.Month).ToString();
                             if (addZero) valueStr = valueStr.PadLeft(value_lenght, '0');
 
                             Draw_dagital_text_rotate(gPanel, pos_x, pos_y, spacing, angle, addZero,
@@ -3142,7 +3142,7 @@ namespace Watch_Face_Editor
                             bool reverse_direction = DateMonth.Text_circle.reverse_direction;
                             bool unit_in_alignment = DateMonth.Text_circle.unit_in_alignment;
 
-                            string valueStr = (WatchFacePreviewSet.Date.Month).ToString();
+                            string valueStr = (WatchFacePreviewSet.DateTime.Date.Month).ToString();
                             if (addZero) valueStr = valueStr.PadLeft(value_lenght, '0');
 
                             Draw_dagital_text_on_circle(gPanel, centr_x, centr_y, radius, spacing, angle, addZero,
@@ -3161,7 +3161,7 @@ namespace Watch_Face_Editor
                             int startAngle = DateMonth.Pointer.start_angle;
                             int endAngle = DateMonth.Pointer.end_angle;
                             int image_index = ListImages.IndexOf(DateMonth.Pointer.src);
-                            int Month = WatchFacePreviewSet.Date.Month;
+                            int Month = WatchFacePreviewSet.DateTime.Date.Month;
                             //Month--;
                             int angle = (int)(startAngle + Month * (endAngle - startAngle) / 12f);
 
@@ -3195,7 +3195,7 @@ namespace Watch_Face_Editor
                             int imageIndex = ListImages.IndexOf(DateMonth.Images.img_First);
                             int x = DateMonth.Images.X;
                             int y = DateMonth.Images.Y;
-                            imageIndex = imageIndex + WatchFacePreviewSet.Date.Month - 1;
+                            imageIndex = imageIndex + WatchFacePreviewSet.DateTime.Date.Month - 1;
 
                             if (imageIndex < ListImagesFullName.Count)
                             {
@@ -3231,7 +3231,7 @@ namespace Watch_Face_Editor
                         int alignment = 0;
                         bool addZero = DateYear.Number.zero;
                         int alpha = DateYear.Number.alpha;
-                        int value = WatchFacePreviewSet.Date.Year;
+                        int value = WatchFacePreviewSet.DateTime.Date.Year;
                         if (!addZero) value = value % 100;
                         int separator_index = -1;
                         if (DateYear.Number.unit != null && DateYear.Number.unit.Length > 0)
@@ -3284,7 +3284,7 @@ namespace Watch_Face_Editor
                         string align_h = number_font.align_h;
                         string align_v = number_font.align_v;
                         string text_style = number_font.text_style; 
-                        int value = WatchFacePreviewSet.Date.Year;
+                        int value = WatchFacePreviewSet.DateTime.Date.Year;
                         if (!number_font.padding) value = value % 100;
                         string valueStr = value.ToString().PadLeft(2, '0');
                         string unitStr = "year";
@@ -3349,8 +3349,8 @@ namespace Watch_Face_Editor
                         string horizontal_alignment = DateYear.Text_rotation.align;
                         bool unit_in_alignment = DateYear.Text_rotation.unit_in_alignment;
 
-                        string valueStr = (WatchFacePreviewSet.Date.Year).ToString();
-                        if (!addZero) valueStr = (WatchFacePreviewSet.Date.Year % 100).ToString();
+                        string valueStr = (WatchFacePreviewSet.DateTime.Date.Year).ToString();
+                        if (!addZero) valueStr = (WatchFacePreviewSet.DateTime.Date.Year % 100).ToString();
                         //if (addZero) valueStr = valueStr.PadLeft(value_lenght, '0');
 
                         Draw_dagital_text_rotate(gPanel, pos_x, pos_y, spacing, angle, addZero,
@@ -3376,8 +3376,8 @@ namespace Watch_Face_Editor
                         bool reverse_direction = DateYear.Text_circle.reverse_direction;
                         bool unit_in_alignment = DateYear.Text_circle.unit_in_alignment;
 
-                        string valueStr = (WatchFacePreviewSet.Date.Year).ToString();
-                        if (!addZero) valueStr = (WatchFacePreviewSet.Date.Year % 100).ToString();
+                        string valueStr = (WatchFacePreviewSet.DateTime.Date.Year).ToString();
+                        if (!addZero) valueStr = (WatchFacePreviewSet.DateTime.Date.Year % 100).ToString();
                         //if (addZero) valueStr = valueStr.PadLeft(value_lenght, '0');
 
                         Draw_dagital_text_on_circle(gPanel, centr_x, centr_y, radius, spacing, angle, addZero,
@@ -3437,7 +3437,7 @@ namespace Watch_Face_Editor
                             int startAngle = DateWeek.Pointer.start_angle;
                             int endAngle = DateWeek.Pointer.end_angle;
                             int image_index = ListImages.IndexOf(DateWeek.Pointer.src);
-                            int WeekDay = WatchFacePreviewSet.Date.WeekDay;
+                            int WeekDay = WatchFacePreviewSet.DateTime.Date.WeekDay;
                             //WeekDay++;
                             //if (WeekDay < 0) WeekDay = 6;
                             //if (WeekDay > 7) WeekDay = 1;
@@ -3473,7 +3473,7 @@ namespace Watch_Face_Editor
                             int imageIndex = ListImages.IndexOf(DateWeek.Images.img_First);
                             int x = DateWeek.Images.X;
                             int y = DateWeek.Images.Y;
-                            imageIndex = imageIndex + WatchFacePreviewSet.Date.WeekDay - 1;
+                            imageIndex = imageIndex + WatchFacePreviewSet.DateTime.Date.WeekDay - 1;
 
                             if (imageIndex < ListImagesFullName.Count)
                             {
@@ -3505,7 +3505,7 @@ namespace Watch_Face_Editor
 
                             if (dowArrey.Length == 7)
                             {
-                                int strIndex = WatchFacePreviewSet.Date.WeekDay - 1;
+                                int strIndex = WatchFacePreviewSet.DateTime.Date.WeekDay - 1;
                                 string valueStr = dowArrey[strIndex].Trim();
 
                                 int x = dow_font.x;
@@ -3584,7 +3584,7 @@ namespace Watch_Face_Editor
                         img_status_alarm.src.Length > 0 && index == img_status_alarm.position &&
                         img_status_alarm.visible)
                         {
-                            if (WatchFacePreviewSet.Status.Alarm)
+                            if (WatchFacePreviewSet.System.Status.Alarm)
                             {
                                 int imageIndex = ListImages.IndexOf(img_status_alarm.src);
                                 int x = img_status_alarm.x;
@@ -3619,7 +3619,7 @@ namespace Watch_Face_Editor
                         img_status_bluetooth.src.Length > 0 && index == img_status_bluetooth.position &&
                         img_status_bluetooth.visible)
                         {
-                            if (!WatchFacePreviewSet.Status.Bluetooth)
+                            if (!WatchFacePreviewSet.System.Status.Bluetooth)
                             {
                                 int imageIndex = ListImages.IndexOf(img_status_bluetooth.src);
                                 int x = img_status_bluetooth.x;
@@ -3654,7 +3654,7 @@ namespace Watch_Face_Editor
                         img_status_dnd.src.Length > 0 && index == img_status_dnd.position &&
                         img_status_dnd.visible)
                         {
-                            if (WatchFacePreviewSet.Status.DoNotDisturb)
+                            if (WatchFacePreviewSet.System.Status.DoNotDisturb)
                             {
                                 int imageIndex = ListImages.IndexOf(img_status_dnd.src);
                                 int x = img_status_dnd.x;
@@ -3689,7 +3689,7 @@ namespace Watch_Face_Editor
                         img_status_lock.src.Length > 0 && index == img_status_lock.position &&
                         img_status_lock.visible)
                         {
-                            if (WatchFacePreviewSet.Status.Lock)
+                            if (WatchFacePreviewSet.System.Status.Lock)
                             {
                                 int imageIndex = ListImages.IndexOf(img_status_lock.src);
                                 int x = img_status_lock.x;
@@ -3800,10 +3800,10 @@ namespace Watch_Face_Editor
                     linear_scale = activityElementBattery.Linear_Scale;
                     icon = activityElementBattery.Icon;
 
-                    elementValue = WatchFacePreviewSet.Battery;
+                    elementValue = WatchFacePreviewSet.System.Battery;
                     value_lenght = 3;
                     goal = 100;
-                    progress = (float)WatchFacePreviewSet.Battery / 100f;
+                    progress = (float)WatchFacePreviewSet.System.Battery / 100f;
 
                     //if (img_level != null && img_level.image_length > 0)
                     //{
@@ -3984,8 +3984,7 @@ namespace Watch_Face_Editor
                     img_level = activityElementPAI.Images;
                     img_prorgess = activityElementPAI.Segments;
                     img_number = activityElementPAI.Number;
-                    //font_number = activityElementPA-*21Й  Ё
-                    //-I.Number_Font;
+                    //font_number = activityElementPAI.Number_Font;
                     img_number_target = activityElementPAI.Number_Target;
                     font_number_target = activityElementPAI.Number_Target_Font;
                     text_rotation_target = activityElementPAI.Text_rotation_Target;
@@ -4207,7 +4206,8 @@ namespace Watch_Face_Editor
                     text_circle = activityElementSpO2.Text_circle;
                     icon = activityElementSpO2.Icon;
 
-                    elementValue = 97;
+                    elementValue = WatchFacePreviewSet.Activity.SpO2;
+                    //elementValue = 97;
                     value_lenght = 3;
                     goal = 100;
                     progress = 0;
@@ -4361,11 +4361,11 @@ namespace Watch_Face_Editor
                     hmUI_widget_TEXT city_name = activityElementWeather.City_Name;
                     icon = activityElementWeather.Icon;
 
-                    int value_current = WatchFacePreviewSet.Weather.Temperature;
-                    int value_min = WatchFacePreviewSet.Weather.TemperatureMin;
-                    int value_max = WatchFacePreviewSet.Weather.TemperatureMax;
-                    int icon_index = WatchFacePreviewSet.Weather.Icon;
-                    bool showTemperature = WatchFacePreviewSet.Weather.showTemperature;
+                    int value_current = WatchFacePreviewSet.Air.Temperature;
+                    int value_min = WatchFacePreviewSet.Air.TemperatureMin;
+                    int value_max = WatchFacePreviewSet.Air.TemperatureMax;
+                    int icon_index = WatchFacePreviewSet.Air.WeatherIcon;
+                    bool showTemperature = WatchFacePreviewSet.Air.showTemperature;
 
                     DrawWeather(gPanel, img_level, img_number, font_number, img_number_min, font_number_min, text_Min_rotation, text_Min_circle,
                         img_number_max, font_number_max, text_Max_rotation, text_Max_circle, font_number_min_max, city_name, icon, value_current, value_min, value_max, value_lenght, icon_index,
@@ -4390,11 +4390,11 @@ namespace Watch_Face_Editor
                     hmUI_widget_TEXT city_name_v2 = activityElementWeather_v2.City_Name;
                     icon = activityElementWeather_v2.Icon;
 
-                    int value_current_v2 = WatchFacePreviewSet.Weather.Temperature;
-                    int value_min_v2 = WatchFacePreviewSet.Weather.TemperatureMin;
-                    int value_max_v2 = WatchFacePreviewSet.Weather.TemperatureMax;
-                    int icon_index_v2 = WatchFacePreviewSet.Weather.Icon;
-                    bool showTemperature_v2 = WatchFacePreviewSet.Weather.showTemperature;
+                    int value_current_v2 = WatchFacePreviewSet.Air.Temperature;
+                    int value_min_v2 = WatchFacePreviewSet.Air.TemperatureMin;
+                    int value_max_v2 = WatchFacePreviewSet.Air.TemperatureMax;
+                    int icon_index_v2 = WatchFacePreviewSet.Air.WeatherIcon;
+                    bool showTemperature_v2 = WatchFacePreviewSet.Air.showTemperature;
 
                     DrawWeather_v2(gPanel, group_current, group_min, group_max, group_max_min, img_level, city_name_v2, icon,
                         value_current_v2, value_min_v2, value_max_v2, value_lenght, icon_index_v2,
@@ -4409,9 +4409,9 @@ namespace Watch_Face_Editor
                     Element_Weather_FewDays activityElement_Weather_FewDays = (Element_Weather_FewDays)element;
                     if (!activityElement_Weather_FewDays.visible) return;
 
-                    bool showTemperature_FewDays = WatchFacePreviewSet.Weather.showTemperature;
+                    bool showTemperature_FewDays = WatchFacePreviewSet.Air.showTemperature;
 
-                    DrawWeatherFewDays(gPanel, activityElement_Weather_FewDays, WatchFacePreviewSet.Weather.forecastData, BBorder, showTemperature_FewDays, link);
+                    DrawWeatherFewDays(gPanel, activityElement_Weather_FewDays, WatchFacePreviewSet.Air.forecastData, BBorder, showTemperature_FewDays, link);
 
 
                     break;
@@ -4429,10 +4429,10 @@ namespace Watch_Face_Editor
                     img_pointer = activityElementUVIndex.Pointer;
                     icon = activityElementUVIndex.Icon;
 
-                    elementValue = WatchFacePreviewSet.Weather.UVindex;
+                    elementValue = WatchFacePreviewSet.Air.UVindex;
                     value_lenght = 1;
                     goal = 5;
-                    progress = (float)WatchFacePreviewSet.Weather.UVindex / 5f;
+                    progress = (float)WatchFacePreviewSet.Air.UVindex / 5f;
 
                     if (img_level != null && img_level.image_length > 0)
                     {
@@ -4539,10 +4539,10 @@ namespace Watch_Face_Editor
                     img_pointer = activityElementHumidity.Pointer;
                     icon = activityElementHumidity.Icon;
 
-                    elementValue = WatchFacePreviewSet.Weather.Humidity;
+                    elementValue = WatchFacePreviewSet.Air.Humidity;
                     value_lenght = 1;
                     goal = 100;
-                    progress = (float)WatchFacePreviewSet.Weather.Humidity / 100f;
+                    progress = (float)WatchFacePreviewSet.Air.Humidity / 100f;
 
                     //if (img_level != null && img_level.image_length > 0)
                     //{
@@ -4593,15 +4593,15 @@ namespace Watch_Face_Editor
                     img_pointer = activityElementAltimeter.Pointer;
                     icon = activityElementAltimeter.Icon;
 
-                    elementValue = WatchFacePreviewSet.Weather.AirPressure;
+                    elementValue = WatchFacePreviewSet.Air.AirPressure;
                     //value_lenght = 4;
                     goal = 1200;
                     //value_altitude = 1170 - 195;
                     //progress = (WatchFacePreviewSet.Weather.AirPressure - 195) / 975f;
-                    progress = WatchFacePreviewSet.Weather.AirPressure / 1200f;
+                    progress = WatchFacePreviewSet.Air.AirPressure / 1200f;
                     progress = (int)(progress * 100);
                     progress = progress / 100f;
-                    int value_altitude = WatchFacePreviewSet.Weather.Altitude;
+                    int value_altitude = WatchFacePreviewSet.Air.Altitude;
 
                     //DrawActivity(gPanel, img_level, img_prorgess, img_number, font_number, text_rotation, text_circle, img_number_target, font_number_target,
                     //    text_rotation_target, text_circle_target, img_pointer, circle_scale, linear_scale, icon, elementValue, value_lenght, goal,
@@ -4636,8 +4636,8 @@ namespace Watch_Face_Editor
                     img_pointer = activityElementSunrise.Pointer;
                     icon = activityElementSunrise.Icon;
 
-                    int minSunrise = WatchFacePreviewSet.Time.Minutes;
-                    int hourSunrise = WatchFacePreviewSet.Time.Hours;
+                    int minSunrise = WatchFacePreviewSet.DateTime.Time.Minute;
+                    int hourSunrise = WatchFacePreviewSet.DateTime.Time.Hour;
 
                     DrawSunrise(gPanel, img_level, img_prorgess, img_number, font_number, sunrise_rotation, sunrise_circle,
                         img_number_target, font_number_target, sunset_rotation, sunset_circle,
@@ -4661,11 +4661,11 @@ namespace Watch_Face_Editor
                     hmUI_widget_IMG_LEVEL img_direction = activityElementWind.Direction;
                     icon = activityElementWind.Icon;
 
-                    elementValue = WatchFacePreviewSet.Weather.WindForce;
+                    elementValue = WatchFacePreviewSet.Air.WindForce;
                     value_lenght = 1;
                     goal = 12;
-                    progress = (float)WatchFacePreviewSet.Weather.WindForce / 12f;
-                    int valueImgDirectionIndex = WatchFacePreviewSet.Weather.WindDirection;
+                    progress = (float)WatchFacePreviewSet.Air.WindForce / 12f;
+                    int valueImgDirectionIndex = WatchFacePreviewSet.Air.WindDirection;
 
                     if (img_level != null && img_level.image_length > 0)
                     {
@@ -4712,8 +4712,8 @@ namespace Watch_Face_Editor
                     img_pointer = activityElementMoon.Pointer;
                     icon = activityElementMoon.Icon;
 
-                    int minSunriseMoon = WatchFacePreviewSet.Time.Minutes;
-                    int hourSunriseMoon = WatchFacePreviewSet.Time.Hours;
+                    int minSunriseMoon = WatchFacePreviewSet.DateTime.Time.Minute;
+                    int hourSunriseMoon = WatchFacePreviewSet.DateTime.Time.Hour;
 
                     DrawMoon(gPanel, img_level, /*img_prorgess,*/ img_number, font_number, null, null,
                         img_number_target, font_number_target, null, null,
@@ -4754,7 +4754,7 @@ namespace Watch_Face_Editor
                     img_pointer = activityElementCompass.Pointer;
                     icon = activityElementCompass.Icon;
 
-                    elementValue = WatchFacePreviewSet.Weather.CompassDirection;
+                    elementValue = WatchFacePreviewSet.Air.CompassDirection;
                     value_lenght = 3;
                     goal = 360;
                     progress = (float)elementValue / 360;
@@ -4775,6 +4775,7 @@ namespace Watch_Face_Editor
 
                     break;
                 #endregion
+
 
                 #region ElementAnimation
                 case "ElementAnimation":
@@ -4825,7 +4826,7 @@ namespace Watch_Face_Editor
         public int IMG_progress_index(int value, int goal, int imgCount, string elementName)
         {
             int imgIndex = -1;
-            if (goal <= 0 || imgCount <= 0 ) return imgIndex;
+            if (goal <= 0 || imgCount <= 0 || goal < imgCount) return imgIndex;
 
             if (elementName == "ElementUVIndex" && imgCount == 5)
             {
@@ -5421,8 +5422,8 @@ namespace Watch_Face_Editor
                         int offsetX = pointers_list.hour.posX;
                         int offsetY = pointers_list.hour.posY;
                         int image_index = ListImages.IndexOf(pointers_list.hour.path);
-                        int hour = WatchFacePreviewSet.Time.Hours;
-                        int min = WatchFacePreviewSet.Time.Minutes;
+                        int hour = WatchFacePreviewSet.DateTime.Time.Hour;
+                        int min = WatchFacePreviewSet.DateTime.Time.Minute;
                         //int sec = Watch_Face_Preview_Set.TimeW.Seconds;
                         if (hour >= 12) hour = hour - 12;
                         float angle = 360 * hour / 12 + 360 * min / (60 * 12);
@@ -5437,7 +5438,7 @@ namespace Watch_Face_Editor
                         int offsetX = pointers_list.minute.posX;
                         int offsetY = pointers_list.minute.posY;
                         int image_index = ListImages.IndexOf(pointers_list.minute.path);
-                        int min = WatchFacePreviewSet.Time.Minutes;
+                        int min = WatchFacePreviewSet.DateTime.Time.Minute;
                         float angle = 360 * min / 60;
                         DrawPointer(gPanel, x, y, offsetX, offsetY, image_index, angle, false);
                     }
@@ -5451,7 +5452,7 @@ namespace Watch_Face_Editor
                         int offsetX = pointers_list.second.posX;
                         int offsetY = pointers_list.second.posY;
                         int image_index = ListImages.IndexOf(pointers_list.second.path);
-                        int sec = WatchFacePreviewSet.Time.Seconds;
+                        int sec = WatchFacePreviewSet.DateTime.Time.Second;
                         float angle = 360 * sec / 60;
                         DrawPointer(gPanel, x, y, offsetX, offsetY, image_index, angle, false);
                     }
@@ -8835,7 +8836,7 @@ namespace Watch_Face_Editor
 
                     for (int dayIndex = 0; dayIndex < weather_FewDays.FewDays.DaysCount; dayIndex++)
                     {
-                        int dof = WatchFacePreviewSet.Date.WeekDay + dayIndex - 1;
+                        int dof = WatchFacePreviewSet.DateTime.Date.WeekDay + dayIndex - 1;
                         while (dof >= 7) { dof -= 7; }
                         int posX = x + offsetDayX * dayIndex + weather_FewDays.DayOfWeek_Images.X;
                         int image_index = imageIndex + dof;
@@ -8889,7 +8890,7 @@ namespace Watch_Face_Editor
                             int posY = y + weather_FewDays.DayOfWeek_Font.y;
                             for (int dayIndex = 0; dayIndex < weather_FewDays.FewDays.DaysCount; dayIndex++)
                             {
-                                int dof = WatchFacePreviewSet.Date.WeekDay + dayIndex - 1;
+                                int dof = WatchFacePreviewSet.DateTime.Date.WeekDay + dayIndex - 1;
                                 while (dof >= 7) { dof -= 7; }
                                 int posX = x + offsetDayX * dayIndex + weather_FewDays.DayOfWeek_Font.x;
                                 string valueStr = dowArrey[dof].Trim();
@@ -9613,9 +9614,9 @@ namespace Watch_Face_Editor
                 if (images != null && images.img_First != null && images.img_First.Length > 0 &&
                     index == images.position && images.visible)
                 {
-                    int year = WatchFacePreviewSet.Date.Year;
-                    int month = WatchFacePreviewSet.Date.Month;
-                    int day = WatchFacePreviewSet.Date.Day;
+                    int year = WatchFacePreviewSet.DateTime.Date.Year;
+                    int month = WatchFacePreviewSet.DateTime.Date.Month;
+                    int day = WatchFacePreviewSet.DateTime.Date.Day;
                     double moon_age = MoonAge(day, month, year);
                     //int moonPhase = (int)(8 * moon_age / 29);
 

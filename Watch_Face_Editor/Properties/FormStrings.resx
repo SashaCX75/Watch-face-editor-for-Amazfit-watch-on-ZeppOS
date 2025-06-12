@@ -169,13 +169,13 @@
     <value>GIF файлы (*.gif)|*.gif</value>
   </data>
   <data name="FilterJson" xml:space="preserve">
-    <value>Json файлы (*.json) | *.json</value>
+    <value>Json файлы (*.json)|*.json</value>
   </data>
   <data name="FilterPng" xml:space="preserve">
     <value>PNG файлы (*.png)|*.png</value>
   </data>
   <data name="FilterZip" xml:space="preserve">
-    <value>Zip файл циферблата (*.zip) | *.zip</value>
+    <value>Zip файл циферблата (*.zip)|*.zip</value>
   </data>
   <data name="FollowMinute" xml:space="preserve">
     <value>Следовать за часами</value>
@@ -212,6 +212,9 @@
   </data>
   <data name="Message_AnimationAOD_Text" xml:space="preserve">
     <value>Вы не можете добавлять анимацию на экран AOD.</value>
+  </data>
+  <data name="Message_AQI_Image_Count_Error" xml:space="preserve">
+    <value>Количество изображений для отображения AQI должно быть равным 6.</value>
   </data>
   <data name="Message_ARGB_Line1" xml:space="preserve">
     <value>Конвертация изображений в формат ARGB занимает больше времени.</value>
@@ -354,6 +357,12 @@
   </data>
   <data name="Message_ShortcutsAOD_Text" xml:space="preserve">
     <value>Вы не можете добавлять ярлыки на экран AOD.</value>
+  </data>
+  <data name="Message_TrainingLoad_Image_Count_Error" xml:space="preserve">
+    <value>Количество изображений для отображения тренировочной нагрузки должно быть равным 3.</value>
+  </data>
+  <data name="Message_VO2Max_Image_Count_Error" xml:space="preserve">
+    <value>Количество изображений для отображения VO2Max должно быть равным 7.</value>
   </data>
   <data name="Message_WarningConverting_Text1" xml:space="preserve">
     <value>Каталог </value>

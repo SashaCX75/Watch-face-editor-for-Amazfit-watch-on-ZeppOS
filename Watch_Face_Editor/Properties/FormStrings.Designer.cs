@@ -214,7 +214,7 @@ namespace Watch_Face_Editor.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Json файлы (*.json) | *.json.
+        ///   Ищет локализованную строку, похожую на Json файлы (*.json)|*.json.
         /// </summary>
         internal static string FilterJson {
             get {
@@ -232,7 +232,7 @@ namespace Watch_Face_Editor.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Zip файл циферблата (*.zip) | *.zip.
+        ///   Ищет локализованную строку, похожую на Zip файл циферблата (*.zip)|*.zip.
         /// </summary>
         internal static string FilterZip {
             get {
@@ -345,6 +345,15 @@ namespace Watch_Face_Editor.Properties {
         internal static string Message_AnimationAOD_Text {
             get {
                 return ResourceManager.GetString("Message_AnimationAOD_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Количество изображений для отображения AQI должно быть равным 6..
+        /// </summary>
+        internal static string Message_AQI_Image_Count_Error {
+            get {
+                return ResourceManager.GetString("Message_AQI_Image_Count_Error", resourceCulture);
             }
         }
         
@@ -768,6 +777,24 @@ namespace Watch_Face_Editor.Properties {
         internal static string Message_ShortcutsAOD_Text {
             get {
                 return ResourceManager.GetString("Message_ShortcutsAOD_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Количество изображений для отображения тренировочной нагрузки должно быть равным 3..
+        /// </summary>
+        internal static string Message_TrainingLoad_Image_Count_Error {
+            get {
+                return ResourceManager.GetString("Message_TrainingLoad_Image_Count_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Количество изображений для отображения VO2Max должно быть равным 7..
+        /// </summary>
+        internal static string Message_VO2Max_Image_Count_Error {
+            get {
+                return ResourceManager.GetString("Message_VO2Max_Image_Count_Error", resourceCulture);
             }
         }
         

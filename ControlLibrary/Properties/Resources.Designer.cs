@@ -93,6 +93,26 @@ namespace ControlLibrary.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap air_quality {
+            get {
+                object obj = ResourceManager.GetObject("air_quality", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap alarm_clock {
+            get {
+                object obj = ResourceManager.GetObject("alarm_clock", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap analog_time_18 {
             get {
                 object obj = ResourceManager.GetObject("analog_time_18", resourceCulture);
@@ -176,6 +196,16 @@ namespace ControlLibrary.Properties {
         internal static System.Drawing.Bitmap bluetooth {
             get {
                 object obj = ResourceManager.GetObject("bluetooth", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap body_temp {
+            get {
+                object obj = ResourceManager.GetObject("body_temp", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -326,6 +356,16 @@ namespace ControlLibrary.Properties {
         internal static System.Drawing.Bitmap Files_Copy_File_icon {
             get {
                 object obj = ResourceManager.GetObject("Files_Copy_File_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap floor {
+            get {
+                object obj = ResourceManager.GetObject("floor", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -613,6 +653,16 @@ namespace ControlLibrary.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap readiness {
+            get {
+                object obj = ResourceManager.GetObject("readiness", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap repeating_signal {
             get {
                 object obj = ResourceManager.GetObject("repeating signal", resourceCulture);
@@ -833,6 +883,16 @@ namespace ControlLibrary.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap training_load {
+            get {
+                object obj = ResourceManager.GetObject("training_load", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap trainings {
             get {
                 object obj = ResourceManager.GetObject("trainings", resourceCulture);
@@ -856,6 +916,16 @@ namespace ControlLibrary.Properties {
         internal static System.Drawing.Bitmap Very_Basic_Calendar_16 {
             get {
                 object obj = ResourceManager.GetObject("Very-Basic-Calendar_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap vo2_max {
+            get {
+                object obj = ResourceManager.GetObject("vo2_max", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

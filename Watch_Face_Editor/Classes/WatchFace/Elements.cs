@@ -1212,7 +1212,7 @@ namespace Watch_Face_Editor
         /// <summary>Количество колонок для отображения</summary>
         public int DaysCount { get; set; } = 7;
 
-        /// <summary>Количество колонок для отображения</summary>
+        /// <summary>Ширина одной колонки</summary>
         public int ColumnWidth { get; set; } = 30;
 
         ///// <summary>Позиционировать данные температуры по графику</summary>

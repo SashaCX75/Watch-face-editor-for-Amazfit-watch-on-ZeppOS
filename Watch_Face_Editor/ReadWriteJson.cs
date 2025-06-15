@@ -1,23 +1,24 @@
-﻿using Newtonsoft.Json;
+﻿using ImageMagick;
+using Microsoft.WindowsAPICodePack.Sensors;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Linq;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
-using System.Drawing;
 using System.Windows.Forms.VisualStyles;
-using static System.Net.Mime.MediaTypeNames;
-using static Microsoft.WindowsAPICodePack.Shell.PropertySystem.SystemProperties.System;
-using Microsoft.WindowsAPICodePack.Sensors;
-using System.Security.Cryptography;
-using ImageMagick;
+using System.Xml.Linq;
 using static Microsoft.WindowsAPICodePack.Shell.PropertySystem.SystemProperties;
+using static Microsoft.WindowsAPICodePack.Shell.PropertySystem.SystemProperties.System;
+using static System.Net.Mime.MediaTypeNames;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Watch_Face_Editor
 {
@@ -14177,6 +14178,107 @@ namespace Watch_Face_Editor
                     break;
                 #endregion
 
+                #region ElementHRV
+                case "ElementHRV":
+                    ElementHRV HRV = (ElementHRV)element;
+
+                    if (!HRV.visible) return;
+                    if (HRV.Number != null && HRV.Number.visible)
+                    {
+                        numberPosition = HRV.Number.position;
+                        hmUI_widget_IMG_NUMBER img_number = HRV.Number;
+                        numberOptions = IMG_NUMBER_Options(img_number, "HRV", show_level);
+
+                        numberOptions_separator = IMG_Separator_Options(img_number, show_level);
+                    }
+                    if (HRV.Number_Font != null && HRV.Number_Font.visible)
+                    {
+                        numberFontPosition = HRV.Number_Font.position;
+                        hmUI_widget_TEXT text = HRV.Number_Font;
+                        numberFontOptions = TEXT_FONT_Options(text, "HRV", show_level);
+                    }
+
+                    if (HRV.Icon != null && HRV.Icon.visible)
+                    {
+                        iconPosition = HRV.Icon.position;
+                        hmUI_widget_IMG img_icon = HRV.Icon;
+                        iconOptions = IMG_Options(img_icon, show_level);
+                    }
+
+                    for (int index = 1; index <= 10; index++)
+                    {
+                        // Number
+                        if (index == numberPosition && numberOptions.Length > 5)
+                        {
+                            variables += TabInString(4) + "let " + optionNameStart +
+                                "hrv_text_text_img = ''" + Environment.NewLine;
+                            items += Environment.NewLine + TabInString(6) +
+                                optionNameStart + "hrv_text_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
+                                    numberOptions + TabInString(6) + "});" + Environment.NewLine;
+
+                            if (HRV.Number.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                    "hrv_text_text_img.setAlpha(" + HRV.Number.alpha.ToString() + ");" + Environment.NewLine;
+
+                            if (numberOptions_separator.Length > 5)
+                            {
+                                variables += TabInString(4) + "let " + optionNameStart +
+                                    "hrv_text_separator_img = ''" + Environment.NewLine;
+                                items += Environment.NewLine + TabInString(6) +
+                                    optionNameStart + "hrv_text_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
+                                        numberOptions_separator + TabInString(6) + "});" + Environment.NewLine;
+
+                                if (HRV.Number.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                        "hrv_text_separator_img.setAlpha(" + HRV.Number.icon_alpha.ToString() + ");" + Environment.NewLine;
+                            }
+                        }
+
+                        // Number_Font
+                        if (index == numberFontPosition && numberFontOptions.Length > 5)
+                        {
+                            if (SelectedModel.versionOS >= 2 && HRV.Number_Font.font != null && HRV.Number_Font.font.Length > 3)
+                            {
+                                string cacheName = "// FontName: " + HRV.Number_Font.font + "; FontSize: " + HRV.Number_Font.text_size.ToString();
+                                //if (HRV.Number_Font.unit_type > 0)
+                                //    cacheName = "// FontName: " + HRV.Number_Font.font + "; FontSize: " + HRV.Number_Font.text_size.ToString() + "; Cache: full";
+                                if (fonts_cache.IndexOf(cacheName) < 0)
+                                {
+                                    //bool fullCache = HRV.Number_Font.unit_type > 0;
+                                    bool fullCache = false;
+                                    string fontCacheOptions = TEXT_Cache_Options(HRV.Number_Font, fullCache);
+                                    if (fontCacheOptions.Length > 5)
+                                    {
+                                        fonts_cache += Environment.NewLine + TabInString(6) + cacheName + Environment.NewLine;
+                                        fonts_cache += TabInString(6) + "hmUI.createWidget(hmUI.widget.TEXT, {" + fontCacheOptions +
+                                            TabInString(6) + "});" + Environment.NewLine;
+                                    }
+                                }
+                            }
+
+                            variables += TabInString(4) + "let " + optionNameStart +
+                                "hrv_current_text_font = ''" + Environment.NewLine;
+                            items += Environment.NewLine + TabInString(6) +
+                                optionNameStart + "hrv_current_text_font = hmUI.createWidget(hmUI.widget.TEXT_FONT, {" +
+                                    numberFontOptions + TabInString(6) + "});" + Environment.NewLine;
+                        }
+
+                        // Icon
+                        if (index == iconPosition && iconOptions.Length > 5)
+                        {
+                            variables += TabInString(4) + "let " + optionNameStart +
+                                "hrv_icon_img = ''" + Environment.NewLine;
+                            items += Environment.NewLine + TabInString(6) +
+                                optionNameStart + "hrv_icon_img = hmUI.createWidget(hmUI.widget.IMG, {" +
+                                    iconOptions + TabInString(6) + "});" + Environment.NewLine;
+
+                            if (HRV.Icon.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                    "hrv_icon_img.setAlpha(" + HRV.Icon.alpha.ToString() + ");" + Environment.NewLine;
+                        }
+
+
+                    }
+                    break;
+                #endregion
+
 
 
                 #region ElementButtons
@@ -19420,6 +19522,19 @@ namespace Watch_Face_Editor
                 img_array += "]";
                 options += TabInString(7 + tabOffset) + "x: " + img_number.imageX.ToString() + "," + Environment.NewLine;
                 options += TabInString(7 + tabOffset) + "y: " + img_number.imageY.ToString() + "," + Environment.NewLine;
+                if (type == "BODY_TEMP")
+                {
+                    Bitmap src = OpenFileStream(ListImagesFullName[imgPosition]);
+                    if (src != null)
+                    {
+                        int w = src.Width;
+                        int h = src.Height;
+                        w = 6 * w + 5 * img_number.space;
+
+                        options += TabInString(7 + tabOffset) + "w: " + w.ToString() + "," + Environment.NewLine;
+                        options += TabInString(7 + tabOffset) + "h: " + h.ToString() + "," + Environment.NewLine;
+                    }
+                }
                 options += TabInString(7 + tabOffset) + "font_array: " + img_array + "," + Environment.NewLine;
                 if (img_number.zero) options += TabInString(7 + tabOffset) + "padding: true," + Environment.NewLine;
                 else options += TabInString(7 + tabOffset) + "padding: false," + Environment.NewLine;
@@ -24149,6 +24264,216 @@ namespace Watch_Face_Editor
                                         compass.Icon.alpha = img.alpha;
                                         compass.Icon.visible = true;
                                         compass.Icon.position = offset;
+                                    }
+                                }
+
+
+
+                                if (objectName.EndsWith("alarm_clock_icon_img"))
+                                {
+                                    ElementAlarmClock alarm_clock = (ElementAlarmClock)elementsList.Find(e => e.GetType().Name == "ElementAlarmClock");
+                                    if (alarm_clock == null)
+                                    {
+                                        elementsList.Add(new ElementAlarmClock());
+                                        alarm_clock = (ElementAlarmClock)elementsList.Find(e => e.GetType().Name == "ElementAlarmClock");
+                                    }
+                                    if (alarm_clock != null)
+                                    {
+                                        int offset = 1;
+                                        if (alarm_clock.Number != null) offset++;
+                                        if (alarm_clock.Number_Font != null) offset++;
+
+                                        alarm_clock.Icon = new hmUI_widget_IMG();
+                                        alarm_clock.Icon.src = img.src;
+                                        alarm_clock.Icon.x = img.x;
+                                        alarm_clock.Icon.y = img.y;
+                                        alarm_clock.Icon.alpha = img.alpha;
+                                        alarm_clock.Icon.visible = true;
+                                        alarm_clock.Icon.position = offset;
+                                    }
+                                }
+
+                                if (objectName.EndsWith("training_load_icon_img"))
+                                {
+                                    ElementTrainingLoad training_load = (ElementTrainingLoad)elementsList.Find(e => e.GetType().Name == "ElementTrainingLoad");
+                                    if (training_load == null)
+                                    {
+                                        elementsList.Add(new ElementTrainingLoad());
+                                        training_load = (ElementTrainingLoad)elementsList.Find(e => e.GetType().Name == "ElementTrainingLoad");
+                                    }
+                                    if (training_load != null)
+                                    {
+                                        int offset = 1;
+                                        if (training_load.Images != null) offset++;
+                                        if (training_load.Segments != null) offset++;
+                                        if (training_load.Number != null) offset++;
+                                        if (training_load.Number_Font != null) offset++;
+                                        if (training_load.Pointer != null) offset++;
+                                        if (training_load.Circle_Scale != null) offset++;
+
+                                        training_load.Icon = new hmUI_widget_IMG();
+                                        training_load.Icon.src = img.src;
+                                        training_load.Icon.x = img.x;
+                                        training_load.Icon.y = img.y;
+                                        training_load.Icon.alpha = img.alpha;
+                                        training_load.Icon.visible = true;
+                                        training_load.Icon.position = offset;
+                                    }
+                                }
+
+                                if (objectName.EndsWith("vo2max_icon_img"))
+                                {
+                                    ElementVO2Max vo2max = (ElementVO2Max)elementsList.Find(e => e.GetType().Name == "ElementVO2Max");
+                                    if (vo2max == null)
+                                    {
+                                        elementsList.Add(new ElementVO2Max());
+                                        vo2max = (ElementVO2Max)elementsList.Find(e => e.GetType().Name == "ElementVO2Max");
+                                    }
+                                    if (vo2max != null)
+                                    {
+                                        int offset = 1;
+                                        if (vo2max.Images != null) offset++;
+                                        if (vo2max.Segments != null) offset++;
+                                        if (vo2max.Number != null) offset++;
+                                        if (vo2max.Number_Font != null) offset++;
+                                        if (vo2max.Pointer != null) offset++;
+                                        if (vo2max.Circle_Scale != null) offset++;
+
+                                        vo2max.Icon = new hmUI_widget_IMG();
+                                        vo2max.Icon.src = img.src;
+                                        vo2max.Icon.x = img.x;
+                                        vo2max.Icon.y = img.y;
+                                        vo2max.Icon.alpha = img.alpha;
+                                        vo2max.Icon.visible = true;
+                                        vo2max.Icon.position = offset;
+                                    }
+                                }
+
+                                if (objectName.EndsWith("aqi_icon_img"))
+                                {
+                                    ElementAQI aqi = (ElementAQI)elementsList.Find(e => e.GetType().Name == "ElementAQI");
+                                    if (aqi == null)
+                                    {
+                                        elementsList.Add(new ElementAQI());
+                                        aqi = (ElementAQI)elementsList.Find(e => e.GetType().Name == "ElementAQI");
+                                    }
+                                    if (aqi != null)
+                                    {
+                                        int offset = 1;
+                                        if (aqi.Images != null) offset++;
+                                        if (aqi.Segments != null) offset++;
+                                        if (aqi.Number != null) offset++;
+                                        if (aqi.Number_Font != null) offset++;
+                                        if (aqi.Pointer != null) offset++;
+                                        if (aqi.Circle_Scale != null) offset++;
+
+                                        aqi.Icon = new hmUI_widget_IMG();
+                                        aqi.Icon.src = img.src;
+                                        aqi.Icon.x = img.x;
+                                        aqi.Icon.y = img.y;
+                                        aqi.Icon.alpha = img.alpha;
+                                        aqi.Icon.visible = true;
+                                        aqi.Icon.position = offset;
+                                    }
+                                }
+
+                                if (objectName.EndsWith("body_temp_icon_img"))
+                                {
+                                    ElementBodyTemp body_temp = (ElementBodyTemp)elementsList.Find(e => e.GetType().Name == "ElementBodyTemp");
+                                    if (body_temp == null)
+                                    {
+                                        elementsList.Add(new ElementBodyTemp());
+                                        body_temp = (ElementBodyTemp)elementsList.Find(e => e.GetType().Name == "ElementBodyTemp");
+                                    }
+                                    if (body_temp != null)
+                                    {
+                                        int offset = 1;
+                                        if (body_temp.Number != null) offset++;
+                                        if (body_temp.Number_Font != null) offset++;
+
+                                        body_temp.Icon = new hmUI_widget_IMG();
+                                        body_temp.Icon.src = img.src;
+                                        body_temp.Icon.x = img.x;
+                                        body_temp.Icon.y = img.y;
+                                        body_temp.Icon.alpha = img.alpha;
+                                        body_temp.Icon.visible = true;
+                                        body_temp.Icon.position = offset;
+                                    }
+                                }
+
+                                if (objectName.EndsWith("floor_icon_img"))
+                                {
+                                    ElementFloor floor = (ElementFloor)elementsList.Find(e => e.GetType().Name == "ElementFloor");
+                                    if (floor == null)
+                                    {
+                                        elementsList.Add(new ElementFloor());
+                                        floor = (ElementFloor)elementsList.Find(e => e.GetType().Name == "ElementFloor");
+                                    }
+                                    if (floor != null)
+                                    {
+                                        int offset = 1;
+                                        if (floor.Number != null) offset++;
+                                        if (floor.Number_Font != null) offset++;
+
+                                        floor.Icon = new hmUI_widget_IMG();
+                                        floor.Icon.src = img.src;
+                                        floor.Icon.x = img.x;
+                                        floor.Icon.y = img.y;
+                                        floor.Icon.alpha = img.alpha;
+                                        floor.Icon.visible = true;
+                                        floor.Icon.position = offset;
+                                    }
+                                }
+
+                                if (objectName.EndsWith("readiness_icon_img"))
+                                {
+                                    ElementReadiness readiness = (ElementReadiness)elementsList.Find(e => e.GetType().Name == "ElementReadiness");
+                                    if (readiness == null)
+                                    {
+                                        elementsList.Add(new ElementReadiness());
+                                        readiness = (ElementReadiness)elementsList.Find(e => e.GetType().Name == "ElementReadiness");
+                                    }
+                                    if (readiness != null)
+                                    {
+                                        int offset = 1;
+                                        if (readiness.Images != null) offset++;
+                                        if (readiness.Segments != null) offset++;
+                                        if (readiness.Number != null) offset++;
+                                        if (readiness.Number_Font != null) offset++;
+                                        if (readiness.Pointer != null) offset++;
+                                        if (readiness.Circle_Scale != null) offset++;
+
+                                        readiness.Icon = new hmUI_widget_IMG();
+                                        readiness.Icon.src = img.src;
+                                        readiness.Icon.x = img.x;
+                                        readiness.Icon.y = img.y;
+                                        readiness.Icon.alpha = img.alpha;
+                                        readiness.Icon.visible = true;
+                                        readiness.Icon.position = offset;
+                                    }
+                                }
+
+                                if (objectName.EndsWith("hrv_icon_img"))
+                                {
+                                    ElementHRV hrv = (ElementHRV)elementsList.Find(e => e.GetType().Name == "ElementHRV");
+                                    if (hrv == null)
+                                    {
+                                        elementsList.Add(new ElementHRV());
+                                        hrv = (ElementHRV)elementsList.Find(e => e.GetType().Name == "ElementHRV");
+                                    }
+                                    if (hrv != null)
+                                    {
+                                        int offset = 1;
+                                        if (hrv.Number != null) offset++;
+                                        if (hrv.Number_Font != null) offset++;
+
+                                        hrv.Icon = new hmUI_widget_IMG();
+                                        hrv.Icon.src = img.src;
+                                        hrv.Icon.x = img.x;
+                                        hrv.Icon.y = img.y;
+                                        hrv.Icon.alpha = img.alpha;
+                                        hrv.Icon.visible = true;
+                                        hrv.Icon.position = offset;
                                     }
                                 }
 
@@ -31074,6 +31399,40 @@ namespace Watch_Face_Editor
                                 readiness.Number.alpha = imgNumber.alpha;
                                 readiness.Number.visible = true;
                                 readiness.Number.position = offset;
+                            }
+                        }
+
+                        if (imgNumber.type == "HRV")
+                        {
+                            ElementHRV hrv = (ElementHRV)elementsList.Find(e => e.GetType().Name == "ElementHRV");
+                            if (hrv == null)
+                            {
+                                elementsList.Add(new ElementHRV());
+                                hrv = (ElementHRV)elementsList.Find(e => e.GetType().Name == "ElementHRV");
+                            }
+                            if (hrv != null)
+                            {
+                                int offset = 1;
+                                //if (hrv.Number != null) offset++;
+                                if (hrv.Number_Font != null) offset++;
+                                if (hrv.Icon != null) offset++;
+
+                                hrv.Number = new hmUI_widget_IMG_NUMBER();
+                                hrv.Number.img_First = imgNumber.img_First;
+                                hrv.Number.imageX = imgNumber.imageX;
+                                hrv.Number.imageY = imgNumber.imageY;
+                                hrv.Number.space = imgNumber.space;
+                                hrv.Number.angle = imgNumber.angle;
+                                hrv.Number.zero = imgNumber.zero;
+                                hrv.Number.unit = imgNumber.unit;
+                                hrv.Number.imperial_unit = imgNumber.imperial_unit;
+                                hrv.Number.negative_image = imgNumber.negative_image;
+                                hrv.Number.invalid_image = imgNumber.invalid_image;
+                                hrv.Number.dot_image = imgNumber.dot_image;
+                                hrv.Number.align = imgNumber.align;
+                                hrv.Number.alpha = imgNumber.alpha;
+                                hrv.Number.visible = true;
+                                hrv.Number.position = offset;
                             }
                         }
 
@@ -38504,6 +38863,49 @@ namespace Watch_Face_Editor
 
                                 readiness.Number_Font.visible = true;
                                 readiness.Number_Font.position = offset;
+                            }
+                        }
+
+                        if (text_font.type == "HRV")
+                        {
+                            ElementHRV hrv = (ElementHRV)elementsList.Find(e => e.GetType().Name == "ElementHRV");
+                            if (hrv == null)
+                            {
+                                elementsList.Add(new ElementHRV());
+                                hrv = (ElementHRV)elementsList.Find(e => e.GetType().Name == "ElementHRV");
+                            }
+                            if (hrv != null)
+                            {
+                                int offset = 1;
+                                if (hrv.Number != null) offset++;
+                                //if (floor.Number_Font != null) offset++;
+                                if (hrv.Icon != null) offset++;
+
+                                hrv.Number_Font = new hmUI_widget_TEXT();
+                                hrv.Number_Font.x = text_font.x;
+                                hrv.Number_Font.y = text_font.y;
+                                hrv.Number_Font.w = text_font.w;
+                                hrv.Number_Font.h = text_font.h;
+
+                                hrv.Number_Font.color = text_font.color;
+                                hrv.Number_Font.font = text_font.font;
+                                hrv.Number_Font.text_size = text_font.text_size;
+
+                                hrv.Number_Font.char_space = text_font.char_space;
+                                hrv.Number_Font.line_space = text_font.line_space;
+                                hrv.Number_Font.alpha = text_font.alpha;
+
+                                hrv.Number_Font.align_h = text_font.align_h;
+                                hrv.Number_Font.align_v = text_font.align_v;
+                                hrv.Number_Font.text_style = text_font.text_style;
+
+                                hrv.Number_Font.padding = text_font.padding;
+                                hrv.Number_Font.unit_type = text_font.unit_type;
+
+                                hrv.Number_Font.type = text_font.type;
+
+                                hrv.Number_Font.visible = true;
+                                hrv.Number_Font.position = offset;
                             }
                         }
 

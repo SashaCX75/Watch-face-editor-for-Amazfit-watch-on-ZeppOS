@@ -188,9 +188,6 @@
   <data name="button_Pointer.Text" xml:space="preserve">
     <value>Стрілочний вказівник</value>
   </data>
-  <data name="button_Circle_Scale.Text" xml:space="preserve">
-    <value>Кругова шкала</value>
-  </data>
   <data name="button_Icon.Text" xml:space="preserve">
     <value>Іконка</value>
   </data>

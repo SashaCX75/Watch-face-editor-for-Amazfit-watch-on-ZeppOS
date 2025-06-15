@@ -26,6 +26,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrayNotify;
 
 namespace Watch_Face_Editor
 {
@@ -1438,6 +1439,7 @@ namespace Watch_Face_Editor
             if (e.Data.GetDataPresent(typeof(UCtrl_BodyTemp_Elm))) typeReturn = false;
             if (e.Data.GetDataPresent(typeof(UCtrl_Floor_Elm))) typeReturn = false;
             if (e.Data.GetDataPresent(typeof(UCtrl_Readiness_Elm))) typeReturn = false;
+            if (e.Data.GetDataPresent(typeof(UCtrl_HRV_Elm))) typeReturn = false;
 
             if (e.Data.GetDataPresent(typeof(UCtrl_JSscript_Elm))) typeReturn = false;
             //if (typeReturn) return;
@@ -1802,6 +1804,14 @@ namespace Watch_Face_Editor
                         if (draggedUCtrl_Elm != null) draggedPanel = (Panel)draggedUCtrl_Elm.Parent;
                         break;
 
+                    case "ControlLibrary.UCtrl_HRV_Elm":
+                        ElementHRV hrv =
+                            (ElementHRV)Elements.Find(e1 => e1.GetType().Name == "ElementHRV");
+                        index = Elements.IndexOf(hrv);
+                        draggedUCtrl_Elm = (UCtrl_HRV_Elm)e.Data.GetData(typeof(UCtrl_HRV_Elm));
+                        if (draggedUCtrl_Elm != null) draggedPanel = (Panel)draggedUCtrl_Elm.Parent;
+                        break;
+
 
 
                     case "ControlLibrary.UCtrl_JSscript_Elm":
@@ -2103,6 +2113,7 @@ namespace Watch_Face_Editor
             if (selectElementName != "BodyTemp") uCtrl_BodyTemp_Elm.ResetHighlightState();
             if (selectElementName != "Floor") uCtrl_Floor_Elm.ResetHighlightState();
             if (selectElementName != "Readiness") uCtrl_Readiness_Elm.ResetHighlightState();
+            if (selectElementName != "HRV") uCtrl_HRV_Elm.ResetHighlightState();
 
             if (selectElementName != "DisconnectAlert") uCtrl_DisconnectAlert_Elm.ResetHighlightState();
             if (selectElementName != "RepeatingAlert") uCtrl_RepeatingAlert_Elm.ResetHighlightState();
@@ -2184,6 +2195,7 @@ namespace Watch_Face_Editor
             uCtrl_BodyTemp_Elm.SettingsClear();
             uCtrl_Floor_Elm.SettingsClear();
             uCtrl_Readiness_Elm.SettingsClear();
+            uCtrl_HRV_Elm.SettingsClear();
 
             uCtrl_DisconnectAlert_Elm.SettingsClear();
             uCtrl_RepeatingAlert_Elm.SettingsClear();
@@ -4128,6 +4140,19 @@ namespace Watch_Face_Editor
                         panel_WatchfaceElements.VerticalScroll.Maximum);
                 }
             }
+            if (comboBox_AddActivity.SelectedIndex == 13)
+            {
+                if (AddHRV())
+                {
+                    ShowElemetsWatchFace();
+                    JSON_Modified = true;
+                    FormText();
+
+                    panel_WatchfaceElements.AutoScrollPosition = new Point(
+                        Math.Abs(panel_WatchfaceElements.AutoScrollPosition.X),
+                        panel_WatchfaceElements.VerticalScroll.Maximum);
+                }
+            }
 
             PreviewView = false;
             comboBox_AddActivity.Items.Insert(0, Properties.FormStrings.Elemet_Activity);
@@ -5628,6 +5653,43 @@ namespace Watch_Face_Editor
             return false;
         }
 
+        /// <summary>Добавляем HRV в циферблат</summary>
+        private bool AddHRV()
+        {
+            if (!PreviewView) return false;
+            List<object> Elements = new List<object>();
+            if (Watch_Face == null) Watch_Face = new WATCH_FACE();
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face.ScreenNormal == null) Watch_Face.ScreenNormal = new ScreenNormal();
+                if (Watch_Face.ScreenNormal.Elements == null) Watch_Face.ScreenNormal.Elements = new List<object>();
+                Elements = Watch_Face.ScreenNormal.Elements;
+            }
+            else
+            {
+                if (Watch_Face.ScreenAOD == null) Watch_Face.ScreenAOD = new ScreenAOD();
+                if (Watch_Face.ScreenAOD.Elements == null) Watch_Face.ScreenAOD.Elements = new List<object>();
+                Elements = Watch_Face.ScreenAOD.Elements;
+
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null) Elements = Watch_Face.ScreenAOD.Elements;
+            }
+
+            bool exists = Elements.Exists(e => e.GetType().Name == "ElementHRV"); // проверяем что такого элемента нет
+            if (!exists)
+            {
+                ElementHRV hrv = new ElementHRV();
+                hrv.visible = true;
+
+                Elements.Insert(0, hrv);
+                uCtrl_HRV_Elm.SettingsClear();
+                return true;
+            }
+            else MessageBox.Show(Properties.FormStrings.Message_Widget_Exists, Properties.FormStrings.Message_Warning_Caption,
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return false;
+        }
+
 
 
         /// <summary>Добавляем погоду в циферблат</summary>
@@ -6248,6 +6310,7 @@ namespace Watch_Face_Editor
             uCtrl_BodyTemp_Elm.Visible = false;
             uCtrl_Floor_Elm.Visible = false;
             uCtrl_Readiness_Elm.Visible = false;
+            uCtrl_HRV_Elm.Visible = false;
 
             uCtrl_DisconnectAlert_Elm.Visible = false;
             uCtrl_RepeatingAlert_Elm.Visible = false;
@@ -8535,7 +8598,36 @@ namespace Watch_Face_Editor
                                 SetElementPositionInGUI(type, count - i - 2);
                                 //SetElementPositionInGUI(type, i + 1);
                                 break;
-                                #endregion
+                        #endregion
+
+                            #region ElementHRV
+                            case "ElementHRV":
+                                ElementHRV HRV = (ElementHRV)element;
+                                uCtrl_HRV_Elm.SetVisibilityElementStatus(HRV.visible);
+                                elementOptions = new Dictionary<int, string>();
+                                if (HRV.Number != null)
+                                {
+                                    uCtrl_HRV_Elm.checkBox_Number.Checked = HRV.Number.visible;
+                                    elementOptions.Add(HRV.Number.position, "Number");
+                                }
+                                if (HRV.Number_Font != null)
+                                {
+                                    uCtrl_HRV_Elm.checkBox_Number_Font.Checked = HRV.Number_Font.visible;
+                                    elementOptions.Add(HRV.Number_Font.position, "Number_Font");
+                                }
+                                if (HRV.Icon != null)
+                                {
+                                    uCtrl_HRV_Elm.checkBox_Icon.Checked = HRV.Icon.visible;
+                                    elementOptions.Add(HRV.Icon.position, "Icon");
+                                }
+
+                                uCtrl_HRV_Elm.SetOptionsPosition(elementOptions);
+
+                                uCtrl_HRV_Elm.Visible = true;
+                                SetElementPositionInGUI(type, count - i - 2);
+                                //SetElementPositionInGUI(type, i + 1);
+                                break;
+                            #endregion
                     }
 
 #if !DEBUG
@@ -9172,6 +9264,9 @@ namespace Watch_Face_Editor
                     break;
                 case "ElementReadiness":
                     panel = panel_UC_Readiness;
+                    break;
+                case "ElementHRV":
+                    panel = panel_UC_HRV;
                     break;
 
                 case "Buttons":
@@ -10070,6 +10165,9 @@ namespace Watch_Face_Editor
                 case "UCtrl_Readiness_Elm":
                     objectName = "ElementReadiness";
                     break;
+                case "UCtrl_HRV_Elm":
+                    objectName = "ElementHRV";
+                    break;
 
                 case "UCtrl_JSscript_Elm":
                     objectName = "ElementScript";
@@ -10497,6 +10595,7 @@ namespace Watch_Face_Editor
             int vo2max = rnd.Next(30, 70);
             int floor = rnd.Next(0, 30);
             int readiness = rnd.Next(50, 101);
+            int hrv = rnd.Next(0, 80);
 
             WatchFacePreviewSet.DateTime.Date.Year = year;
             WatchFacePreviewSet.DateTime.Date.Month = month;
@@ -10523,6 +10622,7 @@ namespace Watch_Face_Editor
             WatchFacePreviewSet.Activity.VO2Max = vo2max;
             WatchFacePreviewSet.Activity.Floor = floor;
             WatchFacePreviewSet.Activity.Readiness = readiness;
+            WatchFacePreviewSet.Activity.HRV = hrv;
 
 
             WatchFacePreviewSet.System.Status.Bluetooth = bluetooth;
@@ -10939,11 +11039,6 @@ namespace Watch_Face_Editor
                                 break;
                         }
 
-                        //Watch_Face_Preview_Set previewSet = JsonConvert.DeserializeObject<Watch_Face_Preview_Set>(str, new JsonSerializerSettings
-                        //{
-                        //    //DefaultValueHandling = DefaultValueHandling.Ignore,
-                        //    NullValueHandling = NullValueHandling.Ignore
-                        //});
                     }
                 }
                 else
@@ -17025,8 +17120,9 @@ namespace Watch_Face_Editor
                     case "Number":
                         if (uCtrl_AlarmClock_Elm.checkBox_Number.Checked)
                         {
+                            alarmClock.Number.zero = true;
                             img_number = alarmClock.Number;
-                            Read_ImgNumber_Options(img_number, false, false, "", true, false, true, true);
+                            Read_ImgNumber_Options(img_number, false, false, "", true, true, false, true, true);
                             ShowElemenrOptions("Text");
                         }
                         else HideAllElemenrOptions();
@@ -17399,7 +17495,8 @@ namespace Watch_Face_Editor
                         if (uCtrl_BodyTemp_Elm.checkBox_Number.Checked)
                         {
                             img_number = bodyTemp.Number;
-                            Read_ImgNumber_Options(img_number, false, false, "", true, false, true, true);
+                            Read_ImgNumber_Options(img_number, false, false, "", true, true, true, true, false, false, false, true);
+                            //Read_ImgNumber_Options(img_number, true, false, "", false, true, true, true);
                             ShowElemenrOptions("Text");
                         }
                         else HideAllElemenrOptions();
@@ -17583,6 +17680,69 @@ namespace Watch_Face_Editor
                         if (uCtrl_Readiness_Elm.checkBox_Icon.Checked)
                         {
                             icon = readiness.Icon;
+                            Read_Icon_Options(icon);
+                            ShowElemenrOptions("Icon");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                }
+
+            }
+        }
+
+        private void uCtrl_HRV_Elm_SelectChanged(object sender, EventArgs eventArgs)
+        {
+            string selectElement = uCtrl_HRV_Elm.selectedElement;
+            if (selectElement.Length == 0) HideAllElemenrOptions();
+            ResetHighlightState("HRV");
+
+            ElementHRV hrv = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    hrv = (ElementHRV)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementHRV");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    hrv = (ElementHRV)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementHRV");
+                }
+            }
+            if (hrv != null)
+            {
+                hmUI_widget_IMG_NUMBER img_number = null;
+                hmUI_widget_IMG icon = null;
+                hmUI_widget_TEXT text = null;
+
+                switch (selectElement)
+                {
+                    case "Number":
+                        if (uCtrl_HRV_Elm.checkBox_Number.Checked)
+                        {
+                            img_number = hrv.Number;
+                            Read_ImgNumber_Options(img_number, false, false, "", true, false, true, true);
+                            ShowElemenrOptions("Text");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Number_Font":
+                        if (uCtrl_HRV_Elm.checkBox_Number_Font.Checked)
+                        {
+                            text = hrv.Number_Font;
+                            Read_Text_Options(text, true, true);
+                            ShowElemenrOptions("SystemFont");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Icon":
+                        if (uCtrl_HRV_Elm.checkBox_Icon.Checked)
+                        {
+                            icon = hrv.Icon;
                             Read_Icon_Options(icon);
                             ShowElemenrOptions("Icon");
                         }
@@ -18564,6 +18724,13 @@ namespace Watch_Face_Editor
                         case "ElementReadiness":
                             ElementReadiness readinessElement = (ElementReadiness)element;
                             Watch_Face.ScreenAOD.Elements.Add((ElementReadiness)readinessElement.Clone());
+                            break;
+                        #endregion
+
+                        #region ElementHRV
+                        case "ElementHRV":
+                            ElementHRV hrvElement = (ElementHRV)element;
+                            Watch_Face.ScreenAOD.Elements.Add((ElementHRV)hrvElement.Clone());
                             break;
                         #endregion
 
@@ -20398,6 +20565,52 @@ namespace Watch_Face_Editor
             FormText();
         }
 
+        private void uCtrl_HRV_Elm_OptionsMoved(object sender, EventArgs eventArgs, Dictionary<string, int> elementOptions)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+
+            ElementHRV hrv = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenNormal.Elements.Exists(e => e.GetType().Name == "ElementHRV");
+                    //digitalTime = (ElementAnalogTime)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementAnalogTime");
+                    if (!exists) Watch_Face.ScreenNormal.Elements.Add(new ElementHRV());
+                    hrv = (ElementHRV)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementHRV");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenAOD.Elements.Exists(e => e.GetType().Name == "ElementHRV");
+                    //digitalTime = (ElementAnalogTime)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementAnalogTime");
+                    if (!exists) Watch_Face.ScreenAOD.Elements.Add(new ElementHRV());
+                    hrv = (ElementHRV)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementHRV");
+                }
+            }
+
+            if (hrv != null)
+            {
+                if (hrv.Number == null) hrv.Number = new hmUI_widget_IMG_NUMBER();
+                if (hrv.Number_Font == null) hrv.Number_Font = new hmUI_widget_TEXT();
+                if (hrv.Icon == null) hrv.Icon = new hmUI_widget_IMG();
+
+                if (elementOptions.ContainsKey("Number")) hrv.Number.position = elementOptions["Number"];
+                if (elementOptions.ContainsKey("Number_Font")) hrv.Number_Font.position = elementOptions["Number_Font"];
+                if (elementOptions.ContainsKey("Icon")) hrv.Icon.position = elementOptions["Icon"];
+
+            }
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
         #endregion
 
         private void uCtrl_Shortcuts_Elm_VisibleElementChanged(object sender, EventArgs eventArgs, bool visible)
@@ -21320,6 +21533,36 @@ namespace Watch_Face_Editor
             if (readiness != null)
             {
                 readiness.visible = visible;
+            }
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_HRV_Elm_VisibleElementChanged(object sender, EventArgs eventArgs, bool visible)
+        {
+            ElementHRV hrv = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    //bool exists = Elements.Exists(e => e.GetType().Name == "ElementAnalogTime");
+                    hrv = (ElementHRV)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementHRV");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    hrv = (ElementHRV)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementHRV");
+                }
+            }
+            if (hrv != null)
+            {
+                hrv.visible = visible;
             }
 
             JSON_Modified = true;
@@ -23981,9 +24224,11 @@ namespace Watch_Face_Editor
                 {
                     case "checkBox_Number":
                         alarmClock.Number.visible = checkBox.Checked;
+                        alarmClock.Number.zero = true;
                         break;
                     case "checkBox_Number_Font":
                         alarmClock.Number_Font.visible = checkBox.Checked;
+                        alarmClock.Number_Font.padding = true;
                         break;
                     case "checkBox_Icon":
                         alarmClock.Icon.visible = checkBox.Checked;
@@ -24451,6 +24696,68 @@ namespace Watch_Face_Editor
             FormText();
         }
 
+        private void uCtrl_HRV_Elm_VisibleOptionsChanged(object sender, EventArgs eventArgs)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+
+            ElementHRV hrv = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenNormal.Elements.Exists(e => e.GetType().Name == "ElementHRV");
+                    if (!exists) Watch_Face.ScreenNormal.Elements.Add(new ElementHRV());
+                    hrv = (ElementHRV)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementHRV");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenAOD.Elements.Exists(e => e.GetType().Name == "ElementHRV");
+                    if (!exists) Watch_Face.ScreenAOD.Elements.Add(new ElementHRV());
+                    hrv = (ElementHRV)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementHRV");
+                }
+            }
+
+            if (hrv != null)
+            {
+                if (hrv.Number == null) hrv.Number = new hmUI_widget_IMG_NUMBER();
+                if (hrv.Number_Font == null) hrv.Number_Font = new hmUI_widget_TEXT();
+                if (hrv.Icon == null) hrv.Icon = new hmUI_widget_IMG();
+
+                Dictionary<string, int> elementOptions = uCtrl_HRV_Elm.GetOptionsPosition();
+                if (elementOptions.ContainsKey("Number")) hrv.Number.position = elementOptions["Number"];
+                if (elementOptions.ContainsKey("Number_Font")) hrv.Number_Font.position = elementOptions["Number_Font"];
+                if (elementOptions.ContainsKey("Icon")) hrv.Icon.position = elementOptions["Icon"];
+
+                CheckBox checkBox = (CheckBox)sender;
+                string name = checkBox.Name;
+                switch (name)
+                {
+                    case "checkBox_Number":
+                        hrv.Number.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Number_Font":
+                        hrv.Number_Font.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Icon":
+                        hrv.Icon.visible = checkBox.Checked;
+                        break;
+                }
+
+            }
+
+            uCtrl_HRV_Elm_SelectChanged(sender, eventArgs);
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
         #endregion
 
         private void button_SavePNG_Click(object sender, EventArgs e)
@@ -24721,6 +25028,61 @@ namespace Watch_Face_Editor
                         collection.Add(item_AOD);
                         //collection[collection.Count - 1].AnimationDelay = 100;
                         collection[collection.Count - 1].AnimationDelay = (int)(100 * numericUpDown_Gif_Speed.Value);
+                    }
+
+                    // Переключаемый фон
+                    Background background = null;
+                    if (Watch_Face != null && Watch_Face.ScreenNormal != null && Watch_Face.ScreenNormal.Background != null)
+                        background = Watch_Face.ScreenNormal.Background;
+                    if (background != null)
+                    {
+                        // фон
+                        if (background.BackgroundImage != null && background.BackgroundImage.src != null &&
+                            background.BackgroundImage.src.Length > 0 && background.visible && Watch_Face.SwitchBackground != null &&
+                            Watch_Face.SwitchBackground.bg_list != null && Watch_Face.SwitchBackground.bg_list.Count > 0 &&
+                            Watch_Face.SwitchBackground.enable)
+                        {
+                            ElementSwitchBackground switchBG = Watch_Face.SwitchBackground;
+                            int switchBGIndex = switchBG.select_index;
+                            for (int i = 0; i < switchBG.bg_list.Count; i++)
+                            {
+                                bitmap = bitmapTemp;
+                                gPanel = Graphics.FromImage(bitmap);
+                                switchBG.select_index = i;
+                                Preview_screen(gPanel, 1.0f, false, false, false, false, false, false, false, false, false, false, false, true,
+                                    false, false, false, 0, false, false, -1, false, 0);
+                                if (checkBox_WatchSkin_Use.Checked) bitmap = ApplyWatchSkin(bitmap);
+                                else if (checkBox_crop.Checked) bitmap = ApplyMask(bitmap, mask);
+                                MagickImage item_bg_edit = new MagickImage(ImgConvert.CopyImageToByteArray(bitmap));
+                                collection.Add(item_bg_edit);
+                                collection[collection.Count - 1].AnimationDelay = (int)(100 * numericUpDown_Gif_Speed.Value);
+                            }
+                            switchBG.select_index = switchBGIndex;
+                        }
+
+                        // цвет
+                        if (background.BackgroundColor != null && background.visible && Watch_Face.SwitchBG_Color != null &&
+                        Watch_Face.SwitchBG_Color.color_list != null && Watch_Face.SwitchBG_Color.color_list.Count > 0 &&
+                        Watch_Face.SwitchBG_Color.enable)
+                        {
+                            ElementSwitchBG_Color switchBG_Color = Watch_Face.SwitchBG_Color;
+                            int switchBGIndex = switchBG_Color.select_index;
+                            for (int i = 0; i < switchBG_Color.color_list.Count; i++)
+                            {
+                                bitmap = bitmapTemp;
+                                gPanel = Graphics.FromImage(bitmap);
+                                switchBG_Color.select_index = i;
+                                Preview_screen(gPanel, 1.0f, false, false, false, false, false, false, false, false, false, false, false, true,
+                                    false, false, false, 0, false, false, -1, false, 0);
+                                if (checkBox_WatchSkin_Use.Checked) bitmap = ApplyWatchSkin(bitmap);
+                                else if (checkBox_crop.Checked) bitmap = ApplyMask(bitmap, mask);
+                                MagickImage item_bg_edit = new MagickImage(ImgConvert.CopyImageToByteArray(bitmap));
+                                collection.Add(item_bg_edit);
+                                collection[collection.Count - 1].AnimationDelay = (int)(100 * numericUpDown_Gif_Speed.Value);
+                            }
+                            switchBG_Color.select_index = switchBGIndex;
+                        }
+
                     }
 
 

@@ -1,6 +1,6 @@
 ﻿namespace ControlLibrary
 {
-    partial class UCtrl_BodyTemp_Elm
+    partial class UCtrl_HRV_Elm
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -28,30 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCtrl_BodyTemp_Elm));
             this.SuspendLayout();
-            // 
-            // checkBox_Number_Font
-            // 
-            resources.ApplyResources(this.checkBox_Number_Font, "checkBox_Number_Font");
-            // 
-            // checkBox_Number
-            // 
-            resources.ApplyResources(this.checkBox_Number, "checkBox_Number");
-            // 
-            // checkBox_Icon
-            // 
-            resources.ApplyResources(this.checkBox_Icon, "checkBox_Icon");
             // 
             // button_ElementName
             // 
-            resources.ApplyResources(this.button_ElementName, "button_ElementName");
-            this.button_ElementName.Image = global::ControlLibrary.Properties.Resources.body_temp;
+            this.button_ElementName.Image = global::ControlLibrary.Properties.Resources.hrv;
+            this.button_ElementName.Text = "HRV";
             // 
-            // UCtrl_BodyTemp_Elm
+            // UCtrl_HRV_Elm
             // 
-            resources.ApplyResources(this, "$this");
-            this.Name = "UCtrl_BodyTemp_Elm";
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.Name = "UCtrl_HRV_Elm";
             this.ResumeLayout(false);
             this.PerformLayout();
 

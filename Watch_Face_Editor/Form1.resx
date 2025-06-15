@@ -939,6 +939,9 @@
   <data name="comboBox_AddActivity.Items13" xml:space="preserve">
     <value>Этажи</value>
   </data>
+  <data name="comboBox_AddActivity.Items14" xml:space="preserve">
+    <value>HRV*</value>
+  </data>
   <data name="comboBox_AddActivity.Location" type="System.Drawing.Point, System.Drawing">
     <value>31, 53</value>
   </data>
@@ -1576,7 +1579,7 @@
     <value>Fill</value>
   </data>
   <data name="panel_UC_Background.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 1666</value>
+    <value>0, 1700</value>
   </data>
   <data name="panel_UC_Background.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -3094,7 +3097,7 @@
     <value>Fill</value>
   </data>
   <data name="panel_UC_Animation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 1632</value>
+    <value>0, 1666</value>
   </data>
   <data name="panel_UC_Animation.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -3490,7 +3493,7 @@
     <value>Fill</value>
   </data>
   <data name="panel_UC_JS.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 1598</value>
+    <value>0, 1632</value>
   </data>
   <data name="panel_UC_JS.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -4371,6 +4374,69 @@
   <data name="&gt;&gt;panel_UC_Readiness.ZOrder" xml:space="preserve">
     <value>49</value>
   </data>
+  <data name="panel_UC_HRV.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="uCtrl_HRV_Elm.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="uCtrl_HRV_Elm.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="uCtrl_HRV_Elm.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="uCtrl_HRV_Elm.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="uCtrl_HRV_Elm.Size" type="System.Drawing.Size, System.Drawing">
+    <value>231, 34</value>
+  </data>
+  <data name="uCtrl_HRV_Elm.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="uCtrl_HRV_Elm.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;uCtrl_HRV_Elm.Name" xml:space="preserve">
+    <value>uCtrl_HRV_Elm</value>
+  </data>
+  <data name="&gt;&gt;uCtrl_HRV_Elm.Type" xml:space="preserve">
+    <value>ControlLibrary.UCtrl_HRV_Elm, ControlLibrary, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;uCtrl_HRV_Elm.Parent" xml:space="preserve">
+    <value>panel_UC_HRV</value>
+  </data>
+  <data name="&gt;&gt;uCtrl_HRV_Elm.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panel_UC_HRV.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="panel_UC_HRV.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 1598</value>
+  </data>
+  <data name="panel_UC_HRV.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="panel_UC_HRV.Size" type="System.Drawing.Size, System.Drawing">
+    <value>231, 34</value>
+  </data>
+  <data name="panel_UC_HRV.TabIndex" type="System.Int32, mscorlib">
+    <value>133</value>
+  </data>
+  <data name="&gt;&gt;panel_UC_HRV.Name" xml:space="preserve">
+    <value>panel_UC_HRV</value>
+  </data>
+  <data name="&gt;&gt;panel_UC_HRV.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel_UC_HRV.Parent" xml:space="preserve">
+    <value>tableLayoutPanel_ElemetsWatchFace</value>
+  </data>
+  <data name="&gt;&gt;panel_UC_HRV.ZOrder" xml:space="preserve">
+    <value>50</value>
+  </data>
   <data name="tableLayoutPanel_ElemetsWatchFace.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
   </data>
@@ -4378,10 +4444,10 @@
     <value>0, 0</value>
   </data>
   <data name="tableLayoutPanel_ElemetsWatchFace.RowCount" type="System.Int32, mscorlib">
-    <value>50</value>
+    <value>51</value>
   </data>
   <data name="tableLayoutPanel_ElemetsWatchFace.Size" type="System.Drawing.Size, System.Drawing">
-    <value>231, 1700</value>
+    <value>231, 1734</value>
   </data>
   <data name="tableLayoutPanel_ElemetsWatchFace.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -4399,7 +4465,7 @@
     <value>0</value>
   </data>
   <data name="tableLayoutPanel_ElemetsWatchFace.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="panel_UC_EditableElements" Row="11" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_DigitalTime" Row="9" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_AnalogTime" Row="8" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_DateDay" Row="12" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_RepeatingAlert" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_DateMonth" Row="13" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_DateYear" Row="14" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Background" Row="49" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_DateWeek" Row="15" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Steps" Row="18" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Statuses" Row="17" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Shortcuts" Row="16" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Battery" Row="19" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Heart" Row="20" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Calories" Row="21" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_PAI" Row="22" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Distance" Row="23" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Weather" Row="27" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Stand" Row="24" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Activity" Row="25" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_SpO2" Row="26" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_UVIndex" Row="30" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Humidity" Row="31" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Stress" Row="32" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_FatBurning" Row="33" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Altimeter" Row="34" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_EditableTimePointer" Row="6" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Sunrise" Row="35" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Wind" Row="36" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Moon" Row="38" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Animation" Row="48" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_DisconnectAlert" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_AnalogTimePro" Row="7" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Image" Row="37" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_TopImage" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Buttons" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_JS" Row="47" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Compass" Row="39" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Weather_v2" Row="28" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Weather_FewDay" Row="29" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_DigitalTime_v2" Row="10" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Switch_Background" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_Switch_BG_Color" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_AlarmClock" Row="40" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_TrainingLoad" Row="41" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_VO2Max" Row="42" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_AQI" Row="43" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_BodyTemp" Row="44" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Floor" Row="45" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Readiness" Row="46" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="panel_UC_EditableElements" Row="11" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_DigitalTime" Row="9" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_AnalogTime" Row="8" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_DateDay" Row="12" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_RepeatingAlert" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_DateMonth" Row="13" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_DateYear" Row="14" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Background" Row="50" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_DateWeek" Row="15" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Steps" Row="18" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Statuses" Row="17" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Shortcuts" Row="16" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Battery" Row="19" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Heart" Row="20" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Calories" Row="21" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_PAI" Row="22" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Distance" Row="23" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Weather" Row="27" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Stand" Row="24" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Activity" Row="25" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_SpO2" Row="26" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_UVIndex" Row="30" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Humidity" Row="31" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Stress" Row="32" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_FatBurning" Row="33" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Altimeter" Row="34" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_EditableTimePointer" Row="6" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Sunrise" Row="35" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Wind" Row="36" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Moon" Row="38" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Animation" Row="49" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_DisconnectAlert" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_AnalogTimePro" Row="7" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Image" Row="37" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_TopImage" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Buttons" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_JS" Row="48" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Compass" Row="39" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Weather_v2" Row="28" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Weather_FewDay" Row="29" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_DigitalTime_v2" Row="10" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Switch_Background" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_Switch_BG_Color" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_AlarmClock" Row="40" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_TrainingLoad" Row="41" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_VO2Max" Row="42" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_AQI" Row="43" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_BodyTemp" Row="44" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Floor" Row="45" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Readiness" Row="46" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_HRV" Row="47" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="panel_WatchfaceElements.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 3</value>
@@ -9407,7 +9473,7 @@ Ukrainian - kartoris82</value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACk
-        DQAAAk1TRnQBSQFMAgEBBgEAAWgBQAFoAUABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        DQAAAk1TRnQBSQFMAgEBBgEAAcABQAHAAUABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAASADAAEBAQABCAYAAQgYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA

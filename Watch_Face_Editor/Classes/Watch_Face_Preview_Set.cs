@@ -71,6 +71,7 @@ namespace Watch_Face_Editor
         public int VO2Max { get; set; } = 47;
         public int Floor { get; set; } = 7;
         public int Readiness { get; set; } = 87;
+        public int HRV { get; set; } = 37;
     }
 
     public class WeatherSet
@@ -105,7 +106,7 @@ namespace Watch_Face_Editor
     {
         public StatusSet Status { get; set; }
         public int Battery { get; set; } = 97;
-        public int BodyTemp { get; set; }
+        public int BodyTemp { get; set; } = 327;
     }
 
     public class StatusSet

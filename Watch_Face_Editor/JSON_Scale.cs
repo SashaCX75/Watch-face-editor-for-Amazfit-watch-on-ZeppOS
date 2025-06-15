@@ -677,6 +677,12 @@ namespace Watch_Face_Editor
                     Scale_Circle_Scale(elementReadiness.Circle_Scale, scale);
                     Scale_IMG(elementReadiness.Icon, scale);
                     break;
+                case "ElementHRV":
+                    ElementHRV elementHRV = (ElementHRV)elements;
+                    Scale_IMG_NUMBER(elementHRV.Number, scale);
+                    Scale_TEXT(elementHRV.Number_Font, scale);
+                    Scale_IMG(elementHRV.Icon, scale);
+                    break;
             }
         }
 

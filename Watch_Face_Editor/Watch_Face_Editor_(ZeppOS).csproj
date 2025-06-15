@@ -509,6 +509,9 @@
     <None Include="Skin\WatchSkin_Balance.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Skin\WatchSkin_Balance_2.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Skin\WatchSkin_Bip_5.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -592,6 +595,9 @@
     <None Include="Resources\apps_icon.png" />
     <None Include="Resources\sport_icon.png" />
     <Content Include="Skin\Skin_Active_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skin\Skin_Balance_2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Skin\Skin_Bip_6.png">

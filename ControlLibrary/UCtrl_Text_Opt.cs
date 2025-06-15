@@ -23,6 +23,7 @@ namespace ControlLibrary
         private bool Year_mode = false;
         private bool Sunrise_mode = false;
         private bool Altitude_mode = false;
+        private bool BodyTemp_mode = false;
         private bool Angle_mode = false;
         private bool Angle_visible_mode = true;
         private bool Alpha_mode = false;
@@ -301,7 +302,7 @@ namespace ControlLibrary
 
                 comboBox_unit_miles.Visible = false;
                 label_unit_miles.Visible = false;
-                if (Sunrise_mode || Altitude_mode)
+                if (Sunrise_mode || Altitude_mode || BodyTemp_mode)
                 {
                     comboBox_imageDecimalPoint.Location = location_imageError;
                     comboBox_imageError.Location = location_imageDecimalPoint;
@@ -387,7 +388,7 @@ namespace ControlLibrary
 
                 comboBox_unit_miles.Visible = false;
                 label_unit_miles.Visible = false;
-                if (Sunrise_mode || Altitude_mode)
+                if (Sunrise_mode || Altitude_mode || BodyTemp_mode)
                 {
                     comboBox_imageDecimalPoint.Location = location_imageError;
                     comboBox_imageError.Location = location_imageDecimalPoint;
@@ -451,7 +452,71 @@ namespace ControlLibrary
 
                 comboBox_unit_miles.Visible = false;
                 label_unit_miles.Visible = false;
-                if (Sunrise_mode || Altitude_mode)
+                if (Sunrise_mode || Altitude_mode || BodyTemp_mode)
+                {
+                    comboBox_imageDecimalPoint.Location = location_imageError;
+                    comboBox_imageError.Location = location_imageDecimalPoint;
+                    comboBox_unit_miles.Location = location_unit_miles;
+
+                    label_imageDecimalPoint.Location = location_imageError_label;
+                    label_imageError.Location = location_imageDecimalPoint_label;
+                    label_unit_miles.Location = location_unit_miles_label;
+                }
+                else if (Distance_mode)
+                {
+                    comboBox_imageDecimalPoint.Location = location_imageDecimalPoint;
+                    comboBox_imageError.Location = location_unit_miles;
+                    comboBox_unit_miles.Location = location_imageError;
+
+                    label_imageDecimalPoint.Location = location_imageDecimalPoint_label;
+                    label_unit_miles.Location = location_imageError_label;
+                    label_imageError.Location = location_unit_miles_label;
+
+                    comboBox_unit_miles.Visible = true;
+                    label_unit_miles.Visible = true;
+                }
+                else
+                {
+                    comboBox_imageDecimalPoint.Location = location_imageDecimalPoint;
+                    comboBox_imageError.Location = location_imageError;
+                    comboBox_unit_miles.Location = location_unit_miles;
+
+                    label_imageDecimalPoint.Location = location_imageDecimalPoint_label;
+                    label_imageError.Location = location_imageError_label;
+                    label_unit_miles.Location = location_unit_miles_label;
+                }
+            }
+        }
+
+        /// <summary>Режим отображения температуры тела</summary>
+        [Description("Режим отображения температуры тела")]
+        public virtual bool BodyTemp
+        {
+            get
+            {
+                return BodyTemp_mode;
+            }
+            set
+            {
+                BodyTemp_mode = value;
+                if (Altitude_mode)
+                {
+                    label_imageDecimalPoint.Text = Properties.Strings.UCtrl_Text_Opt_Altitude_true;
+                    //label_imageDecimalPoint.Text = Properties.Strings.UCtrl_Text_Opt_Sunrise_true;
+                }
+                else if (Sunrise_mode)
+                {
+                    //label_imageDecimalPoint.Text = Properties.Strings.UCtrl_Text_Opt_Altitude_true;
+                    label_imageDecimalPoint.Text = Properties.Strings.UCtrl_Text_Opt_Sunrise_true;
+                }
+                else
+                {
+                    label_imageDecimalPoint.Text = Properties.Strings.UCtrl_Text_Opt_Sunrise_false;
+                }
+
+                comboBox_unit_miles.Visible = false;
+                label_unit_miles.Visible = false;
+                if (Sunrise_mode || Altitude_mode || BodyTemp_mode)
                 {
                     comboBox_imageDecimalPoint.Location = location_imageError;
                     comboBox_imageError.Location = location_imageDecimalPoint;
@@ -732,6 +797,7 @@ namespace ControlLibrary
             Year = false;
             Sunrise = false;
             Altitude = false;
+            BodyTemp = false;
             Angle = false;
             AngleVisible = true;
             Alpha = false;

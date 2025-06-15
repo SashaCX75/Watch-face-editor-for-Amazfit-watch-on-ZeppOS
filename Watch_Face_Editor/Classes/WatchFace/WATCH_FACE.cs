@@ -10165,7 +10165,7 @@ namespace Watch_Face_Editor
                 };
             }
 
-            return new ElementTrainingLoad
+            return new ElementReadiness
             {
                 elementName = this.elementName,
                 visible = this.visible,
@@ -10176,6 +10176,114 @@ namespace Watch_Face_Editor
                 Number_Font = Number_Font,
                 Pointer = Pointer,
                 Circle_Scale = Circle_Scale,
+                Icon = Icon,
+            };
+        }
+    }
+
+    public class ElementHRV : ICloneable
+    {
+        public string elementName = "ElementHRV";
+
+        ///// <summary>Позиция в наборе элементов</summary>
+        //public int position = -1;
+
+        /// <summary>Видимость элемента</summary>
+        public bool visible = true;
+
+        public hmUI_widget_IMG_NUMBER Number { get; set; }
+        public hmUI_widget_TEXT Number_Font { get; set; }
+        public hmUI_widget_IMG Icon { get; set; }
+
+        public object Clone()
+        {
+            hmUI_widget_IMG_NUMBER Number = null;
+            if (this.Number != null)
+            {
+                Number = new hmUI_widget_IMG_NUMBER
+                {
+                    imageX = this.Number.imageX,
+                    imageY = this.Number.imageY,
+                    space = this.Number.space,
+                    angle = this.Number.angle,
+                    zero = this.Number.zero,
+                    align = this.Number.align,
+                    img_First = this.Number.img_First,
+                    unit = this.Number.unit,
+                    imperial_unit = this.Number.imperial_unit,
+                    icon = this.Number.icon,
+                    iconPosX = this.Number.iconPosX,
+                    iconPosY = this.Number.iconPosY,
+                    negative_image = this.Number.negative_image,
+                    invalid_image = this.Number.invalid_image,
+                    dot_image = this.Number.dot_image,
+                    follow = this.Number.follow,
+                    alpha = this.Number.alpha,
+                    icon_alpha = this.Number.icon_alpha,
+
+                    position = this.Number.position,
+                    visible = this.Number.visible,
+                    show_level = this.Number.show_level,
+                    type = this.Number.type,
+                };
+            }
+
+            hmUI_widget_TEXT Number_Font = null;
+            if (this.Number_Font != null)
+            {
+                Number_Font = new hmUI_widget_TEXT
+                {
+                    x = this.Number_Font.x,
+                    y = this.Number_Font.y,
+                    w = this.Number_Font.w,
+                    h = this.Number_Font.h,
+                    color = this.Number_Font.color,
+                    align_h = this.Number_Font.align_h,
+                    align_v = this.Number_Font.align_v,
+                    text_size = this.Number_Font.text_size,
+                    text_style = this.Number_Font.text_style,
+                    line_space = this.Number_Font.line_space,
+                    char_space = this.Number_Font.char_space,
+                    font = this.Number_Font.font,
+                    padding = this.Number_Font.padding,
+                    unit_type = this.Number_Font.unit_type,
+                    unit_end = this.Number_Font.unit_end,
+                    centreHorizontally = this.Number_Font.centreHorizontally,
+                    centreVertically = this.Number_Font.centreVertically,
+                    alpha = this.Number_Font.alpha,
+
+                    position = this.Number_Font.position,
+                    visible = this.Number_Font.visible,
+                    show_level = this.Number_Font.show_level,
+                    type = this.Number_Font.type,
+                };
+            }
+
+            hmUI_widget_IMG Icon = null;
+            if (this.Icon != null)
+            {
+                Icon = new hmUI_widget_IMG
+                {
+                    x = this.Icon.x,
+                    y = this.Icon.y,
+                    w = this.Icon.w,
+                    h = this.Icon.h,
+                    src = this.Icon.src,
+                    alpha = this.Icon.alpha,
+
+                    position = this.Icon.position,
+                    visible = this.Icon.visible,
+                    show_level = this.Icon.show_level,
+                };
+            }
+
+            return new ElementHRV
+            {
+                elementName = this.elementName,
+                visible = this.visible,
+
+                Number = Number,
+                Number_Font = Number_Font,
                 Icon = Icon,
             };
         }

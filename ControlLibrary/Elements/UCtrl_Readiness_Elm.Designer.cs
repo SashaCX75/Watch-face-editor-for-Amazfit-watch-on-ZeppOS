@@ -28,16 +28,45 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCtrl_Readiness_Elm));
             this.SuspendLayout();
+            // 
+            // checkBox_Number_Font
+            // 
+            resources.ApplyResources(this.checkBox_Number_Font, "checkBox_Number_Font");
+            // 
+            // checkBox_Images
+            // 
+            resources.ApplyResources(this.checkBox_Images, "checkBox_Images");
+            // 
+            // checkBox_Segments
+            // 
+            resources.ApplyResources(this.checkBox_Segments, "checkBox_Segments");
+            // 
+            // checkBox_Number
+            // 
+            resources.ApplyResources(this.checkBox_Number, "checkBox_Number");
+            // 
+            // checkBox_Pointer
+            // 
+            resources.ApplyResources(this.checkBox_Pointer, "checkBox_Pointer");
+            // 
+            // checkBox_Circle_Scale
+            // 
+            resources.ApplyResources(this.checkBox_Circle_Scale, "checkBox_Circle_Scale");
+            // 
+            // checkBox_Icon
+            // 
+            resources.ApplyResources(this.checkBox_Icon, "checkBox_Icon");
             // 
             // button_ElementName
             // 
+            resources.ApplyResources(this.button_ElementName, "button_ElementName");
             this.button_ElementName.Image = global::ControlLibrary.Properties.Resources.readiness;
-            this.button_ElementName.Text = "Готовность";
             // 
             // UCtrl_Readiness_Elm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.Name = "UCtrl_Readiness_Elm";
             this.ResumeLayout(false);
             this.PerformLayout();

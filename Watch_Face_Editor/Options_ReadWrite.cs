@@ -1160,6 +1160,26 @@ namespace Watch_Face_Editor
                         break;
                     #endregion
 
+                    #region ElementHRV
+                    case "ElementHRV":
+                        ElementHRV HRV = null;
+                        try
+                        {
+                            HRV = JsonConvert.DeserializeObject<ElementHRV>(elementStr, new JsonSerializerSettings
+                            {
+                                //DefaultValueHandling = DefaultValueHandling.Ignore,
+                                NullValueHandling = NullValueHandling.Ignore
+                            });
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(Properties.FormStrings.Message_JsonError_Text + Environment.NewLine + ex,
+                                Properties.FormStrings.Message_Error_Caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        if (HRV != null) NewElements.Add(HRV);
+                        break;
+                    #endregion
+
 
                     #region ElementScript
                     case "ElementScript":
@@ -1277,9 +1297,13 @@ namespace Watch_Face_Editor
         /// <param name="_optionalSymbol">Отображение настроек дополнительного символа</param>
         /// <param name="_padingZero">Отображение настроек ведущих нулей</param>
         /// <param name="_sunrise">Режим отображения для восхода/заката</param>
+        /// <param name="_altitude">Режим отображения для высоты</param>
+        /// <param name="_compass">Режим отображения для компаса</param>
+        /// <param name="_bodyTemp">Режим отображения для тмпературы тела</param>
         /// <param name="_angleVisible">Видимость настроек угла</param>
         private void Read_ImgNumber_Options(hmUI_widget_IMG_NUMBER img_number, bool _dastance, bool _follow, string _followText,
-            bool _imageError, bool _optionalSymbol, bool _padingZero, bool _angleVisible, bool _sunrise = false, bool _altitude = false, bool _compass = false)
+            bool _imageError, bool _optionalSymbol, bool _padingZero, bool _angleVisible, bool _sunrise = false, 
+            bool _altitude = false, bool _compass = false, bool _bodyTemp = false)
         {
             PreviewView = false;
 
@@ -1289,6 +1313,7 @@ namespace Watch_Face_Editor
             uCtrl_Text_Opt.Sunrise = _sunrise;
             uCtrl_Text_Opt.Altitude = _altitude;
             uCtrl_Text_Opt._Compass = _compass;
+            uCtrl_Text_Opt.BodyTemp = _bodyTemp;
             uCtrl_Text_Opt.Follow = _follow;
             uCtrl_Text_Opt.FollowText = _followText;
             uCtrl_Text_Opt.ImageError = _imageError;

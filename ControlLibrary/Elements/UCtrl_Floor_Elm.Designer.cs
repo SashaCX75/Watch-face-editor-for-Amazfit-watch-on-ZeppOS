@@ -28,16 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCtrl_Floor_Elm));
             this.SuspendLayout();
+            // 
+            // checkBox_Number_Font
+            // 
+            resources.ApplyResources(this.checkBox_Number_Font, "checkBox_Number_Font");
+            // 
+            // checkBox_Number
+            // 
+            resources.ApplyResources(this.checkBox_Number, "checkBox_Number");
+            // 
+            // checkBox_Icon
+            // 
+            resources.ApplyResources(this.checkBox_Icon, "checkBox_Icon");
             // 
             // button_ElementName
             // 
+            resources.ApplyResources(this.button_ElementName, "button_ElementName");
             this.button_ElementName.Image = global::ControlLibrary.Properties.Resources.floor;
-            this.button_ElementName.Text = "Этажи";
             // 
             // UCtrl_Floor_Elm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.Name = "UCtrl_Floor_Elm";
             this.ResumeLayout(false);
             this.PerformLayout();

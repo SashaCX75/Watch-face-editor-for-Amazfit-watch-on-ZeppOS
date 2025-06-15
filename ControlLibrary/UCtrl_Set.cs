@@ -26,7 +26,8 @@ namespace ControlLibrary
         private int VO2Max = 47;
         private int Floor = 7;
         private int Readiness = 87;
-        private int BodyTemp = 320;
+        private int BodyTemp = 327;
+        private int HRV = 37;
 
         public UCtrl_Set()
         {
@@ -380,6 +381,7 @@ namespace ControlLibrary
                 ["VO2Max"] = VO2Max,
                 ["Floor"] = Floor,
                 ["Readiness"] = Readiness,
+                ["HRV"] = HRV,
 
             };
 
@@ -659,6 +661,7 @@ namespace ControlLibrary
                         if (json["Activity"]["VO2Max"] != null) VO2Max = json["Activity"]["VO2Max"].Value<int>();
                         if (json["Activity"]["Floor"] != null) Floor = json["Activity"]["Floor"].Value<int>();
                         if (json["Activity"]["Readiness"] != null) Readiness = json["Activity"]["Readiness"].Value<int>();
+                        if (json["Activity"]["HRV"] != null) HRV = json["Activity"]["HRV"].Value<int>();
                     }
 
                     if (json["Air"] != null)
@@ -807,6 +810,7 @@ namespace ControlLibrary
             BodyTemp = rnd.Next(300, 380);
             Floor = rnd.Next(0, 30);
             Readiness = rnd.Next(50, 101);
+            HRV = rnd.Next(0, 80);
 
             setValue = false;
         }

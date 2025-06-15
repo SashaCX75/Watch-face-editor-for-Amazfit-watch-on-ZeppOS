@@ -223,6 +223,12 @@
   <data name="comboBox_AddSystem.Items12" xml:space="preserve">
     <value>Compass</value>
   </data>
+  <data name="comboBox_AddSystem.Items13" xml:space="preserve">
+    <value>Alarm clock</value>
+  </data>
+  <data name="comboBox_AddSystem.Items14" xml:space="preserve">
+    <value>Body temperature</value>
+  </data>
   <data name="comboBox_AddAir.Items" xml:space="preserve">
     <value>Air</value>
   </data>
@@ -276,6 +282,15 @@
   </data>
   <data name="comboBox_AddActivity.Items9" xml:space="preserve">
     <value>Stress</value>
+  </data>
+  <data name="comboBox_AddActivity.Items10" xml:space="preserve">
+    <value>Readiness</value>
+  </data>
+  <data name="comboBox_AddActivity.Items11" xml:space="preserve">
+    <value>Training load</value>
+  </data>
+  <data name="comboBox_AddActivity.Items13" xml:space="preserve">
+    <value>Floors</value>
   </data>
   <data name="comboBox_AddDate.Items" xml:space="preserve">
     <value>Date</value>
@@ -798,7 +813,7 @@ PayPal: sashacx75@gmail.com</value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACk
-        DQAAAk1TRnQBSQFMAgEBBgEAAdgBKQHYASkBEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        DQAAAk1TRnQBSQFMAgEBBgEAAegBKQHoASkBEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAASADAAEBAQABCAYAAQgYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -2124,9 +2139,5 @@ PayPal: sashacx75@gmail.com</value>
         AAAAAAAAAAAAAO+BPCbvgT1I74I+SO+BPSYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD8PwAA4AcAAMAD
         AACAAQAAgAEAAIABAAAAAAAAAAAAAAAAAAAAAAAAgAEAAIABAACAAQAAwAMAAOAHAAD8PwAA
 </value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
 </root>

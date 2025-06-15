@@ -430,6 +430,12 @@
     <Compile Include="Elements\UCtrl_Floor_Elm.Designer.cs">
       <DependentUpon>UCtrl_Floor_Elm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Elements\UCtrl_HRV_Elm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Elements\UCtrl_HRV_Elm.Designer.cs">
+      <DependentUpon>UCtrl_HRV_Elm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UCtrl_Icon_Opt.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -762,6 +768,12 @@
     <EmbeddedResource Include="Elements\UCtrl_Activity_Elm.zh.resx">
       <DependentUpon>UCtrl_Activity_Elm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_AlarmClock_Elm.en.resx">
+      <DependentUpon>UCtrl_AlarmClock_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_AlarmClock_Elm.uk.resx">
+      <DependentUpon>UCtrl_AlarmClock_Elm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_Altimeter_Elm.cs.resx">
       <DependentUpon>UCtrl_Altimeter_Elm.cs</DependentUpon>
     </EmbeddedResource>
@@ -898,6 +910,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_Battery_Elm.zh.resx">
       <DependentUpon>UCtrl_Battery_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_BodyTemp_Elm.en.resx">
+      <DependentUpon>UCtrl_BodyTemp_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_BodyTemp_Elm.uk.resx">
+      <DependentUpon>UCtrl_BodyTemp_Elm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_Buttons_Elm.cs.resx">
       <DependentUpon>UCtrl_Buttons_Elm.cs</DependentUpon>
@@ -1223,6 +1241,12 @@
     <EmbeddedResource Include="Elements\UCtrl_FatBurning_Elm.zh.resx">
       <DependentUpon>UCtrl_FatBurning_Elm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Floor_Elm.en.resx">
+      <DependentUpon>UCtrl_Floor_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Floor_Elm.uk.resx">
+      <DependentUpon>UCtrl_Floor_Elm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_Heart_Elm.cs.resx">
       <DependentUpon>UCtrl_Heart_Elm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1371,7 +1395,13 @@
     <EmbeddedResource Include="Elements\UCtrl_PAI_Elm.zh.resx">
       <DependentUpon>UCtrl_PAI_Elm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Readiness_Elm.en.resx">
+      <DependentUpon>UCtrl_Readiness_Elm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_Readiness_Elm.resx">
+      <DependentUpon>UCtrl_Readiness_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Readiness_Elm.uk.resx">
       <DependentUpon>UCtrl_Readiness_Elm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_RepeatingAlert_Elm.cs.resx">
@@ -1640,6 +1670,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_TopImage_Elm.uk.resx">
       <DependentUpon>UCtrl_TopImage_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_TrainingLoad_Elm.en.resx">
+      <DependentUpon>UCtrl_TrainingLoad_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_TrainingLoad_Elm.uk.resx">
+      <DependentUpon>UCtrl_TrainingLoad_Elm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_UVIndex_Elm.cs.resx">
       <DependentUpon>UCtrl_UVIndex_Elm.cs</DependentUpon>
@@ -2273,6 +2309,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_Floor_Elm.resx">
       <DependentUpon>UCtrl_Floor_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_HRV_Elm.resx">
+      <DependentUpon>UCtrl_HRV_Elm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UCtrl_Icon_Opt.cs.resx">
       <DependentUpon>UCtrl_Icon_Opt.cs</DependentUpon>
@@ -3145,6 +3184,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\floor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hrv.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

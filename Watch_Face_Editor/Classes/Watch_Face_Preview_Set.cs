@@ -85,11 +85,11 @@ namespace Watch_Face_Editor
         public int UVindex { get; set; } = 3;
         public int AirQuality { get; set; } = 73;
         public int Humidity { get; set; } = 55;
-        public int WindForce { get; set; } = 7;
+        public int WindForce { get; set; } = 5;
         public int WindDirection { get; set; } = 3;
-        public int CompassDirection { get; set; } = 70;
+        public int CompassDirection { get; set; } = 30;
         public int Altitude { get; set; } = 130;
-        public int AirPressure { get; set; } = 1000;
+        public int AirPressure { get; set; } = 1010;
         public bool showTemperature { get; set; }
         //public bool showTemperatureMaxMin { get; set; }
         public List<ForecastData> forecastData { get; set; }

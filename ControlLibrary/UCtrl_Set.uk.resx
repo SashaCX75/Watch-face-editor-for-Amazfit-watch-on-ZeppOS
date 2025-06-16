@@ -117,14 +117,42 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 13</value>
+  </data>
+  <data name="label14.Text" xml:space="preserve">
+    <value>Іконка погоди</value>
+  </data>
+  <data name="label21.Text" xml:space="preserve">
+    <value>Мінімальна температура</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>Якість повітря</value>
+  </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Напрямок вітру</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>Вологість</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>Висота</value>
   </data>
   <data name="label22.Text" xml:space="preserve">
     <value>Максимальна температура</value>
   </data>
-  <data name="label16.Text" xml:space="preserve">
-    <value>Якість повітря</value>
+  <data name="label20.Text" xml:space="preserve">
+    <value>Тиск</value>
+  </data>
+  <data name="checkBox_WeatherSet_Temp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>136, 17</value>
+  </data>
+  <data name="checkBox_WeatherSet_Temp.Text" xml:space="preserve">
+    <value>Поточна температура</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Сила вітру</value>
   </data>
   <data name="comboBox_WindDirection.Items" xml:space="preserve">
     <value>N - північ</value>
@@ -149,6 +177,9 @@
   </data>
   <data name="comboBox_WindDirection.Items7" xml:space="preserve">
     <value>NW - північний захід</value>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>УФ індекс</value>
   </data>
   <data name="comboBox_WeatherSet_Icon.Items" xml:space="preserve">
     <value>Хмарно</value>
@@ -234,36 +265,44 @@
   <data name="comboBox_WeatherSet_Icon.Items28" xml:space="preserve">
     <value>Ясно вночі</value>
   </data>
-  <data name="label15.Text" xml:space="preserve">
-    <value>УФ індекс</value>
+  <data name="groupBox_Activity.Text" xml:space="preserve">
+    <value>Активності</value>
   </data>
-  <data name="label18.Text" xml:space="preserve">
-    <value>Сила вітру</value>
+  <data name="label28.Text" xml:space="preserve">
+    <value>Кисень у крові (SpO2)</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="checkBox_WeatherSet_Temp.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 17</value>
+  <data name="label26.Text" xml:space="preserve">
+    <value>Поверхи</value>
   </data>
-  <data name="checkBox_WeatherSet_Temp.Text" xml:space="preserve">
-    <value>Поточна температура</value>
+  <data name="label24.Text" xml:space="preserve">
+    <value>Тренувальне навантаження</value>
   </data>
-  <data name="label19.Text" xml:space="preserve">
-    <value>Висота</value>
+  <data name="label23.Text" xml:space="preserve">
+    <value>Готовність</value>
   </data>
-  <data name="label17.Text" xml:space="preserve">
-    <value>Вологість</value>
+  <data name="label04.Text" xml:space="preserve">
+    <value>Калорії</value>
   </data>
-  <data name="label21.Text" xml:space="preserve">
-    <value>Мінімальна температура</value>
+  <data name="label11.Text" xml:space="preserve">
+    <value>Стрес</value>
   </data>
-  <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
-    <value>78, 13</value>
+  <data name="label13.Text" xml:space="preserve">
+    <value>Жироспалювання</value>
   </data>
-  <data name="label14.Text" xml:space="preserve">
-    <value>Іконка погоди</value>
+  <data name="label06.Text" xml:space="preserve">
+    <value>Відстань</value>
   </data>
-  <data name="label20.Text" xml:space="preserve">
-    <value>Тиск</value>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Розминка</value>
+  </data>
+  <data name="label07.Text" xml:space="preserve">
+    <value>Кроки</value>
+  </data>
+  <data name="label08.Text" xml:space="preserve">
+    <value>Мета кроків</value>
+  </data>
+  <data name="checkBox_DND_Set.Size" type="System.Drawing.Size, System.Drawing">
+    <value>99, 18</value>
   </data>
   <data name="checkBox_DND_Set.Text" xml:space="preserve">
     <value>Не турбувати</value>
@@ -274,34 +313,34 @@
   <data name="checkBox_Lock_Set.Text" xml:space="preserve">
     <value>Блокування</value>
   </data>
-  <data name="label13.Text" xml:space="preserve">
-    <value>Жироспалювання</value>
-  </data>
-  <data name="label11.Text" xml:space="preserve">
-    <value>Стрес</value>
-  </data>
-  <data name="label10.Text" xml:space="preserve">
-    <value>Розминка</value>
-  </data>
-  <data name="label08.Text" xml:space="preserve">
-    <value>Мета кроків</value>
-  </data>
-  <data name="label07.Text" xml:space="preserve">
-    <value>Кроки</value>
-  </data>
-  <data name="label06.Text" xml:space="preserve">
-    <value>Відстань</value>
-  </data>
-  <data name="label04.Text" xml:space="preserve">
-    <value>Калорії</value>
-  </data>
   <data name="label02.Text" xml:space="preserve">
     <value>Час</value>
   </data>
-  <data name="groupBox_Activity.Text" xml:space="preserve">
-    <value>Активності</value>
-  </data>
   <data name="button_Set.Text" xml:space="preserve">
     <value>Набір параметрів</value>
+  </data>
+  <data name="groupBox_Time.Text" xml:space="preserve">
+    <value>Час</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Кінець сну</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Початок сну</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Захід місяця</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Схід місяця</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Захід сонця</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Схід сонця</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>Температура тіла</value>
   </data>
 </root>

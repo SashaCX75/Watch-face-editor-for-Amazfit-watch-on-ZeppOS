@@ -117,14 +117,45 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 13</value>
+  </data>
+  <data name="label14.Text" xml:space="preserve">
+    <value>Weather icon</value>
+  </data>
+  <data name="label21.Text" xml:space="preserve">
+    <value>Minimum temperature</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>Air quality</value>
+  </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Wind direction</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>Humidity</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Compass</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>Altitude</value>
   </data>
   <data name="label22.Text" xml:space="preserve">
     <value>Maximum temperature</value>
   </data>
-  <data name="label16.Text" xml:space="preserve">
-    <value>Air quality</value>
+  <data name="label20.Text" xml:space="preserve">
+    <value>Air pressure</value>
+  </data>
+  <data name="checkBox_WeatherSet_Temp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>119, 17</value>
+  </data>
+  <data name="checkBox_WeatherSet_Temp.Text" xml:space="preserve">
+    <value>Current temperature</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Wind force</value>
   </data>
   <data name="comboBox_WindDirection.Items" xml:space="preserve">
     <value>N - north</value>
@@ -149,6 +180,9 @@
   </data>
   <data name="comboBox_WindDirection.Items7" xml:space="preserve">
     <value>NW - north-west</value>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>UV index</value>
   </data>
   <data name="comboBox_WeatherSet_Icon.Items" xml:space="preserve">
     <value>Cloudy</value>
@@ -237,42 +271,53 @@
   <data name="comboBox_WeatherSet_Icon.Items28" xml:space="preserve">
     <value>Clear night</value>
   </data>
-  <data name="label15.Text" xml:space="preserve">
-    <value>UV index</value>
-  </data>
-  <data name="label18.Text" xml:space="preserve">
-    <value>Wind force</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="checkBox_WeatherSet_Temp.Size" type="System.Drawing.Size, System.Drawing">
-    <value>119, 17</value>
-  </data>
-  <data name="checkBox_WeatherSet_Temp.Text" xml:space="preserve">
-    <value>Current temperature</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Compass</value>
-  </data>
-  <data name="label19.Text" xml:space="preserve">
-    <value>Altitude</value>
-  </data>
-  <data name="label17.Text" xml:space="preserve">
-    <value>Humidity</value>
-  </data>
-  <data name="label21.Text" xml:space="preserve">
-    <value>Minimum temperature</value>
-  </data>
-  <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
-    <value>71, 13</value>
-  </data>
-  <data name="label14.Text" xml:space="preserve">
-    <value>Weather icon</value>
-  </data>
-  <data name="label20.Text" xml:space="preserve">
-    <value>Air pressure</value>
-  </data>
   <data name="groupBox_Air.Text" xml:space="preserve">
     <value>Atmosphere</value>
+  </data>
+  <data name="label28.Text" xml:space="preserve">
+    <value>Oxygen in the blood (SpO2)</value>
+  </data>
+  <data name="label26.Text" xml:space="preserve">
+    <value>Floors</value>
+  </data>
+  <data name="label24.Text" xml:space="preserve">
+    <value>Training load</value>
+  </data>
+  <data name="label23.Text" xml:space="preserve">
+    <value>Readiness</value>
+  </data>
+  <data name="label04.Text" xml:space="preserve">
+    <value>Calories</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>Stress</value>
+  </data>
+  <data name="label05.Text" xml:space="preserve">
+    <value>Heart rate</value>
+  </data>
+  <data name="label13.Text" xml:space="preserve">
+    <value>Fat burning</value>
+  </data>
+  <data name="label06.Text" xml:space="preserve">
+    <value>Distance</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Stand up</value>
+  </data>
+  <data name="label07.Text" xml:space="preserve">
+    <value>Steps</value>
+  </data>
+  <data name="label08.Text" xml:space="preserve">
+    <value>Steps goal</value>
+  </data>
+  <data name="groupBox_Activity.Text" xml:space="preserve">
+    <value>Activitys</value>
+  </data>
+  <data name="label03.Text" xml:space="preserve">
+    <value>Battery</value>
+  </data>
+  <data name="checkBox_DND_Set.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 18</value>
   </data>
   <data name="checkBox_DND_Set.Text" xml:space="preserve">
     <value>DND</value>
@@ -289,49 +334,43 @@
   <data name="checkBox_Alarm_Set.Text" xml:space="preserve">
     <value>Alarm</value>
   </data>
-  <data name="label13.Text" xml:space="preserve">
-    <value>Fat burning</value>
-  </data>
-  <data name="label11.Text" xml:space="preserve">
-    <value>Stress</value>
-  </data>
-  <data name="label10.Text" xml:space="preserve">
-    <value>Stand up</value>
-  </data>
-  <data name="label08.Text" xml:space="preserve">
-    <value>Steps goal</value>
-  </data>
-  <data name="label07.Text" xml:space="preserve">
-    <value>Steps</value>
-  </data>
-  <data name="label06.Text" xml:space="preserve">
-    <value>Distance</value>
-  </data>
-  <data name="label05.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 50</value>
-  </data>
-  <data name="label05.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 28</value>
-  </data>
-  <data name="label05.Text" xml:space="preserve">
-    <value>Heart rate</value>
-  </data>
-  <data name="label04.Text" xml:space="preserve">
-    <value>Calories</value>
-  </data>
-  <data name="label03.Text" xml:space="preserve">
-    <value>Battery</value>
-  </data>
   <data name="label02.Text" xml:space="preserve">
     <value>Time</value>
   </data>
   <data name="label01.Text" xml:space="preserve">
     <value>Date</value>
   </data>
-  <data name="groupBox_Activity.Text" xml:space="preserve">
-    <value>Activitys</value>
-  </data>
   <data name="button_Set.Text" xml:space="preserve">
     <value>Values</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>End of the sleep</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Start of the sleep</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Alarm clock</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Moonset</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Moonrise</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Sunset</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Sunrise</value>
+  </data>
+  <data name="groupBox_Time.Text" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>Body temperature</value>
+  </data>
+  <data name="groupBox_System.Text" xml:space="preserve">
+    <value>System</value>
   </data>
 </root>

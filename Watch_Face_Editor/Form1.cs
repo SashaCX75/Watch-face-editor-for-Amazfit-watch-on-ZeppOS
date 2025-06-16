@@ -10994,10 +10994,6 @@ namespace Watch_Face_Editor
                     if (count > 12) count = 12;
                     for (int i = 0; i < count; i++)
                     {
-                        //JToken previewSet = json["previewSet"][i];
-
-                        //Watch_Face_Preview_Set wps = previewSet.ToObject<Watch_Face_Preview_Set>();
-
                         string previewSetStr = json["previewSet"][i].ToString();
                         switch (i)
                         {

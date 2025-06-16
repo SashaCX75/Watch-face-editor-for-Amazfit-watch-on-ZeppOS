@@ -1,15 +1,15 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
+using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Reflection;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace ControlLibrary
 {
@@ -20,14 +20,14 @@ namespace ControlLibrary
 
         // Скрытые значения, не меняются через интерфейс
         Dictionary<string, List<int>> ForecastData = new Dictionary<string, List<int>>();
-        private int SpO2 = 97;
-        private int TrainingLoad = 280;
+        //private int SpO2 = 97;
+        //private int TrainingLoad = 280;
         private int TrainingLoadGoal = 560;
-        private int VO2Max = 47;
-        private int Floor = 7;
-        private int Readiness = 87;
-        private int BodyTemp = 327;
-        private int HRV = 37;
+        //private int VO2Max = 47;
+        //private int Floor = 7;
+        //private int Readiness = 87;
+        //private int BodyTemp = 327;
+        //private int HRV = 37;
 
         public UCtrl_Set()
         {
@@ -60,7 +60,8 @@ namespace ControlLibrary
                 g.Clear(this.BackColor);
 
                 // Draw text
-                g.DrawString(box.Text, box.Font, textBrush, box.Padding.Left, 0);
+                //g.DrawString(box.Text, box.Font, textBrush, box.Padding.Left, 0);
+                g.DrawString(box.Text, box.Font, textBrush, box.Padding.Left + button_Collaps_Time.Width, 0);
 
                 // Drawing Border
                 //Left
@@ -87,9 +88,10 @@ namespace ControlLibrary
 
         private void button_Set_Click(object sender, EventArgs e)
         {
-            bool v = groupBox_Activity.Visible;
-            groupBox_Air.Visible = !v;
-            groupBox_Activity.Visible = !v;
+            //bool v = groupBox_Activity.Visible;
+            //groupBox_Air.Visible = !v;
+            //groupBox_Activity.Visible = !v;
+            panel_Main.Visible = !panel_Main.Visible;
 
             if (Collapse != null)
             {
@@ -102,14 +104,22 @@ namespace ControlLibrary
         /// <summary>Возвращает true если панель свернута</summary>
         public bool Collapsed
         {
+            //get
+            //{
+            //    return !groupBox_Activity.Visible;
+            //}
+            //set
+            //{
+            //    groupBox_Air.Visible = !value;
+            //    groupBox_Activity.Visible = !value;
+            //}
             get
             {
-                return !groupBox_Activity.Visible;
+                return !panel_Main.Visible;
             }
             set
             {
-                groupBox_Air.Visible = !value;
-                groupBox_Activity.Visible = !value;
+                panel_Main.Visible = !value;
             }
         }
 
@@ -246,12 +256,12 @@ namespace ControlLibrary
             Activity.Add("Stress", (int)numericUpDown_Stress_Set.Value);
             Activity.Add("FatBurning", (int)numericUpDown_FatBurning_Set.Value);
 
-            Activity.Add("SpO2", SpO2);
-            Activity.Add("TrainingLoad", TrainingLoad);
+            Activity.Add("SpO2", (int)numericUpDown_SpO2_Set.Value);
+            Activity.Add("TrainingLoad", (int)numericUpDown_TrainingLoad_Set.Value);
             Activity.Add("TrainingLoadGoal", TrainingLoadGoal);
-            Activity.Add("VO2Max", VO2Max);
-            Activity.Add("Floor", Floor);
-            Activity.Add("Readiness", Readiness);
+            Activity.Add("VO2Max", (int)numericUpDown_VO2Max_Set.Value);
+            Activity.Add("Floor", (int)numericUpDown_Floor_Set.Value);
+            Activity.Add("Readiness", (int)numericUpDown_Readiness_Set.Value);
 
 
             Air.Add("Weather_Icon", comboBox_WeatherSet_Icon.SelectedIndex);
@@ -277,7 +287,7 @@ namespace ControlLibrary
             checkValue.Add("ShowTemperature", checkBox_WeatherSet_Temp.Checked);
 
             System.Add("Battery", (int)numericUpDown_Battery_Set.Value);
-            System.Add("BodyTemp", BodyTemp);
+            System.Add("BodyTemp", (int)(numericUpDown_BodyTemp_Set.Value*10));
 
         }
 
@@ -310,55 +320,55 @@ namespace ControlLibrary
 
                 ["Sunrise"] = new JObject
                 {
-                    ["Hour"] = 3,
-                    ["Minute"] = 30
-                    //["Hour"] = dateTimePicker_Time_Set.Value.Hour,
-                    //["Minute"] = dateTimePicker_Time_Set.Value.Minute
+                    //["Hour"] = 3,
+                    //["Minute"] = 30
+                    ["Hour"] = dateTimePicker_Sunrise_Set.Value.Hour,
+                    ["Minute"] = dateTimePicker_Sunrise_Set.Value.Minute
                 },
                 ["Sunset"] = new JObject
                 {
-                    ["Hour"] = 20,
-                    ["Minute"] = 30
-                    //["Hour"] = dateTimePicker_Time_Set.Value.Hour,
-                    //["Minute"] = dateTimePicker_Time_Set.Value.Minute
+                    //["Hour"] = 20,
+                    //["Minute"] = 30
+                    ["Hour"] = dateTimePicker_Sunset_Set.Value.Hour,
+                    ["Minute"] = dateTimePicker_Sunset_Set.Value.Minute
                 },
 
                 ["Moonrise"] = new JObject
                 {
-                    ["Hour"] = 18,
-                    ["Minute"] = 30
-                    //["Hour"] = dateTimePicker_Time_Set.Value.Hour,
-                    //["Minute"] = dateTimePicker_Time_Set.Value.Minute
+                    //["Hour"] = 18,
+                    //["Minute"] = 30
+                    ["Hour"] = dateTimePicker_Moonrise_Set.Value.Hour,
+                    ["Minute"] = dateTimePicker_Moonrise_Set.Value.Minute
                 },
                 ["Moonset"] = new JObject
                 {
-                    ["Hour"] = 5,
-                    ["Minute"] = 30
-                    //["Hour"] = dateTimePicker_Time_Set.Value.Hour,
-                    //["Minute"] = dateTimePicker_Time_Set.Value.Minute
+                    //["Hour"] = 5,
+                    //["Minute"] = 30
+                    ["Hour"] = dateTimePicker_Moonset_Set.Value.Hour,
+                    ["Minute"] = dateTimePicker_Moonset_Set.Value.Minute
                 },
 
                 ["SleepStart"] = new JObject
                 {
-                    ["Hour"] = 21,
-                    ["Minute"] = 7
-                    //["Hour"] = dateTimePicker_Time_Set.Value.Hour,
-                    //["Minute"] = dateTimePicker_Time_Set.Value.Minute
+                    //["Hour"] = 21,
+                    //["Minute"] = 7
+                    ["Hour"] = dateTimePicker_SleepStart_Set.Value.Hour,
+                    ["Minute"] = dateTimePicker_SleepStart_Set.Value.Minute
                 },
                 ["SleepEnd"] = new JObject
                 {
-                    ["Hour"] = 7,
-                    ["Minute"] = 3
-                    //["Hour"] = dateTimePicker_Time_Set.Value.Hour,
-                    //["Minute"] = dateTimePicker_Time_Set.Value.Minute
+                    //["Hour"] = 7,
+                    //["Minute"] = 3
+                    ["Hour"] = dateTimePicker_SleepEnd_Set.Value.Hour,
+                    ["Minute"] = dateTimePicker_SleepEnd_Set.Value.Minute
                 },
 
                 ["AlarmClock"] = new JObject
                 {
-                    ["Hour"] = 9,
-                    ["Minute"] = 43
-                    //["Hour"] = dateTimePicker_Time_Set.Value.Hour,
-                    //["Minute"] = dateTimePicker_Time_Set.Value.Minute
+                    //["Hour"] = 9,
+                    //["Minute"] = 43
+                    ["Hour"] = dateTimePicker_AlarmClock_Set.Value.Hour,
+                    ["Minute"] = dateTimePicker_AlarmClock_Set.Value.Minute
                 },
 
             };
@@ -375,13 +385,13 @@ namespace ControlLibrary
                 ["Stress"] = (int)numericUpDown_Stress_Set.Value,
                 ["FatBurning"] = (int)numericUpDown_FatBurning_Set.Value,
 
-                ["SpO2"] = SpO2,
-                ["TrainingLoad"] = TrainingLoad,
+                ["SpO2"] = (int)numericUpDown_SpO2_Set.Value,
+                ["TrainingLoad"] = (int)numericUpDown_TrainingLoad_Set.Value,
                 ["TrainingLoadGoal"] = TrainingLoadGoal,
-                ["VO2Max"] = VO2Max,
-                ["Floor"] = Floor,
-                ["Readiness"] = Readiness,
-                ["HRV"] = HRV,
+                ["VO2Max"] = (int)numericUpDown_VO2Max_Set.Value,
+                ["Floor"] = (int)numericUpDown_Floor_Set.Value,
+                ["Readiness"] = (int)numericUpDown_Readiness_Set.Value,
+                ["HRV"] = (int)numericUpDown_HRV_Set.Value,
 
             };
 
@@ -417,7 +427,7 @@ namespace ControlLibrary
                     ["DoNotDisturb"] = checkBox_DND_Set.Checked
                 },
                 ["Battery"] = (int)numericUpDown_Battery_Set.Value,
-                ["BodyTemp"] = BodyTemp,
+                ["BodyTemp"] = (int)(numericUpDown_BodyTemp_Set.Value*10),
             };
 
             JObject json = new JObject
@@ -518,12 +528,18 @@ namespace ControlLibrary
             bool showTemperature;
             checkValue.TryGetValue("ShowTemperature", out showTemperature);
 
+            int SpO2;
             Activity.TryGetValue("SpO2", out SpO2);
+            int TrainingLoad;
             Activity.TryGetValue("TrainingLoad", out TrainingLoad);
             Activity.TryGetValue("TrainingLoadGoal", out TrainingLoadGoal);
+            int VO2Max;
             Activity.TryGetValue("VO2Max", out VO2Max);
+            int BodyTemp;
             Activity.TryGetValue("BodyTemp", out BodyTemp);
+            int Floor;
             Activity.TryGetValue("Floor", out Floor);
+            int Readiness;
             Activity.TryGetValue("Readiness", out Readiness);
 
             try
@@ -641,6 +657,66 @@ namespace ControlLibrary
 
                         dateTimePicker_Date_Set.Value = new DateTime(year, month, day, hour, min, sec);
                         dateTimePicker_Time_Set.Value = new DateTime(year, month, day, hour, min, sec);
+
+                        if (json["DateTime"]["Sunrise"] != null)
+                        {
+                            hour = dateTimePicker_Sunrise_Set.Value.Hour;
+                            min = dateTimePicker_Sunrise_Set.Value.Minute;
+                            if (json["DateTime"]["Sunrise"]["Hour"] != null) hour = json["DateTime"]["Sunrise"]["Hour"].Value<int>();
+                            if (json["DateTime"]["Sunrise"]["Minute"] != null) min = json["DateTime"]["Sunrise"]["Minute"].Value<int>();
+                            dateTimePicker_Sunrise_Set.Value = new DateTime(year, month, day, hour, min, 0);
+                        }
+                        if (json["DateTime"]["Sunset"] != null)
+                        {
+                            hour = dateTimePicker_Sunset_Set.Value.Hour;
+                            min = dateTimePicker_Sunset_Set.Value.Minute;
+                            if (json["DateTime"]["Sunset"]["Hour"] != null) hour = json["DateTime"]["Sunset"]["Hour"].Value<int>();
+                            if (json["DateTime"]["Sunset"]["Minute"] != null) min = json["DateTime"]["Sunset"]["Minute"].Value<int>();
+                            dateTimePicker_Sunset_Set.Value = new DateTime(year, month, day, hour, min, 0);
+                        }
+
+                        if (json["DateTime"]["Moonrise"] != null)
+                        {
+                            hour = dateTimePicker_Moonrise_Set.Value.Hour;
+                            min = dateTimePicker_Moonrise_Set.Value.Minute;
+                            if (json["DateTime"]["Moonrise"]["Hour"] != null) hour = json["DateTime"]["Moonrise"]["Hour"].Value<int>();
+                            if (json["DateTime"]["Moonrise"]["Minute"] != null) min = json["DateTime"]["Moonrise"]["Minute"].Value<int>();
+                            dateTimePicker_Moonrise_Set.Value = new DateTime(year, month, day, hour, min, 0);
+                        }
+                        if (json["DateTime"]["Moonset"] != null)
+                        {
+                            hour = dateTimePicker_Moonset_Set.Value.Hour;
+                            min = dateTimePicker_Moonset_Set.Value.Minute;
+                            if (json["DateTime"]["Moonset"]["Hour"] != null) hour = json["DateTime"]["Moonset"]["Hour"].Value<int>();
+                            if (json["DateTime"]["Moonset"]["Minute"] != null) min = json["DateTime"]["Moonset"]["Minute"].Value<int>();
+                            dateTimePicker_Moonset_Set.Value = new DateTime(year, month, day, hour, min, 0);
+                        }
+
+                        if (json["DateTime"]["SleepStart"] != null)
+                        {
+                            hour = dateTimePicker_SleepStart_Set.Value.Hour;
+                            min = dateTimePicker_SleepStart_Set.Value.Minute;
+                            if (json["DateTime"]["SleepStart"]["Hour"] != null) hour = json["DateTime"]["SleepStart"]["Hour"].Value<int>();
+                            if (json["DateTime"]["SleepStart"]["Minute"] != null) min = json["DateTime"]["SleepStart"]["Minute"].Value<int>();
+                            dateTimePicker_SleepStart_Set.Value = new DateTime(year, month, day, hour, min, 0);
+                        }
+                        if (json["DateTime"]["SleepEnd"] != null)
+                        {
+                            hour = dateTimePicker_SleepEnd_Set.Value.Hour;
+                            min = dateTimePicker_SleepEnd_Set.Value.Minute;
+                            if (json["DateTime"]["SleepEnd"]["Hour"] != null) hour = json["DateTime"]["SleepEnd"]["Hour"].Value<int>();
+                            if (json["DateTime"]["SleepEnd"]["Minute"] != null) min = json["DateTime"]["SleepEnd"]["Minute"].Value<int>();
+                            dateTimePicker_SleepEnd_Set.Value = new DateTime(year, month, day, hour, min, 0);
+                        }
+
+                        if (json["DateTime"]["AlarmClock"] != null)
+                        {
+                            hour = dateTimePicker_AlarmClock_Set.Value.Hour;
+                            min = dateTimePicker_AlarmClock_Set.Value.Minute;
+                            if (json["DateTime"]["AlarmClock"]["Hour"] != null) hour = json["DateTime"]["AlarmClock"]["Hour"].Value<int>();
+                            if (json["DateTime"]["AlarmClock"]["Minute"] != null) min = json["DateTime"]["AlarmClock"]["Minute"].Value<int>();
+                            dateTimePicker_AlarmClock_Set.Value = new DateTime(year, month, day, hour, min, 0);
+                        }
                     }
 
                     if (json["Activity"] != null)
@@ -655,13 +731,13 @@ namespace ControlLibrary
                         if (json["Activity"]["Stress"] != null) numericUpDown_Stress_Set.Value = json["Activity"]["Stress"].Value<int>();
                         if (json["Activity"]["FatBurning"] != null) numericUpDown_FatBurning_Set.Value = json["Activity"]["FatBurning"].Value<int>();
 
-                        if (json["Activity"]["SpO2"] != null) SpO2 = json["Activity"]["SpO2"].Value<int>();
-                        if (json["Activity"]["TrainingLoad"] != null) TrainingLoad = json["Activity"]["TrainingLoad"].Value<int>();
+                        if (json["Activity"]["SpO2"] != null) numericUpDown_SpO2_Set.Value = json["Activity"]["SpO2"].Value<int>();
+                        if (json["Activity"]["TrainingLoad"] != null) numericUpDown_TrainingLoad_Set.Value = json["Activity"]["TrainingLoad"].Value<int>();
                         if (json["Activity"]["TrainingLoadGoal"] != null) TrainingLoadGoal = json["Activity"]["TrainingLoadGoal"].Value<int>();
-                        if (json["Activity"]["VO2Max"] != null) VO2Max = json["Activity"]["VO2Max"].Value<int>();
-                        if (json["Activity"]["Floor"] != null) Floor = json["Activity"]["Floor"].Value<int>();
-                        if (json["Activity"]["Readiness"] != null) Readiness = json["Activity"]["Readiness"].Value<int>();
-                        if (json["Activity"]["HRV"] != null) HRV = json["Activity"]["HRV"].Value<int>();
+                        if (json["Activity"]["VO2Max"] != null) numericUpDown_VO2Max_Set.Value = json["Activity"]["VO2Max"].Value<int>();
+                        if (json["Activity"]["Floor"] != null) numericUpDown_Floor_Set.Value = json["Activity"]["Floor"].Value<int>();
+                        if (json["Activity"]["Readiness"] != null) numericUpDown_Readiness_Set.Value = json["Activity"]["Readiness"].Value<int>();
+                        if (json["Activity"]["HRV"] != null) numericUpDown_HRV_Set.Value = json["Activity"]["HRV"].Value<int>();
                     }
 
                     if (json["Air"] != null)
@@ -712,7 +788,7 @@ namespace ControlLibrary
                     if (json["System"] != null)
                     {
                         if (json["System"]["Battery"] != null) numericUpDown_Battery_Set.Value = json["System"]["Battery"].Value<int>();
-                        if (json["System"]["BodyTemp"] != null) BodyTemp = json["System"]["BodyTemp"].Value<int>();
+                        if (json["System"]["BodyTemp"] != null) numericUpDown_BodyTemp_Set.Value = (decimal)(json["System"]["BodyTemp"].Value<int>()/10.0);
                         if (json["System"]["Status"] != null)
                         {
                             if (json["System"]["Status"]["Bluetooth"] != null) checkBox_Bluetooth_Set.Checked = json["System"]["Status"]["Bluetooth"].Value<bool>();
@@ -747,7 +823,6 @@ namespace ControlLibrary
             dateTimePicker_Date_Set.Value = new DateTime(year, month, day, hour, min, sec);
             dateTimePicker_Time_Set.Value = new DateTime(year, month, day, hour, min, sec);
 
-            numericUpDown_Battery_Set.Value = rnd.Next(0, 101);
             numericUpDown_Calories_Set.Value = rnd.Next(0, 500);
             numericUpDown_HeartRate_Set.Value = rnd.Next(45, 180);
             numericUpDown_Distance_Set.Value = rnd.Next(0, 15000);
@@ -759,6 +834,14 @@ namespace ControlLibrary
             numericUpDown_Stress_Set.Value = rnd.Next(0, 101);
             //numericUpDown_ActivityGoal_Set.Value = rnd.Next(0, 13);
             numericUpDown_FatBurning_Set.Value = rnd.Next(0, 35);
+
+            numericUpDown_SpO2_Set.Value = rnd.Next(80, 101);
+            numericUpDown_TrainingLoad_Set.Value = rnd.Next(280, 600);
+            TrainingLoadGoal = rnd.Next(300, 600);
+            numericUpDown_VO2Max_Set.Value = rnd.Next(30, 70);
+            numericUpDown_Floor_Set.Value = rnd.Next(0, 30);
+            numericUpDown_Readiness_Set.Value = rnd.Next(50, 101);
+            numericUpDown_HRV_Set.Value = rnd.Next(0, 80);
 
 
             comboBox_WeatherSet_Icon.SelectedIndex = rnd.Next(0, 29);
@@ -780,6 +863,8 @@ namespace ControlLibrary
             checkBox_Alarm_Set.Checked = rnd.Next(2) == 0 ? false : true;
             checkBox_Lock_Set.Checked = rnd.Next(2) == 0 ? false : true;
             checkBox_DND_Set.Checked = rnd.Next(2) == 0 ? false : true;
+            numericUpDown_Battery_Set.Value = rnd.Next(0, 101);
+            numericUpDown_BodyTemp_Set.Value = (decimal)(rnd.Next(300, 380)/10.0);
 
             checkBox_WeatherSet_Temp.Checked = rnd.Next(7) == 0 ? false : true;
 
@@ -803,15 +888,6 @@ namespace ControlLibrary
             ForecastData.Add("index", index);
             this.ForecastData = ForecastData;
 
-            SpO2 = rnd.Next(80, 101);
-            TrainingLoad = rnd.Next(280, 600);
-            TrainingLoadGoal = rnd.Next(300, 600);
-            VO2Max = rnd.Next(30, 70);
-            BodyTemp = rnd.Next(300, 380);
-            Floor = rnd.Next(0, 30);
-            Readiness = rnd.Next(50, 101);
-            HRV = rnd.Next(0, 80);
-
             setValue = false;
         }
 
@@ -822,5 +898,135 @@ namespace ControlLibrary
             numericUpDown_WeatherSet_MaxTemp.Enabled = b;
             numericUpDown_WeatherSet_MinTemp.Enabled = b;
         }
+
+        #region Collaps panel
+        private void UCtrl_Set_Load(object sender, EventArgs e)
+        {
+            groupBox_Time.AutoSize = false;
+            groupBox_Time.Height = button_Collaps_Time.Height + 7;
+
+            groupBox_Activity.AutoSize = false;
+            groupBox_Activity.Height = button_Collaps_Activity.Height + 7;
+
+            groupBox_Air.AutoSize = false;
+            groupBox_Air.Height = button_Collaps_Air.Height + 7;
+
+            groupBox_System.AutoSize = false;
+            groupBox_System.Height = button_Collaps_System.Height + 7;
+        }
+
+        private void groupBox_Time_SizeChanged(object sender, EventArgs e)
+        {
+            GroupBox box = sender as GroupBox;
+            //Graphics g = box.CreateGraphics();
+            //SizeF strResizeSize = g.MeasureString(box.Text, box.Font);
+            //int btnResize_posX = (int)(box.Padding.Left + strResizeSize.Width);
+            //button_Collaps_Time.Location = new Point(btnResize_posX, 0);
+            button_Collaps_Time.Location = new Point(box.Padding.Left, 0);
+        }
+
+        private void button_Collaps_Time_Click(object sender, EventArgs e)
+        {
+            bool isCollapsed = panel_Time.Visible;
+            panel_Time.Visible = !isCollapsed;
+            button_Collaps_Time.Text = isCollapsed ? "▼" : "▲";
+            if (isCollapsed)
+            {
+                groupBox_Time.AutoSize = false;
+                groupBox_Time.Height = button_Collaps_Time.Height + 7;
+            }
+            else
+            {
+                //groupBox_Time.Dock = DockStyle.Top;
+                groupBox_Time.AutoSize = true;
+            }
+            groupBox_Time.Focus();
+        }
+
+        private void groupBox_Activity_SizeChanged(object sender, EventArgs e)
+        {
+            GroupBox box = sender as GroupBox;
+            //Graphics g = box.CreateGraphics();
+            //SizeF strResizeSize = g.MeasureString(box.Text, box.Font);
+            //int btnResize_posX = (int)(box.Padding.Left + strResizeSize.Width);
+            //button_Collaps_Activity.Location = new Point(btnResize_posX, 0);
+            button_Collaps_Activity.Location = new Point(box.Padding.Left, 0);
+        }
+
+        private void button_Collaps_Activity_Click(object sender, EventArgs e)
+        {
+            bool isCollapsed = panel_Activity.Visible;
+            panel_Activity.Visible = !isCollapsed;
+            button_Collaps_Activity.Text = isCollapsed ? "▼" : "▲";
+            if (isCollapsed)
+            {
+                groupBox_Activity.AutoSize = false;
+                groupBox_Activity.Height = button_Collaps_Activity.Height + 7;
+            }
+            else
+            {
+                //groupBox_Activity.Dock = DockStyle.Top;
+                groupBox_Activity.AutoSize = true;
+            }
+            groupBox_Activity.Focus();
+        }
+
+        private void groupBox_Air_SizeChanged(object sender, EventArgs e)
+        {
+            GroupBox box = sender as GroupBox;
+            //Graphics g = box.CreateGraphics();
+            //SizeF strResizeSize = g.MeasureString(box.Text, box.Font);
+            //int btnResize_posX = (int)(box.Padding.Left + strResizeSize.Width);
+            //button_Collaps_Air.Location = new Point(btnResize_posX, 0);
+            button_Collaps_Air.Location = new Point(box.Padding.Left, 0);
+        }
+
+        private void button_Collaps_Air_Click(object sender, EventArgs e)
+        {
+            bool isCollapsed = panel_Air.Visible;
+            panel_Air.Visible = !isCollapsed;
+            button_Collaps_Air.Text = isCollapsed ? "▼" : "▲";
+            if (isCollapsed)
+            {
+                groupBox_Air.AutoSize = false;
+                groupBox_Air.Height = button_Collaps_Air.Height + 7;
+            }
+            else
+            {
+                //groupBox_Air.Dock = DockStyle.Top;
+                groupBox_Air.AutoSize = true;
+            }
+            groupBox_Air.Focus();
+        }
+
+        private void groupBox_System_SizeChanged(object sender, EventArgs e)
+        {
+            GroupBox box = sender as GroupBox;
+            //Graphics g = box.CreateGraphics();
+            //SizeF strResizeSize = g.MeasureString(box.Text, box.Font);
+            //int btnResize_posX = (int)(box.Padding.Left + strResizeSize.Width);
+            //button_Collaps_System.Location = new Point(btnResize_posX, 0);
+            button_Collaps_System.Location = new Point(box.Padding.Left, 0);
+        }
+
+        private void button_Collaps_System_Click(object sender, EventArgs e)
+        {
+            bool isCollapsed = panel_System.Visible;
+            panel_System.Visible = !isCollapsed;
+            button_Collaps_System.Text = isCollapsed ? "▼" : "▲";
+            if (isCollapsed)
+            {
+                groupBox_System.AutoSize = false;
+                groupBox_System.Height = button_Collaps_System.Height + 7;
+            }
+            else
+            {
+                //groupBox_System.Dock = DockStyle.Top;
+                groupBox_System.AutoSize = true;
+            }
+            groupBox_System.Focus();
+        }
+
+        #endregion
     }
 }

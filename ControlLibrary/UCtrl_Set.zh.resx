@@ -243,10 +243,6 @@
   <data name="label18.Text" xml:space="preserve">
     <value>风力</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="checkBox_WeatherSet_Temp.Size" type="System.Drawing.Size, System.Drawing">
-    <value>74, 17</value>
-  </data>
   <data name="checkBox_WeatherSet_Temp.Text" xml:space="preserve">
     <value>当前温度</value>
   </data>
@@ -258,9 +254,6 @@
   </data>
   <data name="label21.Text" xml:space="preserve">
     <value>最低温度</value>
-  </data>
-  <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 13</value>
   </data>
   <data name="label14.Text" xml:space="preserve">
     <value>天气图标</value>
@@ -274,20 +267,11 @@
   <data name="checkBox_DND_Set.Text" xml:space="preserve">
     <value>勿扰</value>
   </data>
-  <data name="checkBox_Lock_Set.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 18</value>
-  </data>
   <data name="checkBox_Lock_Set.Text" xml:space="preserve">
     <value>锁屏</value>
   </data>
-  <data name="checkBox_Alarm_Set.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 18</value>
-  </data>
   <data name="checkBox_Alarm_Set.Text" xml:space="preserve">
     <value>闹铃</value>
-  </data>
-  <data name="checkBox_Bluetooth_Set.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 18</value>
   </data>
   <data name="checkBox_Bluetooth_Set.Text" xml:space="preserve">
     <value>蓝牙</value>

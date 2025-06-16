@@ -4636,13 +4636,13 @@ namespace Watch_Face_Editor
                     img_pointer = activityElementSunrise.Pointer;
                     icon = activityElementSunrise.Icon;
 
-                    int minSunrise = WatchFacePreviewSet.DateTime.Time.Minute;
-                    int hourSunrise = WatchFacePreviewSet.DateTime.Time.Hour;
+                    int minNow = WatchFacePreviewSet.DateTime.Time.Minute;
+                    int hourNow = WatchFacePreviewSet.DateTime.Time.Hour;
 
                     DrawSunrise(gPanel, img_level, img_prorgess, img_number, font_number, sunrise_rotation, sunrise_circle,
                         img_number_target, font_number_target, sunset_rotation, sunset_circle,
                         activityElementSunrise.Sunset_Sunrise,
-                        img_pointer, icon, hourSunrise, minSunrise, BBorder, showProgressArea, showCentrHend);
+                        img_pointer, icon, hourNow, minNow, BBorder, showProgressArea, showCentrHend);
 
 
                     break;
@@ -9490,6 +9490,11 @@ namespace Watch_Face_Editor
             TimeSpan time_now = new TimeSpan(hour, minute, 0);
             TimeSpan time_sunrise = new TimeSpan(WatchFacePreviewSet.DateTime.Sunrise.Hour, WatchFacePreviewSet.DateTime.Sunrise.Minute, 0);
             TimeSpan time_sunset = new TimeSpan(WatchFacePreviewSet.DateTime.Sunset.Hour, WatchFacePreviewSet.DateTime.Sunset.Minute, 0);
+            if (time_sunrise > time_sunset)
+            {
+                time_sunset = new TimeSpan(WatchFacePreviewSet.DateTime.Sunrise.Hour, WatchFacePreviewSet.DateTime.Sunrise.Minute, 0);
+                time_sunrise = new TimeSpan(WatchFacePreviewSet.DateTime.Sunset.Hour, WatchFacePreviewSet.DateTime.Sunset.Minute, 0);
+            }
             TimeSpan day_lenght = time_sunset - time_sunrise;
             TimeSpan day_progress = time_now - time_sunrise;
 

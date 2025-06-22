@@ -38,18 +38,21 @@ jobs:
           if exist Watch_Face_Editor_Readme.txt copy Watch_Face_Editor_Readme.txt output\Watch_Face_Editor_(ZeppOS)\
 
       - name: Create ZIP archive
+        id: zip
         shell: pwsh
         run: |
           $msg = git log -1 --pretty=format:%s
           $safeName = "WatchFaceEditor_" + ($msg -replace '[\\/:*?"<>|]', '_') + ".zip"  # убрать недопустимые символы для имени файла
           Compress-Archive -Path output\* -DestinationPath $safeName
           # Compress-Archive -Path output\* -DestinationPath WatchFaceEditor_Portable.zip
+          echo "::set-output name=zip_name::$safeName"
 
       - name: Create GitHub Release and upload ZIP
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ github.ref_name }}
           name: Release ${{ github.ref_name }}
-          files: WatchFaceEditor_Portable.zip
+          # files: WatchFaceEditor_Portable.zip
+          files: ${{ steps.zip.outputs.zip_name }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

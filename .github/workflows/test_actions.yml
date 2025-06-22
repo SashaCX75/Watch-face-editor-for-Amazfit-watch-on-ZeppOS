@@ -43,7 +43,7 @@ jobs:
         run: |
           $msg = git log -1 --pretty=format:%s
           $safeName = ($msg -replace '[\\/:*?"<>|]', '_')  # убрать недопустимые символы для имени файла
-          $fullSafeName = "WatchFaceEditor_" + $safeName + ".zip"  # убрать недопустимые символы для имени файла
+          $fullSafeName = "WatchFaceEditor_" + ($msg -replace '[\\/:*?"<>|]', '_') + ".zip"  # убрать недопустимые символы для имени файла
           Compress-Archive -Path output\* -DestinationPath $fullSafeName
           # Compress-Archive -Path output\* -DestinationPath WatchFaceEditor_Portable.zip
           # echo "::set-output name=zip_name::$safeName"

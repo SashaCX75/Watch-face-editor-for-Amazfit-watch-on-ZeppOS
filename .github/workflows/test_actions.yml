@@ -26,6 +26,7 @@ jobs:
         run: msbuild "AmazFit_Editor_(Watch_Face_Type_GT3).sln" /p:Configuration=Release
 
       - name: Prepare portable output
+        shell: cmd
         run: |
           mkdir output
           xcopy /s /i /y Watch_Face_Editor\bin\Release\* output\

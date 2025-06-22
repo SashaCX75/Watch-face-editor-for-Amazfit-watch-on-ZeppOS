@@ -3,7 +3,7 @@ name: Build and Release Watch Face Editor
 on:
   push:
     tags: "v*.*"
-    branches: "master"
+    branches: "test_action"
 
 jobs:
   build:
@@ -22,7 +22,7 @@ jobs:
           nuget restore Watch_Face_Editor.sln
 
       - name: Build the solution
-        run: msbuild Watch_Face_Editor.sln /p:Configuration=Release
+        run: msbuild AmazFit_Editor_(Watch_Face_Type_GT3).sln /p:Configuration=Release
 
       - name: Prepare portable output
         run: |

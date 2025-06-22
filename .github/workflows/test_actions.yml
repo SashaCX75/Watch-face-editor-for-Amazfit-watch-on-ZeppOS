@@ -37,7 +37,7 @@ jobs:
           if exist Watch_Face_Editor_Readme.txt copy Watch_Face_Editor_Readme.txt output\
 
       - name: Create ZIP archive
-        run: Compress-Archive -Path output\* -DestinationPath WatchFaceEditor_Portable.zip
+        run: Compress-Archive -Path output\* -DestinationPath WatchFaceEditor_Portable_${{ github.ref_name }}.zip
 
       - name: Create GitHub Release and upload ZIP
         uses: softprops/action-gh-release@v1

@@ -1,6 +1,7 @@
 name: Build and Release Watch Face Editor
 
 on:
+  workflow_dispatch:  # позволяет запуск вручную
   push:
     tags: "v *.*"
     branches: "test_action"

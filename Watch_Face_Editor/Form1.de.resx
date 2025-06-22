@@ -702,6 +702,18 @@ mehr Systembelastung)</value>
   <data name="linkLabel_ES_site.Text" xml:space="preserve">
     <value>- Autor: @Mr_Pacojones (es)</value>
   </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>337, 39</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>* Ich bin nicht der Autor dieser Anleitungen und übernehme keine Verantwortung für die Richtigkeit der darin enthaltenen Informationen. Die Informationen darin können veraltet oder ungenau sein.</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>134, 13</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Anleitungen und Leitfäden:</value>
+  </data>
   <data name="linkLabel_YouTube_Avoska88.Size" type="System.Drawing.Size, System.Drawing">
     <value>132, 13</value>
   </data>
@@ -804,7 +816,7 @@ PayPal: sashacx75@gmail.com</value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACk
-        DQAAAk1TRnQBSQFMAgEBBgEAAaQBNAGkATQBEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        DQAAAk1TRnQBSQFMAgEBBgEAAawBNAGsATQBEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAASADAAEBAQABCAYAAQgYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA

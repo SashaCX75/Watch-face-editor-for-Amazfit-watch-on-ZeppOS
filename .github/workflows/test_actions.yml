@@ -2,7 +2,7 @@ name: Build and Release Watch Face Editor
 
 on:
   push:
-    tags: "v*.*"
+    tags: "v *.*"
     branches: "test_action"
 
 jobs:

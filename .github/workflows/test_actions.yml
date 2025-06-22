@@ -51,13 +51,9 @@ jobs:
       - name: Create GitHub Release and upload ZIP
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ github.event.head_commit.message }}
-          name: Release ${{ github.event.head_commit.message }}
-          files: ${{ steps.zip.outputs.zip_name }}
-          
-          # tag_name: ${{ github.ref_name }}
-          # name: Release ${{ github.ref_name }}
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
           # files: WatchFaceEditor_Portable.zip
-          # files: ${{ steps.zip.outputs.zip_name }}
+          files: ${{ steps.zip.outputs.zip_name }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

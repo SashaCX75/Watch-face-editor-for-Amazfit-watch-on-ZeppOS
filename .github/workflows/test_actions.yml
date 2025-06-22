@@ -42,13 +42,15 @@ jobs:
         shell: pwsh
         run: |
           $msg = git log -1 --pretty=format:%s
-          $safeName = ($msg -replace '[\\/:*?"<>|]', '_')  # убрать недопустимые символы для имени файла
-          $fullSafeName = "WatchFaceEditor_" + $safeName + ".zip"  # убрать недопустимые символы для имени файла
+          # Удаляем/заменяем запрещённые символы и пробелы
+          $safeName = ($msg -replace '[\\/:*?"<>|]', '_')
+          $tagName = ($safeName -replace '\s', '_')  # пробелы → подчёркивания
+
+          $fullSafeName = "WatchFaceEditor_" + $safeName + ".zip"
           Compress-Archive -Path output\* -DestinationPath $fullSafeName
-          # Compress-Archive -Path output\* -DestinationPath WatchFaceEditor_Portable.zip
-          # echo "::set-output name=zip_name::$safeName"
+      
           "zip_name=$fullSafeName" >> $env:GITHUB_OUTPUT
-          "zip_tag=$safeName" >> $env:GITHUB_OUTPUT
+          "zip_tag=$tagName" >> $env:GITHUB_OUTPUT
 
       - name: Create GitHub Release and upload ZIP
         uses: softprops/action-gh-release@v1

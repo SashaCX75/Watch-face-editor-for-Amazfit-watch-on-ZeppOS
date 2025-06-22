@@ -155,7 +155,7 @@ namespace ControlLibrary
                     catch
                     {
                         // Could not load the image - probably related to Windows file system permissions.
-                        MessageBox.Show(Properties.Strings.Message_ReadScript_Error, Properties.Strings.Dialog_Title_JS_Open);
+                        MessageBox.Show(Properties.Strings.Message_ReadScript_Error, Properties.Strings.UCtrl_Text_Opt_SityName_true);
                     } 
                 }
             }
@@ -175,8 +175,10 @@ namespace ControlLibrary
         {
             GroupBox groupBox = sender as GroupBox;
             Color color = groupBox.ForeColor;
-            if (groupBox.Enabled) DrawGroupBox(groupBox, e.Graphics, color, Color.DarkGray);
-            else DrawGroupBox(groupBox, e.Graphics, Color.DarkGray, Color.DarkGray);
+            //if (groupBox.Enabled) DrawGroupBox(groupBox, e.Graphics, color, Color.DarkGray);
+            //else DrawGroupBox(groupBox, e.Graphics, Color.DarkGray, Color.DarkGray);
+            if (groupBox.Enabled) DrawGroupBox(groupBox, e.Graphics, this.ForeColor, Color.DarkGray);
+            else DrawGroupBox(groupBox, e.Graphics, SystemColors.GrayText, Color.DarkGray);
         }
         private void DrawGroupBox(GroupBox groupBox, Graphics g, Color textColor, Color borderColor)
         {

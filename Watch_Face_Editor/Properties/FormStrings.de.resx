@@ -213,6 +213,9 @@
   <data name="Message_AnimationAOD_Text" xml:space="preserve">
     <value>Sie können dem AOD-Bildschirm keine Animation hinzufügen.</value>
   </data>
+  <data name="Message_AQI_Image_Count_Error" xml:space="preserve">
+    <value>Die Anzahl der Bilder für AQI sollte 6 betragen.</value>
+  </data>
   <data name="Message_ARGB_Line1" xml:space="preserve">
     <value>Die Konvertierung von Bildern in das ARGB-Format dauert länger.</value>
   </data>
@@ -350,6 +353,12 @@
   </data>
   <data name="Message_ShortcutsAOD_Text" xml:space="preserve">
     <value>Sie können dem AOD-Bildschirm keine Verknüpfungen hinzufügen.</value>
+  </data>
+  <data name="Message_TrainingLoad_Image_Count_Error" xml:space="preserve">
+    <value>Die Anzahl der Bilder für die Trainingsbelastung sollte 3 betragen.</value>
+  </data>
+  <data name="Message_VO2Max_Image_Count_Error" xml:space="preserve">
+    <value>Die Anzahl der Bilder für VO2Max sollte 7 betragen.</value>
   </data>
   <data name="Message_WarningConverting_Text1" xml:space="preserve">
     <value>Ordner</value>

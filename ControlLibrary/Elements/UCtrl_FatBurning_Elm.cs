@@ -13,6 +13,11 @@ namespace ControlLibrary
         public UCtrl_FatBurning_Elm()
         {
             InitializeComponent();
+
+            if (!AppUtils.IsLightTheme())
+            {
+                if (button_ElementName.Image != null) button_ElementName.Image = AppUtils.InvertColors(button_ElementName.Image);
+            }
         }
     }
 }

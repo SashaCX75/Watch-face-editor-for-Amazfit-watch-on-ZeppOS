@@ -121,6 +121,8 @@ namespace ControlLibrary
             pictureBox_Arrow_Right_Trainings.BackColor = Color.Transparent;
             pictureBox_Arrow_Down_Trainings.Location = new Point(1, 2);
             pictureBox_Arrow_Down_Trainings.BackColor = Color.Transparent;
+
+            if (!AppUtils.IsLightTheme()) IterationElements(this.Controls);
         }
 
         [Browsable(true)]
@@ -1534,6 +1536,26 @@ namespace ControlLibrary
             {
                 button_ElementName.ForeColor = SystemColors.GrayText;
                 button_ElementName.BackColor = SystemColors.ControlLight;
+            }
+        }
+
+        private void IterationElements(ControlCollection ctrlCollection)
+        {
+            foreach (Control ctrl in ctrlCollection)
+            {
+                if (ctrl is PictureBox pb)
+                {
+                    if (pb.Image != null) pb.Image = AppUtils.InvertColors(pb.Image);
+                    if (pb.BackgroundImage != null) pb.BackgroundImage = AppUtils.InvertColors(pb.BackgroundImage);
+                }
+                if (ctrl is Button btn)
+                {
+                    if (btn.Image != null) btn.Image = AppUtils.InvertColors(btn.Image);
+                    IterationElements(btn.Controls);
+
+                }
+                //if (ctrl is TableLayoutPanel tablePanel) IterationElements(tablePanel.Controls);
+                if (ctrl is Panel panel) IterationElements(panel.Controls);
             }
         }
     }

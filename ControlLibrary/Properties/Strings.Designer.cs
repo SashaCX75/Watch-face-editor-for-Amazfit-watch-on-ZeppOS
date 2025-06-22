@@ -187,6 +187,15 @@ namespace ControlLibrary.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Заглавные буквы.
+        /// </summary>
+        internal static string UCtrl_Text_Opt_SityName_true {
+            get {
+                return ResourceManager.GetString("UCtrl_Text_Opt_SityName_true", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Десятичный разделитель.
         /// </summary>
         internal static string UCtrl_Text_Opt_Sunrise_false {

@@ -56,6 +56,7 @@
     <Compile Include="AddButtonFunction.Designer.cs">
       <DependentUpon>AddButtonFunction.cs</DependentUpon>
     </Compile>
+    <Compile Include="AppUtils.cs" />
     <Compile Include="EditToast.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -769,10 +770,28 @@
     <EmbeddedResource Include="Elements\UCtrl_Activity_Elm.zh.resx">
       <DependentUpon>UCtrl_Activity_Elm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_AlarmClock_Elm.cs.resx">
+      <DependentUpon>UCtrl_AlarmClock_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_AlarmClock_Elm.de.resx">
+      <DependentUpon>UCtrl_AlarmClock_Elm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_AlarmClock_Elm.en.resx">
       <DependentUpon>UCtrl_AlarmClock_Elm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_AlarmClock_Elm.es.resx">
+      <DependentUpon>UCtrl_AlarmClock_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_AlarmClock_Elm.fr.resx">
+      <DependentUpon>UCtrl_AlarmClock_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_AlarmClock_Elm.it.resx">
+      <DependentUpon>UCtrl_AlarmClock_Elm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_AlarmClock_Elm.uk.resx">
+      <DependentUpon>UCtrl_AlarmClock_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_AlarmClock_Elm.zh.resx">
       <DependentUpon>UCtrl_AlarmClock_Elm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_Altimeter_Elm.cs.resx">
@@ -912,10 +931,28 @@
     <EmbeddedResource Include="Elements\UCtrl_Battery_Elm.zh.resx">
       <DependentUpon>UCtrl_Battery_Elm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_BodyTemp_Elm.cs.resx">
+      <DependentUpon>UCtrl_BodyTemp_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_BodyTemp_Elm.de.resx">
+      <DependentUpon>UCtrl_BodyTemp_Elm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_BodyTemp_Elm.en.resx">
       <DependentUpon>UCtrl_BodyTemp_Elm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_BodyTemp_Elm.es.resx">
+      <DependentUpon>UCtrl_BodyTemp_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_BodyTemp_Elm.fr.resx">
+      <DependentUpon>UCtrl_BodyTemp_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_BodyTemp_Elm.it.resx">
+      <DependentUpon>UCtrl_BodyTemp_Elm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_BodyTemp_Elm.uk.resx">
+      <DependentUpon>UCtrl_BodyTemp_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_BodyTemp_Elm.zh.resx">
       <DependentUpon>UCtrl_BodyTemp_Elm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_Buttons_Elm.cs.resx">
@@ -1242,10 +1279,28 @@
     <EmbeddedResource Include="Elements\UCtrl_FatBurning_Elm.zh.resx">
       <DependentUpon>UCtrl_FatBurning_Elm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Floor_Elm.cs.resx">
+      <DependentUpon>UCtrl_Floor_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Floor_Elm.de.resx">
+      <DependentUpon>UCtrl_Floor_Elm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_Floor_Elm.en.resx">
       <DependentUpon>UCtrl_Floor_Elm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Floor_Elm.es.resx">
+      <DependentUpon>UCtrl_Floor_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Floor_Elm.fr.resx">
+      <DependentUpon>UCtrl_Floor_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Floor_Elm.it.resx">
+      <DependentUpon>UCtrl_Floor_Elm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_Floor_Elm.uk.resx">
+      <DependentUpon>UCtrl_Floor_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Floor_Elm.zh.resx">
       <DependentUpon>UCtrl_Floor_Elm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_Heart_Elm.cs.resx">
@@ -1396,13 +1451,31 @@
     <EmbeddedResource Include="Elements\UCtrl_PAI_Elm.zh.resx">
       <DependentUpon>UCtrl_PAI_Elm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Readiness_Elm.cs.resx">
+      <DependentUpon>UCtrl_Readiness_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Readiness_Elm.de.resx">
+      <DependentUpon>UCtrl_Readiness_Elm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_Readiness_Elm.en.resx">
+      <DependentUpon>UCtrl_Readiness_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Readiness_Elm.es.resx">
+      <DependentUpon>UCtrl_Readiness_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Readiness_Elm.fr.resx">
+      <DependentUpon>UCtrl_Readiness_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Readiness_Elm.it.resx">
       <DependentUpon>UCtrl_Readiness_Elm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_Readiness_Elm.resx">
       <DependentUpon>UCtrl_Readiness_Elm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_Readiness_Elm.uk.resx">
+      <DependentUpon>UCtrl_Readiness_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Readiness_Elm.zh.resx">
       <DependentUpon>UCtrl_Readiness_Elm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_RepeatingAlert_Elm.cs.resx">
@@ -1672,10 +1745,28 @@
     <EmbeddedResource Include="Elements\UCtrl_TopImage_Elm.uk.resx">
       <DependentUpon>UCtrl_TopImage_Elm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_TrainingLoad_Elm.cs.resx">
+      <DependentUpon>UCtrl_TrainingLoad_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_TrainingLoad_Elm.de.resx">
+      <DependentUpon>UCtrl_TrainingLoad_Elm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_TrainingLoad_Elm.en.resx">
       <DependentUpon>UCtrl_TrainingLoad_Elm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_TrainingLoad_Elm.es.resx">
+      <DependentUpon>UCtrl_TrainingLoad_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_TrainingLoad_Elm.fr.resx">
+      <DependentUpon>UCtrl_TrainingLoad_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_TrainingLoad_Elm.it.resx">
+      <DependentUpon>UCtrl_TrainingLoad_Elm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_TrainingLoad_Elm.uk.resx">
+      <DependentUpon>UCtrl_TrainingLoad_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_TrainingLoad_Elm.zh.resx">
       <DependentUpon>UCtrl_TrainingLoad_Elm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_UVIndex_Elm.cs.resx">
@@ -1909,7 +2000,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Strings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_AlarmClock_Elm.resx">
       <DependentUpon>UCtrl_AlarmClock_Elm.cs</DependentUpon>

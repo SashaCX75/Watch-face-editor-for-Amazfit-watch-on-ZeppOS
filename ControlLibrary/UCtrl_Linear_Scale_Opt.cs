@@ -28,6 +28,47 @@ namespace ControlLibrary
             comboBox_scaleLinear_lineCap.SelectedIndex = 1;
         }
 
+        private void groupBox_Paint(object sender, PaintEventArgs e)
+        {
+            GroupBox groupBox = sender as GroupBox;
+            //if (groupBox.Enabled) DrawGroupBox(groupBox, e.Graphics, Color.Black, Color.DarkGray);
+            //else DrawGroupBox(groupBox, e.Graphics, Color.DarkGray, Color.DarkGray);
+            if (groupBox.Enabled) DrawGroupBox(groupBox, e.Graphics, this.ForeColor, Color.DarkGray);
+            else DrawGroupBox(groupBox, e.Graphics, SystemColors.GrayText, Color.DarkGray);
+        }
+        private void DrawGroupBox(GroupBox groupBox, Graphics g, Color textColor, Color borderColor)
+        {
+            if (groupBox != null)
+            {
+                Brush textBrush = new SolidBrush(textColor);
+                Brush borderBrush = new SolidBrush(borderColor);
+                Pen borderPen = new Pen(borderBrush);
+                SizeF strSize = g.MeasureString(groupBox.Text, groupBox.Font);
+                Rectangle rect = new Rectangle(groupBox.ClientRectangle.X,
+                                               groupBox.ClientRectangle.Y + (int)(strSize.Height / 2),
+                                               groupBox.ClientRectangle.Width - 1,
+                                               groupBox.ClientRectangle.Height - (int)(strSize.Height / 2) - 5);
+
+                // Clear text and border
+                g.Clear(this.BackColor);
+
+                // Draw text
+                g.DrawString(groupBox.Text, groupBox.Font, textBrush, groupBox.Padding.Left, 0);
+
+                // Drawing Border
+                //Left
+                g.DrawLine(borderPen, rect.Location, new Point(rect.X, rect.Y + rect.Height));
+                //Right
+                g.DrawLine(borderPen, new Point(rect.X + rect.Width, rect.Y), new Point(rect.X + rect.Width, rect.Y + rect.Height));
+                //Bottom
+                g.DrawLine(borderPen, new Point(rect.X, rect.Y + rect.Height), new Point(rect.X + rect.Width, rect.Y + rect.Height));
+                //Top1
+                g.DrawLine(borderPen, new Point(rect.X, rect.Y), new Point(rect.X + groupBox.Padding.Left, rect.Y));
+                //Top2
+                g.DrawLine(borderPen, new Point(rect.X + groupBox.Padding.Left + (int)(strSize.Width), rect.Y), new Point(rect.X + rect.Width, rect.Y));
+            }
+        }
+
         private void comboBox_scaleLinear_color_Click(object sender, EventArgs e)
         {
             Program_Settings ProgramSettings = new Program_Settings();

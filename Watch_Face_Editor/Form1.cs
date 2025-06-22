@@ -223,6 +223,27 @@ namespace Watch_Face_Editor
             Settings_Load = false;
             currentDPI = tabControl1.Height / 670f;
 
+            if (!AppUtils.IsLightTheme())
+            {
+                if (pictureBox_qr.BackgroundImage != null) 
+                    pictureBox_qr.BackgroundImage = AppUtils.InvertColors(pictureBox_qr.BackgroundImage);
+                if (pictureBox_IconTime.BackgroundImage != null)
+                    pictureBox_IconTime.BackgroundImage = AppUtils.InvertColors(pictureBox_IconTime.BackgroundImage);
+                if (pictureBox_IconDate.BackgroundImage != null)
+                    pictureBox_IconDate.BackgroundImage = AppUtils.InvertColors(pictureBox_IconDate.BackgroundImage);
+                if (pictureBox_IconBackground.BackgroundImage != null)
+                    pictureBox_IconBackground.BackgroundImage = AppUtils.InvertColors(pictureBox_IconBackground.BackgroundImage);
+                if (pictureBox_IconActivity.BackgroundImage != null)
+                    pictureBox_IconActivity.BackgroundImage = AppUtils.InvertColors(pictureBox_IconActivity.BackgroundImage);
+                if (pictureBox_IconAir.BackgroundImage != null)
+                    pictureBox_IconAir.BackgroundImage = AppUtils.InvertColors(pictureBox_IconAir.BackgroundImage);
+                if (pictureBox_IconSystem.BackgroundImage != null)
+                    pictureBox_IconSystem.BackgroundImage = AppUtils.InvertColors(pictureBox_IconSystem.BackgroundImage);
+
+                dataGridView_ImagesList.Columns[3].DefaultCellStyle.ForeColor = Color.Black;
+                dataGridView_ImagesList.Columns[3].DefaultCellStyle.BackColor = Color.White;
+            }
+
             #region sistem font
             //byte[] fontData = Properties.Resources.OpenSans_Regular;
             byte[] fontData = Properties.Resources.Roboto_Regular;
@@ -832,8 +853,10 @@ namespace Watch_Face_Editor
         private void groupBox_Paint(object sender, PaintEventArgs e)
         {
             GroupBox groupBox = sender as GroupBox;
-            if (groupBox.Enabled) DrawGroupBox(groupBox, e.Graphics, Color.Black, Color.DarkGray);
-            else DrawGroupBox(groupBox, e.Graphics, Color.DarkGray, Color.DarkGray);
+            //if (groupBox.Enabled) DrawGroupBox(groupBox, e.Graphics, Color.Black, Color.DarkGray);
+            //else DrawGroupBox(groupBox, e.Graphics, Color.DarkGray, Color.DarkGray);
+            if (groupBox.Enabled) DrawGroupBox(groupBox, e.Graphics, this.ForeColor, Color.DarkGray);
+            else DrawGroupBox(groupBox, e.Graphics, SystemColors.GrayText, Color.DarkGray);
         }
         private void DrawGroupBox(GroupBox groupBox, Graphics g, Color textColor, Color borderColor)
         {
@@ -10581,7 +10604,7 @@ namespace Watch_Face_Editor
             int aqi = rnd.Next(0, 350);
 
             int airPressure = rnd.Next(800, 1200);
-            int airQuality = rnd.Next(0, 350);
+            int airQuality = rnd.Next(0, 150);
             int altitude = rnd.Next(-100, 300);
             int humidity = rnd.Next(30, 100);
             int UVindex = rnd.Next(0, 13);
@@ -16074,7 +16097,8 @@ namespace Watch_Face_Editor
                         if (uCtrl_Weather_Elm_v2.checkBox_Text_CityName.Checked)
                         {
                             text = weather.City_Name;
-                            Read_Text_Options(text, false, false);
+                            Read_Text_Options(text, true, false);
+                            uCtrl_Text_SystemFont_Opt.SityName = true;
                             ShowElemenrOptions("SystemFont");
                         }
                         else HideAllElemenrOptions();
@@ -17410,7 +17434,7 @@ namespace Watch_Face_Editor
                         if (uCtrl_AQI_Elm.checkBox_Number.Checked)
                         {
                             img_number = aqi.Number;
-                            Read_ImgNumber_Options(img_number, false, false, "", true, false, true, true);
+                            Read_ImgNumber_Options(img_number, false, false, "", true, false, false, true);
                             ShowElemenrOptions("Text");
                         }
                         else HideAllElemenrOptions();
@@ -25331,50 +25355,6 @@ namespace Watch_Face_Editor
             {
                 switch (comboBox_watch_model.Text)
                 {
-                    case "GTR 3":
-                        comboBox_ConvertingInput_Model.Text = "454 (GTR 3)";
-                        comboBox_ConvertingOutput_Model.Text = "480 (Balance)";
-                        break;
-                    case "T-Rex 2":
-                        comboBox_ConvertingInput_Model.Text = "454 (T-Rex 2)";
-                        comboBox_ConvertingOutput_Model.Text = "480 (Balance)";
-                        break;
-                    case "T-Rex 3":
-                        comboBox_ConvertingInput_Model.Text = "480 (T-Rex 2)";
-                        comboBox_ConvertingOutput_Model.Text = "454 (T-Rex 2)";
-                        break;
-                    case "T-Rex Ultra":
-                        comboBox_ConvertingInput_Model.Text = "454 (T-Rex Ultra)";
-                        comboBox_ConvertingOutput_Model.Text = "480 (Balance)";
-                        break;
-                    case "GTR 3 Pro":
-                        comboBox_ConvertingInput_Model.Text = "480 (GTR 3 Pro)";
-                        comboBox_ConvertingOutput_Model.Text = "454 (GTR 3)";
-                        break;
-                    case "Balance":
-                        comboBox_ConvertingInput_Model.Text = "480 (Balance)";
-                        comboBox_ConvertingOutput_Model.Text = "454 (GTR 3)";
-                        break;
-                    case "GTS 3":
-                        comboBox_ConvertingInput_Model.Text = "390 (GTS 3)";
-                        comboBox_ConvertingOutput_Model.Text = "336 (GTS 4 mini)";
-                        break;
-                    case "GTR 4":
-                        comboBox_ConvertingInput_Model.Text = "466 (GTR 4)";
-                        comboBox_ConvertingOutput_Model.Text = "454 (GTR 3)";
-                        break;
-                    case "GTS 4 mini":
-                        comboBox_ConvertingInput_Model.Text = "336 (GTS 4 mini)";
-                        comboBox_ConvertingOutput_Model.Text = "390 (GTS 3)";
-                        break;
-                    case "Falcon":
-                        comboBox_ConvertingInput_Model.Text = "416 (Falcon)";
-                        comboBox_ConvertingOutput_Model.Text = "454 (GTR 3)";
-                        break;
-                    case "GTR mini":
-                        comboBox_ConvertingInput_Model.Text = "416 (GTR mini)";
-                        comboBox_ConvertingOutput_Model.Text = "454 (GTR 3)";
-                        break;
                     case "Bip 5":
                         comboBox_ConvertingInput_Model.Text = "320 (Bip 5)";
                         comboBox_ConvertingOutput_Model.Text = "390 (GTS 4)";
@@ -25383,26 +25363,94 @@ namespace Watch_Face_Editor
                         comboBox_ConvertingInput_Model.Text = "320 (Bip 5 Unity)";
                         comboBox_ConvertingOutput_Model.Text = "390 (GTS 4)";
                         break;
-                    case "GTS 4":
-                        comboBox_ConvertingInput_Model.Text = "390 (GTS 4)";
+
+                    case "GTS 4 mini":
+                        comboBox_ConvertingInput_Model.Text = "336 (GTS 4 mini)";
+                        comboBox_ConvertingOutput_Model.Text = "390 (GTS 3)";
+                        break;
+
+                    case "Active Edge":
+                        comboBox_ConvertingInput_Model.Text = "360 (Active Edge)";
+                        comboBox_ConvertingOutput_Model.Text = "480 (Balance)";
+                        break;
+
+                    case "Active":
+                        comboBox_ConvertingInput_Model.Text = "390 (Active)";
+                        comboBox_ConvertingOutput_Model.Text = "336 (GTS 4 mini)";
+                        break;
+                    case "Bip 6":
+                        comboBox_ConvertingInput_Model.Text = "390 (Bip 6)";
                         comboBox_ConvertingOutput_Model.Text = "336 (GTS 4 mini)";
                         break;
                     case "Cheetah (Square)":
                         comboBox_ConvertingInput_Model.Text = "390 (Cheetah (Square))";
                         comboBox_ConvertingOutput_Model.Text = "336 (GTS 4 mini)";
                         break;
-                    case "Active":
-                        comboBox_ConvertingInput_Model.Text = "390 (Active)";
+                    case "GTS 3":
+                        comboBox_ConvertingInput_Model.Text = "390 (GTS 3)";
                         comboBox_ConvertingOutput_Model.Text = "336 (GTS 4 mini)";
                         break;
-                    case "Active Edge":
-                        comboBox_ConvertingInput_Model.Text = "360 (Active Edge)";
+                    case "GTS 4":
+                        comboBox_ConvertingInput_Model.Text = "390 (GTS 4)";
+                        comboBox_ConvertingOutput_Model.Text = "336 (GTS 4 mini)";
+                        break;
+
+                    case "Falcon":
+                        comboBox_ConvertingInput_Model.Text = "416 (Falcon)";
+                        comboBox_ConvertingOutput_Model.Text = "454 (GTR 3)";
+                        break;
+                    case "GTR mini":
+                        comboBox_ConvertingInput_Model.Text = "416 (GTR mini)";
+                        comboBox_ConvertingOutput_Model.Text = "454 (GTR 3)";
+                        break;
+
+                    case "Cheetah":
+                        comboBox_ConvertingInput_Model.Text = "454 (Cheetah)";
                         comboBox_ConvertingOutput_Model.Text = "480 (Balance)";
                         break;
+                    case "GTR 3":
+                        comboBox_ConvertingInput_Model.Text = "454 (GTR 3)";
+                        comboBox_ConvertingOutput_Model.Text = "480 (Balance)";
+                        break;
+                    case "T-Rex 2":
+                        comboBox_ConvertingInput_Model.Text = "454 (T-Rex 2)";
+                        comboBox_ConvertingOutput_Model.Text = "480 (Balance)";
+                        break;
+                    case "T-Rex Ultra":
+                        comboBox_ConvertingInput_Model.Text = "454 (T-Rex Ultra)";
+                        comboBox_ConvertingOutput_Model.Text = "480 (Balance)";
+                        break;
+
                     case "Active 2":
                         comboBox_ConvertingInput_Model.Text = "466 (Active 2)";
                         comboBox_ConvertingOutput_Model.Text = "480 (Balance)";
                         break;
+                    case "GTR 4":
+                        comboBox_ConvertingInput_Model.Text = "466 (GTR 4)";
+                        comboBox_ConvertingOutput_Model.Text = "454 (GTR 3)";
+                        break;
+
+                    case "Balance":
+                        comboBox_ConvertingInput_Model.Text = "480 (Balance)";
+                        comboBox_ConvertingOutput_Model.Text = "454 (GTR 3)";
+                        break;
+                    case "Balance 2":
+                        comboBox_ConvertingInput_Model.Text = "480 (Balance 2)";
+                        comboBox_ConvertingOutput_Model.Text = "454 (GTR 3)";
+                        break;
+                    case "Cheetah Pro":
+                        comboBox_ConvertingInput_Model.Text = "480 (Cheetah Pro)";
+                        comboBox_ConvertingOutput_Model.Text = "454 (GTR 3)";
+                        break;
+                    case "GTR 3 Pro":
+                        comboBox_ConvertingInput_Model.Text = "480 (GTR 3 Pro)";
+                        comboBox_ConvertingOutput_Model.Text = "454 (GTR 3)";
+                        break;
+                    case "T-Rex 3":
+                        comboBox_ConvertingInput_Model.Text = "480 (T-Rex 3)";
+                        comboBox_ConvertingOutput_Model.Text = "454 (T-Rex 2)";
+                        break;
+
                     default:
                         comboBox_ConvertingInput_Model.SelectedIndex = 0;
                         comboBox_ConvertingOutput_Model.SelectedIndex = 0;
@@ -25461,6 +25509,7 @@ namespace Watch_Face_Editor
                 case "480 (GTR 3 Pro)":
                 case "480 (Cheetah Pro)":
                 case "480 (Balance)":
+                case "480 (Balance 2)":
                 case "480 (T-Rex 3)":
                     numericUpDown_ConvertingInput_Custom.Value = 480;
                     break;
@@ -25507,6 +25556,7 @@ namespace Watch_Face_Editor
                 case "480 (GTR 3 Pro)":
                 case "480 (Cheetah Pro)":
                 case "480 (Balance)":
+                case "480 (Balance 2)":
                 case "480 (T-Rex 3)":
                     numericUpDown_ConvertingOutput_Custom.Value = 480;
                     break;
@@ -25604,6 +25654,10 @@ namespace Watch_Face_Editor
                     case "480 (Balance)":
                         suffix = "_Balance";
                         DeviceName = "Balance";
+                        break;
+                    case "480 (Balance 2)":
+                        suffix = "_Balance_2";
+                        DeviceName = "Balance 2";
                         break;
                     case "480 (T-Rex 3)":
                         suffix = "_T_Rex_3";
@@ -25747,17 +25801,42 @@ namespace Watch_Face_Editor
 
         private void linkLabel_ImageToZeppOS_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com/SashaCX75/ImageToGTR3_v2/releases/tag/ImageToZeppOS");
+            Process.Start("https://github.com/SashaCX75/ImageToGTR3_v2/releases/tag/ImageToZeppOS");
         }
 
         private void linkLabel_TBUI_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://4pda.to/forum/index.php?showtopic=1066226");
+            Process.Start("https://4pda.to/forum/index.php?showtopic=1066226");
         }
 
         private void linkLabel_buymeacoffee_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            Process.Start("https://www.buymeacoffee.com/sashacx75");
+        }
+
+        private void pictureBoxpictureBox_buymeacoff_Click(object sender, EventArgs e)
+        {
             System.Diagnostics.Process.Start("https://www.buymeacoffee.com/sashacx75");
+        }
+
+        private void linkLabel_YouTube_Avoska88_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://www.youtube.com/playlist?list=PL02o0SRby1Ceu3c7aYrjFzsx3fLTqRoJk");
+        }
+
+        private void pictureBox_YouTube_Avoska88_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://www.youtube.com/playlist?list=PL02o0SRby1Ceu3c7aYrjFzsx3fLTqRoJk");
+        }
+
+        private void linkLabel_ES_site_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://relojinteligente.org/recursos/editor-esfera-gtr3-gts3-gtr4-gts4-t-rex2-ultra-band7-falcon-cheetah-bip5-bip6-balance-active-activ2.1600/");
+        }
+
+        private void pictureBox_ES_site_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://relojinteligente.org/recursos/editor-esfera-gtr3-gts3-gtr4-gts4-t-rex2-ultra-band7-falcon-cheetah-bip5-bip6-balance-active-activ2.1600/");
         }
 
         private void удалитьИзображениеToolStripMenuItem_Click(object sender, EventArgs e)

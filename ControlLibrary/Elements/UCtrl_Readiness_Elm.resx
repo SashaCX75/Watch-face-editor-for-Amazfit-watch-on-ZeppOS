@@ -117,14 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="&gt;&gt;checkBox_Number_Font.Parent" xml:space="preserve">
-    <value>panel_Number_Font</value>
-  </data>
   <data name="&gt;&gt;button_ElementName.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkBox_Segments.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <data name="&gt;&gt;checkBox_Images.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -141,8 +135,14 @@
   <data name="&gt;&gt;checkBox_Circle_Scale.Name" xml:space="preserve">
     <value>checkBox_Circle_Scale</value>
   </data>
-  <data name="&gt;&gt;button_ElementName.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;button_ElementName.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;checkBox_Circle_Scale.Parent" xml:space="preserve">
+    <value>panel_Circle_Scale</value>
+  </data>
+  <data name="&gt;&gt;checkBox_Circle_Scale.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;checkBox_Number.Name" xml:space="preserve">
     <value>checkBox_Number</value>
@@ -183,8 +183,8 @@
   <data name="&gt;&gt;checkBox_Images.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;button_ElementName.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="&gt;&gt;button_ElementName.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;checkBox_Pointer.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -201,8 +201,8 @@
   <data name="&gt;&gt;checkBox_Segments.Parent" xml:space="preserve">
     <value>panel_Segments</value>
   </data>
-  <data name="&gt;&gt;checkBox_Circle_Scale.Parent" xml:space="preserve">
-    <value>panel_Circle_Scale</value>
+  <data name="&gt;&gt;checkBox_Segments.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>UCtrl_Readiness_Elm</value>
@@ -220,8 +220,8 @@
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
-  <data name="&gt;&gt;checkBox_Circle_Scale.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;checkBox_Number_Font.Parent" xml:space="preserve">
+    <value>panel_Number_Font</value>
   </data>
   <data name="&gt;&gt;checkBox_Icon.Name" xml:space="preserve">
     <value>checkBox_Icon</value>

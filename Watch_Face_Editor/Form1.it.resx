@@ -226,6 +226,12 @@
   <data name="comboBox_AddSystem.Items12" xml:space="preserve">
     <value>Bussola</value>
   </data>
+  <data name="comboBox_AddSystem.Items13" xml:space="preserve">
+    <value>Sveglia</value>
+  </data>
+  <data name="comboBox_AddSystem.Items14" xml:space="preserve">
+    <value>Temperatura corporea</value>
+  </data>
   <data name="comboBox_AddAir.Items" xml:space="preserve">
     <value>Ambiente</value>
   </data>
@@ -279,6 +285,15 @@
   </data>
   <data name="comboBox_AddActivity.Items9" xml:space="preserve">
     <value>Stress</value>
+  </data>
+  <data name="comboBox_AddActivity.Items10" xml:space="preserve">
+    <value>Prontezza</value>
+  </data>
+  <data name="comboBox_AddActivity.Items11" xml:space="preserve">
+    <value>Carico dell'allenamento</value>
+  </data>
+  <data name="comboBox_AddActivity.Items13" xml:space="preserve">
+    <value>Piani</value>
   </data>
   <data name="comboBox_AddDate.Items" xml:space="preserve">
     <value>Data</value>
@@ -681,6 +696,18 @@ più carico di sistema)</value>
   <data name="tabPage_Tips.Text" xml:space="preserve">
     <value>Consigli per l'uso</value>
   </data>
+  <data name="linkLabel_ES_site.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 13</value>
+  </data>
+  <data name="linkLabel_ES_site.Text" xml:space="preserve">
+    <value>- Autore: @Mr_Pacojones (es)</value>
+  </data>
+  <data name="linkLabel_YouTube_Avoska88.Size" type="System.Drawing.Size, System.Drawing">
+    <value>139, 13</value>
+  </data>
+  <data name="linkLabel_YouTube_Avoska88.Text" xml:space="preserve">
+    <value>- Autore: Avoska88 (ru)</value>
+  </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>313, 13</value>
   </data>
@@ -778,7 +805,7 @@ PayPal: sashacx75@gmail.com</value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACk
-        DQAAAk1TRnQBSQFMAgEBBgEAAVgBLgFYAS4BEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        DQAAAk1TRnQBSQFMAgEBBgEAAWQBLgFkAS4BEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAASADAAEBAQABCAYAAQgYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -2104,9 +2131,5 @@ PayPal: sashacx75@gmail.com</value>
         AAAAAAAAAAAAAO+BPCbvgT1I74I+SO+BPSYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD8PwAA4AcAAMAD
         AACAAQAAgAEAAIABAAAAAAAAAAAAAAAAAAAAAAAAgAEAAIABAACAAQAAwAMAAOAHAAD8PwAA
 </value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
 </root>

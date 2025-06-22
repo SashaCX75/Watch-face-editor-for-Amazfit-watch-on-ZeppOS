@@ -273,6 +273,18 @@ del viento</value>
   <data name="groupBox_Air.Text" xml:space="preserve">
     <value>Tiempo</value>
   </data>
+  <data name="label28.Text" xml:space="preserve">
+    <value>Oxígeno en la sangre (SpO2)</value>
+  </data>
+  <data name="label26.Text" xml:space="preserve">
+    <value>Pisos</value>
+  </data>
+  <data name="label24.Text" xml:space="preserve">
+    <value>Carga de entrenamiento</value>
+  </data>
+  <data name="label23.Text" xml:space="preserve">
+    <value>Preparación</value>
+  </data>
   <data name="label04.Text" xml:space="preserve">
     <value>Calorías</value>
   </data>
@@ -331,5 +343,35 @@ de pasos</value>
   </data>
   <data name="button_Set.Text" xml:space="preserve">
     <value>Valores</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Fin del sueño</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Inicio del sueño</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Despertador</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Puesta de la luna</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Salida de la luna</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Atardecer</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Amanecer </value>
+  </data>
+  <data name="groupBox_Time.Text" xml:space="preserve">
+    <value>Hora</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>Temperatura corporal</value>
+  </data>
+  <data name="groupBox_System.Text" xml:space="preserve">
+    <value>Sistema</value>
   </data>
 </root>

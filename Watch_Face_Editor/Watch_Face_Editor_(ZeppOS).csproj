@@ -594,6 +594,8 @@
     </Content>
     <None Include="Resources\apps_icon.png" />
     <None Include="Resources\sport_icon.png" />
+    <None Include="Resources\YouTube.png" />
+    <None Include="Resources\logo_es_site.png" />
     <Content Include="Skin\Skin_Active_2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

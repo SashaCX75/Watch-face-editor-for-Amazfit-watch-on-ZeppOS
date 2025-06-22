@@ -8459,6 +8459,9 @@ namespace Watch_Face_Editor
                         align_v = "CENTER_V";
                     }
 
+                    if (cityName.unit_type == 1) valueStr = valueStr.ToUpper();
+                    if (cityName.unit_type == 2) valueStr = valueStr.ToLower();
+
                     if (cityName.font != null && cityName.font.Length > 3 && FontsList.ContainsKey(cityName.font))
                     {
                         string font_fileName = FontsList[cityName.font];
@@ -11653,6 +11656,7 @@ namespace Watch_Face_Editor
             if (elementName == "ElementHumidity") value_lenght = 3;
             if (elementName == "ElementWind") value_lenght = 2;
             if (elementName == "ElementCompass") value_lenght = 5;
+            if (elementName == "ElementAQI") value_lenght = 3;
             if (elementName == "ElementBodyTemp") value_lenght = 6;
             int DateLenght = width * value_lenght;
             //int DateLenght = width * value_lenght + 1;
@@ -14137,7 +14141,14 @@ namespace Watch_Face_Editor
             }
 
             if (elementName == "ElementBodyTemp") DateLenght = 6 * width + 5 * spacing;
-            if (elementName == "ElementAlarmClock") DateLenght = 5 * width + widthDecPoint + 5 * spacing;
+            if (elementName == "ElementAlarmClock") { 
+                DateLenght = 5 * width + widthDecPoint + 5 * spacing;
+                if (separator_index >= 0 && separator_index < ListImagesFullName.Count)
+                {
+                    src = OpenFileStream(ListImagesFullName[separator_index]);
+                    DateLenght += src.Width + spacing;
+                }
+            }
 
             Logger.WriteLine("DateLenghtReal");
             if (errorData) DateLenghtReal = widthError;
@@ -15069,6 +15080,7 @@ namespace Watch_Face_Editor
             Logger.WriteLine("* FormColor");
             //int[] bgColors = { 203, 255, 240 };
             Color color = pictureBox_Preview.BackColor;
+            if (color.R == 0 && color.G == 0 && color.B == 0) color = Color.FromArgb(0, 0, 1);
             ImageMagick.MagickImage image = new ImageMagick.MagickImage(ImgConvert.CopyImageToByteArray(bitmap));
             // меняем прозрачный цвет на цвет фона
             image.Opaque(ImageMagick.MagickColor.FromRgba((byte)0, (byte)0, (byte)0, (byte)0),

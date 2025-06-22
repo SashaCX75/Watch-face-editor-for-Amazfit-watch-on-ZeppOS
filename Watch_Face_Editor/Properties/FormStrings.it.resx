@@ -214,6 +214,9 @@ L'immagine non deve essere monocromatica e deve essere in formato 32bit</value>
   <data name="Message_AnimationAOD_Text" xml:space="preserve">
     <value>Non è possibile aggiungere animazioni alla schermata AOD.</value>
   </data>
+  <data name="Message_AQI_Image_Count_Error" xml:space="preserve">
+    <value>Il numero di immagini del AQI dovrebbe essere 6</value>
+  </data>
   <data name="Message_ARGB_Line1" xml:space="preserve">
     <value>La conversione delle immagini nel formato ARGB richiede più tempo.</value>
   </data>
@@ -352,6 +355,12 @@ Il numero di immagini per la frequenza cardiaca dovrebbe essere 6.</value>
   </data>
   <data name="Message_ShortcutsAOD_Text" xml:space="preserve">
     <value>Non è possibile aggiungere shortcuts alla schermata AOD.</value>
+  </data>
+  <data name="Message_TrainingLoad_Image_Count_Error" xml:space="preserve">
+    <value>Il numero di immagini per il carico di allenamento dovrebbe essere 3.</value>
+  </data>
+  <data name="Message_VO2Max_Image_Count_Error" xml:space="preserve">
+    <value>Il numero di immagini per  il VO2Max dovrebbe essere 7</value>
   </data>
   <data name="Message_WarningConverting_Text1" xml:space="preserve">
     <value>Directory </value>

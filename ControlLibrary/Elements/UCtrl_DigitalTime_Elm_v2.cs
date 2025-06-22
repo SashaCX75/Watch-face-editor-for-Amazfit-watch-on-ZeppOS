@@ -91,6 +91,30 @@ namespace ControlLibrary
             pictureBox_Arrow_Right_Hours.BackColor = Color.Transparent;
             pictureBox_Arrow_Down_Hours.Location = new Point(1, 2);
             pictureBox_Arrow_Down_Hours.BackColor = Color.Transparent;
+
+            if (!AppUtils.IsLightTheme())
+            {
+                foreach (Control ctrl in this.Controls)
+                {
+                    if (ctrl is PictureBox pb)
+                    {
+                        if (pb.Image != null) pb.Image = AppUtils.InvertColors(pb.Image);
+                        if (pb.BackgroundImage != null) pb.BackgroundImage = AppUtils.InvertColors(pb.BackgroundImage);
+                    }
+                    if (ctrl is Button btn)
+                    {
+                        if (btn.Image != null) btn.Image = AppUtils.InvertColors(btn.Image);
+                        foreach (Control ctrl_btn in btn.Controls)
+                        {
+                            if (ctrl_btn is PictureBox pb_btn)
+                            {
+                                if (pb_btn.Image != null) pb_btn.Image = AppUtils.InvertColors(pb_btn.Image);
+                                if (pb_btn.BackgroundImage != null) pb_btn.BackgroundImage = AppUtils.InvertColors(pb_btn.BackgroundImage);
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         [Browsable(true)]

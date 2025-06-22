@@ -240,7 +240,7 @@ namespace ControlLibrary
             OpenFileDialog dialog = new OpenFileDialog();
 
             //dialog.FileName = "New_Project"; 
-            dialog.Title = Properties.Strings.Dialog_Title_JS_Open;
+            dialog.Title = Properties.Strings.UCtrl_Text_Opt_SityName_true;
             dialog.Filter = Properties.Strings.FilterJS;
             //openFileDialog.Filter = "Json files (*.json) | *.json";
             dialog.RestoreDirectory = true;
@@ -535,6 +535,22 @@ namespace ControlLibrary
         {
             ContextMenuStrip cms = sender as ContextMenuStrip;
             if (cms != null) cms.Close();
+        }
+
+        private void panel_Paint(object sender, PaintEventArgs e)
+        {
+            Color borderColor = Color.Black;
+            if (!AppUtils.IsLightTheme()) borderColor = SystemColors.ControlText;
+            int borderWidth = 1;
+            Panel panel = sender as Panel;
+
+            using (Pen pen = new Pen(borderColor, borderWidth))
+            {
+                Rectangle rect = panel.ClientRectangle;
+                rect.Width -= borderWidth;
+                rect.Height -= borderWidth;
+                e.Graphics.DrawRectangle(pen, rect);
+            }
         }
     }
 }

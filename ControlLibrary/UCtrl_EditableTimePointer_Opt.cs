@@ -619,8 +619,10 @@ namespace ControlLibrary
         private void groupBox_Paint(object sender, PaintEventArgs e)
         {
             GroupBox groupBox = sender as GroupBox;
-            if (groupBox.Enabled) DrawGroupBox(groupBox, e.Graphics, Color.Black, Color.DarkGray);
-            else DrawGroupBox(groupBox, e.Graphics, Color.DarkGray, Color.DarkGray);
+            //if (groupBox.Enabled) DrawGroupBox(groupBox, e.Graphics, Color.Black, Color.DarkGray);
+            //else DrawGroupBox(groupBox, e.Graphics, Color.DarkGray, Color.DarkGray);
+            if (groupBox.Enabled) DrawGroupBox(groupBox, e.Graphics, this.ForeColor, Color.DarkGray);
+            else DrawGroupBox(groupBox, e.Graphics, SystemColors.GrayText, Color.DarkGray);
         }
         private void DrawGroupBox(GroupBox groupBox, Graphics g, Color textColor, Color borderColor)
         {

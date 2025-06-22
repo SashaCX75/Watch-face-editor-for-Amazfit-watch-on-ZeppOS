@@ -40,12 +40,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
             this.numericUpDown_AirPressure_Set = new System.Windows.Forms.NumericUpDown();
             this.label22 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.checkBox_WeatherSet_Temp = new System.Windows.Forms.CheckBox();
-            this.label18 = new System.Windows.Forms.Label();
             this.numericUpDown_WeatherSet_MaxTemp = new System.Windows.Forms.NumericUpDown();
             this.comboBox_WindDirection = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -56,6 +54,8 @@
             this.numericUpDown_Altitude_Set = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown_Humidity_Set = new System.Windows.Forms.NumericUpDown();
             this.comboBox_WeatherSet_Icon = new System.Windows.Forms.ComboBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             this.groupBox_Activity = new System.Windows.Forms.GroupBox();
             this.button_Collaps_Activity = new System.Windows.Forms.Button();
             this.panel_Activity = new System.Windows.Forms.Panel();
@@ -180,7 +180,6 @@
             // 
             // panel_Air
             // 
-            resources.ApplyResources(this.panel_Air, "panel_Air");
             this.panel_Air.Controls.Add(this.label14);
             this.panel_Air.Controls.Add(this.label21);
             this.panel_Air.Controls.Add(this.numericUpDown_AirQuality_Set);
@@ -189,12 +188,10 @@
             this.panel_Air.Controls.Add(this.label1);
             this.panel_Air.Controls.Add(this.label17);
             this.panel_Air.Controls.Add(this.label2);
-            this.panel_Air.Controls.Add(this.label19);
             this.panel_Air.Controls.Add(this.numericUpDown_AirPressure_Set);
             this.panel_Air.Controls.Add(this.label22);
             this.panel_Air.Controls.Add(this.label20);
             this.panel_Air.Controls.Add(this.checkBox_WeatherSet_Temp);
-            this.panel_Air.Controls.Add(this.label18);
             this.panel_Air.Controls.Add(this.numericUpDown_WeatherSet_MaxTemp);
             this.panel_Air.Controls.Add(this.comboBox_WindDirection);
             this.panel_Air.Controls.Add(this.label15);
@@ -205,6 +202,9 @@
             this.panel_Air.Controls.Add(this.numericUpDown_Altitude_Set);
             this.panel_Air.Controls.Add(this.numericUpDown_Humidity_Set);
             this.panel_Air.Controls.Add(this.comboBox_WeatherSet_Icon);
+            this.panel_Air.Controls.Add(this.label19);
+            this.panel_Air.Controls.Add(this.label18);
+            resources.ApplyResources(this.panel_Air, "panel_Air");
             this.panel_Air.Name = "panel_Air";
             // 
             // label14
@@ -269,11 +269,6 @@
             resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
             // 
-            // label19
-            // 
-            resources.ApplyResources(this.label19, "label19");
-            this.label19.Name = "label19";
-            // 
             // numericUpDown_AirPressure_Set
             // 
             resources.ApplyResources(this.numericUpDown_AirPressure_Set, "numericUpDown_AirPressure_Set");
@@ -310,11 +305,6 @@
             this.checkBox_WeatherSet_Temp.CheckedChanged += new System.EventHandler(this.checkBox_WeatherSet_Temp_CheckedChanged);
             this.checkBox_WeatherSet_Temp.Click += new System.EventHandler(this.checkBox_Click);
             // 
-            // label18
-            // 
-            resources.ApplyResources(this.label18, "label18");
-            this.label18.Name = "label18";
-            // 
             // numericUpDown_WeatherSet_MaxTemp
             // 
             resources.ApplyResources(this.numericUpDown_WeatherSet_MaxTemp, "numericUpDown_WeatherSet_MaxTemp");
@@ -338,7 +328,6 @@
             // 
             // comboBox_WindDirection
             // 
-            resources.ApplyResources(this.comboBox_WindDirection, "comboBox_WindDirection");
             this.comboBox_WindDirection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_WindDirection.DropDownWidth = 135;
             this.comboBox_WindDirection.FormattingEnabled = true;
@@ -351,6 +340,7 @@
             resources.GetString("comboBox_WindDirection.Items5"),
             resources.GetString("comboBox_WindDirection.Items6"),
             resources.GetString("comboBox_WindDirection.Items7")});
+            resources.ApplyResources(this.comboBox_WindDirection, "comboBox_WindDirection");
             this.comboBox_WindDirection.Name = "comboBox_WindDirection";
             this.comboBox_WindDirection.SelectedIndexChanged += new System.EventHandler(this.comboBox_SelectedIndexChanged);
             // 
@@ -462,7 +452,6 @@
             // 
             // comboBox_WeatherSet_Icon
             // 
-            resources.ApplyResources(this.comboBox_WeatherSet_Icon, "comboBox_WeatherSet_Icon");
             this.comboBox_WeatherSet_Icon.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_WeatherSet_Icon.DropDownWidth = 135;
             this.comboBox_WeatherSet_Icon.FormattingEnabled = true;
@@ -496,8 +485,19 @@
             resources.GetString("comboBox_WeatherSet_Icon.Items26"),
             resources.GetString("comboBox_WeatherSet_Icon.Items27"),
             resources.GetString("comboBox_WeatherSet_Icon.Items28")});
+            resources.ApplyResources(this.comboBox_WeatherSet_Icon, "comboBox_WeatherSet_Icon");
             this.comboBox_WeatherSet_Icon.Name = "comboBox_WeatherSet_Icon";
             this.comboBox_WeatherSet_Icon.SelectedIndexChanged += new System.EventHandler(this.comboBox_SelectedIndexChanged);
+            // 
+            // label19
+            // 
+            resources.ApplyResources(this.label19, "label19");
+            this.label19.Name = "label19";
+            // 
+            // label18
+            // 
+            resources.ApplyResources(this.label18, "label18");
+            this.label18.Name = "label18";
             // 
             // groupBox_Activity
             // 
@@ -518,7 +518,6 @@
             // 
             // panel_Activity
             // 
-            resources.ApplyResources(this.panel_Activity, "panel_Activity");
             this.panel_Activity.Controls.Add(this.numericUpDown_SpO2_Set);
             this.panel_Activity.Controls.Add(this.label28);
             this.panel_Activity.Controls.Add(this.numericUpDown_HRV_Set);
@@ -549,6 +548,7 @@
             this.panel_Activity.Controls.Add(this.label07);
             this.panel_Activity.Controls.Add(this.label08);
             this.panel_Activity.Controls.Add(this.numericUpDown_Distance_Set);
+            resources.ApplyResources(this.panel_Activity, "panel_Activity");
             this.panel_Activity.Name = "panel_Activity";
             // 
             // numericUpDown_SpO2_Set
@@ -900,8 +900,8 @@
             // 
             // dateTimePicker_Time_Set
             // 
-            resources.ApplyResources(this.dateTimePicker_Time_Set, "dateTimePicker_Time_Set");
             this.dateTimePicker_Time_Set.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            resources.ApplyResources(this.dateTimePicker_Time_Set, "dateTimePicker_Time_Set");
             this.dateTimePicker_Time_Set.Name = "dateTimePicker_Time_Set";
             this.dateTimePicker_Time_Set.ShowUpDown = true;
             this.dateTimePicker_Time_Set.Value = new System.DateTime(2021, 3, 22, 21, 10, 35, 0);
@@ -909,8 +909,8 @@
             // 
             // dateTimePicker_Date_Set
             // 
-            resources.ApplyResources(this.dateTimePicker_Date_Set, "dateTimePicker_Date_Set");
             this.dateTimePicker_Date_Set.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            resources.ApplyResources(this.dateTimePicker_Date_Set, "dateTimePicker_Date_Set");
             this.dateTimePicker_Date_Set.Name = "dateTimePicker_Date_Set";
             this.dateTimePicker_Date_Set.ValueChanged += new System.EventHandler(this.dateTimePicker_ValueChanged);
             // 
@@ -950,7 +950,6 @@
             // 
             // panel_Time
             // 
-            resources.ApplyResources(this.panel_Time, "panel_Time");
             this.panel_Time.Controls.Add(this.label8);
             this.panel_Time.Controls.Add(this.dateTimePicker_SleepEnd_Set);
             this.panel_Time.Controls.Add(this.label9);
@@ -969,6 +968,7 @@
             this.panel_Time.Controls.Add(this.label02);
             this.panel_Time.Controls.Add(this.dateTimePicker_Date_Set);
             this.panel_Time.Controls.Add(this.dateTimePicker_Time_Set);
+            resources.ApplyResources(this.panel_Time, "panel_Time");
             this.panel_Time.Name = "panel_Time";
             // 
             // label8
@@ -1006,8 +1006,8 @@
             // 
             // dateTimePicker_AlarmClock_Set
             // 
-            resources.ApplyResources(this.dateTimePicker_AlarmClock_Set, "dateTimePicker_AlarmClock_Set");
             this.dateTimePicker_AlarmClock_Set.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            resources.ApplyResources(this.dateTimePicker_AlarmClock_Set, "dateTimePicker_AlarmClock_Set");
             this.dateTimePicker_AlarmClock_Set.Name = "dateTimePicker_AlarmClock_Set";
             this.dateTimePicker_AlarmClock_Set.ShowUpDown = true;
             this.dateTimePicker_AlarmClock_Set.Value = new System.DateTime(2021, 3, 22, 9, 43, 0, 0);
@@ -1020,8 +1020,8 @@
             // 
             // dateTimePicker_Moonset_Set
             // 
-            resources.ApplyResources(this.dateTimePicker_Moonset_Set, "dateTimePicker_Moonset_Set");
             this.dateTimePicker_Moonset_Set.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            resources.ApplyResources(this.dateTimePicker_Moonset_Set, "dateTimePicker_Moonset_Set");
             this.dateTimePicker_Moonset_Set.Name = "dateTimePicker_Moonset_Set";
             this.dateTimePicker_Moonset_Set.ShowUpDown = true;
             this.dateTimePicker_Moonset_Set.Value = new System.DateTime(2021, 3, 22, 5, 30, 0, 0);
@@ -1034,8 +1034,8 @@
             // 
             // dateTimePicker_Moonrise_Set
             // 
-            resources.ApplyResources(this.dateTimePicker_Moonrise_Set, "dateTimePicker_Moonrise_Set");
             this.dateTimePicker_Moonrise_Set.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            resources.ApplyResources(this.dateTimePicker_Moonrise_Set, "dateTimePicker_Moonrise_Set");
             this.dateTimePicker_Moonrise_Set.Name = "dateTimePicker_Moonrise_Set";
             this.dateTimePicker_Moonrise_Set.ShowUpDown = true;
             this.dateTimePicker_Moonrise_Set.Value = new System.DateTime(2021, 3, 22, 18, 30, 0, 0);
@@ -1048,8 +1048,8 @@
             // 
             // dateTimePicker_Sunset_Set
             // 
-            resources.ApplyResources(this.dateTimePicker_Sunset_Set, "dateTimePicker_Sunset_Set");
             this.dateTimePicker_Sunset_Set.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            resources.ApplyResources(this.dateTimePicker_Sunset_Set, "dateTimePicker_Sunset_Set");
             this.dateTimePicker_Sunset_Set.Name = "dateTimePicker_Sunset_Set";
             this.dateTimePicker_Sunset_Set.ShowUpDown = true;
             this.dateTimePicker_Sunset_Set.Value = new System.DateTime(2021, 3, 22, 20, 30, 0, 0);
@@ -1062,8 +1062,8 @@
             // 
             // dateTimePicker_Sunrise_Set
             // 
-            resources.ApplyResources(this.dateTimePicker_Sunrise_Set, "dateTimePicker_Sunrise_Set");
             this.dateTimePicker_Sunrise_Set.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            resources.ApplyResources(this.dateTimePicker_Sunrise_Set, "dateTimePicker_Sunrise_Set");
             this.dateTimePicker_Sunrise_Set.Name = "dateTimePicker_Sunrise_Set";
             this.dateTimePicker_Sunrise_Set.ShowUpDown = true;
             this.dateTimePicker_Sunrise_Set.Value = new System.DateTime(2021, 3, 22, 3, 30, 0, 0);
@@ -1098,7 +1098,6 @@
             // 
             // panel_System
             // 
-            resources.ApplyResources(this.panel_System, "panel_System");
             this.panel_System.Controls.Add(this.numericUpDown_Battery_Set);
             this.panel_System.Controls.Add(this.numericUpDown_BodyTemp_Set);
             this.panel_System.Controls.Add(this.checkBox_DND_Set);
@@ -1107,17 +1106,18 @@
             this.panel_System.Controls.Add(this.label12);
             this.panel_System.Controls.Add(this.checkBox_Bluetooth_Set);
             this.panel_System.Controls.Add(this.checkBox_Alarm_Set);
+            resources.ApplyResources(this.panel_System, "panel_System");
             this.panel_System.Name = "panel_System";
             // 
             // numericUpDown_BodyTemp_Set
             // 
-            resources.ApplyResources(this.numericUpDown_BodyTemp_Set, "numericUpDown_BodyTemp_Set");
             this.numericUpDown_BodyTemp_Set.DecimalPlaces = 1;
             this.numericUpDown_BodyTemp_Set.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
+            resources.ApplyResources(this.numericUpDown_BodyTemp_Set, "numericUpDown_BodyTemp_Set");
             this.numericUpDown_BodyTemp_Set.Name = "numericUpDown_BodyTemp_Set";
             this.numericUpDown_BodyTemp_Set.Value = new decimal(new int[] {
             327,

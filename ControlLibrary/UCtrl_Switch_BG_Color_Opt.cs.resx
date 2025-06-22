@@ -341,4 +341,7 @@
   <data name="contextMenuStrip_Y.Size" type="System.Drawing.Size, System.Drawing">
     <value>179, 82</value>
   </data>
+  <data name="Index.HeaderText" xml:space="preserve">
+    <value>#</value>
+  </data>
 </root>

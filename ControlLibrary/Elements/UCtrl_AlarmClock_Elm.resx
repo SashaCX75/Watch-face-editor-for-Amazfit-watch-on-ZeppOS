@@ -155,20 +155,27 @@
   <data name="panel_Icon.Size" type="System.Drawing.Size, System.Drawing">
     <value>218, 24</value>
   </data>
-  <data name="button_Number.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
   <data name="&gt;&gt;button_Number.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="button_ElementName.Size" type="System.Drawing.Size, System.Drawing">
     <value>220, 28</value>
   </data>
+  <data name="button_Number.Text" xml:space="preserve">
+    <value>Цифровые значения</value>
+  </data>
   <data name="pictureBox_Arrow_Right.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="tableLayoutPanel1.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="&gt;&gt;button_Icon.Name" xml:space="preserve">
     <value>button_Icon</value>
+  </data>
+  <data name="&gt;&gt;pictureBox_Arrow_Right.Name" xml:space="preserve">
+    <value>pictureBox_Arrow_Right</value>
   </data>
   <data name="button_ElementName.Text" xml:space="preserve">
     <value>Будильник</value>
@@ -179,12 +186,14 @@
   <data name="&gt;&gt;pictureBox_NotShow.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="checkBox_Number.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="button_Number.Size" type="System.Drawing.Size, System.Drawing">
     <value>145, 24</value>
+  </data>
+  <data name="tableLayoutPanel1.ColumnCount" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
   <data name="&gt;&gt;checkBox_Number_Font.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -195,14 +204,14 @@
   <data name="&gt;&gt;button_Icon.Parent" xml:space="preserve">
     <value>panel_Icon</value>
   </data>
-  <data name="pictureBox_Del.Size" type="System.Drawing.Size, System.Drawing">
-    <value>24, 24</value>
-  </data>
   <data name="&gt;&gt;button_Number.Parent" xml:space="preserve">
     <value>panel_Number</value>
   </data>
   <data name="checkBox_Icon.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel1.Name" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
   </data>
   <data name="panel_Number.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -219,14 +228,8 @@
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
     <value>220, 250</value>
   </data>
-  <data name="&gt;&gt;checkBox_Icon.Parent" xml:space="preserve">
-    <value>panel_Icon</value>
-  </data>
   <data name="pictureBox_Arrow_Right.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
-  </data>
-  <data name="&gt;&gt;panel_Icon.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;panel_Number_Font.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -248,9 +251,6 @@
   </data>
   <data name="pictureBox_Arrow_Down.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
-  </data>
-  <data name="pictureBox_NotShow.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
     <value>220, 76</value>
@@ -309,8 +309,8 @@
   <data name="&gt;&gt;pictureBox_Arrow_Down.Name" xml:space="preserve">
     <value>pictureBox_Arrow_Down</value>
   </data>
-  <data name="pictureBox_Show.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
+  <data name="panel_Number.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
   <data name="button_Icon.Size" type="System.Drawing.Size, System.Drawing">
     <value>160, 24</value>
@@ -329,9 +329,6 @@
   </data>
   <data name="&gt;&gt;checkBox_Number.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;button_Number_Font.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <data name="panel_Icon.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -402,14 +399,8 @@
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="checkBox_Number.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="&gt;&gt;pictureBox_Del.Parent" xml:space="preserve">
     <value>$this</value>
-  </data>
-  <data name="pictureBox_Del.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="panel_Number.Size" type="System.Drawing.Size, System.Drawing">
     <value>218, 24</value>
@@ -429,11 +420,17 @@
   <data name="pictureBox_NotShow.TabIndex" type="System.Int32, mscorlib">
     <value>49</value>
   </data>
+  <data name="pictureBox_Del.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
+  </data>
   <data name="button_Number.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="button_Icon.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
+  </data>
+  <data name="pictureBox_Show.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
   </data>
   <data name="&gt;&gt;button_ElementName.ZOrder" xml:space="preserve">
     <value>6</value>
@@ -446,6 +443,9 @@
   </data>
   <data name="button_Number_Font.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
+  </data>
+  <data name="tableLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
   </data>
   <data name="&gt;&gt;checkBox_Number.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -462,14 +462,14 @@
   <data name="checkBox_Number_Font.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="pictureBox_Arrow_Right.TabIndex" type="System.Int32, mscorlib">
-    <value>48</value>
+  <data name="&gt;&gt;pictureBox_Arrow_Down.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pictureBox_Arrow_Right.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="&gt;&gt;panel_Number_Font.Name" xml:space="preserve">
     <value>panel_Number_Font</value>
-  </data>
-  <data name="&gt;&gt;pictureBox_Arrow_Down.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="button_Icon.Text" xml:space="preserve">
     <value>Иконка</value>
@@ -483,8 +483,8 @@
   <data name="pictureBox_NotShow.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="pictureBox_Arrow_Down.Location" type="System.Drawing.Point, System.Drawing">
-    <value>131, 2</value>
+  <data name="pictureBox_Arrow_Right.TabIndex" type="System.Int32, mscorlib">
+    <value>48</value>
   </data>
   <data name="panel_Number_Font.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -513,9 +513,6 @@
   <data name="button_ElementName.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>20, 0, 0, 0</value>
   </data>
-  <data name="pictureBox_Show.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>Center</value>
-  </data>
   <data name="checkBox_Icon.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
@@ -527,6 +524,9 @@
   </data>
   <data name="button_Number_Font.Size" type="System.Drawing.Size, System.Drawing">
     <value>160, 24</value>
+  </data>
+  <data name="panel_Number_Font.Size" type="System.Drawing.Size, System.Drawing">
+    <value>218, 24</value>
   </data>
   <data name="&gt;&gt;pictureBox_Del.Type" xml:space="preserve">
     <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -543,8 +543,8 @@
   <data name="pictureBox_Arrow_Down.TabIndex" type="System.Int32, mscorlib">
     <value>44</value>
   </data>
-  <data name="tableLayoutPanel1.ColumnCount" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="pictureBox_NotShow.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="tableLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 28</value>
@@ -552,8 +552,8 @@
   <data name="button_ElementName.TabIndex" type="System.Int32, mscorlib">
     <value>43</value>
   </data>
-  <data name="panel_Number_Font.Size" type="System.Drawing.Size, System.Drawing">
-    <value>218, 24</value>
+  <data name="tableLayoutPanel1.RowCount" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
   <data name="panel_Icon.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -564,8 +564,8 @@
   <data name="&gt;&gt;checkBox_Number_Font.Name" xml:space="preserve">
     <value>checkBox_Number_Font</value>
   </data>
-  <data name="button_Number.Text" xml:space="preserve">
-    <value>Цифровые значения</value>
+  <data name="pictureBox_Del.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="checkBox_Icon.Size" type="System.Drawing.Size, System.Drawing">
     <value>15, 14</value>
@@ -573,11 +573,14 @@
   <data name="pictureBox_NotShow.Location" type="System.Drawing.Point, System.Drawing">
     <value>101, 2</value>
   </data>
-  <data name="tableLayoutPanel1.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="button_Number.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
   </data>
-  <data name="tableLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
+  <data name="pictureBox_Show.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="pictureBox_Arrow_Down.Location" type="System.Drawing.Point, System.Drawing">
+    <value>131, 2</value>
   </data>
   <data name="&gt;&gt;panel_Icon.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -591,14 +594,14 @@
   <data name="tableLayoutPanel1.CellBorderStyle" type="System.Windows.Forms.TableLayoutPanelCellBorderStyle, System.Windows.Forms">
     <value>Single</value>
   </data>
-  <data name="&gt;&gt;pictureBox_Arrow_Right.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="&gt;&gt;button_Number_Font.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="checkBox_Icon.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;pictureBox_Arrow_Right.Name" xml:space="preserve">
-    <value>pictureBox_Arrow_Right</value>
+  <data name="pictureBox_Del.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
   </data>
   <data name="pictureBox_Show.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -615,20 +618,17 @@
   <data name="pictureBox_Arrow_Down.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="panel_Number.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="&gt;&gt;checkBox_Icon.Parent" xml:space="preserve">
+    <value>panel_Icon</value>
   </data>
   <data name="panel_Icon.Location" type="System.Drawing.Point, System.Drawing">
     <value>1, 51</value>
   </data>
-  <data name="&gt;&gt;tableLayoutPanel1.Name" xml:space="preserve">
+  <data name="&gt;&gt;panel_Icon.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
   </data>
-  <data name="pictureBox_Del.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>Center</value>
-  </data>
-  <data name="tableLayoutPanel1.RowCount" type="System.Int32, mscorlib">
-    <value>3</value>
+  <data name="checkBox_Number.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="&gt;&gt;panel_Number.Name" xml:space="preserve">
     <value>panel_Number</value>

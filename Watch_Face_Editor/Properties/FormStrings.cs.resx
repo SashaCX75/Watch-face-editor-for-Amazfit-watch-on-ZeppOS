@@ -213,6 +213,9 @@
   <data name="Message_AnimationAOD_Text" xml:space="preserve">
     <value>Na obrazovku AOD nelze přidat animaci.</value>
   </data>
+  <data name="Message_AQI_Image_Count_Error" xml:space="preserve">
+    <value>Počet obrázků pro zobrazení AQI musí být 6.</value>
+  </data>
   <data name="Message_ARGB_Line1" xml:space="preserve">
     <value>Převod obrázků do formátu ARGB trvá déle.</value>
   </data>
@@ -350,6 +353,12 @@
   </data>
   <data name="Message_ShortcutsAOD_Text" xml:space="preserve">
     <value>Na obrazovku AOD nelze přidávat zástupce.</value>
+  </data>
+  <data name="Message_TrainingLoad_Image_Count_Error" xml:space="preserve">
+    <value>Počet obrázků pro zobrazení tréninkové zátěže musí být 3.</value>
+  </data>
+  <data name="Message_VO2Max_Image_Count_Error" xml:space="preserve">
+    <value>Počet snímků pro zobrazení VO2Max musí být 7.</value>
   </data>
   <data name="Message_WarningConverting_Text1" xml:space="preserve">
     <value>Adresář</value>

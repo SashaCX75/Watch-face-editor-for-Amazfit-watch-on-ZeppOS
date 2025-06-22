@@ -226,6 +226,12 @@
   <data name="comboBox_AddSystem.Items12" xml:space="preserve">
     <value>Brújula</value>
   </data>
+  <data name="comboBox_AddSystem.Items13" xml:space="preserve">
+    <value>Despertador</value>
+  </data>
+  <data name="comboBox_AddSystem.Items14" xml:space="preserve">
+    <value>Temperatura corporal</value>
+  </data>
   <data name="comboBox_AddAir.Items" xml:space="preserve">
     <value>Tiempo</value>
   </data>
@@ -279,6 +285,15 @@
   </data>
   <data name="comboBox_AddActivity.Items9" xml:space="preserve">
     <value>Estrés</value>
+  </data>
+  <data name="comboBox_AddActivity.Items10" xml:space="preserve">
+    <value>Preparación</value>
+  </data>
+  <data name="comboBox_AddActivity.Items11" xml:space="preserve">
+    <value>Carga de entrenamiento</value>
+  </data>
+  <data name="comboBox_AddActivity.Items13" xml:space="preserve">
+    <value>Pisos</value>
   </data>
   <data name="comboBox_AddDate.Items" xml:space="preserve">
     <value>Fecha</value>
@@ -687,6 +702,30 @@ más carga del sistema)</value>
   <data name="tabPage_Tips.Text" xml:space="preserve">
     <value>Consejos de uso</value>
   </data>
+  <data name="linkLabel_ES_site.Size" type="System.Drawing.Size, System.Drawing">
+    <value>170, 13</value>
+  </data>
+  <data name="linkLabel_ES_site.Text" xml:space="preserve">
+    <value>- Autor: @Mr_Pacojones (es)</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>348, 39</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>* No soy el autor de estas guías y no me responsabilizo de la exactitud de la información contenida en ellas. La información de las guías puede estar desactualizada o ser inexacta.</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>97, 13</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Lecciones y guías:</value>
+  </data>
+  <data name="linkLabel_YouTube_Avoska88.Size" type="System.Drawing.Size, System.Drawing">
+    <value>132, 13</value>
+  </data>
+  <data name="linkLabel_YouTube_Avoska88.Text" xml:space="preserve">
+    <value>- Autor: Avoska88 (ru)</value>
+  </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>308, 13</value>
   </data>
@@ -779,8 +818,8 @@ Paypal: sashacx75@gmail.com</value>
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
-        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACm
-        DQAAAk1TRnQBSQFMAgEBBgEAARQBLgEYAS4BEAEAARABAAT/AQkBEAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACk
+        DQAAAk1TRnQBSQFMAgEBBgEAASwBLgEsAS4BEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAASADAAEBAQABCAYAAQgYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -838,7 +877,7 @@ Paypal: sashacx75@gmail.com</value>
         AX4B4QEPAQ0BhgGAAQEBPgF+AfABDwEGAcICAAI+AfgBHwFDAWABAAEgAT8BPgH4AT8BYQGwAQABQAE/
         AR4B4AEnATAB2AEAAYABPAEeAeEBAwFYAWwBAQEAATwBHgHhAQcBbAE2AQEBAAE/Af4B4QEfATYBGgEB
         AwAB8AEfAQsBDAQAAfgBPwFNAYYBgAEBAgAB/AE/AQIBwgGAAQEBBAEAAf4BHwFDAWABwAEDAYQBAAH+
-        AZ8CAAHwAQ8B9wHnAf4BHxYACw==
+        AZ8CAAHwAQ8B9wHnAf4BHws=
 </value>
   </data>
   <data name="label_watch_model.Size" type="System.Drawing.Size, System.Drawing">

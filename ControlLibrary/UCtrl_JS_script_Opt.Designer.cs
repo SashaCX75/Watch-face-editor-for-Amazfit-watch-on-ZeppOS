@@ -185,11 +185,11 @@
             // 
             // panel_user_functions_draw
             // 
-            this.panel_user_functions_draw.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel_user_functions_draw.Controls.Add(this.panel_user_functions_buttons);
             this.panel_user_functions_draw.Controls.Add(this.checkBox_user_functions);
             resources.ApplyResources(this.panel_user_functions_draw, "panel_user_functions_draw");
             this.panel_user_functions_draw.Name = "panel_user_functions_draw";
+            this.panel_user_functions_draw.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Paint);
             // 
             // panel_user_functions_buttons
             // 
@@ -240,11 +240,11 @@
             // 
             // panel_user_script_start_draw
             // 
-            this.panel_user_script_start_draw.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel_user_script_start_draw.Controls.Add(this.panel_user_script_start_buttons);
             this.panel_user_script_start_draw.Controls.Add(this.checkBox_user_script_start);
             resources.ApplyResources(this.panel_user_script_start_draw, "panel_user_script_start_draw");
             this.panel_user_script_start_draw.Name = "panel_user_script_start_draw";
+            this.panel_user_script_start_draw.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Paint);
             // 
             // panel_user_script_start_buttons
             // 
@@ -289,11 +289,11 @@
             // 
             // panel_user_script_draw
             // 
-            this.panel_user_script_draw.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel_user_script_draw.Controls.Add(this.panel_user_script_buttons);
             this.panel_user_script_draw.Controls.Add(this.checkBox_user_script);
             resources.ApplyResources(this.panel_user_script_draw, "panel_user_script_draw");
             this.panel_user_script_draw.Name = "panel_user_script_draw";
+            this.panel_user_script_draw.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Paint);
             // 
             // panel_user_script_buttons
             // 
@@ -338,11 +338,11 @@
             // 
             // panel_user_script_beforeShortcuts_draw
             // 
-            this.panel_user_script_beforeShortcuts_draw.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel_user_script_beforeShortcuts_draw.Controls.Add(this.panel_user_script_beforeShortcuts_buttons);
             this.panel_user_script_beforeShortcuts_draw.Controls.Add(this.checkBox_user_script_beforeShortcuts);
             resources.ApplyResources(this.panel_user_script_beforeShortcuts_draw, "panel_user_script_beforeShortcuts_draw");
             this.panel_user_script_beforeShortcuts_draw.Name = "panel_user_script_beforeShortcuts_draw";
+            this.panel_user_script_beforeShortcuts_draw.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Paint);
             // 
             // panel_user_script_beforeShortcuts_buttons
             // 
@@ -387,11 +387,11 @@
             // 
             // panel_user_script_end_draw
             // 
-            this.panel_user_script_end_draw.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel_user_script_end_draw.Controls.Add(this.panel_user_script_end_buttons);
             this.panel_user_script_end_draw.Controls.Add(this.checkBox_user_script_end);
             resources.ApplyResources(this.panel_user_script_end_draw, "panel_user_script_end_draw");
             this.panel_user_script_end_draw.Name = "panel_user_script_end_draw";
+            this.panel_user_script_end_draw.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Paint);
             // 
             // panel_user_script_end_buttons
             // 
@@ -436,11 +436,11 @@
             // 
             // panel_resume_call_draw
             // 
-            this.panel_resume_call_draw.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel_resume_call_draw.Controls.Add(this.panel_resume_call_buttons);
             this.panel_resume_call_draw.Controls.Add(this.checkBox_resume_call);
             resources.ApplyResources(this.panel_resume_call_draw, "panel_resume_call_draw");
             this.panel_resume_call_draw.Name = "panel_resume_call_draw";
+            this.panel_resume_call_draw.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Paint);
             // 
             // panel_resume_call_buttons
             // 
@@ -485,11 +485,11 @@
             // 
             // panel_pause_call_draw
             // 
-            this.panel_pause_call_draw.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel_pause_call_draw.Controls.Add(this.panel_pause_call_buttons);
             this.panel_pause_call_draw.Controls.Add(this.checkBox_pause_call);
             resources.ApplyResources(this.panel_pause_call_draw, "panel_pause_call_draw");
             this.panel_pause_call_draw.Name = "panel_pause_call_draw";
+            this.panel_pause_call_draw.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Paint);
             // 
             // panel_pause_call_buttons
             // 

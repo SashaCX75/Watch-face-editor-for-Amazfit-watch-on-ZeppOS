@@ -10732,13 +10732,25 @@ namespace Watch_Face_Editor
                                 scale_update_function += TabInString(7) +
                                     "let weatherData = weatherSensor.getForecastWeather();" + Environment.NewLine;
                             }
+                            scale_update_function += TabInString(7) +
+                                "let " + optionNameStart + "cityNameStr = weatherData.cityName;" + Environment.NewLine;
+                            if (Weather.City_Name.unit_type == 1)
+                            {
+                                scale_update_function += TabInString(7) + optionNameStart + "cityNameStr = " + 
+                                    optionNameStart + "cityNameStr.toUpperCase();" + Environment.NewLine;
+                            }
+                            if (Weather.City_Name.unit_type == 2)
+                            {
+                                scale_update_function += TabInString(7) + optionNameStart + "cityNameStr = " +
+                                    optionNameStart + "cityNameStr.toLowerCase();" + Environment.NewLine;
+                            }
 #if DEBUG
                             scale_update_function += TabInString(7) + "// " + optionNameStart +
-                                "city_name_text.setProperty(hmUI.prop.TEXT, weatherData.cityName);" + Environment.NewLine;
+                                "city_name_text.setProperty(hmUI.prop.TEXT, " + optionNameStart + "cityNameStr);" + Environment.NewLine;
 #endif
 #if !DEBUG
                             scale_update_function += TabInString(7) + optionNameStart +
-                                "city_name_text.setProperty(hmUI.prop.TEXT, weatherData.cityName);" + Environment.NewLine;
+                                "city_name_text.setProperty(hmUI.prop.TEXT, " + optionNameStart + "cityNameStr);" + Environment.NewLine;
 #endif
 
 
@@ -35936,6 +35948,10 @@ namespace Watch_Face_Editor
                                 weather.City_Name.align_h = text.align_h;
                                 weather.City_Name.align_v = text.align_v;
                                 weather.City_Name.text_style = text.text_style;
+
+                                weather.City_Name.padding = text.padding;
+                                weather.City_Name.unit_type = text.unit_type;
+                                weather.City_Name.unit_string = text.unit_string;
 
                                 weather.City_Name.visible = true;
                                 weather.City_Name.position = offset;

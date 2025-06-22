@@ -341,4 +341,7 @@
   <data name="checkBox_vibro.Text" xml:space="preserve">
     <value>Vibrace</value>
   </data>
+  <data name="Index.HeaderText" xml:space="preserve">
+    <value>#</value>
+  </data>
 </root>

@@ -279,6 +279,7 @@ namespace ControlLibrary
             resources.ApplyResources(this.groupBox_Orientation, "groupBox_Orientation");
             this.groupBox_Orientation.Name = "groupBox_Orientation";
             this.groupBox_Orientation.TabStop = false;
+            this.groupBox_Orientation.Paint += new System.Windows.Forms.PaintEventHandler(this.groupBox_Paint);
             // 
             // radioButton_vertical
             // 

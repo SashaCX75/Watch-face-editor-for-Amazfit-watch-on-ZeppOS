@@ -159,6 +159,9 @@
   <data name="UCtrl_Text_Opt_AmPm_true" xml:space="preserve">
     <value>Style Am/Pm</value>
   </data>
+  <data name="UCtrl_Text_Opt_SityName_true" xml:space="preserve">
+    <value>Lettres majuscules</value>
+  </data>
   <data name="UCtrl_Text_Opt_Sunrise_false" xml:space="preserve">
     <value>Séparateur décimal</value>
   </data>

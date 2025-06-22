@@ -34,6 +34,7 @@ namespace ControlLibrary
         private bool Alignments_enabled = true;
         private bool Use_2_color = false;
         private bool Alpha_mode = false;
+        private bool SityName_mode = false;
 
         public UCtrl_Text_SystemFont_Opt()
         {
@@ -411,7 +412,8 @@ namespace ControlLibrary
                 }
                 else
                 {
-                    if (DayMonthYear_mode) checkBox_unit.Text = Properties.Strings.UCtrl_Text_Opt_Year_true;
+                    if (SityName_mode) checkBox_unit.Text = Properties.Strings.UCtrl_Text_Opt_SityName_true;
+                    else if (DayMonthYear_mode) checkBox_unit.Text = Properties.Strings.UCtrl_Text_Opt_Year_true;
                     else checkBox_unit.Text = Properties.Strings.UCtrl_Text_Opt_AmPm_false;
                     checkBox_inEnd.Visible = false;
                 }
@@ -445,23 +447,43 @@ namespace ControlLibrary
             set
             {
                 DayMonthYear_mode = value;
-                if (DayMonthYear_mode)
+                if (AmPm_mode)
                 {
-                    checkBox_unit.Text = Properties.Strings.UCtrl_Text_Opt_Year_true;
-                    checkBox_inEnd.Visible = false;
+                    checkBox_unit.Text = Properties.Strings.UCtrl_Text_Opt_AmPm_true;
+                    checkBox_inEnd.Visible = true;
                 }
                 else
                 {
-                    if (AmPm_mode)
-                    {
-                        checkBox_unit.Text = Properties.Strings.UCtrl_Text_Opt_AmPm_true;
-                        checkBox_inEnd.Visible = true;
-                    }
-                    else
-                    {
-                        checkBox_unit.Text = Properties.Strings.UCtrl_Text_Opt_AmPm_false;
-                        checkBox_inEnd.Visible = false;
-                    }
+                    if (SityName_mode) checkBox_unit.Text = Properties.Strings.UCtrl_Text_Opt_SityName_true;
+                    else if (DayMonthYear_mode) checkBox_unit.Text = Properties.Strings.UCtrl_Text_Opt_Year_true;
+                    else checkBox_unit.Text = Properties.Strings.UCtrl_Text_Opt_AmPm_false;
+                    checkBox_inEnd.Visible = false;
+                }
+            }
+        }
+
+        /// <summary>Режим отображения названия города</summary>
+        [Description("Режим отображения названия города")]
+        public virtual bool SityName
+        {
+            get
+            {
+                return SityName_mode;
+            }
+            set
+            {
+                SityName_mode = value;
+                if (AmPm_mode)
+                {
+                    checkBox_unit.Text = Properties.Strings.UCtrl_Text_Opt_AmPm_true;
+                    checkBox_inEnd.Visible = true;
+                }
+                else
+                {
+                    if (SityName_mode) checkBox_unit.Text = Properties.Strings.UCtrl_Text_Opt_SityName_true;
+                    else if(DayMonthYear_mode) checkBox_unit.Text = Properties.Strings.UCtrl_Text_Opt_Year_true;
+                    else checkBox_unit.Text = Properties.Strings.UCtrl_Text_Opt_AmPm_false;
+                    checkBox_inEnd.Visible = false;
                 }
             }
         }
@@ -917,6 +939,7 @@ namespace ControlLibrary
             AlignmentsEnabled = true;
             Use2color = false;
             Alpha = false;
+            SityName = false;
 
             setValue = false;
         }

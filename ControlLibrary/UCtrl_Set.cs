@@ -41,7 +41,8 @@ namespace ControlLibrary
         private void groupBox_Paint(object sender, PaintEventArgs e)
         {
             GroupBox box = sender as GroupBox;
-            DrawGroupBox(box, e.Graphics, Color.Black, Color.DarkGray);
+            //DrawGroupBox(box, e.Graphics, Color.Black, Color.DarkGray);
+            DrawGroupBox(box, e.Graphics, this.ForeColor, SystemColors.GrayText);
         }
         private void DrawGroupBox(GroupBox box, Graphics g, Color textColor, Color borderColor)
         {
@@ -73,7 +74,8 @@ namespace ControlLibrary
                 //Top1
                 g.DrawLine(borderPen, new Point(rect.X, rect.Y), new Point(rect.X + box.Padding.Left, rect.Y));
                 //Top2
-                g.DrawLine(borderPen, new Point(rect.X + box.Padding.Left + (int)(strSize.Width), rect.Y), new Point(rect.X + rect.Width, rect.Y));
+                //g.DrawLine(borderPen, new Point(rect.X + box.Padding.Left + (int)(strSize.Width), rect.Y), new Point(rect.X + rect.Width, rect.Y));
+                g.DrawLine(borderPen, new Point(rect.X + box.Padding.Left + (int)(strSize.Width + button_Collaps_Time.Width), rect.Y), new Point(rect.X + rect.Width, rect.Y));
             }
         }
 
@@ -851,7 +853,7 @@ namespace ControlLibrary
 
 
             numericUp_UVindex_Set.Value = rnd.Next(0, 13);
-            numericUpDown_AirQuality_Set.Value = rnd.Next(0, 350);
+            numericUpDown_AirQuality_Set.Value = rnd.Next(0, 150);
             numericUpDown_Humidity_Set.Value = rnd.Next(30, 100);
             numericUpDown_WindForce.Value = rnd.Next(0, 13);
             comboBox_WindDirection.SelectedIndex = rnd.Next(0, 8);

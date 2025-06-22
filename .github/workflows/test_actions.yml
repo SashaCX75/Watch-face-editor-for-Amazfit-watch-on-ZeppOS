@@ -38,6 +38,7 @@ jobs:
           if exist Watch_Face_Editor_Readme.txt copy Watch_Face_Editor_Readme.txt output\Watch_Face_Editor_(ZeppOS)\
 
       - name: Create ZIP archive
+        shell: pwsh
         run: |
           $msg = git log -1 --pretty=format:%s
           $safeName = "WatchFaceEditor_" + ($msg -replace '[\\/:*?"<>|]', '_') + ".zip"  # убрать недопустимые символы для имени файла

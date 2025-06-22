@@ -39,7 +39,7 @@ jobs:
       - name: Create ZIP archive
         run: |
           $msg = git log -1 --pretty=format:%s
-          $safeName = $safeName = "WatchFaceEditor_" + ($msg -replace '[\\/:*?"<>|]', '_')  # убрать недопустимые символы для имени файла
+          $safeName = "WatchFaceEditor_" + ($msg -replace '[\\/:*?"<>|]', '_')  # убрать недопустимые символы для имени файла
           Compress-Archive -Path output\* -DestinationPath "$safeName.zip"
 
       - name: Create GitHub Release and upload ZIP

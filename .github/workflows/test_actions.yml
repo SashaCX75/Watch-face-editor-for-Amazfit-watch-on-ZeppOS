@@ -45,7 +45,8 @@ jobs:
           $safeName = "WatchFaceEditor_" + ($msg -replace '[\\/:*?"<>|]', '_') + ".zip"  # убрать недопустимые символы для имени файла
           Compress-Archive -Path output\* -DestinationPath $safeName
           # Compress-Archive -Path output\* -DestinationPath WatchFaceEditor_Portable.zip
-          echo "::set-output name=zip_name::$safeName"
+          # echo "::set-output name=zip_name::$safeName"
+          "zip_name=$safeName" >> $env:GITHUB_OUTPUT
 
       - name: Create GitHub Release and upload ZIP
         uses: softprops/action-gh-release@v1

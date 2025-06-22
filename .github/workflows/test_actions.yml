@@ -42,17 +42,21 @@ jobs:
         shell: pwsh
         run: |
           $msg = git log -1 --pretty=format:%s
-          $safeName = "WatchFaceEditor_" + ($msg -replace '[\\/:*?"<>|]', '_') + ".zip"  # убрать недопустимые символы для имени файла
-          Compress-Archive -Path output\* -DestinationPath $safeName
+          $safeName = ($msg -replace '[\\/:*?"<>|]', '_')  # убрать недопустимые символы для имени файла
+          $fullSafeName = "WatchFaceEditor_" + ($msg -replace '[\\/:*?"<>|]', '_') + ".zip"  # убрать недопустимые символы для имени файла
+          Compress-Archive -Path output\* -DestinationPath $fullSafeName
           # Compress-Archive -Path output\* -DestinationPath WatchFaceEditor_Portable.zip
           # echo "::set-output name=zip_name::$safeName"
-          "zip_name=$safeName" >> $env:GITHUB_OUTPUT
+          "zip_name=$fullSafeName" >> $env:GITHUB_OUTPUT
+          "zip_tag=$safeName" >> $env:GITHUB_OUTPUT
 
       - name: Create GitHub Release and upload ZIP
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ github.ref_name }}
-          name: Release ${{ github.ref_name }}
+          # tag_name: ${{ github.ref_name }}
+          # name: Release ${{ github.ref_name }}
+          tag_name: ${{ steps.zip.outputs.zip_tag }}
+          name: Release ${{ steps.zip.outputs.zip_tag }}
           # files: WatchFaceEditor_Portable.zip
           files: ${{ steps.zip.outputs.zip_name }}
         env:

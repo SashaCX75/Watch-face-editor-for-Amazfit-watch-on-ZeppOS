@@ -1,0 +1,67 @@
+name: Build and Release Watch Face Editor
+
+on:
+  workflow_dispatch:        # Ручной запуск
+  push:
+    branches: [ master ]    # При пуше в master
+    tags:
+      - 'v*.*'              # При пуше тега вида v10.4
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Download NuGet CLI
+        run: |
+          Invoke-WebRequest https://dist.nuget.org/win-x86-commandline/latest/nuget.exe -OutFile nuget.exe
+
+      - name: Restore packages
+        run: nuget.exe restore "AmazFit_Editor_(Watch_Face_Type_GT3).sln"
+
+      - name: Build the solution
+        run: msbuild "AmazFit_Editor_(Watch_Face_Type_GT3).sln" /p:Configuration=Release
+
+      - name: Prepare portable output
+        shell: cmd
+        run: |
+          mkdir output
+          mkdir output\Watch_Face_Editor_(ZeppOS)
+          xcopy /s /i /y Watch_Face_Editor\bin\Release\* output\Watch_Face_Editor_(ZeppOS)\
+          if exist lib xcopy /s /i /y lib\* output\Watch_Face_Editor_(ZeppOS)\
+          if exist images xcopy /s /i /y images\* output\Watch_Face_Editor_(ZeppOS)\
+          if exist Watch_Face_Editor.exe.config copy Watch_Face_Editor.exe.config output\Watch_Face_Editor_(ZeppOS)\
+          if exist icon.ico copy icon.ico output\Watch_Face_Editor_(ZeppOS)\
+          if exist Watch_Face_Editor_Readme.txt copy Watch_Face_Editor_Readme.txt output\Watch_Face_Editor_(ZeppOS)\
+
+      - name: Create ZIP archive
+        id: zip
+        shell: pwsh
+        run: |
+          # Получаем commit message
+          $msg = git log -1 --pretty=format:%s
+          $safeName = ($msg -replace '[\\/:*?"<>|]', '_')
+          $tagName = ($safeName -replace '\s', '_')
+          
+          # Сборка архива
+          $zipName = "WatchFaceEditor_" + $safeName + ".zip"
+          Compress-Archive -Path "output\Watch_Face_Editor_(ZeppOS)" -DestinationPath $zipName
+          
+          # Возвращаем данные как output
+          "zip_name=$zipName" >> $env:GITHUB_OUTPUT
+          "zip_tag=$tagName" >> $env:GITHUB_OUTPUT
+
+      - name: Create GitHub Release and upload ZIP
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.ref_type == 'tag' && github.ref_name || steps.zip.outputs.zip_tag }}
+          name: Release ${{ github.ref_type == 'tag' && github.ref_name || steps.zip.outputs.zip_tag }}
+          files: ${{ steps.zip.outputs.zip_name }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

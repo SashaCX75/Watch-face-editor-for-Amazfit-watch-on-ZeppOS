@@ -20,7 +20,7 @@ jobs:
       - name: Restore packages with nuget
         run: |
           choco install nuget.commandline --no-progress
-          nuget restore Watch_Face_Editor.sln
+          nuget restore AmazFit_Editor_(Watch_Face_Type_GT3).sln
 
       - name: Build the solution
         run: msbuild AmazFit_Editor_(Watch_Face_Type_GT3).sln /p:Configuration=Release

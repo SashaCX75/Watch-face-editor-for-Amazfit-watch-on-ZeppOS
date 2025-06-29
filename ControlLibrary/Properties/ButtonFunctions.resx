@@ -300,7 +300,7 @@
     <comment>Do not translate</comment>
   </data>
   <data name="MorningNews" xml:space="preserve">
-    <value>Утренее приветствие *</value>
+    <value>Утреннее приветствие *</value>
   </data>
   <data name="MorningNews_function" xml:space="preserve">
     <value>hmApp.startApp({url: 'MorningGreetingCoverScreen', native: true });</value>
@@ -443,7 +443,7 @@
     <comment>Do not translate</comment>
   </data>
   <data name="SportRecord" xml:space="preserve">
-    <value>Записи треноровок</value>
+    <value>Записи тренировок</value>
   </data>
   <data name="SportRecord_function" xml:space="preserve">
     <value>hmApp.startApp({url: 'SportRecordListScreen', native: true });</value>

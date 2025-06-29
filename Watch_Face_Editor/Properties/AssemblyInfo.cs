@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Watch_Face_Editor_(ZeppOS)")]
-[assembly: AssemblyCopyright("SashaCX75 © 2024")]
+[assembly: AssemblyCopyright("SashaCX75 © 2025")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // Можно задать все значения или принять номера сборки и редакции по умолчанию 
 // используя "*", как показано ниже:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("13.3.0.0")]
-[assembly: AssemblyFileVersion("13.3.0.0")]
+[assembly: AssemblyVersion("14.0.0.0")]
+[assembly: AssemblyFileVersion("14.0.0.0")]

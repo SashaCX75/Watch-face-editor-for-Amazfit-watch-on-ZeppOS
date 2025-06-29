@@ -17150,6 +17150,7 @@ namespace Watch_Face_Editor
                     case "Number_Font":
                         if (uCtrl_AlarmClock_Elm.checkBox_Number_Font.Checked)
                         {
+                            alarmClock.Number_Font.padding = true;
                             text = alarmClock.Number_Font;
                             Read_Text_Options(text, false, false);
                             ShowElemenrOptions("SystemFont");
@@ -26382,6 +26383,8 @@ namespace Watch_Face_Editor
             {
             }
         }
+
+        
     }
 }
 

@@ -3749,6 +3749,7 @@ namespace Watch_Face_Editor
                     value_lenght = 5;
                     goal = WatchFacePreviewSet.Activity.StepsGoal;
                     progress = (float)WatchFacePreviewSet.Activity.Steps / WatchFacePreviewSet.Activity.StepsGoal;
+                    if (WatchFacePreviewSet.Activity.Steps == 0 && WatchFacePreviewSet.Activity.StepsGoal == 0) progress = 0;
 
                     //if (img_level != null && img_level.image_length > 0)
                     //{

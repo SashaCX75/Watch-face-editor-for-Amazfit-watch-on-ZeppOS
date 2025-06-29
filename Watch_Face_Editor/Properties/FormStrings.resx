@@ -235,7 +235,7 @@
     <value>Новый циферблат создан.</value>
   </data>
   <data name="Message_CopyCoord" xml:space="preserve">
-    <value>Координаты скопированны</value>
+    <value>Координаты скопированы</value>
   </data>
   <data name="Message_Delet_Caption" xml:space="preserve">
     <value>Удаление</value>
@@ -308,7 +308,7 @@
     <value>Ошибка конвертации изображения</value>
   </data>
   <data name="Message_JsonError_Text" xml:space="preserve">
-    <value>Неправильный JSON file.</value>
+    <value>Неправильный JSON файл.</value>
   </data>
   <data name="Message_JsonReadError_Text" xml:space="preserve">
     <value>Ошибка чтения JSON файла.</value>
@@ -341,7 +341,7 @@
     <value>Перезапустить программу?</value>
   </data>
   <data name="Message_SaveOnly1234_Text" xml:space="preserve">
-    <value>Для сохранения предустановленных параметром установите хотябы в одном поле "Калории" значение отличное от "1234".</value>
+    <value>Для сохранения предустановленных параметром установите хотя бы в одном поле "Калории" значение отличное от "1234".</value>
   </data>
   <data name="Message_Save_JSON_Modified_Caption" xml:space="preserve">
     <value>Сохранение проекта</value>
@@ -383,7 +383,7 @@
     <value>Рекомендуется создавать проект в отдельной папке.</value>
   </data>
   <data name="Message_Warning_Assets_Exist3" xml:space="preserve">
-    <value>Создать проект в выбраной папке?</value>
+    <value>Создать проект в выбранной папке?</value>
   </data>
   <data name="Message_Warning_Caption" xml:space="preserve">
     <value>Предупреждение</value>

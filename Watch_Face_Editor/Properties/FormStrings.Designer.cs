@@ -412,7 +412,7 @@ namespace Watch_Face_Editor.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Координаты скопированны.
+        ///   Ищет локализованную строку, похожую на Координаты скопированы.
         /// </summary>
         internal static string Message_CopyCoord {
             get {
@@ -628,7 +628,7 @@ namespace Watch_Face_Editor.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Неправильный JSON file..
+        ///   Ищет локализованную строку, похожую на Неправильный JSON файл..
         /// </summary>
         internal static string Message_JsonError_Text {
             get {
@@ -763,7 +763,7 @@ namespace Watch_Face_Editor.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Для сохранения предустановленных параметром установите хотябы в одном поле &quot;Калории&quot; значение отличное от &quot;1234&quot;..
+        ///   Ищет локализованную строку, похожую на Для сохранения предустановленных параметром установите хотя бы в одном поле &quot;Калории&quot; значение отличное от &quot;1234&quot;..
         /// </summary>
         internal static string Message_SaveOnly1234_Text {
             get {
@@ -817,7 +817,7 @@ namespace Watch_Face_Editor.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Создать проект в выбраной папке?.
+        ///   Ищет локализованную строку, похожую на Создать проект в выбранной папке?.
         /// </summary>
         internal static string Message_Warning_Assets_Exist3 {
             get {

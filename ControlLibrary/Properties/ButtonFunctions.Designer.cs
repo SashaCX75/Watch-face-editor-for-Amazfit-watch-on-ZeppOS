@@ -529,7 +529,7 @@ namespace ControlLibrary.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Утренее приветствие *.
+        ///   Ищет локализованную строку, похожую на Утреннее приветствие *.
         /// </summary>
         internal static string MorningNews {
             get {
@@ -907,7 +907,7 @@ namespace ControlLibrary.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Записи треноровок.
+        ///   Ищет локализованную строку, похожую на Записи тренировок.
         /// </summary>
         internal static string SportRecord {
             get {

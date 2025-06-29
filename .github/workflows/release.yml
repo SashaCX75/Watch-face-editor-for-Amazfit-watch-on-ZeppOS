@@ -1,9 +1,9 @@
-name: Build and Release Watch Face Editor from "Test" branch
+name: Build and Release Watch Face Editor
 
 on:
   workflow_dispatch:        # Ручной запуск
   push:
-    # branches: [ test ]    # При пуше в test
+    branches: [ master ]    # При пуше в master
     tags:
       - 'v*.*'              # При пуше тега вида v10.4
 

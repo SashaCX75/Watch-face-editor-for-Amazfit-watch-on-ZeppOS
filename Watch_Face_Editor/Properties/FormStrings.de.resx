@@ -169,13 +169,13 @@
     <value>GIF Dateien (*.gif)|*.gif</value>
   </data>
   <data name="FilterJson" xml:space="preserve">
-    <value>Json-Dateien (*.json) | *.json</value>
+    <value>Json-Dateien (*.json)|*.json</value>
   </data>
   <data name="FilterPng" xml:space="preserve">
     <value>PNG Dateien (*.png)|*.png</value>
   </data>
   <data name="FilterZip" xml:space="preserve">
-    <value>Zip-Datei vom Zifferblatt (* .zip) | * .zip</value>
+    <value>Zip-Datei vom Zifferblatt (*.zip)|*.zip</value>
   </data>
   <data name="FollowMinute" xml:space="preserve">
     <value>Folge den Stunden</value>
@@ -213,11 +213,23 @@
   <data name="Message_AnimationAOD_Text" xml:space="preserve">
     <value>Sie können dem AOD-Bildschirm keine Animation hinzufügen.</value>
   </data>
+  <data name="Message_AQI_Image_Count_Error" xml:space="preserve">
+    <value>Die Anzahl der Bilder für AQI sollte 6 betragen.</value>
+  </data>
   <data name="Message_ARGB_Line1" xml:space="preserve">
     <value>Die Konvertierung von Bildern in das ARGB-Format dauert länger.</value>
   </data>
   <data name="Message_ARGB_Line2" xml:space="preserve">
     <value>Bist du sicher, dass du deine Bilder in das ARGB-Format konvertieren willst?</value>
+  </data>
+  <data name="Message_AutoSave_Caption" xml:space="preserve">
+    <value>Wiederherstellung</value>
+  </data>
+  <data name="Message_BG_Not_Color" xml:space="preserve">
+    <value>Du musst eine Farbe als Haupthintergrund festlegen.</value>
+  </data>
+  <data name="Message_BG_Not_Image" xml:space="preserve">
+    <value>Du musst ein Bild als Haupthintergrund festlegen.</value>
   </data>
   <data name="Message_ConvertingCompleted_Text" xml:space="preserve">
     <value>Es wurde ein neues Zifferblatt erstellt.</value>
@@ -240,6 +252,9 @@
   <data name="Message_Delet_Text21" xml:space="preserve">
     <value>?</value>
   </data>
+  <data name="Message_Delet_Widget" xml:space="preserve">
+    <value>Willst du das Widget wirklich löschen?</value>
+  </data>
   <data name="Message_DontDelZip" xml:space="preserve">
     <value>Es ist nicht möglich, eine bestehende Zifferblattdatei zu löschen.</value>
   </data>
@@ -252,17 +267,26 @@
   <data name="Message_ElementAOD_Text" xml:space="preserve">
     <value>Sie können dieses Element nicht zum AOD hinzufügen.</value>
   </data>
+  <data name="Message_ErrorReadBin" xml:space="preserve">
+    <value>Der Code ist verschlüsselt und kann nicht erkannt werden.</value>
+  </data>
   <data name="Message_ErrorReadJS" xml:space="preserve">
     <value>Struktur des Ziffernblatts kann nicht erkannt werden</value>
   </data>
   <data name="Message_Error_Caption" xml:space="preserve">
     <value>Fehler</value>
   </data>
+  <data name="Message_Error_Font" xml:space="preserve">
+    <value>Fehler beim Hinzufügen einer Schriftart </value>
+  </data>
   <data name="Message_Error_Image_Text1" xml:space="preserve">
     <value>Das Bild kann nicht geöffnet werden:</value>
   </data>
   <data name="Message_Error_Image_Text2" xml:space="preserve">
     <value>. Sie haben keine Berechtigung, die Datei zu lesen, oder das Bild ist beschädigt.</value>
+  </data>
+  <data name="Message_Error_InWidget" xml:space="preserve">
+    <value>Fehler in dem Widget:</value>
   </data>
   <data name="Message_GoToFile_Caption" xml:space="preserve">
     <value>Zur Datei gehen</value>
@@ -294,11 +318,17 @@
   <data name="Message_LoadPreviewStates_Text" xml:space="preserve">
     <value>Eine vorhandene Datei mit einer Reihe von Vorschaueinstellungen herunterladen?</value>
   </data>
+  <data name="Message_Load_AutoSave" xml:space="preserve">
+    <value>Ich habe eine Datei mit automatischer Speicherung gefunden. Möchtest du sie herunterladen?</value>
+  </data>
   <data name="Message_ModelConfig_Error" xml:space="preserve">
     <value>Modellkonfiguration nicht gefunden: </value>
   </data>
   <data name="Message_ModelConfig_ReadError" xml:space="preserve">
     <value>Fehler beim Lesen der Modellkonfiguration</value>
+  </data>
+  <data name="Message_Old_OS" xml:space="preserve">
+    <value>Dieses Element wird von dem ausgewählten Uhrenmodell nicht unterstützt.</value>
   </data>
   <data name="Message_Restart_Caption" xml:space="preserve">
     <value>Neustart</value>
@@ -323,6 +353,12 @@
   </data>
   <data name="Message_ShortcutsAOD_Text" xml:space="preserve">
     <value>Sie können dem AOD-Bildschirm keine Verknüpfungen hinzufügen.</value>
+  </data>
+  <data name="Message_TrainingLoad_Image_Count_Error" xml:space="preserve">
+    <value>Die Anzahl der Bilder für die Trainingsbelastung sollte 3 betragen.</value>
+  </data>
+  <data name="Message_VO2Max_Image_Count_Error" xml:space="preserve">
+    <value>Die Anzahl der Bilder für VO2Max sollte 7 betragen.</value>
   </data>
   <data name="Message_WarningConverting_Text1" xml:space="preserve">
     <value>Ordner</value>
@@ -363,6 +399,12 @@
   <data name="Message_Warning_Information" xml:space="preserve">
     <value>Information</value>
   </data>
+  <data name="Message_Warning_JS_Exist1" xml:space="preserve">
+    <value>Ein Ordner mit JS-Dateien ist bereits in diesem Ordner vorhanden.</value>
+  </data>
+  <data name="Message_Widget_Exists" xml:space="preserve">
+    <value>Ein solches Element gibt es bereits auf dem Zifferblatt der Uhr.</value>
+  </data>
   <data name="Message_Wrong_ColorScheme" xml:space="preserve">
     <value>Es wurde ein unbekanntes Farbschema für das Modell festgelegt:</value>
   </data>
@@ -380,5 +422,8 @@
   </data>
   <data name="Tip_Pointer" xml:space="preserve">
     <value>Zeiger</value>
+  </data>
+  <data name="ToastBG" xml:space="preserve">
+    <value>Hintergrund %s</value>
   </data>
 </root>

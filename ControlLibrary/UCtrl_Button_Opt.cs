@@ -35,8 +35,10 @@ namespace ControlLibrary
         private void groupBox_Paint(object sender, PaintEventArgs e)
         {
             GroupBox groupBox = sender as GroupBox;
-            if (groupBox.Enabled) DrawGroupBox(groupBox, e.Graphics, Color.Black, Color.DarkGray);
-            else DrawGroupBox(groupBox, e.Graphics, Color.DarkGray, Color.DarkGray);
+            //if (groupBox.Enabled) DrawGroupBox(groupBox, e.Graphics, Color.Black, Color.DarkGray);
+            //else DrawGroupBox(groupBox, e.Graphics, Color.DarkGray, Color.DarkGray);
+            if (groupBox.Enabled) DrawGroupBox(groupBox, e.Graphics, this.ForeColor, Color.DarkGray);
+            else DrawGroupBox(groupBox, e.Graphics, SystemColors.GrayText, Color.DarkGray);
         }
         private void DrawGroupBox(GroupBox groupBox, Graphics g, Color textColor, Color borderColor)
         {
@@ -171,16 +173,16 @@ namespace ControlLibrary
 
         public void SetText(string text)
         {
-            textBox_script.Text = text;
+            textBox_text.Text = text;
         }
 
         public string GetText()
         {
-            return textBox_script.Text;
+            return textBox_text.Text;
         }
 
         public void UpdateButtonsList (List<String> buttonsClickFuncList, List<String> buttonsLongPressFuncList, 
-            List<bool> buttonsVisibleList, int rowIndex = -1)
+            List<bool> buttonsVisibleList, int rowIndex = 0)
         {
             setValue = true;
 
@@ -215,13 +217,14 @@ namespace ControlLibrary
             
             if (buttonsClickFuncList.Count > 0) button_del.Enabled = true; 
             else button_del.Enabled = false;
-            if (buttonsClickFuncList.Count >= 25) button_add.Enabled = false;
+            if (buttonsClickFuncList.Count >= 30) button_add.Enabled = false;
             else button_add.Enabled = true;
 
             if (rowIndex >= 0 && rowIndex < dataGridView_buttons.Rows.Count)
             {
                 dataGridView_buttons.Rows[rowIndex].Selected = true;
                 dataGridView_buttons.CurrentCell = dataGridView_buttons.Rows[rowIndex].Cells[0];
+                SelectButton(rowIndex);
             }
             setValue = false;
         }
@@ -302,6 +305,12 @@ namespace ControlLibrary
                 case "hmApp.startApp({url: 'PhoneMusicCtrlScreen', native: true });":
                     functinName = Properties.ButtonFunctions.PhoneMusic;
                     break;
+                case "hmApp.startApp({url: 'MusicCommonScreen', native: true });":
+                    functinName = Properties.ButtonFunctions.PhoneMusic_2;
+                    break;
+                case "hmApp.startApp({url: 'FlashLightScreen', native: true });":
+                    functinName = Properties.ButtonFunctions.FlashLight;
+                    break;
                 case "hmApp.startApp({url: 'WeatherScreen', native: true });":
                     functinName = Properties.ButtonFunctions.Weather;
                     break;
@@ -364,6 +373,9 @@ namespace ControlLibrary
                     break;
                 case "hmApp.startApp({url: 'readinessAppScreen', native: true });":
                     functinName = Properties.ButtonFunctions.Readiness;
+                    break;
+                case "hmApp.startApp({ appid: 1051195, url: 'page/index', params: { from_wf: true} });":
+                    functinName = Properties.ButtonFunctions.WeatherInformer;
                     break;
 
                 #endregion
@@ -433,7 +445,7 @@ namespace ControlLibrary
 
         #region Standard events
 
-        private void textBox_script_TextChanged(object sender, EventArgs e)
+        private void textBox_text_TextChanged(object sender, EventArgs e)
         {
             int rowIndex = -1;
             try
@@ -850,7 +862,7 @@ namespace ControlLibrary
             }
         }
 
-        private void numericUpDown_length_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void numericUpDown_width_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (MouseСoordinates.X < 0) return;
             NumericUpDown numericUpDown = sender as NumericUpDown;
@@ -865,7 +877,7 @@ namespace ControlLibrary
             }
         }
 
-        private void numericUpDown_width_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void numericUpDown_height_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (MouseСoordinates.Y < 0) return;
             NumericUpDown numericUpDown = sender as NumericUpDown;
@@ -1095,14 +1107,6 @@ namespace ControlLibrary
                 DataGridViewCheckBoxCell cbxCell = (DataGridViewCheckBoxCell)senderGrid.Rows[e.RowIndex].Cells[e.ColumnIndex];
                 bool value = !(bool)cbxCell.Value;
                 cbxCell.Value = value;
-                //if (value)
-                //{
-                //    // Criar registo na base de dados
-                //}
-                //else
-                //{
-                //    // Remover registo da base de dados
-                //}
 
                 if (VisibleButtonChanged != null && !setValue && rowIndex >= 0) VisibleButtonChanged(rowIndex, value);
             }

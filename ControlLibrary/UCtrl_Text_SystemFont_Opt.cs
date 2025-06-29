@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace ControlLibrary
 {
@@ -30,6 +31,10 @@ namespace ControlLibrary
         private bool UnitStr_mode = false;
         private bool DOW_mode = false;
         private bool Month_mode = false;
+        private bool Alignments_enabled = true;
+        private bool Use_2_color = false;
+        private bool Alpha_mode = false;
+        private bool SityName_mode = false;
 
         public UCtrl_Text_SystemFont_Opt()
         {
@@ -294,15 +299,6 @@ namespace ControlLibrary
         public string GetFont()
         {
             string font = "";
-            //if (fonts_path != null && fonts_path.Length > 5)
-            //{
-            //    if (comboBox_fonts.SelectedIndex > 0)
-            //    {
-            //        string font_fileName = comboBox_fonts.Text;
-            //        if (font_fileName.IndexOf(".ttf") > 0) font_fileName = font_fileName.Substring(0, font_fileName.IndexOf(".ttf") + ".ttf".Length);
-            //        if (File.Exists(Path.Combine(fonts_path, font_fileName))) font = font_fileName;
-            //    } 
-            //}
             if (comboBox_fonts.SelectedIndex > 0)
             {
                 string font_fileName = comboBox_fonts.Text;
@@ -416,10 +412,27 @@ namespace ControlLibrary
                 }
                 else
                 {
-                    if (DayMonthYear_mode) checkBox_unit.Text = Properties.Strings.UCtrl_Text_Opt_Year_true;
+                    if (SityName_mode) checkBox_unit.Text = Properties.Strings.UCtrl_Text_Opt_SityName_true;
+                    else if (DayMonthYear_mode) checkBox_unit.Text = Properties.Strings.UCtrl_Text_Opt_Year_true;
                     else checkBox_unit.Text = Properties.Strings.UCtrl_Text_Opt_AmPm_false;
                     checkBox_inEnd.Visible = false;
                 }
+            }
+        }
+
+        /// <summary>Режим доступности прозрачности</summary>
+        [Description("Режим доступности прозрачности")]
+        public virtual bool Alpha
+        {
+            get
+            {
+                return Alpha_mode;
+            }
+            set
+            {
+                Alpha_mode = value;
+                label_alpha.Enabled = Alpha_mode;
+                numericUpDown_Alpha.Enabled = Alpha_mode;
             }
         }
 
@@ -434,23 +447,43 @@ namespace ControlLibrary
             set
             {
                 DayMonthYear_mode = value;
-                if (DayMonthYear_mode)
+                if (AmPm_mode)
                 {
-                    checkBox_unit.Text = Properties.Strings.UCtrl_Text_Opt_Year_true;
-                    checkBox_inEnd.Visible = false;
+                    checkBox_unit.Text = Properties.Strings.UCtrl_Text_Opt_AmPm_true;
+                    checkBox_inEnd.Visible = true;
                 }
                 else
                 {
-                    if (AmPm_mode)
-                    {
-                        checkBox_unit.Text = Properties.Strings.UCtrl_Text_Opt_AmPm_true;
-                        checkBox_inEnd.Visible = true;
-                    }
-                    else
-                    {
-                        checkBox_unit.Text = Properties.Strings.UCtrl_Text_Opt_AmPm_false;
-                        checkBox_inEnd.Visible = false;
-                    }
+                    if (SityName_mode) checkBox_unit.Text = Properties.Strings.UCtrl_Text_Opt_SityName_true;
+                    else if (DayMonthYear_mode) checkBox_unit.Text = Properties.Strings.UCtrl_Text_Opt_Year_true;
+                    else checkBox_unit.Text = Properties.Strings.UCtrl_Text_Opt_AmPm_false;
+                    checkBox_inEnd.Visible = false;
+                }
+            }
+        }
+
+        /// <summary>Режим отображения названия города</summary>
+        [Description("Режим отображения названия города")]
+        public virtual bool SityName
+        {
+            get
+            {
+                return SityName_mode;
+            }
+            set
+            {
+                SityName_mode = value;
+                if (AmPm_mode)
+                {
+                    checkBox_unit.Text = Properties.Strings.UCtrl_Text_Opt_AmPm_true;
+                    checkBox_inEnd.Visible = true;
+                }
+                else
+                {
+                    if (SityName_mode) checkBox_unit.Text = Properties.Strings.UCtrl_Text_Opt_SityName_true;
+                    else if(DayMonthYear_mode) checkBox_unit.Text = Properties.Strings.UCtrl_Text_Opt_Year_true;
+                    else checkBox_unit.Text = Properties.Strings.UCtrl_Text_Opt_AmPm_false;
+                    checkBox_inEnd.Visible = false;
                 }
             }
         }
@@ -504,6 +537,41 @@ namespace ControlLibrary
                 bool unitVisible = DOW_mode || Month_mode;
                 textBox_DOW.Visible = unitVisible;
                 if (Month_mode) toolTip1.SetToolTip(textBox_DOW, Properties.Strings.Hint_Month);
+            }
+        }
+
+        /// <summary>Отображение параметров выравнивания</summary>
+        [Description("Отображение параметров выравнивания")]
+        public virtual bool AlignmentsEnabled
+        {
+            get
+            {
+                return Alignments_enabled;
+            }
+            set
+            {
+                Alignments_enabled = value;
+
+                checkBox_CentreHorizontally.Enabled = Alignments_enabled;
+                checkBox_CentreVertically.Enabled = Alignments_enabled;
+            }
+        }
+
+        /// <summary>Отображение второго цвета</summary>
+        [Description("Отображение второго цвета")]
+        public virtual bool Use2color
+        {
+            get
+            {
+                return Use_2_color;
+            }
+            set
+            {
+                Use_2_color = value;
+
+                label_Color2.Visible = Use_2_color;
+                checkBox_Color2.Visible = Use_2_color;
+                comboBox_Color2.Visible = Use_2_color;
             }
         }
 
@@ -808,6 +876,16 @@ namespace ControlLibrary
             return comboBox_Color.BackColor;
         }
 
+        public void SetColor2Text(Color color)
+        {
+            comboBox_Color2.BackColor = color;
+        }
+
+        public Color GetColor2Text()
+        {
+            return comboBox_Color2.BackColor;
+        }
+
         public void SetUnitText(string text)
         {
             if (!DOWMode && !MonthMode) textBox_unit_string.Text = text; 
@@ -847,6 +925,7 @@ namespace ControlLibrary
             checkBox_unit.CheckState = CheckState.Unchecked;
             checkBox_addZero.Checked = false;
             checkBox_inEnd.Checked = false;
+            checkBox_Color2.Checked = false;
 
             UserFont = false;
             UnitMode = true;
@@ -857,6 +936,10 @@ namespace ControlLibrary
             UnitStrMode = false;
             DOWMode = false;
             MonthMode = false;
+            AlignmentsEnabled = true;
+            Use2color = false;
+            Alpha = false;
+            SityName = false;
 
             setValue = false;
         }
@@ -1045,6 +1128,20 @@ namespace ControlLibrary
             }
         }
 
+        private void checkBox_Color2_CheckedChanged(object sender, EventArgs e)
+        {
+            System.Windows.Forms.CheckBox checkBox = (System.Windows.Forms.CheckBox)sender;
+            bool use = checkBox.Checked;
+
+            label_Color2.Enabled = use;
+            comboBox_Color2.Enabled = use;
+
+            if (ValueChanged != null && !setValue)
+            {
+                EventArgs eventArgs = new EventArgs();
+                ValueChanged(this, eventArgs);
+            }
+        }
     }
 }
 

@@ -174,6 +174,9 @@
   <data name="FindPhone" xml:space="preserve">
     <value>Ricerca Telefono</value>
   </data>
+  <data name="FlashLight" xml:space="preserve">
+    <value>Torcia*</value>
+  </data>
   <data name="HeartRete" xml:space="preserve">
     <value>Frequenza cardiaca</value>
   </data>
@@ -209,6 +212,9 @@
   </data>
   <data name="PhoneMusic" xml:space="preserve">
     <value>Musica(sul telefono)</value>
+  </data>
+  <data name="PhoneMusic_2" xml:space="preserve">
+    <value>Musica(sul telefono) *</value>
   </data>
   <data name="PowerHint" xml:space="preserve">
     <value>Consumeo di Energia</value>
@@ -293,6 +299,9 @@
   </data>
   <data name="Weather" xml:space="preserve">
     <value>tempo Atmosferico</value>
+  </data>
+  <data name="WeatherInformer" xml:space="preserve">
+    <value>Informatore Meteo *</value>
   </data>
   <data name="WeekActivity" xml:space="preserve">
     <value>Attività della settimana *</value>

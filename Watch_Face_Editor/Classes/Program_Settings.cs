@@ -26,9 +26,6 @@ namespace Watch_Face_Editor
         public bool Settings_Open_Download_Your_File = false;
         public string PreviewStates_Path = "";
 
-        //public bool Model_GTR3 = true;
-        //public bool Model_GTR3_Pro = false;
-        //public bool Model_GTS3 = false;
         public string Watch_Model = "GTR 3";
 
         public bool ShowBorder = false;
@@ -63,6 +60,9 @@ namespace Watch_Face_Editor
 
         public bool ShowIn12hourFormat = true;
         public bool CreateZPK = false;
+        public bool DelConfirm = false;
+        public bool AutoSave = false;
+        public int AutoSaveTime = 0;
 
         public int[] CustomColors = { };
 
@@ -70,16 +70,6 @@ namespace Watch_Face_Editor
 
         public int Splitter_Pos = 0;
 
-        //public string WatchSkin_GTR_3 = @"\Skin\WatchSkin_GTR_3.json";
-        //public string WatchSkin_GTR_3_Pro = @"\Skin\WatchSkin_GTR_3_Pro.json";
-        //public string WatchSkin_GTS_3 = @"\Skin\WatchSkin_GTS_3.json";
-        //public string WatchSkin_GTR_mini = "";
-        //public string WatchSkin_T_Rex_2 = @"\Skin\WatchSkin_T_Rex_2.json";
-        //public string WatchSkin_T_Rex_Ultra = @"\Skin\WatchSkin_T_Rex_2.json";
-        //public string WatchSkin_GTR_4 = @"\Skin\WatchSkin_GTR_4.json";
-        //public string WatchSkin_GTS_4_mini = @"\Skin\WatchSkin_GTS_4_mini.json";
-        //public string WatchSkin_Falcon = @"\Skin\WatchSkin_Falcon.json";
-        //public string WatchSkin_Amazfit_Band_7 = @"\Skin\WatchSkin_Amazfit_Band_7.json";
         public bool WatchSkin_Use = false;
 
         public string model_config = @"\model_config\configurations.json";

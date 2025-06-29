@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -448,3 +449,4 @@ public static class MouseСoordinates
     public static int X = -1;
     public static int Y = -1;
 }
+

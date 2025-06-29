@@ -172,6 +172,12 @@
   <data name="button_SaveJson.Text" xml:space="preserve">
     <value>Зберегти файл JSON</value>
   </data>
+  <data name="comboBox_AddBackground.Items2" xml:space="preserve">
+    <value>Перемикаємий фон</value>
+  </data>
+  <data name="comboBox_AddBackground.Items3" xml:space="preserve">
+    <value>Перемикаємий колір</value>
+  </data>
   <data name="comboBox_AddSystem.Items2" xml:space="preserve">
     <value>Статуси</value>
   </data>
@@ -195,6 +201,9 @@
   </data>
   <data name="comboBox_AddSystem.Items9" xml:space="preserve">
     <value>Верхнє зображення</value>
+  </data>
+  <data name="comboBox_AddSystem.Items14" xml:space="preserve">
+    <value>Температура тіла</value>
   </data>
   <data name="comboBox_AddAir.Items2" xml:space="preserve">
     <value>УФ індекс</value>
@@ -234,6 +243,15 @@
   </data>
   <data name="comboBox_AddActivity.Items9" xml:space="preserve">
     <value>Стрес</value>
+  </data>
+  <data name="comboBox_AddActivity.Items10" xml:space="preserve">
+    <value>Готовність</value>
+  </data>
+  <data name="comboBox_AddActivity.Items11" xml:space="preserve">
+    <value>Тренувальне навантаження</value>
+  </data>
+  <data name="comboBox_AddActivity.Items13" xml:space="preserve">
+    <value>Поверхи</value>
   </data>
   <data name="comboBox_AddDate.Items2" xml:space="preserve">
     <value>Місяць</value>
@@ -373,6 +391,30 @@
   <data name="tabPageConverting.Text" xml:space="preserve">
     <value>Конвертування</value>
   </data>
+  <data name="label_AutoSave.Location" type="System.Drawing.Point, System.Drawing">
+    <value>205, 628</value>
+  </data>
+  <data name="label_AutoSave.Size" type="System.Drawing.Size, System.Drawing">
+    <value>42, 13</value>
+  </data>
+  <data name="label_AutoSave.Text" xml:space="preserve">
+    <value>хвилин</value>
+  </data>
+  <data name="numericUpDown_AutoSave_Time.Location" type="System.Drawing.Point, System.Drawing">
+    <value>152, 624</value>
+  </data>
+  <data name="checkBox_AutoSave.Size" type="System.Drawing.Size, System.Drawing">
+    <value>143, 17</value>
+  </data>
+  <data name="checkBox_AutoSave.Text" xml:space="preserve">
+    <value>Автозбереження кожні</value>
+  </data>
+  <data name="checkBox_Del_Confirm.Size" type="System.Drawing.Size, System.Drawing">
+    <value>295, 17</value>
+  </data>
+  <data name="checkBox_Del_Confirm.Text" xml:space="preserve">
+    <value>Запитувати підтвердження під при видаленні віджета</value>
+  </data>
   <data name="checkBox_CreateZPK.Size" type="System.Drawing.Size, System.Drawing">
     <value>143, 17</value>
   </data>
@@ -428,7 +470,7 @@
     <value>Тип виділення кнопок</value>
   </data>
   <data name="comboBox_Animation_Preview_Speed.Location" type="System.Drawing.Point, System.Drawing">
-    <value>665, 318</value>
+    <value>674, 426</value>
   </data>
   <data name="button_Reset.Text" xml:space="preserve">
     <value>Скинути налаштування</value>
@@ -502,11 +544,14 @@
   <data name="checkBox_JsonWarnings.Text" xml:space="preserve">
     <value>Показувати попередження, при зберіганні файла JSON</value>
   </data>
+  <data name="comboBox_Language.Location" type="System.Drawing.Point, System.Drawing">
+    <value>460, 509</value>
+  </data>
   <data name="label356.Size" type="System.Drawing.Size, System.Drawing">
-    <value>34, 13</value>
+    <value>37, 13</value>
   </data>
   <data name="label356.Text" xml:space="preserve">
-    <value>Мова</value>
+    <value>Мова:</value>
   </data>
   <data name="radioButton_Settings_Pack_DoNotning.Size" type="System.Drawing.Size, System.Drawing">
     <value>110, 17</value>
@@ -615,6 +660,18 @@
   <data name="tabPage_Tips.Text" xml:space="preserve">
     <value>Поради щодо використання</value>
   </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>328, 39</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>* Я не є автором цих уроків і не несу відповідальності за достовірність інформації в них. Інформація в уроках може бути застарілою або неточною.</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>106, 13</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Уроки та інструкції:</value>
+  </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>371, 13</value>
   </data>
@@ -705,7 +762,7 @@ PayPal: sashacx75@gmail.com</value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACk
-        DQAAAk1TRnQBSQFMAgEBBgEAATwBMgE8ATIBEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        DQAAAk1TRnQBSQFMAgEBBgEAAZwBMgGcATIBEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAASADAAEBAQABCAYAAQgYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -766,12 +823,6 @@ PayPal: sashacx75@gmail.com</value>
         AZ8CAAHwAQ8B9wHnAf4BHws=
 </value>
   </data>
-  <data name="button_pack_zip.Text" xml:space="preserve">
-    <value>Запакувати циферблат</value>
-  </data>
-  <data name="button_unpack_zip.Text" xml:space="preserve">
-    <value>Розпакувати циферблат</value>
-  </data>
   <data name="label_watch_model.Size" type="System.Drawing.Size, System.Drawing">
     <value>102, 13</value>
   </data>
@@ -780,6 +831,12 @@ PayPal: sashacx75@gmail.com</value>
   </data>
   <data name="checkBox_Show_Buttons.Text" xml:space="preserve">
     <value>Виділяти області з кнопками</value>
+  </data>
+  <data name="button_pack_zip.Text" xml:space="preserve">
+    <value>Запакувати циферблат</value>
+  </data>
+  <data name="button_unpack_zip.Text" xml:space="preserve">
+    <value>Розпакувати циферблат</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

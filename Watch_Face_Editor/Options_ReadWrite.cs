@@ -51,7 +51,7 @@ namespace Watch_Face_Editor
 
                     ElementShortcuts shortcuts = (ElementShortcuts)NewElements.Find(e1 => e1.GetType().Name == "ElementShortcuts");
                     if (shortcuts != null) 
-                    { 
+                    {
                         Watch_Face_return.Shortcuts = (ElementShortcuts)shortcuts.Clone();
                         int index = NewElements.FindIndex(e => e.GetType().Name == "ElementShortcuts");
                         NewElements.RemoveAt(index);
@@ -82,7 +82,7 @@ namespace Watch_Face_Editor
             {
                 for (int i = 0; i < Watch_Face_temp.Editable_Elements.Watchface_edit_group.Count; i++)
                 {
-                    List<object> NewElements = ObjectsToElements(Watch_Face_temp.Editable_Elements.Watchface_edit_group[i].Elements);
+                    List<object> NewElements = ObjectsToElements(Watch_Face_temp.Editable_Elements.Watchface_edit_group[i].Elements, true);
                     Watch_Face_return.Editable_Elements.Watchface_edit_group[i].Elements = NewElements;
                 }
             }
@@ -102,11 +102,17 @@ namespace Watch_Face_Editor
             if (Watch_Face_temp.Buttons != null)
                 Watch_Face_return.Buttons = Watch_Face_temp.Buttons;
 
+            if (Watch_Face_temp.SwitchBackground != null)
+                Watch_Face_return.SwitchBackground = Watch_Face_temp.SwitchBackground;
+
+            if (Watch_Face_temp.SwitchBG_Color != null)
+                Watch_Face_return.SwitchBG_Color = Watch_Face_temp.SwitchBG_Color;
+
             return Watch_Face_return;
         }
 
         /// <summary>Распознаем конкретный тип объекта</summary>
-        private List<object> ObjectsToElements(List<object> elements)
+        private List<object> ObjectsToElements(List<object> elements, bool editableElement = false)
         {
             List<object> NewElements = new List<object>();
             if(elements == null || elements.Count == 0) return NewElements;
@@ -116,7 +122,7 @@ namespace Watch_Face_Editor
                 string type = GetTypeFromSring(elementStr);
                 switch (type)
                 {
-                    #region DigitalTime
+                    /*#region DigitalTime
                     case "DigitalTime":
                         ElementDigitalTime DigitalTime = null;
                         try
@@ -133,6 +139,146 @@ namespace Watch_Face_Editor
                                 Properties.FormStrings.Message_Error_Caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                         if (DigitalTime != null) NewElements.Add(DigitalTime);
+                        break;
+                    #endregion*/
+
+                    #region DigitalTime
+                    case "DigitalTime":
+                        ElementDigitalTime DigitalTime = null;
+                        try
+                        {
+                            DigitalTime = JsonConvert.DeserializeObject<ElementDigitalTime>(elementStr, new JsonSerializerSettings
+                            {
+                                //DefaultValueHandling = DefaultValueHandling.Ignore,
+                                NullValueHandling = NullValueHandling.Ignore
+                            });
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(Properties.FormStrings.Message_JsonError_Text + Environment.NewLine + ex,
+                                Properties.FormStrings.Message_Error_Caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        if (DigitalTime != null) {
+                            ElementDigitalTime_v2 DigitalTime_v2_temp = new ElementDigitalTime_v2();
+
+                            if (DigitalTime.Second != null)
+                            {
+                                if (DigitalTime_v2_temp.Group_Second == null) DigitalTime_v2_temp.Group_Second = new DigitalTimeGroup();
+                                DigitalTime_v2_temp.Group_Second.Number = DigitalTime.Second;
+                                DigitalTime_v2_temp.Group_Second.position = DigitalTime.Second.position;
+                            }
+                            if (DigitalTime.Second_Font != null)
+                            {
+                                if (DigitalTime_v2_temp.Group_Second == null) DigitalTime_v2_temp.Group_Second = new DigitalTimeGroup();
+                                DigitalTime_v2_temp.Group_Second.Number_Font = DigitalTime.Second_Font;
+                                DigitalTime_v2_temp.Group_Second.position = DigitalTime.Second_Font.position;
+                            }
+                            if (DigitalTime.Second_rotation != null)
+                            {
+                                if (DigitalTime_v2_temp.Group_Second == null) DigitalTime_v2_temp.Group_Second = new DigitalTimeGroup();
+                                DigitalTime_v2_temp.Group_Second.Text_rotation = DigitalTime.Second_rotation;
+                                DigitalTime_v2_temp.Group_Second.position = DigitalTime.Second_rotation.position;
+                            }
+                            if (DigitalTime.Second_circle != null)
+                            {
+                                if (DigitalTime_v2_temp.Group_Second == null) DigitalTime_v2_temp.Group_Second = new DigitalTimeGroup();
+                                DigitalTime_v2_temp.Group_Second.Text_circle = DigitalTime.Second_circle;
+                                DigitalTime_v2_temp.Group_Second.position = DigitalTime.Second_circle.position;
+                            }
+
+                            if (DigitalTime.Minute != null)
+                            {
+                                if (DigitalTime_v2_temp.Group_Minute == null) DigitalTime_v2_temp.Group_Minute = new DigitalTimeGroup();
+                                DigitalTime_v2_temp.Group_Minute.Number = DigitalTime.Minute;
+                                DigitalTime_v2_temp.Group_Minute.position = DigitalTime.Minute.position;
+                            }
+                            if (DigitalTime.Minute_Font != null)
+                            {
+                                if (DigitalTime_v2_temp.Group_Minute == null) DigitalTime_v2_temp.Group_Minute = new DigitalTimeGroup();
+                                DigitalTime_v2_temp.Group_Minute.Number_Font = DigitalTime.Minute_Font;
+                                DigitalTime_v2_temp.Group_Minute.position = DigitalTime.Minute_Font.position;
+                            }
+                            if (DigitalTime.Minute_rotation != null)
+                            {
+                                if (DigitalTime_v2_temp.Group_Minute == null) DigitalTime_v2_temp.Group_Minute = new DigitalTimeGroup();
+                                DigitalTime_v2_temp.Group_Minute.Text_rotation = DigitalTime.Minute_rotation;
+                                DigitalTime_v2_temp.Group_Minute.position = DigitalTime.Minute_rotation.position;
+                            }
+                            if (DigitalTime.Minute_circle != null)
+                            {
+                                if (DigitalTime_v2_temp.Group_Minute == null) DigitalTime_v2_temp.Group_Minute = new DigitalTimeGroup();
+                                DigitalTime_v2_temp.Group_Minute.Text_circle = DigitalTime.Minute_circle;
+                                DigitalTime_v2_temp.Group_Minute.position = DigitalTime.Minute_circle.position;
+                            }
+
+                            if (DigitalTime.Hour != null)
+                            {
+                                if (DigitalTime_v2_temp.Group_Hour == null) DigitalTime_v2_temp.Group_Hour = new DigitalTimeGroup();
+                                DigitalTime_v2_temp.Group_Hour.Number = DigitalTime.Hour;
+                                DigitalTime_v2_temp.Group_Hour.position = DigitalTime.Hour.position;
+                            }
+                            if (DigitalTime.Hour_Font != null)
+                            {
+                                if (DigitalTime_v2_temp.Group_Hour == null) DigitalTime_v2_temp.Group_Hour = new DigitalTimeGroup();
+                                DigitalTime_v2_temp.Group_Hour.Number_Font = DigitalTime.Hour_Font;
+                                DigitalTime_v2_temp.Group_Hour.position = DigitalTime.Hour_Font.position;
+                            }
+                            if (DigitalTime.Hour_rotation != null)
+                            {
+                                if (DigitalTime_v2_temp.Group_Hour == null) DigitalTime_v2_temp.Group_Hour = new DigitalTimeGroup();
+                                DigitalTime_v2_temp.Group_Hour.Text_rotation = DigitalTime.Hour_rotation;
+                                DigitalTime_v2_temp.Group_Hour.position = DigitalTime.Hour_rotation.position;
+                            }
+                            if (DigitalTime.Hour_circle != null)
+                            {
+                                if (DigitalTime_v2_temp.Group_Hour == null) DigitalTime_v2_temp.Group_Hour = new DigitalTimeGroup();
+                                DigitalTime_v2_temp.Group_Hour.Text_circle = DigitalTime.Hour_circle;
+                                DigitalTime_v2_temp.Group_Hour.position = DigitalTime.Hour_circle.position;
+                            }
+
+                            if (DigitalTime.Hour_min_Font != null) DigitalTime_v2_temp.Hour_Min_Font = DigitalTime.Hour_min_Font;
+                            if (DigitalTime.Hour_min_sec_Font != null) DigitalTime_v2_temp.Hour_Min_Sec_Font = DigitalTime.Hour_min_sec_Font;
+
+                            if (DigitalTime.AmPm != null) DigitalTime_v2_temp.AmPm = DigitalTime.AmPm;
+
+                            int index = 1;
+                            for (int i = 0; i < 25; i++)
+                            {
+                                if (DigitalTime_v2_temp.Group_Second != null && DigitalTime_v2_temp.Group_Second.position == i) DigitalTime_v2_temp.Group_Second.position = index++;
+                                if (DigitalTime_v2_temp.Group_Minute != null && DigitalTime_v2_temp.Group_Minute.position == i) DigitalTime_v2_temp.Group_Minute.position = index++;
+                                if (DigitalTime_v2_temp.Group_Hour != null && DigitalTime_v2_temp.Group_Hour.position == i) DigitalTime_v2_temp.Group_Hour.position = index++;
+
+                                if (DigitalTime_v2_temp.Hour_Min_Font != null && DigitalTime_v2_temp.Hour_Min_Font.position == i) DigitalTime_v2_temp.Hour_Min_Font.position = index++;
+                                if (DigitalTime_v2_temp.Hour_Min_Sec_Font != null && DigitalTime_v2_temp.Hour_Min_Sec_Font.position == i) DigitalTime_v2_temp.Hour_Min_Sec_Font.position = index++;
+                                if (DigitalTime_v2_temp.AmPm != null && DigitalTime_v2_temp.AmPm.position == i) DigitalTime_v2_temp.AmPm.position = index++;
+                            }
+
+                            NewElements.Add(DigitalTime_v2_temp);
+                        }
+                        break;
+                    #endregion
+
+                    #region DigitalTime_v2
+                    case "DigitalTime_v2":
+                        ElementDigitalTime_v2 DigitalTime_v2 = null;
+                        try
+                        {
+                            DigitalTime_v2 = JsonConvert.DeserializeObject<ElementDigitalTime_v2>(elementStr, new JsonSerializerSettings
+                            {
+                                //DefaultValueHandling = DefaultValueHandling.Ignore,
+                                NullValueHandling = NullValueHandling.Ignore
+                            });
+
+                            //if (DigitalTime_v2.Group_Hour == null) DigitalTime_v2.Group_Hour = new DigitalTimeGroup();
+                            //if (DigitalTime_v2.Group_Minute == null) DigitalTime_v2.Group_Minute = new DigitalTimeGroup();
+                            //if (DigitalTime_v2.Group_Second == null) DigitalTime_v2.Group_Second = new DigitalTimeGroup();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(Properties.FormStrings.Message_JsonError_Text + Environment.NewLine + ex,
+                                Properties.FormStrings.Message_Error_Caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        if (DigitalTime_v2 != null) NewElements.Add(DigitalTime_v2);
                         break;
                     #endregion
 
@@ -537,6 +683,26 @@ namespace Watch_Face_Editor
                     #endregion
 
 
+                    //#region ElementWeather
+                    //case "ElementWeather":
+                    //    ElementWeather Weather = null;
+                    //    try
+                    //    {
+                    //        Weather = JsonConvert.DeserializeObject<ElementWeather>(elementStr, new JsonSerializerSettings
+                    //        {
+                    //            //DefaultValueHandling = DefaultValueHandling.Ignore,
+                    //            NullValueHandling = NullValueHandling.Ignore
+                    //        });
+                    //    }
+                    //    catch (Exception ex)
+                    //    {
+                    //        MessageBox.Show(Properties.FormStrings.Message_JsonError_Text + Environment.NewLine + ex,
+                    //            Properties.FormStrings.Message_Error_Caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //    }
+                    //    if (Weather != null) NewElements.Add(Weather);
+                    //    break;
+                    //#endregion
+
                     #region ElementWeather
                     case "ElementWeather":
                         ElementWeather Weather = null;
@@ -553,7 +719,143 @@ namespace Watch_Face_Editor
                             MessageBox.Show(Properties.FormStrings.Message_JsonError_Text + Environment.NewLine + ex,
                                 Properties.FormStrings.Message_Error_Caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
-                        if (Weather != null) NewElements.Add(Weather);
+                        if (Weather != null) 
+                        {
+                            if (!editableElement)
+                            {
+                                ElementWeather_v2 Weather_v2_temp = new ElementWeather_v2();
+
+                                if (Weather.Number != null)
+                                {
+                                    if (Weather_v2_temp.Group_Current == null) Weather_v2_temp.Group_Current = new WeatherGroup();
+                                    Weather_v2_temp.Group_Current.Number = Weather.Number;
+                                    Weather_v2_temp.Group_Current.position = Weather.Number.position;
+                                }
+                                if (Weather.Number_Font != null)
+                                {
+                                    if (Weather_v2_temp.Group_Current == null) Weather_v2_temp.Group_Current = new WeatherGroup();
+                                    Weather_v2_temp.Group_Current.Number_Font = Weather.Number_Font;
+                                    Weather_v2_temp.Group_Current.position = Weather.Number_Font.position;
+                                }
+
+                                if (Weather.Number_Min != null)
+                                {
+                                    if (Weather_v2_temp.Group_Min == null) Weather_v2_temp.Group_Min = new WeatherGroup();
+                                    Weather_v2_temp.Group_Min.Number = Weather.Number_Min;
+                                    Weather_v2_temp.Group_Min.position = Weather.Number_Min.position;
+                                }
+                                if (Weather.Number_Min_Font != null)
+                                {
+                                    if (Weather_v2_temp.Group_Min == null) Weather_v2_temp.Group_Min = new WeatherGroup();
+                                    Weather_v2_temp.Group_Min.Number_Font = Weather.Number_Min_Font;
+                                    Weather_v2_temp.Group_Min.position = Weather.Number_Min_Font.position;
+                                }
+                                if (Weather.Text_Min_rotation != null)
+                                {
+                                    if (Weather_v2_temp.Group_Min == null) Weather_v2_temp.Group_Min = new WeatherGroup();
+                                    Weather_v2_temp.Group_Min.Text_rotation = Weather.Text_Min_rotation;
+                                    Weather_v2_temp.Group_Min.position = Weather.Text_Min_rotation.position;
+                                }
+                                if (Weather.Text_Min_circle != null)
+                                {
+                                    if (Weather_v2_temp.Group_Min == null) Weather_v2_temp.Group_Min = new WeatherGroup();
+                                    Weather_v2_temp.Group_Min.Text_circle = Weather.Text_Min_circle;
+                                    Weather_v2_temp.Group_Min.position = Weather.Text_Min_circle.position;
+                                }
+
+                                if (Weather.Number_Max != null)
+                                {
+                                    if (Weather_v2_temp.Group_Max == null) Weather_v2_temp.Group_Max = new WeatherGroup();
+                                    Weather_v2_temp.Group_Max.Number = Weather.Number_Max;
+                                    Weather_v2_temp.Group_Max.position = Weather.Number_Max.position;
+                                }
+                                if (Weather.Number_Max_Font != null)
+                                {
+                                    if (Weather_v2_temp.Group_Max == null) Weather_v2_temp.Group_Max = new WeatherGroup();
+                                    Weather_v2_temp.Group_Max.Number_Font = Weather.Number_Max_Font;
+                                    Weather_v2_temp.Group_Max.position = Weather.Number_Max_Font.position;
+                                }
+                                if (Weather.Text_Max_rotation != null)
+                                {
+                                    if (Weather_v2_temp.Group_Max == null) Weather_v2_temp.Group_Max = new WeatherGroup();
+                                    Weather_v2_temp.Group_Max.Text_rotation = Weather.Text_Max_rotation;
+                                    Weather_v2_temp.Group_Max.position = Weather.Text_Max_rotation.position;
+                                }
+                                if (Weather.Text_Max_circle != null)
+                                {
+                                    if (Weather_v2_temp.Group_Max == null) Weather_v2_temp.Group_Max = new WeatherGroup();
+                                    Weather_v2_temp.Group_Max.Text_circle = Weather.Text_Max_circle;
+                                    Weather_v2_temp.Group_Max.position = Weather.Text_Max_circle.position;
+                                }
+
+
+                                if (Weather.Number_Min_Max_Font != null)
+                                {
+                                    if (Weather_v2_temp.Group_Max_Min == null) Weather_v2_temp.Group_Max_Min = new WeatherGroup();
+                                    Weather_v2_temp.Group_Max_Min.Number_Font = Weather.Number_Min_Max_Font;
+                                    Weather_v2_temp.Group_Max_Min.position = Weather.Number_Min_Max_Font.position;
+                                }
+
+                                if (Weather.Images != null) Weather_v2_temp.Images = Weather.Images;
+                                if (Weather.City_Name != null) Weather_v2_temp.City_Name = Weather.City_Name;
+                                if (Weather.Icon != null) Weather_v2_temp.Icon = Weather.Icon;
+
+                                int index = 1;
+                                for (int i = 0; i < 25; i++)
+                                {
+                                    if (Weather_v2_temp.Group_Current != null && Weather_v2_temp.Group_Current.position == i) Weather_v2_temp.Group_Current.position = index++;
+                                    if (Weather_v2_temp.Group_Min != null && Weather_v2_temp.Group_Min.position == i) Weather_v2_temp.Group_Min.position = index++;
+                                    if (Weather_v2_temp.Group_Max != null && Weather_v2_temp.Group_Max.position == i) Weather_v2_temp.Group_Max.position = index++;
+                                    if (Weather_v2_temp.Group_Max_Min != null && Weather_v2_temp.Group_Max_Min.position == i) Weather_v2_temp.Group_Max_Min.position = index++;
+                                    if (Weather_v2_temp.Images != null && Weather_v2_temp.Images.position == i) Weather_v2_temp.Images.position = index++;
+                                    if (Weather_v2_temp.City_Name != null && Weather_v2_temp.City_Name.position == i) Weather_v2_temp.City_Name.position = index++;
+                                    if (Weather_v2_temp.Icon != null && Weather_v2_temp.Icon.position == i) Weather_v2_temp.Icon.position = index++;
+                                }
+
+                                NewElements.Add(Weather_v2_temp); 
+                            }
+                            else NewElements.Add(Weather);
+                        }
+                        break;
+                    #endregion
+
+                    #region ElementWeather_v2
+                    case "ElementWeather_v2":
+                        ElementWeather_v2 Weather_v2 = null;
+                        try
+                        {
+                            Weather_v2 = JsonConvert.DeserializeObject<ElementWeather_v2>(elementStr, new JsonSerializerSettings
+                            {
+                                //DefaultValueHandling = DefaultValueHandling.Ignore,
+                                NullValueHandling = NullValueHandling.Ignore
+                            });
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(Properties.FormStrings.Message_JsonError_Text + Environment.NewLine + ex,
+                                Properties.FormStrings.Message_Error_Caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        if (Weather_v2 != null) NewElements.Add(Weather_v2);
+                        break;
+                    #endregion
+
+                    #region Element_Weather_FewDays
+                    case "Element_Weather_FewDays":
+                        Element_Weather_FewDays Weather_FewDays = null;
+                        try
+                        {
+                            Weather_FewDays = JsonConvert.DeserializeObject<Element_Weather_FewDays>(elementStr, new JsonSerializerSettings
+                            {
+                                //DefaultValueHandling = DefaultValueHandling.Ignore,
+                                NullValueHandling = NullValueHandling.Ignore
+                            });
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(Properties.FormStrings.Message_JsonError_Text + Environment.NewLine + ex,
+                                Properties.FormStrings.Message_Error_Caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        if (Weather_FewDays != null) NewElements.Add(Weather_FewDays);
                         break;
                     #endregion
 
@@ -717,6 +1019,168 @@ namespace Watch_Face_Editor
                         break;
                     #endregion
 
+
+                    #region ElementAlarmClock
+                    case "ElementAlarmClock":
+                        ElementAlarmClock AlarmClock = null;
+                        try
+                        {
+                            AlarmClock = JsonConvert.DeserializeObject<ElementAlarmClock>(elementStr, new JsonSerializerSettings
+                            {
+                                //DefaultValueHandling = DefaultValueHandling.Ignore,
+                                NullValueHandling = NullValueHandling.Ignore
+                            });
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(Properties.FormStrings.Message_JsonError_Text + Environment.NewLine + ex,
+                                Properties.FormStrings.Message_Error_Caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        if (AlarmClock != null) NewElements.Add(AlarmClock);
+                        break;
+                    #endregion
+
+                    #region ElementTrainingLoad
+                    case "ElementTrainingLoad":
+                        ElementTrainingLoad TrainingLoad = null;
+                        try
+                        {
+                            TrainingLoad = JsonConvert.DeserializeObject<ElementTrainingLoad>(elementStr, new JsonSerializerSettings
+                            {
+                                //DefaultValueHandling = DefaultValueHandling.Ignore,
+                                NullValueHandling = NullValueHandling.Ignore
+                            });
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(Properties.FormStrings.Message_JsonError_Text + Environment.NewLine + ex,
+                                Properties.FormStrings.Message_Error_Caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        if (TrainingLoad != null) NewElements.Add(TrainingLoad);
+                        break;
+                    #endregion
+
+                    #region ElementVO2Max
+                    case "ElementVO2Max":
+                        ElementVO2Max VO2Max = null;
+                        try
+                        {
+                            VO2Max = JsonConvert.DeserializeObject<ElementVO2Max>(elementStr, new JsonSerializerSettings
+                            {
+                                //DefaultValueHandling = DefaultValueHandling.Ignore,
+                                NullValueHandling = NullValueHandling.Ignore
+                            });
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(Properties.FormStrings.Message_JsonError_Text + Environment.NewLine + ex,
+                                Properties.FormStrings.Message_Error_Caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        if (VO2Max != null) NewElements.Add(VO2Max);
+                        break;
+                    #endregion
+
+                    #region ElementAQI
+                    case "ElementAQI":
+                        ElementAQI AQI = null;
+                        try
+                        {
+                            AQI = JsonConvert.DeserializeObject<ElementAQI>(elementStr, new JsonSerializerSettings
+                            {
+                                //DefaultValueHandling = DefaultValueHandling.Ignore,
+                                NullValueHandling = NullValueHandling.Ignore
+                            });
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(Properties.FormStrings.Message_JsonError_Text + Environment.NewLine + ex,
+                                Properties.FormStrings.Message_Error_Caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        if (AQI != null) NewElements.Add(AQI);
+                        break;
+                    #endregion
+
+                    #region ElementBodyTemp
+                    case "ElementBodyTemp":
+                        ElementBodyTemp BodyTemp = null;
+                        try
+                        {
+                            BodyTemp = JsonConvert.DeserializeObject<ElementBodyTemp>(elementStr, new JsonSerializerSettings
+                            {
+                                //DefaultValueHandling = DefaultValueHandling.Ignore,
+                                NullValueHandling = NullValueHandling.Ignore
+                            });
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(Properties.FormStrings.Message_JsonError_Text + Environment.NewLine + ex,
+                                Properties.FormStrings.Message_Error_Caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        if (BodyTemp != null) NewElements.Add(BodyTemp);
+                        break;
+                    #endregion
+
+                    #region ElementFloor
+                    case "ElementFloor":
+                        ElementFloor Floor = null;
+                        try
+                        {
+                            Floor = JsonConvert.DeserializeObject<ElementFloor>(elementStr, new JsonSerializerSettings
+                            {
+                                //DefaultValueHandling = DefaultValueHandling.Ignore,
+                                NullValueHandling = NullValueHandling.Ignore
+                            });
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(Properties.FormStrings.Message_JsonError_Text + Environment.NewLine + ex,
+                                Properties.FormStrings.Message_Error_Caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        if (Floor != null) NewElements.Add(Floor);
+                        break;
+                    #endregion
+
+                    #region ElementReadiness
+                    case "ElementReadiness":
+                        ElementReadiness Readiness = null;
+                        try
+                        {
+                            Readiness = JsonConvert.DeserializeObject<ElementReadiness>(elementStr, new JsonSerializerSettings
+                            {
+                                //DefaultValueHandling = DefaultValueHandling.Ignore,
+                                NullValueHandling = NullValueHandling.Ignore
+                            });
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(Properties.FormStrings.Message_JsonError_Text + Environment.NewLine + ex,
+                                Properties.FormStrings.Message_Error_Caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        if (Readiness != null) NewElements.Add(Readiness);
+                        break;
+                    #endregion
+
+                    #region ElementHRV
+                    case "ElementHRV":
+                        ElementHRV HRV = null;
+                        try
+                        {
+                            HRV = JsonConvert.DeserializeObject<ElementHRV>(elementStr, new JsonSerializerSettings
+                            {
+                                //DefaultValueHandling = DefaultValueHandling.Ignore,
+                                NullValueHandling = NullValueHandling.Ignore
+                            });
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(Properties.FormStrings.Message_JsonError_Text + Environment.NewLine + ex,
+                                Properties.FormStrings.Message_Error_Caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        if (HRV != null) NewElements.Add(HRV);
+                        break;
+                    #endregion
+
+
                     #region ElementScript
                     case "ElementScript":
                         ElementScript Script = null;
@@ -833,9 +1297,13 @@ namespace Watch_Face_Editor
         /// <param name="_optionalSymbol">Отображение настроек дополнительного символа</param>
         /// <param name="_padingZero">Отображение настроек ведущих нулей</param>
         /// <param name="_sunrise">Режим отображения для восхода/заката</param>
+        /// <param name="_altitude">Режим отображения для высоты</param>
+        /// <param name="_compass">Режим отображения для компаса</param>
+        /// <param name="_bodyTemp">Режим отображения для тмпературы тела</param>
         /// <param name="_angleVisible">Видимость настроек угла</param>
         private void Read_ImgNumber_Options(hmUI_widget_IMG_NUMBER img_number, bool _dastance, bool _follow, string _followText,
-            bool _imageError, bool _optionalSymbol, bool _padingZero, bool _angleVisible, bool _sunrise = false, bool _altitude = false, bool _compass = false)
+            bool _imageError, bool _optionalSymbol, bool _padingZero, bool _angleVisible, bool _sunrise = false, 
+            bool _altitude = false, bool _compass = false, bool _bodyTemp = false)
         {
             PreviewView = false;
 
@@ -845,6 +1313,7 @@ namespace Watch_Face_Editor
             uCtrl_Text_Opt.Sunrise = _sunrise;
             uCtrl_Text_Opt.Altitude = _altitude;
             uCtrl_Text_Opt._Compass = _compass;
+            uCtrl_Text_Opt.BodyTemp = _bodyTemp;
             uCtrl_Text_Opt.Follow = _follow;
             uCtrl_Text_Opt.FollowText = _followText;
             uCtrl_Text_Opt.ImageError = _imageError;
@@ -852,6 +1321,7 @@ namespace Watch_Face_Editor
             uCtrl_Text_Opt.PaddingZero = _padingZero;
             uCtrl_Text_Opt.AngleVisible = _angleVisible;
             uCtrl_Text_Opt.Visible = true;
+            uCtrl_Text_Opt.Alpha = SelectedModel.versionOS >= 2.1;
             if (!_optionalSymbol)
             {
                 if (img_number.dot_image != null)
@@ -889,6 +1359,8 @@ namespace Watch_Face_Editor
             //uCtrl_Text_Opt.SetImageDecimalPointOrMinus
             uCtrl_Text_Opt.numericUpDown_spacing.Value = img_number.space;
             uCtrl_Text_Opt.numericUpDown_angle.Value = img_number.angle;
+            uCtrl_Text_Opt.numericUpDown_Alpha.Value = img_number.alpha;
+            uCtrl_Text_Opt.numericUpDown_iconAlpha.Value = img_number.icon_alpha;
 
             uCtrl_Text_Opt.SetAlignment(img_number.align);
 
@@ -941,7 +1413,8 @@ namespace Watch_Face_Editor
             uCtrl_Text_Rotate_Opt.SetUnitMile(img_number.imperial_unit);
             uCtrl_Text_Rotate_Opt.SetImageError(img_number.invalid_image);
             uCtrl_Text_Rotate_Opt.SetImageDecimalPointOrMinus(img_number.dot_image);
-            //uCtrl_Text_Rotate_Opt.SetImageDecimalPointOrMinus
+            if(_weather) uCtrl_Text_Rotate_Opt.SetImageDecimalPointOrMinus(img_number.negative_image);
+            uCtrl_Text_Rotate_Opt.SetSeparator(img_number.separator_image); // разделитель для макс/мин температуры
             uCtrl_Text_Rotate_Opt.numericUpDown_spacing.Value = img_number.space;
             uCtrl_Text_Rotate_Opt.numericUpDown_angle.Value = img_number.angle;
 
@@ -1007,6 +1480,7 @@ namespace Watch_Face_Editor
             uCtrl_Text_Circle_Opt.SetUnitImperial(text_circle.imperial_unit);
             uCtrl_Text_Circle_Opt.SetImageError(text_circle.error_image);
             uCtrl_Text_Circle_Opt.SetImageDecimalPoint(text_circle.dot_image);
+            uCtrl_Text_Circle_Opt.SetSeparator(text_circle.separator_image);
 
             uCtrl_Text_Circle_Opt.SetHorizontalAlignment(text_circle.horizontal_alignment);
             uCtrl_Text_Circle_Opt.SetVerticalAlignment(text_circle.vertical_alignment);
@@ -1020,17 +1494,12 @@ namespace Watch_Face_Editor
         }
 
         /// <summary>Читаем настройки для отображения температуры</summary>
-        private void Read_ImgNumberWeather_Options(hmUI_widget_IMG_NUMBER img_number, bool _follow, string _followText,
-            bool _imageError, bool _padingZero)
+        private void Read_ImgNumberWeather_Options(hmUI_widget_IMG_NUMBER img_number)
         {
             PreviewView = false;
 
             uCtrl_Text_Weather_Opt.SettingsClear();
 
-            uCtrl_Text_Weather_Opt.Follow = _follow;
-            uCtrl_Text_Weather_Opt.FollowText = _followText;
-            uCtrl_Text_Weather_Opt.ImageError = _imageError;
-            uCtrl_Text_Weather_Opt.PaddingZero = _padingZero;
             uCtrl_Text_Weather_Opt.Visible = true;
 
             //if (ProgramSettings.Watch_Model == "GTR 4" || ProgramSettings.Watch_Model == "GTS 4" || ProgramSettings.Watch_Model == "T-Rex 2")
@@ -1056,13 +1525,11 @@ namespace Watch_Face_Editor
             uCtrl_Text_Weather_Opt.SetUnit_F(img_number.imperial_unit);
             uCtrl_Text_Weather_Opt.SetImageError(img_number.invalid_image);
             uCtrl_Text_Weather_Opt.SetImageMinus(img_number.negative_image);
+            uCtrl_Text_Weather_Opt.SetSeparator(img_number.dot_image);
             uCtrl_Text_Weather_Opt.numericUpDown_spacing.Value = img_number.space;
             uCtrl_Text_Weather_Opt.numericUpDown_angle.Value = img_number.angle;
 
             uCtrl_Text_Weather_Opt.SetAlignment(img_number.align);
-
-            uCtrl_Text_Weather_Opt.checkBox_addZero.Checked = img_number.zero;
-            uCtrl_Text_Weather_Opt.checkBox_follow.Checked = img_number.follow;
 
             PreviewView = true;
         }
@@ -1074,6 +1541,7 @@ namespace Watch_Face_Editor
 
             uCtrl_Icon_Opt.SettingsClear();
             uCtrl_Icon_Opt.Visible = true;
+            uCtrl_Icon_Opt.Alpha = SelectedModel.versionOS >= 2.1;
 
             uCtrl_Icon_Opt._Icon = img;
 
@@ -1088,6 +1556,7 @@ namespace Watch_Face_Editor
             if (img.src != null) uCtrl_Icon_Opt.SetIcon(img.src);
             uCtrl_Icon_Opt.numericUpDown_iconX.Value = img.x;
             uCtrl_Icon_Opt.numericUpDown_iconY.Value = img.y;
+            uCtrl_Icon_Opt.numericUpDown_Alpha.Value = img.alpha;
 
             PreviewView = true;
         }
@@ -1100,6 +1569,7 @@ namespace Watch_Face_Editor
             uCtrl_Icon_Opt.SettingsClear();
 
             uCtrl_Icon_Opt._Icon = img_status;
+            uCtrl_Icon_Opt.Alpha = SelectedModel.versionOS >= 2.1;
 
             //userCtrl_Background_Options.SettingsClear();
 
@@ -1109,10 +1579,10 @@ namespace Watch_Face_Editor
                 return;
             }
 
-            if (img_status.src != null)
-                uCtrl_Icon_Opt.SetIcon(img_status.src);
+            if (img_status.src != null) uCtrl_Icon_Opt.SetIcon(img_status.src);
             uCtrl_Icon_Opt.numericUpDown_iconX.Value = img_status.x;
             uCtrl_Icon_Opt.numericUpDown_iconY.Value = img_status.y;
+            uCtrl_Icon_Opt.numericUpDown_Alpha.Value = img_status.alpha;
 
             PreviewView = true;
         }
@@ -1518,7 +1988,7 @@ namespace Watch_Face_Editor
 
                 if (zonesList != null && zonesList.Elements != null && zonesList.Elements.Count > 0)
                 {
-                    List<string> elementName = GetElementsNameList(zonesList.Elements);
+                    List<string> elementName = GetElementsNameList(zonesList.Elements, zonesList.optional_types_list);
                     uCtrl_EditableElements_Opt.SetElementsCount(elementName);
                     uCtrl_EditableElements_Opt.SetElementsIndex(zonesList.selected_element);
 
@@ -1546,14 +2016,14 @@ namespace Watch_Face_Editor
         }
 
         /// <summary>Читаем настройки для отображения круговой шкалы</summary>
-        private void Read_CircleScale_Options(Circle_Scale circle_scale)
+        private void Read_CircleScale_Options(Circle_Scale circle_scale, bool inverseMode = true)
         {
             PreviewView = false;
 
             uCtrl_Circle_Scale_Opt.SettingsClear();
-            //if (ProgramSettings.Watch_Model == "GTR 4" || ProgramSettings.Watch_Model == "GTS 4" || ProgramSettings.Watch_Model == "T-Rex 2")
-            if (SelectedModel.versionOS >= 2) uCtrl_Circle_Scale_Opt.LineCap = true;
-            else uCtrl_Circle_Scale_Opt.LineCap = false;
+            uCtrl_Circle_Scale_Opt.LineCap = SelectedModel.versionOS >= 2;
+            uCtrl_Circle_Scale_Opt.Alpha = SelectedModel.versionOS >= 2.1;
+            if (!inverseMode) uCtrl_Circle_Scale_Opt.Inverse = false;
 
             uCtrl_Circle_Scale_Opt.Visible = true;
 
@@ -1571,6 +2041,8 @@ namespace Watch_Face_Editor
 
             uCtrl_Circle_Scale_Opt.numericUpDown_scaleCircle_startAngle.Value = circle_scale.start_angle;
             uCtrl_Circle_Scale_Opt.numericUpDown_scaleCircle_endAngle.Value = circle_scale.end_angle;
+
+            uCtrl_Circle_Scale_Opt.numericUpDown_Alpha.Value = circle_scale.alpha;
 
             uCtrl_Circle_Scale_Opt.SetLineCap(circle_scale.line_cap);
 
@@ -1592,6 +2064,7 @@ namespace Watch_Face_Editor
             uCtrl_Linear_Scale_Opt.Visible = true;
 
             uCtrl_Linear_Scale_Opt._LinearScale = linear_scale;
+            uCtrl_Linear_Scale_Opt.Alpha = SelectedModel.versionOS >= 2.1;
 
             if (linear_scale == null)
             {
@@ -1613,6 +2086,7 @@ namespace Watch_Face_Editor
 
             uCtrl_Linear_Scale_Opt.numericUpDown_scaleLinear_length.Value = linear_scale.lenght;
             uCtrl_Linear_Scale_Opt.numericUpDown_scaleLinear_width.Value = linear_scale.line_width;
+            uCtrl_Linear_Scale_Opt.numericUpDown_Alpha.Value = linear_scale.alpha;
             uCtrl_Linear_Scale_Opt.SetLineCap(linear_scale.line_cap);
 
             uCtrl_Linear_Scale_Opt.SetColorScale(StringToColor(linear_scale.color));
@@ -1637,6 +2111,7 @@ namespace Watch_Face_Editor
             uCtrl_Images_Opt.ImagesCountEnable = imagesCountEnable;
             uCtrl_Images_Opt.Shortcut = shortcut;
             uCtrl_Images_Opt.ErrorMode = error_mode;
+            uCtrl_Images_Opt.Alpha = SelectedModel.versionOS >= 2.1;
 
             uCtrl_Images_Opt._ElementWithImages = img_level;
 
@@ -1656,6 +2131,7 @@ namespace Watch_Face_Editor
             if (img_level.image_length > 0)
                 uCtrl_Images_Opt.numericUpDown_pictures_count.Value = img_level.image_length;
             if (!imagesCountEnable) uCtrl_Images_Opt.numericUpDown_pictures_count.Value = imagesCount;
+            uCtrl_Images_Opt.numericUpDown_Alpha.Value = img_level.alpha;
 
             if (error_mode && img_level.img_error != null)
                 uCtrl_Images_Opt.SetImageError(img_level.img_error);
@@ -1736,6 +2212,7 @@ namespace Watch_Face_Editor
             uCtrl_Text_SystemFont_Opt.AmPm = AmPmMode;
             uCtrl_Text_SystemFont_Opt.DOWMode = DOWMode;
             uCtrl_Text_SystemFont_Opt.MonthMode = MonthMode;
+            uCtrl_Text_SystemFont_Opt.Alpha = SelectedModel.versionOS >= 3.5;
 
             uCtrl_Text_SystemFont_Opt._ElementWithSystemFont = system_font;
             //uCtrl_Text_SystemFont_Opt.fonts_path = ProjectDir + @"\assets\fonts\";
@@ -1749,8 +2226,10 @@ namespace Watch_Face_Editor
             uCtrl_Text_SystemFont_Opt.numericUpDown_Size.Value = system_font.text_size;
             uCtrl_Text_SystemFont_Opt.numericUpDown_Spacing.Value = system_font.char_space;
             uCtrl_Text_SystemFont_Opt.numericUpDown_LineSpace.Value = system_font.line_space;
+            uCtrl_Text_SystemFont_Opt.numericUpDown_Alpha.Value = system_font.alpha;
 
             uCtrl_Text_SystemFont_Opt.SetColorText(StringToColor(system_font.color));
+            uCtrl_Text_SystemFont_Opt.SetColor2Text(StringToColor(system_font.color_2));
 
             uCtrl_Text_SystemFont_Opt.SetHorizontalAlignment(system_font.align_h);
             uCtrl_Text_SystemFont_Opt.SetVerticalAlignment(system_font.align_v);
@@ -1758,6 +2237,7 @@ namespace Watch_Face_Editor
 
             uCtrl_Text_SystemFont_Opt.checkBox_CentreHorizontally.Checked = system_font.centreHorizontally;
             uCtrl_Text_SystemFont_Opt.checkBox_CentreVertically.Checked = system_font.centreVertically;
+            uCtrl_Text_SystemFont_Opt.checkBox_Color2.Checked = system_font.use_color_2;
 
             uCtrl_Text_SystemFont_Opt.SetFont(system_font.font);
 
@@ -1915,6 +2395,149 @@ namespace Watch_Face_Editor
             PreviewView = true;
         }
 
+        /// <summary>Читаем настройки переключаемого фона</summary>
+        private void Read_SwitchBG_Options(ElementSwitchBackground switchBG)
+        {
+            PreviewView = false;
+
+            uCtrl_Switch_Background_Opt.SettingsClear();
+            uCtrl_Switch_Background_Opt.Visible = true;
+            uCtrl_Switch_Background_Opt.AddBackgroundImages(switchBG.bg_list, switchBG.toast_list, switchBG.select_index);
+
+            if (switchBG.Button != null)
+            {
+                uCtrl_Switch_Background_Opt.numericUpDown_buttonX.Value = switchBG.Button.x;
+                uCtrl_Switch_Background_Opt.numericUpDown_buttonY.Value = switchBG.Button.y;
+                uCtrl_Switch_Background_Opt.numericUpDown_width.Value = switchBG.Button.w;
+                uCtrl_Switch_Background_Opt.numericUpDown_height.Value = switchBG.Button.h;
+                uCtrl_Switch_Background_Opt.numericUpDown_radius.Value = switchBG.Button.radius;
+                uCtrl_Switch_Background_Opt.numericUpDown_textSize.Value = switchBG.Button.text_size;
+                uCtrl_Switch_Background_Opt.SetColorText(StringToColor(switchBG.Button.color));
+                uCtrl_Switch_Background_Opt.SetText(switchBG.Button.text);
+                uCtrl_Switch_Background_Opt.SetPressImage(switchBG.Button.press_src);
+                uCtrl_Switch_Background_Opt.SetNormalImage(switchBG.Button.normal_src);
+                uCtrl_Switch_Background_Opt.SetColorNormal(StringToColor(switchBG.Button.normal_color));
+                uCtrl_Switch_Background_Opt.SetColorPress(StringToColor(switchBG.Button.press_color));
+
+                uCtrl_Switch_Background_Opt.checkBox_use_crown.Checked = switchBG.use_crown;
+                uCtrl_Switch_Background_Opt.checkBox_use_in_AOD.Checked = switchBG.use_in_AOD;
+                uCtrl_Switch_Background_Opt.checkBox_vibro.Checked = switchBG.vibro;
+            }
+
+
+            PreviewView = true;
+        }
+
+        /// <summary>Читаем настройки переключаемого цвета</summary>
+        private void Read_SwitchBG_Color_Options(ElementSwitchBG_Color switchBG_Color)
+        {
+            PreviewView = false;
+
+            uCtrl_Switch_BG_Color_Opt.SettingsClear();
+            uCtrl_Switch_BG_Color_Opt.Visible = true;
+            List<Color> listColors = switchBG_Color.color_list.Select(StringToColor).ToList();
+            uCtrl_Switch_BG_Color_Opt.AddBackgroundColors(listColors, switchBG_Color.toast_list, switchBG_Color.select_index);
+
+            if (switchBG_Color.Button != null)
+            {
+                uCtrl_Switch_BG_Color_Opt.numericUpDown_buttonX.Value = switchBG_Color.Button.x;
+                uCtrl_Switch_BG_Color_Opt.numericUpDown_buttonY.Value = switchBG_Color.Button.y;
+                uCtrl_Switch_BG_Color_Opt.numericUpDown_width.Value = switchBG_Color.Button.w;
+                uCtrl_Switch_BG_Color_Opt.numericUpDown_height.Value = switchBG_Color.Button.h;
+                uCtrl_Switch_BG_Color_Opt.numericUpDown_radius.Value = switchBG_Color.Button.radius;
+                uCtrl_Switch_BG_Color_Opt.numericUpDown_textSize.Value = switchBG_Color.Button.text_size;
+                uCtrl_Switch_BG_Color_Opt.SetColorText(StringToColor(switchBG_Color.Button.color));
+                uCtrl_Switch_BG_Color_Opt.SetText(switchBG_Color.Button.text);
+                uCtrl_Switch_BG_Color_Opt.SetPressImage(switchBG_Color.Button.press_src);
+                uCtrl_Switch_BG_Color_Opt.SetNormalImage(switchBG_Color.Button.normal_src);
+                uCtrl_Switch_BG_Color_Opt.SetColorNormal(StringToColor(switchBG_Color.Button.normal_color));
+                uCtrl_Switch_BG_Color_Opt.SetColorPress(StringToColor(switchBG_Color.Button.press_color));
+
+                uCtrl_Switch_BG_Color_Opt.checkBox_use_crown.Checked = switchBG_Color.use_crown;
+                uCtrl_Switch_BG_Color_Opt.checkBox_use_in_AOD.Checked = switchBG_Color.use_in_AOD;
+                uCtrl_Switch_BG_Color_Opt.checkBox_vibro.Checked = switchBG_Color.vibro;
+            }
+
+
+            PreviewView = true;
+        }
+
+        /// <summary>Читаем настройки прогноза погоды</summary>
+        private void Read_WeatherFewDay_Options(FewDays fewDays)
+        {
+            PreviewView = false;
+
+            uCtrl_Weather_FewDays_Opt.SettingsClear();
+            uCtrl_Weather_FewDays_Opt.Visible = true;
+
+            uCtrl_Weather_FewDays_Opt._FewDays = fewDays;
+
+            if (fewDays == null)
+            {
+                PreviewView = true;
+                return;
+            }
+
+            if (fewDays.Background != null) uCtrl_Weather_FewDays_Opt.SetBackground(fewDays.Background);
+            uCtrl_Weather_FewDays_Opt.numericUpDown_posX.Value = fewDays.X;
+            uCtrl_Weather_FewDays_Opt.numericUpDown_posY.Value = fewDays.Y;
+
+            uCtrl_Weather_FewDays_Opt.numericUpDown_daysCount.Value = fewDays.DaysCount;
+            uCtrl_Weather_FewDays_Opt.numericUpDown_columnWidth.Value = fewDays.ColumnWidth;
+
+            //uCtrl_Weather_FewDays_Opt.checkBox_position_on_graph.Checked = fewDays.PositionOnGraph;
+
+            PreviewView = true;
+        }
+
+        /// <summary>Читаем настройки графика прогноза погоды</summary>
+        private void Read_WeatherDiagram_Options(Weather_Diagram diagram)
+        {
+            PreviewView = false;
+
+            uCtrl_TemperatureGraph_Opt.SettingsClear();
+            uCtrl_TemperatureGraph_Opt.Visible = true;
+
+            uCtrl_TemperatureGraph_Opt._Diagram = diagram;
+
+            if (diagram == null)
+            {
+                PreviewView = true;
+                return;
+            }
+
+            uCtrl_TemperatureGraph_Opt.numericUpDown_posY.Value = diagram.Y; 
+            uCtrl_TemperatureGraph_Opt.numericUpDown_height.Value = diagram.Height;
+            uCtrl_TemperatureGraph_Opt.checkBox_position_on_graph.Checked = diagram.PositionOnGraph;
+            uCtrl_TemperatureGraph_Opt.checkBox_graph_fullScreen.Checked = diagram.GraphFullScreen;
+
+            uCtrl_TemperatureGraph_Opt.SetMaxColor(StringToColor(diagram.Max_color));
+            uCtrl_TemperatureGraph_Opt.numericUpDown_max_lineWidth.Value = diagram.Max_lineWidth;
+            uCtrl_TemperatureGraph_Opt.SetMaxPointType(diagram.Max_pointType);
+            uCtrl_TemperatureGraph_Opt.numericUpDown_max_pointSize.Value = diagram.Max_pointSize;
+            uCtrl_TemperatureGraph_Opt.numericUpDown_max_offsetX.Value = diagram.Max_offsetX;
+
+            uCtrl_TemperatureGraph_Opt.SetMinColor(StringToColor(diagram.Min_color));
+            uCtrl_TemperatureGraph_Opt.numericUpDown_min_lineWidth.Value = diagram.Min_lineWidth;
+            uCtrl_TemperatureGraph_Opt.SetMinPointType(diagram.Min_pointType);
+            uCtrl_TemperatureGraph_Opt.numericUpDown_min_pointSize.Value = diagram.Min_pointSize;
+            uCtrl_TemperatureGraph_Opt.numericUpDown_min_offsetX.Value = diagram.Min_offsetX;
+
+            uCtrl_TemperatureGraph_Opt.SetAverageColor(StringToColor(diagram.Average_color));
+            uCtrl_TemperatureGraph_Opt.numericUpDown_average_lineWidth.Value = diagram.Average_lineWidth;
+            uCtrl_TemperatureGraph_Opt.SetAveragePointType(diagram.Average_pointType);
+            uCtrl_TemperatureGraph_Opt.numericUpDown_average_pointSize.Value = diagram.Average_pointSize;
+            uCtrl_TemperatureGraph_Opt.numericUpDown_average_offsetX.Value = diagram.Average_offsetX;
+
+            uCtrl_TemperatureGraph_Opt.checkBox_use_max.Checked = diagram.Use_max_diagram;
+            uCtrl_TemperatureGraph_Opt.checkBox_use_min.Checked = diagram.Use_min_diagram;
+            uCtrl_TemperatureGraph_Opt.checkBox_use_average.Checked = diagram.Use_average_diagram;
+
+            PreviewView = true;
+        }
+
+
+
         /// <summary>Меняем настройки фона</summary>
         private void userCtrl_Background_Options_ValueChanged(object sender, EventArgs eventArgs)
         {
@@ -1957,16 +2580,22 @@ namespace Watch_Face_Editor
                 background.BackgroundImage.y = 0;
                 background.BackgroundImage.h = SelectedModel.background.h;
                 background.BackgroundImage.w = SelectedModel.background.w;
-                //background.BackgroundImage.show_level = "ONLY_NORMAL";
                 background.BackgroundColor = null;
+                uCtrl_Switch_BG_Color_Elm.EnableElement = false;
                 if (background.Editable_Background != null) background.Editable_Background.enable_edit_bg = false;
 
+                //uCtrl_Switch_BG_Color_Elm.Visible = false;
                 if (radioButton_ScreenIdle.Checked)
                 {
                     if (Watch_Face.ScreenNormal.Background != null && Watch_Face.ScreenNormal.Background.Editable_Background != null)
                     {
                         Watch_Face.ScreenNormal.Background.Editable_Background.AOD_show = false;
                     }
+                }
+                else { 
+                    uCtrl_Switch_Background_Elm.EnableElement = true;
+                    if (Watch_Face.SwitchBackground != null && Watch_Face.SwitchBackground.bg_list != null &&
+                        Watch_Face.SwitchBackground.bg_list.Count > 0) Watch_Face.SwitchBackground.bg_list[0] = backgroundImg;
                 }
                 uCtrl_EditableBackground_Opt.Visible = false;
             }
@@ -1991,8 +2620,7 @@ namespace Watch_Face_Editor
                     }
                 }
 
-                if (background.BackgroundColor == null)
-                    background.BackgroundColor = new hmUI_widget_FILL_RECT();
+                if (background.BackgroundColor == null) background.BackgroundColor = new hmUI_widget_FILL_RECT();
                 background.BackgroundColor.color = ColorToString(userCtrl_Background_Options.GetColorBackground());
                 background.BackgroundColor.x = 0;
                 background.BackgroundColor.y = 0;
@@ -2001,13 +2629,22 @@ namespace Watch_Face_Editor
                 background.BackgroundImage = null;
                 if (background.Editable_Background != null) background.Editable_Background.enable_edit_bg = false;
                 uCtrl_EditableBackground_Opt.Visible = false;
+                uCtrl_Switch_Background_Elm.EnableElement = false;
 
+                //uCtrl_Switch_Background_Elm.Visible = false;
                 if (radioButton_ScreenIdle.Checked)
                 {
                     if (Watch_Face.ScreenNormal.Background != null && Watch_Face.ScreenNormal.Background.Editable_Background != null)
                     {
                         Watch_Face.ScreenNormal.Background.Editable_Background.AOD_show = false;
                     }
+                }
+                else
+                {
+                    uCtrl_Switch_BG_Color_Elm.EnableElement = true;
+                    if (Watch_Face.SwitchBG_Color != null && Watch_Face.SwitchBG_Color.color_list != null && 
+                        Watch_Face.SwitchBG_Color.color_list.Count > 0) 
+                        Watch_Face.SwitchBG_Color.color_list[0] = background.BackgroundColor.color;
                 }
             }
             // настраиваемый фон
@@ -2042,7 +2679,10 @@ namespace Watch_Face_Editor
                     Read_EditableBackground_Options(background.Editable_Background);
                     uCtrl_EditableBackground_Opt.Visible = true;
                     background.BackgroundImage = null;
-                    background.BackgroundColor = null; 
+                    background.BackgroundColor = null;
+                    uCtrl_Switch_Background_Elm.EnableElement = false;
+                    uCtrl_Switch_BG_Color_Elm.EnableElement = false;
+                    uCtrl_Switch_Background_Elm.Visible = false;
                 }
                 else
                 {
@@ -2097,6 +2737,8 @@ namespace Watch_Face_Editor
             img_number.imageY = (int)uCtrl_Text_Opt.numericUpDown_imageY.Value;
             img_number.space = (int)uCtrl_Text_Opt.numericUpDown_spacing.Value;
             img_number.angle = (int)uCtrl_Text_Opt.numericUpDown_angle.Value;
+            img_number.alpha = (int)uCtrl_Text_Opt.numericUpDown_Alpha.Value;
+            img_number.icon_alpha = (int)uCtrl_Text_Opt.numericUpDown_iconAlpha.Value;
             if (!uCtrl_Text_Opt.Altitude) img_number.dot_image = uCtrl_Text_Opt.GetImageDecimalPoint();
             else img_number.negative_image = uCtrl_Text_Opt.GetImageDecimalPoint();
             img_number.unit = uCtrl_Text_Opt.GetUnit();
@@ -2119,7 +2761,6 @@ namespace Watch_Face_Editor
             if (img_number == null) return;
 
             img_number.align = uCtrl_Text_Weather_Opt.GetAlignment();
-            img_number.follow = uCtrl_Text_Weather_Opt.checkBox_follow.Checked;
             img_number.icon = uCtrl_Text_Weather_Opt.GetIcon();
             img_number.iconPosX = (int)uCtrl_Text_Weather_Opt.numericUpDown_iconX.Value;
             img_number.iconPosY = (int)uCtrl_Text_Weather_Opt.numericUpDown_iconY.Value;
@@ -2132,7 +2773,7 @@ namespace Watch_Face_Editor
             img_number.imperial_unit = uCtrl_Text_Weather_Opt.GetUnit_F();
             img_number.negative_image = uCtrl_Text_Weather_Opt.GetImageMinus();
             img_number.invalid_image = uCtrl_Text_Weather_Opt.GetImageError();
-            img_number.zero = uCtrl_Text_Weather_Opt.checkBox_addZero.Checked;
+            img_number.dot_image = uCtrl_Text_Weather_Opt.GetSeparator();
 
             JSON_Modified = true;
             PreviewImage();
@@ -2200,6 +2841,7 @@ namespace Watch_Face_Editor
             img_level.img_First = uCtrl_Images_Opt.GetImage();
             img_level.X = (int)uCtrl_Images_Opt.numericUpDown_imageX.Value;
             img_level.Y = (int)uCtrl_Images_Opt.numericUpDown_imageY.Value;
+            img_level.alpha = (int)uCtrl_Images_Opt.numericUpDown_Alpha.Value;
             img_level.image_length = (int)uCtrl_Images_Opt.numericUpDown_pictures_count.Value;
             img_level.shortcut = uCtrl_Images_Opt.checkBox_shortcut.Checked;
             img_level.img_error = uCtrl_Images_Opt.GetImageError();
@@ -2248,6 +2890,8 @@ namespace Watch_Face_Editor
             circle_scale.start_angle = (int)uCtrl_Circle_Scale_Opt.numericUpDown_scaleCircle_startAngle.Value;
             circle_scale.end_angle = (int)uCtrl_Circle_Scale_Opt.numericUpDown_scaleCircle_endAngle.Value;
 
+            circle_scale.alpha = (int)uCtrl_Circle_Scale_Opt.numericUpDown_Alpha.Value;
+
             circle_scale.line_cap = uCtrl_Circle_Scale_Opt.GetLineCap();
 
             circle_scale.color = ColorToString(uCtrl_Circle_Scale_Opt.GetColorScale());
@@ -2275,6 +2919,7 @@ namespace Watch_Face_Editor
 
             linear_scale.lenght = (int)uCtrl_Linear_Scale_Opt.numericUpDown_scaleLinear_length.Value;
             linear_scale.line_width = (int)Math.Abs(uCtrl_Linear_Scale_Opt.numericUpDown_scaleLinear_width.Value);
+            linear_scale.alpha = (int)uCtrl_Linear_Scale_Opt.numericUpDown_Alpha.Value;
             linear_scale.line_cap = uCtrl_Linear_Scale_Opt.GetLineCap();
 
             linear_scale.vertical = uCtrl_Linear_Scale_Opt.radioButton_vertical.Checked;
@@ -2299,7 +2944,8 @@ namespace Watch_Face_Editor
 
                 icon.src = uCtrl_Icon_Opt.GetIcon();
                 icon.x = (int)uCtrl_Icon_Opt.numericUpDown_iconX.Value;
-                icon.y = (int)uCtrl_Icon_Opt.numericUpDown_iconY.Value; 
+                icon.y = (int)uCtrl_Icon_Opt.numericUpDown_iconY.Value;
+                icon.alpha = (int)uCtrl_Icon_Opt.numericUpDown_Alpha.Value;
             }
             else if (type == "hmUI_widget_IMG_STATUS")
             {
@@ -2309,6 +2955,7 @@ namespace Watch_Face_Editor
                 status.src = uCtrl_Icon_Opt.GetIcon();
                 status.x = (int)uCtrl_Icon_Opt.numericUpDown_iconX.Value;
                 status.y = (int)uCtrl_Icon_Opt.numericUpDown_iconY.Value;
+                status.alpha = (int)uCtrl_Icon_Opt.numericUpDown_Alpha.Value;
             }
 
             JSON_Modified = true;
@@ -2349,8 +2996,10 @@ namespace Watch_Face_Editor
             systemFont.text_size = (int)uCtrl_Text_SystemFont_Opt.numericUpDown_Size.Value;
             systemFont.char_space = (int)uCtrl_Text_SystemFont_Opt.numericUpDown_Spacing.Value;
             systemFont.line_space = (int)uCtrl_Text_SystemFont_Opt.numericUpDown_LineSpace.Value;
+            systemFont.alpha = (int)uCtrl_Text_SystemFont_Opt.numericUpDown_Alpha.Value;
 
             systemFont.color = ColorToString(uCtrl_Text_SystemFont_Opt.GetColorText());
+            systemFont.color_2 = ColorToString(uCtrl_Text_SystemFont_Opt.GetColor2Text());
 
             systemFont.align_h = uCtrl_Text_SystemFont_Opt.GetHorizontalAlignment();
             systemFont.align_v = uCtrl_Text_SystemFont_Opt.GetVerticalAlignment();
@@ -2358,6 +3007,7 @@ namespace Watch_Face_Editor
 
             systemFont.centreHorizontally = uCtrl_Text_SystemFont_Opt.checkBox_CentreHorizontally.Checked;
             systemFont.centreVertically = uCtrl_Text_SystemFont_Opt.checkBox_CentreVertically.Checked;
+            systemFont.use_color_2 = uCtrl_Text_SystemFont_Opt.checkBox_Color2.Checked;
 
             systemFont.font = uCtrl_Text_SystemFont_Opt.GetFont();
             systemFont.unit_string = uCtrl_Text_SystemFont_Opt.GetUnitText();
@@ -3058,42 +3708,10 @@ namespace Watch_Face_Editor
             }
             if (FileName != null && ProjectDir != null) // проект уже сохранен
             {
-                // формируем картинку для предпросмотра
-                /* Bitmap bitmap = new Bitmap(Convert.ToInt32(454), Convert.ToInt32(454), PixelFormat.Format32bppArgb);
-                 Bitmap mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gtr_3.png");
-                 switch (ProgramSettings.Watch_Model)
-                 {
-                     case "GTR 3 Pro":
-                         bitmap = new Bitmap(Convert.ToInt32(480), Convert.ToInt32(480), PixelFormat.Format32bppArgb);
-                         mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gtr_3_pro.png");
-                         break;
-                     case "GTS 3":
-                     case "GTS 4":
-                         bitmap = new Bitmap(Convert.ToInt32(390), Convert.ToInt32(450), PixelFormat.Format32bppArgb);
-                         mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gts_3.png");
-                         break;
-                     case "GTR 4":
-                         bitmap = new Bitmap(Convert.ToInt32(466), Convert.ToInt32(466), PixelFormat.Format32bppArgb);
-                         mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gtr_4.png");
-                         break;
-                     case "Amazfit Band 7":
-                         bitmap = new Bitmap(Convert.ToInt32(194), Convert.ToInt32(368), PixelFormat.Format32bppArgb);
-                         mask = new Bitmap(Application.StartupPath + @"\Mask\mask_band_7.png");
-                         break;
-                     case "GTS 4 mini":
-                         bitmap = new Bitmap(Convert.ToInt32(336), Convert.ToInt32(384), PixelFormat.Format32bppArgb);
-                         mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gts_4_mini.png");
-                         break;
-                     case "Falcon":
-                     case "GTR mini":
-                         bitmap = new Bitmap(Convert.ToInt32(416), Convert.ToInt32(416), PixelFormat.Format32bppArgb);
-                         mask = new Bitmap(Application.StartupPath + @"\Mask\mask_falcon.png");
-                         break;
-                 }*/
                 Bitmap bitmap = new Bitmap(SelectedModel.background.w, SelectedModel.background.h, PixelFormat.Format32bppArgb);
                 Bitmap mask = new Bitmap(Application.StartupPath + @"\Mask\" + SelectedModel.maskImage);
                 Graphics gPanel = Graphics.FromImage(bitmap);
-                Creat_preview_editable_pointers(gPanel, 1.0f, false);
+                Creat_preview_editable_pointers(gPanel, 1.0f, false, radioButton_ScreenNormal.Checked ? 0 : 1);
                 if (checkBox_crop.Checked) bitmap = ApplyMask(bitmap, mask);
 
                 // определяем имя файла для сохранения и сохраняем файл
@@ -3158,41 +3776,10 @@ namespace Watch_Face_Editor
                     uCtrl_EditableBackground_Opt_PreviewAdd(null, null, index);
                     return;
                 }
-                /* Bitmap bitmap = new Bitmap(Convert.ToInt32(454), Convert.ToInt32(454), PixelFormat.Format32bppArgb);
-                 Bitmap mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gtr_3.png");
-                 switch (ProgramSettings.Watch_Model)
-                 {
-                     case "GTR 3 Pro":
-                         bitmap = new Bitmap(Convert.ToInt32(480), Convert.ToInt32(480), PixelFormat.Format32bppArgb);
-                         mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gtr_3_pro.png");
-                         break;
-                     case "GTS 3":
-                     case "GTS 4":
-                         bitmap = new Bitmap(Convert.ToInt32(390), Convert.ToInt32(450), PixelFormat.Format32bppArgb);
-                         mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gts_3.png");
-                         break;
-                     case "GTR 4":
-                         bitmap = new Bitmap(Convert.ToInt32(466), Convert.ToInt32(466), PixelFormat.Format32bppArgb);
-                         mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gtr_4.png");
-                         break;
-                     case "Amazfit Band 7":
-                         bitmap = new Bitmap(Convert.ToInt32(194), Convert.ToInt32(368), PixelFormat.Format32bppArgb);
-                         mask = new Bitmap(Application.StartupPath + @"\Mask\mask_band_7.png");
-                         break;
-                     case "GTS 4 mini":
-                         bitmap = new Bitmap(Convert.ToInt32(336), Convert.ToInt32(384), PixelFormat.Format32bppArgb);
-                         mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gts_4_mini.png");
-                         break;
-                     case "Falcon":
-                     case "GTR mini":
-                         bitmap = new Bitmap(Convert.ToInt32(416), Convert.ToInt32(416), PixelFormat.Format32bppArgb);
-                         mask = new Bitmap(Application.StartupPath + @"\Mask\mask_falcon.png");
-                         break;
-                 }*/
                 Bitmap bitmap = new Bitmap(SelectedModel.background.w, SelectedModel.background.h, PixelFormat.Format32bppArgb);
                 Bitmap mask = new Bitmap(Application.StartupPath + @"\Mask\" + SelectedModel.maskImage);
                 Graphics gPanel = Graphics.FromImage(bitmap);
-                Creat_preview_editable_pointers(gPanel, 1.0f, false);
+                Creat_preview_editable_pointers(gPanel, 1.0f, false, radioButton_ScreenNormal.Checked ? 0 : 1);
                 if (checkBox_crop.Checked) bitmap = ApplyMask(bitmap, mask);
 
                 //Image loadedImage = null;
@@ -3344,6 +3931,7 @@ namespace Watch_Face_Editor
             text_circle.imperial_unit = uCtrl_Text_Circle_Opt.GetUnitImperial();
             text_circle.dot_image = uCtrl_Text_Circle_Opt.GetImageDecimalPoint();
             text_circle.error_image = uCtrl_Text_Circle_Opt.GetImageError();
+            text_circle.separator_image = uCtrl_Text_Circle_Opt.GetSeparator();
 
             text_circle.circle_center_X = (int)uCtrl_Text_Circle_Opt.numericUpDown_centr_X.Value;
             text_circle.circle_center_Y = (int)uCtrl_Text_Circle_Opt.numericUpDown_centr_Y.Value;
@@ -3385,9 +3973,80 @@ namespace Watch_Face_Editor
             img_number.unit = uCtrl_Text_Rotate_Opt.GetUnit();
             img_number.imperial_unit = uCtrl_Text_Rotate_Opt.GetUnitMile();
             img_number.dot_image = uCtrl_Text_Rotate_Opt.GetImageDecimalPointOrMinus();
+            img_number.negative_image = uCtrl_Text_Rotate_Opt.GetImageDecimalPointOrMinus();
             img_number.invalid_image = uCtrl_Text_Rotate_Opt.GetImageError();
+            img_number.separator_image = uCtrl_Text_Rotate_Opt.GetSeparator(); // разделитель для макс/мин температуры
             img_number.zero = uCtrl_Text_Rotate_Opt.checkBox_addZero.Checked;
 
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_Weather_FewDays_Opt_ValueChanged(object sender, EventArgs eventArgs)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+            FewDays fewDays = (FewDays)uCtrl_Weather_FewDays_Opt._FewDays;
+            if (fewDays == null) return;
+
+
+            uCtrl_Weather_FewDays_Opt._FewDays = fewDays;
+
+            if (fewDays == null)
+            {
+                PreviewView = true;
+                return;
+            }
+
+            fewDays.Background = uCtrl_Weather_FewDays_Opt.GetBackground();
+            fewDays.X = (int)uCtrl_Weather_FewDays_Opt.numericUpDown_posX.Value;
+            fewDays.Y = (int)uCtrl_Weather_FewDays_Opt.numericUpDown_posY.Value;
+
+            fewDays.DaysCount = (int)uCtrl_Weather_FewDays_Opt.numericUpDown_daysCount.Value;
+            fewDays.ColumnWidth = (int)uCtrl_Weather_FewDays_Opt.numericUpDown_columnWidth.Value;
+
+            //fewDays.PositionOnGraph = uCtrl_Weather_FewDays_Opt.checkBox_position_on_graph.Checked;
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_TemperatureGraph_Opt_ValueChanged(object sender, EventArgs eventArgs)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+            Weather_Diagram diagram = (Weather_Diagram)uCtrl_TemperatureGraph_Opt._Diagram;
+            if (diagram == null) return;
+
+            diagram.Y = (int)uCtrl_TemperatureGraph_Opt.numericUpDown_posY.Value;
+            diagram.Height = (int)uCtrl_TemperatureGraph_Opt.numericUpDown_height.Value;
+            diagram.PositionOnGraph = uCtrl_TemperatureGraph_Opt.checkBox_position_on_graph.Checked;
+            diagram.GraphFullScreen = uCtrl_TemperatureGraph_Opt.checkBox_graph_fullScreen.Checked;
+
+            diagram.Max_color = ColorToString(uCtrl_TemperatureGraph_Opt.GetMaxColor());
+            diagram.Max_lineWidth = (int)uCtrl_TemperatureGraph_Opt.numericUpDown_max_lineWidth.Value;
+            diagram.Max_pointType = uCtrl_TemperatureGraph_Opt.GetMaxPointType();
+            diagram.Max_pointSize = (int)uCtrl_TemperatureGraph_Opt.numericUpDown_max_pointSize.Value;
+            diagram.Max_offsetX = (int)uCtrl_TemperatureGraph_Opt.numericUpDown_max_offsetX.Value;
+
+            diagram.Min_color = ColorToString(uCtrl_TemperatureGraph_Opt.GetMinColor());
+            diagram.Min_lineWidth = (int)uCtrl_TemperatureGraph_Opt.numericUpDown_min_lineWidth.Value;
+            diagram.Min_pointType = uCtrl_TemperatureGraph_Opt.GetMinPointType();
+            diagram.Min_pointSize = (int)uCtrl_TemperatureGraph_Opt.numericUpDown_min_pointSize.Value;
+            diagram.Min_offsetX = (int)uCtrl_TemperatureGraph_Opt.numericUpDown_min_offsetX.Value;
+
+            diagram.Average_color = ColorToString(uCtrl_TemperatureGraph_Opt.GetAverageColor());
+            diagram.Average_lineWidth = (int)uCtrl_TemperatureGraph_Opt.numericUpDown_average_lineWidth.Value;
+            diagram.Average_pointType = uCtrl_TemperatureGraph_Opt.GetAveragePointType();
+            diagram.Average_pointSize = (int)uCtrl_TemperatureGraph_Opt.numericUpDown_average_pointSize.Value;
+            diagram.Average_offsetX = (int)uCtrl_TemperatureGraph_Opt.numericUpDown_average_offsetX.Value;
+
+            diagram.Use_max_diagram = uCtrl_TemperatureGraph_Opt.checkBox_use_max.Checked;
+            diagram.Use_min_diagram = uCtrl_TemperatureGraph_Opt.checkBox_use_min.Checked;
+            diagram.Use_average_diagram = uCtrl_TemperatureGraph_Opt.checkBox_use_average.Checked;
 
             JSON_Modified = true;
             PreviewImage();
@@ -3509,6 +4168,236 @@ namespace Watch_Face_Editor
             PreviewView = true;
         }
 
+        //////
+        private void uCtrl_Switch_Background_Opt_ValueChanged(object sender, EventArgs eventArgs)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+            ElementSwitchBackground switchBG = Watch_Face.SwitchBackground;
+            if (switchBG == null) switchBG = new ElementSwitchBackground();
+            Button button = switchBG.Button;
+
+            button.x = (int)uCtrl_Switch_Background_Opt.numericUpDown_buttonX.Value;
+            button.y = (int)uCtrl_Switch_Background_Opt.numericUpDown_buttonY.Value;
+            button.w = (int)uCtrl_Switch_Background_Opt.numericUpDown_width.Value;
+            button.h = (int)uCtrl_Switch_Background_Opt.numericUpDown_height.Value;
+            button.radius = (int)uCtrl_Switch_Background_Opt.numericUpDown_radius.Value;
+            button.text_size = (int)uCtrl_Switch_Background_Opt.numericUpDown_textSize.Value;
+            button.color = ColorToString(uCtrl_Switch_Background_Opt.GetColorText());
+            button.text = uCtrl_Switch_Background_Opt.GetText();
+            button.press_src = uCtrl_Switch_Background_Opt.GetPressImage();
+            button.normal_src = uCtrl_Switch_Background_Opt.GetNormalImage();
+            button.normal_color = ColorToString(uCtrl_Switch_Background_Opt.GetColorNormal());
+            button.press_color = ColorToString(uCtrl_Switch_Background_Opt.GetColorPress());
+
+            switchBG.use_crown = uCtrl_Switch_Background_Opt.checkBox_use_crown.Checked;
+            switchBG.use_in_AOD = uCtrl_Switch_Background_Opt.checkBox_use_in_AOD.Checked;
+            switchBG.vibro = uCtrl_Switch_Background_Opt.checkBox_vibro.Checked;
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_Switch_Background_Opt_SelectImage(int rowIndex)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+            ElementSwitchBackground switchBG = Watch_Face.SwitchBackground;
+            if (switchBG == null) switchBG = new ElementSwitchBackground();
+
+            switchBG.select_index = rowIndex;
+
+            JSON_Modified = true;
+            PreviewImage();
+            //FormText();
+        }
+
+        private void uCtrl_Switch_Background_Opt_AddImage(List<String> BG_images, List<String> Toast_list, int rowIndex)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+            ElementSwitchBackground switchBG = Watch_Face.SwitchBackground;
+            if (switchBG == null) switchBG = new ElementSwitchBackground();
+
+            switchBG.bg_list = BG_images;
+            Toast_list[rowIndex] = Properties.FormStrings.ToastBG;
+            switchBG.toast_list = Toast_list;
+            switchBG.select_index = rowIndex;
+            uCtrl_Switch_Background_Opt.AddBackgroundImages(BG_images, Toast_list, rowIndex);
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_Switch_Background_Opt_DelImage(List<String> BG_images, List<String> Toast_list, int rowIndex)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+            ElementSwitchBackground switchBG = Watch_Face.SwitchBackground;
+            if (switchBG == null) switchBG = new ElementSwitchBackground();
+
+            switchBG.bg_list = BG_images;
+            switchBG.toast_list = Toast_list;
+            switchBG.select_index = rowIndex;
+            uCtrl_Switch_Background_Opt.AddBackgroundImages(BG_images, Toast_list, rowIndex);
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_Switch_Background_Opt_СhangeImage(List<String> BG_images, List<String> Toast_list, int rowIndex)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+            ElementSwitchBackground switchBG = Watch_Face.SwitchBackground;
+            if (switchBG == null) switchBG = new ElementSwitchBackground();
+
+            switchBG.bg_list = BG_images;
+            switchBG.toast_list = Toast_list;
+            switchBG.select_index = rowIndex;
+            uCtrl_Switch_Background_Opt.AddBackgroundImages(BG_images, Toast_list, rowIndex);
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_Switch_Background_Opt_EditToast(string ToastText, int rowIndex)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+            ElementSwitchBackground switchBG = Watch_Face.SwitchBackground;
+            if (switchBG == null) switchBG = new ElementSwitchBackground();
+
+            if (rowIndex < switchBG.toast_list.Count) switchBG.toast_list[rowIndex] = ToastText;
+            uCtrl_Switch_Background_Opt.AddBackgroundImages(switchBG.bg_list, switchBG.toast_list, rowIndex);
+
+            JSON_Modified = true;
+            //PreviewImage();
+            FormText();
+        }
+
+        //////
+
+        private void uCtrl_Switch_BG_Color_Opt_ValueChanged(object sender, EventArgs eventArgs)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+            ElementSwitchBG_Color switchBG_Color = Watch_Face.SwitchBG_Color;
+            if (switchBG_Color == null) switchBG_Color = new ElementSwitchBG_Color();
+            Button button = switchBG_Color.Button;
+
+            button.x = (int)uCtrl_Switch_BG_Color_Opt.numericUpDown_buttonX.Value;
+            button.y = (int)uCtrl_Switch_BG_Color_Opt.numericUpDown_buttonY.Value;
+            button.w = (int)uCtrl_Switch_BG_Color_Opt.numericUpDown_width.Value;
+            button.h = (int)uCtrl_Switch_BG_Color_Opt.numericUpDown_height.Value;
+            button.radius = (int)uCtrl_Switch_BG_Color_Opt.numericUpDown_radius.Value;
+            button.text_size = (int)uCtrl_Switch_BG_Color_Opt.numericUpDown_textSize.Value;
+            button.color = ColorToString(uCtrl_Switch_BG_Color_Opt.GetColorText());
+            button.text = uCtrl_Switch_BG_Color_Opt.GetText();
+            button.press_src = uCtrl_Switch_BG_Color_Opt.GetPressImage();
+            button.normal_src = uCtrl_Switch_BG_Color_Opt.GetNormalImage();
+            button.normal_color = ColorToString(uCtrl_Switch_BG_Color_Opt.GetColorNormal());
+            button.press_color = ColorToString(uCtrl_Switch_BG_Color_Opt.GetColorPress());
+
+            switchBG_Color.use_crown = uCtrl_Switch_BG_Color_Opt.checkBox_use_crown.Checked;
+            switchBG_Color.use_in_AOD = uCtrl_Switch_BG_Color_Opt.checkBox_use_in_AOD.Checked;
+            switchBG_Color.vibro = uCtrl_Switch_BG_Color_Opt.checkBox_vibro.Checked;
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+       
+        private void uCtrl_Switch_BG_Color_Opt_SelectColor(int rowIndex)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+            ElementSwitchBG_Color switchBG_Color = Watch_Face.SwitchBG_Color;
+            if (switchBG_Color == null) switchBG_Color = new ElementSwitchBG_Color();
+
+            switchBG_Color.select_index = rowIndex;
+
+            JSON_Modified = true;
+            PreviewImage();
+            //FormText();
+        }
+
+        private void uCtrl_Switch_BG_Color_Opt_AddColor(List<Color> BG_colors, List<String> Toast_list, int rowIndex)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+            ElementSwitchBG_Color switchBG_Color = Watch_Face.SwitchBG_Color;
+            if (switchBG_Color == null) switchBG_Color = new ElementSwitchBG_Color();
+
+            List<string> listColors = BG_colors.Select(ColorToString).ToList();
+            switchBG_Color.color_list = listColors;
+            Toast_list[rowIndex] = Properties.FormStrings.ToastBG;
+            switchBG_Color.toast_list = Toast_list;
+            switchBG_Color.select_index = rowIndex;
+            uCtrl_Switch_BG_Color_Opt.AddBackgroundColors(BG_colors, Toast_list, rowIndex);
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_Switch_BG_Color_Opt_DelColor(List<Color> BG_colors, List<String> Toast_list, int rowIndex)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+            ElementSwitchBG_Color switchBG_Color = Watch_Face.SwitchBG_Color;
+            if (switchBG_Color == null) switchBG_Color = new ElementSwitchBG_Color();
+
+            List<string> listColors = BG_colors.Select(ColorToString).ToList();
+            switchBG_Color.color_list = listColors;
+            switchBG_Color.toast_list = Toast_list;
+            switchBG_Color.select_index = rowIndex;
+            uCtrl_Switch_BG_Color_Opt.AddBackgroundColors(BG_colors, Toast_list, rowIndex);
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_Switch_BG_Color_Opt_СhangeColor(List<Color> BG_colors, List<String> Toast_list, int rowIndex)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+            ElementSwitchBG_Color switchBG_Color = Watch_Face.SwitchBG_Color;
+            if (switchBG_Color == null) switchBG_Color = new ElementSwitchBG_Color();
+
+            List<string> listColors = BG_colors.Select(ColorToString).ToList();
+            switchBG_Color.color_list = listColors;
+            switchBG_Color.toast_list = Toast_list;
+            switchBG_Color.select_index = rowIndex;
+            uCtrl_Switch_BG_Color_Opt.AddBackgroundColors(BG_colors, Toast_list, rowIndex);
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_Switch_BG_Color_Opt_EditToast(string ToastText, int rowIndex)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+            ElementSwitchBG_Color switchBG_Color = Watch_Face.SwitchBG_Color;
+            if (switchBG_Color == null) switchBG_Color = new ElementSwitchBG_Color();
+
+            if (rowIndex < switchBG_Color.toast_list.Count) switchBG_Color.toast_list[rowIndex] = ToastText;
+            List<Color> listColors = switchBG_Color.color_list.Select(StringToColor).ToList();
+            uCtrl_Switch_BG_Color_Opt.AddBackgroundColors(listColors, switchBG_Color.toast_list, rowIndex);
+
+            JSON_Modified = true;
+            //PreviewImage();
+            FormText();
+        }
+        //////
+
         private Color StringToColor(string color)
         {
             Color new_color = Color.Black;
@@ -3529,11 +4418,14 @@ namespace Watch_Face_Editor
             return colorStr;
         }
 
-        private List<string> GetElementsNameList(List<Object> elements)
+        private List<string> GetElementsNameList(List<Object> elements, List<Optional_Types_List> types_list)
         {
             List<string> elementName = new List<string>();
-            foreach (Object element in elements)
+
+            for (int i = 0; i < elements.Count; i++)
+            //foreach (Object element in elements)
             {
+                Object element = elements[i];
                 //string elementStr = element.ToString();
                 //string type = GetTypeFromSring(elementStr);
                 string type = element.GetType().Name;
@@ -3670,7 +4562,29 @@ namespace Watch_Face_Editor
                     case "ElementMoon":
                         elementName.Add(Properties.ElementsString.TypeMoon);
                         break;
-                        #endregion
+                    #endregion
+
+                    #region ElementImage
+                    case "ElementImage":
+                        if (types_list != null && types_list.Count > 0 && types_list.Count > i)
+                        {
+                            if (types_list[i].type == "APPLIST") elementName.Add(Properties.ElementsString.TypeAppsList);
+                            if (types_list[i].type == "SPORTSLIST") elementName.Add(Properties.ElementsString.TypeSportList);
+                        }
+                        break;
+                    #endregion
+
+                    //#region ElementAppsList
+                    //case "ElementAppsList":
+                    //    elementName.Add(Properties.ElementsString.TypeAppsList);
+                    //    break;
+                    //#endregion
+
+                    //#region ElementSportList
+                    //case "ElementSportList":
+                    //    elementName.Add(Properties.ElementsString.TypeSportList);
+                    //    break;
+                    //#endregion
                 }
             }
             return elementName;
@@ -3696,12 +4610,19 @@ namespace Watch_Face_Editor
             button.press_color = ColorToString(uCtrl_Button_Opt.GetColorPress());
             button.visible = true;
 
-            if (rowIndex < 0 || rowIndex >= buttonsList.Count) buttonsList.Add(button);
-            else buttonsList.Insert(rowIndex, button);
+            //if (rowIndex < 0 || rowIndex >= buttonsList.Count) buttonsList.Add(button);
+            //else buttonsList.Insert(rowIndex, button);
+            //buttonsList.Add(button);
 
             //if (rowIndex < 0 || rowIndex == buttonsList.Count - 1) buttonsList.Add(button);
             //else buttonsList.Insert(rowIndex, button);
             //rowIndex++;
+
+            if (rowIndex < 0 || rowIndex >= buttonsList.Count - 1) { 
+                buttonsList.Add(button);
+                rowIndex = buttonsList.Count - 1;
+            }
+            else buttonsList.Insert(++rowIndex, button);
 
             List<String> scriptClickList = ButtonClickScriptToString(buttonsList);
             List<String> scriptLongPressList = ButtonLongPressScriptToString(buttonsList);
@@ -3719,11 +4640,12 @@ namespace Watch_Face_Editor
             List<Button> buttonsList = Watch_Face.Buttons.Button;
 
             if (rowIndex >= 0 || rowIndex < buttonsList.Count) buttonsList.RemoveAt(rowIndex);
+            if (rowIndex >= buttonsList.Count) rowIndex = buttonsList.Count - 1;
 
             List<String> scriptClickList = ButtonClickScriptToString(buttonsList);
             List<String> scriptLongPressList = ButtonLongPressScriptToString(buttonsList);
             List<bool> visibleList = ButtonVisibleList(buttonsList);
-            uCtrl_Button_Opt.UpdateButtonsList(scriptClickList, scriptLongPressList, visibleList);
+            uCtrl_Button_Opt.UpdateButtonsList(scriptClickList, scriptLongPressList, visibleList, rowIndex);
 
             JSON_Modified = true;
             PreviewImage();
@@ -3763,6 +4685,7 @@ namespace Watch_Face_Editor
             return visibleList;
         }
 
+        ///////////
         private void uCtrl_Text_Opt_WidgetProperty_Copy(object sender, EventArgs eventArgs)
         {
             if (WidgetProperty.ContainsKey("hmUI_widget_IMG_NUMBER")) WidgetProperty.Remove("hmUI_widget_IMG_NUMBER");
@@ -3778,6 +4701,8 @@ namespace Watch_Face_Editor
             img_number.imageY = (int)uCtrl_Text_Opt.numericUpDown_imageY.Value;
             img_number.space = (int)uCtrl_Text_Opt.numericUpDown_spacing.Value;
             img_number.angle = (int)uCtrl_Text_Opt.numericUpDown_angle.Value;
+            img_number.alpha = (int)uCtrl_Text_Opt.numericUpDown_Alpha.Value;
+            img_number.icon_alpha = (int)uCtrl_Text_Opt.numericUpDown_iconAlpha.Value;
             if (!uCtrl_Text_Opt.Altitude) img_number.dot_image = uCtrl_Text_Opt.GetImageDecimalPoint();
             else img_number.negative_image = uCtrl_Text_Opt.GetImageDecimalPoint();
             img_number.unit = uCtrl_Text_Opt.GetUnit();
@@ -3826,6 +4751,8 @@ namespace Watch_Face_Editor
             }
             uCtrl_Text_Opt.numericUpDown_spacing.Value = img_number.space;
             if (_angleVisible && SelectedModel.versionOS >= 2) uCtrl_Text_Opt.numericUpDown_angle.Value = img_number.angle;
+            uCtrl_Text_Opt.numericUpDown_Alpha.Value = img_number.alpha;
+            uCtrl_Text_Opt.numericUpDown_iconAlpha.Value = img_number.icon_alpha;
 
             uCtrl_Text_Opt.SetAlignment(img_number.align);
 
@@ -3911,6 +4838,7 @@ namespace Watch_Face_Editor
             img_level.X = (int)uCtrl_Images_Opt.numericUpDown_imageX.Value;
             img_level.Y = (int)uCtrl_Images_Opt.numericUpDown_imageY.Value;
             img_level.image_length = (int)uCtrl_Images_Opt.numericUpDown_pictures_count.Value;
+            img_level.alpha = (int)uCtrl_Images_Opt.numericUpDown_Alpha.Value;
             img_level.shortcut = uCtrl_Images_Opt.checkBox_shortcut.Checked;
 
             WidgetProperty.Add("hmUI_widget_IMG_LEVEL", img_level);
@@ -3939,6 +4867,7 @@ namespace Watch_Face_Editor
             if (img_level.image_length > 0)
                 uCtrl_Images_Opt.numericUpDown_pictures_count.Value = img_level.image_length;
             //if (!imagesCountEnable) uCtrl_Images_Opt.numericUpDown_pictures_count.Value = imagesCount;
+            uCtrl_Images_Opt.numericUpDown_Alpha.Value = img_level.alpha;
 
             uCtrl_Images_Opt.checkBox_shortcut.Checked = img_level.shortcut;
 
@@ -3959,6 +4888,7 @@ namespace Watch_Face_Editor
 
             circle_scale.start_angle = (int)uCtrl_Circle_Scale_Opt.numericUpDown_scaleCircle_startAngle.Value;
             circle_scale.end_angle = (int)uCtrl_Circle_Scale_Opt.numericUpDown_scaleCircle_endAngle.Value;
+            circle_scale.alpha = (int)uCtrl_Circle_Scale_Opt.numericUpDown_Alpha.Value;
 
             circle_scale.line_cap = uCtrl_Circle_Scale_Opt.GetLineCap();
 
@@ -3993,6 +4923,7 @@ namespace Watch_Face_Editor
 
             uCtrl_Circle_Scale_Opt.numericUpDown_scaleCircle_startAngle.Value = circle_scale.start_angle;
             uCtrl_Circle_Scale_Opt.numericUpDown_scaleCircle_endAngle.Value = circle_scale.end_angle;
+            uCtrl_Circle_Scale_Opt.numericUpDown_Alpha.Value = circle_scale.alpha;
 
             uCtrl_Circle_Scale_Opt.SetLineCap(circle_scale.line_cap);
 
@@ -4018,6 +4949,7 @@ namespace Watch_Face_Editor
 
             linear_scale.lenght = (int)uCtrl_Linear_Scale_Opt.numericUpDown_scaleLinear_length.Value;
             linear_scale.line_width = (int)Math.Abs(uCtrl_Linear_Scale_Opt.numericUpDown_scaleLinear_width.Value);
+            linear_scale.alpha = (int)uCtrl_Linear_Scale_Opt.numericUpDown_Alpha.Value;
             linear_scale.line_cap = uCtrl_Linear_Scale_Opt.GetLineCap();
 
             linear_scale.vertical = uCtrl_Linear_Scale_Opt.radioButton_vertical.Checked;
@@ -4059,6 +4991,7 @@ namespace Watch_Face_Editor
 
             uCtrl_Linear_Scale_Opt.numericUpDown_scaleLinear_length.Value = linear_scale.lenght;
             uCtrl_Linear_Scale_Opt.numericUpDown_scaleLinear_width.Value = linear_scale.line_width;
+            uCtrl_Linear_Scale_Opt.numericUpDown_Alpha.Value = linear_scale.alpha;
             uCtrl_Linear_Scale_Opt.SetLineCap(linear_scale.line_cap);
 
             uCtrl_Linear_Scale_Opt.SetColorScale(StringToColor(linear_scale.color));
@@ -4121,7 +5054,6 @@ namespace Watch_Face_Editor
             hmUI_widget_IMG_NUMBER img_number = new hmUI_widget_IMG_NUMBER();
 
             img_number.align = uCtrl_Text_Weather_Opt.GetAlignment();
-            img_number.follow = uCtrl_Text_Weather_Opt.checkBox_follow.Checked;
             img_number.icon = uCtrl_Text_Weather_Opt.GetIcon();
             img_number.iconPosX = (int)uCtrl_Text_Weather_Opt.numericUpDown_iconX.Value;
             img_number.iconPosY = (int)uCtrl_Text_Weather_Opt.numericUpDown_iconY.Value;
@@ -4130,11 +5062,13 @@ namespace Watch_Face_Editor
             img_number.imageY = (int)uCtrl_Text_Weather_Opt.numericUpDown_imageY.Value;
             img_number.space = (int)uCtrl_Text_Weather_Opt.numericUpDown_spacing.Value;
             img_number.angle = (int)uCtrl_Text_Weather_Opt.numericUpDown_angle.Value;
+            img_number.alpha = (int)uCtrl_Text_Weather_Opt.numericUpDown_Alpha.Value;
+            img_number.icon_alpha = (int)uCtrl_Text_Weather_Opt.numericUpDown_iconAlpha.Value;
             img_number.unit = uCtrl_Text_Weather_Opt.GetUnit_C();
             img_number.imperial_unit = uCtrl_Text_Weather_Opt.GetUnit_F();
             img_number.negative_image = uCtrl_Text_Weather_Opt.GetImageMinus();
             img_number.invalid_image = uCtrl_Text_Weather_Opt.GetImageError();
-            img_number.zero = uCtrl_Text_Weather_Opt.checkBox_addZero.Checked;
+            img_number.dot_image = uCtrl_Text_Weather_Opt.GetSeparator();
 
             WidgetProperty.Add("hmUI_widget_IMG_NUMBER", img_number);
             uCtrl_Text_Weather_Opt.WidgetProperty = WidgetProperty;
@@ -4168,13 +5102,13 @@ namespace Watch_Face_Editor
             uCtrl_Text_Weather_Opt.SetUnit_F(img_number.imperial_unit);
             uCtrl_Text_Weather_Opt.SetImageError(img_number.invalid_image);
             uCtrl_Text_Weather_Opt.SetImageMinus(img_number.negative_image);
+            uCtrl_Text_Weather_Opt.SetSeparator(img_number.dot_image);
             uCtrl_Text_Weather_Opt.numericUpDown_spacing.Value = img_number.space;
             uCtrl_Text_Weather_Opt.numericUpDown_angle.Value = img_number.angle;
+            uCtrl_Text_Weather_Opt.numericUpDown_Alpha.Value = img_number.alpha;
+            uCtrl_Text_Weather_Opt.numericUpDown_iconAlpha.Value = img_number.icon_alpha;
 
             uCtrl_Text_Weather_Opt.SetAlignment(img_number.align);
-
-            uCtrl_Text_Weather_Opt.checkBox_addZero.Checked = img_number.zero;
-            uCtrl_Text_Weather_Opt.checkBox_follow.Checked = img_number.follow;
 
             PreviewView = true;
             uCtrl_Text_Weather_Opt_ValueChanged(sender, eventArgs);
@@ -4193,6 +5127,7 @@ namespace Watch_Face_Editor
             systemFont.text_size = (int)uCtrl_Text_SystemFont_Opt.numericUpDown_Size.Value;
             systemFont.char_space = (int)uCtrl_Text_SystemFont_Opt.numericUpDown_Spacing.Value;
             systemFont.line_space = (int)uCtrl_Text_SystemFont_Opt.numericUpDown_LineSpace.Value;
+            systemFont.alpha = (int)uCtrl_Text_SystemFont_Opt.numericUpDown_Alpha.Value;
 
             systemFont.color = ColorToString(uCtrl_Text_SystemFont_Opt.GetColorText());
 
@@ -4232,6 +5167,7 @@ namespace Watch_Face_Editor
             uCtrl_Text_SystemFont_Opt.numericUpDown_Size.Value = system_font.text_size;
             uCtrl_Text_SystemFont_Opt.numericUpDown_Spacing.Value = system_font.char_space;
             uCtrl_Text_SystemFont_Opt.numericUpDown_LineSpace.Value = system_font.line_space;
+            uCtrl_Text_SystemFont_Opt.numericUpDown_Alpha.Value = system_font.alpha;
 
             uCtrl_Text_SystemFont_Opt.SetColorText(StringToColor(system_font.color));
 
@@ -4263,6 +5199,7 @@ namespace Watch_Face_Editor
             text_circle.imperial_unit = uCtrl_Text_Circle_Opt.GetUnitImperial();
             text_circle.dot_image = uCtrl_Text_Circle_Opt.GetImageDecimalPoint();
             text_circle.error_image = uCtrl_Text_Circle_Opt.GetImageError();
+            text_circle.separator_image = uCtrl_Text_Circle_Opt.GetSeparator();
 
             text_circle.circle_center_X = (int)uCtrl_Text_Circle_Opt.numericUpDown_centr_X.Value;
             text_circle.circle_center_Y = (int)uCtrl_Text_Circle_Opt.numericUpDown_centr_Y.Value;
@@ -4314,6 +5251,7 @@ namespace Watch_Face_Editor
             uCtrl_Text_Circle_Opt.SetUnitImperial(text_circle.imperial_unit);
             uCtrl_Text_Circle_Opt.SetImageError(text_circle.error_image);
             uCtrl_Text_Circle_Opt.SetImageDecimalPoint(text_circle.dot_image);
+            uCtrl_Text_Circle_Opt.SetSeparator(text_circle.separator_image);
 
             uCtrl_Text_Circle_Opt.SetHorizontalAlignment(text_circle.horizontal_alignment);
             uCtrl_Text_Circle_Opt.SetVerticalAlignment(text_circle.vertical_alignment);
@@ -4343,6 +5281,7 @@ namespace Watch_Face_Editor
             img_number.imperial_unit = uCtrl_Text_Rotate_Opt.GetUnitMile();
             img_number.dot_image = uCtrl_Text_Rotate_Opt.GetImageDecimalPointOrMinus();
             img_number.invalid_image = uCtrl_Text_Rotate_Opt.GetImageError();
+            img_number.separator_image = uCtrl_Text_Rotate_Opt.GetSeparator();
             img_number.zero = uCtrl_Text_Rotate_Opt.checkBox_addZero.Checked;
 
             WidgetProperty.Add("hmUI_widget_IMG_NUMBER", img_number);
@@ -4372,6 +5311,7 @@ namespace Watch_Face_Editor
             uCtrl_Text_Rotate_Opt.SetUnitMile(img_number.imperial_unit);
             uCtrl_Text_Rotate_Opt.SetImageError(img_number.invalid_image);
             uCtrl_Text_Rotate_Opt.SetImageDecimalPointOrMinus(img_number.dot_image);
+            uCtrl_Text_Rotate_Opt.SetSeparator(img_number.separator_image);
             //uCtrl_Text_Rotate_Opt.SetImageDecimalPointOrMinus
             uCtrl_Text_Rotate_Opt.numericUpDown_spacing.Value = img_number.space;
             uCtrl_Text_Rotate_Opt.numericUpDown_angle.Value = img_number.angle;

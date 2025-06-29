@@ -548,4 +548,7 @@
         QzsKo8r55YdW91fxFUYnjE4YnTA6YfSJdgPSvLhM8DVkIAAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="label_shortcuts_hint.Text" xml:space="preserve">
+    <value>Náhledový obrázek bude nahrazen ikonou aplikace stejné velikosti.</value>
+  </data>
 </root>

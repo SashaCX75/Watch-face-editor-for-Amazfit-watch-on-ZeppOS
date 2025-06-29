@@ -56,11 +56,16 @@
             this.button_cancel = new System.Windows.Forms.Button();
             this.groupBox_system = new System.Windows.Forms.GroupBox();
             this.radioButton_battery = new System.Windows.Forms.RadioButton();
+            this.radioButton_sportList = new System.Windows.Forms.RadioButton();
+            this.radioButton_appsList = new System.Windows.Forms.RadioButton();
             this.button_add = new System.Windows.Forms.Button();
+            this.groupBox_shortcuts = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox_date.SuspendLayout();
             this.groupBox_activity.SuspendLayout();
             this.groupBox_air.SuspendLayout();
             this.groupBox_system.SuspendLayout();
+            this.groupBox_shortcuts.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox_date
@@ -294,6 +299,22 @@
             this.radioButton_battery.UseVisualStyleBackColor = true;
             this.radioButton_battery.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
             // 
+            // radioButton_sportList
+            // 
+            resources.ApplyResources(this.radioButton_sportList, "radioButton_sportList");
+            this.radioButton_sportList.Name = "radioButton_sportList";
+            this.radioButton_sportList.TabStop = true;
+            this.radioButton_sportList.UseVisualStyleBackColor = true;
+            this.radioButton_sportList.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
+            // 
+            // radioButton_appsList
+            // 
+            resources.ApplyResources(this.radioButton_appsList, "radioButton_appsList");
+            this.radioButton_appsList.Name = "radioButton_appsList";
+            this.radioButton_appsList.TabStop = true;
+            this.radioButton_appsList.UseVisualStyleBackColor = true;
+            this.radioButton_appsList.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
+            // 
             // button_add
             // 
             resources.ApplyResources(this.button_add, "button_add");
@@ -301,12 +322,28 @@
             this.button_add.UseVisualStyleBackColor = true;
             this.button_add.Click += new System.EventHandler(this.button_add_Click);
             // 
+            // groupBox_shortcuts
+            // 
+            resources.ApplyResources(this.groupBox_shortcuts, "groupBox_shortcuts");
+            this.groupBox_shortcuts.Controls.Add(this.label2);
+            this.groupBox_shortcuts.Controls.Add(this.radioButton_sportList);
+            this.groupBox_shortcuts.Controls.Add(this.radioButton_appsList);
+            this.groupBox_shortcuts.Name = "groupBox_shortcuts";
+            this.groupBox_shortcuts.TabStop = false;
+            this.groupBox_shortcuts.Paint += new System.Windows.Forms.PaintEventHandler(this.groupBox_Paint);
+            // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
+            // 
             // FormAddEditableElement
             // 
             this.AcceptButton = this.button_add;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.button_cancel;
+            this.Controls.Add(this.groupBox_shortcuts);
             this.Controls.Add(this.button_add);
             this.Controls.Add(this.groupBox_system);
             this.Controls.Add(this.button_cancel);
@@ -325,6 +362,8 @@
             this.groupBox_air.PerformLayout();
             this.groupBox_system.ResumeLayout(false);
             this.groupBox_system.PerformLayout();
+            this.groupBox_shortcuts.ResumeLayout(false);
+            this.groupBox_shortcuts.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -359,5 +398,9 @@
         private System.Windows.Forms.GroupBox groupBox_system;
         private System.Windows.Forms.RadioButton radioButton_battery;
         private System.Windows.Forms.Button button_add;
+        private System.Windows.Forms.RadioButton radioButton_appsList;
+        private System.Windows.Forms.RadioButton radioButton_sportList;
+        private System.Windows.Forms.GroupBox groupBox_shortcuts;
+        private System.Windows.Forms.Label label2;
     }
 }

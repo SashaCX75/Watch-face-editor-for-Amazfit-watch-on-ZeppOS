@@ -21,7 +21,9 @@ namespace ControlLibrary
         private bool Year_mode = false;
         private bool Sunrise_mode = false;
         private bool Weather_mode = false;
+        private bool Separator_mode = false;
         private bool Imperial_unit_mode = false;
+        private bool Unit_alignment_mode = true;
 
         //private Point location_unit;
         private Point location_unit_miles;
@@ -150,6 +152,19 @@ namespace ControlLibrary
             return comboBox_imageDecimalPoint.SelectedIndex;
         }
 
+        public void SetSeparator(string value)
+        {
+            comboBox_separator.Text = value;
+            if (comboBox_separator.SelectedIndex < 0) comboBox_separator.Text = "";
+        }
+
+        /// <summary>Возвращает название выбранной картинки</summary>
+        public string GetSeparator()
+        {
+            if (comboBox_separator.SelectedIndex < 0) return "";
+            return comboBox_separator.Text;
+        }
+
         public void SetAlignment(string alignment)
         {
             int result;
@@ -231,21 +246,6 @@ namespace ControlLibrary
                 OptionalSymbol_mode = value;
                 comboBox_imageDecimalPoint.Visible = OptionalSymbol_mode;
                 label_imageDecimalPoint.Visible = OptionalSymbol_mode;
-
-                //if (OptionalSymbol_mode)
-                //{
-                //    Point location = new Point(numericUpDown_angle.Location.X, location_unit_miles.Y);
-                //    numericUpDown_angle.Location = location;
-                //    location = new Point(label_angle.Location.X, location_unit_miles_label.Y);
-                //    label_angle.Location = location;
-                //}
-                //else
-                //{
-                //    Point location = new Point(numericUpDown_angle.Location.X, location_imageDecimalPoint.Y);
-                //    numericUpDown_angle.Location = location;
-                //    location = new Point(label_angle.Location.X, location_imageDecimalPoint_label.Y);
-                //    label_angle.Location = location;
-                //}
 
                 if (!OptionalSymbol_mode && !Distance_mode && !Sunrise_mode && !Weather_mode)
                 {
@@ -429,7 +429,7 @@ namespace ControlLibrary
                     Sunrise = false;
                     //Weather = false;
 
-                    label_unit.Text = unit_label_text + " (°C))";
+                    label_unit.Text = unit_label_text + " (°C)";
                     label_unit_miles.Text = unit_label_text + " (°F)";
 
                     comboBox_imageDecimalPoint.Location = location_imageDecimalPoint;
@@ -465,6 +465,38 @@ namespace ControlLibrary
                     location = new Point(location_unit_in_alignment.X, location_unit_in_alignment.Y);
                     checkBox_unit_in_alignment.Location = location;
                 }
+            }
+        }
+
+        /// <summary>Отображение чекбокса учитывания единиц измерения при выравнивании</summary>
+        [Description("Отображение чекбокса учитывания единиц измерения при выравнивании")]
+        public virtual bool Unit_alignment
+        {
+            get
+            {
+                return Unit_alignment_mode;
+            }
+            set
+            {
+                Unit_alignment_mode = value;
+                checkBox_unit_in_alignment.Visible = Unit_alignment_mode;
+            }
+        }
+
+        /// <summary>Доступность разделителя</summary>
+        [Description("Доступность разделителя")]
+        public virtual bool Separator
+        {
+            get
+            {
+                return Separator_mode;
+            }
+            set
+            {
+                Separator_mode = value;
+
+                label_separator.Visible = value;
+                comboBox_separator.Visible = value;
             }
         }
 
@@ -602,6 +634,7 @@ namespace ControlLibrary
             comboBox_unit_miles.Items.Clear();
             comboBox_imageError.Items.Clear();
             comboBox_imageDecimalPoint.Items.Clear();
+            comboBox_separator.Items.Clear();
 
             comboBox_image.Items.AddRange(ListImages.ToArray());
             comboBox_unit.Items.AddRange(ListImages.ToArray());
@@ -609,6 +642,7 @@ namespace ControlLibrary
 
             comboBox_imageError.Items.AddRange(ListImages.ToArray());
             comboBox_imageDecimalPoint.Items.AddRange(ListImages.ToArray());
+            comboBox_separator.Items.AddRange(ListImages.ToArray());
 
             ListImagesFullName = _ListImagesFullName;
 
@@ -620,6 +654,7 @@ namespace ControlLibrary
                 comboBox_unit_miles.DropDownHeight = 1;
                 comboBox_imageError.DropDownHeight = 1;
                 comboBox_imageDecimalPoint.DropDownHeight = 1;
+                comboBox_separator.DropDownHeight = 1;
             }
             else if (count < 5)
             {
@@ -628,6 +663,7 @@ namespace ControlLibrary
                 comboBox_unit_miles.DropDownHeight = 35 * count + 1;
                 comboBox_imageError.DropDownHeight = 35 * count + 1;
                 comboBox_imageDecimalPoint.DropDownHeight = 35 * count + 1;
+                comboBox_separator.DropDownHeight = 35 * count + 1;
             }
             else
             {
@@ -636,6 +672,7 @@ namespace ControlLibrary
                 comboBox_unit_miles.DropDownHeight = 106;
                 comboBox_imageError.DropDownHeight = 106;
                 comboBox_imageDecimalPoint.DropDownHeight = 106;
+                comboBox_separator.DropDownHeight = 106;
             }
         }
 
@@ -651,11 +688,13 @@ namespace ControlLibrary
             Year = false;
             Sunrise = false;
             Weather = false;
+            Separator = false;
 
             comboBox_image.Text = null;
             comboBox_unit.Text = null;
             comboBox_imageError.Text = null;
             comboBox_imageDecimalPoint.Text = null;
+            comboBox_separator.Text = null;
 
             numericUpDown_imageX.Value = 0;
             numericUpDown_imageY.Value = 0;

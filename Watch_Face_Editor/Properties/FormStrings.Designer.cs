@@ -214,7 +214,7 @@ namespace Watch_Face_Editor.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Json файлы (*.json) | *.json.
+        ///   Ищет локализованную строку, похожую на Json файлы (*.json)|*.json.
         /// </summary>
         internal static string FilterJson {
             get {
@@ -232,7 +232,7 @@ namespace Watch_Face_Editor.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Zip файл циферблата (*.zip) | *.zip.
+        ///   Ищет локализованную строку, похожую на Zip файл циферблата (*.zip)|*.zip.
         /// </summary>
         internal static string FilterZip {
             get {
@@ -349,6 +349,15 @@ namespace Watch_Face_Editor.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Количество изображений для отображения AQI должно быть равным 6..
+        /// </summary>
+        internal static string Message_AQI_Image_Count_Error {
+            get {
+                return ResourceManager.GetString("Message_AQI_Image_Count_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Конвертация изображений в формат ARGB занимает больше времени..
         /// </summary>
         internal static string Message_ARGB_Line1 {
@@ -367,6 +376,33 @@ namespace Watch_Face_Editor.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Восстановление.
+        /// </summary>
+        internal static string Message_AutoSave_Caption {
+            get {
+                return ResourceManager.GetString("Message_AutoSave_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Нужно установить цвет в качестве основного фона..
+        /// </summary>
+        internal static string Message_BG_Not_Color {
+            get {
+                return ResourceManager.GetString("Message_BG_Not_Color", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Нужно установить изображение в качестве основного фона..
+        /// </summary>
+        internal static string Message_BG_Not_Image {
+            get {
+                return ResourceManager.GetString("Message_BG_Not_Image", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Новый циферблат создан..
         /// </summary>
         internal static string Message_ConvertingCompleted_Text {
@@ -376,7 +412,7 @@ namespace Watch_Face_Editor.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Координаты скопированны.
+        ///   Ищет локализованную строку, похожую на Координаты скопированы.
         /// </summary>
         internal static string Message_CopyCoord {
             get {
@@ -430,6 +466,15 @@ namespace Watch_Face_Editor.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Вы действительно хотите удалить виджет?.
+        /// </summary>
+        internal static string Message_Delet_Widget {
+            get {
+                return ResourceManager.GetString("Message_Delet_Widget", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Невозможно удалить существующий файл циферблата..
         /// </summary>
         internal static string Message_DontDelZip {
@@ -475,6 +520,15 @@ namespace Watch_Face_Editor.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Ошибка добавления шрифта .
+        /// </summary>
+        internal static string Message_Error_Font {
+            get {
+                return ResourceManager.GetString("Message_Error_Font", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Невозможно открыть изображение:.
         /// </summary>
         internal static string Message_Error_Image_Text1 {
@@ -493,7 +547,25 @@ namespace Watch_Face_Editor.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Не удалось распознать структуру циферблата.
+        ///   Ищет локализованную строку, похожую на Ошибка в виджете: .
+        /// </summary>
+        internal static string Message_Error_InWidget {
+            get {
+                return ResourceManager.GetString("Message_Error_InWidget", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Код зашифрован и не может быть распознан..
+        /// </summary>
+        internal static string Message_ErrorReadBin {
+            get {
+                return ResourceManager.GetString("Message_ErrorReadBin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Не удалось распознать структуру циферблата..
         /// </summary>
         internal static string Message_ErrorReadJS {
             get {
@@ -556,7 +628,7 @@ namespace Watch_Face_Editor.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Неправильный JSON file..
+        ///   Ищет локализованную строку, похожую на Неправильный JSON файл..
         /// </summary>
         internal static string Message_JsonError_Text {
             get {
@@ -570,6 +642,15 @@ namespace Watch_Face_Editor.Properties {
         internal static string Message_JsonReadError_Text {
             get {
                 return ResourceManager.GetString("Message_JsonReadError_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Найден файл с автосохранением. Вы хотите загрузить его?.
+        /// </summary>
+        internal static string Message_Load_AutoSave {
+            get {
+                return ResourceManager.GetString("Message_Load_AutoSave", resourceCulture);
             }
         }
         
@@ -606,6 +687,15 @@ namespace Watch_Face_Editor.Properties {
         internal static string Message_ModelConfig_ReadError {
             get {
                 return ResourceManager.GetString("Message_ModelConfig_ReadError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Этот виджет не поддерживается выбранной моделью часов..
+        /// </summary>
+        internal static string Message_Old_OS {
+            get {
+                return ResourceManager.GetString("Message_Old_OS", resourceCulture);
             }
         }
         
@@ -673,7 +763,7 @@ namespace Watch_Face_Editor.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Для сохранения предустановленных параметром установите хотябы в одном поле &quot;Калории&quot; значение отличное от &quot;1234&quot;..
+        ///   Ищет локализованную строку, похожую на Для сохранения предустановленных параметром установите хотя бы в одном поле &quot;Калории&quot; значение отличное от &quot;1234&quot;..
         /// </summary>
         internal static string Message_SaveOnly1234_Text {
             get {
@@ -687,6 +777,24 @@ namespace Watch_Face_Editor.Properties {
         internal static string Message_ShortcutsAOD_Text {
             get {
                 return ResourceManager.GetString("Message_ShortcutsAOD_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Количество изображений для отображения тренировочной нагрузки должно быть равным 3..
+        /// </summary>
+        internal static string Message_TrainingLoad_Image_Count_Error {
+            get {
+                return ResourceManager.GetString("Message_TrainingLoad_Image_Count_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Количество изображений для отображения VO2Max должно быть равным 7..
+        /// </summary>
+        internal static string Message_VO2Max_Image_Count_Error {
+            get {
+                return ResourceManager.GetString("Message_VO2Max_Image_Count_Error", resourceCulture);
             }
         }
         
@@ -709,7 +817,7 @@ namespace Watch_Face_Editor.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Создать проект в выбраной папке?.
+        ///   Ищет локализованную строку, похожую на Создать проект в выбранной папке?.
         /// </summary>
         internal static string Message_Warning_Assets_Exist3 {
             get {
@@ -772,6 +880,15 @@ namespace Watch_Face_Editor.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на В этой папке уже существует папка с JS файлами..
+        /// </summary>
+        internal static string Message_Warning_JS_Exist1 {
+            get {
+                return ResourceManager.GetString("Message_Warning_JS_Exist1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Каталог .
         /// </summary>
         internal static string Message_WarningConverting_Text1 {
@@ -804,6 +921,15 @@ namespace Watch_Face_Editor.Properties {
         internal static string Message_WarningPreview_Text2 {
             get {
                 return ResourceManager.GetString("Message_WarningPreview_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Такой виджет уже есть в циферблате..
+        /// </summary>
+        internal static string Message_Widget_Exists {
+            get {
+                return ResourceManager.GetString("Message_Widget_Exists", resourceCulture);
             }
         }
         
@@ -858,6 +984,15 @@ namespace Watch_Face_Editor.Properties {
         internal static string Tip_Pointer {
             get {
                 return ResourceManager.GetString("Tip_Pointer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Фон %s.
+        /// </summary>
+        internal static string ToastBG {
+            get {
+                return ResourceManager.GetString("ToastBG", resourceCulture);
             }
         }
     }

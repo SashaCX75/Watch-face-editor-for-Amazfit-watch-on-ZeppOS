@@ -148,13 +148,13 @@
     <value>NoControl</value>
   </data>
   <data name="checkBox_user_functions.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 0</value>
+    <value>2, 2</value>
   </data>
   <data name="checkBox_user_functions.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 0, 0</value>
   </data>
   <data name="checkBox_user_functions.Size" type="System.Drawing.Size, System.Drawing">
-    <value>175, 48</value>
+    <value>175, 46</value>
   </data>
   <data name="checkBox_user_functions.TabIndex" type="System.Int32, mscorlib">
     <value>165</value>
@@ -186,13 +186,13 @@
     <value>NoControl</value>
   </data>
   <data name="checkBox_user_script_start.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 0</value>
+    <value>2, 2</value>
   </data>
   <data name="checkBox_user_script_start.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 0, 0, 0</value>
   </data>
   <data name="checkBox_user_script_start.Size" type="System.Drawing.Size, System.Drawing">
-    <value>214, 48</value>
+    <value>214, 46</value>
   </data>
   <data name="checkBox_user_script_start.TabIndex" type="System.Int32, mscorlib">
     <value>169</value>
@@ -224,13 +224,13 @@
     <value>NoControl</value>
   </data>
   <data name="checkBox_user_script.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 0</value>
+    <value>2, 2</value>
   </data>
   <data name="checkBox_user_script.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 0, 0, 0</value>
   </data>
   <data name="checkBox_user_script.Size" type="System.Drawing.Size, System.Drawing">
-    <value>199, 48</value>
+    <value>199, 46</value>
   </data>
   <data name="checkBox_user_script.TabIndex" type="System.Int32, mscorlib">
     <value>171</value>
@@ -262,13 +262,13 @@
     <value>NoControl</value>
   </data>
   <data name="checkBox_user_script_end.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 0</value>
+    <value>2, 2</value>
   </data>
   <data name="checkBox_user_script_end.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 0, 0, 0</value>
   </data>
   <data name="checkBox_user_script_end.Size" type="System.Drawing.Size, System.Drawing">
-    <value>227, 48</value>
+    <value>227, 46</value>
   </data>
   <data name="checkBox_user_script_end.TabIndex" type="System.Int32, mscorlib">
     <value>173</value>
@@ -300,13 +300,13 @@
     <value>NoControl</value>
   </data>
   <data name="checkBox_user_script_beforeShortcuts.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 0</value>
+    <value>2, 2</value>
   </data>
   <data name="checkBox_user_script_beforeShortcuts.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 0, 0, 0</value>
   </data>
   <data name="checkBox_user_script_beforeShortcuts.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 48</value>
+    <value>200, 46</value>
   </data>
   <data name="checkBox_user_script_beforeShortcuts.TabIndex" type="System.Int32, mscorlib">
     <value>175</value>
@@ -338,13 +338,13 @@
     <value>NoControl</value>
   </data>
   <data name="checkBox_resume_call.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 0</value>
+    <value>2, 2</value>
   </data>
   <data name="checkBox_resume_call.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 0, 0, 0</value>
   </data>
   <data name="checkBox_resume_call.Size" type="System.Drawing.Size, System.Drawing">
-    <value>209, 48</value>
+    <value>209, 46</value>
   </data>
   <data name="checkBox_resume_call.TabIndex" type="System.Int32, mscorlib">
     <value>177</value>
@@ -376,13 +376,13 @@ WIDGET_DELEGATE)</value>
     <value>NoControl</value>
   </data>
   <data name="checkBox_pause_call.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 0</value>
+    <value>2, 2</value>
   </data>
   <data name="checkBox_pause_call.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 0, 0, 0</value>
   </data>
   <data name="checkBox_pause_call.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 48</value>
+    <value>204, 46</value>
   </data>
   <data name="checkBox_pause_call.TabIndex" type="System.Int32, mscorlib">
     <value>179</value>
@@ -449,7 +449,7 @@ WIDGET_DELEGATE)
     <value>NoControl</value>
   </data>
   <data name="button_user_functions_Create.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 4</value>
+    <value>0, 2</value>
   </data>
   <data name="button_user_functions_Create.Size" type="System.Drawing.Size, System.Drawing">
     <value>22, 22</value>
@@ -482,7 +482,7 @@ WIDGET_DELEGATE)
     <value>NoControl</value>
   </data>
   <data name="button_user_functions_Del.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 26</value>
+    <value>0, 24</value>
   </data>
   <data name="button_user_functions_Del.Size" type="System.Drawing.Size, System.Drawing">
     <value>22, 22</value>
@@ -539,10 +539,10 @@ WIDGET_DELEGATE)
     <value>Right</value>
   </data>
   <data name="panel_user_functions_buttons.Location" type="System.Drawing.Point, System.Drawing">
-    <value>216, 0</value>
+    <value>216, 2</value>
   </data>
   <data name="panel_user_functions_buttons.Size" type="System.Drawing.Size, System.Drawing">
-    <value>22, 48</value>
+    <value>22, 46</value>
   </data>
   <data name="panel_user_functions_buttons.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -566,7 +566,7 @@ WIDGET_DELEGATE)
     <value>5, 5</value>
   </data>
   <data name="panel_user_functions_draw.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 0, 0, 0</value>
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="panel_user_functions_draw.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 50</value>
@@ -620,7 +620,7 @@ WIDGET_DELEGATE)
     <value>NoControl</value>
   </data>
   <data name="button_user_script_start_Create.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 4</value>
+    <value>0, 2</value>
   </data>
   <data name="button_user_script_start_Create.Size" type="System.Drawing.Size, System.Drawing">
     <value>22, 22</value>
@@ -650,7 +650,7 @@ WIDGET_DELEGATE)
     <value>NoControl</value>
   </data>
   <data name="button_user_script_start_Del.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 26</value>
+    <value>0, 24</value>
   </data>
   <data name="button_user_script_start_Del.Size" type="System.Drawing.Size, System.Drawing">
     <value>22, 22</value>
@@ -707,10 +707,10 @@ WIDGET_DELEGATE)
     <value>Right</value>
   </data>
   <data name="panel_user_script_start_buttons.Location" type="System.Drawing.Point, System.Drawing">
-    <value>216, 0</value>
+    <value>216, 2</value>
   </data>
   <data name="panel_user_script_start_buttons.Size" type="System.Drawing.Size, System.Drawing">
-    <value>22, 48</value>
+    <value>22, 46</value>
   </data>
   <data name="panel_user_script_start_buttons.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -734,7 +734,7 @@ WIDGET_DELEGATE)
     <value>5, 5</value>
   </data>
   <data name="panel_user_script_start_draw.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 0, 0, 0</value>
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="panel_user_script_start_draw.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 50</value>
@@ -788,7 +788,7 @@ WIDGET_DELEGATE)
     <value>NoControl</value>
   </data>
   <data name="button_user_script_Create.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 4</value>
+    <value>0, 2</value>
   </data>
   <data name="button_user_script_Create.Size" type="System.Drawing.Size, System.Drawing">
     <value>22, 22</value>
@@ -818,7 +818,7 @@ WIDGET_DELEGATE)
     <value>NoControl</value>
   </data>
   <data name="button_user_script_Del.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 26</value>
+    <value>0, 24</value>
   </data>
   <data name="button_user_script_Del.Size" type="System.Drawing.Size, System.Drawing">
     <value>22, 22</value>
@@ -875,10 +875,10 @@ WIDGET_DELEGATE)
     <value>Right</value>
   </data>
   <data name="panel_user_script_buttons.Location" type="System.Drawing.Point, System.Drawing">
-    <value>216, 0</value>
+    <value>216, 2</value>
   </data>
   <data name="panel_user_script_buttons.Size" type="System.Drawing.Size, System.Drawing">
-    <value>22, 48</value>
+    <value>22, 46</value>
   </data>
   <data name="panel_user_script_buttons.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -902,7 +902,7 @@ WIDGET_DELEGATE)
     <value>5, 5</value>
   </data>
   <data name="panel_user_script_draw.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 0, 0, 0</value>
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="panel_user_script_draw.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 50</value>
@@ -956,7 +956,7 @@ WIDGET_DELEGATE)
     <value>NoControl</value>
   </data>
   <data name="button_user_script_beforeShortcuts_Create.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 4</value>
+    <value>0, 2</value>
   </data>
   <data name="button_user_script_beforeShortcuts_Create.Size" type="System.Drawing.Size, System.Drawing">
     <value>22, 22</value>
@@ -986,7 +986,7 @@ WIDGET_DELEGATE)
     <value>NoControl</value>
   </data>
   <data name="button_user_script_beforeShortcuts_Del.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 26</value>
+    <value>0, 24</value>
   </data>
   <data name="button_user_script_beforeShortcuts_Del.Size" type="System.Drawing.Size, System.Drawing">
     <value>22, 22</value>
@@ -1043,10 +1043,10 @@ WIDGET_DELEGATE)
     <value>Right</value>
   </data>
   <data name="panel_user_script_beforeShortcuts_buttons.Location" type="System.Drawing.Point, System.Drawing">
-    <value>216, 0</value>
+    <value>216, 2</value>
   </data>
   <data name="panel_user_script_beforeShortcuts_buttons.Size" type="System.Drawing.Size, System.Drawing">
-    <value>22, 48</value>
+    <value>22, 46</value>
   </data>
   <data name="panel_user_script_beforeShortcuts_buttons.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1070,7 +1070,7 @@ WIDGET_DELEGATE)
     <value>5, 5</value>
   </data>
   <data name="panel_user_script_beforeShortcuts_draw.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 0, 0, 0</value>
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="panel_user_script_beforeShortcuts_draw.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 50</value>
@@ -1124,7 +1124,7 @@ WIDGET_DELEGATE)
     <value>NoControl</value>
   </data>
   <data name="button_user_script_end_Create.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 4</value>
+    <value>0, 2</value>
   </data>
   <data name="button_user_script_end_Create.Size" type="System.Drawing.Size, System.Drawing">
     <value>22, 22</value>
@@ -1154,7 +1154,7 @@ WIDGET_DELEGATE)
     <value>NoControl</value>
   </data>
   <data name="button_user_script_end_Del.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 26</value>
+    <value>0, 24</value>
   </data>
   <data name="button_user_script_end_Del.Size" type="System.Drawing.Size, System.Drawing">
     <value>22, 22</value>
@@ -1211,10 +1211,10 @@ WIDGET_DELEGATE)
     <value>Right</value>
   </data>
   <data name="panel_user_script_end_buttons.Location" type="System.Drawing.Point, System.Drawing">
-    <value>216, 0</value>
+    <value>216, 2</value>
   </data>
   <data name="panel_user_script_end_buttons.Size" type="System.Drawing.Size, System.Drawing">
-    <value>22, 48</value>
+    <value>22, 46</value>
   </data>
   <data name="panel_user_script_end_buttons.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1238,7 +1238,7 @@ WIDGET_DELEGATE)
     <value>5, 5</value>
   </data>
   <data name="panel_user_script_end_draw.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 0, 0, 0</value>
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="panel_user_script_end_draw.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 50</value>
@@ -1292,7 +1292,7 @@ WIDGET_DELEGATE)
     <value>NoControl</value>
   </data>
   <data name="button_resume_call_Create.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 4</value>
+    <value>0, 2</value>
   </data>
   <data name="button_resume_call_Create.Size" type="System.Drawing.Size, System.Drawing">
     <value>22, 22</value>
@@ -1322,7 +1322,7 @@ WIDGET_DELEGATE)
     <value>NoControl</value>
   </data>
   <data name="button_resume_call_Del.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 26</value>
+    <value>0, 24</value>
   </data>
   <data name="button_resume_call_Del.Size" type="System.Drawing.Size, System.Drawing">
     <value>22, 22</value>
@@ -1379,10 +1379,10 @@ WIDGET_DELEGATE)
     <value>Right</value>
   </data>
   <data name="panel_resume_call_buttons.Location" type="System.Drawing.Point, System.Drawing">
-    <value>216, 0</value>
+    <value>216, 2</value>
   </data>
   <data name="panel_resume_call_buttons.Size" type="System.Drawing.Size, System.Drawing">
-    <value>22, 48</value>
+    <value>22, 46</value>
   </data>
   <data name="panel_resume_call_buttons.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1406,7 +1406,7 @@ WIDGET_DELEGATE)
     <value>5, 5</value>
   </data>
   <data name="panel_resume_call_draw.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 0, 0, 0</value>
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="panel_resume_call_draw.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 50</value>
@@ -1460,7 +1460,7 @@ WIDGET_DELEGATE)
     <value>NoControl</value>
   </data>
   <data name="button_pause_call_Create.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 4</value>
+    <value>0, 2</value>
   </data>
   <data name="button_pause_call_Create.Size" type="System.Drawing.Size, System.Drawing">
     <value>22, 22</value>
@@ -1490,7 +1490,7 @@ WIDGET_DELEGATE)
     <value>NoControl</value>
   </data>
   <data name="button_pause_call_Del.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 26</value>
+    <value>0, 24</value>
   </data>
   <data name="button_pause_call_Del.Size" type="System.Drawing.Size, System.Drawing">
     <value>22, 22</value>
@@ -1547,10 +1547,10 @@ WIDGET_DELEGATE)
     <value>Right</value>
   </data>
   <data name="panel_pause_call_buttons.Location" type="System.Drawing.Point, System.Drawing">
-    <value>216, 0</value>
+    <value>216, 2</value>
   </data>
   <data name="panel_pause_call_buttons.Size" type="System.Drawing.Size, System.Drawing">
-    <value>22, 48</value>
+    <value>22, 46</value>
   </data>
   <data name="panel_pause_call_buttons.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1574,7 +1574,7 @@ WIDGET_DELEGATE)
     <value>5, 5</value>
   </data>
   <data name="panel_pause_call_draw.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 0, 0, 0</value>
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="panel_pause_call_draw.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 50</value>

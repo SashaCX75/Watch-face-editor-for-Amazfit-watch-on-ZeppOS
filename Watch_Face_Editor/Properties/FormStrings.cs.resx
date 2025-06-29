@@ -169,13 +169,13 @@
     <value>Soubory GIF (*.gif)|*.gif</value>
   </data>
   <data name="FilterJson" xml:space="preserve">
-    <value>Soubor Json (*.json) | *.json</value>
+    <value>Soubor Json (*.json)|*.json</value>
   </data>
   <data name="FilterPng" xml:space="preserve">
     <value>Soubor PNG (*.png)|*.png</value>
   </data>
   <data name="FilterZip" xml:space="preserve">
-    <value>Zip soubor ciferníku (*.zip) | *.zip</value>
+    <value>Zip soubor ciferníku (*.zip)|*.zip</value>
   </data>
   <data name="FollowMinute" xml:space="preserve">
     <value>Postupujte podle hodin</value>
@@ -213,11 +213,23 @@
   <data name="Message_AnimationAOD_Text" xml:space="preserve">
     <value>Na obrazovku AOD nelze přidat animaci.</value>
   </data>
+  <data name="Message_AQI_Image_Count_Error" xml:space="preserve">
+    <value>Počet obrázků pro zobrazení AQI musí být 6.</value>
+  </data>
   <data name="Message_ARGB_Line1" xml:space="preserve">
     <value>Převod obrázků do formátu ARGB trvá déle.</value>
   </data>
   <data name="Message_ARGB_Line2" xml:space="preserve">
     <value>Opravdu chcete převést obrázky do formátu ARGB?</value>
+  </data>
+  <data name="Message_AutoSave_Caption" xml:space="preserve">
+    <value>Obnova</value>
+  </data>
+  <data name="Message_BG_Not_Color" xml:space="preserve">
+    <value>Musíte nastavit barvu jako hlavní pozadí.</value>
+  </data>
+  <data name="Message_BG_Not_Image" xml:space="preserve">
+    <value>Musíte nastavit obrázek jako hlavní pozadí.</value>
   </data>
   <data name="Message_ConvertingCompleted_Text" xml:space="preserve">
     <value>Byl vytvořen nový ciferník.</value>
@@ -240,6 +252,9 @@
   <data name="Message_Delet_Text21" xml:space="preserve">
     <value>?</value>
   </data>
+  <data name="Message_Delet_Widget" xml:space="preserve">
+    <value>Opravdu chcete widget smazat?</value>
+  </data>
   <data name="Message_DontDelZip" xml:space="preserve">
     <value>Není možné odstranit existující soubor ciferníku.</value>
   </data>
@@ -252,17 +267,26 @@
   <data name="Message_ElementAOD_Text" xml:space="preserve">
     <value>Tento prvek nemůžete přidat na obrazovku AOD.</value>
   </data>
+  <data name="Message_ErrorReadBin" xml:space="preserve">
+    <value>Kód je zašifrovaný a nelze jej rozpoznat.</value>
+  </data>
   <data name="Message_ErrorReadJS" xml:space="preserve">
     <value>Nepodařilo se rozpoznat strukturu ciferníku</value>
   </data>
   <data name="Message_Error_Caption" xml:space="preserve">
     <value>Chyba</value>
   </data>
+  <data name="Message_Error_Font" xml:space="preserve">
+    <value>Při přidávání písma došlo k chybě</value>
+  </data>
   <data name="Message_Error_Image_Text1" xml:space="preserve">
     <value>Nelze otevřít obrázek:</value>
   </data>
   <data name="Message_Error_Image_Text2" xml:space="preserve">
     <value>. Nemáte oprávnění soubor číst nebo je obraz poškozen.</value>
+  </data>
+  <data name="Message_Error_InWidget" xml:space="preserve">
+    <value>Chyba ve widgetu:</value>
   </data>
   <data name="Message_GoToFile_Caption" xml:space="preserve">
     <value>Přejít na soubor</value>
@@ -294,11 +318,17 @@
   <data name="Message_LoadPreviewStates_Text" xml:space="preserve">
     <value>Stáhnout existující soubor se sadou nastavení náhledu PreviewStates.json?</value>
   </data>
+  <data name="Message_Load_AutoSave" xml:space="preserve">
+    <value>Nalezen soubor s automatickým ukládáním. Chcete si ji stáhnout?</value>
+  </data>
   <data name="Message_ModelConfig_Error" xml:space="preserve">
     <value>Konfigurace modelu nenalezena:</value>
   </data>
   <data name="Message_ModelConfig_ReadError" xml:space="preserve">
     <value>Při čtení konfigurace modelu došlo k chybě</value>
+  </data>
+  <data name="Message_Old_OS" xml:space="preserve">
+    <value>Tento widget není podporován vybraným modelem hodinek.</value>
   </data>
   <data name="Message_Restart_Caption" xml:space="preserve">
     <value>Restartujte</value>
@@ -323,6 +353,12 @@
   </data>
   <data name="Message_ShortcutsAOD_Text" xml:space="preserve">
     <value>Na obrazovku AOD nelze přidávat zástupce.</value>
+  </data>
+  <data name="Message_TrainingLoad_Image_Count_Error" xml:space="preserve">
+    <value>Počet obrázků pro zobrazení tréninkové zátěže musí být 3.</value>
+  </data>
+  <data name="Message_VO2Max_Image_Count_Error" xml:space="preserve">
+    <value>Počet snímků pro zobrazení VO2Max musí být 7.</value>
   </data>
   <data name="Message_WarningConverting_Text1" xml:space="preserve">
     <value>Adresář</value>
@@ -363,6 +399,12 @@
   <data name="Message_Warning_Information" xml:space="preserve">
     <value>Informace</value>
   </data>
+  <data name="Message_Warning_JS_Exist1" xml:space="preserve">
+    <value>V této složce již existuje složka se soubory JS.</value>
+  </data>
+  <data name="Message_Widget_Exists" xml:space="preserve">
+    <value>Tento widget je již na ciferníku.</value>
+  </data>
   <data name="Message_Wrong_ColorScheme" xml:space="preserve">
     <value>Pro model je zadáno neznámé barevné schéma:</value>
   </data>
@@ -380,5 +422,8 @@
   </data>
   <data name="Tip_Pointer" xml:space="preserve">
     <value>Šipky</value>
+  </data>
+  <data name="ToastBG" xml:space="preserve">
+    <value>Pozadí %s</value>
   </data>
 </root>

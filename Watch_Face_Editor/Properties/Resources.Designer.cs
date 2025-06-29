@@ -63,6 +63,16 @@ namespace Watch_Face_Editor.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap apps_icon {
+            get {
+                object obj = ResourceManager.GetObject("apps_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Background_icon {
             get {
                 object obj = ResourceManager.GetObject("Background-icon", resourceCulture);
@@ -116,6 +126,16 @@ namespace Watch_Face_Editor.Properties {
         internal static System.Drawing.Bitmap Ionic_Qr_code {
             get {
                 object obj = ResourceManager.GetObject("Ionic-Qr-code", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap logo_es_site {
+            get {
+                object obj = ResourceManager.GetObject("logo_es_site", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -196,6 +216,16 @@ namespace Watch_Face_Editor.Properties {
         internal static System.Drawing.Bitmap Sidebar_Search_24 {
             get {
                 object obj = ResourceManager.GetObject("Sidebar-Search_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sport_icon {
+            get {
+                object obj = ResourceManager.GetObject("sport_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -363,6 +393,16 @@ namespace Watch_Face_Editor.Properties {
         internal static System.Drawing.Bitmap Weather_Partly_Cloudy_Rain_24 {
             get {
                 object obj = ResourceManager.GetObject("Weather-Partly-Cloudy-Rain_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap YouTube {
+            get {
+                object obj = ResourceManager.GetObject("YouTube", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

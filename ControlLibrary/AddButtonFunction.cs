@@ -78,7 +78,9 @@ namespace ControlLibrary
             comboBox_App.Items.Add(Properties.ButtonFunctions.ScheduleList);
             comboBox_App.Items.Add(Properties.ButtonFunctions.ToDoList);
             comboBox_App.Items.Add(Properties.ButtonFunctions.PhoneMusic);
+            comboBox_App.Items.Add(Properties.ButtonFunctions.PhoneMusic_2);
             comboBox_App.Items.Add(Properties.ButtonFunctions.LocalMusic);
+            comboBox_App.Items.Add(Properties.ButtonFunctions.FlashLight);
             comboBox_App.Items.Add(Properties.ButtonFunctions.Weather);
             comboBox_App.Items.Add(Properties.ButtonFunctions.Sunset);
             comboBox_App.Items.Add(Properties.ButtonFunctions.Compass);
@@ -100,6 +102,7 @@ namespace ControlLibrary
             comboBox_App.Items.Add(Properties.ButtonFunctions.DialCall);
             comboBox_App.Items.Add(Properties.ButtonFunctions.BodyComposition);
             comboBox_App.Items.Add(Properties.ButtonFunctions.Readiness);
+            comboBox_App.Items.Add(Properties.ButtonFunctions.WeatherInformer);
 
             comboBox_System.Items.Add(Properties.Buttons.comboBox_System);
             comboBox_System.Items.Add(Properties.ButtonFunctions.Settings);
@@ -128,7 +131,7 @@ namespace ControlLibrary
 
             #region user_script
             DirectoryInfo Folder;
-            string dirName = Path.Combine(Application.StartupPath, "user_scripts");
+            string dirName = Path.Combine(Application.StartupPath, "button_scripts");
             if (Directory.Exists(dirName))
             {
                 Folder = new DirectoryInfo(dirName);
@@ -152,7 +155,7 @@ namespace ControlLibrary
                     catch
                     {
                         // Could not load the image - probably related to Windows file system permissions.
-                        MessageBox.Show(Properties.Strings.Message_ReadScript_Error, Properties.Strings.Dialog_Title_JS_Open);
+                        MessageBox.Show(Properties.Strings.Message_ReadScript_Error, Properties.Strings.UCtrl_Text_Opt_SityName_true);
                     } 
                 }
             }
@@ -172,8 +175,10 @@ namespace ControlLibrary
         {
             GroupBox groupBox = sender as GroupBox;
             Color color = groupBox.ForeColor;
-            if (groupBox.Enabled) DrawGroupBox(groupBox, e.Graphics, color, Color.DarkGray);
-            else DrawGroupBox(groupBox, e.Graphics, Color.DarkGray, Color.DarkGray);
+            //if (groupBox.Enabled) DrawGroupBox(groupBox, e.Graphics, color, Color.DarkGray);
+            //else DrawGroupBox(groupBox, e.Graphics, Color.DarkGray, Color.DarkGray);
+            if (groupBox.Enabled) DrawGroupBox(groupBox, e.Graphics, this.ForeColor, Color.DarkGray);
+            else DrawGroupBox(groupBox, e.Graphics, SystemColors.GrayText, Color.DarkGray);
         }
         private void DrawGroupBox(GroupBox groupBox, Graphics g, Color textColor, Color borderColor)
         {
@@ -255,7 +260,9 @@ namespace ControlLibrary
             if (comboBox_App.SelectedIndex == index++) script = Properties.ButtonFunctions.ScheduleList_function;
             if (comboBox_App.SelectedIndex == index++) script = Properties.ButtonFunctions.ToDoList_function;
             if (comboBox_App.SelectedIndex == index++) script = Properties.ButtonFunctions.PhoneMusic_function;
+            if (comboBox_App.SelectedIndex == index++) script = Properties.ButtonFunctions.PhoneMusic_2_function;
             if (comboBox_App.SelectedIndex == index++) script = Properties.ButtonFunctions.LocalMusic_function;
+            if (comboBox_App.SelectedIndex == index++) script = Properties.ButtonFunctions.FlashLight_function;
             if (comboBox_App.SelectedIndex == index++) script = Properties.ButtonFunctions.Weather_function;
             if (comboBox_App.SelectedIndex == index++) script = Properties.ButtonFunctions.Sunset_function;
             if (comboBox_App.SelectedIndex == index++) script = Properties.ButtonFunctions.Compass_function;
@@ -277,6 +284,7 @@ namespace ControlLibrary
             if (comboBox_App.SelectedIndex == index++) script = Properties.ButtonFunctions.DialCall_function;
             if (comboBox_App.SelectedIndex == index++) script = Properties.ButtonFunctions.BodyComposition_function;
             if (comboBox_App.SelectedIndex == index++) script = Properties.ButtonFunctions.Readiness_function;
+            if (comboBox_App.SelectedIndex == index++) script = Properties.ButtonFunctions.WeatherInformer_function;
 
             comboBox_App.Items.Insert(0, Properties.Buttons.comboBox_App);
             comboBox_App.SelectedIndex = 0;

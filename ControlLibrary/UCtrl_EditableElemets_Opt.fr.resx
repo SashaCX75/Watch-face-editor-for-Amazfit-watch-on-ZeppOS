@@ -549,4 +549,7 @@
   <data name="checkBox_display_first.Text" xml:space="preserve">
     <value>Afficher sous les autres éléments</value>
   </data>
+  <data name="label_shortcuts_hint.Text" xml:space="preserve">
+    <value>L'image d'aperçu sera remplacée par une icône d'application de la même taille.</value>
+  </data>
 </root>

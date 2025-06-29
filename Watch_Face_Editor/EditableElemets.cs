@@ -150,7 +150,7 @@ namespace Watch_Face_Editor
             if (watchface_edit_group.Elements == null) watchface_edit_group.Elements = new List<object>();
             if (watchface_edit_group.optional_types_list == null) watchface_edit_group.optional_types_list = new List<Optional_Types_List>();
 
-            FormAddEditableElement f = new FormAddEditableElement();
+            FormAddEditableElement f = new FormAddEditableElement(SelectedModel.versionOS);
             f.ShowDialog();
             string dialogResult = f.Type;
 
@@ -290,6 +290,25 @@ namespace Watch_Face_Editor
                     newElement = new ElementMoon();
                     newElementName = "ElementMoon";
                     break;
+
+                case "AppsList":
+                    if (SelectedModel.versionOS >= 3)
+                    {
+                        optional_types = new Optional_Types_List();
+                        optional_types.type = "APPLIST";
+                        newElement = new ElementImage();
+                        newElementName = "ElementAppsList"; 
+                    }
+                    break;
+                case "SportList":
+                    if (SelectedModel.versionOS >= 3)
+                    {
+                        optional_types = new Optional_Types_List();
+                        optional_types.type = "SPORTSLIST";
+                        newElement = new ElementImage();
+                        newElementName = "ElementSportList"; 
+                    }
+                    break;
             }
 
             if (optional_types == null || newElement == null) return;
@@ -300,6 +319,37 @@ namespace Watch_Face_Editor
             {
                 MessageBox.Show(Properties.ElementsString.ElementExists, Properties.FormStrings.Message_Warning_Caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
+            }
+            if (SelectedModel.versionOS >= 3 && (newElementName == "ElementAppsList" || newElementName == "ElementSportList"))
+            {
+                exists = watchface_edit_group.optional_types_list.Exists(e => e.type == optional_types.type); // проверяем что такого элемента нет
+                if (exists)
+                {
+                    MessageBox.Show(Properties.ElementsString.ElementExists, Properties.FormStrings.Message_Warning_Caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (watchface_edit_group.Elements.Count > 0)
+                {
+                    string name = watchface_edit_group.Elements[0].GetType().Name;
+                    if (name != "ElementImage")
+                    {
+                        MessageBox.Show(Properties.ElementsString.ElementErrorZone, Properties.FormStrings.Message_Warning_Caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                }
+            }
+            else
+            {
+                if (watchface_edit_group.Elements.Count > 0)
+                {
+                    string name = watchface_edit_group.Elements[0].GetType().Name;
+                    if (name == "ElementImage")
+                    {
+                        MessageBox.Show(Properties.ElementsString.ElementErrorZone, Properties.FormStrings.Message_Warning_Caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    } 
+                }
             }
 
             if ((watchface_edit_group.Elements.Count <= index || index < 0) || (watchface_edit_group.Elements.Count == index + 1 && index >= 0))
@@ -315,7 +365,7 @@ namespace Watch_Face_Editor
             }
             watchface_edit_group.selected_element = index;
 
-            List<string> elementName = GetElementsNameList(watchface_edit_group.Elements);
+            List<string> elementName = GetElementsNameList(watchface_edit_group.Elements, watchface_edit_group.optional_types_list);
             uCtrl_EditableElements_Opt.SettingsElementClear();
             uCtrl_EditableElements_Opt.SetElementsCount(elementName);
             uCtrl_EditableElements_Opt.SetElementsIndex(index);
@@ -343,7 +393,7 @@ namespace Watch_Face_Editor
                 index = 0;
             watchface_edit_group.selected_element = index;
 
-            List<string> elementName = GetElementsNameList(watchface_edit_group.Elements);
+            List<string> elementName = GetElementsNameList(watchface_edit_group.Elements, watchface_edit_group.optional_types_list);
             uCtrl_EditableElements_Opt.SettingsElementClear();
             uCtrl_EditableElements_Opt.SetElementsCount(elementName);
             if(index < 0) uCtrl_EditableElements_Opt.SettingsElementClear();
@@ -949,7 +999,48 @@ namespace Watch_Face_Editor
                     ElementMoon moon = (ElementMoon)element;
                     if (moon.Images != null) uCtrl_EditableElements_Opt.checkBox_Images.Checked = moon.Images.visible;
                     break;
-                    #endregion
+                #endregion
+
+                #region ElementImage
+                case "ElementImage":
+                    List<Optional_Types_List> types_list = watchface_edit_group.optional_types_list;
+                    if (types_list != null && types_list.Count > 0 && types_list.Count > index)
+                    {
+                        if (types_list[index].type == "APPLIST" || types_list[index].type == "SPORTSLIST")
+                            subElements.Add("Shortcuts");
+                    }
+                    break;
+                #endregion
+
+                //#region ElementImage
+                //case "ElementImage":
+                //    List<Optional_Types_List> types_list = watchface_edit_group.optional_types_list;
+                //    if (types_list != null && types_list.Count > 0 && types_list.Count > index)
+                //    {
+                //        if (types_list[index].type == "APPLIST" || types_list[index].type == "SPORTSLIST")
+                //        {
+                //            //subElements.Add("Images");
+                //            //subElements.Add("Segments");
+                //            //subElements.Add("Pointer");
+                //            //subElements.Add("Number");
+                //            //subElements.Add("Number_target");
+                //            //subElements.Add("Number_min");
+                //            //subElements.Add("Number_max");
+                //            //subElements.Add("Sunset");
+                //            //subElements.Add("Sunrise");
+                //            //subElements.Add("Sunset_sunrise");
+                //            //subElements.Add("Sity_name");
+                //            //subElements.Add("Circle_scale");
+                //            //subElements.Add("Linear_scale");
+                //            subElements.Add("Icon");
+
+                //            ElementImage editableShortcut = (ElementImage)element;
+                //            if (editableShortcut.Icon != null) uCtrl_EditableElements_Opt.checkBox_Icon.Checked = editableShortcut.Icon.visible;
+                //            break;
+                //        }
+                //    }
+                //    break;
+                //#endregion
             }
 
             Dictionary<int, string> optionsPosition = ReadElementPos(element);
@@ -1372,7 +1463,7 @@ namespace Watch_Face_Editor
                             if (uCtrl_EditableElements_Opt.checkBox_Circle_Scale.Checked)
                             {
                                 Circle_Scale circle_scale = heart.Circle_Scale;
-                                Read_CircleScale_Options(circle_scale);
+                                Read_CircleScale_Options(circle_scale, false);
                                 uCtrl_EditableElements_Opt.Collapse = true;
                             }
                             break;
@@ -1717,7 +1808,7 @@ namespace Watch_Face_Editor
                             if (uCtrl_EditableElements_Opt.checkBox_Number.Checked)
                             {
                                 hmUI_widget_IMG_NUMBER img_number = weather.Number;
-                                Read_ImgNumberWeather_Options(img_number, false, "", true, false);
+                                Read_ImgNumberWeather_Options(img_number);
                                 //ShowElemenrOptions("Text_Weather");
                                 uCtrl_EditableElements_Opt.Collapse = true;
                             }
@@ -1727,7 +1818,7 @@ namespace Watch_Face_Editor
                             if (uCtrl_EditableElements_Opt.checkBox_Number_Min.Checked)
                             {
                                 hmUI_widget_IMG_NUMBER img_number = weather.Number_Min;
-                                Read_ImgNumberWeather_Options(img_number, false, "", true, false);
+                                Read_ImgNumberWeather_Options(img_number);
                                 //ShowElemenrOptions("Text_Weather");
                                 uCtrl_EditableElements_Opt.Collapse = true;
                             }
@@ -1737,7 +1828,7 @@ namespace Watch_Face_Editor
                             if (uCtrl_EditableElements_Opt.checkBox_Number_Max.Checked)
                             {
                                 hmUI_widget_IMG_NUMBER img_number = weather.Number_Max;
-                                Read_ImgNumberWeather_Options(img_number, false, "", true, false);
+                                Read_ImgNumberWeather_Options(img_number);
                                 //ShowElemenrOptions("Text_Weather");
                                 uCtrl_EditableElements_Opt.Collapse = true;
                             }
@@ -2039,7 +2130,30 @@ namespace Watch_Face_Editor
                             break;
                     }
                     break;
-                    #endregion
+                #endregion
+
+
+                //#region ElementImage
+                //case "ElementImage":
+                //    List<Optional_Types_List> types_list = watchface_edit_group.optional_types_list;
+                //    if (types_list != null && types_list.Count > 0 && types_list.Count > watchface_edit_group.selected_element)
+                //    {
+                //        ElementImage editableShortcut = (ElementImage)element;
+                //        switch (uCtrl_EditableElements_Opt.selectedElement)
+                //        {
+                //            case "Icon":
+                //                if (uCtrl_EditableElements_Opt.checkBox_Icon.Checked)
+                //                {
+                //                    hmUI_widget_IMG icon = editableShortcut.Icon;
+                //                    Read_Icon_Options(icon);
+                //                    uCtrl_EditableElements_Opt.Collapse = true;
+                //                }
+                //                break;
+                //        }
+                //    }
+                        
+                //    break;
+                //#endregion
             }
 
             PreviewImage();
@@ -2859,7 +2973,27 @@ namespace Watch_Face_Editor
                             break;
                     }
                     break;
-                    #endregion
+                #endregion
+
+                //#region ElementImage
+                //case "ElementImage":
+                //    List<Optional_Types_List> types_list = watchface_edit_group.optional_types_list;
+                //    if (types_list != null && types_list.Count > 0 && types_list.Count > watchface_edit_group.selected_element)
+                //    {
+                //        ElementImage editableShortcut = (ElementImage)element;
+                //        if (editableShortcut.Icon == null) editableShortcut.Icon = new hmUI_widget_IMG();
+
+                //        if (elementOptions.ContainsKey("Icon")) editableShortcut.Icon.position = elementOptions["Icon"];
+
+                //        switch (name)
+                //        {
+                //            case "checkBox_Icon":
+                //                editableShortcut.Icon.visible = checkBox.Checked;
+                //                break;
+                //        }
+                //    }
+                //    break;
+                //#endregion
             }
 
 

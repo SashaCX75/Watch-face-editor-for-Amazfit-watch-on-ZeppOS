@@ -70,6 +70,8 @@
             this.context_WidgetProperty = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.копироватьСвойстваToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.вставитьСвойстваToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.comboBox_separator = new System.Windows.Forms.ComboBox();
+            this.label_separator = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_centr_X)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_centr_Y)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_spacing)).BeginInit();
@@ -430,11 +432,31 @@
             this.вставитьСвойстваToolStripMenuItem.Name = "вставитьСвойстваToolStripMenuItem";
             this.вставитьСвойстваToolStripMenuItem.Click += new System.EventHandler(this.вставитьСвойстваToolStripMenuItem_Click);
             // 
+            // comboBox_separator
+            // 
+            resources.ApplyResources(this.comboBox_separator, "comboBox_separator");
+            this.comboBox_separator.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.comboBox_separator.DropDownWidth = 135;
+            this.comboBox_separator.FormattingEnabled = true;
+            this.comboBox_separator.Name = "comboBox_separator";
+            this.comboBox_separator.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.comboBox_DrawItem);
+            this.comboBox_separator.MeasureItem += new System.Windows.Forms.MeasureItemEventHandler(this.comboBox_MeasureItem);
+            this.comboBox_separator.SelectedIndexChanged += new System.EventHandler(this.comboBox_SelectedIndexChanged);
+            this.comboBox_separator.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
+            this.comboBox_separator.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox_KeyPress);
+            // 
+            // label_separator
+            // 
+            resources.ApplyResources(this.label_separator, "label_separator");
+            this.label_separator.Name = "label_separator";
+            // 
             // UCtrl_Text_Circle_Opt
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ContextMenuStrip = this.context_WidgetProperty;
+            this.Controls.Add(this.comboBox_separator);
+            this.Controls.Add(this.label_separator);
             this.Controls.Add(this.label_minus_image);
             this.Controls.Add(this.checkBox_unit_in_alignment);
             this.Controls.Add(this.numericUpDown_radius);
@@ -520,5 +542,7 @@
         private System.Windows.Forms.ContextMenuStrip context_WidgetProperty;
         private System.Windows.Forms.ToolStripMenuItem копироватьСвойстваToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem вставитьСвойстваToolStripMenuItem;
+        protected System.Windows.Forms.ComboBox comboBox_separator;
+        protected System.Windows.Forms.Label label_separator;
     }
 }

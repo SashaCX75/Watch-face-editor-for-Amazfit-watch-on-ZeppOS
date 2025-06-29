@@ -169,13 +169,13 @@
     <value>Fichiers GIF (*.gif)|*.gif</value>
   </data>
   <data name="FilterJson" xml:space="preserve">
-    <value>Fichier Json (*.json) | *.json</value>
+    <value>Fichier Json (*.json)|*.json</value>
   </data>
   <data name="FilterPng" xml:space="preserve">
     <value>Fichiers PNG (*.png)|*.png</value>
   </data>
   <data name="FilterZip" xml:space="preserve">
-    <value>Fichier zip pour le cadran (*.zip) | *.Zip</value>
+    <value>Fichier zip pour le cadran (*.zip)|*.zip</value>
   </data>
   <data name="FollowMinute" xml:space="preserve">
     <value>Suit les heures</value>
@@ -213,11 +213,23 @@
   <data name="Message_AnimationAOD_Text" xml:space="preserve">
     <value>Vous ne pouvez pas ajouter d'animation à l'écran AOD.</value>
   </data>
+  <data name="Message_AQI_Image_Count_Error" xml:space="preserve">
+    <value>Le nombre d'images à afficher AQI doit être de 6.</value>
+  </data>
   <data name="Message_ARGB_Line1" xml:space="preserve">
     <value>La conversion d'images au format ARGB prend plus de temps.</value>
   </data>
   <data name="Message_ARGB_Line2" xml:space="preserve">
     <value>Êtes-vous sûr de vouloir convertir les images au format ARGB ?</value>
+  </data>
+  <data name="Message_AutoSave_Caption" xml:space="preserve">
+    <value>Récupération</value>
+  </data>
+  <data name="Message_BG_Not_Color" xml:space="preserve">
+    <value>Vous devez définir la couleur comme arrière-plan principal.</value>
+  </data>
+  <data name="Message_BG_Not_Image" xml:space="preserve">
+    <value>Vous devez définir l'image comme arrière-plan principal.</value>
   </data>
   <data name="Message_ConvertingCompleted_Text" xml:space="preserve">
     <value>Un nouveau cadran a été créé</value>
@@ -240,6 +252,9 @@
   <data name="Message_Delet_Text21" xml:space="preserve">
     <value>?</value>
   </data>
+  <data name="Message_Delet_Widget" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir supprimer le widget ?</value>
+  </data>
   <data name="Message_DontDelZip" xml:space="preserve">
     <value>Il n'est pas possible de supprimer un fichier de cadran de montre existant.</value>
   </data>
@@ -252,17 +267,26 @@
   <data name="Message_ElementAOD_Text" xml:space="preserve">
     <value>Vous ne pouvez pas ajouter cet élément à un écran AOD.</value>
   </data>
+  <data name="Message_ErrorReadBin" xml:space="preserve">
+    <value>Le code est chiffré et ne peut pas être reconnu.</value>
+  </data>
   <data name="Message_ErrorReadJS" xml:space="preserve">
     <value>Échec de la reconnaissance de la structure du cadran</value>
   </data>
   <data name="Message_Error_Caption" xml:space="preserve">
     <value>Erreur</value>
   </data>
+  <data name="Message_Error_Font" xml:space="preserve">
+    <value>Erreur lors de l'ajout de la police</value>
+  </data>
   <data name="Message_Error_Image_Text1" xml:space="preserve">
     <value>Impossible d'ouvrir l'image :</value>
   </data>
   <data name="Message_Error_Image_Text2" xml:space="preserve">
     <value>. Vous n'êtes pas autorisé à lire le fichier ou l'image est endommagée.</value>
+  </data>
+  <data name="Message_Error_InWidget" xml:space="preserve">
+    <value>Erreur dans le widget :</value>
   </data>
   <data name="Message_GoToFile_Caption" xml:space="preserve">
     <value>Aller au dossier</value>
@@ -294,11 +318,17 @@
   <data name="Message_LoadPreviewStates_Text" xml:space="preserve">
     <value>Télécharger un fichier existant avec un ensemble de paramètres d'aperçu PreviewStates.json ?</value>
   </data>
+  <data name="Message_Load_AutoSave" xml:space="preserve">
+    <value>Fichier de sauvegarde automatique trouvé. Voulez-vous le télécharger ?</value>
+  </data>
   <data name="Message_ModelConfig_Error" xml:space="preserve">
     <value>Configuration du modèle introuvable : </value>
   </data>
   <data name="Message_ModelConfig_ReadError" xml:space="preserve">
     <value>Erreur lors de la lecture de la configuration du modèle</value>
+  </data>
+  <data name="Message_Old_OS" xml:space="preserve">
+    <value>Ce widget n'est pas pris en charge par le modèle de montre sélectionné.</value>
   </data>
   <data name="Message_Restart_Caption" xml:space="preserve">
     <value>Redémarrer</value>
@@ -323,6 +353,12 @@
   </data>
   <data name="Message_ShortcutsAOD_Text" xml:space="preserve">
     <value>Vous ne pouvez pas ajouter de raccourcis à l'écran AOD.</value>
+  </data>
+  <data name="Message_TrainingLoad_Image_Count_Error" xml:space="preserve">
+    <value>Le nombre d'images pour afficher la charge d'entraînement doit être de 3.</value>
+  </data>
+  <data name="Message_VO2Max_Image_Count_Error" xml:space="preserve">
+    <value>Le nombre d'images à afficher VO2Max doit être de 7.</value>
   </data>
   <data name="Message_WarningConverting_Text1" xml:space="preserve">
     <value>Répertoire</value>
@@ -363,6 +399,12 @@
   <data name="Message_Warning_Information" xml:space="preserve">
     <value>Informations</value>
   </data>
+  <data name="Message_Warning_JS_Exist1" xml:space="preserve">
+    <value>Il existe déjà un dossier contenant des fichiers JS dans ce dossier.</value>
+  </data>
+  <data name="Message_Widget_Exists" xml:space="preserve">
+    <value>Widget déjà présent dans le cadran de la montre.</value>
+  </data>
   <data name="Message_Wrong_ColorScheme" xml:space="preserve">
     <value>Une palette de couleurs inconnue est spécifiée pour le modèle :</value>
   </data>
@@ -380,5 +422,8 @@
   </data>
   <data name="Tip_Pointer" xml:space="preserve">
     <value>Pointeurs</value>
+  </data>
+  <data name="ToastBG" xml:space="preserve">
+    <value>Arrière-plan %s</value>
   </data>
 </root>

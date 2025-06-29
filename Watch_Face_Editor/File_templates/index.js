@@ -17,7 +17,8 @@
         const __$$module$$__ = __$$app$$__.current;
         const h = new DeviceRuntimeCore.WidgetFactory(new DeviceRuntimeCore.HmDomApi(__$$app$$__, __$$module$$__));
         const {px} = __$$app$$__.__globals__;
-        const logger = Logger.getLogger('watchface_SashaCX75');
+        //const logger = Logger.getLogger('watchface_SashaCX75');
+        const logger = DeviceRuntimeCore.HmLogger.getLogger('watchface_SashaCX75')
         //end of ignored block
 
         //dynamic modify start

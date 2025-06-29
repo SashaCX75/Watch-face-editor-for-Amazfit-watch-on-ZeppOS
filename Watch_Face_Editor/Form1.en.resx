@@ -178,6 +178,15 @@
   <data name="comboBox_AddBackground.Items" xml:space="preserve">
     <value>Background</value>
   </data>
+  <data name="comboBox_AddBackground.Items1" xml:space="preserve">
+    <value>Background</value>
+  </data>
+  <data name="comboBox_AddBackground.Items2" xml:space="preserve">
+    <value>Switchable background</value>
+  </data>
+  <data name="comboBox_AddBackground.Items3" xml:space="preserve">
+    <value>Switchable colour</value>
+  </data>
   <data name="comboBox_AddSystem.Items" xml:space="preserve">
     <value>System</value>
   </data>
@@ -214,6 +223,12 @@
   <data name="comboBox_AddSystem.Items12" xml:space="preserve">
     <value>Compass</value>
   </data>
+  <data name="comboBox_AddSystem.Items13" xml:space="preserve">
+    <value>Alarm clock</value>
+  </data>
+  <data name="comboBox_AddSystem.Items14" xml:space="preserve">
+    <value>Body temperature</value>
+  </data>
   <data name="comboBox_AddAir.Items" xml:space="preserve">
     <value>Air</value>
   </data>
@@ -237,6 +252,9 @@
   </data>
   <data name="comboBox_AddAir.Items7" xml:space="preserve">
     <value>Moon</value>
+  </data>
+  <data name="comboBox_AddAir.Items8" xml:space="preserve">
+    <value>Weather (forecast)</value>
   </data>
   <data name="comboBox_AddActivity.Items" xml:space="preserve">
     <value>Activity</value>
@@ -264,6 +282,15 @@
   </data>
   <data name="comboBox_AddActivity.Items9" xml:space="preserve">
     <value>Stress</value>
+  </data>
+  <data name="comboBox_AddActivity.Items10" xml:space="preserve">
+    <value>Readiness</value>
+  </data>
+  <data name="comboBox_AddActivity.Items11" xml:space="preserve">
+    <value>Training load</value>
+  </data>
+  <data name="comboBox_AddActivity.Items13" xml:space="preserve">
+    <value>Floors</value>
   </data>
   <data name="comboBox_AddDate.Items" xml:space="preserve">
     <value>Date</value>
@@ -412,6 +439,30 @@
   <data name="tabPageConverting.Text" xml:space="preserve">
     <value>Converting</value>
   </data>
+  <data name="label_AutoSave.Location" type="System.Drawing.Point, System.Drawing">
+    <value>162, 628</value>
+  </data>
+  <data name="label_AutoSave.Size" type="System.Drawing.Size, System.Drawing">
+    <value>43, 13</value>
+  </data>
+  <data name="label_AutoSave.Text" xml:space="preserve">
+    <value>minutes</value>
+  </data>
+  <data name="numericUpDown_AutoSave_Time.Location" type="System.Drawing.Point, System.Drawing">
+    <value>109, 624</value>
+  </data>
+  <data name="checkBox_AutoSave.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 17</value>
+  </data>
+  <data name="checkBox_AutoSave.Text" xml:space="preserve">
+    <value>Autosave every</value>
+  </data>
+  <data name="checkBox_Del_Confirm.Size" type="System.Drawing.Size, System.Drawing">
+    <value>238, 17</value>
+  </data>
+  <data name="checkBox_Del_Confirm.Text" xml:space="preserve">
+    <value>Request confirmation when deleting a widget</value>
+  </data>
   <data name="checkBox_CreateZPK.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 17</value>
   </data>
@@ -470,13 +521,13 @@
     <value>Button highlight type</value>
   </data>
   <data name="comboBox_Animation_Preview_Speed.Location" type="System.Drawing.Point, System.Drawing">
-    <value>600, 420</value>
+    <value>610, 428</value>
   </data>
   <data name="button_Reset.Text" xml:space="preserve">
     <value>Reset</value>
   </data>
   <data name="numericUpDown_Gif_Speed.Location" type="System.Drawing.Point, System.Drawing">
-    <value>518, 363</value>
+    <value>530, 363</value>
   </data>
   <data name="checkBox_AllWidgetsInGif.Size" type="System.Drawing.Size, System.Drawing">
     <value>288, 17</value>
@@ -551,10 +602,7 @@
     <value>Show warning when saving JSON file</value>
   </data>
   <data name="comboBox_Language.Location" type="System.Drawing.Point, System.Drawing">
-    <value>465, 477</value>
-  </data>
-  <data name="label356.Location" type="System.Drawing.Point, System.Drawing">
-    <value>409, 481</value>
+    <value>480, 509</value>
   </data>
   <data name="label356.Size" type="System.Drawing.Size, System.Drawing">
     <value>58, 13</value>
@@ -669,6 +717,30 @@ more system load)</value>
   <data name="tabPage_Tips.Text" xml:space="preserve">
     <value>Tips for use</value>
   </data>
+  <data name="linkLabel_ES_site.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 13</value>
+  </data>
+  <data name="linkLabel_ES_site.Text" xml:space="preserve">
+    <value>- Author: @Mr_Pacojones (es)</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>331, 39</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>* I am not the author of these lessons and am not responsible for the accuracy of the information contained therein. The information in the lessons may be outdated or inaccurate.</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 13</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Lessons and guides:</value>
+  </data>
+  <data name="linkLabel_YouTube_Avoska88.Size" type="System.Drawing.Size, System.Drawing">
+    <value>139, 13</value>
+  </data>
+  <data name="linkLabel_YouTube_Avoska88.Text" xml:space="preserve">
+    <value>- Author: Avoska88 (ru)</value>
+  </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>290, 13</value>
   </data>
@@ -765,7 +837,7 @@ PayPal: sashacx75@gmail.com</value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACk
-        DQAAAk1TRnQBSQFMAgEBBgEAAXwBKQF8ASkBEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        DQAAAk1TRnQBSQFMAgEBBgEAAQgBKgEIASoBEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAASADAAEBAQABCAYAAQgYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -826,12 +898,6 @@ PayPal: sashacx75@gmail.com</value>
         AZ8CAAHwAQ8B9wHnAf4BHws=
 </value>
   </data>
-  <data name="button_pack_zip.Text" xml:space="preserve">
-    <value>Pack watch face</value>
-  </data>
-  <data name="button_unpack_zip.Text" xml:space="preserve">
-    <value>Unpack watch face</value>
-  </data>
   <data name="label_watch_model.Size" type="System.Drawing.Size, System.Drawing">
     <value>70, 13</value>
   </data>
@@ -840,6 +906,12 @@ PayPal: sashacx75@gmail.com</value>
   </data>
   <data name="checkBox_Show_Buttons.Text" xml:space="preserve">
     <value>Highlight button areas</value>
+  </data>
+  <data name="button_pack_zip.Text" xml:space="preserve">
+    <value>Pack watch face</value>
+  </data>
+  <data name="button_unpack_zip.Text" xml:space="preserve">
+    <value>Unpack watch face</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

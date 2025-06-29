@@ -61,6 +61,15 @@ namespace Watch_Face_Editor.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Элемент не может быть добавлен в эту зону.
+        /// </summary>
+        internal static string ElementErrorZone {
+            get {
+                return ResourceManager.GetString("ElementErrorZone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Такой элемент уже есть.
         /// </summary>
         internal static string ElementExists {
@@ -75,6 +84,15 @@ namespace Watch_Face_Editor.Properties {
         internal static string TypeAltimeter {
             get {
                 return ResourceManager.GetString("TypeAltimeter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Ярлык приложения.
+        /// </summary>
+        internal static string TypeAppsList {
+            get {
+                return ResourceManager.GetString("TypeAppsList", resourceCulture);
             }
         }
         
@@ -169,6 +187,15 @@ namespace Watch_Face_Editor.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Приложение.
+        /// </summary>
+        internal static string TypeNameAppsList {
+            get {
+                return ResourceManager.GetString("TypeNameAppsList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Батарея.
         /// </summary>
         internal static string TypeNameBattery {
@@ -255,6 +282,15 @@ namespace Watch_Face_Editor.Properties {
         internal static string TypeNameSpO2 {
             get {
                 return ResourceManager.GetString("TypeNameSpO2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Тренировка.
+        /// </summary>
+        internal static string TypeNameSportList {
+            get {
+                return ResourceManager.GetString("TypeNameSportList", resourceCulture);
             }
         }
         
@@ -354,6 +390,15 @@ namespace Watch_Face_Editor.Properties {
         internal static string TypeSpO2 {
             get {
                 return ResourceManager.GetString("TypeSpO2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Ярлык тренировки.
+        /// </summary>
+        internal static string TypeSportList {
+            get {
+                return ResourceManager.GetString("TypeSportList", resourceCulture);
             }
         }
         

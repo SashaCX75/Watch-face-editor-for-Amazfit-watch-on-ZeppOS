@@ -181,6 +181,15 @@
   <data name="comboBox_AddBackground.Items" xml:space="preserve">
     <value>Pozadí</value>
   </data>
+  <data name="comboBox_AddBackground.Items1" xml:space="preserve">
+    <value>Pozadí</value>
+  </data>
+  <data name="comboBox_AddBackground.Items2" xml:space="preserve">
+    <value>Přepínatelné pozadí</value>
+  </data>
+  <data name="comboBox_AddBackground.Items3" xml:space="preserve">
+    <value>Přepínatelná barva</value>
+  </data>
   <data name="comboBox_AddSystem.Items" xml:space="preserve">
     <value>Systém</value>
   </data>
@@ -214,6 +223,15 @@
   <data name="comboBox_AddSystem.Items10" xml:space="preserve">
     <value>Tlačítka</value>
   </data>
+  <data name="comboBox_AddSystem.Items12" xml:space="preserve">
+    <value>Kompas</value>
+  </data>
+  <data name="comboBox_AddSystem.Items13" xml:space="preserve">
+    <value>Alarm</value>
+  </data>
+  <data name="comboBox_AddSystem.Items14" xml:space="preserve">
+    <value>Tělesná teplota</value>
+  </data>
   <data name="comboBox_AddAir.Items" xml:space="preserve">
     <value>Atmosféra/Vzduch</value>
   </data>
@@ -234,6 +252,12 @@
   </data>
   <data name="comboBox_AddAir.Items6" xml:space="preserve">
     <value>Barometr</value>
+  </data>
+  <data name="comboBox_AddAir.Items7" xml:space="preserve">
+    <value>Měsíc</value>
+  </data>
+  <data name="comboBox_AddAir.Items8" xml:space="preserve">
+    <value>Předpověď (počasí)</value>
   </data>
   <data name="comboBox_AddActivity.Items" xml:space="preserve">
     <value>Aktivity</value>
@@ -261,6 +285,15 @@
   </data>
   <data name="comboBox_AddActivity.Items9" xml:space="preserve">
     <value>Stres</value>
+  </data>
+  <data name="comboBox_AddActivity.Items10" xml:space="preserve">
+    <value>Připravenost</value>
+  </data>
+  <data name="comboBox_AddActivity.Items11" xml:space="preserve">
+    <value>Tréninkové zatížení</value>
+  </data>
+  <data name="comboBox_AddActivity.Items13" xml:space="preserve">
+    <value>Poschodí</value>
   </data>
   <data name="comboBox_AddDate.Items" xml:space="preserve">
     <value>Datum</value>
@@ -406,8 +439,80 @@
   <data name="tabPageConverting.Text" xml:space="preserve">
     <value>Konverze</value>
   </data>
+  <data name="label_AutoSave.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 13</value>
+  </data>
+  <data name="label_AutoSave.Text" xml:space="preserve">
+    <value>minut</value>
+  </data>
+  <data name="checkBox_AutoSave.Size" type="System.Drawing.Size, System.Drawing">
+    <value>162, 17</value>
+  </data>
+  <data name="checkBox_AutoSave.Text" xml:space="preserve">
+    <value>Automatické ukládání každé</value>
+  </data>
+  <data name="checkBox_Del_Confirm.Size" type="System.Drawing.Size, System.Drawing">
+    <value>223, 17</value>
+  </data>
+  <data name="checkBox_Del_Confirm.Text" xml:space="preserve">
+    <value>Při mazání widgetu si vyžádejte potvrzení</value>
+  </data>
+  <data name="checkBox_CreateZPK.Size" type="System.Drawing.Size, System.Drawing">
+    <value>124, 17</value>
+  </data>
+  <data name="checkBox_CreateZPK.Text" xml:space="preserve">
+    <value>Vytvořit soubor *.zpk</value>
+  </data>
+  <data name="checkBox_Use_ARGB.Size" type="System.Drawing.Size, System.Drawing">
+    <value>198, 17</value>
+  </data>
+  <data name="checkBox_Use_ARGB.Text" xml:space="preserve">
+    <value>Převeďte obrázky do formátu ARGB</value>
+  </data>
+  <data name="radioButton_ARGB_forced.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 17</value>
+  </data>
+  <data name="radioButton_ARGB_forced.Text" xml:space="preserve">
+    <value>Vynucení formátu ARGB</value>
+  </data>
+  <data name="radioButton_ARGB_color.Size" type="System.Drawing.Size, System.Drawing">
+    <value>174, 17</value>
+  </data>
+  <data name="radioButton_ARGB_color.Text" xml:space="preserve">
+    <value>Pouze s určeným počtem barev</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Převádějte obrázky bez ztráty kvality</value>
+  </data>
+  <data name="button_SavePNG_button.Text" xml:space="preserve">
+    <value>Náhled tlačítka Uložit</value>
+  </data>
+  <data name="checkBox_Buttons_In_Gif.Size" type="System.Drawing.Size, System.Drawing">
+    <value>239, 17</value>
+  </data>
+  <data name="checkBox_Buttons_In_Gif.Text" xml:space="preserve">
+    <value>Zvýrazněte tlačítka při ukládání souboru GIF</value>
+  </data>
+  <data name="checkBox_Buttons_Border.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 17</value>
+  </data>
+  <data name="checkBox_Buttons_Border.Text" xml:space="preserve">
+    <value>Zobrazit okraj kolem tlačítka</value>
+  </data>
+  <data name="checkBox_Buttons_Area.Size" type="System.Drawing.Size, System.Drawing">
+    <value>132, 17</value>
+  </data>
+  <data name="checkBox_Buttons_Area.Text" xml:space="preserve">
+    <value>Vyberte oblast tlačítka</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Typ zvýraznění tlačítka</value>
+  </data>
   <data name="button_Reset.Text" xml:space="preserve">
     <value>Resetovat</value>
+  </data>
+  <data name="numericUpDown_Gif_Speed.Location" type="System.Drawing.Point, System.Drawing">
+    <value>540, 363</value>
   </data>
   <data name="checkBox_AllWidgetsInGif.Size" type="System.Drawing.Size, System.Drawing">
     <value>336, 17</value>
@@ -591,6 +696,40 @@ větší zatížení systému)</value>
   <data name="tabPage_Tips.Text" xml:space="preserve">
     <value>Tipy pro použití</value>
   </data>
+  <data name="linkLabel_ES_site.Size" type="System.Drawing.Size, System.Drawing">
+    <value>170, 13</value>
+  </data>
+  <data name="linkLabel_ES_site.Text" xml:space="preserve">
+    <value>- Autor: @Mr_Pacojones (es)</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>344, 39</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>* Nejsem autorem těchto lekcí a nenesu odpovědnost za přesnost informací v nich obsažených. Informace v lekcích mohou být zastaralé nebo nepřesné.</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>87, 13</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Lekce a návody:</value>
+  </data>
+  <data name="linkLabel_YouTube_Avoska88.Size" type="System.Drawing.Size, System.Drawing">
+    <value>132, 13</value>
+  </data>
+  <data name="linkLabel_YouTube_Avoska88.Text" xml:space="preserve">
+    <value>- Autor: Avoska88 (ru)</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>256, 13</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Program používá kód pro převod obrázků z nástroje:</value>
+  </data>
+  <data name="label_donate.Text" xml:space="preserve">
+    <value>Přispět autorovi
+PayPal: sashacx75@gmail.com</value>
+  </data>
   <data name="label415.Size" type="System.Drawing.Size, System.Drawing">
     <value>106, 13</value>
   </data>
@@ -676,8 +815,8 @@ větší zatížení systému)</value>
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
-        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACm
-        DQAAAk1TRnQBSQFMAgEBBgEAAQwBNgEgATYBEAEAARABAAT/AQkBEAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACk
+        DQAAAk1TRnQBSQFMAgEBBgEAAVgBNgFYATYBEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAASADAAEBAQABCAYAAQgYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -735,20 +874,23 @@ větší zatížení systému)</value>
         AX4B4QEPAQ0BhgGAAQEBPgF+AfABDwEGAcICAAI+AfgBHwFDAWABAAEgAT8BPgH4AT8BYQGwAQABQAE/
         AR4B4AEnATAB2AEAAYABPAEeAeEBAwFYAWwBAQEAATwBHgHhAQcBbAE2AQEBAAE/Af4B4QEfATYBGgEB
         AwAB8AEfAQsBDAQAAfgBPwFNAYYBgAEBAgAB/AE/AQIBwgGAAQEBBAEAAf4BHwFDAWABwAEDAYQBAAH+
-        AZ8CAAHwAQ8B9wHnAf4BHxYACw==
+        AZ8CAAHwAQ8B9wHnAf4BHws=
 </value>
-  </data>
-  <data name="button_pack_zip.Text" xml:space="preserve">
-    <value>Zabalit ciferník</value>
-  </data>
-  <data name="button_unpack_zip.Text" xml:space="preserve">
-    <value>Rozbalte ciferník</value>
   </data>
   <data name="label_watch_model.Size" type="System.Drawing.Size, System.Drawing">
     <value>77, 13</value>
   </data>
   <data name="label_watch_model.Text" xml:space="preserve">
     <value>Model hodinek</value>
+  </data>
+  <data name="checkBox_Show_Buttons.Text" xml:space="preserve">
+    <value>Zvýrazněte oblasti pomocí tlačítek</value>
+  </data>
+  <data name="button_pack_zip.Text" xml:space="preserve">
+    <value>Zabalit ciferník</value>
+  </data>
+  <data name="button_unpack_zip.Text" xml:space="preserve">
+    <value>Rozbalte ciferník</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -2000,51 +2142,5 @@ větší zatížení systému)</value>
         AAAAAAAAAAAAAO+BPCbvgT1I74I+SO+BPSYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD8PwAA4AcAAMAD
         AACAAQAAgAEAAIABAAAAAAAAAAAAAAAAAAAAAAAAgAEAAIABAACAAQAAwAMAAOAHAAD8PwAA
 </value>
-  </data>
-  <data name="button_SavePNG_button.Text" xml:space="preserve">
-    <value>Náhled tlačítka Uložit</value>
-  </data>
-  <data name="checkBox_Buttons_Area.Text" xml:space="preserve">
-    <value>Vyberte oblast tlačítka</value>
-  </data>
-  <data name="checkBox_Buttons_Border.Text" xml:space="preserve">
-    <value>Zobrazit okraj kolem tlačítka</value>
-  </data>
-  <data name="checkBox_Buttons_In_Gif.Text" xml:space="preserve">
-    <value>Zvýrazněte tlačítka při ukládání souboru GIF</value>
-  </data>
-  <data name="checkBox_Show_Buttons.Text" xml:space="preserve">
-    <value>Zvýrazněte oblasti pomocí tlačítek</value>
-  </data>
-  <data name="checkBox_Use_ARGB.Text" xml:space="preserve">
-    <value>Převeďte obrázky do formátu ARGB</value>
-  </data>
-  <data name="comboBox_AddAir.Items7" xml:space="preserve">
-    <value>Měsíc</value>
-  </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Typ zvýraznění tlačítka</value>
-  </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Převádějte obrázky bez ztráty kvality</value>
-  </data>
-  <data name="radioButton_ARGB_color.Text" xml:space="preserve">
-    <value>Pouze s určeným počtem barev</value>
-  </data>
-  <data name="radioButton_ARGB_forced.Text" xml:space="preserve">
-    <value>Vynucení formátu ARGB</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Program používá kód pro převod obrázků z nástroje:</value>
-  </data>
-  <data name="label_donate.Text" xml:space="preserve">
-    <value>Přispět autorovi
-PayPal: sashacx75@gmail.com</value>
-  </data>
-  <data name="checkBox_CreateZPK.Text" xml:space="preserve">
-    <value>Vytvořit soubor *.zpk</value>
-  </data>
-  <data name="comboBox_AddSystem.Items12" xml:space="preserve">
-    <value>Kompas</value>
   </data>
 </root>

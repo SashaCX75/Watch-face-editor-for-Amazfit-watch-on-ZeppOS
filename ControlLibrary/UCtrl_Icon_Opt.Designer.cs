@@ -46,10 +46,13 @@ namespace ControlLibrary
             this.label02 = new System.Windows.Forms.Label();
             this.label04 = new System.Windows.Forms.Label();
             this.label05 = new System.Windows.Forms.Label();
+            this.numericUpDown_Alpha = new System.Windows.Forms.NumericUpDown();
+            this.label_alpha = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_iconX)).BeginInit();
             this.contextMenuStrip_X.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_iconY)).BeginInit();
             this.contextMenuStrip_Y.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Alpha)).BeginInit();
             this.SuspendLayout();
             // 
             // comboBox_icon_image
@@ -181,10 +184,34 @@ namespace ControlLibrary
             resources.ApplyResources(this.label05, "label05");
             this.label05.Name = "label05";
             // 
+            // numericUpDown_Alpha
+            // 
+            resources.ApplyResources(this.numericUpDown_Alpha, "numericUpDown_Alpha");
+            this.numericUpDown_Alpha.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.numericUpDown_Alpha.Name = "numericUpDown_Alpha";
+            this.numericUpDown_Alpha.Value = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.numericUpDown_Alpha.ValueChanged += new System.EventHandler(this.numericUpDown_ValueChanged);
+            // 
+            // label_alpha
+            // 
+            resources.ApplyResources(this.label_alpha, "label_alpha");
+            this.label_alpha.BackColor = System.Drawing.Color.Transparent;
+            this.label_alpha.Name = "label_alpha";
+            // 
             // UCtrl_Icon_Opt
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.numericUpDown_Alpha);
+            this.Controls.Add(this.label_alpha);
             this.Controls.Add(this.comboBox_icon_image);
             this.Controls.Add(this.numericUpDown_iconX);
             this.Controls.Add(this.numericUpDown_iconY);
@@ -197,6 +224,7 @@ namespace ControlLibrary
             this.contextMenuStrip_X.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_iconY)).EndInit();
             this.contextMenuStrip_Y.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Alpha)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -219,5 +247,7 @@ namespace ControlLibrary
         private System.Windows.Forms.ToolStripMenuItem вставитьToolStripMenuItemX;
         public System.Windows.Forms.NumericUpDown numericUpDown_iconX;
         public System.Windows.Forms.NumericUpDown numericUpDown_iconY;
+        public System.Windows.Forms.NumericUpDown numericUpDown_Alpha;
+        private System.Windows.Forms.Label label_alpha;
     }
 }

@@ -1537,4 +1537,16 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Ajouter des éléments</value>
   </data>
+  <data name="groupBox_shortcuts.Text" xml:space="preserve">
+    <value>Raccourci</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>* Vous ne pouvez pas ajouter d’autres éléments à la zone de raccourcis.</value>
+  </data>
+  <data name="radioButton_appsList.Text" xml:space="preserve">
+    <value>Raccourci d'application</value>
+  </data>
+  <data name="radioButton_sportList.Text" xml:space="preserve">
+    <value>Raccourci d'entraînement</value>
+  </data>
 </root>

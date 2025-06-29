@@ -549,4 +549,7 @@
   <data name="checkBox_display_first.Text" xml:space="preserve">
     <value>Unterhalb anderer Elemente anzeigen</value>
   </data>
+  <data name="label_shortcuts_hint.Text" xml:space="preserve">
+    <value>Das Vorschaubild wird durch das App-Symbol in der gleichen Größe ersetzt.</value>
+  </data>
 </root>

@@ -303,9 +303,6 @@
   <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <metadata name="toolTip_help.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="pictureBox4.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
   </data>
@@ -321,8 +318,11 @@
   <data name="pictureBox4.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
   </data>
+  <metadata name="toolTip_help.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <data name="pictureBox4.ToolTip" xml:space="preserve">
-    <value>Для добавления собственных наборов скриптов для функций создайте папку "user_scripts" 
+    <value>Для добавления собственных наборов скриптов для функций создайте папку "button_scripts" 
 рядом с исполняемым файлом и поместите туда файлы *.js. Имя файла будет использоваться 
 для отображения в выпадающем списке. Содержимое файла будет добавлено в качестве кода 
 функции при выборе его в выпадающем списке.</value>
@@ -534,6 +534,24 @@
   <data name="&gt;&gt;button_Save.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="richTextBox_click.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="richTextBox_click.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 16</value>
+  </data>
+  <data name="richTextBox_click.Size" type="System.Drawing.Size, System.Drawing">
+    <value>766, 173</value>
+  </data>
+  <data name="richTextBox_click.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="richTextBox_click.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="richTextBox_click.WordWrap" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="&gt;&gt;richTextBox_click.Name" xml:space="preserve">
     <value>richTextBox_click</value>
   </data>
@@ -573,35 +591,23 @@
   <data name="&gt;&gt;groupBox_click.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="richTextBox_click.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="richTextBox_longPress.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
   </data>
-  <data name="richTextBox_click.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="richTextBox_longPress.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 16</value>
   </data>
-  <data name="richTextBox_click.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="richTextBox_longPress.Size" type="System.Drawing.Size, System.Drawing">
     <value>766, 173</value>
   </data>
-  <data name="richTextBox_click.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
+  <data name="richTextBox_longPress.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
   </data>
-  <data name="richTextBox_click.Text" xml:space="preserve">
+  <data name="richTextBox_longPress.Text" xml:space="preserve">
     <value />
   </data>
-  <data name="richTextBox_click.WordWrap" type="System.Boolean, mscorlib">
+  <data name="richTextBox_longPress.WordWrap" type="System.Boolean, mscorlib">
     <value>False</value>
-  </data>
-  <data name="&gt;&gt;richTextBox_click.Name" xml:space="preserve">
-    <value>richTextBox_click</value>
-  </data>
-  <data name="&gt;&gt;richTextBox_click.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RichTextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;richTextBox_click.Parent" xml:space="preserve">
-    <value>groupBox_click</value>
-  </data>
-  <data name="&gt;&gt;richTextBox_click.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <data name="&gt;&gt;richTextBox_longPress.Name" xml:space="preserve">
     <value>richTextBox_longPress</value>
@@ -645,39 +651,6 @@
   <data name="&gt;&gt;groupBox_longPress.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="richTextBox_longPress.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="richTextBox_longPress.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 16</value>
-  </data>
-  <data name="richTextBox_longPress.Size" type="System.Drawing.Size, System.Drawing">
-    <value>766, 173</value>
-  </data>
-  <data name="richTextBox_longPress.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="richTextBox_longPress.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="richTextBox_longPress.WordWrap" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;richTextBox_longPress.Name" xml:space="preserve">
-    <value>richTextBox_longPress</value>
-  </data>
-  <data name="&gt;&gt;richTextBox_longPress.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RichTextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;richTextBox_longPress.Parent" xml:space="preserve">
-    <value>groupBox_longPress</value>
-  </data>
-  <data name="&gt;&gt;richTextBox_longPress.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <metadata name="toolTip_help.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="label1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
   </data>

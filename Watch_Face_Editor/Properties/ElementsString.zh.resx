@@ -117,11 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ElementErrorZone" xml:space="preserve">
+    <value>无法将元素添加到此区域</value>
+  </data>
   <data name="ElementExists" xml:space="preserve">
     <value>此元素已存在</value>
   </data>
   <data name="TypeAltimeter" xml:space="preserve">
     <value>气压</value>
+  </data>
+  <data name="TypeAppsList" xml:space="preserve">
+    <value>应用快捷方式</value>
   </data>
   <data name="TypeBattery" xml:space="preserve">
     <value>电池</value>
@@ -151,9 +157,10 @@
     <value>月相</value>
   </data>
   <data name="TypeNameAltimeter" xml:space="preserve">
-    <value>空气压力</value>
-    <comment>Check the translation on the 
-watch</comment>
+    <value>气压</value>
+  </data>
+  <data name="TypeNameAppsList" xml:space="preserve">
+    <value>应用名称</value>
   </data>
   <data name="TypeNameBattery" xml:space="preserve">
     <value>电池</value>
@@ -174,6 +181,9 @@ watch</comment>
     <value>距离</value>
     <comment>Check the translation on the 
 watch</comment>
+  </data>
+  <data name="TypeNameFatBurning" xml:space="preserve">
+    <value>燃烧脂肪</value>
   </data>
   <data name="TypeNameHeart" xml:space="preserve">
     <value>心率</value>
@@ -199,6 +209,9 @@ watch</comment>
     <value>血氧</value>
     <comment>Check the translation on the 
 watch</comment>
+  </data>
+  <data name="TypeNameSportList" xml:space="preserve">
+    <value>训练</value>
   </data>
   <data name="TypeNameStand" xml:space="preserve">
     <value>站立</value>
@@ -250,6 +263,9 @@ watch</comment>
   </data>
   <data name="TypeSpO2" xml:space="preserve">
     <value>血氧</value>
+  </data>
+  <data name="TypeSportList" xml:space="preserve">
+    <value>训练快捷方式</value>
   </data>
   <data name="TypeStand" xml:space="preserve">
     <value>站立</value>

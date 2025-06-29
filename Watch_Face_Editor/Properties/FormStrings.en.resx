@@ -169,13 +169,13 @@
     <value>GIF Files (*.gif)|*.gif</value>
   </data>
   <data name="FilterJson" xml:space="preserve">
-    <value>Json files (*.json) | *.json</value>
+    <value>Json files (*.json)|*.json</value>
   </data>
   <data name="FilterPng" xml:space="preserve">
     <value>PNG Files (*.png)|*.png</value>
   </data>
   <data name="FilterZip" xml:space="preserve">
-    <value>Zip file of the watch face (* .zip) | * .zip</value>
+    <value>Zip file of the watch face (*.zip)|*.zip</value>
   </data>
   <data name="FollowMinute" xml:space="preserve">
     <value>Follow the hours</value>
@@ -213,11 +213,23 @@
   <data name="Message_AnimationAOD_Text" xml:space="preserve">
     <value>You cannot add animation to the AOD screen.</value>
   </data>
+  <data name="Message_AQI_Image_Count_Error" xml:space="preserve">
+    <value>The number of images for the AQI should be 6.</value>
+  </data>
   <data name="Message_ARGB_Line1" xml:space="preserve">
     <value>Converting images to ARGB format takes longer.</value>
   </data>
   <data name="Message_ARGB_Line2" xml:space="preserve">
     <value>Are you sure you want to convert your images to ARGB format?</value>
+  </data>
+  <data name="Message_AutoSave_Caption" xml:space="preserve">
+    <value>Recovery</value>
+  </data>
+  <data name="Message_BG_Not_Color" xml:space="preserve">
+    <value>You need to set the colour as the main background.</value>
+  </data>
+  <data name="Message_BG_Not_Image" xml:space="preserve">
+    <value>You need to set the image as the main background.</value>
   </data>
   <data name="Message_ConvertingCompleted_Text" xml:space="preserve">
     <value>A new watch face has been created.</value>
@@ -240,6 +252,9 @@
   <data name="Message_Delet_Text21" xml:space="preserve">
     <value>?</value>
   </data>
+  <data name="Message_Delet_Widget" xml:space="preserve">
+    <value>Do you really want to delete the widget?</value>
+  </data>
   <data name="Message_DontDelZip" xml:space="preserve">
     <value>It is not possible to delete an existing watch face file.</value>
   </data>
@@ -252,17 +267,26 @@
   <data name="Message_ElementAOD_Text" xml:space="preserve">
     <value>You cannot add this element to an AOD screen.</value>
   </data>
+  <data name="Message_ErrorReadBin" xml:space="preserve">
+    <value>The code is encrypted and cannot be recognised.</value>
+  </data>
   <data name="Message_ErrorReadJS" xml:space="preserve">
-    <value>Unable to recognize the structure of the watch face</value>
+    <value>Unable to recognize the structure of the watch face.</value>
   </data>
   <data name="Message_Error_Caption" xml:space="preserve">
     <value>Error</value>
+  </data>
+  <data name="Message_Error_Font" xml:space="preserve">
+    <value>Error adding a font </value>
   </data>
   <data name="Message_Error_Image_Text1" xml:space="preserve">
     <value>Unable to open image:</value>
   </data>
   <data name="Message_Error_Image_Text2" xml:space="preserve">
     <value>. You do not have permission to read the file, or the image is damaged.</value>
+  </data>
+  <data name="Message_Error_InWidget" xml:space="preserve">
+    <value>Error in the widget: </value>
   </data>
   <data name="Message_GoToFile_Caption" xml:space="preserve">
     <value>Go to file</value>
@@ -294,11 +318,17 @@
   <data name="Message_LoadPreviewStates_Text" xml:space="preserve">
     <value>Download an existing file with a set of preview settings PreviewStates.json?</value>
   </data>
+  <data name="Message_Load_AutoSave" xml:space="preserve">
+    <value>Found a file with autosave. Would you like to download it?</value>
+  </data>
   <data name="Message_ModelConfig_Error" xml:space="preserve">
     <value>Model configuration not found: </value>
   </data>
   <data name="Message_ModelConfig_ReadError" xml:space="preserve">
     <value>Error reading model configuration</value>
+  </data>
+  <data name="Message_Old_OS" xml:space="preserve">
+    <value>This widget is not supported by the selected watch model.</value>
   </data>
   <data name="Message_Restart_Caption" xml:space="preserve">
     <value>Reboot</value>
@@ -323,6 +353,12 @@
   </data>
   <data name="Message_ShortcutsAOD_Text" xml:space="preserve">
     <value>You cannot add shortcuts to the AOD screen.</value>
+  </data>
+  <data name="Message_TrainingLoad_Image_Count_Error" xml:space="preserve">
+    <value>The number of images for the training load should be 3.</value>
+  </data>
+  <data name="Message_VO2Max_Image_Count_Error" xml:space="preserve">
+    <value>The number of images for the VO2Max should be 7.</value>
   </data>
   <data name="Message_WarningConverting_Text1" xml:space="preserve">
     <value>Directory </value>
@@ -363,6 +399,12 @@
   <data name="Message_Warning_Information" xml:space="preserve">
     <value>Information</value>
   </data>
+  <data name="Message_Warning_JS_Exist1" xml:space="preserve">
+    <value>A folder with JS files already exists in this folder.</value>
+  </data>
+  <data name="Message_Widget_Exists" xml:space="preserve">
+    <value>Such a widget already exists in the watch face.</value>
+  </data>
   <data name="Message_Wrong_ColorScheme" xml:space="preserve">
     <value>An unknown colour scheme for the model is specified:</value>
   </data>
@@ -380,5 +422,8 @@
   </data>
   <data name="Tip_Pointer" xml:space="preserve">
     <value>Pointer </value>
+  </data>
+  <data name="ToastBG" xml:space="preserve">
+    <value>Background %s</value>
   </data>
 </root>

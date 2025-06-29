@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,8 @@ namespace ControlLibrary
         public Dictionary<string, Object> WidgetProperty = new Dictionary<string, Object>();
 
         private bool LineCap_mode = false;
+        private bool Alpha_mode = false;
+        private bool Inverse_mode = true;
 
         public UCtrl_Circle_Scale_Opt()
         {
@@ -129,7 +132,7 @@ namespace ControlLibrary
             return comboBox_scaleCircle_lineCap.SelectedIndex;
         }
 
-        /// <summary>Режим отображения типа окончания линий</summary>
+        /// <summary>Доступность выбора окончания линии</summary>
         [Description("Доступность выбора окончания линии")]
         public virtual bool LineCap
         {
@@ -142,6 +145,37 @@ namespace ControlLibrary
                 LineCap_mode = value;
                 comboBox_scaleCircle_lineCap.Enabled = value;
                 label2.Enabled = value;
+            }
+        }
+
+        /// <summary>Доступность инверсии шкалы</summary>
+        [Description("Доступность инверсии шкалы")]
+        public virtual bool Inverse
+        {
+            get
+            {
+                return Inverse_mode;
+            }
+            set
+            {
+                Inverse_mode = value;
+                checkBox_inversion.Enabled = value;
+            }
+        }
+
+        /// <summary>Режим доступности прозрачности</summary>
+        [Description("Режим доступности прозрачности")]
+        public virtual bool Alpha
+        {
+            get
+            {
+                return Alpha_mode;
+            }
+            set
+            {
+                Alpha_mode = value;
+                label_alpha.Enabled = Alpha_mode;
+                numericUpDown_Alpha.Enabled = Alpha_mode;
             }
         }
 
@@ -361,6 +395,10 @@ namespace ControlLibrary
             checkBox_mirror.Checked = false;
             checkBox_inversion.Checked = false;
             comboBox_scaleCircle_lineCap.SelectedIndex = 0;
+
+            LineCap = false;
+            Alpha = false;
+            Inverse = true;
 
             setValue = false;
         }

@@ -169,13 +169,13 @@
     <value>Archivos GIF (*.gif)|*.gif</value>
   </data>
   <data name="FilterJson" xml:space="preserve">
-    <value>Archivos Json (*.json) | *.json</value>
+    <value>Archivos Json (*.json)|*.json</value>
   </data>
   <data name="FilterPng" xml:space="preserve">
     <value>Archivos PNG (*.png)|*.png</value>
   </data>
   <data name="FilterZip" xml:space="preserve">
-    <value>Archivo zip de la esfera del reloj (* .zip) | * .Zip</value>
+    <value>Archivo zip de la esfera del reloj (*.zip)|*.zip</value>
   </data>
   <data name="FollowMinute" xml:space="preserve">
     <value>Sigue a las horas</value>
@@ -213,11 +213,23 @@
   <data name="Message_AnimationAOD_Text" xml:space="preserve">
     <value>No puede agregar animación a la pantalla AOD.</value>
   </data>
+  <data name="Message_AQI_Image_Count_Error" xml:space="preserve">
+    <value>El número de imágenes para el AQI debe ser 6.</value>
+  </data>
   <data name="Message_ARGB_Line1" xml:space="preserve">
     <value>Convertir imágenes al formato ARGB lleva más tiempo.</value>
   </data>
   <data name="Message_ARGB_Line2" xml:space="preserve">
     <value>¿Estás seguro de que quieres convertir tus imágenes al formato ARGB?</value>
+  </data>
+  <data name="Message_AutoSave_Caption" xml:space="preserve">
+    <value>Recuperación</value>
+  </data>
+  <data name="Message_BG_Not_Color" xml:space="preserve">
+    <value>Debes establecer el color como fondo principal.</value>
+  </data>
+  <data name="Message_BG_Not_Image" xml:space="preserve">
+    <value>Debes establecer la imagen como fondo principal.</value>
   </data>
   <data name="Message_ConvertingCompleted_Text" xml:space="preserve">
     <value>Se ha creado una nueva esfera de reloj.</value>
@@ -240,6 +252,9 @@
   <data name="Message_Delet_Text21" xml:space="preserve">
     <value>?</value>
   </data>
+  <data name="Message_Delet_Widget" xml:space="preserve">
+    <value>¿Realmente quieres eliminar el widget?</value>
+  </data>
   <data name="Message_DontDelZip" xml:space="preserve">
     <value>No es posible eliminar un archivo de esfera de reloj existente.</value>
   </data>
@@ -252,17 +267,26 @@
   <data name="Message_ElementAOD_Text" xml:space="preserve">
     <value>No puede agregar este elemento a una pantalla AOD.</value>
   </data>
+  <data name="Message_ErrorReadBin" xml:space="preserve">
+    <value>El código está encriptado y no se puede reconocer.</value>
+  </data>
   <data name="Message_ErrorReadJS" xml:space="preserve">
     <value>No se puede reconocer la estructura de la esfera del reloj</value>
   </data>
   <data name="Message_Error_Caption" xml:space="preserve">
     <value>Error</value>
   </data>
+  <data name="Message_Error_Font" xml:space="preserve">
+    <value>Error al agregar una fuente</value>
+  </data>
   <data name="Message_Error_Image_Text1" xml:space="preserve">
     <value>No se puede abrir la imagen:</value>
   </data>
   <data name="Message_Error_Image_Text2" xml:space="preserve">
     <value>. No tiene permiso para leer el archivo o la imagen está dañada.</value>
+  </data>
+  <data name="Message_Error_InWidget" xml:space="preserve">
+    <value>Error en el widget:</value>
   </data>
   <data name="Message_GoToFile_Caption" xml:space="preserve">
     <value>Ir al archivo</value>
@@ -294,11 +318,17 @@
   <data name="Message_LoadPreviewStates_Text" xml:space="preserve">
     <value>Descargar un archivo existente con un conjunto de configuraciones de vista previa PreviewStates.json?</value>
   </data>
+  <data name="Message_Load_AutoSave" xml:space="preserve">
+    <value>Se encontro un archivo con guardado automático. ¿Te gustaría descargarlo?</value>
+  </data>
   <data name="Message_ModelConfig_Error" xml:space="preserve">
     <value>Configuración del modelo no encontrada:</value>
   </data>
   <data name="Message_ModelConfig_ReadError" xml:space="preserve">
     <value>Error al leer la configuración del modelo</value>
+  </data>
+  <data name="Message_Old_OS" xml:space="preserve">
+    <value>Este widget no es compatible con el modelo de reloj seleccionado.</value>
   </data>
   <data name="Message_Restart_Caption" xml:space="preserve">
     <value>Reiniciar</value>
@@ -323,6 +353,12 @@
   </data>
   <data name="Message_ShortcutsAOD_Text" xml:space="preserve">
     <value>No puede agregar accesos directos a la pantalla AOD.</value>
+  </data>
+  <data name="Message_TrainingLoad_Image_Count_Error" xml:space="preserve">
+    <value>El número de imágenes para la carga de entrenamiento debe ser 3.</value>
+  </data>
+  <data name="Message_VO2Max_Image_Count_Error" xml:space="preserve">
+    <value>El número de imágenes para el VO2Max debe ser 7.</value>
   </data>
   <data name="Message_WarningConverting_Text1" xml:space="preserve">
     <value>Directorio</value>
@@ -363,6 +399,12 @@
   <data name="Message_Warning_Information" xml:space="preserve">
     <value>Información</value>
   </data>
+  <data name="Message_Warning_JS_Exist1" xml:space="preserve">
+    <value>Ya existe una carpeta con archivos JS en esta carpeta.</value>
+  </data>
+  <data name="Message_Widget_Exists" xml:space="preserve">
+    <value>Un widget de este tipo ya existe en la esfera del reloj.</value>
+  </data>
   <data name="Message_Wrong_ColorScheme" xml:space="preserve">
     <value>Se especifica una combinación de colores desconocida para el modelo:</value>
   </data>
@@ -380,5 +422,8 @@
   </data>
   <data name="Tip_Pointer" xml:space="preserve">
     <value>Puntero</value>
+  </data>
+  <data name="ToastBG" xml:space="preserve">
+    <value>Fondo esfera %s</value>
   </data>
 </root>

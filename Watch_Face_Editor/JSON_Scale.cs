@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -47,7 +48,7 @@ namespace Watch_Face_Editor
                     }
                 }
             }
-            if(Watch_Face.ElementEditablePointers != null)
+            if (Watch_Face.ElementEditablePointers != null)
             {
                 Scale_EditablePointers(Watch_Face.ElementEditablePointers, scale);
             }
@@ -75,17 +76,35 @@ namespace Watch_Face_Editor
             {
                 ElementShortcuts elementShortcuts = Watch_Face.Shortcuts;
                 Scale_IMG_CLICK(elementShortcuts.Step, scale);
+                Scale_IMG_CLICK(elementShortcuts.Cal, scale);
                 Scale_IMG_CLICK(elementShortcuts.Heart, scale);
-                Scale_IMG_CLICK(elementShortcuts.SPO2, scale);
                 Scale_IMG_CLICK(elementShortcuts.PAI, scale);
-                Scale_IMG_CLICK(elementShortcuts.Stress, scale);
-                Scale_IMG_CLICK(elementShortcuts.Weather, scale);
-                Scale_IMG_CLICK(elementShortcuts.Altimeter, scale);
+                Scale_IMG_CLICK(elementShortcuts.Battery, scale);
                 Scale_IMG_CLICK(elementShortcuts.Sunrise, scale);
-                Scale_IMG_CLICK(elementShortcuts.Alarm, scale);
-                Scale_IMG_CLICK(elementShortcuts.Sleep, scale);
+                Scale_IMG_CLICK(elementShortcuts.Moon, scale);
+                Scale_IMG_CLICK(elementShortcuts.BodyTemp, scale);
+                Scale_IMG_CLICK(elementShortcuts.Weather, scale);
+                Scale_IMG_CLICK(elementShortcuts.Stand, scale);
+                Scale_IMG_CLICK(elementShortcuts.SPO2, scale);
+                Scale_IMG_CLICK(elementShortcuts.Altimeter, scale);
+                Scale_IMG_CLICK(elementShortcuts.Stress, scale);
                 Scale_IMG_CLICK(elementShortcuts.Countdown, scale);
                 Scale_IMG_CLICK(elementShortcuts.Stopwatch, scale);
+                Scale_IMG_CLICK(elementShortcuts.Alarm, scale);
+                Scale_IMG_CLICK(elementShortcuts.Sleep, scale);
+                Scale_IMG_CLICK(elementShortcuts.Altitude, scale);
+                Scale_IMG_CLICK(elementShortcuts.Readiness, scale);
+                Scale_IMG_CLICK(elementShortcuts.OutdoorRunning, scale);
+                Scale_IMG_CLICK(elementShortcuts.Walking, scale);
+                Scale_IMG_CLICK(elementShortcuts.OutdoorCycling, scale);
+                Scale_IMG_CLICK(elementShortcuts.FreeTraining, scale);
+                Scale_IMG_CLICK(elementShortcuts.PoolSwimming, scale);
+                Scale_IMG_CLICK(elementShortcuts.OpenWaterSwimming, scale);
+                Scale_IMG_CLICK(elementShortcuts.TrainingLoad, scale);
+                Scale_IMG_CLICK(elementShortcuts.VO2max, scale);
+                Scale_IMG_CLICK(elementShortcuts.RecoveryTime, scale);
+                Scale_IMG_CLICK(elementShortcuts.BreathTrain, scale);
+                Scale_IMG_CLICK(elementShortcuts.FatBurning, scale);
             }
             if (Watch_Face.TopImage != null && Watch_Face.TopImage.Icon != null)
             {
@@ -98,6 +117,11 @@ namespace Watch_Face_Editor
                     Button button = Watch_Face.Buttons.Button[index];
                     Scale_Button(button, scale);
                 }
+            }
+            if (Watch_Face.SwitchBackground != null && Watch_Face.SwitchBackground.Button != null)
+            {
+                Button button = Watch_Face.SwitchBackground.Button;
+                Scale_Button(button, scale);
             }
         }
 
@@ -225,6 +249,33 @@ namespace Watch_Face_Editor
                     Scale_Text_Circle(elementDigitalTime.Hour_circle, scale);
                     Scale_Text_Circle(elementDigitalTime.Minute_circle, scale);
                     Scale_Text_Circle(elementDigitalTime.Second_circle, scale);
+                    break;
+                case "ElementDigitalTime_v2":
+                    ElementDigitalTime_v2 elementDigitalTime_v2 = (ElementDigitalTime_v2)elements;
+                    if (elementDigitalTime_v2.Group_Hour != null)
+                    {
+                        Scale_IMG_NUMBER(elementDigitalTime_v2.Group_Hour.Number, scale);
+                        Scale_TEXT(elementDigitalTime_v2.Group_Hour.Number_Font, scale);
+                        Scale_IMG_NUMBER(elementDigitalTime_v2.Group_Hour.Text_rotation, scale);
+                        Scale_Text_Circle(elementDigitalTime_v2.Group_Hour.Text_circle, scale);
+                    }
+                    if (elementDigitalTime_v2.Group_Minute != null)
+                    {
+                        Scale_IMG_NUMBER(elementDigitalTime_v2.Group_Minute.Number, scale);
+                        Scale_TEXT(elementDigitalTime_v2.Group_Minute.Number_Font, scale);
+                        Scale_IMG_NUMBER(elementDigitalTime_v2.Group_Minute.Text_rotation, scale);
+                        Scale_Text_Circle(elementDigitalTime_v2.Group_Minute.Text_circle, scale);
+                    }
+                    if (elementDigitalTime_v2.Group_Second != null)
+                    {
+                        Scale_IMG_NUMBER(elementDigitalTime_v2.Group_Second.Number, scale);
+                        Scale_TEXT(elementDigitalTime_v2.Group_Second.Number_Font, scale);
+                        Scale_IMG_NUMBER(elementDigitalTime_v2.Group_Second.Text_rotation, scale);
+                        Scale_Text_Circle(elementDigitalTime_v2.Group_Second.Text_circle, scale);
+                    }
+                    Scale_AmPm(elementDigitalTime_v2.AmPm, scale);
+                    Scale_TEXT(elementDigitalTime_v2.Hour_Min_Font, scale);
+                    Scale_TEXT(elementDigitalTime_v2.Hour_Min_Sec_Font, scale);
                     break;
                 case "ElementAnalogTime":
                     ElementAnalogTime elementAnalogTime = (ElementAnalogTime)elements;
@@ -398,6 +449,7 @@ namespace Watch_Face_Editor
                     Scale_TEXT(elementSpO2.Number_Font, scale);
                     Scale_IMG_NUMBER(elementSpO2.Text_rotation, scale);
                     Scale_Text_Circle(elementSpO2.Text_circle, scale);
+                    Scale_IMG(elementSpO2.Icon, scale);
                     break;
                 case "ElementStress":
                     ElementStress elementStress = (ElementStress)elements;
@@ -442,6 +494,34 @@ namespace Watch_Face_Editor
                     Scale_TEXT(elementWeather.Number_Min_Max_Font, scale);
                     Scale_TEXT(elementWeather.City_Name, scale);
                     Scale_IMG(elementWeather.Icon, scale);
+                    break;
+                case "ElementWeather_v2":
+                    ElementWeather_v2 elementWeather_v2 = (ElementWeather_v2)elements;
+                    Scale_WeatherGroup(elementWeather_v2.Group_Current, scale);
+                    Scale_WeatherGroup(elementWeather_v2.Group_Min, scale);
+                    Scale_WeatherGroup(elementWeather_v2.Group_Max, scale);
+                    Scale_WeatherGroup(elementWeather_v2.Group_Max_Min, scale);
+                    Scale_IMG_LEVEL(elementWeather_v2.Images, scale);
+                    Scale_TEXT(elementWeather_v2.City_Name, scale);
+                    Scale_IMG(elementWeather_v2.Icon, scale);
+                    break;
+                case "Element_Weather_FewDays":
+                    Element_Weather_FewDays elementWeather_FewDays = (Element_Weather_FewDays)elements;
+
+                    Scale_WeatherFewDays(elementWeather_FewDays.FewDays, scale);
+                    Scale_Diagram(elementWeather_FewDays.Diagram, scale);
+                    Scale_IMG_NUMBER(elementWeather_FewDays.Number_Max, scale);
+                    Scale_TEXT(elementWeather_FewDays.Number_Font_Max, scale);
+                    Scale_IMG_NUMBER(elementWeather_FewDays.Number_Min, scale);
+                    Scale_TEXT(elementWeather_FewDays.Number_Font_Min, scale);
+                    Scale_IMG_NUMBER(elementWeather_FewDays.Number_MaxMin, scale);
+                    Scale_TEXT(elementWeather_FewDays.Number_Font_MaxMin, scale);
+                    Scale_IMG_NUMBER(elementWeather_FewDays.Number_Average, scale);
+                    Scale_TEXT(elementWeather_FewDays.Number_Font_Average, scale);
+                    Scale_IMG_LEVEL(elementWeather_FewDays.DayOfWeek_Images, scale);
+                    Scale_TEXT(elementWeather_FewDays.DayOfWeek_Font, scale);
+                    Scale_IMG_LEVEL(elementWeather_FewDays.Images, scale);
+                    Scale_IMG(elementWeather_FewDays.Icon, scale);
                     break;
                 case "ElementUVIndex":
                     ElementUVIndex elementUVIndex = (ElementUVIndex)elements;
@@ -537,6 +617,71 @@ namespace Watch_Face_Editor
                     Scale_Text_Circle(elementCompass.Text_circle, scale);
                     Scale_IMG_POINTER(elementCompass.Pointer, scale);
                     Scale_IMG(elementCompass.Icon, scale);
+                    break;
+
+                case "ElementAlarmClock":
+                    ElementAlarmClock elementAlarmClock = (ElementAlarmClock)elements;
+                    Scale_IMG_NUMBER(elementAlarmClock.Number, scale);
+                    Scale_TEXT(elementAlarmClock.Number_Font, scale);
+                    Scale_IMG(elementAlarmClock.Icon, scale);
+                    break;
+                case "ElementTrainingLoad":
+                    ElementTrainingLoad elementTrainingLoad = (ElementTrainingLoad)elements;
+                    Scale_IMG_LEVEL(elementTrainingLoad.Images, scale);
+                    Scale_IMG_PROGRESS(elementTrainingLoad.Segments, scale);
+                    Scale_IMG_NUMBER(elementTrainingLoad.Number, scale);
+                    Scale_TEXT(elementTrainingLoad.Number_Font, scale);
+                    Scale_IMG_POINTER(elementTrainingLoad.Pointer, scale);
+                    Scale_Circle_Scale(elementTrainingLoad.Circle_Scale, scale);
+                    Scale_IMG(elementTrainingLoad.Icon, scale);
+                    break;
+                case "ElementVO2Max":
+                    ElementVO2Max elementVO2Max = (ElementVO2Max)elements;
+                    Scale_IMG_LEVEL(elementVO2Max.Images, scale);
+                    Scale_IMG_PROGRESS(elementVO2Max.Segments, scale);
+                    Scale_IMG_NUMBER(elementVO2Max.Number, scale);
+                    Scale_TEXT(elementVO2Max.Number_Font, scale);
+                    Scale_IMG_POINTER(elementVO2Max.Pointer, scale);
+                    Scale_Circle_Scale(elementVO2Max.Circle_Scale, scale);
+                    Scale_IMG(elementVO2Max.Icon, scale);
+                    break;
+                case "ElementAQI":
+                    ElementAQI elementAQI = (ElementAQI)elements;
+                    Scale_IMG_LEVEL(elementAQI.Images, scale);
+                    Scale_IMG_PROGRESS(elementAQI.Segments, scale);
+                    Scale_IMG_NUMBER(elementAQI.Number, scale);
+                    Scale_TEXT(elementAQI.Number_Font, scale);
+                    Scale_IMG_POINTER(elementAQI.Pointer, scale);
+                    Scale_Circle_Scale(elementAQI.Circle_Scale, scale);
+                    Scale_IMG(elementAQI.Icon, scale);
+                    break;
+                case "ElementBodyTemp":
+                    ElementBodyTemp elementBodyTemp = (ElementBodyTemp)elements;
+                    Scale_IMG_NUMBER(elementBodyTemp.Number, scale);
+                    Scale_TEXT(elementBodyTemp.Number_Font, scale);
+                    Scale_IMG(elementBodyTemp.Icon, scale);
+                    break;
+                case "ElementFloor":
+                    ElementFloor elementFloor = (ElementFloor)elements;
+                    Scale_IMG_NUMBER(elementFloor.Number, scale);
+                    Scale_TEXT(elementFloor.Number_Font, scale);
+                    Scale_IMG(elementFloor.Icon, scale);
+                    break;
+                case "ElementReadiness":
+                    ElementReadiness elementReadiness = (ElementReadiness)elements;
+                    Scale_IMG_LEVEL(elementReadiness.Images, scale);
+                    Scale_IMG_PROGRESS(elementReadiness.Segments, scale);
+                    Scale_IMG_NUMBER(elementReadiness.Number, scale);
+                    Scale_TEXT(elementReadiness.Number_Font, scale);
+                    Scale_IMG_POINTER(elementReadiness.Pointer, scale);
+                    Scale_Circle_Scale(elementReadiness.Circle_Scale, scale);
+                    Scale_IMG(elementReadiness.Icon, scale);
+                    break;
+                case "ElementHRV":
+                    ElementHRV elementHRV = (ElementHRV)elements;
+                    Scale_IMG_NUMBER(elementHRV.Number, scale);
+                    Scale_TEXT(elementHRV.Number_Font, scale);
+                    Scale_IMG(elementHRV.Icon, scale);
                     break;
             }
         }
@@ -663,6 +808,36 @@ namespace Watch_Face_Editor
             if (button.h != -1) button.h = (int)Math.Round((double)(button.h * scale), MidpointRounding.AwayFromZero);
             button.text_size = (int)Math.Round((double)(button.text_size * scale), MidpointRounding.AwayFromZero);
             button.radius = (int)Math.Round((double)(button.radius * scale), MidpointRounding.AwayFromZero);
+        }
+
+        private void Scale_WeatherGroup(WeatherGroup weatherGroup, float scale)
+        {
+            if (weatherGroup == null) return;
+            Scale_IMG_NUMBER(weatherGroup.Number, scale);
+            Scale_TEXT(weatherGroup.Number_Font, scale);
+            Scale_IMG_NUMBER(weatherGroup.Text_rotation, scale);
+            Scale_Text_Circle(weatherGroup.Text_circle, scale);
+        }
+
+        private void Scale_WeatherFewDays(FewDays fewDays, float scale)
+        {
+            if (fewDays == null) return;
+            fewDays.X = (int)Math.Round(fewDays.X * scale, MidpointRounding.AwayFromZero);
+            fewDays.Y = (int)Math.Round(fewDays.Y * scale, MidpointRounding.AwayFromZero);
+            fewDays.ColumnWidth = (int)Math.Round(fewDays.ColumnWidth * scale, MidpointRounding.AwayFromZero);
+        }
+
+        private void Scale_Diagram(Weather_Diagram diagram, float scale)
+        {
+            if (diagram == null) return;
+            diagram.Height = (int)Math.Round(diagram.Height * scale, MidpointRounding.AwayFromZero);
+            diagram.Max_offsetX = (int)Math.Round(diagram.Max_offsetX * scale, MidpointRounding.AwayFromZero);
+            diagram.Min_offsetX = (int)Math.Round(diagram.Min_offsetX * scale, MidpointRounding.AwayFromZero);
+            diagram.Y = (int)Math.Round(diagram.Y * scale, MidpointRounding.AwayFromZero);
+            diagram.Max_pointSize = (int)Math.Round(diagram.Max_pointSize * scale, MidpointRounding.AwayFromZero);
+            diagram.Min_pointSize = (int)Math.Round(diagram.Min_pointSize * scale, MidpointRounding.AwayFromZero);
+            diagram.Max_lineWidth = (int)Math.Round(diagram.Max_lineWidth * scale, MidpointRounding.AwayFromZero);
+            diagram.Min_lineWidth = (int)Math.Round(diagram.Min_lineWidth * scale, MidpointRounding.AwayFromZero);
         }
     }
 }

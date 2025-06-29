@@ -151,9 +151,6 @@
   <data name="groupBox_date.Text" xml:space="preserve">
     <value>Fecha</value>
   </data>
-  <data name="groupBox_activity.Text" xml:space="preserve">
-    <value>Actividad</value>
-  </data>
   <data name="radioButton_stress.Size" type="System.Drawing.Size, System.Drawing">
     <value>54, 17</value>
   </data>
@@ -196,8 +193,8 @@
   <data name="radioButton_steps.Text" xml:space="preserve">
     <value>Pasos</value>
   </data>
-  <data name="groupBox_air.Text" xml:space="preserve">
-    <value>Tiempo</value>
+  <data name="groupBox_activity.Text" xml:space="preserve">
+    <value>Actividad</value>
   </data>
   <data name="radioButton_moon.Location" type="System.Drawing.Point, System.Drawing">
     <value>191, 42</value>
@@ -256,11 +253,11 @@
   <data name="radioButton_weather.Text" xml:space="preserve">
     <value>Clima</value>
   </data>
+  <data name="groupBox_air.Text" xml:space="preserve">
+    <value>Tiempo</value>
+  </data>
   <data name="button_cancel.Text" xml:space="preserve">
     <value>Cancelar</value>
-  </data>
-  <data name="groupBox_system.Text" xml:space="preserve">
-    <value>Sistema</value>
   </data>
   <data name="radioButton_battery.Size" type="System.Drawing.Size, System.Drawing">
     <value>58, 17</value>
@@ -268,8 +265,32 @@
   <data name="radioButton_battery.Text" xml:space="preserve">
     <value>Bateria</value>
   </data>
+  <data name="groupBox_system.Text" xml:space="preserve">
+    <value>Sistema</value>
+  </data>
+  <data name="radioButton_sportList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>134, 17</value>
+  </data>
+  <data name="radioButton_sportList.Text" xml:space="preserve">
+    <value>Atajo de entrenamiento</value>
+  </data>
+  <data name="radioButton_appsList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 17</value>
+  </data>
+  <data name="radioButton_appsList.Text" xml:space="preserve">
+    <value>Acceso directo a la aplicación</value>
+  </data>
   <data name="button_add.Text" xml:space="preserve">
     <value>Agregar</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>316, 13</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>* No puedes agregar otros elementos a la zona de acceso directo</value>
+  </data>
+  <data name="groupBox_shortcuts.Text" xml:space="preserve">
+    <value>Atajos</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

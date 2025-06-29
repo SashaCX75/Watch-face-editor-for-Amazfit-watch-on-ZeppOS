@@ -166,8 +166,23 @@
   <data name="label10.Text" xml:space="preserve">
     <value>单位(°F)</value>
   </data>
+  <data name="label_alpha.Text" xml:space="preserve">
+    <value>透明度</value>
+  </data>
   <data name="label_angle.Text" xml:space="preserve">
     <value>角度</value>
+  </data>
+  <data name="label_icon_alpha.Text" xml:space="preserve">
+    <value>图标透明度</value>
+  </data>
+  <data name="label_separator.Text" xml:space="preserve">
+    <value>分隔符</value>
+  </data>
+  <data name="label_unit_c.Text" xml:space="preserve">
+    <value>单位(°C)</value>
+  </data>
+  <data name="label_unit_f.Text" xml:space="preserve">
+    <value>单位(°F)</value>
   </data>
   <data name="вставитьToolStripMenuItemX.Text" xml:space="preserve">
     <value>粘贴</value>

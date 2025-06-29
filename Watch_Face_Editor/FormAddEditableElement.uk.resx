@@ -217,8 +217,29 @@
   <data name="button_cancel.Text" xml:space="preserve">
     <value>Відміна</value>
   </data>
+  <data name="radioButton_sportList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>118, 17</value>
+  </data>
+  <data name="radioButton_sportList.Text" xml:space="preserve">
+    <value>Ярлик тренування</value>
+  </data>
+  <data name="radioButton_appsList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>109, 17</value>
+  </data>
+  <data name="radioButton_appsList.Text" xml:space="preserve">
+    <value>Ярлик програми</value>
+  </data>
   <data name="button_add.Text" xml:space="preserve">
     <value>Додати</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>285, 13</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>* У зону з ярликами не можна додавати інші елементи</value>
+  </data>
+  <data name="groupBox_shortcuts.Text" xml:space="preserve">
+    <value>Ярлики</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1473,29 +1494,5 @@
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Додавання елементів</value>
-  </data>
-  <data name="groupBox_air.Text" xml:space="preserve">
-    <value>Атмосфера</value>
-  </data>
-  <data name="groupBox_date.Text" xml:space="preserve">
-    <value>Дата</value>
-  </data>
-  <data name="groupBox_system.Text" xml:space="preserve">
-    <value>Система</value>
-  </data>
-  <data name="radioButton_altimeter.Text" xml:space="preserve">
-    <value>Барометр</value>
-  </data>
-  <data name="radioButton_battery.Text" xml:space="preserve">
-    <value>Заряд</value>
-  </data>
-  <data name="radioButton_date.Text" xml:space="preserve">
-    <value>Число</value>
-  </data>
-  <data name="radioButton_heart.Text" xml:space="preserve">
-    <value>Пульс</value>
-  </data>
-  <data name="radioButton_weather.Text" xml:space="preserve">
-    <value>Погода</value>
   </data>
 </root>

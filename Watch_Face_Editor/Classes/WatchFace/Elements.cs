@@ -85,12 +85,6 @@ namespace Watch_Face_Editor
         /// <summary>Y координата иконки</summary>
         public int iconPosY { get; set; }
 
-        /// <summary>Высота иконки</summary>
-        //public int iconHeight { get; set; }
-
-        /// <summary>Ширина иконки</summary>
-        //public int iconWidth { get; set; }
-
         /// <summary>Символ "-"</summary>
         public string negative_image { get; set; }
 
@@ -99,6 +93,9 @@ namespace Watch_Face_Editor
 
         /// <summary>Десятичный разделитель</summary>
         public string dot_image { get; set; }
+
+        /// <summary>Символ разделителя для макс/мин температуры</summary>
+        public string separator_image { get; set; }
 
         /// <summary>Наклон надписи</summary>
         public int angle { get; set; }
@@ -109,6 +106,12 @@ namespace Watch_Face_Editor
 
         /// <summary>Учитывать единици ищмерения при выравнивании</summary>
         public bool unit_in_alignment { get; set; }
+
+        /// <summary>Прозрачность</summary>
+        public int alpha { get; set; } = 255;
+
+        /// <summary>Прозрачность иконки</summary>
+        public int icon_alpha { get; set; } = 255;
 
         /// <summary>Основной экран или AOD</summary>
         public string show_level = "";
@@ -170,6 +173,9 @@ namespace Watch_Face_Editor
 
         /// <summary>ширина символа ошибки</summary>
         public int error_width { get; set; }
+
+        /// <summary>Символ разделителя для макс/мин температуры</summary>
+        public string separator_image { get; set; }
 
         /// <summary>Выравнивание символов по вертикали относительно окружности</summary>
         public string vertical_alignment { get; set; } = "BOTTOM";
@@ -244,6 +250,9 @@ namespace Watch_Face_Editor
         /// <summary>ширина символа ошибки</summary>
         //public int error_width { get; set; }
 
+        /// <summary>Символ разделителя для макс/мин температуры</summary>
+        public string separator_image { get; set; }
+
         /// <summary>Выравнивание символов по вертикали относительно окружности</summary>
         public string vertical_alignment { get; set; } = "BOTTOM";
 
@@ -287,6 +296,9 @@ namespace Watch_Face_Editor
         /// <summary>Изображение ошибки</summary>
         public string img_error { get; set; }
 
+        /// <summary>Прозрачность</summary>
+        public int alpha { get; set; } = 255;
+
         /// <summary>Тип активности</summary>
         public string type { get; set; }
 
@@ -318,6 +330,9 @@ namespace Watch_Face_Editor
 
         /// <summary>Изображение</summary>
         public string src { get; set; }
+
+        /// <summary>Прозрачность</summary>
+        public int alpha { get; set; } = 255;
 
         /// <summary>Основной экран или AOD</summary>
         public string show_level = "";
@@ -567,6 +582,9 @@ namespace Watch_Face_Editor
         /// <summary>Инверсия шкалы</summary>
         public bool inversion { get; set; }
 
+        /// <summary>Прозрачность</summary>
+        public int alpha { get; set; } = 255;
+
         /// <summary>Основной экран или AOD</summary>
         public string show_level = "";
 
@@ -614,6 +632,9 @@ namespace Watch_Face_Editor
         /// <summary>Горизонтальная или вертикальная шкала</summary>
         public bool vertical { get; set; }
 
+        /// <summary>Прозрачность</summary>
+        public int alpha { get; set; } = 255;
+
         /// <summary>Основной экран или AOD</summary>
         public string show_level = "";
     }
@@ -632,6 +653,9 @@ namespace Watch_Face_Editor
 
         /// <summary>Изображение</summary>
         public string src { get; set; }
+
+        /// <summary>Прозрачность</summary>
+        public int alpha { get; set; } = 255;
 
         /// <summary>Тип статуса</summary>
         public string type { get; set; }
@@ -692,6 +716,12 @@ namespace Watch_Face_Editor
         /// <summary>Цвет</summary>
         public string color { get; set; } = "0xFFFF8C00";
 
+        /// <summary>Цвет 2 (цвет выходных)</summary>
+        public string color_2 { get; set; } = "0xFFFF0000";
+
+        /// <summary>Использование второго цвета</summary>
+        public bool use_color_2 { get; set; } = false;
+
         /// <summary>Горизонтальное выравнивание</summary>
         public string align_h { get; set; } = "LEFT";
 
@@ -700,6 +730,9 @@ namespace Watch_Face_Editor
 
         /// <summary>Размер шрифта</summary>
         public int text_size { get; set; } = 20;
+
+        /// <summary>Прозрачность</summary>
+        public int alpha { get; set; } = 255;
 
         /// <summary>Стиль переноса слов
         /// WRAP - перенос по словам
@@ -1137,7 +1170,7 @@ namespace Watch_Face_Editor
         public string text = "";
 
         /// <summary>Цвет текста</summary>
-        public string color = "0xFFFFFFFF";
+        public string color = "0xFFFF8C00";
 
         /// <summary>Размер текста</summary>
         public int text_size = 25;
@@ -1149,10 +1182,10 @@ namespace Watch_Face_Editor
         public string normal_src = "";
 
         /// <summary>Цвет кнопки при нажатии</summary>
-        public string press_color = "0xFF000000";
+        public string press_color = "0xFFA0A0A0";
 
         /// <summary>Цвет кнопки в нормальном состоянии</summary>
-        public string normal_color = "0xFF000000";
+        public string normal_color = "0xFF696969";
 
         /// <summary>Радиус углов</summary>
         public int radius = 12;
@@ -1165,6 +1198,107 @@ namespace Watch_Face_Editor
 
         /// <summary>Видимость кнопки</summary>
         public bool visible = true;
+
+    }
+
+    public class FewDays
+    {
+        /// <summary>X координата</summary>
+        public int X { get; set; }
+
+        /// <summary>Y координата</summary>
+        public int Y { get; set; }
+
+        /// <summary>Количество колонок для отображения</summary>
+        public int DaysCount { get; set; } = 7;
+
+        /// <summary>Ширина одной колонки</summary>
+        public int ColumnWidth { get; set; } = 30;
+
+        ///// <summary>Позиционировать данные температуры по графику</summary>
+        //public bool PositionOnGraph { get; set; } = true;
+
+        /// <summary>Задний фон</summary>
+        public string Background { get; set; }
+
+    }
+
+    public class Weather_Diagram
+    {
+        /// <summary>Позиция в наборе элементов</summary>
+        public int position = -1;
+
+        /// <summary>Видимость элемента</summary>
+        public bool visible = false;
+
+
+        /// <summary>Высота графика</summary>
+        public int Height { get; set; } = 200;
+
+        /// <summary>Смещение графика по вертикали</summary>
+        public int Y { get; set; }
+
+        /// <summary>Отображать график максимальной температуры</summary>
+        public bool Use_max_diagram { get; set; } = true;
+
+        /// <summary>Смещение точки для максимальной температуры</summary>
+        public int Max_offsetX { get; set; }
+
+        /// <summary>Цвет графика максимальной температуры</summary>
+        public string Max_color { get; set; } = "0xFFFF0000";
+
+        /// <summary>Тип точки на графике максимальной температуры</summary>
+        public int Max_pointType { get; set; }
+
+        /// <summary>Размер точки на графике максимальной температуры</summary>
+        public int Max_pointSize { get; set; } = 12;
+
+        /// <summary>Размер графика максимальной температуры</summary>
+        public int Max_lineWidth { get; set; } = 3;
+
+
+        /// <summary>Отображать график минимальной температуры</summary>
+        public bool Use_min_diagram { get; set; } = true;
+
+        /// <summary>Смещение точки для минимальной температуры</summary>
+        public int Min_offsetX { get; set; }
+
+        /// <summary>Цвет графика минимальной температуры</summary>
+        public string Min_color { get; set; } = "0xFF10AAFF";
+
+        /// <summary>Тип точки на графике минимальной температуры</summary>
+        public int Min_pointType { get; set; }
+
+        /// <summary>Размер точки на графике минимальной температуры</summary>
+        public int Min_pointSize { get; set; } = 12;
+
+        /// <summary>Размер графика минимальной температуры</summary>
+        public int Min_lineWidth { get; set; } = 3;
+
+
+        /// <summary>Отображать график средней температуры</summary>
+        public bool Use_average_diagram { get; set; } = true;
+
+        /// <summary>Смещение точки для средней температуры</summary>
+        public int Average_offsetX { get; set; }
+
+        /// <summary>Цвет графика средней температуры</summary>
+        public string Average_color { get; set; } = "0xFFC0C0C0";
+
+        /// <summary>Тип точки на графике средней температуры</summary>
+        public int Average_pointType { get; set; }
+
+        /// <summary>Размер точки на графике средней температуры</summary>
+        public int Average_pointSize { get; set; } = 12;
+
+        /// <summary>Размер графика средней температуры</summary>
+        public int Average_lineWidth { get; set; } = 3;
+
+        /// <summary>Позиционировать данные температуры по графику</summary>
+        public bool PositionOnGraph { get; set; } = true;
+
+        /// <summary>Создавать график на весь экран</summary>
+        public bool GraphFullScreen { get; set; } = true;
 
     }
 }

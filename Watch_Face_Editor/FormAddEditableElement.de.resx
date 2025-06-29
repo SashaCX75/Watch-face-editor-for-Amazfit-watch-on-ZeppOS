@@ -1516,4 +1516,16 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Elemente hinzufügen</value>
   </data>
+  <data name="groupBox_shortcuts.Text" xml:space="preserve">
+    <value>Verknüpfungen</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>* Der Verknüpfungszone können keine weiteren Elemente hinzugefügt werden.</value>
+  </data>
+  <data name="radioButton_appsList.Text" xml:space="preserve">
+    <value>Verknüpfung der Anwendung</value>
+  </data>
+  <data name="radioButton_sportList.Text" xml:space="preserve">
+    <value>Training Verknüpfung</value>
+  </data>
 </root>

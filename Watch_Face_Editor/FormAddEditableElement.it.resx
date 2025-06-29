@@ -1525,4 +1525,16 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Aggiunta di elementi</value>
   </data>
+  <data name="groupBox_shortcuts.Text" xml:space="preserve">
+    <value>Collegamento</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>* Non è possibile aggiungere altri elementi alla zona di scelta rapida</value>
+  </data>
+  <data name="radioButton_appsList.Text" xml:space="preserve">
+    <value>Collegamento all'applicazione</value>
+  </data>
+  <data name="radioButton_sportList.Text" xml:space="preserve">
+    <value>Collegamento all'allenamento</value>
+  </data>
 </root>

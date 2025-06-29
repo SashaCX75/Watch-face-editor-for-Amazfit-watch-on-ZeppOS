@@ -323,4 +323,19 @@
   <data name="копироватьСвойстваToolStripMenuItem.Text" xml:space="preserve">
     <value>Copier les propriétés</value>
   </data>
+  <data name="label_separator.Text" xml:space="preserve">
+    <value>Séparateur</value>
+  </data>
+  <data name="label_unit_c.Text" xml:space="preserve">
+    <value>Unités (°C)</value>
+  </data>
+  <data name="label_unit_f.Text" xml:space="preserve">
+    <value>Unités (°F)</value>
+  </data>
+  <data name="label_alpha.Text" xml:space="preserve">
+    <value>Transparence</value>
+  </data>
+  <data name="label_icon_alpha.Text" xml:space="preserve">
+    <value>Transparence des icônes</value>
+  </data>
 </root>

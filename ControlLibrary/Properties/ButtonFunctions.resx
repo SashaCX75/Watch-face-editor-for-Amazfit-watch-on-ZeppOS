@@ -250,6 +250,13 @@
     <value>hmApp.startApp({url: 'FindPhoneScreen', native: true });</value>
     <comment>Do not translate</comment>
   </data>
+  <data name="FlashLight" xml:space="preserve">
+    <value>Фонарик *</value>
+  </data>
+  <data name="FlashLight_function" xml:space="preserve">
+    <value>hmApp.startApp({url: 'FlashLightScreen', native: true });</value>
+    <comment>Do not translate</comment>
+  </data>
   <data name="HeartRete" xml:space="preserve">
     <value>Пульс</value>
   </data>
@@ -293,7 +300,7 @@
     <comment>Do not translate</comment>
   </data>
   <data name="MorningNews" xml:space="preserve">
-    <value>Утренее приветствие *</value>
+    <value>Утреннее приветствие *</value>
   </data>
   <data name="MorningNews_function" xml:space="preserve">
     <value>hmApp.startApp({url: 'MorningGreetingCoverScreen', native: true });</value>
@@ -332,6 +339,13 @@
   </data>
   <data name="PhoneMusic" xml:space="preserve">
     <value>Музыка (на телефоне)</value>
+  </data>
+  <data name="PhoneMusic_2" xml:space="preserve">
+    <value>Музыка (на телефоне) *</value>
+  </data>
+  <data name="PhoneMusic_2_function" xml:space="preserve">
+    <value>hmApp.startApp({url: 'MusicCommonScreen', native: true });</value>
+    <comment>Do not translate</comment>
   </data>
   <data name="PhoneMusic_function" xml:space="preserve">
     <value>hmApp.startApp({url: 'PhoneMusicCtrlScreen', native: true });</value>
@@ -436,7 +450,7 @@
     <comment>Do not translate</comment>
   </data>
   <data name="SportRecord" xml:space="preserve">
-    <value>Записи треноровок</value>
+    <value>Записи тренировок</value>
   </data>
   <data name="SportRecord_function" xml:space="preserve">
     <value>hmApp.startApp({url: 'SportRecordListScreen', native: true });</value>
@@ -532,6 +546,13 @@
   </data>
   <data name="Weather" xml:space="preserve">
     <value>Погода</value>
+  </data>
+  <data name="WeatherInformer" xml:space="preserve">
+    <value>Погодный информер *</value>
+  </data>
+  <data name="WeatherInformer_function" xml:space="preserve">
+    <value>hmApp.startApp({ appid: 1051195, url: 'page/index', params: { from_wf: true} });</value>
+    <comment>Do not translate</comment>
   </data>
   <data name="Weather_function" xml:space="preserve">
     <value>hmApp.startApp({url: 'WeatherScreen', native: true });</value>

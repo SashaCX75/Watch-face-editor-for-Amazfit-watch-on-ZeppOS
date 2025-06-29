@@ -275,4 +275,10 @@
   <data name="копироватьСвойстваToolStripMenuItem.Text" xml:space="preserve">
     <value>复制属性</value>
   </data>
+  <data name="label_error.Text" xml:space="preserve">
+    <value>错误图像</value>
+  </data>
+  <data name="label_alpha.Text" xml:space="preserve">
+    <value>透明度</value>
+  </data>
 </root>

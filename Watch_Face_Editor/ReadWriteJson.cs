@@ -885,7 +885,8 @@ namespace Watch_Face_Editor
                 variables += Environment.NewLine + TabInString(4) + "let backgroundToastList = [" + string.Join(", ", Watch_Face.SwitchBackground.toast_list.Select(item => "'" + item + "'")) + "];";
                 variables += Environment.NewLine + TabInString(4) + "const watchfaceId = hmApp.packageInfo().watchfaceId;" + Environment.NewLine;
 
-                string switchBG_function = Environment.NewLine + TabInString(6) + "//start of ignored block";
+                //string switchBG_function = Environment.NewLine + TabInString(6) + "//start of ignored block";
+                string switchBG_function = Environment.NewLine + TabInString(6) + "//#region SwitchBackground";
                 switchBG_function += Environment.NewLine + TabInString(6) + "console.log('SwitchBackground');";
                 switchBG_function += Environment.NewLine + TabInString(6) + "function switchBackground() {";
                 switchBG_function += Environment.NewLine + TabInString(7) + "backgroundIndex++;";
@@ -941,7 +942,8 @@ namespace Watch_Face_Editor
                     resume_call += Environment.NewLine + TabInString(8) + "onDigitalCrown();";
                     pause_call += Environment.NewLine + TabInString(8) + "hmApp.unregisterSpinEvent();";*/
                 }
-                switchBG_function += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
+                switchBG_function += Environment.NewLine + TabInString(6) + "//#endregion" + Environment.NewLine;
+                //switchBG_function += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
                 //variables = switchBG_function + variables;
                 items = switchBG_function + items;
 
@@ -1006,7 +1008,8 @@ namespace Watch_Face_Editor
                 variables += Environment.NewLine + TabInString(4) + "let bgColorToastList = [" + string.Join(", ", Watch_Face.SwitchBG_Color.toast_list.Select(item => "'" + item + "'")) + "];";
                 variables += Environment.NewLine + TabInString(4) + "const watchfaceId = hmApp.packageInfo().watchfaceId;" + Environment.NewLine;
 
-                string switchBG_function = Environment.NewLine + TabInString(6) + "//start of ignored block";
+                //string switchBG_function = Environment.NewLine + TabInString(6) + "//start of ignored block";
+                string switchBG_function = Environment.NewLine + TabInString(6) + "//#region SwitchBG_Color";
                 switchBG_function += Environment.NewLine + TabInString(6) + "console.log('SwitchBG_Color');";
                 switchBG_function += Environment.NewLine + TabInString(6) + "function switchBG_Color() {";
                 switchBG_function += Environment.NewLine + TabInString(7) + "bgColorIndex++;";
@@ -1063,7 +1066,8 @@ namespace Watch_Face_Editor
                     resume_call += Environment.NewLine + TabInString(8) + "onDigitalCrown();";
                     pause_call += Environment.NewLine + TabInString(8) + "hmApp.unregisterSpinEvent();";*/
                 }
-                switchBG_function += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
+                switchBG_function += Environment.NewLine + TabInString(6) + "//#endregion" + Environment.NewLine;
+                //switchBG_function += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
                 //variables = switchBG_function + variables;
                 items = switchBG_function + items;
 
@@ -1115,7 +1119,8 @@ namespace Watch_Face_Editor
                 variables += TabInString(4) + "let degreeSum = 0;" + Environment.NewLine;
                 variables += TabInString(4) + "let crownSensitivity = 70;  // crown sensitivity level" + Environment.NewLine;
 
-                string crownFunction = Environment.NewLine + TabInString(6) + "//start of ignored block";
+                //string crownFunction = Environment.NewLine + TabInString(6) + "//start of ignored block";
+                string crownFunction = Environment.NewLine + TabInString(6) + "//#region onDigitalCrown";
                 crownFunction += Environment.NewLine + TabInString(6) + "console.log('onDigitalCrown()');";
                 crownFunction += Environment.NewLine + TabInString(6) + "function onDigitalCrown() {";
                 crownFunction += Environment.NewLine + TabInString(7) + "setTimeout(() => {";
@@ -1131,7 +1136,8 @@ namespace Watch_Face_Editor
                 crownFunction += Environment.NewLine + TabInString(8) + "}) // crown";
                 crownFunction += Environment.NewLine + TabInString(7) + "}, 250);";
                 crownFunction += Environment.NewLine + TabInString(6) + "}";
-                crownFunction += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
+                crownFunction += Environment.NewLine + TabInString(6) + "//#endregion" + Environment.NewLine;
+                //crownFunction += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
 
                 items = crownFunction + items;
 
@@ -1343,12 +1349,14 @@ namespace Watch_Face_Editor
                 weather_few_days += Environment.NewLine + TabInString(7) + "};  // end for";
                 weather_few_days += Environment.NewLine + weather_few_days_end;
 
-                items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                //items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                items += Environment.NewLine + TabInString(6) + "//#region weather_few_days";
                 items += Environment.NewLine + TabInString(6) + "function weather_few_days() {";
                 items += Environment.NewLine + TabInString(7) + "console.log('weather_few_days()');";
                 items += Environment.NewLine + weather_few_days;
                 items += Environment.NewLine + TabInString(6) + "};";
-                items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
+                items += Environment.NewLine + TabInString(6) + "//#endregion" + Environment.NewLine;
+                //items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
                 resume_call += Environment.NewLine + TabInString(8) + "weather_few_days();";
             }
 
@@ -1357,7 +1365,8 @@ namespace Watch_Face_Editor
                 if (items.IndexOf("let screenType = hmSetting.getScreenType();") < 0)
                     items += Environment.NewLine + TabInString(6) + "let screenType = hmSetting.getScreenType();";
 
-                items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                //items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                items += Environment.NewLine + TabInString(6) + "//#region time_update";
                 items += Environment.NewLine + TabInString(6) + "function time_update(updateHour = false, updateMinute = false) {";
                 items += Environment.NewLine + TabInString(7) + "console.log('time_update()');";
                 items += Environment.NewLine + TabInString(7) + "let hour = timeSensor.hour;";
@@ -1366,7 +1375,8 @@ namespace Watch_Face_Editor
                 items += Environment.NewLine + TabInString(7) + "let format_hour = timeSensor.format_hour;";
                 items += Environment.NewLine + time_update;
                 items += Environment.NewLine + TabInString(6) + "};" + Environment.NewLine;
-                items += Environment.NewLine + TabInString(6) + "//end of ignored block";
+                items += Environment.NewLine + TabInString(6) + "//#endregion";
+                //items += Environment.NewLine + TabInString(6) + "//end of ignored block";
             }
 
             if (text_update.Length > 5)
@@ -1374,12 +1384,14 @@ namespace Watch_Face_Editor
                 if (items.IndexOf("let screenType = hmSetting.getScreenType();") < 0)
                     items += Environment.NewLine + TabInString(6) + "let screenType = hmSetting.getScreenType();";
 
-                items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                //items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                items += Environment.NewLine + TabInString(6) + "//#region text_update";
                 items += Environment.NewLine + TabInString(6) + "function text_update() {";
                 items += Environment.NewLine + TabInString(7) + "console.log('text_update()');";
                 items += Environment.NewLine + text_update;
                 items += Environment.NewLine + TabInString(6) + "};" + Environment.NewLine;
-                items += Environment.NewLine + TabInString(6) + "//end of ignored block";
+                items += Environment.NewLine + TabInString(6) + "//#endregion";
+                //items += Environment.NewLine + TabInString(6) + "//end of ignored block";
             }
 
             if (compass_update.Length > 5)
@@ -1387,7 +1399,8 @@ namespace Watch_Face_Editor
                 if (items.IndexOf("let screenType = hmSetting.getScreenType();") < 0)
                     items += Environment.NewLine + TabInString(6) + "let screenType = hmSetting.getScreenType();";
 
-                items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                //items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                items += Environment.NewLine + TabInString(6) + "//#region compass_update";
                 items += Environment.NewLine + TabInString(6) + "console.log('compass_update()');";
                 items += Environment.NewLine + TabInString(6) + "if (screenType == hmSetting.screen_type.WATCHFACE){";
 
@@ -1413,7 +1426,8 @@ namespace Watch_Face_Editor
                 items += Environment.NewLine + TabInString(7) + "}); // Listener end" + Environment.NewLine;
 
                 items += Environment.NewLine + TabInString(6) + "};";
-                items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
+                items += Environment.NewLine + TabInString(6) + "//#endregion" + Environment.NewLine;
+                //items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
             }
 
             if (scale_update_function.Length > 5 || resume_call.Length > 0 || pause_call.Length > 0 || time_update.Length > 5 || text_update.Length > 5)
@@ -7655,7 +7669,8 @@ namespace Watch_Face_Editor
                             img_height = SelectedModel.background.h;
                             img_width = SelectedModel.background.w;
 
-                            items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                            //items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                            items += Environment.NewLine + TabInString(6) + "//#region TextRotate";
                             items += Environment.NewLine + TabInString(6) + "for (let i = 0; i < 5; i++) {";
                             items += Environment.NewLine + TabInString(7) + variableStartName + "TextRotate[i] = hmUI.createWidget(hmUI.widget.IMG, {";
                             items += Environment.NewLine + TabInString(8) + "x: 0,";
@@ -7703,18 +7718,23 @@ namespace Watch_Face_Editor
                                 items += Environment.NewLine + TabInString(6) + "});";
                                 items += Environment.NewLine + TabInString(6) + variableStartName + "TextRotate_unit.setProperty(hmUI.prop.VISIBLE, false);" + Environment.NewLine;
                             }
+                            if (items.IndexOf("const mileageUnit = hmSetting.getMileageUnit();") < 0)
+                            {
+                                items += Environment.NewLine + TabInString(6) + "const mileageUnit = hmSetting.getMileageUnit();";
+                            }
                             if (text_rotate.imperial_unit != null && text_rotate.imperial_unit.Length > 0)
                             {
-                                if (items.IndexOf("const mileageUnit = hmSetting.getMileageUnit();") < 0)
-                                {
-                                    items += Environment.NewLine + TabInString(6) + "const mileageUnit = hmSetting.getMileageUnit();"; 
-                                }
+                                //if (items.IndexOf("const mileageUnit = hmSetting.getMileageUnit();") < 0)
+                                //{
+                                //    items += Environment.NewLine + TabInString(6) + "const mileageUnit = hmSetting.getMileageUnit();"; 
+                                //}
                                 items += Environment.NewLine + TabInString(6) + "if (mileageUnit == 1) {";
                                 items += Environment.NewLine + TabInString(7) + variableStartName +
                                     "TextRotate_unit.setProperty(hmUI.prop.SRC, '" + text_rotate.imperial_unit + ".png');";
                                 items += Environment.NewLine + TabInString(6) + "};" + Environment.NewLine;
                             }
-                            items += TabInString(6) + "//end of ignored block" + Environment.NewLine;
+                            items += TabInString(6) + "//#endregion" + Environment.NewLine;
+                            //items += TabInString(6) + "//end of ignored block" + Environment.NewLine;
 
                             if (text_rotate.dot_image != null && text_rotate.dot_image.Length > 0)
                             {
@@ -7760,6 +7780,7 @@ namespace Watch_Face_Editor
                             }
 
                             text_update += TabInString(7) + "let " + variableStartName + "rotate_string = (distanceCurrent / 1000).toFixed(2);" + Environment.NewLine;
+                            text_update += TabInString(7) + "if (mileageUnit == 1) " + variableStartName + "rotate_string = (0.621371 * distanceCurrent / 1000).toFixed(2);" + Environment.NewLine;
                             if (text_rotate.zero)
                                 text_update += TabInString(7) + variableStartName + "rotate_string = " + variableStartName + "rotate_string.padStart(5, '0');" + Environment.NewLine;
                             if (optionNameStart == "normal_")
@@ -7873,7 +7894,8 @@ namespace Watch_Face_Editor
                             img_height = SelectedModel.background.h;
                             img_width = SelectedModel.background.w;
 
-                            items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                            //items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                            items += Environment.NewLine + TabInString(6) + "//#region TextCircle";
                             items += Environment.NewLine + TabInString(6) + "for (let i = 0; i < 5; i++) {";
                             items += Environment.NewLine + TabInString(7) + variableStartName + "TextCircle[i] = hmUI.createWidget(hmUI.widget.IMG, {";
                             items += Environment.NewLine + TabInString(8) + "x: 0,";
@@ -7944,7 +7966,8 @@ namespace Watch_Face_Editor
                                     "TextCircle_unit.setProperty(hmUI.prop.SRC, '" + text_circle.imperial_unit + ".png');";
                                 items += Environment.NewLine + TabInString(6) + "};" + Environment.NewLine;
                             }
-                            items += TabInString(6) + "//end of ignored block" + Environment.NewLine;
+                            items += TabInString(6) + "//#endregion" + Environment.NewLine;
+                            //items += TabInString(6) + "//end of ignored block" + Environment.NewLine;
 
                             if (text_circle.dot_image != null && text_circle.dot_image.Length > 0)
                             {
@@ -7990,6 +8013,7 @@ namespace Watch_Face_Editor
                             }
 
                             text_update += TabInString(7) + "let " + variableStartName + "circle_string = (distanceCurrent / 1000).toFixed(2);" + Environment.NewLine;
+                            text_update += TabInString(7) + "if (mileageUnit == 1) " + variableStartName + "circle_string = (0.621371 * distanceCurrent / 1000).toFixed(2);" + Environment.NewLine;
                             if (text_circle.zero)
                                 text_update += TabInString(7) + variableStartName + "circle_string = " + variableStartName + "circle_string.padStart(5, '0');" + Environment.NewLine;
                             if (optionNameStart == "normal_")
@@ -10368,12 +10392,14 @@ namespace Watch_Face_Editor
                                     img_number.unit = Weather.Group_Current.Number.imperial_unit;
                                     numberOptions = IMG_NUMBER_Options(img_number, "WEATHER_CURRENT", show_level, 1);
 
-                                    items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                                    //items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                                    items += Environment.NewLine + TabInString(6) + "//#region temperatureUnit";
                                     items += Environment.NewLine + TabInString(6) + "if (temperatureUnit == 1) {";
                                     items += Environment.NewLine + TabInString(7) + optionNameStart + "temperature_current_text_img.setProperty(hmUI.prop.MORE, {";
                                     items += numberOptions + TabInString(7) + "});";
                                     items += Environment.NewLine + TabInString(6) + "};";
-                                    items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
+                                    items += Environment.NewLine + TabInString(6) + "//#endregion" + Environment.NewLine;
+                                    //items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
                                 }
                             }
                         }
@@ -10459,12 +10485,14 @@ namespace Watch_Face_Editor
                                     img_number.unit = Weather.Group_Min.Number.imperial_unit;
                                     numberMinOptions = IMG_NUMBER_Options(img_number, "WEATHER_LOW", show_level, 1);
 
-                                    items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                                    //items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                                    items += Environment.NewLine + TabInString(6) + "//#region temperatureUnit";
                                     items += Environment.NewLine + TabInString(6) + "if (temperatureUnit == 1) {";
                                     items += Environment.NewLine + TabInString(7) + optionNameStart + "temperature_low_text_img.setProperty(hmUI.prop.MORE, {";
                                     items += numberMinOptions + TabInString(7) + "});";
                                     items += Environment.NewLine + TabInString(6) + "};";
-                                    items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
+                                    items += Environment.NewLine + TabInString(6) + "//#endregion" + Environment.NewLine;
+                                    //items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
                                 }
                             }
                         }
@@ -10550,12 +10578,14 @@ namespace Watch_Face_Editor
                                     img_number.unit = Weather.Group_Max.Number.imperial_unit;
                                     numberMaxOptions_separator = IMG_NUMBER_Options(img_number, "WEATHER_HIGH", show_level, 1);
 
-                                    items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                                    //items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                                    items += Environment.NewLine + TabInString(6) + "//#region temperatureUnit";
                                     items += Environment.NewLine + TabInString(6) + "if (temperatureUnit == 1) {";
                                     items += Environment.NewLine + TabInString(7) + optionNameStart + "temperature_high_text_img.setProperty(hmUI.prop.MORE, {";
                                     items += numberMaxOptions_separator + TabInString(7) + "});";
                                     items += Environment.NewLine + TabInString(6) + "};";
-                                    items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
+                                    items += Environment.NewLine + TabInString(6) + "//#endregion" + Environment.NewLine;
+                                    //items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
                                 }
                             }
                         }
@@ -10641,12 +10671,14 @@ namespace Watch_Face_Editor
                                     img_number.unit = Weather.Group_Max_Min.Number.imperial_unit;
                                     numberMaxMinOptions = IMG_NUMBER_Options(img_number, "WEATHER_HIGH_LOW", show_level, 1);
 
-                                    items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                                    //items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                                    items += Environment.NewLine + TabInString(6) + "//#region temperatureUnit";
                                     items += Environment.NewLine + TabInString(6) + "if (temperatureUnit == 1) {";
                                     items += Environment.NewLine + TabInString(7) + optionNameStart + "temperature_max_min_text_img.setProperty(hmUI.prop.MORE, {";
                                     items += numberMaxMinOptions + TabInString(7) + "});";
                                     items += Environment.NewLine + TabInString(6) + "};";
-                                    items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
+                                    items += Environment.NewLine + TabInString(6) + "//#endregion" + Environment.NewLine;
+                                    //items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
                                 }
                             }
                         }
@@ -12363,7 +12395,8 @@ namespace Watch_Face_Editor
                             img_height = SelectedModel.background.h;
                             img_width = SelectedModel.background.w;
 
-                            items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                            //items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                            items += Environment.NewLine + TabInString(6) + "//#region TextRotate";
                             items += Environment.NewLine + TabInString(6) + "for (let i = 0; i < " + valueLenght.ToString() + "; i++) {";
                             items += Environment.NewLine + TabInString(7) + variableStartName + "TextRotate[i] = hmUI.createWidget(hmUI.widget.IMG, {";
                             items += Environment.NewLine + TabInString(8) + "x: 0,";
@@ -12412,7 +12445,8 @@ namespace Watch_Face_Editor
                                 items += Environment.NewLine + TabInString(6) + variableStartName + "TextRotate_unit.setProperty(hmUI.prop.VISIBLE, false);" + Environment.NewLine;
 
                             }
-                            items += TabInString(6) + "//end of ignored block" + Environment.NewLine;
+                            items += TabInString(6) + "//#endregion" + Environment.NewLine;
+                            //items += TabInString(6) + "//end of ignored block" + Environment.NewLine;
 
                             if (text_rotate.invalid_image != null && text_rotate.invalid_image.Length > 0)
                             {
@@ -12542,7 +12576,8 @@ namespace Watch_Face_Editor
                             img_height = SelectedModel.background.h;
                             img_width = SelectedModel.background.w;
 
-                            items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                            //items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                            items += Environment.NewLine + TabInString(6) + "//#region TextCircle";
                             items += Environment.NewLine + TabInString(6) + "for (let i = 0; i < " + valueLenght.ToString() + "; i++) {";
                             items += Environment.NewLine + TabInString(7) + variableStartName + "TextCircle[i] = hmUI.createWidget(hmUI.widget.IMG, {";
                             items += Environment.NewLine + TabInString(8) + "x: 0,";
@@ -12602,7 +12637,8 @@ namespace Watch_Face_Editor
                                 items += Environment.NewLine + TabInString(6) + "});";
                                 items += Environment.NewLine + TabInString(6) + variableStartName + "TextCircle_unit.setProperty(hmUI.prop.VISIBLE, false);" + Environment.NewLine;
                             }
-                            items += TabInString(6) + "//end of ignored block" + Environment.NewLine;
+                            items += TabInString(6) + "//#endregion" + Environment.NewLine;
+                            //items += TabInString(6) + "//end of ignored block" + Environment.NewLine;
 
                             //if (text_circle.dot_image != null && text_circle.dot_image.Length > 0)
                             //{
@@ -12692,7 +12728,8 @@ namespace Watch_Face_Editor
 
                             items += Environment.NewLine + TabInString(6) + readOptionsCustomPointer  + Environment.NewLine;
 
-                            items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                            //items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                            items += Environment.NewLine + TabInString(6) + "//#region Compass_Pointer";
 
                             items += Environment.NewLine + TabInString(6) +
                                 optionNameStart + "compass_direction_pointer_img = hmUI.createWidget(hmUI.widget.IMG, {" +
@@ -12719,7 +12756,8 @@ namespace Watch_Face_Editor
                                     coverPointer + TabInString(6) + "});" + Environment.NewLine;
                             }
 
-                            items += TabInString(6) + "//end of ignored block" + Environment.NewLine;
+                            items += TabInString(6) + "//#endregion" + Environment.NewLine;
+                            //items += TabInString(6) + "//end of ignored block" + Environment.NewLine;
                         }
 
                         // Icon
@@ -13387,25 +13425,25 @@ namespace Watch_Face_Editor
                         // Circle_Scale
                         if (index == circleScalePosition && circle_scale != null && circleScaleProgressOptions.Length > 5)
                         {
-                            variables += TabInString(4) + "let " + optionNameStart + "readiness_circle_scale_2 = ''" + Environment.NewLine;
+                            variables += TabInString(4) + "let " + optionNameStart + "training_load_circle_scale = ''" + Environment.NewLine;
 
                             items += Environment.NewLine + TabInString(6) +
-                            optionNameStart + "readiness_circle_scale_2 = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
+                            optionNameStart + "training_load_circle_scale = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
                                 circleScaleProgressOptions + TabInString(6) + "});" + Environment.NewLine;
 
                             if (TrainingLoad.Circle_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
-                                    "readiness_circle_scale_2.setAlpha(" + TrainingLoad.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
+                                    "training_load_circle_scale.setAlpha(" + TrainingLoad.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (circle_scale.mirror)
                             {
-                                variables += TabInString(4) + "let " + optionNameStart + "readiness_circle_scale_mirror_2 = ''" + Environment.NewLine;
+                                variables += TabInString(4) + "let " + optionNameStart + "training_load_circle_scale_mirror = ''" + Environment.NewLine;
 
                                 items += Environment.NewLine + TabInString(6) +
-                                    optionNameStart + "readiness_circle_scale_mirror_2 = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
+                                    optionNameStart + "training_load_circle_scale_mirror = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
                                         circleScaleProgressMirrorOptions + TabInString(6) + "});" + Environment.NewLine;
 
                                 if (TrainingLoad.Circle_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
-                                        "readiness_circle_scale_mirror_2.setAlpha(" + TrainingLoad.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
+                                        "training_load_circle_scale_mirror.setAlpha(" + TrainingLoad.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
 
@@ -13574,25 +13612,25 @@ namespace Watch_Face_Editor
                         // Circle_Scale
                         if (index == circleScalePosition && circle_scale != null && circleScaleProgressOptions.Length > 5)
                         {
-                            variables += TabInString(4) + "let " + optionNameStart + "readiness_circle_scale_2 = ''" + Environment.NewLine;
+                            variables += TabInString(4) + "let " + optionNameStart + "vo2max_circle_scale = ''" + Environment.NewLine;
 
                             items += Environment.NewLine + TabInString(6) +
-                            optionNameStart + "readiness_circle_scale_2 = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
+                            optionNameStart + "vo2max_circle_scale = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
                                 circleScaleProgressOptions + TabInString(6) + "});" + Environment.NewLine;
 
                             if (VO2Max.Circle_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
-                                    "readiness_circle_scale_2.setAlpha(" + VO2Max.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
+                                    "vo2max_circle_scale.setAlpha(" + VO2Max.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (circle_scale.mirror)
                             {
-                                variables += TabInString(4) + "let " + optionNameStart + "readiness_circle_scale_mirror_2 = ''" + Environment.NewLine;
+                                variables += TabInString(4) + "let " + optionNameStart + "vo2max_circle_scale_mirror = ''" + Environment.NewLine;
 
                                 items += Environment.NewLine + TabInString(6) +
-                                    optionNameStart + "readiness_circle_scale_mirror_2 = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
+                                    optionNameStart + "vo2max_circle_scale_mirror = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
                                         circleScaleProgressMirrorOptions + TabInString(6) + "});" + Environment.NewLine;
 
                                 if (VO2Max.Circle_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
-                                        "readiness_circle_scale_mirror_2.setAlpha(" + VO2Max.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
+                                        "vo2max_circle_scale_mirror.setAlpha(" + VO2Max.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
 
@@ -13761,25 +13799,25 @@ namespace Watch_Face_Editor
                         // Circle_Scale
                         if (index == circleScalePosition && circle_scale != null && circleScaleProgressOptions.Length > 5)
                         {
-                            variables += TabInString(4) + "let " + optionNameStart + "readiness_circle_scale_2 = ''" + Environment.NewLine;
+                            variables += TabInString(4) + "let " + optionNameStart + "aqi_circle_scale = ''" + Environment.NewLine;
 
                             items += Environment.NewLine + TabInString(6) +
-                            optionNameStart + "readiness_circle_scale_2 = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
+                            optionNameStart + "aqi_circle_scale = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
                                 circleScaleProgressOptions + TabInString(6) + "});" + Environment.NewLine;
 
                             if (AQI.Circle_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
-                                    "readiness_circle_scale_2.setAlpha(" + AQI.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
+                                    "aqi_circle_scale.setAlpha(" + AQI.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (circle_scale.mirror)
                             {
-                                variables += TabInString(4) + "let " + optionNameStart + "readiness_circle_scale_mirror_2 = ''" + Environment.NewLine;
+                                variables += TabInString(4) + "let " + optionNameStart + "aqi_circle_scale_mirror = ''" + Environment.NewLine;
 
                                 items += Environment.NewLine + TabInString(6) +
-                                    optionNameStart + "readiness_circle_scale_mirror_2 = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
+                                    optionNameStart + "aqi_circle_scale_mirror = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
                                         circleScaleProgressMirrorOptions + TabInString(6) + "});" + Environment.NewLine;
 
                                 if (AQI.Circle_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
-                                        "readiness_circle_scale_mirror_2.setAlpha(" + AQI.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
+                                        "aqi_circle_scale_mirror.setAlpha(" + AQI.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
 
@@ -14150,25 +14188,25 @@ namespace Watch_Face_Editor
                         // Circle_Scale
                         if (index == circleScalePosition && circle_scale != null && circleScaleProgressOptions.Length > 5)
                         {
-                            variables += TabInString(4) + "let " + optionNameStart + "readiness_circle_scale_2 = ''" + Environment.NewLine;
+                            variables += TabInString(4) + "let " + optionNameStart + "readiness_circle_scale = ''" + Environment.NewLine;
 
                             items += Environment.NewLine + TabInString(6) +
-                            optionNameStart + "readiness_circle_scale_2 = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
+                            optionNameStart + "readiness_circle_scale = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
                                 circleScaleProgressOptions + TabInString(6) + "});" + Environment.NewLine;
 
                             if (Readiness.Circle_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
-                                    "readiness_circle_scale_2.setAlpha(" + Readiness.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
+                                    "readiness_circle_scale.setAlpha(" + Readiness.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (circle_scale.mirror)
                             {
-                                variables += TabInString(4) + "let " + optionNameStart + "readiness_circle_scale_mirror_2 = ''" + Environment.NewLine;
+                                variables += TabInString(4) + "let " + optionNameStart + "readiness_circle_scale_mirror = ''" + Environment.NewLine;
 
                                 items += Environment.NewLine + TabInString(6) +
-                                    optionNameStart + "readiness_circle_scale_mirror_2 = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
+                                    optionNameStart + "readiness_circle_scale_mirror = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
                                         circleScaleProgressMirrorOptions + TabInString(6) + "});" + Environment.NewLine;
 
                                 if (Readiness.Circle_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
-                                        "readiness_circle_scale_mirror_2.setAlpha(" + Readiness.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
+                                        "readiness_circle_scale_mirror.setAlpha(" + Readiness.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
 
@@ -14485,12 +14523,14 @@ namespace Watch_Face_Editor
                     options += TabInString(8) + "show_level: hmUI.show_level." + show_level + "," + Environment.NewLine;
                 }
 
-                items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                //items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                items += Environment.NewLine + TabInString(6) + "//#region screenType";
                 items += Environment.NewLine + TabInString(6) + "if (screenType == hmSetting.screen_type." + screenType + ") {";
                 items += Environment.NewLine + TabInString(7) +
                     optionNameStart + "forecast_background = " + groupName + ".createWidget(hmUI.widget.IMG, {" + options + TabInString(7) + "});";
                 items += Environment.NewLine + TabInString(6) + "};";
-                items += Environment.NewLine + TabInString(6) + "//end of ignored block";
+                items += Environment.NewLine + TabInString(6) + "//#endregion";
+                //items += Environment.NewLine + TabInString(6) + "//end of ignored block";
             }
 
             for (int index = 1; index <= 15; index++)
@@ -14527,7 +14567,8 @@ namespace Watch_Face_Editor
                     items += Environment.NewLine + TabInString(6) + "// " + variableName + " = " + groupName + ".createWidget(hmUI.widget.IMG_LEVEL_Options, {" +
                                     imagesOptions + TabInString(6) + "// });" + Environment.NewLine;
 
-                    items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                    //items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                    items += Environment.NewLine + TabInString(6) + "//#region screenType";
                     items += Environment.NewLine + TabInString(6) + "if (screenType == hmSetting.screen_type." + screenType + ") {";
                     items += Environment.NewLine + TabInString(7) + "for (let i = 0; i < " + daysCount.ToString() + "; i++) {";
                     items += Environment.NewLine + TabInString(8) + variableName + "[i] = " + groupName + ".createWidget(hmUI.widget.IMG, {";
@@ -14546,7 +14587,8 @@ namespace Watch_Face_Editor
                     if (images.alpha != 255) items += Environment.NewLine + TabInString(6) + variableName + "[i]" +
                             ".setAlpha(" + images.alpha.ToString() + ");" + Environment.NewLine;
 
-                    items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
+                    items += Environment.NewLine + TabInString(6) + "//#endregion" + Environment.NewLine;
+                    //items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
                     #endregion
 
                     if (weather_few_days.IndexOf(strFor) < 0)
@@ -14595,7 +14637,8 @@ namespace Watch_Face_Editor
                     items += Environment.NewLine + TabInString(6) + "// " + variableName + " = " + groupName + ".createWidget(hmUI.widget.IMG_LEVEL_Options, {" +
                                     imagesOptions + TabInString(6) + "// });" + Environment.NewLine;
 
-                    items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                    //items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                    items += Environment.NewLine + TabInString(6) + "//#region screenType";
                     items += Environment.NewLine + TabInString(6) + "if (screenType == hmSetting.screen_type." + screenType + ") {";
                     items += Environment.NewLine + TabInString(7) + "for (let i = 0; i < " + daysCount.ToString() + "; i++) {";
                     items += Environment.NewLine + TabInString(8) + variableName + "[i] = " + groupName + ".createWidget(hmUI.widget.IMG, {";
@@ -14614,7 +14657,8 @@ namespace Watch_Face_Editor
                     if (dow_images.alpha != 255) items += Environment.NewLine + TabInString(6) + variableName + "[i]" +
                             ".setAlpha(" + dow_images.alpha.ToString() + ");" + Environment.NewLine;
 
-                    items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
+                    items += Environment.NewLine + TabInString(6) + "//#endregion" + Environment.NewLine;
+                    //items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
                     #endregion
 
                     if (items.IndexOf("if (!timeSensor) timeSensor = hmSensor.createSensor(hmSensor.id.TIME);") < 0)
@@ -14677,7 +14721,8 @@ namespace Watch_Face_Editor
                         }
                     }
 
-                    items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                    //items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                    items += Environment.NewLine + TabInString(6) + "//#region screenType";
                     items += Environment.NewLine + TabInString(6) + "if (screenType == hmSetting.screen_type." + screenType + ") {";
                     items += Environment.NewLine + TabInString(7) + "for (let i = 0; i < " + daysCount.ToString() + "; i++) {";
                     items += Environment.NewLine + TabInString(8) + variableName + "[i] = " + groupName + ".createWidget(hmUI.widget.TEXT, {";
@@ -14715,7 +14760,8 @@ namespace Watch_Face_Editor
                     //items += Environment.NewLine + TabInString(8) + variableName + "[i].setProperty(hmUI.prop.VISIBLE, false);";
                     items += Environment.NewLine + TabInString(7) + "};";
                     items += Environment.NewLine + TabInString(6) + "};";
-                    items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
+                    items += Environment.NewLine + TabInString(6) + "//#endregion" + Environment.NewLine;
+                    //items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
                     #endregion
 
                     if (items.IndexOf("if (!timeSensor) timeSensor = hmSensor.createSensor(hmSensor.id.TIME);") < 0)
@@ -14767,7 +14813,8 @@ namespace Watch_Face_Editor
                     variables += TabInString(4) + "let " + optionNameStart + "canvas1 = '';" + Environment.NewLine;
                     variables += TabInString(4) + "let " + optionNameStart + "canvas2 = '';" + Environment.NewLine;
 
-                    items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                    //items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                    items += Environment.NewLine + TabInString(6) + "//#region screenType";
                     if (graphFullScreen) {
                         items += Environment.NewLine + TabInString(6) + "if (screenType == hmSetting.screen_type." + screenType + ") {";
                         items += Environment.NewLine + TabInString(7) + optionNameStart + "canvas1 = " + groupName + ".createWidget(hmUI.widget.CANVAS, {";
@@ -14803,7 +14850,8 @@ namespace Watch_Face_Editor
                         items += Environment.NewLine + TabInString(7) + "});";
                         items += Environment.NewLine + TabInString(6) + "};";
                     }
-                    items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
+                    items += Environment.NewLine + TabInString(6) + "//#endregion" + Environment.NewLine;
+                    //items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
                     #endregion
 
                     string temp_items = "";
@@ -14997,7 +15045,8 @@ namespace Watch_Face_Editor
                     }
 
                     #region creat widget
-                    items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                    //items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                    items += Environment.NewLine + TabInString(6) + "//#region screenType";
                     items += Environment.NewLine + TabInString(6) + "if (screenType == hmSetting.screen_type." + screenType + ") {";
                     items += Environment.NewLine + TabInString(7) + "for (let i = 0; i < " + daysCount.ToString() + "; i++) {";
                     items += Environment.NewLine + TabInString(8) + variableName + "[i] = " + groupName + ".createWidget(hmUI.widget.TEXT_IMG, {";
@@ -15083,7 +15132,8 @@ namespace Watch_Face_Editor
                     }
                     items += Environment.NewLine + TabInString(7) + "};";
                     items += Environment.NewLine + TabInString(6) + "};";
-                    items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
+                    items += Environment.NewLine + TabInString(6) + "//#endregion" + Environment.NewLine;
+                    //items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
                     #endregion
 
                     if (weather_few_days.IndexOf(strFor) < 0)
@@ -15144,7 +15194,8 @@ namespace Watch_Face_Editor
                         }
                     }
 
-                    items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                    //items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                    items += Environment.NewLine + TabInString(6) + "//#region screenType";
                     items += Environment.NewLine + TabInString(6) + "if (screenType == hmSetting.screen_type." + screenType + ") {";
                     items += Environment.NewLine + TabInString(7) + "for (let i = 0; i < " + daysCount.ToString() + "; i++) {";
                     items += Environment.NewLine + TabInString(8) + variableName + "[i] = " + groupName + ".createWidget(hmUI.widget.TEXT, {";
@@ -15181,7 +15232,8 @@ namespace Watch_Face_Editor
                     //items += Environment.NewLine + TabInString(8) + variableName + "[i].setProperty(hmUI.prop.VISIBLE, false);";
                     items += Environment.NewLine + TabInString(7) + "};";
                     items += Environment.NewLine + TabInString(6) + "};";
-                    items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
+                    items += Environment.NewLine + TabInString(6) + "//#endregion" + Environment.NewLine;
+                    //items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
                     #endregion
 
                     if (weather_few_days.IndexOf(strFor) < 0)
@@ -15263,7 +15315,8 @@ namespace Watch_Face_Editor
                     }
 
                     #region creat widget
-                    items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                    //items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                    items += Environment.NewLine + TabInString(6) + "//#region screenType";
                     items += Environment.NewLine + TabInString(6) + "if (screenType == hmSetting.screen_type." + screenType + ") {";
                     items += Environment.NewLine + TabInString(7) + "for (let i = 0; i < " + daysCount.ToString() + "; i++) {";
                     items += Environment.NewLine + TabInString(8) + variableName + "[i] = " + groupName + ".createWidget(hmUI.widget.TEXT_IMG, {";
@@ -15349,7 +15402,8 @@ namespace Watch_Face_Editor
                     }
                     items += Environment.NewLine + TabInString(7) + "};";
                     items += Environment.NewLine + TabInString(6) + "};";
-                    items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
+                    items += Environment.NewLine + TabInString(6) + "//#endregion" + Environment.NewLine;
+                    //items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
                     #endregion
 
                     if (weather_few_days.IndexOf(strFor) < 0)
@@ -15410,7 +15464,8 @@ namespace Watch_Face_Editor
                         }
                     }
 
-                    items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                    //items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                    items += Environment.NewLine + TabInString(6) + "//#region screenType";
                     items += Environment.NewLine + TabInString(6) + "if (screenType == hmSetting.screen_type." + screenType + ") {";
                     items += Environment.NewLine + TabInString(7) + "for (let i = 0; i < " + daysCount.ToString() + "; i++) {";
                     items += Environment.NewLine + TabInString(8) + variableName + "[i] = " + groupName + ".createWidget(hmUI.widget.TEXT, {";
@@ -15447,7 +15502,8 @@ namespace Watch_Face_Editor
                     //items += Environment.NewLine + TabInString(8) + variableName + "[i].setProperty(hmUI.prop.VISIBLE, false);";
                     items += Environment.NewLine + TabInString(7) + "};";
                     items += Environment.NewLine + TabInString(6) + "};";
-                    items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
+                    items += Environment.NewLine + TabInString(6) + "//#endregion" + Environment.NewLine;
+                    //items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
                     #endregion
 
                     if (weather_few_days.IndexOf(strFor) < 0)
@@ -15529,7 +15585,8 @@ namespace Watch_Face_Editor
                     }
 
                     #region creat widget
-                    items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                    //items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                    items += Environment.NewLine + TabInString(6) + "//#region screenType";
                     items += Environment.NewLine + TabInString(6) + "if (screenType == hmSetting.screen_type." + screenType + ") {";
                     items += Environment.NewLine + TabInString(7) + "for (let i = 0; i < " + daysCount.ToString() + "; i++) {";
                     items += Environment.NewLine + TabInString(8) + variableName + "[i] = " + groupName + ".createWidget(hmUI.widget.TEXT_IMG, {";
@@ -15615,7 +15672,8 @@ namespace Watch_Face_Editor
                     }
                     items += Environment.NewLine + TabInString(7) + "};";
                     items += Environment.NewLine + TabInString(6) + "};";
-                    items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
+                    items += Environment.NewLine + TabInString(6) + "//#endregion" + Environment.NewLine;
+                    //items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
                     #endregion
 
                     if (weather_few_days.IndexOf(strFor) < 0)
@@ -15676,7 +15734,8 @@ namespace Watch_Face_Editor
                         }
                     }
 
-                    items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                    //items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                    items += Environment.NewLine + TabInString(6) + "//#region screenType";
                     items += Environment.NewLine + TabInString(6) + "if (screenType == hmSetting.screen_type." + screenType + ") {";
                     items += Environment.NewLine + TabInString(7) + "for (let i = 0; i < " + daysCount.ToString() + "; i++) {";
                     items += Environment.NewLine + TabInString(8) + variableName + "[i] = " + groupName + ".createWidget(hmUI.widget.TEXT, {";
@@ -15713,7 +15772,8 @@ namespace Watch_Face_Editor
                     //items += Environment.NewLine + TabInString(8) + variableName + "[i].setProperty(hmUI.prop.VISIBLE, false);";
                     items += Environment.NewLine + TabInString(7) + "};";
                     items += Environment.NewLine + TabInString(6) + "};";
-                    items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
+                    items += Environment.NewLine + TabInString(6) + "//#endregion" + Environment.NewLine;
+                    //items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
                     #endregion
 
                     if (weather_few_days.IndexOf(strFor) < 0)
@@ -15794,7 +15854,8 @@ namespace Watch_Face_Editor
                     }
 
                     #region creat widget
-                    items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                    //items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                    items += Environment.NewLine + TabInString(6) + "//#region screenType";
                     items += Environment.NewLine + TabInString(6) + "if (screenType == hmSetting.screen_type." + screenType + ") {";
                     items += Environment.NewLine + TabInString(7) + "for (let i = 0; i < " + daysCount.ToString() + "; i++) {";
                     items += Environment.NewLine + TabInString(8) + variableName + "[i] = " + groupName + ".createWidget(hmUI.widget.TEXT_IMG, {";
@@ -15893,7 +15954,8 @@ namespace Watch_Face_Editor
                     }
                     items += Environment.NewLine + TabInString(7) + "};";
                     items += Environment.NewLine + TabInString(6) + "};";
-                    items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
+                    items += Environment.NewLine + TabInString(6) + "//#endregion" + Environment.NewLine;
+                    //items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
                     #endregion
 
                     if (weather_few_days.IndexOf(strFor) < 0)
@@ -15950,7 +16012,8 @@ namespace Watch_Face_Editor
                         }
                     }
 
-                    items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                    //items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                    items += Environment.NewLine + TabInString(6) + "//#region screenType";
                     items += Environment.NewLine + TabInString(6) + "if (screenType == hmSetting.screen_type." + screenType + ") {";
                     items += Environment.NewLine + TabInString(7) + "for (let i = 0; i < " + daysCount.ToString() + "; i++) {";
                     items += Environment.NewLine + TabInString(8) + variableName + "[i] = " + groupName + ".createWidget(hmUI.widget.TEXT, {";
@@ -15987,7 +16050,8 @@ namespace Watch_Face_Editor
                     //items += Environment.NewLine + TabInString(8) + variableName + "[i].setProperty(hmUI.prop.VISIBLE, false);";
                     items += Environment.NewLine + TabInString(7) + "};";
                     items += Environment.NewLine + TabInString(6) + "};";
-                    items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
+                    items += Environment.NewLine + TabInString(6) + "//#endregion" + Environment.NewLine;
+                    //items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
                     #endregion
 
                     if (weather_few_days.IndexOf(strFor) < 0)
@@ -16099,7 +16163,8 @@ namespace Watch_Face_Editor
             if (addComents)
             {
                 items += TabInString(6) + Environment.NewLine;
-                items += TabInString(6) + "//start of ignored block" + Environment.NewLine; 
+                //items += TabInString(6) + "//start of ignored block" + Environment.NewLine;
+                items += TabInString(6) + "//#region draw" + Environment.NewLine;
             }
             if (items.IndexOf("function drawLine") < 0)
             {
@@ -16222,7 +16287,11 @@ namespace Watch_Face_Editor
                 items += TabInString(6) + "};" + Environment.NewLine;
             }
 
-            if (addComents) items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
+            if (addComents)
+            {
+                items += Environment.NewLine + TabInString(6) + "//#endregion" + Environment.NewLine;
+                //items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine; 
+            }
         }
 
         private void AddGraphScaleFunction(ref string items)
@@ -16230,7 +16299,8 @@ namespace Watch_Face_Editor
             if (items.IndexOf("function graphScale") < 0)
             {
                 items += TabInString(6) + Environment.NewLine;
-                items += Environment.NewLine + TabInString(6) + "//start of ignored block" + Environment.NewLine;
+                //items += Environment.NewLine + TabInString(6) + "//start of ignored block" + Environment.NewLine;
+                items += Environment.NewLine + TabInString(6) + "//#region graphScale" + Environment.NewLine;
 
                 items += TabInString(6) + "function graphScale(heightGraph, maxPointSize, minPointSize, forecastData, daysCount) {" + Environment.NewLine;
                 items += TabInString(7) + "console.log(`function graphScale`);" + Environment.NewLine;
@@ -16253,7 +16323,8 @@ namespace Watch_Face_Editor
                 items += TabInString(7) + "return {graphScale: scale, maximal_temp: high};" + Environment.NewLine;
                 items += TabInString(6) + "};" + Environment.NewLine;
 
-                items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
+                items += Environment.NewLine + TabInString(6) + "//#endregion" + Environment.NewLine;
+                //items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
             }
         }
 
@@ -22885,6 +22956,17 @@ namespace Watch_Face_Editor
                 startPosDel = functionText.IndexOf("//start of ignored block");
                 endPosDel = functionText.IndexOf("//end of ignored block");
             }
+            startPosDel = functionText.IndexOf("//#region");
+            endPosDel = functionText.IndexOf("//#endregion");
+            while (startPosDel > 0 && startPosDel < endPosDel)
+            {
+                int lenght = endPosDel - startPosDel + "//#endregion".Length;
+                functionText = functionText.Remove(startPosDel, lenght);
+
+                startPosDel = functionText.IndexOf("//#region");
+                endPosDel = functionText.IndexOf("//#endregion");
+            }
+
             startPosDel = functionText.IndexOf("function getApp() {");
             endPosDel = functionText.IndexOf("init_view()");
             if (startPosDel > 0 && startPosDel < endPosDel)
@@ -42134,7 +42216,8 @@ namespace Watch_Face_Editor
             img_height = SelectedModel.background.h;
             img_width = SelectedModel.background.w;
 
-            items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+            //items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+            items += Environment.NewLine + TabInString(6) + "//#region TextRotate";
             items += Environment.NewLine + TabInString(6) + "for (let i = 0; i < " + valueLenght.ToString() + "; i++) {";
             items += Environment.NewLine + TabInString(7) + variableStartName + "TextRotate[i] = hmUI.createWidget(hmUI.widget.IMG, {";
             items += Environment.NewLine + TabInString(8) + "x: 0,";
@@ -42197,7 +42280,8 @@ namespace Watch_Face_Editor
                     }
                 }
             }
-            items += TabInString(6) + "//end of ignored block" + Environment.NewLine;
+            items += TabInString(6) + "//#endregion" + Environment.NewLine;
+            //items += TabInString(6) + "//end of ignored block" + Environment.NewLine;
 
             if (text_rotate.dot_image != null && text_rotate.dot_image.Length > 0)
             {
@@ -42417,7 +42501,8 @@ namespace Watch_Face_Editor
             img_height = SelectedModel.background.h;
             img_width = SelectedModel.background.w;
 
-            items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+            //items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+            items += Environment.NewLine + TabInString(6) + "//#region TextRotate";
             items += Environment.NewLine + TabInString(6) + "for (let i = 0; i < " + valueLenght.ToString() + "; i++) {";
             items += Environment.NewLine + TabInString(7) + variableStartName + "TextRotate[i] = hmUI.createWidget(hmUI.widget.IMG, {";
             items += Environment.NewLine + TabInString(8) + "x: 0,";
@@ -42480,7 +42565,8 @@ namespace Watch_Face_Editor
                     }
                 }
             }
-            items += TabInString(6) + "//end of ignored block" + Environment.NewLine;
+            items += TabInString(6) + "//#endregion" + Environment.NewLine;
+            //items += TabInString(6) + "//end of ignored block" + Environment.NewLine;
 
             if (text_rotate.dot_image != null && text_rotate.dot_image.Length > 0)
             {
@@ -42624,7 +42710,8 @@ namespace Watch_Face_Editor
             img_height = SelectedModel.background.h;
             img_width = SelectedModel.background.w;
 
-            items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+            //items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+            items += Environment.NewLine + TabInString(6) + "//#region TextCircle";
             items += Environment.NewLine + TabInString(6) + "for (let i = 0; i < " + valueLenght.ToString() + "; i++) {";
             items += Environment.NewLine + TabInString(7) + variableStartName + "TextCircle[i] = hmUI.createWidget(hmUI.widget.IMG, {";
             items += Environment.NewLine + TabInString(8) + "x: 0,";
@@ -42699,7 +42786,8 @@ namespace Watch_Face_Editor
                     }
                 }
             }
-            items += TabInString(6) + "//end of ignored block" + Environment.NewLine;
+            items += TabInString(6) + "//#endregion" + Environment.NewLine;
+            //items += TabInString(6) + "//end of ignored block" + Environment.NewLine;
 
             if (text_circle.dot_image != null && text_circle.dot_image.Length > 0)
             {
@@ -42933,7 +43021,8 @@ namespace Watch_Face_Editor
             img_height = SelectedModel.background.h;
             img_width = SelectedModel.background.w;
 
-            items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+            //items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+            items += Environment.NewLine + TabInString(6) + "//#region TextCircle";
             items += Environment.NewLine + TabInString(6) + "for (let i = 0; i < " + valueLenght.ToString() + "; i++) {";
             items += Environment.NewLine + TabInString(7) + variableStartName + "TextCircle[i] = hmUI.createWidget(hmUI.widget.IMG, {";
             items += Environment.NewLine + TabInString(8) + "x: 0,";
@@ -43008,7 +43097,8 @@ namespace Watch_Face_Editor
                     }
                 }
             }
-            items += TabInString(6) + "//end of ignored block" + Environment.NewLine;
+            items += TabInString(6) + "//#endregion" + Environment.NewLine;
+            //items += TabInString(6) + "//end of ignored block" + Environment.NewLine;
 
             if (text_circle.dot_image != null && text_circle.dot_image.Length > 0)
             {

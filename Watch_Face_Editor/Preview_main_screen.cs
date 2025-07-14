@@ -4862,6 +4862,7 @@ namespace Watch_Face_Editor
                     img_number = activityElementVO2Max.Number;
                     font_number = activityElementVO2Max.Number_Font;
                     img_pointer = activityElementVO2Max.Pointer;
+                    circle_scale = activityElementVO2Max.Circle_Scale;
                     icon = activityElementVO2Max.Icon;
 
                     elementValue = WatchFacePreviewSet.Activity.VO2Max;
@@ -4899,6 +4900,7 @@ namespace Watch_Face_Editor
                     img_number = activityElementAQI.Number;
                     font_number = activityElementAQI.Number_Font;
                     img_pointer = activityElementAQI.Pointer;
+                    circle_scale = activityElementAQI.Circle_Scale;
                     icon = activityElementAQI.Icon;
 
                     elementValue = WatchFacePreviewSet.Air.AirQuality;
@@ -4977,6 +4979,7 @@ namespace Watch_Face_Editor
                     img_number = activityElementReadiness.Number;
                     font_number = activityElementReadiness.Number_Font;
                     img_pointer = activityElementReadiness.Pointer;
+                    circle_scale = activityElementReadiness.Circle_Scale;
                     icon = activityElementReadiness.Icon;
 
                     elementValue = WatchFacePreviewSet.Activity.Readiness;

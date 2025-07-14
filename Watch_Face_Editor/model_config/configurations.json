@@ -40,7 +40,7 @@
     "versionOS": 4.0
   },
   "Active 2": {
-    "name": "Active 2",
+    "name": "Amazfit Active 2",
     "designWidth": 466,
     "deviceSource_ids": [
       8913152,
@@ -84,6 +84,47 @@
     "colorScheme": 1,
     "fixSize": true,
     "versionOS": 4.0
+  },
+  "Active 2 (Square)": {
+    "name": "Amazfit Active 2 (Square)",
+    "designWidth": 390,
+    "deviceSource_ids": [
+      9830656,
+      9830657,
+      9830659
+    ],
+    "background": {
+      "w": 390,
+      "h": 450
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 198,
+        "h": 228
+      },
+      "scaling_1_0": {
+        "w": 392,
+        "h": 452
+      },
+      "scaling_1_5": {
+        "w": 587,
+        "h": 677
+      },
+      "scaling_2_0": {
+        "w": 781,
+        "h": 901
+      },
+      "scaling_2_5": {
+        "w": 976,
+        "h": 1126
+      }
+    },
+    "maskImage": "mask_gts_3.png",
+    "watchSkin": "WatchSkin_Active_2_Square.json",
+    "previewHeight": 306,
+    "colorScheme": 1,
+    "fixSize": true,
+    "versionOS": 5.0
   },
   "Active Edge": {
     "name": "Amazfit Active Edge",

@@ -679,6 +679,12 @@
     <Compile Include="Elements\UCtrl_VO2Max_Elm.Designer.cs">
       <DependentUpon>UCtrl_VO2Max_Elm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Elements\UCtrl_TimeCircle_Elm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Elements\UCtrl_TimeCircle_Elm.Designer.cs">
+      <DependentUpon>UCtrl_TimeCircle_Elm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UCtrl_Weather_FewDays_Opt.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -2951,6 +2957,9 @@
     <EmbeddedResource Include="Elements\UCtrl_VO2Max_Elm.resx">
       <DependentUpon>UCtrl_VO2Max_Elm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_TimeCircle_Elm.resx">
+      <DependentUpon>UCtrl_TimeCircle_Elm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UCtrl_Weather_FewDays_Opt.cs.resx">
       <DependentUpon>UCtrl_Weather_FewDays_Opt.cs</DependentUpon>
     </EmbeddedResource>
@@ -3279,6 +3288,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\hrv.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\circle_time.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

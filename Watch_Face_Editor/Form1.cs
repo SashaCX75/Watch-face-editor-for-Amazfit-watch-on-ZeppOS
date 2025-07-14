@@ -12424,6 +12424,7 @@ namespace Watch_Face_Editor
                                         break;
 
                                     default:
+                                        if (Watch_Face.ScreenNormal == null) Watch_Face.ScreenNormal = new ScreenNormal();
                                         Background background = Watch_Face.ScreenNormal.Background;
                                         if (background == null ||
                                             (background.BackgroundImage == null && background.Editable_Background == null))
@@ -17255,7 +17256,7 @@ namespace Watch_Face_Editor
                         if (uCtrl_TrainingLoad_Elm.checkBox_Circle_Scale.Checked)
                         {
                             circle_scale = trainingLoad.Circle_Scale;
-                            Read_CircleScale_Options(circle_scale);
+                            Read_CircleScale_Options(circle_scale, false);
                             ShowElemenrOptions("Circle_Scale");
                         }
                         else HideAllElemenrOptions();
@@ -17359,7 +17360,7 @@ namespace Watch_Face_Editor
                         if (uCtrl_VO2Max_Elm.checkBox_Circle_Scale.Checked)
                         {
                             circle_scale = vo2max.Circle_Scale;
-                            Read_CircleScale_Options(circle_scale);
+                            Read_CircleScale_Options(circle_scale, false);
                             ShowElemenrOptions("Circle_Scale");
                         }
                         else HideAllElemenrOptions();
@@ -17462,7 +17463,7 @@ namespace Watch_Face_Editor
                         if (uCtrl_AQI_Elm.checkBox_Circle_Scale.Checked)
                         {
                             circle_scale = aqi.Circle_Scale;
-                            Read_CircleScale_Options(circle_scale);
+                            Read_CircleScale_Options(circle_scale, false);
                             ShowElemenrOptions("Circle_Scale");
                         }
                         else HideAllElemenrOptions();
@@ -17692,7 +17693,7 @@ namespace Watch_Face_Editor
                         if (uCtrl_Readiness_Elm.checkBox_Circle_Scale.Checked)
                         {
                             circle_scale = readiness.Circle_Scale;
-                            Read_CircleScale_Options(circle_scale);
+                            Read_CircleScale_Options(circle_scale, false);
                             ShowElemenrOptions("Circle_Scale");
                         }
                         else HideAllElemenrOptions();

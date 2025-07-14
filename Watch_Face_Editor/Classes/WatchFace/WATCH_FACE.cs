@@ -1198,6 +1198,107 @@ namespace Watch_Face_Editor
             };
         }
     }
+    
+    public class ElementTimeCircle : ICloneable
+    {
+        public string elementName = "ElementTimeCircle";
+
+        ///// <summary>Позиция в наборе элементов</summary>
+        //public int position = -1;
+
+        /// <summary>Видимость элемента</summary>
+        public bool visible = true;
+
+        public Circle_Scale Second { get; set; }
+        public Circle_Scale Minute { get; set; }
+        public Circle_Scale Hour { get; set; }
+
+        public object Clone()
+        {
+
+            Circle_Scale Second = null;
+            if (this.Second != null)
+            {
+                Second = new Circle_Scale
+                {
+                    center_x = this.Second.center_x,
+                    center_y = this.Second.center_y,
+                    start_angle = this.Second.start_angle,
+                    end_angle = this.Second.end_angle,
+                    color = this.Second.color,
+                    radius = this.Second.radius,
+                    line_width = this.Second.line_width,
+                    line_cap = this.Second.line_cap,
+                    mirror = this.Second.mirror,
+                    inversion = this.Second.inversion,
+                    alpha = this.Second.alpha,
+
+                    position = this.Second.position,
+                    visible = this.Second.visible,
+                    show_level = this.Second.show_level,
+                    type = this.Second.type,
+                };
+            }
+
+            Circle_Scale Minute = null;
+            if (this.Minute != null)
+            {
+                Minute = new Circle_Scale
+                {
+                    center_x = this.Minute.center_x,
+                    center_y = this.Minute.center_y,
+                    start_angle = this.Minute.start_angle,
+                    end_angle = this.Minute.end_angle,
+                    color = this.Minute.color,
+                    radius = this.Minute.radius,
+                    line_width = this.Minute.line_width,
+                    line_cap = this.Minute.line_cap,
+                    mirror = this.Minute.mirror,
+                    inversion = this.Minute.inversion,
+                    alpha = this.Minute.alpha,
+
+                    position = this.Minute.position,
+                    visible = this.Minute.visible,
+                    show_level = this.Minute.show_level,
+                    type = this.Minute.type,
+                };
+            }
+
+            Circle_Scale Hour = null;
+            if (this.Hour != null)
+            {
+                Hour = new Circle_Scale
+                {
+                    center_x = this.Hour.center_x,
+                    center_y = this.Hour.center_y,
+                    start_angle = this.Hour.start_angle,
+                    end_angle = this.Hour.end_angle,
+                    color = this.Hour.color,
+                    radius = this.Hour.radius,
+                    line_width = this.Hour.line_width,
+                    line_cap = this.Hour.line_cap,
+                    mirror = this.Hour.mirror,
+                    inversion = this.Hour.inversion,
+                    alpha = this.Hour.alpha,
+
+                    position = this.Hour.position,
+                    visible = this.Hour.visible,
+                    show_level = this.Hour.show_level,
+                    type = this.Hour.type,
+                };
+            }
+
+            return new ElementTimeCircle
+            {
+                elementName = this.elementName,
+                visible = this.visible,
+
+                Second = Second,
+                Minute = Minute,
+                Hour = Hour,
+            };
+        }
+    }
 
     public class ElementEditablePointers
     {

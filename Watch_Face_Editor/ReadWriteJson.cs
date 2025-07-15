@@ -7778,7 +7778,6 @@ namespace Watch_Face_Editor
                             {
                                 text_update += TabInString(7) + "let distanceCurrent = distance.current;" + Environment.NewLine;
                             }
-
                             text_update += TabInString(7) + "let " + variableStartName + "rotate_string = (distanceCurrent / 1000).toFixed(2);" + Environment.NewLine;
                             text_update += TabInString(7) + "if (mileageUnit == 1) " + variableStartName + "rotate_string = (0.621371 * distanceCurrent / 1000).toFixed(2);" + Environment.NewLine;
                             if (text_rotate.zero)
@@ -7842,55 +7841,6 @@ namespace Watch_Face_Editor
                             //items += Environment.NewLine + TabInString(6) + "};";
                             items += Environment.NewLine;
 
-                            /*img_height = 454;
-                            img_width = 454;
-                            switch (ProgramSettings.Watch_Model)
-                            {
-                                case "GTR 3":
-                                    img_height = 454;
-                                    img_width = 454;
-                                    break;
-                                case "GTR 3 Pro":
-                                    img_height = 480;
-                                    img_width = 480;
-                                    break;
-                                case "GTS 3":
-                                    img_height = 450;
-                                    img_width = 390;
-                                    break;
-                                case "T-Rex 2":
-                                    img_height = 454;
-                                    img_width = 454;
-                                    break;
-                                case "T-Rex Ultra":
-                                    img_height = 454;
-                                    img_width = 454;
-                                    break;
-                                case "GTR 4":
-                                    img_height = 466;
-                                    img_width = 466;
-                                    break;
-                                case "Amazfit Band 7":
-                                    img_height = 368;
-                                    img_width = 194;
-                                    break;
-                                case "GTS 4 mini":
-                                    img_height = 384;
-                                    img_width = 336;
-                                    break;
-                                case "Falcon":
-                                    img_height = 416;
-                                    img_width = 416;
-                                    break;
-                                case "GTR mini":
-                                    img_height = 416;
-                                    img_width = 416;
-                                    break;
-                                case "GTS 4":
-                                    img_height = 450;
-                                    img_width = 390;
-                                    break;
-                            }*/
                             img_height = SelectedModel.background.h;
                             img_width = SelectedModel.background.w;
 
@@ -7955,6 +7905,12 @@ namespace Watch_Face_Editor
                                 items += Environment.NewLine + TabInString(6) + "});";
                                 items += Environment.NewLine + TabInString(6) + variableStartName + "TextCircle_unit.setProperty(hmUI.prop.VISIBLE, false);" + Environment.NewLine;
                             }
+
+                            if (items.IndexOf("const mileageUnit = hmSetting.getMileageUnit();") < 0)
+                            {
+                                items += Environment.NewLine + TabInString(6) + "const mileageUnit = hmSetting.getMileageUnit();";
+                            }
+                            
                             if (text_circle.imperial_unit != null && text_circle.imperial_unit.Length > 0)
                             {
                                 if (items.IndexOf("const mileageUnit = hmSetting.getMileageUnit();") < 0)

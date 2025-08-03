@@ -63,6 +63,7 @@ namespace Watch_Face_Editor
         public bool DelConfirm = false;
         public bool AutoSave = false;
         public int AutoSaveTime = 0;
+        public bool DevelopmentMode = false;
 
         public int[] CustomColors = { };
 

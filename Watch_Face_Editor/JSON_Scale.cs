@@ -289,6 +289,22 @@ namespace Watch_Face_Editor
                     Scale_IMG_POINTER(elementAnalogTimePro.Minute, scale);
                     Scale_IMG_POINTER(elementAnalogTimePro.Second, scale);
                     break;
+                case "ElementTimeCircle":
+                    ElementTimeCircle elementTimeCircle = (ElementTimeCircle)elements;
+                    Scale_Circle_Scale(elementTimeCircle.Hour, scale);
+                    Scale_Circle_Scale(elementTimeCircle.Minute, scale);
+                    Scale_Circle_Scale(elementTimeCircle.Second, scale);
+                    break;
+                case "ElementWorldClock":
+                    ElementWorldClock elementWorldClock = (ElementWorldClock)elements;
+                    Scale_TEXT(elementWorldClock.Time, scale);
+                    Scale_TEXT(elementWorldClock.TimeZone, scale);
+                    Scale_TEXT(elementWorldClock.CityName, scale);
+                    Scale_TEXT(elementWorldClock.TimeDifference, scale);
+                    Scale_Button(elementWorldClock.ButtonPrev, scale);
+                    Scale_Button(elementWorldClock.ButtonNext, scale);
+                    Scale_IMG(elementWorldClock.Icon, scale);
+                    break;
                 case "ElementDateDay":
                     ElementDateDay elementDateDay = (ElementDateDay)elements;
                     Scale_IMG_NUMBER(elementDateDay.Number, scale);

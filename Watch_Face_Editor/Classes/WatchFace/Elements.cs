@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlTypes;
 using System.Linq;
@@ -760,7 +761,8 @@ namespace Watch_Face_Editor
         public string unit_string { get; set; } = "";
 
         /// <summary>am/pm в конце</summary>
-        public bool unit_end { get; set; } = false;
+        [JsonConverter(typeof(BoolToIntConverter))]
+        public int unit_end { get; set; } = 0;
 
         /// <summary>Центрировать горизонтально</summary>
         public bool centreHorizontally { get; set; } = false;
@@ -773,6 +775,24 @@ namespace Watch_Face_Editor
 
         /// <summary>Тип активности</summary>
         public string type { get; set; }
+    }
+
+    public class BoolToIntConverter : JsonConverter<int>
+    {
+        public override int ReadJson(JsonReader reader, Type objectType, int existingValue, bool hasExistingValue, JsonSerializer serializer)
+        {
+            if (reader.TokenType == JsonToken.Boolean)
+                return (bool)reader.Value ? 1 : 0;
+            if (reader.TokenType == JsonToken.Integer)
+                return Convert.ToInt32(reader.Value);
+
+            throw new JsonSerializationException($"Unexpected token {reader.TokenType} when parsing unit_end");
+        }
+
+        public override void WriteJson(JsonWriter writer, int value, JsonSerializer serializer)
+        {
+            writer.WriteValue(value);
+        }
     }
 
     /// <summary>Набор покадровой анимация</summary>
@@ -1154,6 +1174,9 @@ namespace Watch_Face_Editor
     /// <summary>Кнопки</summary>
     public class Button
     {
+        /// <summary>Позиция в наборе элементов</summary>
+        public int position = -1;
+
         /// <summary>Координаты элемента</summary>
         public int x = 0;
 

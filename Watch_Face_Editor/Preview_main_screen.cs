@@ -207,7 +207,8 @@ namespace Watch_Face_Editor
                                 {
                                     Draw_elements(element, gPanel, scale, crop, WMesh, BMesh, BBorder, showShortcuts,
                                         showShortcutsArea, showShortcutsBorder, showShortcutsImage, showAnimation, showProgressArea, showCentrHend,
-                                        showWidgetsArea, link, Shortcuts_In_Gif, time_value_sec, showEeditMode, edit_mode);
+                                        showWidgetsArea, link, Shortcuts_In_Gif, time_value_sec, showEeditMode, edit_mode,
+                                        showButtons, showButtonsArea, showButtonsBorder, Buttons_In_Gif);
                                 }
                             }
                         }
@@ -233,7 +234,8 @@ namespace Watch_Face_Editor
                         {
                             Draw_elements(edit_group.Elements[selected_element], gPanel, scale, crop, WMesh, BMesh, BBorder, showShortcuts,
                                 showShortcutsArea, showShortcutsBorder, showShortcutsImage, showAnimation, showProgressArea, showCentrHend,
-                                showWidgetsArea, link, Shortcuts_In_Gif, time_value_sec, showEeditMode, edit_mode);
+                                showWidgetsArea, link, Shortcuts_In_Gif, time_value_sec, showEeditMode, edit_mode,
+                                showButtons, showButtonsArea, showButtonsBorder, Buttons_In_Gif);
                         }
 
                     }
@@ -259,7 +261,7 @@ namespace Watch_Face_Editor
                 {
                     Draw_elements(element, gPanel, scale, crop, WMesh, BMesh, BBorder, showShortcuts, showShortcutsArea, showShortcutsBorder,
                         showShortcutsImage, showAnimation, showProgressArea, showCentrHend, showWidgetsArea, link, Shortcuts_In_Gif, time_value_sec,
-                        showEeditMode, edit_mode);
+                        showEeditMode, edit_mode, showButtons, showButtonsArea, showButtonsBorder, Buttons_In_Gif);
                 }
             }
             #endregion
@@ -287,7 +289,8 @@ namespace Watch_Face_Editor
                                 {
                                     Draw_elements(element, gPanel, scale, crop, WMesh, BMesh, BBorder, showShortcuts,
                                         showShortcutsArea, showShortcutsBorder, showShortcutsImage, showAnimation, showProgressArea, showCentrHend,
-                                        showWidgetsArea, link, Shortcuts_In_Gif, time_value_sec, showEeditMode, edit_mode);
+                                        showWidgetsArea, link, Shortcuts_In_Gif, time_value_sec, showEeditMode, edit_mode,
+                                        showButtons, showButtonsArea, showButtonsBorder, Buttons_In_Gif);
                                 }
                             }
                         }
@@ -313,7 +316,8 @@ namespace Watch_Face_Editor
                         {
                             Draw_elements(edit_group.Elements[selected_element], gPanel, scale, crop, WMesh, BMesh, BBorder, showShortcuts, 
                                 showShortcutsArea, showShortcutsBorder, showShortcutsImage, showAnimation, showProgressArea, showCentrHend,
-                                showWidgetsArea, link, Shortcuts_In_Gif, time_value_sec, showEeditMode, edit_mode);
+                                showWidgetsArea, link, Shortcuts_In_Gif, time_value_sec, showEeditMode, edit_mode,
+                                showButtons, showButtonsArea, showButtonsBorder, Buttons_In_Gif);
                         }
          
                     }
@@ -742,7 +746,8 @@ namespace Watch_Face_Editor
         public void Draw_elements(Object element, Graphics gPanel, float scale, bool crop, bool WMesh, bool BMesh, bool BBorder,
             bool showShortcuts, bool showShortcutsArea, bool showShortcutsBorder, bool showShortcutsImage,
             bool showAnimation, bool showProgressArea, bool showCentrHend,
-            bool showWidgetsArea, int link, bool Shortcuts_In_Gif, float time_value_sec, bool showEeditMode, int edit_mode)
+            bool showWidgetsArea, int link, bool Shortcuts_In_Gif, float time_value_sec, bool showEeditMode, int edit_mode,
+            bool showButtons, bool showButtonsArea, bool showButtonsBorder, bool Buttons_In_Gif)
         {
             Bitmap src = new Bitmap(1, 1);
             hmUI_widget_IMG_LEVEL img_level = null;
@@ -2148,8 +2153,8 @@ namespace Watch_Face_Editor
                             valueStr = valueHourStr + delimeter + valueMinStr;
                             if (checkBox_ShowIn12hourFormat.Checked)
                             {
-                                if (number_font.unit_end) valueStr = valueStr + " " + unitStr;
-                                else valueStr = unitStr + " " + valueStr;
+                                if (number_font.unit_end == 1) valueStr = valueStr + " " + unitStr;
+                                else if (number_font.unit_end == 0) valueStr = unitStr + " " + valueStr;
                             }
 
                             if (number_font.centreHorizontally)
@@ -2237,8 +2242,8 @@ namespace Watch_Face_Editor
                             valueStr = valueHourStr + delimeter + valueMinStr + delimeter + valueSecStr;
                             if (checkBox_ShowIn12hourFormat.Checked)
                             {
-                                if (number_font.unit_end) valueStr = valueStr + " " + unitStr;
-                                else valueStr = unitStr + " " + valueStr;
+                                if (number_font.unit_end == 1) valueStr = valueStr + " " + unitStr;
+                                else if (number_font.unit_end == 0) valueStr = unitStr + " " + valueStr;
                             }
 
                             if (number_font.centreHorizontally)
@@ -2466,6 +2471,448 @@ namespace Watch_Face_Editor
                                 if (src != null) gPanel.DrawImage(src, x, y);
                             }
                         }
+                    }
+
+                    break;
+                #endregion
+
+                #region ElementTimeCircle
+                case "ElementTimeCircle":
+                    ElementTimeCircle TimeCircle = (ElementTimeCircle)element;
+                    if (!TimeCircle.visible) return;
+
+                    Circle_Scale circleScaleHour = TimeCircle.Hour;
+                    Circle_Scale circleScaleMinute = TimeCircle.Minute;
+                    Circle_Scale circleScaleSecond = TimeCircle.Second;
+
+                    for (int index = 1; index <= 5; index++)
+                    {
+                        if (circleScaleHour != null && index == circleScaleHour.position && circleScaleHour.visible)
+                        {
+                            int x = circleScaleHour.center_x;
+                            int y = circleScaleHour.center_y;
+                            int radius = circleScaleHour.radius;
+                            int width = circleScaleHour.line_width;
+                            int startAngle = circleScaleHour.start_angle;
+                            int endAngle = circleScaleHour.end_angle;
+                            bool mirror = circleScaleHour.mirror;
+                            bool inversion = circleScaleHour.inversion;
+                            Color color = StringToColor(circleScaleHour.color);
+                            float fullAngle = endAngle - startAngle;
+                            int alpha = circleScaleHour.alpha;
+
+                            string flatness = circleScaleHour.line_cap;
+                            int lineCap = 3;
+                            if (inversion)
+                            {
+                                if (flatness == "Rounded") lineCap = 0;
+                            }
+                            else
+                            {
+                                if (flatness == "Rounded")
+                                {
+                                    if (mirror) lineCap = 2;
+                                    else lineCap = 0;
+                                }
+                            }
+
+                            int hour = WatchFacePreviewSet.DateTime.Time.Hour;
+                            int minute = WatchFacePreviewSet.DateTime.Time.Minute;
+                            float progressCircle = (hour + minute / 60f) / 24f;
+                            if (!TimeCircle.Format_24hour)
+                            {
+                                if (hour >= 12) hour = hour - 12;
+                                progressCircle = (hour + minute / 60f) / 12f;
+                            }
+
+                            DrawScaleCircle(gPanel, x, y, radius, width, lineCap, startAngle, fullAngle, progressCircle,
+                                color, inversion, alpha, showProgressArea, showCentrHend);
+
+                            if (mirror) DrawScaleCircle(gPanel, x, y, radius, width, lineCap, startAngle, -fullAngle, progressCircle,
+                                 color, inversion, alpha, showProgressArea, showCentrHend);
+                        }
+
+                        if (circleScaleMinute != null && index == circleScaleMinute.position && circleScaleMinute.visible)
+                        {
+                            int x = circleScaleMinute.center_x;
+                            int y = circleScaleMinute.center_y;
+                            int radius = circleScaleMinute.radius;
+                            int width = circleScaleMinute.line_width;
+                            int startAngle = circleScaleMinute.start_angle;
+                            int endAngle = circleScaleMinute.end_angle;
+                            bool mirror = circleScaleMinute.mirror;
+                            bool inversion = circleScaleMinute.inversion;
+                            Color color = StringToColor(circleScaleMinute.color);
+                            float fullAngle = endAngle - startAngle;
+                            int alpha = circleScaleMinute.alpha;
+
+                            string flatness = circleScaleMinute.line_cap;
+                            int lineCap = 3;
+                            if (inversion)
+                            {
+                                if (flatness == "Rounded") lineCap = 0;
+                            }
+                            else
+                            {
+                                if (flatness == "Rounded")
+                                {
+                                    if (mirror) lineCap = 2;
+                                    else lineCap = 0;
+                                }
+                            }
+
+                            int minute = WatchFacePreviewSet.DateTime.Time.Minute;
+                            int second = WatchFacePreviewSet.DateTime.Time.Second;
+                            float progressCircle = (minute + second / 60f) / 60f;
+
+                            DrawScaleCircle(gPanel, x, y, radius, width, lineCap, startAngle, fullAngle, progressCircle,
+                                color, inversion, alpha, showProgressArea, showCentrHend);
+
+                            if (mirror) DrawScaleCircle(gPanel, x, y, radius, width, lineCap, startAngle, -fullAngle, progressCircle,
+                                 color, inversion, alpha, showProgressArea, showCentrHend);
+                        }
+
+                        if (circleScaleSecond != null && index == circleScaleSecond.position && circleScaleSecond.visible)
+                        {
+                            int x = circleScaleSecond.center_x;
+                            int y = circleScaleSecond.center_y;
+                            int radius = circleScaleSecond.radius;
+                            int width = circleScaleSecond.line_width;
+                            int startAngle = circleScaleSecond.start_angle;
+                            int endAngle = circleScaleSecond.end_angle;
+                            bool mirror = circleScaleSecond.mirror;
+                            bool inversion = circleScaleSecond.inversion;
+                            Color color = StringToColor(circleScaleSecond.color);
+                            float fullAngle = endAngle - startAngle;
+                            int alpha = circleScaleSecond.alpha;
+
+                            string flatness = circleScaleSecond.line_cap;
+                            int lineCap = 3;
+                            if (inversion)
+                            {
+                                if (flatness == "Rounded") lineCap = 0;
+                            }
+                            else
+                            {
+                                if (flatness == "Rounded")
+                                {
+                                    if (mirror) lineCap = 2;
+                                    else lineCap = 0;
+                                }
+                            }
+
+                            int second = WatchFacePreviewSet.DateTime.Time.Second;
+                            float progressCircle = second / 60f;
+
+                            DrawScaleCircle(gPanel, x, y, radius, width, lineCap, startAngle, fullAngle, progressCircle,
+                                color, inversion, alpha, showProgressArea, showCentrHend);
+
+                            if (mirror) DrawScaleCircle(gPanel, x, y, radius, width, lineCap, startAngle, -fullAngle, progressCircle,
+                                 color, inversion, alpha, showProgressArea, showCentrHend);
+                        }
+                    }
+
+                    break;
+                #endregion
+
+                #region ElementWorldClock
+                case "ElementWorldClock":
+                    ElementWorldClock WorldClock = (ElementWorldClock)element;
+                    if (!WorldClock.visible) return;
+
+                    hmUI_widget_TEXT time = WorldClock.Time;
+                    hmUI_widget_TEXT timeZone = WorldClock.TimeZone;
+                    hmUI_widget_TEXT cityName = WorldClock.CityName;
+                    hmUI_widget_TEXT timeDiff = WorldClock.TimeDifference;
+                    Button buttonPrev = WorldClock.ButtonPrev;
+                    Button buttonNext = WorldClock.ButtonNext;
+                    icon = WorldClock.Icon;
+
+
+                    for (int index = 1; index <= 10; index++)
+                    {
+                        if (time != null && index == time.position && time.visible)
+                        {
+                            int x = time.x;
+                            int y = time.y;
+                            int h = time.h;
+                            int w = time.w;
+
+                            int size = time.text_size;
+                            int space_h = time.char_space;
+                            int space_v = time.line_space;
+
+                            Color color = StringToColor(time.color);
+                            int alpha = time.alpha;
+                            string align_h = time.align_h;
+                            string align_v = time.align_v;
+                            string text_style = time.text_style;
+
+                            int hour = WatchFacePreviewSet.DateTime.Time.Hour;
+                            int minute = WatchFacePreviewSet.DateTime.Time.Minute;
+
+                            if (ProgramSettings.ShowIn12hourFormat)
+                            {
+                                if (hour >= 12) hour = hour - 12;
+                                hour -= 1;
+                                if (hour < 0) hour += 12;
+                            }
+                            else { 
+                                hour -= 1; 
+                                if (hour < 0) hour += 24; 
+                            }
+                            string valueStr = hour.ToString().PadLeft(2, '0') + ":" + minute.ToString().PadLeft(2, '0');
+
+                            if (time.centreHorizontally)
+                            {
+                                x = (SelectedModel.background.w - w) / 2;
+                                align_h = "CENTER_H";
+                            }
+                            if (time.centreVertically)
+                            {
+                                y = (SelectedModel.background.h - h) / 2;
+                                align_v = "CENTER_V";
+                            }
+
+                            if (time.font != null && time.font.Length > 3 && FontsList.ContainsKey(time.font))
+                            {
+                                string font_fileName = FontsList[time.font];
+                                //string font_fileName = ProjectDir + @"\assets\fonts\" + number_font.font;
+                                if (SelectedModel.versionOS >= 2 && File.Exists(font_fileName))
+                                {
+                                    Font drawFont = null;
+                                    using (System.Drawing.Text.PrivateFontCollection fonts = new System.Drawing.Text.PrivateFontCollection())
+                                    {
+                                        fonts.AddFontFile(font_fileName);
+                                        drawFont = new Font(fonts.Families[0], size, GraphicsUnit.World);
+                                    }
+
+                                    Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
+                                                    align_h, align_v, text_style, BBorder);
+                                }
+                                else
+                                {
+                                    Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                                }
+
+                            }
+                            else
+                            {
+                                Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                            }
+                        }
+
+                        if (timeZone != null && index == timeZone.position && timeZone.visible)
+                        {
+                            int x = timeZone.x;
+                            int y = timeZone.y;
+                            int h = timeZone.h;
+                            int w = timeZone.w;
+
+                            int size = timeZone.text_size;
+                            int space_h = timeZone.char_space;
+                            int space_v = timeZone.line_space;
+
+                            Color color = StringToColor(timeZone.color);
+                            int alpha = timeZone.alpha;
+                            string align_h = timeZone.align_h;
+                            string align_v = timeZone.align_v;
+                            string text_style = timeZone.text_style;
+                            string valueStr = "+1:00";
+
+                            if (timeZone.centreHorizontally)
+                            {
+                                x = (SelectedModel.background.w - w) / 2;
+                                align_h = "CENTER_H";
+                            }
+                            if (timeZone.centreVertically)
+                            {
+                                y = (SelectedModel.background.h - h) / 2;
+                                align_v = "CENTER_V";
+                            }
+
+                            if (timeZone.font != null && timeZone.font.Length > 3 && FontsList.ContainsKey(timeZone.font))
+                            {
+                                string font_fileName = FontsList[timeZone.font];
+                                //string font_fileName = ProjectDir + @"\assets\fonts\" + number_font.font;
+                                if (SelectedModel.versionOS >= 2 && File.Exists(font_fileName))
+                                {
+                                    Font drawFont = null;
+                                    using (System.Drawing.Text.PrivateFontCollection fonts = new System.Drawing.Text.PrivateFontCollection())
+                                    {
+                                        fonts.AddFontFile(font_fileName);
+                                        drawFont = new Font(fonts.Families[0], size, GraphicsUnit.World);
+                                    }
+
+                                    Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
+                                                    align_h, align_v, text_style, BBorder);
+                                }
+                                else
+                                {
+                                    Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                                }
+
+                            }
+                            else
+                            {
+                                Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                            }
+                        }
+
+                        if (cityName != null && index == cityName.position && cityName.visible)
+                        {
+                            int x = cityName.x;
+                            int y = cityName.y;
+                            int h = cityName.h;
+                            int w = cityName.w;
+
+                            int size = cityName.text_size;
+                            int space_h = cityName.char_space;
+                            int space_v = cityName.line_space;
+
+                            Color color = StringToColor(cityName.color);
+                            int alpha = cityName.alpha;
+                            string align_h = cityName.align_h;
+                            string align_v = cityName.align_v;
+                            string text_style = cityName.text_style;
+                            string valueStr = "City Name GMT";
+
+                            if (cityName.centreHorizontally)
+                            {
+                                x = (SelectedModel.background.w - w) / 2;
+                                align_h = "CENTER_H";
+                            }
+                            if (cityName.centreVertically)
+                            {
+                                y = (SelectedModel.background.h - h) / 2;
+                                align_v = "CENTER_V";
+                            }
+
+                            if (cityName.font != null && cityName.font.Length > 3 && FontsList.ContainsKey(cityName.font))
+                            {
+                                string font_fileName = FontsList[cityName.font];
+                                //string font_fileName = ProjectDir + @"\assets\fonts\" + number_font.font;
+                                if (SelectedModel.versionOS >= 2 && File.Exists(font_fileName))
+                                {
+                                    Font drawFont = null;
+                                    using (System.Drawing.Text.PrivateFontCollection fonts = new System.Drawing.Text.PrivateFontCollection())
+                                    {
+                                        fonts.AddFontFile(font_fileName);
+                                        drawFont = new Font(fonts.Families[0], size, GraphicsUnit.World);
+                                    }
+
+                                    Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
+                                                    align_h, align_v, text_style, BBorder);
+                                }
+                                else
+                                {
+                                    Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                                }
+
+                            }
+                            else
+                            {
+                                Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                            }
+                        }
+
+                        if (timeDiff != null && index == timeDiff.position && timeDiff.visible)
+                        {
+                            int x = timeDiff.x;
+                            int y = timeDiff.y;
+                            int h = timeDiff.h;
+                            int w = timeDiff.w;
+
+                            int size = timeDiff.text_size;
+                            int space_h = timeDiff.char_space;
+                            int space_v = timeDiff.line_space;
+
+                            Color color = StringToColor(timeDiff.color);
+                            int alpha = timeDiff.alpha;
+                            string align_h = timeDiff.align_h;
+                            string align_v = timeDiff.align_v;
+                            string text_style = timeDiff.text_style;
+                            string valueStr = "-1:00";
+
+                            if (timeDiff.centreHorizontally)
+                            {
+                                x = (SelectedModel.background.w - w) / 2;
+                                align_h = "CENTER_H";
+                            }
+                            if (timeDiff.centreVertically)
+                            {
+                                y = (SelectedModel.background.h - h) / 2;
+                                align_v = "CENTER_V";
+                            }
+
+                            if (timeDiff.font != null && timeDiff.font.Length > 3 && FontsList.ContainsKey(timeDiff.font))
+                            {
+                                string font_fileName = FontsList[timeDiff.font];
+                                //string font_fileName = ProjectDir + @"\assets\fonts\" + number_font.font;
+                                if (SelectedModel.versionOS >= 2 && File.Exists(font_fileName))
+                                {
+                                    Font drawFont = null;
+                                    using (System.Drawing.Text.PrivateFontCollection fonts = new System.Drawing.Text.PrivateFontCollection())
+                                    {
+                                        fonts.AddFontFile(font_fileName);
+                                        drawFont = new Font(fonts.Families[0], size, GraphicsUnit.World);
+                                    }
+
+                                    Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
+                                                    align_h, align_v, text_style, BBorder);
+                                }
+                                else
+                                {
+                                    Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                                }
+
+                            }
+                            else
+                            {
+                                Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                            }
+                        }
+
+                        if (link == 0 && buttonPrev != null && index == buttonPrev.position && buttonPrev.visible)
+                        {
+                            DrawButton(gPanel, buttonPrev, false, showButtons, showButtonsArea, showButtonsBorder, Buttons_In_Gif);
+                        }
+
+                        if (link == 0 && buttonNext != null && index == buttonNext.position && buttonNext.visible)
+                        {
+                            DrawButton(gPanel, buttonNext, false, showButtons, showButtonsArea, showButtonsBorder, Buttons_In_Gif);
+                        }
+
+                        if (icon != null && icon.src != null && icon.src.Length > 0 &&
+                            index == icon.position && icon.visible)
+                        {
+                            int imageIndex = ListImages.IndexOf(icon.src);
+                            int x = icon.x;
+                            int y = icon.y;
+
+                            if (imageIndex < ListImagesFullName.Count)
+                            {
+                                src = OpenFileStream(ListImagesFullName[imageIndex]);
+                                if (SelectedModel.versionOS >= 2.1 && icon.alpha != 255)
+                                {
+                                    int w = src.Width;
+                                    int h = src.Height;
+                                    // Создаем матрицу цветов для изменения прозрачности (альфа-канал)
+                                    ColorMatrix colorMatrix = new ColorMatrix();
+                                    colorMatrix.Matrix33 = icon.alpha / 255f; // значение от 0 до 1
+
+                                    // Создаем объект ImageAttributes и применяем к нему матрицу цветов
+                                    ImageAttributes imgAttributes = new ImageAttributes();
+                                    imgAttributes.SetColorMatrix(colorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+
+                                    // Указываем прямоугольник, куда будет помещено изображение
+                                    Rectangle rect_alpha = new Rectangle(x, y, w, h);
+                                    gPanel.DrawImage(src, rect_alpha, 0, 0, w, h, GraphicsUnit.Pixel, imgAttributes);
+                                }
+                                else gPanel.DrawImage(src, x, y);
+                            }
+                        }
+
                     }
 
                     break;
@@ -11145,7 +11592,7 @@ namespace Watch_Face_Editor
         {
             Bitmap src = new Bitmap(1, 1);
 
-            for (int index = 1; index <= 15; index++)
+            for (int index = 1; index <= 5; index++)
             {
 
                 if (alarm != null && alarm.img_First != null && alarm.img_First.Length > 0 &&
@@ -11159,8 +11606,8 @@ namespace Watch_Face_Editor
                     int angl = alarm.angle;
                     int alpha = alarm.alpha;
                     int alarm_alignment = AlignmentToInt(alarm.align);
-                    //bool distance_addZero = img_number.zero;
-                    bool alarm_addZero = true;
+                    bool alarm_addZero = alarm.zero;
+                    //bool alarm_addZero = true;
                     int alarm_separator_index = -1;
                     if (alarm.unit != null && alarm.unit.Length > 0)
                         alarm_separator_index = ListImages.IndexOf(alarm.unit);

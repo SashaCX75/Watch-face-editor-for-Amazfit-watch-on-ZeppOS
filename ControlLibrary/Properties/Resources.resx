@@ -145,6 +145,9 @@
   <data name="text_rotation_18" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\text_rotation_18.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="world_clock" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\world_clock.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="App" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\App.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -157,8 +160,8 @@
   <data name="Files_Clipboard_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Files_Clipboard_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="hrv" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\hrv.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="humidity" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\humidity.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="toggle_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\toggle_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -184,8 +187,8 @@
   <data name="week_18" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\week_18.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="humidity" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\humidity.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="hrv" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hrv.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="note-plus" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\note-plus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -382,6 +385,9 @@
   <data name="text_fields" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\text_fields.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="circle_time" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\circle_time.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="animation" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\animation.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -403,7 +409,7 @@
   <data name="activitys_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\activitys_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="circle_time" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\circle_time.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="hr_min_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hr_min_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

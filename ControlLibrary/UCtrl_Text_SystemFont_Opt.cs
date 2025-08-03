@@ -284,15 +284,45 @@ namespace ControlLibrary
         }
 
         /// <summary>Устанавливаем место отображения am/pm</summary>
-        public void SetUnitEnd(bool unit_end)
+        public void SetUnitEnd(int unit_end)
         {
-            checkBox_inEnd.Checked = unit_end;
+            //checkBox_inEnd.Checked = unit_end;
+            switch (unit_end)
+            {
+                case 0:
+                    checkBox_inEnd.CheckState = CheckState.Unchecked;
+                    break;
+                case 1:
+                    checkBox_inEnd.CheckState = CheckState.Checked;
+                    break;
+                case 2:
+                    checkBox_inEnd.CheckState = CheckState.Indeterminate;
+                    break;
+
+                default:
+                    checkBox_inEnd.CheckState = CheckState.Unchecked;
+                    break;
+            }
         }
 
         /// <summary>Возвращает место отображения am/pm</summary>
-        public bool GetUnitEnd()
-        {  
-            return checkBox_inEnd.Checked;
+        public int GetUnitEnd()
+        {
+            int unit_end = 0;
+            switch (checkBox_inEnd.CheckState)
+            {
+                case CheckState.Unchecked:
+                    unit_end = 0;
+                    break;
+                case CheckState.Checked:
+                    unit_end = 1;
+                    break;
+                case CheckState.Indeterminate:
+                    unit_end = 2;
+                    break;
+            }
+            return unit_end;
+            //return checkBox_inEnd.Checked;
         }
 
         /// <summary>Возвращает имя файла выбраного шрифта</summary>

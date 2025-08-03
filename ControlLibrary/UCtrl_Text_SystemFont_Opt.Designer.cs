@@ -512,8 +512,9 @@ namespace ControlLibrary
             // 
             resources.ApplyResources(this.checkBox_inEnd, "checkBox_inEnd");
             this.checkBox_inEnd.Name = "checkBox_inEnd";
+            this.checkBox_inEnd.ThreeState = true;
             this.checkBox_inEnd.UseVisualStyleBackColor = true;
-            this.checkBox_inEnd.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
+            this.checkBox_inEnd.CheckStateChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
             // textBox_DOW
             // 

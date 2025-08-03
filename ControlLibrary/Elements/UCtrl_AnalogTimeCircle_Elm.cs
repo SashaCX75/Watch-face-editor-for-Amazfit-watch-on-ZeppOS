@@ -10,16 +10,14 @@ using System.Windows.Forms;
 
 namespace ControlLibrary
 {
-    public partial class UCtrl_Compass_Elm : UserControl
+    public partial class UCtrl_AnalogTimeCircle_Elm : UserControl
     {
         private bool setValue; // режим задания параметров
-        bool highlight_images = false;
-        bool highlight_number = false;
-        bool highlight_number_font = false;
-        bool highlight_text_rotation = false;
-        bool highlight_text_circle = false;
-        bool highlight_pointer = false;
-        bool highlight_icon = false;
+        bool highlight_hours = false;
+        bool highlight_minutes = false;
+        bool highlight_seconds = false;
+        bool highlight_smooth_seconds = false;
+        bool highlight_format_24hour = false;
 
         bool visibility_elements = false; // развернут список с элементами
         bool visibilityElement = true; // элемент оторажается на предпросмотре
@@ -28,8 +26,8 @@ namespace ControlLibrary
         public string selectedElement; // название выбраного элемента
 
         Point cursorPos = new Point(0, 0);
-    
-        public UCtrl_Compass_Elm()
+
+        public UCtrl_AnalogTimeCircle_Elm()
         {
             InitializeComponent();
             setValue = false;
@@ -111,128 +109,104 @@ namespace ControlLibrary
             pictureBox_Arrow_Right.Visible = !visibility_elements;
         }
 
+        public bool GetHighlightState()
+        {
+            bool highlight = highlight_hours || highlight_minutes || highlight_seconds || highlight_smooth_seconds;
+            return highlight;
+        }
+
+        public void SetHighlightState()
+        {
+            if (highlight_hours)
+            {
+                panel_Hour.BackColor = SystemColors.ActiveCaption;
+                button_Hour.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption;
+                button_Hour.FlatAppearance.MouseDownBackColor = SystemColors.ActiveCaption;
+            }
+            else
+            {
+                panel_Hour.BackColor = SystemColors.Control;
+                button_Hour.FlatAppearance.MouseOverBackColor = SystemColors.Control;
+                button_Hour.FlatAppearance.MouseDownBackColor = SystemColors.Control;
+            }
+
+            if (highlight_minutes)
+            {
+                panel_Minute.BackColor = SystemColors.ActiveCaption;
+                button_Minute.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption;
+                button_Minute.FlatAppearance.MouseDownBackColor = SystemColors.ActiveCaption;
+            }
+            else
+            {
+                panel_Minute.BackColor = SystemColors.Control;
+                button_Minute.FlatAppearance.MouseOverBackColor = SystemColors.Control;
+                button_Minute.FlatAppearance.MouseDownBackColor = SystemColors.Control;
+            }
+
+            if (highlight_seconds)
+            {
+                panel_Second.BackColor = SystemColors.ActiveCaption;
+                button_Second.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption;
+                button_Second.FlatAppearance.MouseDownBackColor = SystemColors.ActiveCaption;
+            }
+            else
+            {
+                panel_Second.BackColor = SystemColors.Control;
+                button_Second.FlatAppearance.MouseOverBackColor = SystemColors.Control;
+                button_Second.FlatAppearance.MouseDownBackColor = SystemColors.Control;
+            }
+
+            if (highlight_smooth_seconds)
+            {
+                panel_SmoothSeconds.BackColor = SystemColors.ActiveCaption;
+                button_SmoothSeconds.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption;
+                button_SmoothSeconds.FlatAppearance.MouseDownBackColor = SystemColors.ActiveCaption;
+            }
+            else
+            {
+                panel_SmoothSeconds.BackColor = SystemColors.Control;
+                button_SmoothSeconds.FlatAppearance.MouseOverBackColor = SystemColors.Control;
+                button_SmoothSeconds.FlatAppearance.MouseDownBackColor = SystemColors.Control;
+            }
+
+            if (highlight_format_24hour)
+            {
+                panel_Format_24hour.BackColor = SystemColors.ActiveCaption;
+                button_Format_24hour.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption;
+                button_Format_24hour.FlatAppearance.MouseDownBackColor = SystemColors.ActiveCaption;
+            }
+            else
+            {
+                panel_Format_24hour.BackColor = SystemColors.Control;
+                button_Format_24hour.FlatAppearance.MouseOverBackColor = SystemColors.Control;
+                button_Format_24hour.FlatAppearance.MouseDownBackColor = SystemColors.Control;
+            }
+        }
+
         public void ResetHighlightState()
         {
             selectedElement = "";
 
-            highlight_images = false;
-            highlight_number = false;
-            highlight_number_font = false;
-            highlight_text_rotation = false;
-            highlight_text_circle = false;
-            highlight_pointer = false;
-            highlight_icon = false;
+            highlight_hours = false;
+            highlight_minutes = false;
+            highlight_seconds = false;
+            highlight_smooth_seconds = false;
+            highlight_format_24hour = false;
 
-            SelectElement();
+            SetHighlightState();
         }
 
-        private void SelectElement()
+        private void panel_Hours_Click(object sender, EventArgs e)
         {
-            if (highlight_images)
-            {
-                panel_Images.BackColor = SystemColors.ActiveCaption;
-                button_Images.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption;
-                button_Images.FlatAppearance.MouseDownBackColor = SystemColors.ActiveCaption;
-            }
-            else
-            {
-                panel_Images.BackColor = SystemColors.Control;
-                button_Images.FlatAppearance.MouseOverBackColor = SystemColors.Control;
-                button_Images.FlatAppearance.MouseDownBackColor = SystemColors.Control;
-            }
+            selectedElement = "Hour";
 
-            if (highlight_number)
-            {
-                panel_Number.BackColor = SystemColors.ActiveCaption;
-                button_Number.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption;
-                button_Number.FlatAppearance.MouseDownBackColor = SystemColors.ActiveCaption;
-            }
-            else
-            {
-                panel_Number.BackColor = SystemColors.Control;
-                button_Number.FlatAppearance.MouseOverBackColor = SystemColors.Control;
-                button_Number.FlatAppearance.MouseDownBackColor = SystemColors.Control;
-            }
+            highlight_hours = true;
+            highlight_minutes = false;
+            highlight_seconds = false;
+            highlight_smooth_seconds = false;
+            highlight_format_24hour = false;
 
-            if (highlight_number_font)
-            {
-                panel_Number_Font.BackColor = SystemColors.ActiveCaption;
-                button_Number_Font.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption;
-                button_Number_Font.FlatAppearance.MouseDownBackColor = SystemColors.ActiveCaption;
-            }
-            else
-            {
-                panel_Number_Font.BackColor = SystemColors.Control;
-                button_Number_Font.FlatAppearance.MouseOverBackColor = SystemColors.Control;
-                button_Number_Font.FlatAppearance.MouseDownBackColor = SystemColors.Control;
-            }
-
-            if (highlight_text_rotation)
-            {
-                panel_Text_rotation.BackColor = SystemColors.ActiveCaption;
-                button_Text_rotation.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption;
-                button_Text_rotation.FlatAppearance.MouseDownBackColor = SystemColors.ActiveCaption;
-            }
-            else
-            {
-                panel_Text_rotation.BackColor = SystemColors.Control;
-                button_Text_rotation.FlatAppearance.MouseOverBackColor = SystemColors.Control;
-                button_Text_rotation.FlatAppearance.MouseDownBackColor = SystemColors.Control;
-            }
-
-            if (highlight_text_circle)
-            {
-                panel_Text_circle.BackColor = SystemColors.ActiveCaption;
-                button_Text_circle.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption;
-                button_Text_circle.FlatAppearance.MouseDownBackColor = SystemColors.ActiveCaption;
-            }
-            else
-            {
-                panel_Text_circle.BackColor = SystemColors.Control;
-                button_Text_circle.FlatAppearance.MouseOverBackColor = SystemColors.Control;
-                button_Text_circle.FlatAppearance.MouseDownBackColor = SystemColors.Control;
-            }
-
-            if (highlight_pointer)
-            {
-                panel_Pointer.BackColor = SystemColors.ActiveCaption;
-                button_Pointer.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption;
-                button_Pointer.FlatAppearance.MouseDownBackColor = SystemColors.ActiveCaption;
-            }
-            else
-            {
-                panel_Pointer.BackColor = SystemColors.Control;
-                button_Pointer.FlatAppearance.MouseOverBackColor = SystemColors.Control;
-                button_Pointer.FlatAppearance.MouseDownBackColor = SystemColors.Control;
-            }
-
-            if (highlight_icon)
-            {
-                panel_Icon.BackColor = SystemColors.ActiveCaption;
-                button_Icon.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption;
-                button_Icon.FlatAppearance.MouseDownBackColor = SystemColors.ActiveCaption;
-            }
-            else
-            {
-                panel_Icon.BackColor = SystemColors.Control;
-                button_Icon.FlatAppearance.MouseOverBackColor = SystemColors.Control;
-                button_Icon.FlatAppearance.MouseDownBackColor = SystemColors.Control;
-            }
-        }
-
-        private void panel_Images_Click(object sender, EventArgs e)
-        {
-            selectedElement = "Images";
-
-            highlight_images = true;
-            highlight_number = false;
-            highlight_number_font = false;
-            highlight_text_rotation = false;
-            highlight_text_circle = false;
-            highlight_pointer = false;
-            highlight_icon = false;
-
-            SelectElement();
+            SetHighlightState();
 
             if (SelectChanged != null)
             {
@@ -241,19 +215,17 @@ namespace ControlLibrary
             }
         }
 
-        private void panel_Number_Click(object sender, EventArgs e)
+        private void panel_Minutes_Click(object sender, EventArgs e)
         {
-            selectedElement = "Number";
+            selectedElement = "Minute";
 
-            highlight_images = false;
-            highlight_number = true;
-            highlight_number_font = false;
-            highlight_text_rotation = false;
-            highlight_text_circle = false;
-            highlight_pointer = false;
-            highlight_icon = false;
+            highlight_hours = false;
+            highlight_minutes = true;
+            highlight_seconds = false;
+            highlight_smooth_seconds = false;
+            highlight_format_24hour = false;
 
-            SelectElement();
+            SetHighlightState();
 
             if (SelectChanged != null)
             {
@@ -262,19 +234,17 @@ namespace ControlLibrary
             }
         }
 
-        private void panel_Number_Font_Click(object sender, EventArgs e)
+        private void panel_Seconds_Click(object sender, EventArgs e)
         {
-            selectedElement = "Number_Font";
+            selectedElement = "Second";
 
-            highlight_images = false;
-            highlight_number = false;
-            highlight_number_font = true;
-            highlight_text_rotation = false;
-            highlight_text_circle = false;
-            highlight_pointer = false;
-            highlight_icon = false;
+            highlight_hours = false;
+            highlight_minutes = false;
+            highlight_seconds = true;
+            highlight_smooth_seconds = false;
+            highlight_format_24hour = false;
 
-            SelectElement();
+            SetHighlightState();
 
             if (SelectChanged != null)
             {
@@ -283,19 +253,17 @@ namespace ControlLibrary
             }
         }
 
-        private void panel_Text_rotation_Click(object sender, EventArgs e)
+        private void panel_SmoothSeconds_Click(object sender, EventArgs e)
         {
-            selectedElement = "Text_rotation";
+            selectedElement = "SmoothSecond";
 
-            highlight_images = false;
-            highlight_number = false;
-            highlight_number_font = false;
-            highlight_text_rotation = true;
-            highlight_text_circle = false;
-            highlight_pointer = false;
-            highlight_icon = false;
+            highlight_hours = false;
+            highlight_minutes = false;
+            highlight_seconds = false;
+            highlight_smooth_seconds = true;
+            highlight_format_24hour = false;
 
-            SelectElement();
+            SetHighlightState();
 
             if (SelectChanged != null)
             {
@@ -304,61 +272,17 @@ namespace ControlLibrary
             }
         }
 
-        private void panel_Text_circle_Click(object sender, EventArgs e)
+        private void panel_Format_24hour_Click(object sender, EventArgs e)
         {
-            selectedElement = "Text_circle";
+            selectedElement = "Format_24hour";
 
-            highlight_images = false;
-            highlight_number = false;
-            highlight_number_font = false;
-            highlight_text_rotation = false;
-            highlight_text_circle = true;
-            highlight_pointer = false;
-            highlight_icon = false;
+            highlight_hours = false;
+            highlight_minutes = false;
+            highlight_seconds = false;
+            highlight_smooth_seconds = false;
+            highlight_format_24hour = true;
 
-            SelectElement();
-
-            if (SelectChanged != null)
-            {
-                EventArgs eventArgs = new EventArgs();
-                SelectChanged(this, eventArgs);
-            }
-        }
-
-        private void panel_Pointer_Click(object sender, EventArgs e)
-        {
-            selectedElement = "Pointer";
-
-            highlight_images = false;
-            highlight_number = false;
-            highlight_number_font = false;
-            highlight_text_rotation = false;
-            highlight_text_circle = false;
-            highlight_pointer = true;
-            highlight_icon = false;
-
-            SelectElement();
-
-            if (SelectChanged != null)
-            {
-                EventArgs eventArgs = new EventArgs();
-                SelectChanged(this, eventArgs);
-            }
-        }
-
-        private void panel_Icon_Click(object sender, EventArgs e)
-        {
-            selectedElement = "Icon";
-
-            highlight_images = false;
-            highlight_number = false;
-            highlight_number_font = false;
-            highlight_text_rotation = false;
-            highlight_text_circle = false;
-            highlight_pointer = false;
-            highlight_icon = true;
-
-            SelectElement();
+            SetHighlightState();
 
             if (SelectChanged != null)
             {
@@ -411,22 +335,6 @@ namespace ControlLibrary
             //((Control)sender).Tag = null;
         }
 
-        private void tableLayoutPanel1_DragDrop(object sender, DragEventArgs e)
-        {
-            int cursorX = Cursor.Position.X;
-            int cursorY = Cursor.Position.Y;
-            int dX = Math.Abs(cursorX - cursorPos.X);
-            int dY = Math.Abs(cursorY - cursorPos.Y);
-            if (dX > 5 || dY > 5)
-            {
-                if (OptionsMoved != null)
-                {
-                    EventArgs eventArgs = new EventArgs();
-                    OptionsMoved(this, eventArgs, GetOptionsPosition());
-                }
-            }
-        }
-
         private void tableLayoutPanel1_DragOver(object sender, DragEventArgs e)
         {
             if (!e.Data.GetDataPresent(typeof(Button)) && !e.Data.GetDataPresent(typeof(Panel)))
@@ -473,6 +381,22 @@ namespace ControlLibrary
             }
         }
 
+        private void tableLayoutPanel1_DragDrop(object sender, DragEventArgs e)
+        {
+            int cursorX = Cursor.Position.X;
+            int cursorY = Cursor.Position.Y;
+            int dX = Math.Abs(cursorX - cursorPos.X);
+            int dY = Math.Abs(cursorY - cursorPos.Y);
+            if (dX > 5 || dY > 5)
+            {
+                if (OptionsMoved != null)
+                {
+                    EventArgs eventArgs = new EventArgs();
+                    OptionsMoved(this, eventArgs, GetOptionsPosition());
+                }
+            }
+        }
+
         private void button_ElementName_MouseDown(object sender, MouseEventArgs e)
         {
             base.OnMouseDown(e);
@@ -497,9 +421,9 @@ namespace ControlLibrary
 
             pictureBox_Del.Location = new Point(button_ElementName.Width - pictureBox_Del.Width - 4, 2);
 
-            if (tableLayoutPanel1.Height > 220)
+            if (tableLayoutPanel1.Height > 155)
             {
-                float currentDPI = tableLayoutPanel1.Height / 176f;
+                float currentDPI = tableLayoutPanel1.Height / 126f;
                 button_ElementName.Image = (Image)(new Bitmap(button_ElementName.Image,
                     new Size((int)(16 * currentDPI), (int)(16 * currentDPI))));
 
@@ -599,26 +523,20 @@ namespace ControlLibrary
             setValue = true;
             switch (name)
             {
-                case "Images":
-                    checkBox_Images.Checked = status;
+                case "Hour":
+                    checkBox_Hour.Checked = status;
                     break;
-                case "Number":
-                    checkBox_Number.Checked = status;
+                case "Minute":
+                    checkBox_Minute.Checked = status;
                     break;
-                case "Number_Font":
-                    checkBox_Number_Font.Checked = status;
+                case "Second":
+                    checkBox_Second.Checked = status;
                     break;
-                case "Text_rotation":
-                    checkBox_Text_rotation.Checked = status;
+                case "SmoothSecond":
+                    checkBox_SmoothSeconds.Checked = status;
                     break;
-                case "Text_circle":
-                    checkBox_Text_circle.Checked = status;
-                    break;
-                case "Pointer":
-                    checkBox_Pointer.Checked = status;
-                    break;
-                case "Icon":
-                    checkBox_Icon.Checked = status;
+                case "Format_24hour":
+                    checkBox_Format_24hour.Checked = status;
                     break;
             }
             setValue = false;
@@ -636,26 +554,20 @@ namespace ControlLibrary
                     string name = elementOptions[elementCount - key];
                     switch (name)
                     {
-                        case "Images":
-                            panel = panel_Images;
+                        case "Hour":
+                            panel = panel_Hour;
                             break;
-                        case "Number":
-                            panel = panel_Number;
+                        case "Minute":
+                            panel = panel_Minute;
                             break;
-                        case "Number_Font":
-                            panel = panel_Number_Font;
+                        case "Second":
+                            panel = panel_Second;
                             break;
-                        case "Text_rotation":
-                            panel = panel_Text_rotation;
+                        case "SmoothSecond":
+                            panel = panel_SmoothSeconds;
                             break;
-                        case "Text_circle":
-                            panel = panel_Text_circle;
-                            break;
-                        case "Pointer":
-                            panel = panel_Pointer;
-                            break;
-                        case "Icon":
-                            panel = panel_Icon;
+                        case "Format_24hour":
+                            panel = panel_Format_24hour;
                             break;
                     }
                 }
@@ -699,26 +611,20 @@ namespace ControlLibrary
                 Control panel = tableLayoutPanel1.GetControlFromPosition(0, i);
                 switch (panel.Name)
                 {
-                    case "panel_Images":
-                        elementOptions.Add("Images", count - i);
+                    case "panel_Hour":
+                        elementOptions.Add("Hour", count - i);
                         break;
-                    case "panel_Number":
-                        elementOptions.Add("Number", count - i);
+                    case "panel_Minute":
+                        elementOptions.Add("Minute", count - i);
                         break;
-                    case "panel_Number_Font":
-                        elementOptions.Add("Number_Font", count - i);
+                    case "panel_Second":
+                        elementOptions.Add("Second", count - i);
                         break;
-                    case "panel_Text_rotation":
-                        elementOptions.Add("Text_rotation", count - i);
+                    case "panel_SmoothSeconds":
+                        elementOptions.Add("SmoothSecond", count - i);
                         break;
-                    case "panel_Text_circle":
-                        elementOptions.Add("Text_circle", count - i);
-                        break;
-                    case "panel_Pointer":
-                        elementOptions.Add("Pointer", count - i);
-                        break;
-                    case "panel_Icon":
-                        elementOptions.Add("Icon", count - i);
+                    case "panel_Format_24hour":
+                        elementOptions.Add("Format_24hour", count - i);
                         break;
                 }
             }
@@ -730,23 +636,18 @@ namespace ControlLibrary
             setValue = true;
 
             Dictionary<int, string> elementOptions = new Dictionary<int, string>();
-            int index = 1;
-            elementOptions.Add(index++, "Icon");
-            elementOptions.Add(index++, "Pointer");
-            elementOptions.Add(index++, "Text_circle");
-            elementOptions.Add(index++, "Text_rotation");
-            elementOptions.Add(index++, "Number_Font");
-            elementOptions.Add(index++, "Number");
-            elementOptions.Add(index++, "Images");
+            elementOptions.Add(5, "SmoothSecond");
+            elementOptions.Add(4, "Second");
+            elementOptions.Add(3, "Minute");
+            elementOptions.Add(2, "Hour");
+            elementOptions.Add(1, "Format_24hour");
             SetOptionsPosition(elementOptions);
 
-            checkBox_Images.Checked = false;
-            checkBox_Number.Checked = false;
-            checkBox_Number_Font.Checked = false;
-            checkBox_Text_rotation.Checked = false;
-            checkBox_Text_circle.Checked = false;
-            checkBox_Pointer.Checked = false;
-            checkBox_Icon.Checked = false;
+            checkBox_Hour.Checked = false;
+            checkBox_Minute.Checked = false;
+            checkBox_Second.Checked = false;
+            checkBox_SmoothSeconds.Checked = false;
+            checkBox_Format_24hour.Checked = false;
 
             visibility_elements = false;
             tableLayoutPanel1.Visible = visibility_elements;
@@ -773,6 +674,32 @@ namespace ControlLibrary
                 button_ElementName.ForeColor = SystemColors.GrayText;
                 button_ElementName.BackColor = SystemColors.ControlLight;
             }
+        }
+
+        private void UCtrl_AnalogTimeCircle_Elm_Load(object sender, EventArgs e)
+        {
+            fitText(button_ElementName);
+        }
+
+        public void fitText(Control control)
+        {
+            Graphics graphics = control.CreateGraphics();
+            Font drawFont = control.Font;
+            //Font drawFont = new Font(fonts.Families[0], size, GraphicsUnit.World);
+            StringFormat strFormat = new StringFormat();
+            strFormat.FormatFlags = StringFormatFlags.FitBlackBox;
+            strFormat.Alignment = StringAlignment.Near;
+            strFormat.LineAlignment = StringAlignment.Near;
+            Size strSize = TextRenderer.MeasureText(graphics, control.Text, drawFont);
+            //double controlWidth = control.Width - control.Margin.Left - control.Margin.Right - 65;
+            double controlWidth = pictureBox_NotShow.Location.X - control.Margin.Left - control.Padding.Left - 14;
+            double scale = controlWidth / strSize.Width;
+            if (scale < 1)
+            {
+                Font newFont = new Font(control.Font.FontFamily, (float)(control.Font.Size * scale), control.Font.Style);
+                control.Font = newFont;
+            }
+
         }
     }
 }

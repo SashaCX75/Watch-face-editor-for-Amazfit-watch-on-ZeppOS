@@ -1201,7 +1201,7 @@ namespace Watch_Face_Editor
     
     public class ElementTimeCircle : ICloneable
     {
-        public string elementName = "ElementTimeCircle";
+        public string elementName = "TimeCircle";
 
         ///// <summary>Позиция в наборе элементов</summary>
         //public int position = -1;
@@ -1212,6 +1212,14 @@ namespace Watch_Face_Editor
         public Circle_Scale Second { get; set; }
         public Circle_Scale Minute { get; set; }
         public Circle_Scale Hour { get; set; }
+
+        public bool SmoothSecond { get; set; } = false;
+
+        public int SmoothSecond_position = -2;
+
+        public bool Format_24hour { get; set; } = false;
+
+        public int Format_24hour_position = -1;
 
         public object Clone()
         {
@@ -1293,9 +1301,217 @@ namespace Watch_Face_Editor
                 elementName = this.elementName,
                 visible = this.visible,
 
+                SmoothSecond = SmoothSecond,
+                SmoothSecond_position = SmoothSecond_position,
+                Format_24hour = this.Format_24hour,
+                Format_24hour_position = this.Format_24hour_position,
                 Second = Second,
                 Minute = Minute,
                 Hour = Hour,
+            };
+        }
+    }
+
+    public class ElementWorldClock : ICloneable
+    {
+        public string elementName = "WorldClock";
+
+        ///// <summary>Позиция в наборе элементов</summary>
+        //public int position = -1;
+
+        /// <summary>Видимость элемента</summary>
+        public bool visible = true;
+
+        public hmUI_widget_TEXT Time { get; set; }
+        public hmUI_widget_TEXT TimeZone { get; set; }
+        public hmUI_widget_TEXT CityName { get; set; }
+        public hmUI_widget_TEXT TimeDifference { get; set; }
+        public Button ButtonNext { get; set; }
+        public Button ButtonPrev { get; set; }
+        public hmUI_widget_IMG Icon { get; set; }
+
+        public object Clone()
+        {
+            hmUI_widget_TEXT Time = null;
+            if (this.Time != null)
+            {
+                Time = new hmUI_widget_TEXT
+                {
+                    x = this.Time.x,
+                    y = this.Time.y,
+                    w = this.Time.w,
+                    h = this.Time.h,
+                    color = this.Time.color,
+                    align_h = this.Time.align_h,
+                    align_v = this.Time.align_v,
+                    text_size = this.Time.text_size,
+                    text_style = this.Time.text_style,
+                    line_space = this.Time.line_space,
+                    char_space = this.Time.char_space,
+                    font = this.Time.font,
+                    alpha = this.Time.alpha,
+
+                    position = this.Time.position,
+                    visible = this.Time.visible,
+                    show_level = this.Time.show_level,
+                    type = this.Time.type,
+                };
+            }
+
+            hmUI_widget_TEXT TimeZone = null;
+            if (this.TimeZone != null)
+            {
+                TimeZone = new hmUI_widget_TEXT
+                {
+                    x = this.TimeZone.x,
+                    y = this.TimeZone.y,
+                    w = this.TimeZone.w,
+                    h = this.TimeZone.h,
+                    color = this.TimeZone.color,
+                    align_h = this.TimeZone.align_h,
+                    align_v = this.TimeZone.align_v,
+                    text_size = this.TimeZone.text_size,
+                    text_style = this.TimeZone.text_style,
+                    line_space = this.TimeZone.line_space,
+                    char_space = this.TimeZone.char_space,
+                    font = this.TimeZone.font,
+                    alpha = this.TimeZone.alpha,
+
+                    position = this.TimeZone.position,
+                    visible = this.TimeZone.visible,
+                    show_level = this.TimeZone.show_level,
+                    type = this.TimeZone.type,
+                };
+            }
+
+            hmUI_widget_TEXT CityName = null;
+            if (this.CityName != null)
+            {
+                CityName = new hmUI_widget_TEXT
+                {
+                    x = this.CityName.x,
+                    y = this.CityName.y,
+                    w = this.CityName.w,
+                    h = this.CityName.h,
+                    color = this.CityName.color,
+                    align_h = this.CityName.align_h,
+                    align_v = this.CityName.align_v,
+                    text_size = this.CityName.text_size,
+                    text_style = this.CityName.text_style,
+                    line_space = this.CityName.line_space,
+                    char_space = this.CityName.char_space,
+                    font = this.CityName.font,
+                    alpha = this.CityName.alpha,
+
+                    position = this.CityName.position,
+                    visible = this.CityName.visible,
+                    show_level = this.CityName.show_level,
+                    type = this.CityName.type,
+                };
+            }
+
+            hmUI_widget_TEXT TimeDifference = null;
+            if (this.TimeDifference != null)
+            {
+                TimeDifference = new hmUI_widget_TEXT
+                {
+                    x = this.TimeDifference.x,
+                    y = this.TimeDifference.y,
+                    w = this.TimeDifference.w,
+                    h = this.TimeDifference.h,
+                    color = this.TimeDifference.color,
+                    align_h = this.TimeDifference.align_h,
+                    align_v = this.TimeDifference.align_v,
+                    text_size = this.TimeDifference.text_size,
+                    text_style = this.TimeDifference.text_style,
+                    line_space = this.TimeDifference.line_space,
+                    char_space = this.TimeDifference.char_space,
+                    font = this.TimeDifference.font,
+                    alpha = this.TimeDifference.alpha,
+
+                    position = this.TimeDifference.position,
+                    visible = this.TimeDifference.visible,
+                    show_level = this.TimeDifference.show_level,
+                    type = this.TimeDifference.type,
+                };
+            }
+
+            Button ButtonNext = null;
+            if (this.ButtonNext != null)
+            {
+                ButtonNext = new Button
+                {
+                    x = this.ButtonNext.x,
+                    y = this.ButtonNext.y,
+                    w = this.ButtonNext.w,
+                    h = this.ButtonNext.h,
+                    text = this.ButtonNext.text,
+                    color = this.ButtonNext.color,
+                    text_size = this.ButtonNext.text_size,
+                    press_src = this.ButtonNext.press_src,
+                    normal_src = this.ButtonNext.normal_src,
+                    press_color = this.ButtonNext.press_color,
+                    normal_color = this.ButtonNext.normal_color,
+                    radius = this.ButtonNext.radius,
+
+                    position = this.Icon.position,
+                    visible = this.Icon.visible,
+                };
+            }
+
+            Button ButtonPrev = null;
+            if (this.ButtonPrev != null)
+            {
+                ButtonPrev = new Button
+                {
+                    x = this.ButtonPrev.x,
+                    y = this.ButtonPrev.y,
+                    w = this.ButtonPrev.w,
+                    h = this.ButtonPrev.h,
+                    text = this.ButtonPrev.text,
+                    color = this.ButtonPrev.color,
+                    text_size = this.ButtonPrev.text_size,
+                    press_src = this.ButtonPrev.press_src,
+                    normal_src = this.ButtonPrev.normal_src,
+                    press_color = this.ButtonPrev.press_color,
+                    normal_color = this.ButtonPrev.normal_color,
+                    radius = this.ButtonPrev.radius,
+
+                    position = this.Icon.position,
+                    visible = this.Icon.visible,
+                };
+            }
+
+            hmUI_widget_IMG Icon = null;
+            if (this.Icon != null)
+            {
+                Icon = new hmUI_widget_IMG
+                {
+                    x = this.Icon.x,
+                    y = this.Icon.y,
+                    w = this.Icon.w,
+                    h = this.Icon.h,
+                    src = this.Icon.src,
+                    alpha = this.Icon.alpha,
+
+                    position = this.Icon.position,
+                    visible = this.Icon.visible,
+                    show_level = this.Icon.show_level,
+                };
+            }
+
+            return new ElementWorldClock
+            {
+                elementName = this.elementName,
+                visible = this.visible,
+
+                Time = Time,
+                TimeZone = TimeZone,
+                CityName = CityName,
+                TimeDifference = TimeDifference,
+                ButtonNext = ButtonNext,
+                ButtonPrev = ButtonPrev,
+                Icon = Icon,
             };
         }
     }

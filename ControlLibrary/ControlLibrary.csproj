@@ -246,6 +246,12 @@
     <Compile Include="Elements\UCtrl_AnalogTimePro_Elm.Designer.cs">
       <DependentUpon>UCtrl_AnalogTimePro_Elm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Elements\UCtrl_AnalogTimeCircle_Elm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Elements\UCtrl_AnalogTimeCircle_Elm.Designer.cs">
+      <DependentUpon>UCtrl_AnalogTimeCircle_Elm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UCtrl_Animation_Frame_Opt.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -329,6 +335,12 @@
     </Compile>
     <Compile Include="Elements\UCtrl_BodyTemp_Elm.Designer.cs">
       <DependentUpon>UCtrl_BodyTemp_Elm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCtrl_ButtonOne_Opt.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCtrl_ButtonOne_Opt.Designer.cs">
+      <DependentUpon>UCtrl_ButtonOne_Opt.cs</DependentUpon>
     </Compile>
     <Compile Include="UCtrl_Button_Opt.cs">
       <SubType>UserControl</SubType>
@@ -690,6 +702,12 @@
     </Compile>
     <Compile Include="UCtrl_Weather_FewDays_Opt.Designer.cs">
       <DependentUpon>UCtrl_Weather_FewDays_Opt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Elements\UCtrl_WorldClock_Elm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Elements\UCtrl_WorldClock_Elm.Designer.cs">
+      <DependentUpon>UCtrl_WorldClock_Elm.cs</DependentUpon>
     </Compile>
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
@@ -2055,6 +2073,9 @@
     <EmbeddedResource Include="Elements\UCtrl_AnalogTimePro_Elm.resx">
       <DependentUpon>UCtrl_AnalogTimePro_Elm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_AnalogTimeCircle_Elm.resx">
+      <DependentUpon>UCtrl_AnalogTimeCircle_Elm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UCtrl_Animation_Frame_Opt.cs.resx">
       <DependentUpon>UCtrl_Animation_Frame_Opt.cs</DependentUpon>
     </EmbeddedResource>
@@ -2212,6 +2233,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_BodyTemp_Elm.resx">
       <DependentUpon>UCtrl_BodyTemp_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_ButtonOne_Opt.resx">
+      <DependentUpon>UCtrl_ButtonOne_Opt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UCtrl_Button_Opt.cs.resx">
       <DependentUpon>UCtrl_Button_Opt.cs</DependentUpon>
@@ -2987,6 +3011,9 @@
     <EmbeddedResource Include="UCtrl_Weather_FewDays_Opt.zh.resx">
       <DependentUpon>UCtrl_Weather_FewDays_Opt.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_WorldClock_Elm.resx">
+      <DependentUpon>UCtrl_WorldClock_Elm.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\digital-clock-icon.png" />
@@ -3291,6 +3318,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\circle_time.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\world_clock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hr_min_icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -22,7 +22,7 @@ namespace Watch_Face_Editor.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Watch_Face_Editor.Properties {
         ///   Возвращает кэшированный экземпляр ResourceManager, использованный этим классом.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Watch_Face_Editor.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace Watch_Face_Editor.Properties {
         ///   обращений к ресурсу с помощью этого класса ресурса со строгой типизацией.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace Watch_Face_Editor.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap apps_icon {
+        public static System.Drawing.Bitmap apps_icon {
             get {
                 object obj = ResourceManager.GetObject("apps_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -73,7 +73,7 @@ namespace Watch_Face_Editor.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Background_icon {
+        public static System.Drawing.Bitmap Background_icon {
             get {
                 object obj = ResourceManager.GetObject("Background-icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -83,7 +83,7 @@ namespace Watch_Face_Editor.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bmc_qr {
+        public static System.Drawing.Bitmap bmc_qr {
             get {
                 object obj = ResourceManager.GetObject("bmc_qr", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -93,7 +93,7 @@ namespace Watch_Face_Editor.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap clock_icon {
+        public static System.Drawing.Bitmap clock_icon {
             get {
                 object obj = ResourceManager.GetObject("clock-icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -103,7 +103,7 @@ namespace Watch_Face_Editor.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap gtr_3 {
+        public static System.Drawing.Bitmap gtr_3 {
             get {
                 object obj = ResourceManager.GetObject("gtr_3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -113,7 +113,7 @@ namespace Watch_Face_Editor.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap image_remove_icon {
+        public static System.Drawing.Bitmap image_remove_icon {
             get {
                 object obj = ResourceManager.GetObject("image-remove-icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -123,7 +123,7 @@ namespace Watch_Face_Editor.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Ionic_Qr_code {
+        public static System.Drawing.Bitmap Ionic_Qr_code {
             get {
                 object obj = ResourceManager.GetObject("Ionic-Qr-code", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -133,7 +133,7 @@ namespace Watch_Face_Editor.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap logo_es_site {
+        public static System.Drawing.Bitmap logo_es_site {
             get {
                 object obj = ResourceManager.GetObject("logo_es_site", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -143,7 +143,7 @@ namespace Watch_Face_Editor.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Logos_Administrative_Tools_16 {
+        public static System.Drawing.Bitmap Logos_Administrative_Tools_16 {
             get {
                 object obj = ResourceManager.GetObject("Logos-Administrative-Tools_16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -153,7 +153,7 @@ namespace Watch_Face_Editor.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Logos_Administrative_Tools_24 {
+        public static System.Drawing.Bitmap Logos_Administrative_Tools_24 {
             get {
                 object obj = ResourceManager.GetObject("Logos-Administrative-Tools_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -163,7 +163,7 @@ namespace Watch_Face_Editor.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Byte[].
         /// </summary>
-        internal static byte[] OpenSans_Regular {
+        public static byte[] OpenSans_Regular {
             get {
                 object obj = ResourceManager.GetObject("OpenSans_Regular", resourceCulture);
                 return ((byte[])(obj));
@@ -173,7 +173,7 @@ namespace Watch_Face_Editor.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap packaging {
+        public static System.Drawing.Bitmap packaging {
             get {
                 object obj = ResourceManager.GetObject("packaging", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -183,7 +183,7 @@ namespace Watch_Face_Editor.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap pictures_icon {
+        public static System.Drawing.Bitmap pictures_icon {
             get {
                 object obj = ResourceManager.GetObject("pictures-icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -193,7 +193,7 @@ namespace Watch_Face_Editor.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Byte[].
         /// </summary>
-        internal static byte[] Roboto_Regular {
+        public static byte[] Roboto_Regular {
             get {
                 object obj = ResourceManager.GetObject("Roboto_Regular", resourceCulture);
                 return ((byte[])(obj));
@@ -203,7 +203,7 @@ namespace Watch_Face_Editor.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Sidebar_Search_16 {
+        public static System.Drawing.Bitmap Sidebar_Search_16 {
             get {
                 object obj = ResourceManager.GetObject("Sidebar-Search_16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -213,7 +213,7 @@ namespace Watch_Face_Editor.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Sidebar_Search_24 {
+        public static System.Drawing.Bitmap Sidebar_Search_24 {
             get {
                 object obj = ResourceManager.GetObject("Sidebar-Search_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -223,7 +223,7 @@ namespace Watch_Face_Editor.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap sport_icon {
+        public static System.Drawing.Bitmap sport_icon {
             get {
                 object obj = ResourceManager.GetObject("sport_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -233,7 +233,7 @@ namespace Watch_Face_Editor.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Sports_Walking_16 {
+        public static System.Drawing.Bitmap Sports_Walking_16 {
             get {
                 object obj = ResourceManager.GetObject("Sports-Walking_16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -243,7 +243,7 @@ namespace Watch_Face_Editor.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Sports_Walking_24 {
+        public static System.Drawing.Bitmap Sports_Walking_24 {
             get {
                 object obj = ResourceManager.GetObject("Sports-Walking_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -255,7 +255,7 @@ namespace Watch_Face_Editor.Properties {
         ///{\f2\fbidi \fmodern\fcharset238\fprq1{\*\panose 02070309020205020404}Courier New;}{\f3\fbidi \froman\fcharset2\fprq2{\*\panose 05050102010706020507}Symbol;}{\f10\fbidi \fnil\fcharset2\fprq2{\*\panose 05000000000000000000}Wingdings;}
         ///{\f34\ [остаток строки не уместился]&quot;;.
         /// </summary>
-        internal static string tips_cs {
+        public static string tips_cs {
             get {
                 return ResourceManager.GetString("tips_cs", resourceCulture);
             }
@@ -266,7 +266,7 @@ namespace Watch_Face_Editor.Properties {
         ///{\f2\fbidi \fmodern\fcharset204\fprq1{\*\panose 02070309020205020404}Courier New;}{\f3\fbidi \froman\fcharset2\fprq2{\*\panose 05050102010706020507}Symbol;}{\f10\fbidi \fnil\fcharset2\fprq2{\*\panose 05000000000000000000}Wingdings;}
         ///{\f34\ [остаток строки не уместился]&quot;;.
         /// </summary>
-        internal static string tips_de {
+        public static string tips_de {
             get {
                 return ResourceManager.GetString("tips_de", resourceCulture);
             }
@@ -277,7 +277,7 @@ namespace Watch_Face_Editor.Properties {
         ///{\f2\fbidi \fmodern\fcharset204\fprq1{\*\panose 02070309020205020404}Courier New;}{\f3\fbidi \froman\fcharset2\fprq2{\*\panose 05050102010706020507}Symbol;}{\f10\fbidi \fnil\fcharset2\fprq2{\*\panose 05000000000000000000}Wingdings;}
         ///{\f34\ [остаток строки не уместился]&quot;;.
         /// </summary>
-        internal static string tips_en {
+        public static string tips_en {
             get {
                 return ResourceManager.GetString("tips_en", resourceCulture);
             }
@@ -288,7 +288,7 @@ namespace Watch_Face_Editor.Properties {
         ///{\f2\fbidi \fmodern\fcharset204\fprq1{\*\panose 02070309020205020404}Courier New;}{\f3\fbidi \froman\fcharset2\fprq2{\*\panose 05050102010706020507}Symbol;}{\f10\fbidi \fnil\fcharset2\fprq2{\*\panose 05000000000000000000}Wingdings;}
         ///{\f34\ [остаток строки не уместился]&quot;;.
         /// </summary>
-        internal static string tips_es {
+        public static string tips_es {
             get {
                 return ResourceManager.GetString("tips_es", resourceCulture);
             }
@@ -299,7 +299,7 @@ namespace Watch_Face_Editor.Properties {
         ///{\f156\fswiss\fcharset0\fprq2{\*\panose 020f0502020204030204}Calibri;}{\f721\froman\fcharset238\fprq2 Times New Roman CE;}{\f722\froman\fcharset204\fprq2 Times New Roman Cyr;}{\f724\froman\fcharset161\fprq2 Times New Roman Greek;}
         ///{\f [остаток строки не уместился]&quot;;.
         /// </summary>
-        internal static string tips_fr {
+        public static string tips_fr {
             get {
                 return ResourceManager.GetString("tips_fr", resourceCulture);
             }
@@ -310,7 +310,7 @@ namespace Watch_Face_Editor.Properties {
         ///{\f2\fbidi \fmodern\fcharset204\fprq1{\*\panose 02070309020205020404}Courier New;}{\f3\fbidi \froman\fcharset2\fprq2{\*\panose 05050102010706020507}Symbol;}{\f10\fbidi \fnil\fcharset2\fprq2{\*\panose 05000000000000000000}Wingdings;}
         ///{\f34\ [остаток строки не уместился]&quot;;.
         /// </summary>
-        internal static string tips_it {
+        public static string tips_it {
             get {
                 return ResourceManager.GetString("tips_it", resourceCulture);
             }
@@ -321,7 +321,7 @@ namespace Watch_Face_Editor.Properties {
         ///{\f2\fbidi \fmodern\fcharset204\fprq1{\*\panose 02070309020205020404}Courier New;}{\f3\fbidi \froman\fcharset2\fprq2{\*\panose 05050102010706020507}Symbol;}{\f10\fbidi \fnil\fcharset2\fprq2{\*\panose 05000000000000000000}Wingdings;}
         ///{\f34\fbi [остаток строки не уместился]&quot;;.
         /// </summary>
-        internal static string tips_ru {
+        public static string tips_ru {
             get {
                 return ResourceManager.GetString("tips_ru", resourceCulture);
             }
@@ -332,7 +332,7 @@ namespace Watch_Face_Editor.Properties {
         ///{\f2\fbidi \fmodern\fcharset204\fprq1{\*\panose 02070309020205020404}Courier New;}{\f3\fbidi \froman\fcharset2\fprq2{\*\panose 05050102010706020507}Symbol;}{\f10\fbidi \fnil\fcharset2\fprq2{\*\panose 05000000000000000000}Wingdings;}
         ///{\f34\fbi [остаток строки не уместился]&quot;;.
         /// </summary>
-        internal static string tips_uk {
+        public static string tips_uk {
             get {
                 return ResourceManager.GetString("tips_uk", resourceCulture);
             }
@@ -341,7 +341,7 @@ namespace Watch_Face_Editor.Properties {
         /// <summary>
         ///   Ищет локализованную строку, похожую на {\rtf1 \ansi \ansicpg936 \deff0 \stshfdbch1 \stshfloch0 \stshfhich0 \deflang2052 \deflangfe2052 {\fonttbl {\f0 \froman \fcharset204 \fprq0 {\*\panose 02020603050405020304}Times New Roman{\*\falt Times New Roman};}{\f1 \fnil \fcharset134 \fprq0 {\*\panose 02010600030101010101}\&apos;cb\&apos;ce\&apos;cc\&apos;e5{\*\falt \&apos;cb\&apos;ce\&apos;cc\&apos;e5};}{\f2 \fnil \fcharset2 \fprq0 {\*\panose 05000000000000000000}Wingdings{\*\falt Wingdings};}{\f3 \fnil \fcharset0 \fprq0 {\*\panose 05000000000000000000}Wingdings{\*\falt Wingdings};}{\f4 \fswi [остаток строки не уместился]&quot;;.
         /// </summary>
-        internal static string tips_zh {
+        public static string tips_zh {
             get {
                 return ResourceManager.GetString("tips_zh", resourceCulture);
             }
@@ -350,7 +350,7 @@ namespace Watch_Face_Editor.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap unpacking {
+        public static System.Drawing.Bitmap unpacking {
             get {
                 object obj = ResourceManager.GetObject("unpacking", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -360,7 +360,7 @@ namespace Watch_Face_Editor.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Very_Basic_Calendar_16 {
+        public static System.Drawing.Bitmap Very_Basic_Calendar_16 {
             get {
                 object obj = ResourceManager.GetObject("Very-Basic-Calendar_16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -370,7 +370,7 @@ namespace Watch_Face_Editor.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Very_Basic_Calendar_24 {
+        public static System.Drawing.Bitmap Very_Basic_Calendar_24 {
             get {
                 object obj = ResourceManager.GetObject("Very-Basic-Calendar_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -380,7 +380,7 @@ namespace Watch_Face_Editor.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Weather_Partly_Cloudy_Rain_16 {
+        public static System.Drawing.Bitmap Weather_Partly_Cloudy_Rain_16 {
             get {
                 object obj = ResourceManager.GetObject("Weather-Partly-Cloudy-Rain_16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -390,7 +390,7 @@ namespace Watch_Face_Editor.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Weather_Partly_Cloudy_Rain_24 {
+        public static System.Drawing.Bitmap Weather_Partly_Cloudy_Rain_24 {
             get {
                 object obj = ResourceManager.GetObject("Weather-Partly-Cloudy-Rain_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -400,7 +400,7 @@ namespace Watch_Face_Editor.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap YouTube {
+        public static System.Drawing.Bitmap YouTube {
             get {
                 object obj = ResourceManager.GetObject("YouTube", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));

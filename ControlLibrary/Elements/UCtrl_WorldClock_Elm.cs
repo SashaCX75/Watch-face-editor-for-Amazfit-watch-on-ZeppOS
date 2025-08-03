@@ -10,15 +10,15 @@ using System.Windows.Forms;
 
 namespace ControlLibrary
 {
-    public partial class UCtrl_Compass_Elm : UserControl
+    public partial class UCtrl_WorldClock_Elm : UserControl
     {
         private bool setValue; // режим задания параметров
-        bool highlight_images = false;
-        bool highlight_number = false;
-        bool highlight_number_font = false;
-        bool highlight_text_rotation = false;
-        bool highlight_text_circle = false;
-        bool highlight_pointer = false;
+        bool highlight_time = false;
+        bool highlight_time_zone = false;
+        bool highlight_city_name = false;
+        bool highlight_time_diff = false;
+        bool highlight_previous_city = false;
+        bool highlight_next_city = false;
         bool highlight_icon = false;
 
         bool visibility_elements = false; // развернут список с элементами
@@ -28,8 +28,7 @@ namespace ControlLibrary
         public string selectedElement; // название выбраного элемента
 
         Point cursorPos = new Point(0, 0);
-    
-        public UCtrl_Compass_Elm()
+        public UCtrl_WorldClock_Elm()
         {
             InitializeComponent();
             setValue = false;
@@ -115,12 +114,12 @@ namespace ControlLibrary
         {
             selectedElement = "";
 
-            highlight_images = false;
-            highlight_number = false;
-            highlight_number_font = false;
-            highlight_text_rotation = false;
-            highlight_text_circle = false;
-            highlight_pointer = false;
+            highlight_time = false;
+            highlight_time_zone = false;
+            highlight_city_name = false;
+            highlight_time_diff = false;
+            highlight_previous_city = false;
+            highlight_next_city = false;
             highlight_icon = false;
 
             SelectElement();
@@ -128,82 +127,82 @@ namespace ControlLibrary
 
         private void SelectElement()
         {
-            if (highlight_images)
+            if (highlight_time)
             {
-                panel_Images.BackColor = SystemColors.ActiveCaption;
-                button_Images.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption;
-                button_Images.FlatAppearance.MouseDownBackColor = SystemColors.ActiveCaption;
+                panel_Time.BackColor = SystemColors.ActiveCaption;
+                button_Time.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption;
+                button_Time.FlatAppearance.MouseDownBackColor = SystemColors.ActiveCaption;
             }
             else
             {
-                panel_Images.BackColor = SystemColors.Control;
-                button_Images.FlatAppearance.MouseOverBackColor = SystemColors.Control;
-                button_Images.FlatAppearance.MouseDownBackColor = SystemColors.Control;
+                panel_Time.BackColor = SystemColors.Control;
+                button_Time.FlatAppearance.MouseOverBackColor = SystemColors.Control;
+                button_Time.FlatAppearance.MouseDownBackColor = SystemColors.Control;
             }
 
-            if (highlight_number)
+            if (highlight_time_zone)
             {
-                panel_Number.BackColor = SystemColors.ActiveCaption;
-                button_Number.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption;
-                button_Number.FlatAppearance.MouseDownBackColor = SystemColors.ActiveCaption;
+                panel_TimeZone.BackColor = SystemColors.ActiveCaption;
+                button_TimeZone.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption;
+                button_TimeZone.FlatAppearance.MouseDownBackColor = SystemColors.ActiveCaption;
             }
             else
             {
-                panel_Number.BackColor = SystemColors.Control;
-                button_Number.FlatAppearance.MouseOverBackColor = SystemColors.Control;
-                button_Number.FlatAppearance.MouseDownBackColor = SystemColors.Control;
+                panel_TimeZone.BackColor = SystemColors.Control;
+                button_TimeZone.FlatAppearance.MouseOverBackColor = SystemColors.Control;
+                button_TimeZone.FlatAppearance.MouseDownBackColor = SystemColors.Control;
             }
 
-            if (highlight_number_font)
+            if (highlight_city_name)
             {
-                panel_Number_Font.BackColor = SystemColors.ActiveCaption;
-                button_Number_Font.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption;
-                button_Number_Font.FlatAppearance.MouseDownBackColor = SystemColors.ActiveCaption;
+                panel_CityName.BackColor = SystemColors.ActiveCaption;
+                button_CityName.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption;
+                button_CityName.FlatAppearance.MouseDownBackColor = SystemColors.ActiveCaption;
             }
             else
             {
-                panel_Number_Font.BackColor = SystemColors.Control;
-                button_Number_Font.FlatAppearance.MouseOverBackColor = SystemColors.Control;
-                button_Number_Font.FlatAppearance.MouseDownBackColor = SystemColors.Control;
+                panel_CityName.BackColor = SystemColors.Control;
+                button_CityName.FlatAppearance.MouseOverBackColor = SystemColors.Control;
+                button_CityName.FlatAppearance.MouseDownBackColor = SystemColors.Control;
             }
 
-            if (highlight_text_rotation)
+            if (highlight_time_diff)
             {
-                panel_Text_rotation.BackColor = SystemColors.ActiveCaption;
-                button_Text_rotation.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption;
-                button_Text_rotation.FlatAppearance.MouseDownBackColor = SystemColors.ActiveCaption;
+                panel_TimeDiff.BackColor = SystemColors.ActiveCaption;
+                button_TimeDiff.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption;
+                button_TimeDiff.FlatAppearance.MouseDownBackColor = SystemColors.ActiveCaption;
             }
             else
             {
-                panel_Text_rotation.BackColor = SystemColors.Control;
-                button_Text_rotation.FlatAppearance.MouseOverBackColor = SystemColors.Control;
-                button_Text_rotation.FlatAppearance.MouseDownBackColor = SystemColors.Control;
+                panel_TimeDiff.BackColor = SystemColors.Control;
+                button_TimeDiff.FlatAppearance.MouseOverBackColor = SystemColors.Control;
+                button_TimeDiff.FlatAppearance.MouseDownBackColor = SystemColors.Control;
             }
 
-            if (highlight_text_circle)
+            if (highlight_previous_city)
             {
-                panel_Text_circle.BackColor = SystemColors.ActiveCaption;
-                button_Text_circle.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption;
-                button_Text_circle.FlatAppearance.MouseDownBackColor = SystemColors.ActiveCaption;
+                panel_ButtonPrev.BackColor = SystemColors.ActiveCaption;
+                button_ButtonPrev.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption;
+                button_ButtonPrev.FlatAppearance.MouseDownBackColor = SystemColors.ActiveCaption;
             }
             else
             {
-                panel_Text_circle.BackColor = SystemColors.Control;
-                button_Text_circle.FlatAppearance.MouseOverBackColor = SystemColors.Control;
-                button_Text_circle.FlatAppearance.MouseDownBackColor = SystemColors.Control;
+                panel_ButtonPrev.BackColor = SystemColors.Control;
+                button_ButtonPrev.FlatAppearance.MouseOverBackColor = SystemColors.Control;
+                button_ButtonPrev.FlatAppearance.MouseDownBackColor = SystemColors.Control;
             }
 
-            if (highlight_pointer)
+            if (highlight_next_city)
             {
-                panel_Pointer.BackColor = SystemColors.ActiveCaption;
-                button_Pointer.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption;
-                button_Pointer.FlatAppearance.MouseDownBackColor = SystemColors.ActiveCaption;
+                panel_ButtonNext.BackColor = SystemColors.ActiveCaption;
+                button_ButtonNext.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption;
+                button_ButtonNext.FlatAppearance.MouseDownBackColor = SystemColors.ActiveCaption;
             }
             else
             {
-                panel_Pointer.BackColor = SystemColors.Control;
-                button_Pointer.FlatAppearance.MouseOverBackColor = SystemColors.Control;
-                button_Pointer.FlatAppearance.MouseDownBackColor = SystemColors.Control;
+                panel_ButtonNext.BackColor = SystemColors.Control;
+                button_ButtonNext.FlatAppearance.MouseOverBackColor = SystemColors.Control;
+                button_ButtonNext.FlatAppearance.MouseDownBackColor = SystemColors.Control;
             }
 
             if (highlight_icon)
@@ -220,16 +219,16 @@ namespace ControlLibrary
             }
         }
 
-        private void panel_Images_Click(object sender, EventArgs e)
+        private void panel_Time_Click(object sender, EventArgs e)
         {
-            selectedElement = "Images";
+            selectedElement = "Time";
 
-            highlight_images = true;
-            highlight_number = false;
-            highlight_number_font = false;
-            highlight_text_rotation = false;
-            highlight_text_circle = false;
-            highlight_pointer = false;
+            highlight_time = true;
+            highlight_time_zone = false;
+            highlight_city_name = false;
+            highlight_time_diff = false;
+            highlight_previous_city = false;
+            highlight_next_city = false;
             highlight_icon = false;
 
             SelectElement();
@@ -241,16 +240,16 @@ namespace ControlLibrary
             }
         }
 
-        private void panel_Number_Click(object sender, EventArgs e)
+        private void panel_TimeZone_Click(object sender, EventArgs e)
         {
-            selectedElement = "Number";
+            selectedElement = "TimeZone";
 
-            highlight_images = false;
-            highlight_number = true;
-            highlight_number_font = false;
-            highlight_text_rotation = false;
-            highlight_text_circle = false;
-            highlight_pointer = false;
+            highlight_time = false;
+            highlight_time_zone = true;
+            highlight_city_name = false;
+            highlight_time_diff = false;
+            highlight_previous_city = false;
+            highlight_next_city = false;
             highlight_icon = false;
 
             SelectElement();
@@ -262,16 +261,16 @@ namespace ControlLibrary
             }
         }
 
-        private void panel_Number_Font_Click(object sender, EventArgs e)
+        private void panel_CityName_Click(object sender, EventArgs e)
         {
-            selectedElement = "Number_Font";
+            selectedElement = "CityName";
 
-            highlight_images = false;
-            highlight_number = false;
-            highlight_number_font = true;
-            highlight_text_rotation = false;
-            highlight_text_circle = false;
-            highlight_pointer = false;
+            highlight_time = false;
+            highlight_time_zone = false;
+            highlight_city_name = true;
+            highlight_time_diff = false;
+            highlight_previous_city = false;
+            highlight_next_city = false;
             highlight_icon = false;
 
             SelectElement();
@@ -283,16 +282,16 @@ namespace ControlLibrary
             }
         }
 
-        private void panel_Text_rotation_Click(object sender, EventArgs e)
+        private void panel_TimeDiff_Click(object sender, EventArgs e)
         {
-            selectedElement = "Text_rotation";
+            selectedElement = "TimeDiff";
 
-            highlight_images = false;
-            highlight_number = false;
-            highlight_number_font = false;
-            highlight_text_rotation = true;
-            highlight_text_circle = false;
-            highlight_pointer = false;
+            highlight_time = false;
+            highlight_time_zone = false;
+            highlight_city_name = false;
+            highlight_time_diff = true;
+            highlight_previous_city = false;
+            highlight_next_city = false;
             highlight_icon = false;
 
             SelectElement();
@@ -304,16 +303,16 @@ namespace ControlLibrary
             }
         }
 
-        private void panel_Text_circle_Click(object sender, EventArgs e)
+        private void panel_ButtonPrev_Click(object sender, EventArgs e)
         {
-            selectedElement = "Text_circle";
+            selectedElement = "ButtonPrev";
 
-            highlight_images = false;
-            highlight_number = false;
-            highlight_number_font = false;
-            highlight_text_rotation = false;
-            highlight_text_circle = true;
-            highlight_pointer = false;
+            highlight_time = false;
+            highlight_time_zone = false;
+            highlight_city_name = false;
+            highlight_time_diff = false;
+            highlight_previous_city = true;
+            highlight_next_city = false;
             highlight_icon = false;
 
             SelectElement();
@@ -325,16 +324,16 @@ namespace ControlLibrary
             }
         }
 
-        private void panel_Pointer_Click(object sender, EventArgs e)
+        private void panel_ButtonNext_Click(object sender, EventArgs e)
         {
-            selectedElement = "Pointer";
+            selectedElement = "ButtonNext";
 
-            highlight_images = false;
-            highlight_number = false;
-            highlight_number_font = false;
-            highlight_text_rotation = false;
-            highlight_text_circle = false;
-            highlight_pointer = true;
+            highlight_time = false;
+            highlight_time_zone = false;
+            highlight_city_name = false;
+            highlight_time_diff = false;
+            highlight_previous_city = false;
+            highlight_next_city = true;
             highlight_icon = false;
 
             SelectElement();
@@ -350,12 +349,12 @@ namespace ControlLibrary
         {
             selectedElement = "Icon";
 
-            highlight_images = false;
-            highlight_number = false;
-            highlight_number_font = false;
-            highlight_text_rotation = false;
-            highlight_text_circle = false;
-            highlight_pointer = false;
+            highlight_time = false;
+            highlight_time_zone = false;
+            highlight_city_name = false;
+            highlight_time_diff = false;
+            highlight_previous_city = false;
+            highlight_next_city = false;
             highlight_icon = true;
 
             SelectElement();
@@ -599,23 +598,23 @@ namespace ControlLibrary
             setValue = true;
             switch (name)
             {
-                case "Images":
-                    checkBox_Images.Checked = status;
+                case "Time":
+                    checkBox_Time.Checked = status;
                     break;
-                case "Number":
-                    checkBox_Number.Checked = status;
+                case "TimeZone":
+                    checkBox_TimeZone.Checked = status;
                     break;
-                case "Number_Font":
-                    checkBox_Number_Font.Checked = status;
+                case "CityName":
+                    checkBox_CityName.Checked = status;
                     break;
-                case "Text_rotation":
-                    checkBox_Text_rotation.Checked = status;
+                case "TimeDiff":
+                    checkBox_TimeDiff.Checked = status;
                     break;
-                case "Text_circle":
-                    checkBox_Text_circle.Checked = status;
+                case "ButtonPrev":
+                    checkBox_ButtonPrev.Checked = status;
                     break;
-                case "Pointer":
-                    checkBox_Pointer.Checked = status;
+                case "ButtonNext":
+                    checkBox_ButtonNext.Checked = status;
                     break;
                 case "Icon":
                     checkBox_Icon.Checked = status;
@@ -636,23 +635,23 @@ namespace ControlLibrary
                     string name = elementOptions[elementCount - key];
                     switch (name)
                     {
-                        case "Images":
-                            panel = panel_Images;
+                        case "Time":
+                            panel = panel_Time;
                             break;
-                        case "Number":
-                            panel = panel_Number;
+                        case "TimeZone":
+                            panel = panel_TimeZone;
                             break;
-                        case "Number_Font":
-                            panel = panel_Number_Font;
+                        case "CityName":
+                            panel = panel_CityName;
                             break;
-                        case "Text_rotation":
-                            panel = panel_Text_rotation;
+                        case "TimeDiff":
+                            panel = panel_TimeDiff;
                             break;
-                        case "Text_circle":
-                            panel = panel_Text_circle;
+                        case "ButtonPrev":
+                            panel = panel_ButtonPrev;
                             break;
-                        case "Pointer":
-                            panel = panel_Pointer;
+                        case "ButtonNext":
+                            panel = panel_ButtonNext;
                             break;
                         case "Icon":
                             panel = panel_Icon;
@@ -699,23 +698,23 @@ namespace ControlLibrary
                 Control panel = tableLayoutPanel1.GetControlFromPosition(0, i);
                 switch (panel.Name)
                 {
-                    case "panel_Images":
-                        elementOptions.Add("Images", count - i);
+                    case "panel_Time":
+                        elementOptions.Add("Time", count - i);
                         break;
-                    case "panel_Number":
-                        elementOptions.Add("Number", count - i);
+                    case "panel_TimeZone":
+                        elementOptions.Add("TimeZone", count - i);
                         break;
-                    case "panel_Number_Font":
-                        elementOptions.Add("Number_Font", count - i);
+                    case "panel_CityName":
+                        elementOptions.Add("CityName", count - i);
                         break;
-                    case "panel_Text_rotation":
-                        elementOptions.Add("Text_rotation", count - i);
+                    case "panel_TimeDiff":
+                        elementOptions.Add("TimeDiff", count - i);
                         break;
-                    case "panel_Text_circle":
-                        elementOptions.Add("Text_circle", count - i);
+                    case "panel_ButtonPrev":
+                        elementOptions.Add("ButtonPrev", count - i);
                         break;
-                    case "panel_Pointer":
-                        elementOptions.Add("Pointer", count - i);
+                    case "panel_ButtonNext":
+                        elementOptions.Add("ButtonNext", count - i);
                         break;
                     case "panel_Icon":
                         elementOptions.Add("Icon", count - i);
@@ -732,20 +731,20 @@ namespace ControlLibrary
             Dictionary<int, string> elementOptions = new Dictionary<int, string>();
             int index = 1;
             elementOptions.Add(index++, "Icon");
-            elementOptions.Add(index++, "Pointer");
-            elementOptions.Add(index++, "Text_circle");
-            elementOptions.Add(index++, "Text_rotation");
-            elementOptions.Add(index++, "Number_Font");
-            elementOptions.Add(index++, "Number");
-            elementOptions.Add(index++, "Images");
+            elementOptions.Add(index++, "ButtonNext");
+            elementOptions.Add(index++, "ButtonPrev");
+            elementOptions.Add(index++, "TimeDiff");
+            elementOptions.Add(index++, "CityName");
+            elementOptions.Add(index++, "TimeZone");
+            elementOptions.Add(index++, "Time");
             SetOptionsPosition(elementOptions);
 
-            checkBox_Images.Checked = false;
-            checkBox_Number.Checked = false;
-            checkBox_Number_Font.Checked = false;
-            checkBox_Text_rotation.Checked = false;
-            checkBox_Text_circle.Checked = false;
-            checkBox_Pointer.Checked = false;
+            checkBox_Time.Checked = false;
+            checkBox_TimeZone.Checked = false;
+            checkBox_CityName.Checked = false;
+            checkBox_TimeDiff.Checked = false;
+            checkBox_ButtonPrev.Checked = false;
+            checkBox_ButtonNext.Checked = false;
             checkBox_Icon.Checked = false;
 
             visibility_elements = false;

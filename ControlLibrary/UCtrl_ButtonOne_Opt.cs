@@ -289,6 +289,15 @@ namespace ControlLibrary
             }
         }
 
+        private void checkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ValueChanged != null && !setValue)
+            {
+                EventArgs eventArgs = new EventArgs();
+                ValueChanged(this, eventArgs);
+            }
+        }
+
         #endregion
 
         #region Settings Set/Clear

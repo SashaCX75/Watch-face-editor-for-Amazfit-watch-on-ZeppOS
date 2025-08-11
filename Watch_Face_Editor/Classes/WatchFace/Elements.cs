@@ -1219,6 +1219,9 @@ namespace Watch_Face_Editor
         /// <summary>Функция при долгом нажатии кнопки</summary>
         public string longpress_func = "";
 
+        /// <summary>Вибрация при нажатии</summary>
+        public bool vibro = false;
+
         /// <summary>Видимость кнопки</summary>
         public bool visible = true;
 

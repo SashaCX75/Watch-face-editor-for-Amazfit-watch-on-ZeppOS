@@ -27,6 +27,8 @@ namespace ControlLibrary
         public int position = -1; // позиция в наборе элеменетов
         public string selectedElement; // название выбраного элемента
 
+        private bool AOD_mode = false;
+
         Point cursorPos = new Point(0, 0);
         public UCtrl_WorldClock_Elm()
         {
@@ -101,6 +103,22 @@ namespace ControlLibrary
         [Description("Происходит при удалении элемента")]
         public event DelElementHandler DelElement;
         public delegate void DelElementHandler(object sender, EventArgs eventArgs);
+
+        /// <summary>Режим доступности кнопок для АОД</summary>
+        [Description("Режим доступности кнопок для АОД")]
+        public virtual bool AOD_Mode
+        {
+            get
+            {
+                return AOD_mode;
+            }
+            set
+            {
+                AOD_mode = value;
+                panel_ButtonPrev.Enabled = !AOD_mode;
+                panel_ButtonNext.Enabled = !AOD_mode;
+            }
+        }
 
         private void button_ElementName_Click(object sender, EventArgs e)
         {
@@ -607,7 +625,7 @@ namespace ControlLibrary
                 case "CityName":
                     checkBox_CityName.Checked = status;
                     break;
-                case "TimeDiff":
+                case "TimeDifference":
                     checkBox_TimeDiff.Checked = status;
                     break;
                 case "ButtonPrev":
@@ -644,7 +662,7 @@ namespace ControlLibrary
                         case "CityName":
                             panel = panel_CityName;
                             break;
-                        case "TimeDiff":
+                        case "TimeDifference":
                             panel = panel_TimeDiff;
                             break;
                         case "ButtonPrev":
@@ -708,7 +726,7 @@ namespace ControlLibrary
                         elementOptions.Add("CityName", count - i);
                         break;
                     case "panel_TimeDiff":
-                        elementOptions.Add("TimeDiff", count - i);
+                        elementOptions.Add("TimeDifference", count - i);
                         break;
                     case "panel_ButtonPrev":
                         elementOptions.Add("ButtonPrev", count - i);
@@ -733,7 +751,7 @@ namespace ControlLibrary
             elementOptions.Add(index++, "Icon");
             elementOptions.Add(index++, "ButtonNext");
             elementOptions.Add(index++, "ButtonPrev");
-            elementOptions.Add(index++, "TimeDiff");
+            elementOptions.Add(index++, "TimeDifference");
             elementOptions.Add(index++, "CityName");
             elementOptions.Add(index++, "TimeZone");
             elementOptions.Add(index++, "Time");
@@ -756,6 +774,7 @@ namespace ControlLibrary
             pictureBox_Show.Visible = visibilityElement;
             pictureBox_NotShow.Visible = !visibilityElement;
             SetColorActive();
+            AOD_Mode = false;
 
             setValue = false;
         }

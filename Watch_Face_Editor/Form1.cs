@@ -2917,7 +2917,7 @@ namespace Watch_Face_Editor
                         if (uCtrl_WorldClock_Elm.checkBox_TimeZone.Checked)
                         {
                             text = worldClock.TimeZone;
-                            Read_Text_Options(text, true, false);
+                            Read_Text_Options(text, true, false, true);
                             ShowElemenrOptions("SystemFont");
                         }
                         else HideAllElemenrOptions();
@@ -2936,7 +2936,7 @@ namespace Watch_Face_Editor
                         if (uCtrl_WorldClock_Elm.checkBox_TimeDiff.Checked)
                         {
                             text = worldClock.TimeDifference;
-                            Read_Text_Options(text, true, false);
+                            Read_Text_Options(text, true, false, true);
                             ShowElemenrOptions("SystemFont");
                         }
                         else HideAllElemenrOptions();
@@ -4966,7 +4966,7 @@ namespace Watch_Face_Editor
                 if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
                     Watch_Face.ScreenAOD.Elements != null) Elements = Watch_Face.ScreenAOD.Elements;
 
-                analogTime.SmoothSecond = false;
+                analogTime.Smooth = false;
             }
 
             analogTime.visible = true;
@@ -7008,8 +7008,8 @@ namespace Watch_Face_Editor
                                     elementOptions.Add(TimeCircle.Hour.position, "Hour");
                                 }
 
-                                uCtrl_AnalogTimeCircle_Elm.checkBox_SmoothSeconds.Checked = TimeCircle.SmoothSecond;
-                                elementOptions.Add(TimeCircle.SmoothSecond_position, "SmoothSecond");
+                                uCtrl_AnalogTimeCircle_Elm.checkBox_SmoothSeconds.Checked = TimeCircle.Smooth;
+                                elementOptions.Add(TimeCircle.Smooth_position, "SmoothSecond");
 
                                 uCtrl_AnalogTimeCircle_Elm.checkBox_Format_24hour.Checked = TimeCircle.Format_24hour;
                                 elementOptions.Add(TimeCircle.Format_24hour_position, "Format_24hour");
@@ -7026,6 +7026,7 @@ namespace Watch_Face_Editor
                             case "ElementWorldClock":
                                 ElementWorldClock WorldClock = (ElementWorldClock)element;
                                 uCtrl_WorldClock_Elm.SetVisibilityElementStatus(WorldClock.visible);
+                                uCtrl_WorldClock_Elm.AOD_Mode = !radioButton_ScreenNormal.Checked;
                                 elementOptions = new Dictionary<int, string>();
                                 if (WorldClock.Time != null)
                                 {
@@ -7040,7 +7041,7 @@ namespace Watch_Face_Editor
                                 if (WorldClock.CityName != null)
                                 {
                                     uCtrl_WorldClock_Elm.checkBox_CityName.Checked = WorldClock.CityName.visible;
-                                    elementOptions.Add(WorldClock.CityName.position, "City_Name");
+                                    elementOptions.Add(WorldClock.CityName.position, "CityName");
                                 }
                                 if (WorldClock.TimeDifference != null)
                                 {
@@ -12237,11 +12238,23 @@ namespace Watch_Face_Editor
             int pos_destory = indexText.IndexOf("heart_rate.addEventListener");
             if (pos_destory > 0)
             {
-                pos_destory = indexText.IndexOf("logger.log(\"index page.js on destroy invoke\")");
+                pos_destory = indexText.IndexOf("logger.log('index page.js on destroy invoke');");
                 if (pos_destory > 0)
                 {
                     indexText = indexText.Insert(pos_destory, "heart_rate.removeEventListener(heart.event.CURRENT, hrCurrListener);"
                                 + Environment.NewLine + TabInString(8)); 
+                }
+            }
+
+            // удаляем мировое время
+            pos_destory = indexText.IndexOf("worldClock.init()");
+            if (pos_destory > 0)
+            {
+                pos_destory = indexText.IndexOf("logger.log('index page.js on destroy invoke');");
+                if (pos_destory > 0)
+                {
+                    indexText = indexText.Insert(pos_destory, "worldClock.uninit();"
+                                + Environment.NewLine + TabInString(8));
                 }
             }
             indexText = indexText.Replace("\r", "");
@@ -13769,7 +13782,7 @@ namespace Watch_Face_Editor
                         timeCircle.Second.visible = checkBox.Checked;
                         break;
                     case "checkBox_SmoothSeconds":
-                        timeCircle.SmoothSecond = checkBox.Checked;
+                        timeCircle.Smooth = checkBox.Checked;
                         break;
                     case "checkBox_Format_24hour":
                         timeCircle.Format_24hour = checkBox.Checked;
@@ -13900,7 +13913,7 @@ namespace Watch_Face_Editor
                 if (elementOptions.ContainsKey("Time")) worldClock.Time.position = elementOptions["Time"];
                 if (elementOptions.ContainsKey("TimeZone")) worldClock.TimeZone.position = elementOptions["TimeZone"];
                 if (elementOptions.ContainsKey("CityName")) worldClock.CityName.position = elementOptions["CityName"];
-                if (elementOptions.ContainsKey("TimeDiff")) worldClock.TimeDifference.position = elementOptions["TimeDiff"];
+                if (elementOptions.ContainsKey("TimeDifference")) worldClock.TimeDifference.position = elementOptions["TimeDifference"];
                 if (elementOptions.ContainsKey("ButtonPrev")) worldClock.ButtonPrev.position = elementOptions["ButtonPrev"];
                 if (elementOptions.ContainsKey("ButtonNext")) worldClock.ButtonNext.position = elementOptions["ButtonNext"];
                 if (elementOptions.ContainsKey("Icon")) worldClock.Icon.position = elementOptions["Icon"];
@@ -19230,7 +19243,7 @@ namespace Watch_Face_Editor
                         case "ElementTimeCircle":
                             ElementTimeCircle AnalogTimeCircle = (ElementTimeCircle)element;
                             ElementTimeCircle AnalogTimeCircle_temp = (ElementTimeCircle)AnalogTimeCircle.Clone();
-                            AnalogTimeCircle_temp.SmoothSecond = false;
+                            AnalogTimeCircle_temp.Smooth = false;
                             Watch_Face.ScreenAOD.Elements.Add(AnalogTimeCircle_temp);
                             break;
                         #endregion
@@ -27125,6 +27138,8 @@ namespace Watch_Face_Editor
             {
             }
         }
+
+        
     }
 }
 

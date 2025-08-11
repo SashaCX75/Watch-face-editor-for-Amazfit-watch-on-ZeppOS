@@ -18,6 +18,7 @@ using System.Xml.Linq;
 using static Microsoft.WindowsAPICodePack.Shell.PropertySystem.SystemProperties;
 using static Microsoft.WindowsAPICodePack.Shell.PropertySystem.SystemProperties.System;
 using static System.Net.Mime.MediaTypeNames;
+using static System.Windows.Forms.LinkLabel;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Watch_Face_Editor
@@ -857,6 +858,131 @@ namespace Watch_Face_Editor
                     ref compass_update, ref compass_error, ref weather_few_days, ref weather_few_days_end);
             }
 
+            // кнопки морового времени
+            if (Watch_Face != null && Watch_Face.ScreenNormal != null && Watch_Face.ScreenNormal.Elements != null)
+            {
+                List<object> Elements = Watch_Face.ScreenNormal.Elements;
+                ElementWorldClock WorldClock = (ElementWorldClock)Elements.Find(e => e.GetType().Name == "ElementWorldClock");
+                if (WorldClock != null && WorldClock.visible)
+                {
+                    bool btnExist = false;
+                    bool vibro = false;
+                    Button buttonPrev = WorldClock.ButtonPrev;
+                    if (buttonPrev != null)
+                    {
+                        buttonPrev.click_func = "toggleWorldClock(-1);";
+                        if (buttonPrev.vibro)
+                        {
+                            buttonPrev.click_func += Environment.NewLine + "vibro(28);";
+                            vibro = true;
+                        }
+
+                    }
+                    Button buttonNext = WorldClock.ButtonNext;
+                    if (buttonNext != null)
+                    {
+                        buttonNext.click_func = "toggleWorldClock(1);";
+                        if (buttonNext.vibro) { 
+                            buttonNext.click_func += Environment.NewLine + "vibro(28);";
+                            vibro = true;
+                        }
+
+                    }
+                    for (int index = 1; index <= 10; index++)
+                    {
+                        if (buttonPrev != null && index == buttonPrev.position && buttonPrev.visible)
+                        {
+                            string optionsButton = Buttons_Options(buttonPrev, "ONLY_NORMAL");
+                            if (optionsButton.Length > 5)
+                            {
+                                string name = "GMT_Button_PreviewSity";
+                                variables += TabInString(4) + "let " + name + " = ''" + Environment.NewLine;
+                                items += Environment.NewLine + TabInString(6) + name +
+                                    " = hmUI.createWidget(hmUI.widget.BUTTON, {" + optionsButton + TabInString(6) + "}); // end button" + Environment.NewLine;
+                                btnExist = true;
+                            }
+                        }
+
+                        if (buttonNext != null && index == buttonNext.position && buttonNext.visible)
+                        {
+                            string optionsButton = Buttons_Options(buttonNext, "ONLY_NORMAL");
+                            if (optionsButton.Length > 5)
+                            {
+                                string name = "GMT_Button_NextSity";
+                                variables += TabInString(4) + "let " + name + " = ''" + Environment.NewLine;
+                                items += Environment.NewLine + TabInString(6) + name +
+                                    " = hmUI.createWidget(hmUI.widget.BUTTON, {" + optionsButton + TabInString(6) + "}); // end button" + Environment.NewLine;
+                                btnExist = true;
+                            }
+                        }
+
+                    }
+
+                    if (btnExist)
+                    {
+                        if (items.IndexOf("function toggleWorldClock(step = 1) {") < 0)
+                        {
+                            items += Environment.NewLine + TabInString(6) + "function toggleWorldClock(step = 1) {";
+                            items += Environment.NewLine + TabInString(7) + "const count = worldClock.getWorldClockCount();";
+                            items += Environment.NewLine + TabInString(7) + "if (count) {";
+                            items += Environment.NewLine + TabInString(8) + "worldClockIndex += step;";
+                            items += Environment.NewLine + TabInString(8) + "worldClockIndex = worldClockIndex < 0 ? count + worldClockIndex : worldClockIndex % count;";
+                            items += Environment.NewLine + TabInString(8) + "updateWorldTime(true);";
+                            items += Environment.NewLine + TabInString(8) + "hmFS.SysProSetInt('worldClockIndex', worldClockIndex);";
+                            items += Environment.NewLine + TabInString(7) + "}";
+                            items += Environment.NewLine + TabInString(6) + "};" + Environment.NewLine;
+                        }
+
+                        if (vibro && items.IndexOf("const vibrate = hmSensor.createSensor(hmSensor.id.VIBRATE);") < 0)
+                        {
+                            items += Environment.NewLine + TabInString(6) + "// vibrate function";
+                            items += Environment.NewLine + TabInString(6) + "const vibrate = hmSensor.createSensor(hmSensor.id.VIBRATE);" + Environment.NewLine;
+                            items += TabInString(6) + "let timer_StopVibrate = null;" + Environment.NewLine;
+                            items += Environment.NewLine + TabInString(6) + "function vibro(scene = 25) {" + Environment.NewLine;
+                            items += TabInString(7) + "let stopDelay = 50;" + Environment.NewLine;
+                            items += TabInString(7) + "stopVibro();" + Environment.NewLine;
+                            items += TabInString(7) + "vibrate.stop();" + Environment.NewLine;
+                            items += TabInString(7) + "vibrate.scene = scene;" + Environment.NewLine;
+                            items += TabInString(7) + "if(scene < 23 || scene > 25) stopDelay = 1300;" + Environment.NewLine;
+                            items += TabInString(7) + "vibrate.start();" + Environment.NewLine;
+                            items += TabInString(7) + "timer_StopVibrate = timer.createTimer(stopDelay, 3000, stopVibro, {});" + Environment.NewLine;
+                            items += TabInString(6) + "}" + Environment.NewLine;
+                            items += Environment.NewLine + TabInString(6) + "function stopVibro(){" + Environment.NewLine;
+                            items += TabInString(7) + "vibrate.stop();" + Environment.NewLine;
+                            items += TabInString(7) + "if(timer_StopVibrate) timer.stopTimer(timer_StopVibrate);" + Environment.NewLine;
+                            items += TabInString(6) + "}" + Environment.NewLine;
+                            items += Environment.NewLine + TabInString(6) + "// end vibrate function" + Environment.NewLine;
+                        }
+                    }
+                }
+            }
+
+            #region функция обновления мирового времени
+            string updateWorldTime = "";
+            if (items.Contains("function updateTimeGMT()"))
+            {
+                updateWorldTime += Environment.NewLine + TabInString(7) + "updateTimeGMT();";
+            }
+            if (items.Contains("function updateTimeZoneGMT()"))
+            {
+                updateWorldTime += Environment.NewLine + TabInString(7) + "updateTimeZoneGMT();";
+            }
+            if (items.Contains("function updateSityNameGMT()"))
+            {
+                updateWorldTime += Environment.NewLine + TabInString(7) + "if (updateSity) updateSityNameGMT();";
+            }
+            if (items.Contains("function updateTimeDifferenceGMT()"))
+            {
+                updateWorldTime += Environment.NewLine + TabInString(7) + "updateTimeDifferenceGMT();";
+            }
+            if (updateWorldTime.Length > 5)
+            {
+                items += Environment.NewLine + TabInString(6) + "function updateWorldTime(updateSity = false) {";
+                items += updateWorldTime;
+                items += Environment.NewLine + TabInString(6) + "};" + Environment.NewLine; 
+            }
+            #endregion
+
             // кнопки
             if (Watch_Face.Buttons != null && Watch_Face.Buttons.enable && Watch_Face.Buttons.Button != null && Watch_Face.Buttons.Button.Count > 0)
             {
@@ -908,39 +1034,6 @@ namespace Watch_Face_Editor
                     onDigitalCrown += Environment.NewLine + TabInString(11) + "if (toastText.length > 0) hmUI.showToast({text: toastText});";
                     onDigitalCrown += Environment.NewLine + TabInString(11) + "normal_background_bg_img.setProperty(hmUI.prop.SRC, backgroundList[backgroundIndex]);";
                     if (Watch_Face.SwitchBackground.vibro) onDigitalCrown += Environment.NewLine + TabInString(11) + "vibro(28);";
-
-                    /*variables += TabInString(4) + Environment.NewLine;
-                    variables += TabInString(4) + "let degreeSum = 0;" + Environment.NewLine;
-                    variables += TabInString(4) + "let crownSensitivity = 70;  // crown sensitivity level" + Environment.NewLine;
-
-                    switchBG_function += Environment.NewLine + TabInString(6);
-                    switchBG_function += Environment.NewLine + TabInString(6) + "console.log('SwitchBackground use crown');";
-                    //switchBG_function += Environment.NewLine + TabInString(4) + "let degreeSum = 0;";
-                    //switchBG_function += Environment.NewLine + TabInString(4) + "let crownSensitivity = 70;  // crown sensitivity level";
-                    switchBG_function += Environment.NewLine + TabInString(6) + "function onDigitalCrown() {";
-                    switchBG_function += Environment.NewLine + TabInString(7) + "setTimeout(() => {";
-                    switchBG_function += Environment.NewLine + TabInString(8) + "hmApp.registerSpinEvent(function (key, degree) {";
-                    switchBG_function += Environment.NewLine + TabInString(9) + "if (key === hmApp.key.HOME) {";
-                    switchBG_function += Environment.NewLine + TabInString(10) + "degreeSum += degree;";
-                    switchBG_function += Environment.NewLine + TabInString(10) + "if (Math.abs(degreeSum) > crownSensitivity){";
-                    switchBG_function += Environment.NewLine + TabInString(11) + "let step = degreeSum < 0 ? -1 : 1;";
-                    switchBG_function += Environment.NewLine + TabInString(11) + "backgroundIndex += step;";
-                    switchBG_function += Environment.NewLine + TabInString(11) + "backgroundIndex = backgroundIndex < 0 ? backgroundList.length + backgroundIndex : backgroundIndex % backgroundList.length;";
-                    //if (useInAOD) switchBG_function += Environment.NewLine + TabInString(11) + "hmFS.SysProSetInt(`backgroundIndex_${watchfaceId}`, backgroundIndex);";
-                    switchBG_function += Environment.NewLine + TabInString(11) + "hmFS.SysProSetInt(`backgroundIndex_${watchfaceId}`, backgroundIndex);";
-                    switchBG_function += Environment.NewLine + TabInString(11) + "degreeSum = 0;";
-                    switchBG_function += Environment.NewLine + TabInString(11) + "let toastText = backgroundToastList[backgroundIndex].replace('%s', `${backgroundIndex + 1}`);";
-                    switchBG_function += Environment.NewLine + TabInString(11) + "if (toastText.length > 0) hmUI.showToast({text: toastText});";
-                    switchBG_function += Environment.NewLine + TabInString(11) + "normal_background_bg_img.setProperty(hmUI.prop.SRC, backgroundList[backgroundIndex]);";
-                    if (Watch_Face.SwitchBackground.vibro) switchBG_function += Environment.NewLine + TabInString(11) + "vibro(28);";
-                    switchBG_function += Environment.NewLine + TabInString(10) + "}";
-                    switchBG_function += Environment.NewLine + TabInString(9) + "} // key";
-                    switchBG_function += Environment.NewLine + TabInString(8) + "}) // crown";
-                    switchBG_function += Environment.NewLine + TabInString(7) + "}, 250);";
-                    switchBG_function += Environment.NewLine + TabInString(6) + "}";
-
-                    resume_call += Environment.NewLine + TabInString(8) + "onDigitalCrown();";
-                    pause_call += Environment.NewLine + TabInString(8) + "hmApp.unregisterSpinEvent();";*/
                 }
                 switchBG_function += Environment.NewLine + TabInString(6) + "//#endregion" + Environment.NewLine;
                 //switchBG_function += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
@@ -1146,6 +1239,8 @@ namespace Watch_Face_Editor
             }
 
             if (items.IndexOf("timeSensor =") >= 0) variables += TabInString(4) + "let timeSensor = '';" + Environment.NewLine;
+            if (items.IndexOf("worldClock =") >= 0) variables += TabInString(4) + "let worldClock = '';" + Environment.NewLine;
+            if (variables.IndexOf("worldClockIndex =") >= 0) variables += TabInString(4) + "worldClockIndex = hmFS.SysProGetInt('worldClockIndex') ?? 0;;" + Environment.NewLine;
 
             #region script
             // добавляем пользовательские скрипты
@@ -3777,6 +3872,7 @@ namespace Watch_Face_Editor
                     string mirrorOptionsCircleHour = "";
                     string mirrorOptionsCircleMinute = "";
                     string mirrorOptionsCircleSecond = "";
+                    string readOptionsSmooth = "";
 
                     if (TimeCircle.Hour != null && TimeCircle.Hour.visible)
                     {
@@ -3805,6 +3901,9 @@ namespace Watch_Face_Editor
                         optionsCircleSecond = Circle_Scale_Progress_Options(circle_scale, false, show_level);
                         mirrorOptionsCircleSecond = Circle_Scale_Progress_Options(circle_scale, true, show_level);
                     }
+
+                    //smoothPosition = AnalogTimePro.SmoothSecond.position;
+                    readOptionsSmooth = TIME_CIRCLE_SMOOTH_OptionsRead(TimeCircle, optionNameStart, show_level);
 
                     for (int index = 1; index <= 5; index++)
                     {
@@ -3913,7 +4012,7 @@ namespace Watch_Face_Editor
                                         "_mirror.setAlpha(" + TimeCircle.Minute.alpha.ToString() + ");" + Environment.NewLine;
                             }
 
-                            if (!TimeCircle.SmoothSecond)  // перескакивает между минутами
+                            if (!TimeCircle.Smooth)  // перескакивает между минутами
                             {
                                 if (items.IndexOf("if (!timeSensor) timeSensor = hmSensor.createSensor(hmSensor.id.TIME);") < 0)
                                     items += Environment.NewLine + TabInString(6) + "if (!timeSensor) timeSensor = hmSensor.createSensor(hmSensor.id.TIME);";
@@ -3926,10 +4025,12 @@ namespace Watch_Face_Editor
 
                                 // обновляем прогресс шкалы внутри функции
                                 time_update += Environment.NewLine + TabInString(7) + "if (updateMinute) { // Minute Circle";
-                                time_update += Environment.NewLine + TabInString(8) + "let " + optionNameStart + "circle_scale_minute = minute;";
+                                //time_update += Environment.NewLine + TabInString(8) + "let " + optionNameStart + "circle_scale_minute = minute;";
                                 string tempProgressName = optionNameStart + "minuteCircleProgress";
-                                time_update += Environment.NewLine + TabInString(8) +
-                                        "let " + tempProgressName + " = " + optionNameStart + "circle_scale_minute/60 + (second/60)/60;";
+                                //time_update += Environment.NewLine + TabInString(8) +
+                                //        "let " + tempProgressName + " = " + optionNameStart + "circle_scale_minute/60 + (second/60)/60;";
+                                //time_update += Environment.NewLine + TabInString(8) + "let " + tempProgressName + " = minute/60 + (second/60)/60;";
+                                time_update += Environment.NewLine + TabInString(8) + "let " + tempProgressName + " = minute/60;";
                                 time_update += Environment.NewLine + TabInString(8) + tempProgressName + " = " + tempProgressName + " * 100;";
 
                                 //optionsCircleMinute = Circle_Scale_Progress_Options(TimeCircle.Minute, false, show_level, "", 2);
@@ -3998,12 +4099,11 @@ namespace Watch_Face_Editor
 
                                 // обновляем прогресс шкалы внутри функции
                                 time_update += Environment.NewLine + TabInString(7) + "if (updateMinute) { // Minute Circle";
-                                time_update += Environment.NewLine + TabInString(8) + "let " + optionNameStart + "circle_scale_minute = minute;";
+                                //time_update += Environment.NewLine + TabInString(8) + "let " + optionNameStart + "circle_scale_minute = minute;";
                                 string tempProgressName = optionNameStart + "minuteCircleProgress";
                                 //time_update += Environment.NewLine + TabInString(8) +
                                 //        "let " + tempProgressName + " = " + optionNameStart + "circle_scale_minute/60 + (second/60)/60;";
-                                time_update += Environment.NewLine + TabInString(8) +
-                                        "let " + tempProgressName + " = " + optionNameStart + "circle_scale_minute/60;";
+                                time_update += Environment.NewLine + TabInString(8) + "let " + tempProgressName + " = minute/60 +(second / 60) / 60;";
                                 time_update += Environment.NewLine + TabInString(8) + tempProgressName + " = " + tempProgressName + " * 100;";
                                 
                                 time_update += Environment.NewLine + TabInString(8) + "if (" + variablesName + ") " +
@@ -4046,7 +4146,7 @@ namespace Watch_Face_Editor
                                         "_mirror.setAlpha(" + TimeCircle.Second.alpha.ToString() + ");" + Environment.NewLine;
                             }
 
-                            if (!TimeCircle.SmoothSecond)  // обычный ход прогресса
+                            if (!TimeCircle.Smooth)  // обычный ход прогресса
                             {
                                 if (items.IndexOf("let screenType = hmSetting.getScreenType();") < 0)
                                     items += Environment.NewLine + TabInString(6) + "let screenType = hmSetting.getScreenType();";
@@ -4087,11 +4187,12 @@ namespace Watch_Face_Editor
 
                                 // обновляем прогресс шкалы внутри функции
                                 time_update += Environment.NewLine + TabInString(7) + "// Second Circle";
-                                time_update += Environment.NewLine + TabInString(7) + "let " + optionNameStart + "circle_scale_second = second;";
+                                //time_update += Environment.NewLine + TabInString(7) + "let " + optionNameStart + "circle_scale_second = second;";
                                 string tempProgressName = optionNameStart + "secondCircleProgress";
-                                time_update += Environment.NewLine + TabInString(7) +
-                                        "let " + tempProgressName + " = " + optionNameStart + "circle_scale_second/60;";
-                                time_update += Environment.NewLine + TabInString(7) + tempProgressName + " = " + tempProgressName + " * 100;";
+                                //time_update += Environment.NewLine + TabInString(7) +
+                                //        "let " + tempProgressName + " = " + optionNameStart + "circle_scale_second/60;";
+                                time_update += Environment.NewLine + TabInString(7) + "let " + tempProgressName + " = 100 * second/60;";
+                                //time_update += Environment.NewLine + TabInString(7) + tempProgressName + " = " + tempProgressName + " * 100;";
 
                                 time_update += Environment.NewLine + TabInString(7) + "if (" + variablesName + ") " +
                                     variablesName + ".setProperty(hmUI.prop.LEVEL, " + tempProgressName + " );";
@@ -4106,225 +4207,572 @@ namespace Watch_Face_Editor
                             }
                             else  // секундная стрелка движеться плавно
                             {
-                                //if (AnalogTimePro.SmoothSecond.type == 1)
-                                //{
-                                //    if (optionNameStart == "normal_")
-                                //    {
-                                //        variables += TabInString(4) + "let " + optionNameStart +
-                                //            "analog_clock_pro_second_pointer_img = ''" + Environment.NewLine;
+                                if (items.IndexOf("if (!timeSensor) timeSensor = hmSensor.createSensor(hmSensor.id.TIME);") < 0)
+                                    items += Environment.NewLine + TabInString(6) + "if (!timeSensor) timeSensor = hmSensor.createSensor(hmSensor.id.TIME);";
 
-                                //        if (items.IndexOf("let screenType = hmSetting.getScreenType();") < 0)
-                                //            items += Environment.NewLine + TabInString(6) + "let screenType = hmSetting.getScreenType();";
+                                if (items.IndexOf("let screenType = hmSetting.getScreenType();") < 0)
+                                    items += Environment.NewLine + TabInString(6) + "let screenType = hmSetting.getScreenType();";
+                                if (optionNameStart == "normal_")
+                                    resume_call += TabInString(8) + "if (screenType == hmSetting.screen_type.WATCHFACE) {" + Environment.NewLine;
+                                else resume_call += TabInString(8) + "if (screenType == hmSetting.screen_type.AOD) {" + Environment.NewLine;
+                                string timerName = optionNameStart + "timerUpdateSecCircle";
+                                variables += TabInString(4) + "let " + timerName + " = undefined;" + Environment.NewLine;
+                                resume_call += TabInString(9) + "if (!" + timerName + ") {" + Environment.NewLine;
+                                resume_call += TabInString(10) + "let animDelay = 0;" + Environment.NewLine;
+                                //resume_call += TabInString(10) + "let animDelay = timeSensor.utc % 1000;" + Environment.NewLine;
+                                resume_call += TabInString(10) + "let animRepeat = 1000/12;" + Environment.NewLine;
+                                resume_call += TabInString(10) + timerName + " = timer.createTimer(animDelay, animRepeat, (function (option) {" + Environment.NewLine;
+                                resume_call += TabInString(11) + "time_update(false, false);" + Environment.NewLine;
+                                resume_call += TabInString(10) + "}));  // end timer " + Environment.NewLine;
+                                resume_call += TabInString(9) + "};  // end timer check" + Environment.NewLine;
+                                resume_call += TabInString(8) + "};  // end screenType" + Environment.NewLine + Environment.NewLine;
 
-                                //        if (items.IndexOf("const deviceInfo = hmSetting.getDeviceInfo();") < 0)
-                                //            items += Environment.NewLine + TabInString(6) + "const deviceInfo = hmSetting.getDeviceInfo();";
-                                //        if (items.IndexOf("if (!timeSensor) timeSensor = hmSensor.createSensor(hmSensor.id.TIME);") < 0)
-                                //            items += Environment.NewLine + TabInString(6) + "if (!timeSensor) timeSensor = hmSensor.createSensor(hmSensor.id.TIME);";
+                                pause_call += TabInString(8) + "if (" + timerName + ") {" + Environment.NewLine;
+                                pause_call += TabInString(9) + "timer.stopTimer(" + timerName + ");" + Environment.NewLine;
+                                pause_call += TabInString(9) + timerName + " = undefined;" + Environment.NewLine;
+                                pause_call += TabInString(8) + "}" + Environment.NewLine;
 
-                                //        items += readOptionsPointerProSecond + Environment.NewLine;
-                                //        items += Environment.NewLine + TabInString(6) +
-                                //            optionNameStart + "analog_clock_pro_second_pointer_img = hmUI.createWidget(hmUI.widget.IMG, {" +
-                                //                optionsPointerProSecond + TabInString(6) + "});" + Environment.NewLine;
+                                // обновляем прогресс шкалы внутри функции
+                                time_update += Environment.NewLine + TabInString(7) + "// Second Circle";
+                                //time_update += Environment.NewLine + TabInString(7) + "let " + optionNameStart + "circle_scale_second = second;";
+                                string tempProgressName = optionNameStart + "secondCircleProgress";
+                                time_update += Environment.NewLine + TabInString(7) +
+                                        "let " + tempProgressName + " = 100 * (second + (timeSensor.utc % 1000)/1000)/60;";
+                                //time_update += Environment.NewLine + TabInString(7) + tempProgressName + " = " + tempProgressName + " * 100;";
 
-                                //        items += Environment.NewLine + TabInString(6) + "function startSecAnim(sec, animDuration) {";
-                                //        items += Environment.NewLine + TabInString(7) + "const secAnim = {";
-                                //        items += Environment.NewLine + TabInString(8) + "anim_rate: 'linear',";
-                                //        items += Environment.NewLine + TabInString(8) + "anim_duration: animDuration,";
-                                //        items += Environment.NewLine + TabInString(8) + "anim_from: sec,";
-                                //        items += Environment.NewLine + TabInString(8) + "anim_to: sec + (" +
-                                //            (AnalogTimePro.Second.end_angle - AnalogTimePro.Second.start_angle).ToString() + "*(animDuration*6/1000))/360,";
-                                //        items += Environment.NewLine + TabInString(8) + "repeat_count: 1,";
-                                //        items += Environment.NewLine + TabInString(8) + "anim_fps: " + AnalogTimePro.SmoothSecond.fps.ToString() + ",";
-                                //        items += Environment.NewLine + TabInString(8) + "anim_key: 'angle',";
-                                //        items += Environment.NewLine + TabInString(8) + "anim_status: 1,";
-                                //        items += Environment.NewLine + TabInString(7) + "}";
-                                //        items += Environment.NewLine + TabInString(7) + optionNameStart +
-                                //            "analog_clock_pro_second_pointer_img.setProperty(hmUI.prop.ANIM, secAnim);";
-                                //        items += Environment.NewLine + TabInString(6) + "}";
+                                time_update += Environment.NewLine + TabInString(7) + "if (" + variablesName + ") " +
+                                    variablesName + ".setProperty(hmUI.prop.LEVEL, " + tempProgressName + " );";
 
-                                //        string timerName = optionNameStart + "timerUpdateSecSmooth";
-                                //        variables += TabInString(4) + "let " + timerName + " = undefined;" + Environment.NewLine;
-                                //        variables += TabInString(4) + "let lastTime = 0;" + Environment.NewLine;
+                                if (TimeCircle.Second.mirror)
+                                {
+                                    time_update += Environment.NewLine + TabInString(7) + "if (" + variablesName + "_mirror) " +
+                                    variablesName + "_mirror.setProperty(hmUI.prop.LEVEL, " + tempProgressName + " );";
+                                }
 
-                                //        resume_call += TabInString(8) + "let secAngle = " + AnalogTimePro.Second.start_angle.ToString() + " + (" +
-                                //            (AnalogTimePro.Second.end_angle - AnalogTimePro.Second.start_angle).ToString() +
-                                //            "*6)*(timeSensor.second + ((timeSensor.utc % 1000) / 1000))/360;" + Environment.NewLine;
-                                //        resume_call += TabInString(8) + optionNameStart +
-                                //            "analog_clock_pro_second_pointer_img.setProperty(hmUI.prop.ANGLE, secAngle);" + Environment.NewLine;
-
-                                //        resume_call += TabInString(8) + "if (screenType == hmSetting.screen_type.WATCHFACE) {" + Environment.NewLine;
-                                //        resume_call += TabInString(9) + "if (!" + timerName + ") {" + Environment.NewLine;
-                                //        resume_call += TabInString(10) + "let duration = 0;" + Environment.NewLine;
-                                //        resume_call += TabInString(10) + "let animDuration = 5000;" + Environment.NewLine;
-                                //        resume_call += TabInString(10) + "if (timeSensor.second > 55) animDuration = 1000*(60.1 - (timeSensor.second - (timeSensor.utc % 1000) / 1000));" + Environment.NewLine;
-                                //        resume_call += TabInString(10) + "let diffTime = timeSensor.utc - lastTime;" + Environment.NewLine;
-                                //        resume_call += TabInString(10) + "if (diffTime < animDuration) duration = animDuration - diffTime;" + Environment.NewLine;
-                                //        resume_call += TabInString(10) + timerName + " = timer.createTimer(duration, animDuration, (function (option) {" + Environment.NewLine;
-                                //        resume_call += TabInString(11) + "lastTime = timeSensor.utc;" + Environment.NewLine;
-                                //        resume_call += TabInString(11) + "secAngle = " + AnalogTimePro.Second.start_angle.ToString() + " + (" +
-                                //            (AnalogTimePro.Second.end_angle - AnalogTimePro.Second.start_angle).ToString() +
-                                //            "*6)*(timeSensor.second + ((timeSensor.utc % 1000) / 1000))/360;" + Environment.NewLine;
-                                //        resume_call += TabInString(11) + "startSecAnim(secAngle, animDuration);" + Environment.NewLine;
-                                //        resume_call += TabInString(10) + "}));  // end timer " + Environment.NewLine;
-                                //        resume_call += TabInString(9) + "};  // end timer check" + Environment.NewLine;
-                                //        resume_call += TabInString(8) + "};  // end screenType" + Environment.NewLine + Environment.NewLine;
-
-                                //        pause_call += TabInString(8) + "if (" + timerName + ") {" + Environment.NewLine;
-                                //        pause_call += TabInString(9) + "timer.stopTimer(" + timerName + ");" + Environment.NewLine;
-                                //        pause_call += TabInString(9) + timerName + " = undefined;" + Environment.NewLine;
-                                //        pause_call += TabInString(8) + "}" + Environment.NewLine;
-                                //    }
-                                //}
-                                //else if (AnalogTimePro.SmoothSecond.type == 2)
-                                //{
-                                //    variables += TabInString(4) + "let " + optionNameStart +
-                                //        "analog_clock_pro_second_pointer_img = ''" + Environment.NewLine;
-
-                                //    if (items.IndexOf("const deviceInfo = hmSetting.getDeviceInfo();") < 0)
-                                //        items += Environment.NewLine + TabInString(6) + "const deviceInfo = hmSetting.getDeviceInfo();";
-                                //    if (items.IndexOf("if (!timeSensor) timeSensor = hmSensor.createSensor(hmSensor.id.TIME);") < 0)
-                                //        items += Environment.NewLine + TabInString(6) + "if (!timeSensor) timeSensor = hmSensor.createSensor(hmSensor.id.TIME);";
-
-                                //    items += readOptionsPointerProSecond + Environment.NewLine;
-                                //    items += Environment.NewLine + TabInString(6) +
-                                //        optionNameStart + "analog_clock_pro_second_pointer_img = hmUI.createWidget(hmUI.widget.IMG, {" +
-                                //            optionsPointerProSecond + TabInString(6) + "});" + Environment.NewLine;
-
-                                //    if (items.IndexOf("let screenType = hmSetting.getScreenType();") < 0)
-                                //        items += Environment.NewLine + TabInString(6) + "let screenType = hmSetting.getScreenType();";
-                                //    if (optionNameStart == "normal_")
-                                //    {
-                                //        resume_call += TabInString(8) + "if (screenType == hmSetting.screen_type.WATCHFACE) {" + Environment.NewLine;
-
-                                //    }
-                                //    else
-                                //    {
-                                //        resume_call += TabInString(8) + "if (screenType == hmSetting.screen_type.AOD) {" + Environment.NewLine;
-                                //    }
-                                //    string timerName = optionNameStart + "timerUpdateSecSmooth";
-                                //    variables += TabInString(4) + "let " + timerName + " = undefined;" + Environment.NewLine;
-                                //    resume_call += TabInString(9) + "if (!" + timerName + ") {" + Environment.NewLine;
-                                //    resume_call += TabInString(10) + "let animDelay = 0;" + Environment.NewLine;
-                                //    //resume_call += TabInString(10) + "let animDelay = timeSensor.utc % 1000;" + Environment.NewLine;
-                                //    resume_call += TabInString(10) + "let animRepeat = 1000/" + AnalogTimePro.SmoothSecond.fps.ToString() + ";" + Environment.NewLine;
-                                //    resume_call += TabInString(10) + timerName + " = timer.createTimer(animDelay, animRepeat, (function (option) {" + Environment.NewLine;
-                                //    resume_call += TabInString(11) + "time_update(false, false);" + Environment.NewLine;
-                                //    resume_call += TabInString(10) + "}));  // end timer " + Environment.NewLine;
-                                //    resume_call += TabInString(9) + "};  // end timer check" + Environment.NewLine;
-                                //    resume_call += TabInString(8) + "};  // end screenType" + Environment.NewLine + Environment.NewLine;
-
-                                //    pause_call += TabInString(8) + "if (" + timerName + ") {" + Environment.NewLine;
-                                //    pause_call += TabInString(9) + "timer.stopTimer(" + timerName + ");" + Environment.NewLine;
-                                //    pause_call += TabInString(9) + timerName + " = undefined;" + Environment.NewLine;
-                                //    pause_call += TabInString(8) + "}" + Environment.NewLine;
-
-                                //    time_update += Environment.NewLine + TabInString(7) + "// Second Pointer";
-                                //    time_update += Environment.NewLine + TabInString(7) + "let " + tempAngleName +
-                                //        " = " + (AnalogTimePro.Second.end_angle - AnalogTimePro.Second.start_angle).ToString() + ";";
-                                //    time_update += Environment.NewLine + TabInString(7) +
-                                //        "let " + optionNameStart + "angle_second = " + AnalogTimePro.Second.start_angle.ToString() + " + " +
-                                //        tempAngleName + "*(second + (timeSensor.utc % 1000)/1000)/60;";
-
-                                //    time_update += Environment.NewLine + TabInString(7) +
-                                //            "if (" + optionNameStart + "analog_clock_pro_second_pointer_img) " +
-                                //            optionNameStart + "analog_clock_pro_second_pointer_img.setProperty(hmUI.prop.ANGLE, " +
-                                //            optionNameStart + "angle_second);" + Environment.NewLine;
-                                //}
-                                //else if (AnalogTimePro.SmoothSecond.type == 3)
-                                //{
-                                //    coverPointerProSecond = "";
-                                //    if (optionNameStart == "normal_" && AnalogTimePro.Second.start_angle == 0 && AnalogTimePro.Second.end_angle == 360)
-                                //    {
-                                //        optionsPointerProSecond = IMG_POINTER_Smooth_Second_Options(AnalogTimePro.Second, AnalogTimePro.SmoothSecond.fps, show_level);
-                                //        if (optionsPointerProSecond.Length > 5)
-                                //        {
-                                //            items += readOptionsPointerProSecond + Environment.NewLine;
-                                //            variables += TabInString(4) + "let " + optionNameStart +
-                                //                "analog_clock_time_pointer_smooth_second = ''" + Environment.NewLine;
-                                //            items += Environment.NewLine + TabInString(6) +
-                                //                optionNameStart + "analog_clock_time_pointer_smooth_second = hmUI.createWidget(hmUI.widget.TIME_POINTER, {" +
-                                //                    optionsPointerProSecond + TabInString(6) + "});" + Environment.NewLine;
-                                //        }
-
-                                //    }
-                                //}
-                                //else if (AnalogTimePro.SmoothSecond.type == 4)
-                                //{
-                                //    if (optionNameStart == "normal_")
-                                //    {
-                                //        variables += TabInString(4) + "let " + optionNameStart +
-                                //            "analog_clock_pro_second_pointer_img = ''" + Environment.NewLine;
-
-                                //        if (items.IndexOf("let screenType = hmSetting.getScreenType();") < 0)
-                                //            items += Environment.NewLine + TabInString(6) + "let screenType = hmSetting.getScreenType();";
-
-                                //        if (items.IndexOf("const deviceInfo = hmSetting.getDeviceInfo();") < 0)
-                                //            items += Environment.NewLine + TabInString(6) + "const deviceInfo = hmSetting.getDeviceInfo();";
-                                //        if (items.IndexOf("if (!timeSensor) timeSensor = hmSensor.createSensor(hmSensor.id.TIME);") < 0)
-                                //            items += Environment.NewLine + TabInString(6) + "if (!timeSensor) timeSensor = hmSensor.createSensor(hmSensor.id.TIME);";
-
-                                //        items += readOptionsPointerProSecond + Environment.NewLine;
-                                //        items += Environment.NewLine + TabInString(6) +
-                                //            optionNameStart + "analog_clock_pro_second_pointer_img = hmUI.createWidget(hmUI.widget.IMG, {" +
-                                //                optionsPointerProSecond + TabInString(6) + "});" + Environment.NewLine;
-
-                                //        items += Environment.NewLine + TabInString(6) + "function startSecAnim(sec, animDuration) {";
-                                //        items += Environment.NewLine + TabInString(7) + "const secAnim = {";
-                                //        items += Environment.NewLine + TabInString(8) + "anim_steps: [{";
-                                //        items += Environment.NewLine + TabInString(9) + "anim_rate: 'linear',";
-                                //        items += Environment.NewLine + TabInString(9) + "anim_duration: animDuration,";
-                                //        items += Environment.NewLine + TabInString(9) + "anim_from: sec,";
-                                //        items += Environment.NewLine + TabInString(9) + "anim_to: sec + (" +
-                                //            (AnalogTimePro.Second.end_angle - AnalogTimePro.Second.start_angle).ToString() + "*(animDuration*6/1000))/360,";
-                                //        items += Environment.NewLine + TabInString(9) + "anim_key: 'angle',";
-                                //        items += Environment.NewLine + TabInString(8) + "}],";
-                                //        items += Environment.NewLine + TabInString(8) + "anim_fps: " + AnalogTimePro.SmoothSecond.fps.ToString() + ",";
-                                //        //items += Environment.NewLine + TabInString(8) + "anim_status: 1,";
-                                //        items += Environment.NewLine + TabInString(8) + "anim_auto_start: 1,";
-                                //        //items += Environment.NewLine + TabInString(8) + "repeat_count: 1,";
-                                //        items += Environment.NewLine + TabInString(8) + "anim_repeat: 0,";
-                                //        items += Environment.NewLine + TabInString(8) + "anim_auto_destroy: 1,";
-                                //        items += Environment.NewLine + TabInString(7) + "}";
-                                //        items += Environment.NewLine + TabInString(7) + optionNameStart +
-                                //            "analog_clock_pro_second_pointer_img.setProperty(hmUI.prop.ANIM, secAnim);";
-                                //        items += Environment.NewLine + TabInString(6) + "}";
-
-                                //        string timerName = optionNameStart + "timerUpdateSecSmooth";
-                                //        variables += TabInString(4) + "let " + timerName + " = undefined;" + Environment.NewLine;
-                                //        variables += TabInString(4) + "let lastTime = 0;" + Environment.NewLine;
-
-                                //        resume_call += TabInString(8) + "let secAngle = " + AnalogTimePro.Second.start_angle.ToString() + " + (" +
-                                //            (AnalogTimePro.Second.end_angle - AnalogTimePro.Second.start_angle).ToString() +
-                                //            "*6)*(timeSensor.second + ((timeSensor.utc % 1000) / 1000))/360;" + Environment.NewLine;
-                                //        resume_call += TabInString(8) + optionNameStart +
-                                //            "analog_clock_pro_second_pointer_img.setProperty(hmUI.prop.ANGLE, secAngle);" + Environment.NewLine;
-
-                                //        resume_call += TabInString(8) + "if (screenType == hmSetting.screen_type.WATCHFACE) {" + Environment.NewLine;
-                                //        resume_call += TabInString(9) + "if (!" + timerName + ") {" + Environment.NewLine;
-                                //        resume_call += TabInString(10) + "let duration = 0;" + Environment.NewLine;
-                                //        resume_call += TabInString(10) + "let animDuration = 5000;" + Environment.NewLine;
-                                //        resume_call += TabInString(10) + "if (timeSensor.second > 55) animDuration = 1000*(60.1 - (timeSensor.second - (timeSensor.utc % 1000) / 1000));" + Environment.NewLine;
-                                //        resume_call += TabInString(10) + "let diffTime = timeSensor.utc - lastTime;" + Environment.NewLine;
-                                //        resume_call += TabInString(10) + "if (diffTime < animDuration) duration = animDuration - diffTime;" + Environment.NewLine;
-                                //        resume_call += TabInString(10) + timerName + " = timer.createTimer(duration, animDuration, (function (option) {" + Environment.NewLine;
-                                //        resume_call += TabInString(11) + "lastTime = timeSensor.utc;" + Environment.NewLine;
-                                //        resume_call += TabInString(11) + "secAngle = " + AnalogTimePro.Second.start_angle.ToString() + " + (" +
-                                //            (AnalogTimePro.Second.end_angle - AnalogTimePro.Second.start_angle).ToString() +
-                                //            "*6)*(timeSensor.second + ((timeSensor.utc % 1000) / 1000))/360;" + Environment.NewLine;
-                                //        resume_call += TabInString(11) + "startSecAnim(secAngle, animDuration);" + Environment.NewLine;
-                                //        resume_call += TabInString(10) + "}));  // end timer " + Environment.NewLine;
-                                //        resume_call += TabInString(9) + "};  // end timer check" + Environment.NewLine;
-                                //        resume_call += TabInString(8) + "};  // end screenType" + Environment.NewLine + Environment.NewLine;
-
-                                //        pause_call += TabInString(8) + "if (" + timerName + ") {" + Environment.NewLine;
-                                //        pause_call += TabInString(9) + "timer.stopTimer(" + timerName + ");" + Environment.NewLine;
-                                //        pause_call += TabInString(9) + timerName + " = undefined;" + Environment.NewLine;
-                                //        pause_call += TabInString(8) + "}" + Environment.NewLine;
-                                //    }
-                                //}
+                                time_update += Environment.NewLine;
                             }
                         }
                     }
+                    // плавные круги
+                    if (readOptionsSmooth.Length > 5)
+                    {
+                        items += readOptionsSmooth + Environment.NewLine;
+                    }
+                    break;
+                #endregion
+
+                #region ElementWorldClock
+                case "ElementWorldClock":
+                    ElementWorldClock WorldClock = (ElementWorldClock)element;
+                    if (!WorldClock.visible) return;
+                    int timePosition = 99;
+                    int timeZonePosition = 99;
+                    int cityNameGMTPosition = 99;
+                    int timeDifferencePosition = 99;
+                    iconPosition = 99;
+
+                    string timeOptions = "";
+                    string timeZoneOptions = "";
+                    string cityNameGMTOptions = "";
+                    string timeDifferenceOptions = "";
+                    iconOptions = "";
+
+                    if (WorldClock.Time != null && WorldClock.Time.visible)
+                    {
+                        timePosition = WorldClock.Time.position;
+                        timeOptions = TEXT_Options(WorldClock.Time, show_level);
+                    }
+                    if (WorldClock.TimeZone != null && WorldClock.TimeZone.visible)
+                    {
+                        timeZonePosition = WorldClock.TimeZone.position;
+                        timeZoneOptions = TEXT_Options(WorldClock.TimeZone, show_level);
+                    }
+                    if (WorldClock.CityName != null && WorldClock.CityName.visible)
+                    {
+                        cityNameGMTPosition = WorldClock.CityName.position;
+                        cityNameGMTOptions = TEXT_Options(WorldClock.CityName, show_level);
+                    }
+                    if (WorldClock.TimeDifference != null && WorldClock.TimeDifference.visible)
+                    {
+                        timeDifferencePosition = WorldClock.TimeDifference.position;
+                        timeDifferenceOptions = TEXT_Options(WorldClock.TimeDifference, show_level);
+                    }
+                    if (WorldClock.Icon != null && WorldClock.Icon.visible)
+                    {
+                        iconPosition = WorldClock.Icon.position;
+                        hmUI_widget_IMG img_icon = WorldClock.Icon;
+                        iconOptions = IMG_Options(img_icon, show_level);
+                    }
+
+                    for (int index = 1; index <= 10; index++)
+                    {
+                        // Time
+                        if (index == timePosition && timeOptions.Length > 5)
+                        {
+                            if (SelectedModel.versionOS >= 2 && WorldClock.Time.font != null && WorldClock.Time.font.Length > 3)
+                            {
+                                string cacheName = "// FontName: " + WorldClock.Time.font + "; FontSize: " + WorldClock.Time.text_size.ToString() + "; Cache: full";
+                                if (fonts_cache.IndexOf(cacheName) < 0)
+                                {
+                                    string fontCacheOptions = TEXT_Cache_Options(WorldClock.Time, true);
+                                    if (fontCacheOptions.Length > 5)
+                                    {
+                                        fonts_cache += Environment.NewLine + TabInString(6) + cacheName + Environment.NewLine;
+                                        fonts_cache += TabInString(6) + "hmUI.createWidget(hmUI.widget.TEXT, {" + fontCacheOptions +
+                                            TabInString(6) + "});" + Environment.NewLine;
+                                    }
+                                }
+                            }
+
+                            string variablesName = optionNameStart + "time_gmt_text";
+                            variables += TabInString(4) + "let " + variablesName + " = ''" + Environment.NewLine;
+
+                            if (variables.IndexOf("let worldClockIndex = 0") < 0)
+                                variables += TabInString(4) + "let worldClockIndex = 0" + Environment.NewLine;
+
+                            if (items.IndexOf("if (!timeSensor) timeSensor = hmSensor.createSensor(hmSensor.id.TIME);") < 0)
+                                items += TabInString(6) + "if (!timeSensor) timeSensor = hmSensor.createSensor(hmSensor.id.TIME);" + Environment.NewLine;
+
+                            if (items.IndexOf("if (!worldClock) worldClock = hmSensor.createSensor(hmSensor.id.WORLD_CLOCK);") < 0)
+                            {
+                                items += TabInString(6) + Environment.NewLine;
+                                items += TabInString(6) + "if (!worldClock) {" + Environment.NewLine;
+                                items += TabInString(7) + "worldClock = hmSensor.createSensor(hmSensor.id.WORLD_CLOCK);" + Environment.NewLine;
+                                items += TabInString(7) + "worldClock.init();" + Environment.NewLine;
+                                items += TabInString(6) + "};" + Environment.NewLine;
+                            }
+
+                            items += Environment.NewLine + TabInString(6) + variablesName + " = hmUI.createWidget(hmUI.widget.TEXT, {" +
+                                    timeOptions + TabInString(6) + "});" + Environment.NewLine;
+
+                            string timeStr = optionNameStart + "timeStr";
+                            if (items.IndexOf("function updateTimeGMT() {") < 0)
+                            {
+                                items += Environment.NewLine + TabInString(6) + "function updateTimeGMT() {";
+                                items += Environment.NewLine + TabInString(7) + "console.log('updateTimeGMT()');";
+                                items += Environment.NewLine + TabInString(7) + "let " + timeStr + " = '--:--';";
+                                items += Environment.NewLine + TabInString(7) + "let count = worldClock.getWorldClockCount();";
+                                items += Environment.NewLine + TabInString(7) + "if (count > 0) {";
+                                items += Environment.NewLine + TabInString(8) + "if (worldClockIndex >= count) worldClockIndex = count-1;";
+                                items += Environment.NewLine + TabInString(8) + "let worldData = worldClock.getWorldClockInfo(worldClockIndex);";
+                                items += Environment.NewLine + TabInString(8) + "let hour = worldData.hour;";
+                                items += Environment.NewLine + TabInString(8) + "let minute = worldData.minute;";
+
+                                string delimeter = ":";
+                                if (WorldClock.Time.unit_string.Length > 0) delimeter = WorldClock.Time.unit_string;
+                                string unitAmStr = "Am";
+                                string unitPmStr = "Pm";
+                                if (WorldClock.Time.unit_type == 0)
+                                {
+                                    unitAmStr = unitAmStr.ToLower();
+                                    unitPmStr = unitPmStr.ToLower();
+                                }
+                                if (WorldClock.Time.unit_type == 2)
+                                {
+                                    unitAmStr = unitAmStr.ToUpper();
+                                    unitPmStr = unitPmStr.ToUpper();
+                                }
+                                items += Environment.NewLine + TabInString(8) + "if (!timeSensor.is24Hour) hour = hour % 12 || 12;";
+                                if (WorldClock.Time.padding) 
+                                    items += Environment.NewLine + TabInString(8) + "let " + optionNameStart + "hourStr = hour.toString().padStart(2, '0');";
+                                else items += Environment.NewLine + TabInString(8) + "let " + optionNameStart + "hourStr = hour.toString();";
+                                items += Environment.NewLine + TabInString(8) + "let " + optionNameStart + "minuteStr = minute.toString().padStart(2, '0');";
+                                items += Environment.NewLine + TabInString(8) + timeStr + " = " + optionNameStart + "hourStr" + " + '" + 
+                                    delimeter + "' + " + optionNameStart + "minuteStr;";
+
+                                if (WorldClock.Time.unit_end == 1)
+                                {
+                                    items += Environment.NewLine + TabInString(8) + "if (!timeSensor.is24Hour) {";
+                                    items += Environment.NewLine + TabInString(9) + "if (hour > 11) " + timeStr + " = " + timeStr + " + ' " + unitPmStr + "';";
+                                    items += Environment.NewLine + TabInString(9) + "else " + timeStr + " = " + timeStr + " + ' " + unitAmStr + "';";
+                                    items += Environment.NewLine + TabInString(8) + "};";
+                                }
+                                else if (WorldClock.Time.unit_end == 0)
+                                {
+                                    items += Environment.NewLine + TabInString(8) + "if (!timeSensor.is24Hour) {";
+                                    items += Environment.NewLine + TabInString(9) + "if (hour > 11) " + timeStr + " = '" + unitPmStr + " ' + " + timeStr + ";";
+                                    items += Environment.NewLine + TabInString(9) + "else " + timeStr + " = '" + unitAmStr + " ' + " + timeStr + ";";
+                                    items += Environment.NewLine + TabInString(8) + "};";
+                                }
+                                items += Environment.NewLine + TabInString(7) + "} // count";
+                                items += Environment.NewLine + TabInString(7) + "if (" + variablesName + ") " +
+                                    variablesName + ".setProperty(hmUI.prop.TEXT, " + timeStr + ");";
+                                items += Environment.NewLine + TabInString(6) + "};";
+                            }
+                            else
+                            {
+                                int pos = items.IndexOf("function updateTimeGMT() ");
+
+                                int pos_1 = items.IndexOf("} // count", pos);
+                                if (pos_1 > 0) {
+                                    string insetrStr = "";
+                                    string delimeter = ":";
+                                    if (WorldClock.Time.unit_string.Length > 0) delimeter = WorldClock.Time.unit_string;
+                                    string unitAmStr = "Am";
+                                    string unitPmStr = "Pm";
+                                    if (WorldClock.Time.unit_type == 0)
+                                    {
+                                        unitAmStr = unitAmStr.ToLower();
+                                        unitPmStr = unitPmStr.ToLower();
+                                    }
+                                    if (WorldClock.Time.unit_type == 2)
+                                    {
+                                        unitAmStr = unitAmStr.ToUpper();
+                                        unitPmStr = unitPmStr.ToUpper();
+                                    }
+
+                                    if (WorldClock.Time.padding)
+                                        insetrStr += Environment.NewLine + TabInString(8) + "let " + optionNameStart + "hourStr = hour.toString().padStart(2, '0');";
+                                    else insetrStr += Environment.NewLine + TabInString(8) + "let " + optionNameStart + "hourStr = hour.toString();";
+                                    insetrStr += Environment.NewLine + TabInString(8) + "let " + optionNameStart + "minuteStr = minute.toString().padStart(2, '0');";
+                                    insetrStr += Environment.NewLine + TabInString(8) + timeStr + " = " + optionNameStart + "hourStr" + " + '" +
+                                        delimeter + "' + " + optionNameStart + "minuteStr;";
+
+                                    if (WorldClock.Time.unit_end == 1)
+                                    {
+                                        insetrStr += Environment.NewLine + TabInString(8) + "if (!timeSensor.is24Hour) {";
+                                        insetrStr += Environment.NewLine + TabInString(9) + "if (hour > 11) " + timeStr + " = " + timeStr + " + ' " + unitPmStr + "';";
+                                        insetrStr += Environment.NewLine + TabInString(9) + "else " + timeStr + " = " + timeStr + " + ' " + unitAmStr + "';";
+                                        insetrStr += Environment.NewLine + TabInString(8) + "};";
+                                    }
+                                    else if (WorldClock.Time.unit_end == 0)
+                                    {
+                                        insetrStr += Environment.NewLine + TabInString(8) + "if (!timeSensor.is24Hour) {";
+                                        insetrStr += Environment.NewLine + TabInString(9) + "if (hour > 11) " + timeStr + " = '" + unitPmStr + " ' + " + timeStr + ";";
+                                        insetrStr += Environment.NewLine + TabInString(9) + "else " + timeStr + " = '" + unitAmStr + " ' + " + timeStr + ";";
+                                        insetrStr += Environment.NewLine + TabInString(8) + "};";
+                                    }
+                                    insetrStr += Environment.NewLine + TabInString(7); // count
+                                    items = items.Insert(pos_1, insetrStr);
+                                }
+
+                                int pos_2 = items.IndexOf("// count", pos) + "// count".Length;
+                                if (pos_2 > 0) items = items.Insert(pos_2, Environment.NewLine + TabInString(7) + "if (" + variablesName + ") " +
+                                     variablesName + ".setProperty(hmUI.prop.TEXT, " + timeStr + ");");
+                            }
+                            //if (resume_call.IndexOf("updateWorldTime();") < 0)
+                            //    resume_call += TabInString(8) + "updateWorldTime();" + Environment.NewLine;
+                            if (resume_call.IndexOf("updateWorldTime();") < 0)
+                            {
+                                resume_call += TabInString(8) + "updateWorldTime();" + Environment.NewLine;
+                                resume_call += TabInString(8) + "setTimeout(() => {" + Environment.NewLine;
+                                resume_call += TabInString(9) + "if (worldClock) {" + Environment.NewLine;
+                                resume_call += TabInString(10) + "worldClock.uninit();" + Environment.NewLine;
+                                resume_call += TabInString(10) + "worldClock.init();" + Environment.NewLine;
+                                resume_call += TabInString(9) + "};" + Environment.NewLine;
+                                resume_call += TabInString(8) + "}, 500);" + Environment.NewLine;
+                            }
+                        }
+
+                        // TimeZone
+                        if (index == timeZonePosition && timeZoneOptions.Length > 5)
+                        {
+                            if (SelectedModel.versionOS >= 2 && WorldClock.TimeZone.font != null && WorldClock.TimeZone.font.Length > 3)
+                            {
+                                string cacheName = "// FontName: " + WorldClock.TimeZone.font + "; FontSize: " + WorldClock.TimeZone.text_size.ToString() + "; Cache: full";
+                                if (fonts_cache.IndexOf(cacheName) < 0)
+                                {
+                                    string fontCacheOptions = TEXT_Cache_Options(WorldClock.TimeZone, true);
+                                    if (fontCacheOptions.Length > 5)
+                                    {
+                                        fonts_cache += Environment.NewLine + TabInString(6) + cacheName + Environment.NewLine;
+                                        fonts_cache += TabInString(6) + "hmUI.createWidget(hmUI.widget.TEXT, {" + fontCacheOptions +
+                                            TabInString(6) + "});" + Environment.NewLine;
+                                    }
+                                }
+                            }
+
+                            string variablesName = optionNameStart + "timeZone_gmt_text";
+                            variables += TabInString(4) + "let " + variablesName + " = ''" + Environment.NewLine;
+
+                            if (variables.IndexOf("let worldClockIndex = 0") < 0)
+                                variables += TabInString(4) + "let worldClockIndex = 0" + Environment.NewLine;
+
+                            //if (items.IndexOf("if (!timeSensor) timeSensor = hmSensor.createSensor(hmSensor.id.TIME);") < 0)
+                            //    items += TabInString(6) + "if (!timeSensor) timeSensor = hmSensor.createSensor(hmSensor.id.TIME);" + Environment.NewLine;
+
+                            if (items.IndexOf("if (!worldClock) worldClock = hmSensor.createSensor(hmSensor.id.WORLD_CLOCK);") < 0)
+                            {
+                                items += TabInString(6) + Environment.NewLine;
+                                items += TabInString(6) + "if (!worldClock) {" + Environment.NewLine;
+                                items += TabInString(7) + "worldClock = hmSensor.createSensor(hmSensor.id.WORLD_CLOCK);" + Environment.NewLine;
+                                items += TabInString(7) + "worldClock.init();" + Environment.NewLine;
+                                items += TabInString(6) + "};" + Environment.NewLine;
+                            }
+
+                            items += Environment.NewLine + TabInString(6) + variablesName + " = hmUI.createWidget(hmUI.widget.TEXT, {" +
+                                    timeZoneOptions + TabInString(6) + "});" + Environment.NewLine;
+
+                            if (items.IndexOf("function updateTimeZoneGMT() {") < 0)
+                            {
+                                string delimeter = ":";
+                                if (WorldClock.TimeZone.unit_string.Length > 0) delimeter = WorldClock.TimeZone.unit_string;
+
+                                items += Environment.NewLine + TabInString(6) + "function updateTimeZoneGMT() {";
+                                items += Environment.NewLine + TabInString(7) + "console.log('updateTimeZoneGMT()');";
+                                items += Environment.NewLine + TabInString(7) + "let timeZoneStr = '--:--';";
+                                items += Environment.NewLine + TabInString(7) + "let count = worldClock.getWorldClockCount();";
+                                items += Environment.NewLine + TabInString(7) + "if (count > 0) {";
+                                items += Environment.NewLine + TabInString(8) + "if (worldClockIndex >= count) worldClockIndex = count-1;";
+                                items += Environment.NewLine + TabInString(8) + "let worldData = worldClock.getWorldClockInfo(worldClockIndex);";
+                                items += Environment.NewLine + TabInString(8) + "let date = new Date();";
+                                items += Environment.NewLine + TabInString(8) + "let timeZoneCurrent = -date.getTimezoneOffset();";
+                                items += Environment.NewLine + TabInString(8) + "let timeZone = parseInt(worldData.timeZoneHour)*60 + parseInt(worldData.timeZoneMinute);";
+                                items += Environment.NewLine + TabInString(8) + "let timeZoneCalc = timeZoneCurrent + timeZone;";
+                                items += Environment.NewLine + TabInString(8) + "let timeZoneHour = Math.trunc(timeZoneCalc / 60);";
+                                items += Environment.NewLine + TabInString(8) + "let timeZoneHourStr = timeZoneHour.toString();";
+                                items += Environment.NewLine + TabInString(8) + "let timeZoneMinute = timeZoneCalc % 60;";
+                                items += Environment.NewLine + TabInString(8) + "let timeZoneMinuteStr = timeZoneMinute.toString().padStart(2, '0');";
+                                items += Environment.NewLine + TabInString(8) + "if (timeZoneHour > 0) timeZoneHourStr = '+' + timeZoneHourStr;";
+                                items += Environment.NewLine + TabInString(8) + "else if (timeZoneHour == 0) {";
+                                items += Environment.NewLine + TabInString(9) + "if (timeZoneMinute > 0)  timeZoneHourStr = '+' + timeZoneHourStr;";
+                                items += Environment.NewLine + TabInString(9) + "else if (timeZoneMinute == 0)  timeZoneHourStr = '±' + timeZoneHourStr;";
+                                items += Environment.NewLine + TabInString(9) + "else timeZoneHourStr = '-' + timeZoneHour;";
+                                items += Environment.NewLine + TabInString(8) + "};";
+                                items += Environment.NewLine + TabInString(8) + "timeZoneStr = timeZoneHourStr + '" + delimeter + "' + timeZoneMinuteStr;";
+                                items += Environment.NewLine + TabInString(7) + "}; // count";
+                                items += Environment.NewLine + TabInString(7) + "if (" + variablesName + ") " +
+                                    variablesName + ".setProperty(hmUI.prop.TEXT, timeZoneStr);";
+                                items += Environment.NewLine + TabInString(6) + "};";
+                                items += Environment.NewLine + TabInString(6) + "updateTimeZoneGMT();" + Environment.NewLine;
+                            }
+                            else
+                            {
+                                int pos = items.IndexOf("function updateTimeZoneGMT() {");
+                                pos = items.IndexOf("// count", pos) + "// count".Length;
+                                if (pos > 0) items = items.Insert(pos, Environment.NewLine + TabInString(7) + "if (" + variablesName + ") " +
+                                    variablesName + ".setProperty(hmUI.prop.TEXT, timeZoneStr);");
+                            }
+                            //if (resume_call.IndexOf("updateWorldTime();") < 0)
+                            //    resume_call += TabInString(8) + "updateWorldTime();" + Environment.NewLine;
+                            if (resume_call.IndexOf("updateWorldTime();") < 0)
+                            {
+                                resume_call += TabInString(8) + "updateWorldTime();" + Environment.NewLine;
+                                resume_call += TabInString(8) + "setTimeout(() => {" + Environment.NewLine;
+                                resume_call += TabInString(9) + "if (worldClock) {" + Environment.NewLine;
+                                resume_call += TabInString(10) + "worldClock.uninit();" + Environment.NewLine;
+                                resume_call += TabInString(10) + "worldClock.init();" + Environment.NewLine;
+                                resume_call += TabInString(9) + "};" + Environment.NewLine;
+                                resume_call += TabInString(8) + "}, 500);" + Environment.NewLine;
+                            }
+                        }
+
+                        // City Name
+                        if (index == cityNameGMTPosition && cityNameGMTOptions.Length > 5)
+                        {
+                            if (SelectedModel.versionOS >= 2 && WorldClock.CityName.font != null && WorldClock.CityName.font.Length > 3)
+                            {
+                                string cacheName = "// FontName: " + WorldClock.CityName.font + "; FontSize: " + WorldClock.CityName.text_size.ToString() + "; Cache: full";
+                                if (fonts_cache.IndexOf(cacheName) < 0)
+                                {
+                                    string fontCacheOptions = TEXT_Cache_Options(WorldClock.CityName, true);
+                                    if (fontCacheOptions.Length > 5)
+                                    {
+                                        fonts_cache += Environment.NewLine + TabInString(6) + cacheName + Environment.NewLine;
+                                        fonts_cache += TabInString(6) + "hmUI.createWidget(hmUI.widget.TEXT, {" + fontCacheOptions +
+                                            TabInString(6) + "});" + Environment.NewLine;
+                                    }
+                                }
+                            }
+
+                            string variablesName = optionNameStart + "cityName_gmt_text";
+                            variables += TabInString(4) + "let " + variablesName + " = ''" + Environment.NewLine;
+
+                            if (variables.IndexOf("let worldClockIndex = 0") < 0)
+                                variables += TabInString(4) + "let worldClockIndex = 0" + Environment.NewLine;
+
+                            //if (items.IndexOf("if (!timeSensor) timeSensor = hmSensor.createSensor(hmSensor.id.TIME);") < 0)
+                            //    items += TabInString(6) + "if (!timeSensor) timeSensor = hmSensor.createSensor(hmSensor.id.TIME);" + Environment.NewLine;
+
+                            if (items.IndexOf("if (!worldClock) worldClock = hmSensor.createSensor(hmSensor.id.WORLD_CLOCK);") < 0)
+                            {
+                                items += TabInString(6) + Environment.NewLine;
+                                items += TabInString(6) + "if (!worldClock) {" + Environment.NewLine;
+                                items += TabInString(7) + "worldClock = hmSensor.createSensor(hmSensor.id.WORLD_CLOCK);" + Environment.NewLine;
+                                items += TabInString(7) + "worldClock.init();" + Environment.NewLine;
+                                items += TabInString(6) + "};" + Environment.NewLine;
+                            }
+
+                            items += Environment.NewLine + TabInString(6) + variablesName + " = hmUI.createWidget(hmUI.widget.TEXT, {" +
+                                    cityNameGMTOptions + TabInString(6) + "});" + Environment.NewLine;
+
+                            if (items.IndexOf("function updateSityNameGMT() {") < 0)
+                            {
+                                items += Environment.NewLine + TabInString(6) + "function updateSityNameGMT() {";
+                                items += Environment.NewLine + TabInString(7) + "console.log('updateSityNameGMT()');";
+                                items += Environment.NewLine + TabInString(7) + "let cityNameStr = '---';";
+                                items += Environment.NewLine + TabInString(7) + "let count = worldClock.getWorldClockCount();";
+                                items += Environment.NewLine + TabInString(7) + "if (count > 0) {";
+                                items += Environment.NewLine + TabInString(8) + "if (worldClockIndex >= count) worldClockIndex = count-1;";
+                                items += Environment.NewLine + TabInString(8) + "let worldData = worldClock.getWorldClockInfo(worldClockIndex);";
+                                items += Environment.NewLine + TabInString(8) + "cityNameStr = worldData.city;";
+                                items += Environment.NewLine + TabInString(7) + "}; // count";
+                                items += Environment.NewLine + TabInString(7) + "if (" + variablesName + ") " + 
+                                    variablesName + ".setProperty(hmUI.prop.TEXT, cityNameStr);";
+                                items += Environment.NewLine + TabInString(6) + "};";
+                                items += Environment.NewLine + TabInString(6) + "updateSityNameGMT();" + Environment.NewLine;
+
+                                //resume_call += TabInString(8) + "updateSityNameGMT();" + Environment.NewLine;
+                            }
+                            else
+                            {
+                                int pos = items.IndexOf("function updateSityNameGMT() {");
+                                pos = items.IndexOf("// count", pos) + "// count".Length;
+                                if (pos > 0) items = items.Insert(pos, Environment.NewLine + TabInString(7) + "if (" + variablesName + ") " +
+                                    variablesName + ".setProperty(hmUI.prop.TEXT, cityNameStr);");
+                            }
+                            //if (resume_call.IndexOf("updateWorldTime();") < 0)
+                            //    resume_call += TabInString(8) + "updateWorldTime();" + Environment.NewLine;
+                            if (resume_call.IndexOf("updateWorldTime();") < 0)
+                            {
+                                resume_call += TabInString(8) + "updateWorldTime();" + Environment.NewLine;
+                                resume_call += TabInString(8) + "setTimeout(() => {" + Environment.NewLine;
+                                resume_call += TabInString(9) + "if (worldClock) {" + Environment.NewLine;
+                                resume_call += TabInString(10) + "worldClock.uninit();" + Environment.NewLine;
+                                resume_call += TabInString(10) + "worldClock.init();" + Environment.NewLine;
+                                resume_call += TabInString(9) + "};" + Environment.NewLine;
+                                resume_call += TabInString(8) + "}, 500);" + Environment.NewLine;
+                            }
+                        }
+
+                        // TimeDifference
+                        if (index == timeDifferencePosition && timeZoneOptions.Length > 5)
+                        {
+                            if (SelectedModel.versionOS >= 2 && WorldClock.TimeDifference.font != null && WorldClock.TimeDifference.font.Length > 3)
+                            {
+                                string cacheName = "// FontName: " + WorldClock.TimeDifference.font + "; FontSize: " + WorldClock.CityName.text_size.ToString() + "; Cache: full";
+                                if (fonts_cache.IndexOf(cacheName) < 0)
+                                {
+                                    string fontCacheOptions = TEXT_Cache_Options(WorldClock.TimeDifference, true);
+                                    if (fontCacheOptions.Length > 5)
+                                    {
+                                        fonts_cache += Environment.NewLine + TabInString(6) + cacheName + Environment.NewLine;
+                                        fonts_cache += TabInString(6) + "hmUI.createWidget(hmUI.widget.TEXT, {" + fontCacheOptions +
+                                            TabInString(6) + "});" + Environment.NewLine;
+                                    }
+                                }
+                            }
+
+                            string variablesName = optionNameStart + "timeDifference_gmt_text";
+                            variables += TabInString(4) + "let " + variablesName + " = ''" + Environment.NewLine;
+
+                            if (variables.IndexOf("let worldClockIndex = 0") < 0)
+                                variables += TabInString(4) + "let worldClockIndex = 0" + Environment.NewLine;
+
+                            //if (items.IndexOf("if (!timeSensor) timeSensor = hmSensor.createSensor(hmSensor.id.TIME);") < 0)
+                            //    items += TabInString(6) + "if (!timeSensor) timeSensor = hmSensor.createSensor(hmSensor.id.TIME);" + Environment.NewLine;
+
+                            if (items.IndexOf("if (!worldClock) worldClock = hmSensor.createSensor(hmSensor.id.WORLD_CLOCK);") < 0)
+                            {
+                                items += TabInString(6) + Environment.NewLine;
+                                items += TabInString(6) + "if (!worldClock) {" + Environment.NewLine;
+                                items += TabInString(7) + "worldClock = hmSensor.createSensor(hmSensor.id.WORLD_CLOCK);" + Environment.NewLine;
+                                items += TabInString(7) + "worldClock.init();" + Environment.NewLine;
+                                items += TabInString(6) + "};" + Environment.NewLine;
+                            }
+
+                            items += Environment.NewLine + TabInString(6) + variablesName + " = hmUI.createWidget(hmUI.widget.TEXT, {" +
+                                    timeDifferenceOptions + TabInString(6) + "});" + Environment.NewLine;
+
+                            if (items.IndexOf("function updateTimeDifferenceGMT() {") < 0)
+                            {
+                                string delimeter = ":";
+                                if (WorldClock.TimeDifference.unit_string.Length > 0) delimeter = WorldClock.TimeDifference.unit_string;
+
+                                items += Environment.NewLine + TabInString(6) + "function updateTimeDifferenceGMT() {";
+                                items += Environment.NewLine + TabInString(7) + "console.log('updateTimeDifferenceGMT()');";
+                                items += Environment.NewLine + TabInString(7) + "let timeDifferenceStr = '--:--';";
+                                items += Environment.NewLine + TabInString(7) + "let count = worldClock.getWorldClockCount();";
+                                items += Environment.NewLine + TabInString(7) + "if (count > 0) {";
+                                items += Environment.NewLine + TabInString(8) + "if (worldClockIndex >= count) worldClockIndex = count-1;";
+                                items += Environment.NewLine + TabInString(8) + "let worldData = worldClock.getWorldClockInfo(worldClockIndex);";
+                                items += Environment.NewLine + TabInString(8) + "let timeZoneHour = parseInt(worldData.timeZoneHour);";
+                                items += Environment.NewLine + TabInString(8) + "let timeZoneHourStr = timeZoneHour.toString();";
+                                items += Environment.NewLine + TabInString(8) + "let timeZoneMinute = parseInt(worldData.timeZoneMinute);";
+                                items += Environment.NewLine + TabInString(8) + "let timeZoneMinuteStr = timeZoneMinute.toString().padStart(2, '0');";
+                                items += Environment.NewLine + TabInString(8) + "if (timeZoneHour > 0) timeZoneHourStr = '+' + timeZoneHourStr;";
+                                items += Environment.NewLine + TabInString(8) + "else if (timeZoneHour == 0) {";
+                                items += Environment.NewLine + TabInString(9) + "if (timeZoneMinute > 0)  timeZoneHourStr = '+' + timeZoneHourStr;";
+                                items += Environment.NewLine + TabInString(9) + "else if (timeZoneMinute == 0)  timeZoneHourStr = '±' + timeZoneHourStr;";
+                                items += Environment.NewLine + TabInString(9) + "else timeZoneHourStr = '-' + timeZoneHour;";
+                                items += Environment.NewLine + TabInString(8) + "};";
+                                items += Environment.NewLine + TabInString(8) + "timeDifferenceStr = timeZoneHourStr + '" + delimeter + "' + timeZoneMinuteStr;";
+                                items += Environment.NewLine + TabInString(7) + "}; // count";
+                                items += Environment.NewLine + TabInString(7) + "if (" + variablesName + ") " +
+                                    variablesName + ".setProperty(hmUI.prop.TEXT, timeDifferenceStr);";
+                                items += Environment.NewLine + TabInString(6) + "};";
+                                items += Environment.NewLine + TabInString(6) + "updateTimeDifferenceGMT();" + Environment.NewLine;
+                            }
+                            else
+                            {
+                                int pos = items.IndexOf("function updateTimeDifferenceGMT() {");
+                                pos = items.IndexOf("// count", pos) + "// count".Length;
+                                if (pos > 0) items = items.Insert(pos, Environment.NewLine + TabInString(7) + "if (" + variablesName + ") " +
+                                    variablesName + ".setProperty(hmUI.prop.TEXT, timeDifferenceStr);");
+                            }
+                            //if (resume_call.IndexOf("updateWorldTime();") < 0)
+                            //    resume_call += TabInString(8) + "updateWorldTime();" + Environment.NewLine;
+                            if (resume_call.IndexOf("updateWorldTime();") < 0)
+                            {
+                                resume_call += TabInString(8) + "updateWorldTime();" + Environment.NewLine;
+                                resume_call += TabInString(8) + "setTimeout(() => {" + Environment.NewLine;
+                                resume_call += TabInString(9) + "if (worldClock) {" + Environment.NewLine;
+                                resume_call += TabInString(10) + "worldClock.uninit();" + Environment.NewLine;
+                                resume_call += TabInString(10) + "worldClock.init();" + Environment.NewLine;
+                                resume_call += TabInString(9) + "};" + Environment.NewLine;
+                                resume_call += TabInString(8) + "}, 500);" + Environment.NewLine;
+                            }
+                        }
+
+                        /*// Button Preview
+                        if (index == WorldClock.ButtonPrev.position && WorldClock.ButtonPrev.visible)
+                        {
+                            if (items.IndexOf("function toggleWorldClock(step = 1) {") < 0)
+                            {
+                                items += Environment.NewLine + TabInString(6) + "function toggleWorldClock(step = 1) {";
+                                items += Environment.NewLine + TabInString(7) + "const count = worldClock.getWorldClockCount();";
+                                items += Environment.NewLine + TabInString(7) + "if (count){";
+                                items += Environment.NewLine + TabInString(8) + "worldClockIndex += step;";
+                                items += Environment.NewLine + TabInString(8) + "worldClockIndex = worldClockIndex < 0 ? count + worldClockIndex : worldClockIndex % count;";
+                                items += Environment.NewLine + TabInString(8) + "updateWorldTime();";
+                                items += Environment.NewLine + TabInString(8) + "hmFS.SysProSetInt('worldClockIndex', worldClockIndex);";
+                                items += Environment.NewLine + TabInString(7) + "}";
+                                items += Environment.NewLine + TabInString(6) + "};";
+                            }
+                        }
+
+                        // Button Preview
+                        if (index == WorldClock.ButtonNext.position && WorldClock.ButtonNext.visible)
+                        {
+                            if (items.IndexOf("function toggleWorldClock(step = 1) {") < 0)
+                            {
+                                items += Environment.NewLine + TabInString(6) + "function toggleWorldClock(step = 1) {";
+                                items += Environment.NewLine + TabInString(7) + "const count = worldClock.getWorldClockCount();";
+                                items += Environment.NewLine + TabInString(7) + "if (count){";
+                                items += Environment.NewLine + TabInString(8) + "worldClockIndex += step;";
+                                items += Environment.NewLine + TabInString(8) + "worldClockIndex = worldClockIndex < 0 ? count + worldClockIndex : worldClockIndex % count;";
+                                items += Environment.NewLine + TabInString(8) + "updateWorldTime(true);";
+                                items += Environment.NewLine + TabInString(8) + "hmFS.SysProSetInt('worldClockIndex', worldClockIndex);";
+                                items += Environment.NewLine + TabInString(7) + "}";
+                                items += Environment.NewLine + TabInString(6) + "};" + Environment.NewLine;
+                            }
+                        }*/
+
+                        // Icon
+                        if (index == iconPosition && iconOptions.Length > 5)
+                        {
+                            variables += TabInString(4) + "let " + optionNameStart +
+                                "gmt_icon_img = ''" + Environment.NewLine;
+                            items += Environment.NewLine + TabInString(6) +
+                                optionNameStart + "gmt_icon_img = hmUI.createWidget(hmUI.widget.IMG, {" +
+                                    iconOptions + TabInString(6) + "});" + Environment.NewLine;
+
+                            if (WorldClock.Icon.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                    "gmt_icon_img.setAlpha(" + WorldClock.Icon.alpha.ToString() + ");" + Environment.NewLine;
+                        }
+
+                    }
+
                     break;
                 #endregion
 
@@ -12706,7 +13154,7 @@ namespace Watch_Face_Editor
                             }
                             variables += TabInString(4) + "let " + arr_name + " = [" + compass_direction_arr + "];" + Environment.NewLine;
 
-                            if (Compass.Images.img_error.Length > 1)
+                            if (Compass.Images.img_error != null && Compass.Images.img_error.Length > 1)
                                 imagesOptions += TabInString(7) + "// img_error: '" + Compass.Images.img_error + ".png'," + Environment.NewLine;
                             imagesOptions += TabInString(7) + "// type: hmUI.data_type.COMPASS," + Environment.NewLine;
 
@@ -12730,7 +13178,7 @@ namespace Watch_Face_Editor
 
                             compass_update += TabInString(8) + optionNameStart + 
                                 "compass_direction_img_level.setProperty(hmUI.prop.SRC, " + arr_name + "[compass_direction_index]);" + Environment.NewLine;
-                            if (Compass.Images.img_error.Length > 1)
+                            if (Compass.Images.img_error != null && Compass.Images.img_error.Length > 1)
                             {
                                 compass_error += TabInString(8) + optionNameStart + "compass_direction_img_level.setProperty(hmUI.prop.SRC, '" + Compass.Images.img_error + ".png');" + Environment.NewLine;
                             }
@@ -20803,6 +21251,23 @@ namespace Watch_Face_Editor
             return options;
         }
 
+        private string TIME_CIRCLE_SMOOTH_OptionsRead(ElementTimeCircle time_circle, string optionNameStart, string show_level, int tabOffset = 0)
+        {
+            string options = Environment.NewLine;
+            options += TabInString(6 + tabOffset) + "// " + optionNameStart + "time_circle_options = hmUI.createWidget(hmUI.widget.TIME_CIRCLE_OPTIONS, {" + Environment.NewLine;
+
+            if (time_circle.Smooth) options += TabInString(7 + tabOffset) + "// smooth: true," + Environment.NewLine;
+            else options += TabInString(7 + tabOffset) + "// smooth: false," + Environment.NewLine;
+
+            if (time_circle.Format_24hour) options += TabInString(7 + tabOffset) + "// format24h: true," + Environment.NewLine;
+            else options += TabInString(7 + tabOffset) + "// format24h: false," + Environment.NewLine;
+
+            if (show_level.Length > 0) options += TabInString(7 + tabOffset) + "// show_level: hmUI.show_level." + show_level + "," + Environment.NewLine;
+
+            options += TabInString(6 + tabOffset) + "// });" + Environment.NewLine;
+            return options;
+        }
+
         private string TIME_PRO_POINTER_Options(hmUI_widget_IMG_POINTER img, string show_level, int tabOffset = 0)
         {
             string options = Environment.NewLine;
@@ -22644,7 +23109,7 @@ namespace Watch_Face_Editor
             if (text.unit_string.Length > 0) options += TabInString(7 + tabOffset) + "// unit_string: " + text.unit_string + "," + Environment.NewLine;
 
 #if DEBUG
-            options += TabInString(7 + tabOffset) + "text: 'City Name'," + Environment.NewLine;
+            options += TabInString(7 + tabOffset) + "text: 'Test String'," + Environment.NewLine;
 #endif
 
             if (show_level.Length > 0)
@@ -24242,6 +24707,35 @@ namespace Watch_Face_Editor
                             if (objectName.EndsWith("icon_img"))
                             {
 
+                                if (objectName.EndsWith("gmt_icon_img"))
+                                {
+                                    ElementWorldClock worldClock = (ElementWorldClock)elementsList.Find(e => e.GetType().Name == "ElementWorldClock");
+                                    if (worldClock == null)
+                                    {
+                                        elementsList.Add(new ElementWorldClock());
+                                        worldClock = (ElementWorldClock)elementsList.Find(e => e.GetType().Name == "ElementWorldClock");
+                                    }
+                                    if (worldClock != null)
+                                    {
+                                        int offset = 1;
+                                        if (worldClock.Time != null) offset++;
+                                        if (worldClock.TimeZone != null) offset++;
+                                        if (worldClock.CityName != null) offset++;
+                                        if (worldClock.TimeDifference != null) offset++;
+                                        if (worldClock.ButtonNext != null) offset++;
+                                        if (worldClock.ButtonPrev != null) offset++;
+                                        //if (worldClock.Icon != null) offset++;
+
+                                        worldClock.Icon = new hmUI_widget_IMG();
+                                        worldClock.Icon.src = img.src;
+                                        worldClock.Icon.x = img.x;
+                                        worldClock.Icon.y = img.y;
+                                        worldClock.Icon.alpha = img.alpha;
+                                        worldClock.Icon.visible = true;
+                                        worldClock.Icon.position = offset;
+                                    }
+                                }
+
                                 if (objectName.EndsWith("year_icon_img"))
                                 {
                                     ElementDateYear year = (ElementDateYear)elementsList.Find(e => e.GetType().Name == "ElementDateYear");
@@ -25416,6 +25910,26 @@ namespace Watch_Face_Editor
                                 elementsList = Watch_Face.ScreenNormal.Elements;
                             }
                             else if (smoothSecond.show_level == "ONLY_AOD" || smoothSecond.show_level == "ONAL_AOD" || objectName.StartsWith("idle"))
+                            {
+                                if (Watch_Face.ScreenAOD.Elements == null)
+                                    Watch_Face.ScreenAOD.Elements = new List<object>();
+                                elementsList = Watch_Face.ScreenAOD.Elements;
+                            }
+                            ParametrsToObject(elementsList, parametrs);
+                            break;
+                        #endregion
+
+                        #region TIME_CIRCLE_OPTIONS
+                        case "TIME_CIRCLE_OPTIONS":
+                            ElementTimeCircle timeCircle = Object_TIME_CIRCLE_OPTIONS(parametrs);
+                            elementsList = null;
+                            if (timeCircle.show_level == "ONLY_NORMAL" || objectName.StartsWith("normal"))
+                            {
+                                if (Watch_Face.ScreenNormal.Elements == null)
+                                    Watch_Face.ScreenNormal.Elements = new List<object>();
+                                elementsList = Watch_Face.ScreenNormal.Elements;
+                            }
+                            else if (timeCircle.show_level == "ONLY_AOD" || timeCircle.show_level == "ONAL_AOD" || objectName.StartsWith("idle"))
                             {
                                 if (Watch_Face.ScreenAOD.Elements == null)
                                     Watch_Face.ScreenAOD.Elements = new List<object>();
@@ -27129,9 +27643,19 @@ namespace Watch_Face_Editor
                             {
                                 Button button = Object_BUTTON(parametrs);
 
-                                if (Watch_Face.Buttons == null) Watch_Face.Buttons = new ElementButtons();
-                                if (Watch_Face.Buttons.Button == null) Watch_Face.Buttons.Button = new List<Button>();
-                                Watch_Face.Buttons.Button.Add(button); 
+                                if (!objectName.StartsWith("GMT_"))
+                                {
+                                    if (Watch_Face.Buttons == null) Watch_Face.Buttons = new ElementButtons();
+                                    if (Watch_Face.Buttons.Button == null) Watch_Face.Buttons.Button = new List<Button>();
+                                    Watch_Face.Buttons.Button.Add(button);
+                                }
+                                else
+                                {
+                                    if (Watch_Face.ScreenNormal.Elements == null)
+                                        Watch_Face.ScreenNormal.Elements = new List<object>();
+                                    elementsList = Watch_Face.ScreenNormal.Elements;
+                                    ParametrsToObject(elementsList, parametrs);
+                                }
                             }
                             break;
                         #endregion
@@ -28639,6 +29163,34 @@ namespace Watch_Face_Editor
                             smooth_Second.position = offset;
 
                             analogTimeSmoth.SmoothSecond = smooth_Second;
+                        }
+
+                        break;
+                    #endregion
+
+                    #region TIME_CIRCLE_OPTIONS
+                    case "TIME_CIRCLE_OPTIONS":
+                        ElementTimeCircle time_circle_optoions = Object_TIME_CIRCLE_OPTIONS(parametrs);
+                        ElementTimeCircle time_circle = (ElementTimeCircle)elementsList.Find(e => e.GetType().Name == "ElementTimeCircle");
+                        if (time_circle == null)
+                        {
+                            //elementsList.Add(pointer_time);
+                            elementsList.Add(new ElementTimeCircle());
+                            time_circle = (ElementTimeCircle)elementsList.Find(e => e.GetType().Name == "ElementTimeCircle");
+                        }
+                        if (time_circle != null)
+                        {
+                            //int offset = 2;
+                            //if (analogTimeSmoth.Hour != null) offset++;
+                            //if (analogTimeSmoth.Minute != null) offset++;
+                            //if (analogTimeSmoth.Second != null) offset++;
+                            ////if (analogTimeSmoth.SmoothSecond != null) offset++;
+                            //time_circle.position = offset;
+
+                            //analogTimeSmoth.SmoothSecond = smooth_Second;
+
+                            time_circle.Smooth = time_circle_optoions.Smooth;
+                            time_circle.Format_24hour = time_circle_optoions.Format_24hour;
                         }
 
                         break;
@@ -35538,6 +36090,102 @@ namespace Watch_Face_Editor
                     case "Circle_Scale":
                         Circle_Scale circle_Scale = Object_Circle_Scale(parametrs);
 
+                        if (circle_Scale.type == "HOUR")
+                        {
+                            ElementTimeCircle time_circle_hour = (ElementTimeCircle)elementsList.Find(e => e.GetType().Name == "ElementTimeCircle");
+                            if (time_circle_hour == null)
+                            {
+                                elementsList.Add(new ElementTimeCircle());
+                                time_circle_hour = (ElementTimeCircle)elementsList.Find(e => e.GetType().Name == "ElementTimeCircle");
+                            }
+                            if (time_circle_hour != null)
+                            {
+                                int offset = 1;
+                                //if (time_circle_hour.Hour != null) offset++;
+                                if (time_circle_hour.Minute != null) offset++;
+                                if (time_circle_hour.Second != null) offset++;
+
+                                time_circle_hour.Hour = new Circle_Scale();
+                                time_circle_hour.Hour.center_x = circle_Scale.center_x;
+                                time_circle_hour.Hour.center_y = circle_Scale.center_y;
+                                time_circle_hour.Hour.start_angle = circle_Scale.start_angle;
+                                time_circle_hour.Hour.end_angle = circle_Scale.end_angle;
+                                time_circle_hour.Hour.color = circle_Scale.color;
+                                time_circle_hour.Hour.radius = circle_Scale.radius;
+                                time_circle_hour.Hour.line_width = circle_Scale.line_width;
+                                time_circle_hour.Hour.line_cap = circle_Scale.line_cap;
+                                time_circle_hour.Hour.mirror = circle_Scale.mirror;
+                                time_circle_hour.Hour.inversion = circle_Scale.inversion;
+                                time_circle_hour.Hour.alpha = circle_Scale.alpha;
+                                time_circle_hour.Hour.visible = true;
+                                time_circle_hour.Hour.position = offset;
+                            }
+                        }
+
+                        if (circle_Scale.type == "MINUTE")
+                        {
+                            ElementTimeCircle time_circle_minute = (ElementTimeCircle)elementsList.Find(e => e.GetType().Name == "ElementTimeCircle");
+                            if (time_circle_minute == null)
+                            {
+                                elementsList.Add(new ElementTimeCircle());
+                                time_circle_minute = (ElementTimeCircle)elementsList.Find(e => e.GetType().Name == "ElementTimeCircle");
+                            }
+                            if (time_circle_minute != null)
+                            {
+                                int offset = 1;
+                                if (time_circle_minute.Hour != null) offset++;
+                                //if (time_circle_minute.Minute != null) offset++;
+                                if (time_circle_minute.Second != null) offset++;
+
+                                time_circle_minute.Minute = new Circle_Scale();
+                                time_circle_minute.Minute.center_x = circle_Scale.center_x;
+                                time_circle_minute.Minute.center_y = circle_Scale.center_y;
+                                time_circle_minute.Minute.start_angle = circle_Scale.start_angle;
+                                time_circle_minute.Minute.end_angle = circle_Scale.end_angle;
+                                time_circle_minute.Minute.color = circle_Scale.color;
+                                time_circle_minute.Minute.radius = circle_Scale.radius;
+                                time_circle_minute.Minute.line_width = circle_Scale.line_width;
+                                time_circle_minute.Minute.line_cap = circle_Scale.line_cap;
+                                time_circle_minute.Minute.mirror = circle_Scale.mirror;
+                                time_circle_minute.Minute.inversion = circle_Scale.inversion;
+                                time_circle_minute.Minute.alpha = circle_Scale.alpha;
+                                time_circle_minute.Minute.visible = true;
+                                time_circle_minute.Minute.position = offset;
+                            }
+                        }
+
+                        if (circle_Scale.type == "SECOND")
+                        {
+                            ElementTimeCircle time_circle_second = (ElementTimeCircle)elementsList.Find(e => e.GetType().Name == "ElementTimeCircle");
+                            if (time_circle_second == null)
+                            {
+                                elementsList.Add(new ElementTimeCircle());
+                                time_circle_second = (ElementTimeCircle)elementsList.Find(e => e.GetType().Name == "ElementTimeCircle");
+                            }
+                            if (time_circle_second != null)
+                            {
+                                int offset = 1;
+                                if (time_circle_second.Hour != null) offset++;
+                                if (time_circle_second.Minute != null) offset++;
+                                //if (time_circle_second.Second != null) offset++;
+
+                                time_circle_second.Second = new Circle_Scale();
+                                time_circle_second.Second.center_x = circle_Scale.center_x;
+                                time_circle_second.Second.center_y = circle_Scale.center_y;
+                                time_circle_second.Second.start_angle = circle_Scale.start_angle;
+                                time_circle_second.Second.end_angle = circle_Scale.end_angle;
+                                time_circle_second.Second.color = circle_Scale.color;
+                                time_circle_second.Second.radius = circle_Scale.radius;
+                                time_circle_second.Second.line_width = circle_Scale.line_width;
+                                time_circle_second.Second.line_cap = circle_Scale.line_cap;
+                                time_circle_second.Second.mirror = circle_Scale.mirror;
+                                time_circle_second.Second.inversion = circle_Scale.inversion;
+                                time_circle_second.Second.alpha = circle_Scale.alpha;
+                                time_circle_second.Second.visible = true;
+                                time_circle_second.Second.position = offset;
+                            }
+                        }
+
                         if (circle_Scale.type == "STEP")
                         {
                             ElementSteps steps = (ElementSteps)elementsList.Find(e => e.GetType().Name == "ElementSteps");
@@ -36467,6 +37115,203 @@ namespace Watch_Face_Editor
                     case "TEXT":
                         hmUI_widget_TEXT text = Object_TEXT(parametrs);
 
+                        if (objectName.EndsWith("time_gmt_text"))
+                        {
+                            ElementWorldClock worldClock = (ElementWorldClock)elementsList.Find(e => e.GetType().Name == "ElementWorldClock");
+                            if (worldClock == null)
+                            {
+                                elementsList.Add(new ElementWorldClock());
+                                worldClock = (ElementWorldClock)elementsList.Find(e => e.GetType().Name == "ElementWorldClock");
+                            }
+                            if (worldClock != null)
+                            {
+                                int offset = 1;
+                                //if (worldClock.Time != null) offset++;
+                                if (worldClock.TimeZone != null) offset++;
+                                if (worldClock.CityName != null) offset++;
+                                if (worldClock.TimeDifference != null) offset++;
+                                if (worldClock.ButtonNext != null) offset++;
+                                if (worldClock.ButtonPrev != null) offset++;
+                                if (worldClock.Icon != null) offset++;
+
+                                worldClock.Time = new hmUI_widget_TEXT();
+                                worldClock.Time.x = text.x;
+                                worldClock.Time.y = text.y;
+                                worldClock.Time.w = text.w;
+                                worldClock.Time.h = text.h;
+
+                                worldClock.Time.text_size = text.text_size;
+                                worldClock.Time.char_space = text.char_space;
+                                worldClock.Time.line_space = text.line_space;
+                                worldClock.Time.alpha = text.alpha;
+
+                                worldClock.Time.font = text.font;
+                                worldClock.Time.color = text.color;
+                                worldClock.Time.color_2 = text.color_2;
+                                worldClock.Time.use_color_2 = text.use_color_2;
+
+                                worldClock.Time.align_h = text.align_h;
+                                worldClock.Time.align_v = text.align_v;
+                                worldClock.Time.text_style = text.text_style;
+
+                                worldClock.Time.padding = text.padding;
+                                worldClock.Time.unit_type = text.unit_type;
+                                worldClock.Time.unit_string = text.unit_string;
+                                worldClock.Time.unit_end = text.unit_end;
+
+                                worldClock.Time.visible = true;
+                                worldClock.Time.position = offset;
+                            }
+                        }
+
+                        if (objectName.EndsWith("timeZone_gmt_text"))
+                        {
+                            ElementWorldClock worldClock = (ElementWorldClock)elementsList.Find(e => e.GetType().Name == "ElementWorldClock");
+                            if (worldClock == null)
+                            {
+                                elementsList.Add(new ElementWorldClock());
+                                worldClock = (ElementWorldClock)elementsList.Find(e => e.GetType().Name == "ElementWorldClock");
+                            }
+                            if (worldClock != null)
+                            {
+                                int offset = 1;
+                                if (worldClock.Time != null) offset++;
+                                //if (worldClock.TimeZone != null) offset++;
+                                if (worldClock.CityName != null) offset++;
+                                if (worldClock.TimeDifference != null) offset++;
+                                if (worldClock.ButtonNext != null) offset++;
+                                if (worldClock.ButtonPrev != null) offset++;
+                                if (worldClock.Icon != null) offset++;
+
+                                worldClock.TimeZone = new hmUI_widget_TEXT();
+                                worldClock.TimeZone.x = text.x;
+                                worldClock.TimeZone.y = text.y;
+                                worldClock.TimeZone.w = text.w;
+                                worldClock.TimeZone.h = text.h;
+
+                                worldClock.TimeZone.text_size = text.text_size;
+                                worldClock.TimeZone.char_space = text.char_space;
+                                worldClock.TimeZone.line_space = text.line_space;
+                                worldClock.TimeZone.alpha = text.alpha;
+
+                                worldClock.TimeZone.font = text.font;
+                                worldClock.TimeZone.color = text.color;
+                                worldClock.TimeZone.color_2 = text.color_2;
+                                worldClock.TimeZone.use_color_2 = text.use_color_2;
+
+                                worldClock.TimeZone.align_h = text.align_h;
+                                worldClock.TimeZone.align_v = text.align_v;
+                                worldClock.TimeZone.text_style = text.text_style;
+
+                                worldClock.TimeZone.padding = text.padding;
+                                worldClock.TimeZone.unit_type = text.unit_type;
+                                worldClock.TimeZone.unit_string = text.unit_string;
+                                worldClock.TimeZone.unit_end = text.unit_end;
+
+                                worldClock.TimeZone.visible = true;
+                                worldClock.TimeZone.position = offset;
+                            }
+                        }
+
+                        if (objectName.EndsWith("cityName_gmt_text"))
+                        {
+                            ElementWorldClock worldClock = (ElementWorldClock)elementsList.Find(e => e.GetType().Name == "ElementWorldClock");
+                            if (worldClock == null)
+                            {
+                                elementsList.Add(new ElementWorldClock());
+                                worldClock = (ElementWorldClock)elementsList.Find(e => e.GetType().Name == "ElementWorldClock");
+                            }
+                            if (worldClock != null)
+                            {
+                                int offset = 1;
+                                if (worldClock.Time != null) offset++;
+                                if (worldClock.TimeZone != null) offset++;
+                                //if (worldClock.CityName != null) offset++;
+                                if (worldClock.TimeDifference != null) offset++;
+                                if (worldClock.ButtonNext != null) offset++;
+                                if (worldClock.ButtonPrev != null) offset++;
+                                if (worldClock.Icon != null) offset++;
+
+                                worldClock.CityName = new hmUI_widget_TEXT();
+                                worldClock.CityName.x = text.x;
+                                worldClock.CityName.y = text.y;
+                                worldClock.CityName.w = text.w;
+                                worldClock.CityName.h = text.h;
+
+                                worldClock.CityName.text_size = text.text_size;
+                                worldClock.CityName.char_space = text.char_space;
+                                worldClock.CityName.line_space = text.line_space;
+                                worldClock.CityName.alpha = text.alpha;
+
+                                worldClock.CityName.font = text.font;
+                                worldClock.CityName.color = text.color;
+                                worldClock.CityName.color_2 = text.color_2;
+                                worldClock.CityName.use_color_2 = text.use_color_2;
+
+                                worldClock.CityName.align_h = text.align_h;
+                                worldClock.CityName.align_v = text.align_v;
+                                worldClock.CityName.text_style = text.text_style;
+
+                                worldClock.CityName.padding = text.padding;
+                                worldClock.CityName.unit_type = text.unit_type;
+                                worldClock.CityName.unit_string = text.unit_string;
+                                worldClock.CityName.unit_end = text.unit_end;
+
+                                worldClock.CityName.visible = true;
+                                worldClock.CityName.position = offset;
+                            }
+                        }
+
+                        if (objectName.EndsWith("timeDifference_gmt_text"))
+                        {
+                            ElementWorldClock worldClock = (ElementWorldClock)elementsList.Find(e => e.GetType().Name == "ElementWorldClock");
+                            if (worldClock == null)
+                            {
+                                elementsList.Add(new ElementWorldClock());
+                                worldClock = (ElementWorldClock)elementsList.Find(e => e.GetType().Name == "ElementWorldClock");
+                            }
+                            if (worldClock != null)
+                            {
+                                int offset = 1;
+                                if (worldClock.Time != null) offset++;
+                                if (worldClock.TimeZone != null) offset++;
+                                if (worldClock.CityName != null) offset++;
+                                //if (worldClock.TimeDifference != null) offset++;
+                                if (worldClock.ButtonNext != null) offset++;
+                                if (worldClock.ButtonPrev != null) offset++;
+                                if (worldClock.Icon != null) offset++;
+
+                                worldClock.TimeDifference = new hmUI_widget_TEXT();
+                                worldClock.TimeDifference.x = text.x;
+                                worldClock.TimeDifference.y = text.y;
+                                worldClock.TimeDifference.w = text.w;
+                                worldClock.TimeDifference.h = text.h;
+
+                                worldClock.TimeDifference.text_size = text.text_size;
+                                worldClock.TimeDifference.char_space = text.char_space;
+                                worldClock.TimeDifference.line_space = text.line_space;
+                                worldClock.TimeDifference.alpha = text.alpha;
+
+                                worldClock.TimeDifference.font = text.font;
+                                worldClock.TimeDifference.color = text.color;
+                                worldClock.TimeDifference.color_2 = text.color_2;
+                                worldClock.TimeDifference.use_color_2 = text.use_color_2;
+
+                                worldClock.TimeDifference.align_h = text.align_h;
+                                worldClock.TimeDifference.align_v = text.align_v;
+                                worldClock.TimeDifference.text_style = text.text_style;
+
+                                worldClock.TimeDifference.padding = text.padding;
+                                worldClock.TimeDifference.unit_type = text.unit_type;
+                                worldClock.TimeDifference.unit_string = text.unit_string;
+                                worldClock.TimeDifference.unit_end = text.unit_end;
+
+                                worldClock.TimeDifference.visible = true;
+                                worldClock.TimeDifference.position = offset;
+                            }
+                        }
+
+                        /////
                         if (objectName.EndsWith("city_name_text") && type == "WEATHER") // старый формат для редактируемых элементов
                         {
                             ElementWeather weather = (ElementWeather)elementsList.Find(e => e.GetType().Name == "ElementWeather");
@@ -36498,17 +37343,24 @@ namespace Watch_Face_Editor
                                 weather.City_Name.w = text.w;
                                 weather.City_Name.h = text.h;
 
-                                weather.City_Name.color = text.color;
-
-                                weather.City_Name.font = text.font;
-
                                 weather.City_Name.text_size = text.text_size;
                                 weather.City_Name.char_space = text.char_space;
                                 weather.City_Name.line_space = text.line_space;
+                                weather.City_Name.alpha = text.alpha;
+
+                                weather.City_Name.font = text.font;
+                                weather.City_Name.color = text.color;
+                                weather.City_Name.color_2 = text.color_2;
+                                weather.City_Name.use_color_2 = text.use_color_2;
 
                                 weather.City_Name.align_h = text.align_h;
                                 weather.City_Name.align_v = text.align_v;
                                 weather.City_Name.text_style = text.text_style;
+
+                                weather.City_Name.padding = text.padding;
+                                weather.City_Name.unit_type = text.unit_type;
+                                weather.City_Name.unit_string = text.unit_string;
+                                weather.City_Name.unit_end = text.unit_end;
 
                                 weather.City_Name.visible = true;
                                 weather.City_Name.position = offset;
@@ -36541,14 +37393,15 @@ namespace Watch_Face_Editor
                                 weather.City_Name.w = text.w;
                                 weather.City_Name.h = text.h;
 
-                                weather.City_Name.color = text.color;
-
-                                weather.City_Name.font = text.font;
-
                                 weather.City_Name.text_size = text.text_size;
                                 weather.City_Name.char_space = text.char_space;
                                 weather.City_Name.line_space = text.line_space;
                                 weather.City_Name.alpha = text.alpha;
+
+                                weather.City_Name.font = text.font;
+                                weather.City_Name.color = text.color;
+                                weather.City_Name.color_2 = text.color_2;
+                                weather.City_Name.use_color_2 = text.use_color_2;
 
                                 weather.City_Name.align_h = text.align_h;
                                 weather.City_Name.align_v = text.align_v;
@@ -36557,6 +37410,7 @@ namespace Watch_Face_Editor
                                 weather.City_Name.padding = text.padding;
                                 weather.City_Name.unit_type = text.unit_type;
                                 weather.City_Name.unit_string = text.unit_string;
+                                weather.City_Name.unit_end = text.unit_end;
 
                                 weather.City_Name.visible = true;
                                 weather.City_Name.position = offset;
@@ -36588,14 +37442,15 @@ namespace Watch_Face_Editor
                                 dateDay.Number_Font.w = text.w;
                                 dateDay.Number_Font.h = text.h;
 
-                                dateDay.Number_Font.color = text.color;
-
-                                dateDay.Number_Font.font = text.font;
-
                                 dateDay.Number_Font.text_size = text.text_size;
                                 dateDay.Number_Font.char_space = text.char_space;
                                 dateDay.Number_Font.line_space = text.line_space;
                                 dateDay.Number_Font.alpha = text.alpha;
+
+                                dateDay.Number_Font.font = text.font;
+                                dateDay.Number_Font.color = text.color;
+                                dateDay.Number_Font.color_2 = text.color_2;
+                                dateDay.Number_Font.use_color_2 = text.use_color_2;
 
                                 dateDay.Number_Font.align_h = text.align_h;
                                 dateDay.Number_Font.align_v = text.align_v;
@@ -36604,6 +37459,7 @@ namespace Watch_Face_Editor
                                 dateDay.Number_Font.padding = text.padding;
                                 dateDay.Number_Font.unit_type = text.unit_type;
                                 dateDay.Number_Font.unit_string = text.unit_string;
+                                dateDay.Number_Font.unit_end = text.unit_end;
 
                                 dateDay.Number_Font.visible = true;
                                 dateDay.Number_Font.position = offset;
@@ -36635,14 +37491,15 @@ namespace Watch_Face_Editor
                                 dateDay.Day_Month_Font.w = text.w;
                                 dateDay.Day_Month_Font.h = text.h;
 
-                                dateDay.Day_Month_Font.color = text.color;
-
-                                dateDay.Day_Month_Font.font = text.font;
-
                                 dateDay.Day_Month_Font.text_size = text.text_size;
                                 dateDay.Day_Month_Font.char_space = text.char_space;
                                 dateDay.Day_Month_Font.line_space = text.line_space;
                                 dateDay.Day_Month_Font.alpha = text.alpha;
+
+                                dateDay.Day_Month_Font.font = text.font;
+                                dateDay.Day_Month_Font.color = text.color;
+                                dateDay.Day_Month_Font.color_2 = text.color_2;
+                                dateDay.Day_Month_Font.use_color_2 = text.use_color_2;
 
                                 dateDay.Day_Month_Font.align_h = text.align_h;
                                 dateDay.Day_Month_Font.align_v = text.align_v;
@@ -36651,6 +37508,7 @@ namespace Watch_Face_Editor
                                 dateDay.Day_Month_Font.padding = text.padding;
                                 dateDay.Day_Month_Font.unit_type = text.unit_type;
                                 dateDay.Day_Month_Font.unit_string = text.unit_string;
+                                dateDay.Day_Month_Font.unit_end = text.unit_end;
 
                                 dateDay.Day_Month_Font.visible = true;
                                 dateDay.Day_Month_Font.position = offset;
@@ -36682,14 +37540,15 @@ namespace Watch_Face_Editor
                                 dateDay.Day_Month_Year_Font.w = text.w;
                                 dateDay.Day_Month_Year_Font.h = text.h;
 
-                                dateDay.Day_Month_Year_Font.color = text.color;
-
-                                dateDay.Day_Month_Year_Font.font = text.font;
-
                                 dateDay.Day_Month_Year_Font.text_size = text.text_size;
                                 dateDay.Day_Month_Year_Font.char_space = text.char_space;
                                 dateDay.Day_Month_Year_Font.line_space = text.line_space;
                                 dateDay.Day_Month_Year_Font.alpha = text.alpha;
+
+                                dateDay.Day_Month_Year_Font.font = text.font;
+                                dateDay.Day_Month_Year_Font.color = text.color;
+                                dateDay.Day_Month_Year_Font.color_2 = text.color_2;
+                                dateDay.Day_Month_Year_Font.use_color_2 = text.use_color_2;
 
                                 dateDay.Day_Month_Year_Font.align_h = text.align_h;
                                 dateDay.Day_Month_Year_Font.align_v = text.align_v;
@@ -36698,6 +37557,7 @@ namespace Watch_Face_Editor
                                 dateDay.Day_Month_Year_Font.padding = text.padding;
                                 dateDay.Day_Month_Year_Font.unit_type = text.unit_type;
                                 dateDay.Day_Month_Year_Font.unit_string = text.unit_string;
+                                dateDay.Day_Month_Year_Font.unit_end = text.unit_end;
 
                                 dateDay.Day_Month_Year_Font.visible = true;
                                 dateDay.Day_Month_Year_Font.position = offset;
@@ -36729,14 +37589,15 @@ namespace Watch_Face_Editor
                                 dateMonth.Number_Font.w = text.w;
                                 dateMonth.Number_Font.h = text.h;
 
-                                dateMonth.Number_Font.color = text.color;
-
-                                dateMonth.Number_Font.font = text.font;
-
                                 dateMonth.Number_Font.text_size = text.text_size;
                                 dateMonth.Number_Font.char_space = text.char_space;
                                 dateMonth.Number_Font.line_space = text.line_space;
                                 dateMonth.Number_Font.alpha = text.alpha;
+
+                                dateMonth.Number_Font.font = text.font;
+                                dateMonth.Number_Font.color = text.color;
+                                dateMonth.Number_Font.color_2 = text.color_2;
+                                dateMonth.Number_Font.use_color_2 = text.use_color_2;
 
                                 dateMonth.Number_Font.align_h = text.align_h;
                                 dateMonth.Number_Font.align_v = text.align_v;
@@ -36745,6 +37606,7 @@ namespace Watch_Face_Editor
                                 dateMonth.Number_Font.padding = text.padding;
                                 dateMonth.Number_Font.unit_type = text.unit_type;
                                 dateMonth.Number_Font.unit_string = text.unit_string;
+                                dateMonth.Number_Font.unit_end = text.unit_end;
 
                                 dateMonth.Number_Font.visible = true;
                                 dateMonth.Number_Font.position = offset;
@@ -36776,14 +37638,15 @@ namespace Watch_Face_Editor
                                 dateMonth.Month_Font.w = text.w;
                                 dateMonth.Month_Font.h = text.h;
 
-                                dateMonth.Month_Font.color = text.color;
-
-                                dateMonth.Month_Font.font = text.font;
-
                                 dateMonth.Month_Font.text_size = text.text_size;
                                 dateMonth.Month_Font.char_space = text.char_space;
                                 dateMonth.Month_Font.line_space = text.line_space;
                                 dateMonth.Month_Font.alpha = text.alpha;
+
+                                dateMonth.Month_Font.font = text.font;
+                                dateMonth.Month_Font.color = text.color;
+                                dateMonth.Month_Font.color_2 = text.color_2;
+                                dateMonth.Month_Font.use_color_2 = text.use_color_2;
 
                                 dateMonth.Month_Font.align_h = text.align_h;
                                 dateMonth.Month_Font.align_v = text.align_v;
@@ -36792,6 +37655,7 @@ namespace Watch_Face_Editor
                                 dateMonth.Month_Font.padding = text.padding;
                                 dateMonth.Month_Font.unit_type = text.unit_type;
                                 dateMonth.Month_Font.unit_string = text.unit_string;
+                                dateMonth.Month_Font.unit_end = text.unit_end;
 
                                 dateMonth.Month_Font.visible = true;
                                 dateMonth.Month_Font.position = offset;
@@ -36821,14 +37685,15 @@ namespace Watch_Face_Editor
                                 dateYear.Number_Font.w = text.w;
                                 dateYear.Number_Font.h = text.h;
 
-                                dateYear.Number_Font.color = text.color;
-
-                                dateYear.Number_Font.font = text.font;
-
                                 dateYear.Number_Font.text_size = text.text_size;
                                 dateYear.Number_Font.char_space = text.char_space;
                                 dateYear.Number_Font.line_space = text.line_space;
                                 dateYear.Number_Font.alpha = text.alpha;
+
+                                dateYear.Number_Font.font = text.font;
+                                dateYear.Number_Font.color = text.color;
+                                dateYear.Number_Font.color_2 = text.color_2;
+                                dateYear.Number_Font.use_color_2 = text.use_color_2;
 
                                 dateYear.Number_Font.align_h = text.align_h;
                                 dateYear.Number_Font.align_v = text.align_v;
@@ -36837,6 +37702,7 @@ namespace Watch_Face_Editor
                                 dateYear.Number_Font.padding = text.padding;
                                 dateYear.Number_Font.unit_type = text.unit_type;
                                 dateYear.Number_Font.unit_string = text.unit_string;
+                                dateYear.Number_Font.unit_end = text.unit_end;
 
                                 dateYear.Number_Font.visible = true;
                                 dateYear.Number_Font.position = offset;
@@ -36863,14 +37729,15 @@ namespace Watch_Face_Editor
                                 weekDay.DayOfWeek_Font.w = text.w;
                                 weekDay.DayOfWeek_Font.h = text.h;
 
-                                weekDay.DayOfWeek_Font.color = text.color;
-
-                                weekDay.DayOfWeek_Font.font = text.font;
-
                                 weekDay.DayOfWeek_Font.text_size = text.text_size;
                                 weekDay.DayOfWeek_Font.char_space = text.char_space;
                                 weekDay.DayOfWeek_Font.line_space = text.line_space;
                                 weekDay.DayOfWeek_Font.alpha = text.alpha;
+
+                                weekDay.DayOfWeek_Font.font = text.font;
+                                weekDay.DayOfWeek_Font.color = text.color;
+                                weekDay.DayOfWeek_Font.color_2 = text.color_2;
+                                weekDay.DayOfWeek_Font.use_color_2 = text.use_color_2;
 
                                 weekDay.DayOfWeek_Font.align_h = text.align_h;
                                 weekDay.DayOfWeek_Font.align_v = text.align_v;
@@ -36879,6 +37746,7 @@ namespace Watch_Face_Editor
                                 weekDay.DayOfWeek_Font.padding = text.padding;
                                 weekDay.DayOfWeek_Font.unit_type = text.unit_type;
                                 weekDay.DayOfWeek_Font.unit_string = text.unit_string;
+                                weekDay.DayOfWeek_Font.unit_end = text.unit_end;
 
                                 weekDay.DayOfWeek_Font.visible = true;
                                 weekDay.DayOfWeek_Font.position = offset;
@@ -36923,14 +37791,15 @@ namespace Watch_Face_Editor
                                 time_hour_text.Group_Hour.Number_Font.w = text.w;
                                 time_hour_text.Group_Hour.Number_Font.h = text.h;
 
-                                time_hour_text.Group_Hour.Number_Font.color = text.color;
-
-                                time_hour_text.Group_Hour.Number_Font.font = text.font;
-
                                 time_hour_text.Group_Hour.Number_Font.text_size = text.text_size;
                                 time_hour_text.Group_Hour.Number_Font.char_space = text.char_space;
                                 time_hour_text.Group_Hour.Number_Font.line_space = text.line_space;
                                 time_hour_text.Group_Hour.Number_Font.alpha = text.alpha;
+
+                                time_hour_text.Group_Hour.Number_Font.font = text.font;
+                                time_hour_text.Group_Hour.Number_Font.color = text.color;
+                                time_hour_text.Group_Hour.Number_Font.color_2 = text.color_2;
+                                time_hour_text.Group_Hour.Number_Font.use_color_2 = text.use_color_2;
 
                                 time_hour_text.Group_Hour.Number_Font.align_h = text.align_h;
                                 time_hour_text.Group_Hour.Number_Font.align_v = text.align_v;
@@ -36939,6 +37808,7 @@ namespace Watch_Face_Editor
                                 time_hour_text.Group_Hour.Number_Font.padding = text.padding;
                                 time_hour_text.Group_Hour.Number_Font.unit_type = text.unit_type;
                                 time_hour_text.Group_Hour.Number_Font.unit_string = text.unit_string;
+                                time_hour_text.Group_Hour.Number_Font.unit_end = text.unit_end;
 
                                 time_hour_text.Group_Hour.Number_Font.visible = true;
                                 if (time_hour_text.Group_Hour.position < 0) time_hour_text.Group_Hour.position = offset;
@@ -36983,14 +37853,15 @@ namespace Watch_Face_Editor
                                 time_minute_text.Group_Minute.Number_Font.w = text.w;
                                 time_minute_text.Group_Minute.Number_Font.h = text.h;
 
-                                time_minute_text.Group_Minute.Number_Font.color = text.color;
-
-                                time_minute_text.Group_Minute.Number_Font.font = text.font;
-
                                 time_minute_text.Group_Minute.Number_Font.text_size = text.text_size;
                                 time_minute_text.Group_Minute.Number_Font.char_space = text.char_space;
                                 time_minute_text.Group_Minute.Number_Font.line_space = text.line_space;
                                 time_minute_text.Group_Minute.Number_Font.alpha = text.alpha;
+
+                                time_minute_text.Group_Minute.Number_Font.font = text.font;
+                                time_minute_text.Group_Minute.Number_Font.color = text.color;
+                                time_minute_text.Group_Minute.Number_Font.color_2 = text.color_2;
+                                time_minute_text.Group_Minute.Number_Font.use_color_2 = text.use_color_2;
 
                                 time_minute_text.Group_Minute.Number_Font.align_h = text.align_h;
                                 time_minute_text.Group_Minute.Number_Font.align_v = text.align_v;
@@ -36999,6 +37870,7 @@ namespace Watch_Face_Editor
                                 time_minute_text.Group_Minute.Number_Font.padding = text.padding;
                                 time_minute_text.Group_Minute.Number_Font.unit_type = text.unit_type;
                                 time_minute_text.Group_Minute.Number_Font.unit_string = text.unit_string;
+                                time_minute_text.Group_Minute.Number_Font.unit_end = text.unit_end;
 
                                 time_minute_text.Group_Minute.Number_Font.visible = true;
                                 if (time_minute_text.Group_Minute.position < 0) time_minute_text.Group_Minute.position = offset;
@@ -37043,14 +37915,15 @@ namespace Watch_Face_Editor
                                 second_text_font.Group_Second.Number_Font.w = text.w;
                                 second_text_font.Group_Second.Number_Font.h = text.h;
 
-                                second_text_font.Group_Second.Number_Font.color = text.color;
-
-                                second_text_font.Group_Second.Number_Font.font = text.font;
-
                                 second_text_font.Group_Second.Number_Font.text_size = text.text_size;
                                 second_text_font.Group_Second.Number_Font.char_space = text.char_space;
                                 second_text_font.Group_Second.Number_Font.line_space = text.line_space;
                                 second_text_font.Group_Second.Number_Font.alpha = text.alpha;
+
+                                second_text_font.Group_Second.Number_Font.font = text.font;
+                                second_text_font.Group_Second.Number_Font.color = text.color;
+                                second_text_font.Group_Second.Number_Font.color_2 = text.color_2;
+                                second_text_font.Group_Second.Number_Font.use_color_2 = text.use_color_2;
 
                                 second_text_font.Group_Second.Number_Font.align_h = text.align_h;
                                 second_text_font.Group_Second.Number_Font.align_v = text.align_v;
@@ -37059,6 +37932,7 @@ namespace Watch_Face_Editor
                                 second_text_font.Group_Second.Number_Font.padding = text.padding;
                                 second_text_font.Group_Second.Number_Font.unit_type = text.unit_type;
                                 second_text_font.Group_Second.Number_Font.unit_string = text.unit_string;
+                                second_text_font.Group_Second.Number_Font.unit_end = text.unit_end;
 
                                 second_text_font.Group_Second.Number_Font.visible = true;
                                 if (second_text_font.Group_Second.position < 0) second_text_font.Group_Second.position = offset;
@@ -37102,14 +37976,15 @@ namespace Watch_Face_Editor
                                 time_hour_min_text.Hour_Min_Font.w = text.w;
                                 time_hour_min_text.Hour_Min_Font.h = text.h;
 
-                                time_hour_min_text.Hour_Min_Font.color = text.color;
-
-                                time_hour_min_text.Hour_Min_Font.font = text.font;
-
                                 time_hour_min_text.Hour_Min_Font.text_size = text.text_size;
                                 time_hour_min_text.Hour_Min_Font.char_space = text.char_space;
                                 time_hour_min_text.Hour_Min_Font.line_space = text.line_space;
                                 time_hour_min_text.Hour_Min_Font.alpha = text.alpha;
+
+                                time_hour_min_text.Hour_Min_Font.font = text.font;
+                                time_hour_min_text.Hour_Min_Font.color = text.color;
+                                time_hour_min_text.Hour_Min_Font.color_2 = text.color_2;
+                                time_hour_min_text.Hour_Min_Font.use_color_2 = text.use_color_2;
 
                                 time_hour_min_text.Hour_Min_Font.align_h = text.align_h;
                                 time_hour_min_text.Hour_Min_Font.align_v = text.align_v;
@@ -37117,8 +37992,8 @@ namespace Watch_Face_Editor
 
                                 time_hour_min_text.Hour_Min_Font.padding = text.padding;
                                 time_hour_min_text.Hour_Min_Font.unit_type = text.unit_type;
-                                time_hour_min_text.Hour_Min_Font.unit_end = text.unit_end;
                                 time_hour_min_text.Hour_Min_Font.unit_string = text.unit_string;
+                                time_hour_min_text.Hour_Min_Font.unit_end = text.unit_end;
 
                                 time_hour_min_text.Hour_Min_Font.visible = true;
                                 time_hour_min_text.Hour_Min_Font.position = offset;
@@ -37162,14 +38037,15 @@ namespace Watch_Face_Editor
                                 time_hour_min_sec_text.Hour_Min_Sec_Font.w = text.w;
                                 time_hour_min_sec_text.Hour_Min_Sec_Font.h = text.h;
 
-                                time_hour_min_sec_text.Hour_Min_Sec_Font.color = text.color;
-
-                                time_hour_min_sec_text.Hour_Min_Sec_Font.font = text.font;
-
                                 time_hour_min_sec_text.Hour_Min_Sec_Font.text_size = text.text_size;
                                 time_hour_min_sec_text.Hour_Min_Sec_Font.char_space = text.char_space;
                                 time_hour_min_sec_text.Hour_Min_Sec_Font.line_space = text.line_space;
                                 time_hour_min_sec_text.Hour_Min_Sec_Font.alpha = text.alpha;
+
+                                time_hour_min_sec_text.Hour_Min_Sec_Font.font = text.font;
+                                time_hour_min_sec_text.Hour_Min_Sec_Font.color = text.color;
+                                time_hour_min_sec_text.Hour_Min_Sec_Font.color_2 = text.color_2;
+                                time_hour_min_sec_text.Hour_Min_Sec_Font.use_color_2 = text.use_color_2;
 
                                 time_hour_min_sec_text.Hour_Min_Sec_Font.align_h = text.align_h;
                                 time_hour_min_sec_text.Hour_Min_Sec_Font.align_v = text.align_v;
@@ -37177,8 +38053,8 @@ namespace Watch_Face_Editor
 
                                 time_hour_min_sec_text.Hour_Min_Sec_Font.padding = text.padding;
                                 time_hour_min_sec_text.Hour_Min_Sec_Font.unit_type = text.unit_type;
-                                time_hour_min_sec_text.Hour_Min_Sec_Font.unit_end = text.unit_end;
                                 time_hour_min_sec_text.Hour_Min_Sec_Font.unit_string = text.unit_string;
+                                time_hour_min_sec_text.Hour_Min_Sec_Font.unit_end = text.unit_end;
 
                                 time_hour_min_sec_text.Hour_Min_Sec_Font.visible = true;
                                 time_hour_min_sec_text.Hour_Min_Sec_Font.position = offset;
@@ -37210,14 +38086,15 @@ namespace Watch_Face_Editor
                                 compass.Number_Font.w = text.w;
                                 compass.Number_Font.h = text.h;
 
-                                compass.Number_Font.color = text.color;
-
-                                compass.Number_Font.font = text.font;
-
                                 compass.Number_Font.text_size = text.text_size;
                                 compass.Number_Font.char_space = text.char_space;
                                 compass.Number_Font.line_space = text.line_space;
                                 compass.Number_Font.alpha = text.alpha;
+
+                                compass.Number_Font.font = text.font;
+                                compass.Number_Font.color = text.color;
+                                compass.Number_Font.color_2 = text.color_2;
+                                compass.Number_Font.use_color_2 = text.use_color_2;
 
                                 compass.Number_Font.align_h = text.align_h;
                                 compass.Number_Font.align_v = text.align_v;
@@ -37226,6 +38103,7 @@ namespace Watch_Face_Editor
                                 compass.Number_Font.padding = text.padding;
                                 compass.Number_Font.unit_type = text.unit_type;
                                 compass.Number_Font.unit_string = text.unit_string;
+                                compass.Number_Font.unit_end = text.unit_end;
 
                                 compass.Number_Font.visible = true;
                                 compass.Number_Font.position = offset;
@@ -39651,6 +40529,93 @@ namespace Watch_Face_Editor
                         }
 
                         break;
+                    #endregion
+
+                    #region BUTTON
+                    case "BUTTON":
+                        if (objectName == "GMT_Button_NextSity")
+                        {
+                            Button button = Object_BUTTON(parametrs);
+
+                            ElementWorldClock worldClock = (ElementWorldClock)elementsList.Find(e => e.GetType().Name == "ElementWorldClock");
+                            if (worldClock == null)
+                            {
+                                elementsList.Add(new ElementWorldClock());
+                                worldClock = (ElementWorldClock)elementsList.Find(e => e.GetType().Name == "ElementWorldClock");
+                            }
+                            if (worldClock != null)
+                            {
+                                int offset = 1;
+                                if (worldClock.Time != null) offset++;
+                                if (worldClock.TimeZone != null) offset++;
+                                if (worldClock.CityName != null) offset++;
+                                if (worldClock.TimeDifference != null) offset++;
+                                //if (worldClock.ButtonNext != null) offset++;
+                                if (worldClock.ButtonPrev != null) offset++;
+                                if (worldClock.Icon != null) offset++;
+
+                                worldClock.ButtonNext = new Button();
+                                worldClock.ButtonNext.x = button.x;
+                                worldClock.ButtonNext.y = button.y;
+                                worldClock.ButtonNext.w = button.w;
+                                worldClock.ButtonNext.h = button.h;
+                                worldClock.ButtonNext.radius = button.radius;
+                                worldClock.ButtonNext.text_size = button.text_size;
+                                worldClock.ButtonNext.color = button.color;
+                                worldClock.ButtonNext.text = button.text;
+                                worldClock.ButtonNext.press_src = button.press_src;
+                                worldClock.ButtonNext.normal_src = button.normal_src;
+                                worldClock.ButtonNext.normal_color = button.normal_color;
+                                worldClock.ButtonNext.press_color = button.press_color;
+                                worldClock.ButtonNext.vibro = button.vibro;
+
+                                worldClock.ButtonNext.visible = true;
+                                worldClock.ButtonNext.position = offset;
+                            }
+                        }
+
+                        if (objectName == "GMT_Button_PreviewSity")
+                        {
+                            Button button = Object_BUTTON(parametrs);
+
+                            ElementWorldClock worldClock = (ElementWorldClock)elementsList.Find(e => e.GetType().Name == "ElementWorldClock");
+                            if (worldClock == null)
+                            {
+                                elementsList.Add(new ElementWorldClock());
+                                worldClock = (ElementWorldClock)elementsList.Find(e => e.GetType().Name == "ElementWorldClock");
+                            }
+                            if (worldClock != null)
+                            {
+                                int offset = 1;
+                                if (worldClock.Time != null) offset++;
+                                if (worldClock.TimeZone != null) offset++;
+                                if (worldClock.CityName != null) offset++;
+                                if (worldClock.TimeDifference != null) offset++;
+                                if (worldClock.ButtonNext != null) offset++;
+                                //if (worldClock.ButtonPrev != null) offset++;
+                                if (worldClock.Icon != null) offset++;
+
+                                worldClock.ButtonPrev = new Button();
+                                worldClock.ButtonPrev.x = button.x;
+                                worldClock.ButtonPrev.y = button.y;
+                                worldClock.ButtonPrev.w = button.w;
+                                worldClock.ButtonPrev.h = button.h;
+                                worldClock.ButtonPrev.radius = button.radius;
+                                worldClock.ButtonPrev.text_size = button.text_size;
+                                worldClock.ButtonPrev.color = button.color;
+                                worldClock.ButtonPrev.text = button.text;
+                                worldClock.ButtonPrev.press_src = button.press_src;
+                                worldClock.ButtonPrev.normal_src = button.normal_src;
+                                worldClock.ButtonPrev.normal_color = button.normal_color;
+                                worldClock.ButtonPrev.press_color = button.press_color;
+                                worldClock.ButtonPrev.vibro = button.vibro;
+
+                                worldClock.ButtonPrev.visible = true;
+                                worldClock.ButtonPrev.position = offset;
+                            }
+                        }
+
+                        break;
                         #endregion
                 }
             }
@@ -41200,6 +42165,21 @@ namespace Watch_Face_Editor
             smoothSecond.position = 1;
 
             return smoothSecond;
+        }
+
+        private ElementTimeCircle Object_TIME_CIRCLE_OPTIONS(Dictionary<string, string> parametrs)
+        {
+            ElementTimeCircle timeCircle = new ElementTimeCircle();
+            if (parametrs.ContainsKey("// smooth")) timeCircle.Smooth = StringToBool(parametrs["// smooth"]);
+            if (parametrs.ContainsKey("// format24h")) timeCircle.Format_24hour = StringToBool(parametrs["// format24h"]);
+
+            if (parametrs.ContainsKey("// show_level"))
+            {
+                string imgName = parametrs["// show_level"].Replace("hmUI.show_level.", "");
+                timeCircle.show_level = imgName;
+            }
+
+            return timeCircle;
         }
 
         private List<hmUI_widget_IMG_NUMBER> Object_ImgDate(Dictionary<string, string> parametrs)

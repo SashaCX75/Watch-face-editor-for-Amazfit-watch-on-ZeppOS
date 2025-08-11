@@ -839,6 +839,12 @@
     <EmbeddedResource Include="Elements\UCtrl_Altimeter_Elm.zh.resx">
       <DependentUpon>UCtrl_Altimeter_Elm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_AnalogTimeCircle_Elm.en.resx">
+      <DependentUpon>UCtrl_AnalogTimeCircle_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_AnalogTimeCircle_Elm.uk.resx">
+      <DependentUpon>UCtrl_AnalogTimeCircle_Elm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_AnalogTimePro_Elm.cs.resx">
       <DependentUpon>UCtrl_AnalogTimePro_Elm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1917,6 +1923,12 @@
     <EmbeddedResource Include="Elements\UCtrl_Wind_Elm.zh.resx">
       <DependentUpon>UCtrl_Wind_Elm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_WorldClock_Elm.en.resx">
+      <DependentUpon>UCtrl_WorldClock_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_WorldClock_Elm.uk.resx">
+      <DependentUpon>UCtrl_WorldClock_Elm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\ButtonFunctions.de.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ButtonFunctions.de.Designer.cs</LastGenOutput>
@@ -2234,7 +2246,13 @@
     <EmbeddedResource Include="Elements\UCtrl_BodyTemp_Elm.resx">
       <DependentUpon>UCtrl_BodyTemp_Elm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_ButtonOne_Opt.en.resx">
+      <DependentUpon>UCtrl_ButtonOne_Opt.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UCtrl_ButtonOne_Opt.resx">
+      <DependentUpon>UCtrl_ButtonOne_Opt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_ButtonOne_Opt.uk.resx">
       <DependentUpon>UCtrl_ButtonOne_Opt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UCtrl_Button_Opt.cs.resx">

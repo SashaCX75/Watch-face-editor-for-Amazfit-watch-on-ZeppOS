@@ -2456,6 +2456,7 @@ namespace Watch_Face_Editor
             uCtrl_ButtonOne_Opt.SetNormalImage(button.normal_src);
             uCtrl_ButtonOne_Opt.SetColorNormal(StringToColor(button.normal_color));
             uCtrl_ButtonOne_Opt.SetColorPress(StringToColor(button.press_color));
+            uCtrl_ButtonOne_Opt.checkBox_vibro.Checked = button.vibro;
 
             PreviewView = true;
         }
@@ -4187,6 +4188,7 @@ namespace Watch_Face_Editor
             button.normal_src = uCtrl_ButtonOne_Opt.GetNormalImage();
             button.normal_color = ColorToString(uCtrl_ButtonOne_Opt.GetColorNormal());
             button.press_color = ColorToString(uCtrl_ButtonOne_Opt.GetColorPress());
+            button.vibro = uCtrl_ButtonOne_Opt.checkBox_vibro.Checked;
 
             JSON_Modified = true;
             PreviewImage();

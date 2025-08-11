@@ -2004,6 +2004,7 @@ namespace Watch_Face_Editor
             // 
             // uCtrl_WorldClock_Elm
             // 
+            this.uCtrl_WorldClock_Elm.AOD_Mode = false;
             resources.ApplyResources(this.uCtrl_WorldClock_Elm, "uCtrl_WorldClock_Elm");
             this.uCtrl_WorldClock_Elm.Name = "uCtrl_WorldClock_Elm";
             this.uCtrl_WorldClock_Elm.VisibleElementChanged += new ControlLibrary.UCtrl_WorldClock_Elm.VisibleElementChangedHandler(this.uCtrl_WorldClock_Elm_VisibleElementChanged);

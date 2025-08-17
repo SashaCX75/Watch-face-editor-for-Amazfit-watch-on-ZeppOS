@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Watch_Face_Editor
 {
@@ -769,6 +770,21 @@ namespace Watch_Face_Editor
 
         /// <summary>Центрировать вертикально</summary>
         public bool centreVertically { get; set; } = false;
+
+        /// <summary>Использовать текст по окружности</summary>
+        public bool use_text_circle { get; set; } = false;
+
+        /// <summary>Радиус</summary>
+        public int radius { get; set; } = 150;
+
+        /// <summary>Начальный угол</summary>
+        public int start_angle { get; set; }
+
+        /// <summary>Конечный угол</summary>
+        public int end_angle { get; set; } = 180;
+
+        /// <summary>Направление: 0 - по часовой, 1 - против часовой</summary>
+        public int mode { get; set; }
 
         /// <summary>Основной экран или AOD</summary>
         public string show_level = "";

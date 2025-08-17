@@ -81,6 +81,7 @@ namespace ControlLibrary
             this.checkBox_inEnd = new System.Windows.Forms.CheckBox();
             this.textBox_DOW = new System.Windows.Forms.TextBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.numericUpDown_radius = new System.Windows.Forms.NumericUpDown();
             this.label_DOW = new System.Windows.Forms.Label();
             this.label_Month = new System.Windows.Forms.Label();
             this.comboBox_Color2 = new System.Windows.Forms.ComboBox();
@@ -88,6 +89,15 @@ namespace ControlLibrary
             this.checkBox_Color2 = new System.Windows.Forms.CheckBox();
             this.numericUpDown_Alpha = new System.Windows.Forms.NumericUpDown();
             this.label_alpha = new System.Windows.Forms.Label();
+            this.checkBox_use_text_circle = new System.Windows.Forms.CheckBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.numericUpDown_start_angle = new System.Windows.Forms.NumericUpDown();
+            this.label10 = new System.Windows.Forms.Label();
+            this.numericUpDown_end_angle = new System.Windows.Forms.NumericUpDown();
+            this.label11 = new System.Windows.Forms.Label();
+            this.radioButton_clockwise = new System.Windows.Forms.RadioButton();
+            this.radioButton_counterclockwise = new System.Windows.Forms.RadioButton();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Width)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Height)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_X)).BeginInit();
@@ -98,7 +108,11 @@ namespace ControlLibrary
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Spacing)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_LineSpace)).BeginInit();
             this.context_WidgetProperty.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_radius)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Alpha)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_start_angle)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_end_angle)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // numericUpDown_Width
@@ -523,6 +537,22 @@ namespace ControlLibrary
             this.toolTip1.SetToolTip(this.textBox_DOW, resources.GetString("textBox_DOW.ToolTip"));
             this.textBox_DOW.TextChanged += new System.EventHandler(this.textBox_unit_string_TextChanged);
             // 
+            // numericUpDown_radius
+            // 
+            resources.ApplyResources(this.numericUpDown_radius, "numericUpDown_radius");
+            this.numericUpDown_radius.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.numericUpDown_radius.Name = "numericUpDown_radius";
+            this.numericUpDown_radius.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.numericUpDown_radius.ValueChanged += new System.EventHandler(this.numericUpDown_ValueChanged);
+            // 
             // label_DOW
             // 
             resources.ApplyResources(this.label_DOW, "label_DOW");
@@ -576,11 +606,100 @@ namespace ControlLibrary
             resources.ApplyResources(this.label_alpha, "label_alpha");
             this.label_alpha.Name = "label_alpha";
             // 
+            // checkBox_use_text_circle
+            // 
+            resources.ApplyResources(this.checkBox_use_text_circle, "checkBox_use_text_circle");
+            this.checkBox_use_text_circle.Name = "checkBox_use_text_circle";
+            this.checkBox_use_text_circle.CheckedChanged += new System.EventHandler(this.checkBox_use_text_circle_CheckedChanged);
+            // 
+            // label9
+            // 
+            resources.ApplyResources(this.label9, "label9");
+            this.label9.Name = "label9";
+            // 
+            // numericUpDown_start_angle
+            // 
+            resources.ApplyResources(this.numericUpDown_start_angle, "numericUpDown_start_angle");
+            this.numericUpDown_start_angle.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.numericUpDown_start_angle.Minimum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDown_start_angle.Name = "numericUpDown_start_angle";
+            this.numericUpDown_start_angle.ValueChanged += new System.EventHandler(this.numericUpDown_ValueChanged);
+            // 
+            // label10
+            // 
+            resources.ApplyResources(this.label10, "label10");
+            this.label10.Name = "label10";
+            // 
+            // numericUpDown_end_angle
+            // 
+            resources.ApplyResources(this.numericUpDown_end_angle, "numericUpDown_end_angle");
+            this.numericUpDown_end_angle.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.numericUpDown_end_angle.Minimum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDown_end_angle.Name = "numericUpDown_end_angle";
+            this.numericUpDown_end_angle.Value = new decimal(new int[] {
+            180,
+            0,
+            0,
+            0});
+            this.numericUpDown_end_angle.ValueChanged += new System.EventHandler(this.numericUpDown_ValueChanged);
+            // 
+            // label11
+            // 
+            resources.ApplyResources(this.label11, "label11");
+            this.label11.Name = "label11";
+            // 
+            // radioButton_clockwise
+            // 
+            resources.ApplyResources(this.radioButton_clockwise, "radioButton_clockwise");
+            this.radioButton_clockwise.Checked = true;
+            this.radioButton_clockwise.Name = "radioButton_clockwise";
+            this.radioButton_clockwise.TabStop = true;
+            this.radioButton_clockwise.UseVisualStyleBackColor = true;
+            this.radioButton_clockwise.CheckedChanged += new System.EventHandler(this.radioButton_clockwise_CheckedChanged);
+            // 
+            // radioButton_counterclockwise
+            // 
+            resources.ApplyResources(this.radioButton_counterclockwise, "radioButton_counterclockwise");
+            this.radioButton_counterclockwise.Name = "radioButton_counterclockwise";
+            this.radioButton_counterclockwise.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.checkBox_use_text_circle);
+            this.panel1.Controls.Add(this.radioButton_counterclockwise);
+            this.panel1.Controls.Add(this.label9);
+            this.panel1.Controls.Add(this.radioButton_clockwise);
+            this.panel1.Controls.Add(this.numericUpDown_radius);
+            this.panel1.Controls.Add(this.numericUpDown_end_angle);
+            this.panel1.Controls.Add(this.label10);
+            this.panel1.Controls.Add(this.label11);
+            this.panel1.Controls.Add(this.numericUpDown_start_angle);
+            resources.ApplyResources(this.panel1, "panel1");
+            this.panel1.Name = "panel1";
+            // 
             // UCtrl_Text_SystemFont_Opt
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ContextMenuStrip = this.context_WidgetProperty;
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.label06);
             this.Controls.Add(this.label09);
             this.Controls.Add(this.numericUpDown_Alpha);
@@ -637,7 +756,12 @@ namespace ControlLibrary
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Spacing)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_LineSpace)).EndInit();
             this.context_WidgetProperty.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_radius)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Alpha)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_start_angle)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_end_angle)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -702,5 +826,15 @@ namespace ControlLibrary
         public System.Windows.Forms.CheckBox checkBox_Color2;
         public System.Windows.Forms.NumericUpDown numericUpDown_Alpha;
         private System.Windows.Forms.Label label_alpha;
+        public System.Windows.Forms.CheckBox checkBox_use_text_circle;
+        public System.Windows.Forms.NumericUpDown numericUpDown_radius;
+        private System.Windows.Forms.Label label9;
+        public System.Windows.Forms.NumericUpDown numericUpDown_start_angle;
+        private System.Windows.Forms.Label label10;
+        public System.Windows.Forms.NumericUpDown numericUpDown_end_angle;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.RadioButton radioButton_clockwise;
+        private System.Windows.Forms.RadioButton radioButton_counterclockwise;
     }
 }

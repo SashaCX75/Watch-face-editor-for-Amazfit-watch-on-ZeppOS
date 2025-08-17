@@ -2012,6 +2012,9 @@ namespace Watch_Face_Editor
             this.uCtrl_WorldClock_Elm.OptionsMoved += new ControlLibrary.UCtrl_WorldClock_Elm.OptionsMovedHandler(this.uCtrl_WorldClock_Elm_OptionsMoved);
             this.uCtrl_WorldClock_Elm.SelectChanged += new ControlLibrary.UCtrl_WorldClock_Elm.SelectChangedHandler(this.uCtrl_WorldClock_Elm_SelectChanged);
             this.uCtrl_WorldClock_Elm.DelElement += new ControlLibrary.UCtrl_WorldClock_Elm.DelElementHandler(this.uCtrl_Elm_DelElement);
+            this.uCtrl_WorldClock_Elm.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Control_MouseDown);
+            this.uCtrl_WorldClock_Elm.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Control_MouseMove);
+            this.uCtrl_WorldClock_Elm.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Control_MouseUp);
             // 
             // panel_ElementsOpt
             // 

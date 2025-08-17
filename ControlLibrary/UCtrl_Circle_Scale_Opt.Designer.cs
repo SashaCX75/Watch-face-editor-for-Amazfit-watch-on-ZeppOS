@@ -389,7 +389,6 @@ namespace ControlLibrary
             this.Controls.Add(this.numericUpDown_Alpha);
             this.Controls.Add(this.label_alpha);
             this.Controls.Add(this.comboBox_scaleCircle_lineCap);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBox_scaleCircle_color);
             this.Controls.Add(this.label02);
@@ -408,6 +407,7 @@ namespace ControlLibrary
             this.Controls.Add(this.label03);
             this.Controls.Add(this.label06);
             this.Controls.Add(this.label05);
+            this.Controls.Add(this.label2);
             this.Name = "UCtrl_Circle_Scale_Opt";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_scaleCircleX)).EndInit();
             this.contextMenuStrip_X.ResumeLayout(false);

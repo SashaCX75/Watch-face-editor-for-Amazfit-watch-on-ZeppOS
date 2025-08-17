@@ -124,6 +124,9 @@
     <value>Width</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="contextMenuStrip_X.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 82</value>
+  </data>
   <data name="вставитьКоординатуХToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAfxJREFUOE9j
@@ -189,7 +192,7 @@
   <data name="вставитьToolStripMenuItemX.Text" xml:space="preserve">
     <value>Paste</value>
   </data>
-  <data name="contextMenuStrip_X.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="contextMenuStrip_Y.Size" type="System.Drawing.Size, System.Drawing">
     <value>177, 82</value>
   </data>
   <data name="вставитьКоординатуYToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -256,9 +259,6 @@
   </data>
   <data name="вставитьToolStripMenuItemY.Text" xml:space="preserve">
     <value>Paste</value>
-  </data>
-  <data name="contextMenuStrip_Y.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 82</value>
   </data>
   <data name="numericUpDown_Size.ToolTip" xml:space="preserve">
     <value>It is not recommended to set a size larger than 150</value>
@@ -367,6 +367,9 @@ vertically</value>
   <data name="label8.Text" xml:space="preserve">
     <value>!!! Some data may not be displayed (depending on the watch model). Check whether the data can be displayed on the actual device.</value>
   </data>
+  <data name="context_WidgetProperty.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 48</value>
+  </data>
   <data name="копироватьСвойстваToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>159, 22</value>
   </data>
@@ -378,9 +381,6 @@ vertically</value>
   </data>
   <data name="вставитьСвойстваToolStripMenuItem.Text" xml:space="preserve">
     <value>Insert properties</value>
-  </data>
-  <data name="context_WidgetProperty.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 48</value>
   </data>
   <data name="label_unit_string.Text" xml:space="preserve">
     <value>Separator</value>
@@ -405,5 +405,29 @@ vertically</value>
   </data>
   <data name="label_alpha.Text" xml:space="preserve">
     <value>Transparency</value>
+  </data>
+  <data name="checkBox_use_text_circle.Text" xml:space="preserve">
+    <value>Display text in a circle</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Radius</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Start angle</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>End angle</value>
+  </data>
+  <data name="radioButton_clockwise.Size" type="System.Drawing.Size, System.Drawing">
+    <value>73, 17</value>
+  </data>
+  <data name="radioButton_clockwise.Text" xml:space="preserve">
+    <value>Clockwise</value>
+  </data>
+  <data name="radioButton_counterclockwise.Size" type="System.Drawing.Size, System.Drawing">
+    <value>109, 17</value>
+  </data>
+  <data name="radioButton_counterclockwise.Text" xml:space="preserve">
+    <value>Counterclockwise</value>
   </data>
 </root>

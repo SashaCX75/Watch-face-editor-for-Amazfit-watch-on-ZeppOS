@@ -804,6 +804,7 @@ namespace Watch_Face_Editor
             text.text_size = (int)Math.Round((text.text_size * scale), MidpointRounding.AwayFromZero);
             text.line_space = (int)Math.Round((text.line_space * scale), MidpointRounding.AwayFromZero);
             text.char_space = (int)Math.Round((text.char_space * scale), MidpointRounding.AwayFromZero);
+            text.radius = (int)Math.Round((text.radius * scale), MidpointRounding.AwayFromZero);
         }
 
         private void Scale_AmPm(hmUI_widget_IMG_TIME_am_pm am_pm, float scale)

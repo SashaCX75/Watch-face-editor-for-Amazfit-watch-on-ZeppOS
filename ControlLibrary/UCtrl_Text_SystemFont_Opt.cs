@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -928,6 +929,18 @@ namespace ControlLibrary
             else return textBox_DOW.Text;
         }
 
+        public void SetMode(int mode)
+        {
+            if (mode == 1) radioButton_counterclockwise.Checked = true;
+            else  radioButton_clockwise.Checked = true;
+        }
+
+        public int GetMode()
+        {
+            if (radioButton_counterclockwise.Checked) return 1;
+            else return 0;
+        }
+
         #region Settings Set/Clear
 
         /// <summary>Очищает выпадающие списки с картинками, сбрасывает данные на значения по умолчанию</summary>
@@ -970,6 +983,9 @@ namespace ControlLibrary
             Use2color = false;
             Alpha = false;
             SityName = false;
+
+            checkBox_use_text_circle.Checked = false;
+            radioButton_clockwise.Checked = true;
 
             setValue = false;
         }
@@ -1166,6 +1182,46 @@ namespace ControlLibrary
             label_Color2.Enabled = use;
             comboBox_Color2.Enabled = use;
 
+            if (ValueChanged != null && !setValue)
+            {
+                EventArgs eventArgs = new EventArgs();
+                ValueChanged(this, eventArgs);
+            }
+        }
+
+        private void checkBox_use_text_circle_CheckedChanged(object sender, EventArgs e)
+        {
+            bool use_text_circle = checkBox_use_text_circle.Checked;
+
+            label9.Enabled = use_text_circle;
+            label10.Enabled = use_text_circle;
+            label11.Enabled = use_text_circle;
+            numericUpDown_start_angle.Enabled = use_text_circle;
+            numericUpDown_end_angle.Enabled = use_text_circle;
+            numericUpDown_radius.Enabled = use_text_circle;
+            radioButton_clockwise.Enabled = use_text_circle;
+            radioButton_counterclockwise.Enabled = use_text_circle;
+
+            label07.Enabled = !use_text_circle;
+            label08.Enabled = !use_text_circle;
+            label1.Enabled = !use_text_circle;
+            label3.Enabled = !use_text_circle;
+            label4.Enabled = !use_text_circle;
+            numericUpDown_Width.Enabled = !use_text_circle;
+            numericUpDown_Height.Enabled = !use_text_circle;
+            comboBox_alignmentVertical.Enabled = !use_text_circle;
+            numericUpDown_LineSpace.Enabled = !use_text_circle;
+            comboBox_textStyle.Enabled = !use_text_circle;
+
+            if (ValueChanged != null && !setValue)
+            {
+                EventArgs eventArgs = new EventArgs();
+                ValueChanged(this, eventArgs);
+            }
+        }
+
+        private void radioButton_clockwise_CheckedChanged(object sender, EventArgs e)
+        {
             if (ValueChanged != null && !setValue)
             {
                 EventArgs eventArgs = new EventArgs();

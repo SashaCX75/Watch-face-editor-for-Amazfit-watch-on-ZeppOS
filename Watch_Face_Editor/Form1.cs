@@ -2917,7 +2917,7 @@ namespace Watch_Face_Editor
                         if (uCtrl_WorldClock_Elm.checkBox_TimeZone.Checked)
                         {
                             text = worldClock.TimeZone;
-                            Read_Text_Options(text, true, false, true);
+                            Read_Text_Options(text, false, false, true);
                             ShowElemenrOptions("SystemFont");
                         }
                         else HideAllElemenrOptions();
@@ -2936,7 +2936,7 @@ namespace Watch_Face_Editor
                         if (uCtrl_WorldClock_Elm.checkBox_TimeDiff.Checked)
                         {
                             text = worldClock.TimeDifference;
-                            Read_Text_Options(text, true, false, true);
+                            Read_Text_Options(text, false, false, true);
                             ShowElemenrOptions("SystemFont");
                         }
                         else HideAllElemenrOptions();

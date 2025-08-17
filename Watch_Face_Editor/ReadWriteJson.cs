@@ -4403,6 +4403,13 @@ namespace Watch_Face_Editor
                             {
                                 int pos = items.IndexOf("function updateTimeGMT() ");
 
+                                int pos_0 = items.IndexOf("timeStr = '--:--';", pos);
+                                if (pos_0 > 0)
+                                {
+                                    pos_0 += "timeStr = '--:--';".Length;
+                                    items = items.Insert(pos_0, Environment.NewLine + TabInString(7) + "let " + timeStr + " = '--:--';");
+                                }
+
                                 int pos_1 = items.IndexOf("} // count", pos);
                                 if (pos_1 > 0) {
                                     string insetrStr = "";
@@ -4446,9 +4453,12 @@ namespace Watch_Face_Editor
                                     items = items.Insert(pos_1, insetrStr);
                                 }
 
-                                int pos_2 = items.IndexOf("// count", pos) + "// count".Length;
-                                if (pos_2 > 0) items = items.Insert(pos_2, Environment.NewLine + TabInString(7) + "if (" + variablesName + ") " +
+                                int pos_2 = items.IndexOf("// count", pos);
+                                if (pos_2 > 0) {
+                                    pos_2 += "// count".Length;
+                                    items = items.Insert(pos_2, Environment.NewLine + TabInString(7) + "if (" + variablesName + ") " +
                                      variablesName + ".setProperty(hmUI.prop.TEXT, " + timeStr + ");");
+                                }
                             }
                             //if (resume_call.IndexOf("updateWorldTime();") < 0)
                             //    resume_call += TabInString(8) + "updateWorldTime();" + Environment.NewLine;
@@ -4503,6 +4513,7 @@ namespace Watch_Face_Editor
                             items += Environment.NewLine + TabInString(6) + variablesName + " = hmUI.createWidget(hmUI.widget.TEXT, {" +
                                     timeZoneOptions + TabInString(6) + "});" + Environment.NewLine;
 
+                            string timeZoneStr = optionNameStart + "timeZoneStr";
                             if (items.IndexOf("function updateTimeZoneGMT() {") < 0)
                             {
                                 string delimeter = ":";
@@ -4510,7 +4521,7 @@ namespace Watch_Face_Editor
 
                                 items += Environment.NewLine + TabInString(6) + "function updateTimeZoneGMT() {";
                                 items += Environment.NewLine + TabInString(7) + "console.log('updateTimeZoneGMT()');";
-                                items += Environment.NewLine + TabInString(7) + "let timeZoneStr = '--:--';";
+                                items += Environment.NewLine + TabInString(7) + "let " + timeZoneStr + " = '±-:--';";
                                 items += Environment.NewLine + TabInString(7) + "let count = worldClock.getWorldClockCount();";
                                 items += Environment.NewLine + TabInString(7) + "if (count > 0) {";
                                 items += Environment.NewLine + TabInString(8) + "if (worldClockIndex >= count) worldClockIndex = count-1;";
@@ -4529,19 +4540,42 @@ namespace Watch_Face_Editor
                                 items += Environment.NewLine + TabInString(9) + "else if (timeZoneMinute == 0)  timeZoneHourStr = '±' + timeZoneHourStr;";
                                 items += Environment.NewLine + TabInString(9) + "else timeZoneHourStr = '-' + timeZoneHour;";
                                 items += Environment.NewLine + TabInString(8) + "};";
-                                items += Environment.NewLine + TabInString(8) + "timeZoneStr = timeZoneHourStr + '" + delimeter + "' + timeZoneMinuteStr;";
-                                items += Environment.NewLine + TabInString(7) + "}; // count";
+                                items += Environment.NewLine + TabInString(8) + timeZoneStr + " = timeZoneHourStr + '" + delimeter + "' + timeZoneMinuteStr;";
+                                items += Environment.NewLine + TabInString(7) + "} // count";
                                 items += Environment.NewLine + TabInString(7) + "if (" + variablesName + ") " +
-                                    variablesName + ".setProperty(hmUI.prop.TEXT, timeZoneStr);";
+                                    variablesName + ".setProperty(hmUI.prop.TEXT, " + timeZoneStr + ");";
                                 items += Environment.NewLine + TabInString(6) + "};";
                                 items += Environment.NewLine + TabInString(6) + "updateTimeZoneGMT();" + Environment.NewLine;
                             }
                             else
                             {
                                 int pos = items.IndexOf("function updateTimeZoneGMT() {");
-                                pos = items.IndexOf("// count", pos) + "// count".Length;
-                                if (pos > 0) items = items.Insert(pos, Environment.NewLine + TabInString(7) + "if (" + variablesName + ") " +
-                                    variablesName + ".setProperty(hmUI.prop.TEXT, timeZoneStr);");
+
+                                int pos_0 = items.IndexOf("timeZoneStr = '±-:--';", pos);
+                                if (pos_0 > 0)
+                                {
+                                    pos_0 += "timeZoneStr = '±-:--';".Length;
+                                    items = items.Insert(pos_0, Environment.NewLine + TabInString(7) + "let " + timeZoneStr + " = '±-:--';");
+                                }
+
+                                int pos_1 = items.IndexOf("} // count", pos);
+                                if (pos_1 > 0)
+                                {
+                                    string insetrStr = "";
+                                    string delimeter = ":";
+                                    if (WorldClock.TimeZone.unit_string.Length > 0) delimeter = WorldClock.TimeZone.unit_string;
+                                    insetrStr += TabInString(1) + timeZoneStr + " = timeZoneHourStr + '" + delimeter + "' + timeZoneMinuteStr;";
+                                    insetrStr += Environment.NewLine + TabInString(7); // count
+                                    items = items.Insert(pos_1, insetrStr);
+                                }
+
+                                int pos_2 = items.IndexOf("// count", pos);
+                                if (pos_2 > 0)
+                                {
+                                    pos_2 += "// count".Length;
+                                    items = items.Insert(pos_2, Environment.NewLine + TabInString(7) + "if (" + variablesName + ") " +
+                                     variablesName + ".setProperty(hmUI.prop.TEXT, " + timeZoneStr + ");");
+                                }
                             }
                             //if (resume_call.IndexOf("updateWorldTime();") < 0)
                             //    resume_call += TabInString(8) + "updateWorldTime();" + Environment.NewLine;
@@ -4596,30 +4630,72 @@ namespace Watch_Face_Editor
                             items += Environment.NewLine + TabInString(6) + variablesName + " = hmUI.createWidget(hmUI.widget.TEXT, {" +
                                     cityNameGMTOptions + TabInString(6) + "});" + Environment.NewLine;
 
+                            string cityNameStr = optionNameStart + "cityNameStr";
                             if (items.IndexOf("function updateSityNameGMT() {") < 0)
                             {
                                 items += Environment.NewLine + TabInString(6) + "function updateSityNameGMT() {";
                                 items += Environment.NewLine + TabInString(7) + "console.log('updateSityNameGMT()');";
-                                items += Environment.NewLine + TabInString(7) + "let cityNameStr = '---';";
+                                items += Environment.NewLine + TabInString(7) + "let " + cityNameStr + " = '---';";
                                 items += Environment.NewLine + TabInString(7) + "let count = worldClock.getWorldClockCount();";
                                 items += Environment.NewLine + TabInString(7) + "if (count > 0) {";
                                 items += Environment.NewLine + TabInString(8) + "if (worldClockIndex >= count) worldClockIndex = count-1;";
                                 items += Environment.NewLine + TabInString(8) + "let worldData = worldClock.getWorldClockInfo(worldClockIndex);";
-                                items += Environment.NewLine + TabInString(8) + "cityNameStr = worldData.city;";
-                                items += Environment.NewLine + TabInString(7) + "}; // count";
+                                items += Environment.NewLine + TabInString(8) + cityNameStr + " = worldData.city;";
+                                if (WorldClock.CityName.unit_type == 1)
+                                {
+                                    items += Environment.NewLine + TabInString(8) + cityNameStr + " = " + cityNameStr + ".toUpperCase();";
+                                }
+                                if (WorldClock.CityName.unit_type == 2)
+                                {
+                                    items += Environment.NewLine + TabInString(8) + cityNameStr + " = " + cityNameStr + ".toLowerCase();";
+                                }
+                                items += Environment.NewLine + TabInString(7) + "} // count";
+#if !DEBUG
                                 items += Environment.NewLine + TabInString(7) + "if (" + variablesName + ") " + 
-                                    variablesName + ".setProperty(hmUI.prop.TEXT, cityNameStr);";
+                                    variablesName + ".setProperty(hmUI.prop.TEXT, " + cityNameStr + ");";
+#endif
+#if DEBUG
+                                items += Environment.NewLine + TabInString(7) + "if (" + variablesName + ") " + 
+                                    variablesName + ".setProperty(hmUI.prop.TEXT, 'City Name GMT');";
+#endif
                                 items += Environment.NewLine + TabInString(6) + "};";
                                 items += Environment.NewLine + TabInString(6) + "updateSityNameGMT();" + Environment.NewLine;
-
-                                //resume_call += TabInString(8) + "updateSityNameGMT();" + Environment.NewLine;
                             }
                             else
                             {
                                 int pos = items.IndexOf("function updateSityNameGMT() {");
-                                pos = items.IndexOf("// count", pos) + "// count".Length;
-                                if (pos > 0) items = items.Insert(pos, Environment.NewLine + TabInString(7) + "if (" + variablesName + ") " +
-                                    variablesName + ".setProperty(hmUI.prop.TEXT, cityNameStr);");
+
+                                int pos_0 = items.IndexOf("cityNameStr = '---';", pos);
+                                if (pos_0 > 0)
+                                {
+                                    pos_0 += "cityNameStr = '---';".Length;
+                                    items = items.Insert(pos_0, Environment.NewLine + TabInString(7) + "let " + cityNameStr + " = '---';");
+                                }
+
+                                int pos_1 = items.IndexOf("} // count", pos);
+                                if (pos_1 > 0)
+                                {
+                                    string insetrStr = "";
+                                    insetrStr += TabInString(1) + cityNameStr + " = worldData.city;";
+                                    if (WorldClock.CityName.unit_type == 1)
+                                    {
+                                        insetrStr += Environment.NewLine + TabInString(8) + cityNameStr + " = " + cityNameStr + ".toUpperCase();";
+                                    }
+                                    if (WorldClock.CityName.unit_type == 2)
+                                    {
+                                        insetrStr += Environment.NewLine + TabInString(8) + cityNameStr + " = " + cityNameStr + ".toLowerCase();";
+                                    }
+                                    insetrStr += Environment.NewLine + TabInString(7); // count
+                                    items = items.Insert(pos_1, insetrStr);
+                                }
+
+                                int pos_2 = items.IndexOf("// count", pos);
+                                if (pos_2 > 0)
+                                {
+                                    pos_2 += "// count".Length;
+                                    items = items.Insert(pos_2, Environment.NewLine + TabInString(7) + "if (" + variablesName + ") " +
+                                     variablesName + ".setProperty(hmUI.prop.TEXT, " + cityNameStr + ");");
+                                }
                             }
                             //if (resume_call.IndexOf("updateWorldTime();") < 0)
                             //    resume_call += TabInString(8) + "updateWorldTime();" + Environment.NewLine;
@@ -4636,7 +4712,7 @@ namespace Watch_Face_Editor
                         }
 
                         // TimeDifference
-                        if (index == timeDifferencePosition && timeZoneOptions.Length > 5)
+                        if (index == timeDifferencePosition && timeDifferenceOptions.Length > 5)
                         {
                             if (SelectedModel.versionOS >= 2 && WorldClock.TimeDifference.font != null && WorldClock.TimeDifference.font.Length > 3)
                             {
@@ -4674,6 +4750,7 @@ namespace Watch_Face_Editor
                             items += Environment.NewLine + TabInString(6) + variablesName + " = hmUI.createWidget(hmUI.widget.TEXT, {" +
                                     timeDifferenceOptions + TabInString(6) + "});" + Environment.NewLine;
 
+                            string timeDifferenceStr = optionNameStart + "timeDifferenceStr";
                             if (items.IndexOf("function updateTimeDifferenceGMT() {") < 0)
                             {
                                 string delimeter = ":";
@@ -4681,7 +4758,7 @@ namespace Watch_Face_Editor
 
                                 items += Environment.NewLine + TabInString(6) + "function updateTimeDifferenceGMT() {";
                                 items += Environment.NewLine + TabInString(7) + "console.log('updateTimeDifferenceGMT()');";
-                                items += Environment.NewLine + TabInString(7) + "let timeDifferenceStr = '--:--';";
+                                items += Environment.NewLine + TabInString(7) + "let " + timeDifferenceStr + " = '±-:--';";
                                 items += Environment.NewLine + TabInString(7) + "let count = worldClock.getWorldClockCount();";
                                 items += Environment.NewLine + TabInString(7) + "if (count > 0) {";
                                 items += Environment.NewLine + TabInString(8) + "if (worldClockIndex >= count) worldClockIndex = count-1;";
@@ -4696,19 +4773,42 @@ namespace Watch_Face_Editor
                                 items += Environment.NewLine + TabInString(9) + "else if (timeZoneMinute == 0)  timeZoneHourStr = '±' + timeZoneHourStr;";
                                 items += Environment.NewLine + TabInString(9) + "else timeZoneHourStr = '-' + timeZoneHour;";
                                 items += Environment.NewLine + TabInString(8) + "};";
-                                items += Environment.NewLine + TabInString(8) + "timeDifferenceStr = timeZoneHourStr + '" + delimeter + "' + timeZoneMinuteStr;";
-                                items += Environment.NewLine + TabInString(7) + "}; // count";
+                                items += Environment.NewLine + TabInString(8) + timeDifferenceStr + " = timeZoneHourStr + '" + delimeter + "' + timeZoneMinuteStr;";
+                                items += Environment.NewLine + TabInString(7) + "} // count";
                                 items += Environment.NewLine + TabInString(7) + "if (" + variablesName + ") " +
-                                    variablesName + ".setProperty(hmUI.prop.TEXT, timeDifferenceStr);";
+                                    variablesName + ".setProperty(hmUI.prop.TEXT, " + timeDifferenceStr + ");";
                                 items += Environment.NewLine + TabInString(6) + "};";
                                 items += Environment.NewLine + TabInString(6) + "updateTimeDifferenceGMT();" + Environment.NewLine;
                             }
                             else
                             {
                                 int pos = items.IndexOf("function updateTimeDifferenceGMT() {");
-                                pos = items.IndexOf("// count", pos) + "// count".Length;
-                                if (pos > 0) items = items.Insert(pos, Environment.NewLine + TabInString(7) + "if (" + variablesName + ") " +
-                                    variablesName + ".setProperty(hmUI.prop.TEXT, timeDifferenceStr);");
+
+                                int pos_0 = items.IndexOf("timeDifferenceStr = '±-:--';", pos);
+                                if (pos_0 > 0)
+                                {
+                                    pos_0 += "timeDifferenceStr = '±-:--';".Length;
+                                    items = items.Insert(pos_0, Environment.NewLine + TabInString(7) + "let " + timeDifferenceStr + " = '±-:--';");
+                                }
+
+                                int pos_1 = items.IndexOf("} // count", pos);
+                                if (pos_1 > 0)
+                                {
+                                    string insetrStr = "";
+                                    string delimeter = ":";
+                                    if (WorldClock.TimeDifference.unit_string.Length > 0) delimeter = WorldClock.TimeDifference.unit_string;
+                                    insetrStr += TabInString(1) + timeDifferenceStr + " = timeZoneHourStr + '" + delimeter + "' + timeZoneMinuteStr;";
+                                    insetrStr += Environment.NewLine + TabInString(7); // count
+                                    items = items.Insert(pos_1, insetrStr);
+                                }
+
+                                int pos_2 = items.IndexOf("// count", pos);
+                                if (pos_2 > 0)
+                                {
+                                    pos_2 += "// count".Length;
+                                    items = items.Insert(pos_2, Environment.NewLine + TabInString(7) + "if (" + variablesName + ") " +
+                                     variablesName + ".setProperty(hmUI.prop.TEXT, " + timeDifferenceStr + ");");
+                                }
                             }
                             //if (resume_call.IndexOf("updateWorldTime();") < 0)
                             //    resume_call += TabInString(8) + "updateWorldTime();" + Environment.NewLine;
@@ -4774,7 +4874,7 @@ namespace Watch_Face_Editor
                     }
 
                     break;
-                #endregion
+#endregion
 
                 #region ElementDateDay
                 case "ElementDateDay":
@@ -11055,7 +11155,7 @@ namespace Watch_Face_Editor
 
                     }
                     break;
-                #endregion*/
+#endregion*/
 
                 #region ElementWeather_v2
                 case "ElementWeather_v2":
@@ -23072,8 +23172,27 @@ namespace Watch_Face_Editor
             int y = text.y;
             int w = text.w;
             int h = text.h;
-            if (text.centreHorizontally) x = (SelectedModel.background.w - w) / 2;
-            if (text.centreVertically) y = (SelectedModel.background.h - h) / 2;
+
+            string align_h = text.align_h;
+            string align_v = text.align_v;
+
+            if (text.centreHorizontally)
+            {
+                x = (SelectedModel.background.w - w) / 2;
+                if (!text.use_text_circle || text.radius > text.text_size) align_h = "CENTER_H";
+            }
+            if (text.centreVertically)
+            {
+                y = (SelectedModel.background.h - h) / 2;
+                if (!text.use_text_circle || text.radius > text.text_size) align_v = "CENTER_V";
+            }
+            if (text.use_text_circle && text.radius > text.text_size)
+            {
+                x -= text.radius;
+                y -= text.radius;
+                w = text.radius * 2;
+                h = text.radius * 2;
+            }
             options += TabInString(7 + tabOffset) + "x: " + x.ToString() + "," + Environment.NewLine;
             options += TabInString(7 + tabOffset) + "y: " + y.ToString() + "," + Environment.NewLine;
             options += TabInString(7 + tabOffset) + "w: " + w.ToString() + "," + Environment.NewLine;
@@ -23081,7 +23200,6 @@ namespace Watch_Face_Editor
 
             options += TabInString(7 + tabOffset) + "text_size: " + text.text_size.ToString() + "," + Environment.NewLine;
             options += TabInString(7 + tabOffset) + "char_space: " + text.char_space.ToString() + "," + Environment.NewLine;
-            options += TabInString(7 + tabOffset) + "line_space: " + text.line_space.ToString() + "," + Environment.NewLine;
 
             if (SelectedModel.versionOS >= 2 && text.font != null && text.font.Length > 3)
             {
@@ -23094,14 +23212,25 @@ namespace Watch_Face_Editor
 
             options += TabInString(7 + tabOffset) + "color: " + text.color + "," + Environment.NewLine;
 
-            //options += TabInString(7 + tabOffset) + "align_h: hmUI.align." + text.align_h + "," + Environment.NewLine;
-            //options += TabInString(7 + tabOffset) + "align_v: hmUI.align." + text.align_v + "," + Environment.NewLine;
-            if (text.centreHorizontally) options += TabInString(7 + tabOffset) + "align_h: hmUI.align.CENTER_H," + Environment.NewLine;
-            else options += TabInString(7 + tabOffset) + "align_h: hmUI.align." + text.align_h + "," + Environment.NewLine;
-            if (text.centreVertically) options += TabInString(7 + tabOffset) + "align_v: hmUI.align.CENTER_V," + Environment.NewLine;
-            else options += TabInString(7 + tabOffset) + "align_v: hmUI.align." + text.align_v + "," + Environment.NewLine;
+            if (text.use_text_circle && text.radius > text.text_size)
+            {
+                int start_angle = text.start_angle;
+                int end_angle = text.end_angle;
+                if (end_angle < start_angle) (start_angle, end_angle) = (end_angle, start_angle);
+                options += TabInString(7 + tabOffset) + "// use_text_circle: true," + Environment.NewLine;
+                options += TabInString(7 + tabOffset) + "start_angle: " + start_angle.ToString() + "," + Environment.NewLine;
+                options += TabInString(7 + tabOffset) + "end_angle: " + end_angle.ToString() + "," + Environment.NewLine;
+                options += TabInString(7 + tabOffset) + "mode: " + text.mode.ToString() + "," + Environment.NewLine;
+                options += TabInString(7 + tabOffset) + "// radius: " + text.radius.ToString() + "," + Environment.NewLine;
+            }
+            else
+            {
+                options += TabInString(7 + tabOffset) + "line_space: " + text.line_space.ToString() + "," + Environment.NewLine;
+                options += TabInString(7 + tabOffset) + "align_v: hmUI.align." + align_v + "," + Environment.NewLine;
 
-            options += TabInString(7 + tabOffset) + "text_style: hmUI.text_style." + text.text_style + "," + Environment.NewLine;
+                options += TabInString(7 + tabOffset) + "text_style: hmUI.text_style." + text.text_style + "," + Environment.NewLine;
+            }
+            options += TabInString(7 + tabOffset) + "align_h: hmUI.align." + align_h + "," + Environment.NewLine;
 
             if (text.padding) options += TabInString(7 + tabOffset) + "// padding: true," + Environment.NewLine;
             if (text.unit_type > 0) options += TabInString(7 + tabOffset) + "// unit_type: " + text.unit_type.ToString() + "," + Environment.NewLine;
@@ -23191,12 +23320,19 @@ namespace Watch_Face_Editor
             if (text.centreHorizontally)
             {
                 x = (SelectedModel.background.w - w) / 2;
-                align_h = "CENTER_H";
+                if (!text.use_text_circle || text.radius > text.text_size) align_h = "CENTER_H";
             }
             if (text.centreVertically)
             {
                 y = (SelectedModel.background.h - h) / 2;
-                align_v = "CENTER_V";
+                if (!text.use_text_circle || text.radius > text.text_size) align_v = "CENTER_V";
+            }
+            if (text.use_text_circle && text.radius > text.text_size)
+            {
+                x -= text.radius;
+                y -= text.radius;
+                w = text.radius * 2;
+                h = text.radius * 2;
             }
 
             options += TabInString(7 + tabOffset) + "x: " + x.ToString() + "," + Environment.NewLine;
@@ -23219,13 +23355,28 @@ namespace Watch_Face_Editor
 
             options += TabInString(7 + tabOffset) + "color: " + text.color + "," + Environment.NewLine;
 
+            if (text.use_text_circle && text.radius > text.text_size)
+            {
+                int start_angle = text.start_angle;
+                int end_angle = text.end_angle;
+                if (end_angle < start_angle) (start_angle, end_angle) = (end_angle, start_angle);
+                options += TabInString(7 + tabOffset) + "// use_text_circle: true," + Environment.NewLine;
+                options += TabInString(7 + tabOffset) + "start_angle: " + start_angle.ToString() + "," + Environment.NewLine;
+                options += TabInString(7 + tabOffset) + "end_angle: " + end_angle.ToString() + "," + Environment.NewLine;
+                options += TabInString(7 + tabOffset) + "mode: " + text.mode.ToString() + "," + Environment.NewLine;
+                options += TabInString(7 + tabOffset) + "// radius: " + text.radius.ToString() + "," + Environment.NewLine;
+            }
+            else
+            {
+                options += TabInString(7 + tabOffset) + "line_space: " + text.line_space.ToString() + "," + Environment.NewLine;
+                options += TabInString(7 + tabOffset) + "align_v: hmUI.align." + align_v + "," + Environment.NewLine;
+
+                options += TabInString(7 + tabOffset) + "text_style: hmUI.text_style." + text.text_style + "," + Environment.NewLine;
+            }
             options += TabInString(7 + tabOffset) + "align_h: hmUI.align." + align_h + "," + Environment.NewLine;
-            options += TabInString(7 + tabOffset) + "align_v: hmUI.align." + align_v + "," + Environment.NewLine;
 
             if (text.padding) options += TabInString(7 + tabOffset) + "padding: true," + Environment.NewLine;
             if (text.unit_type > 0) options += TabInString(7 + tabOffset) + "unit_type: " + text.unit_type.ToString() + "," + Environment.NewLine;
-
-            options += TabInString(7 + tabOffset) + "text_style: hmUI.text_style." + text.text_style + "," + Environment.NewLine;
 
             if (type.Length > 0)
             {
@@ -37159,6 +37310,15 @@ namespace Watch_Face_Editor
                                 worldClock.Time.unit_string = text.unit_string;
                                 worldClock.Time.unit_end = text.unit_end;
 
+                                if (text.use_text_circle)
+                                {
+                                    worldClock.Time.use_text_circle = text.use_text_circle;
+                                    worldClock.Time.radius = text.radius;
+                                    worldClock.Time.start_angle = text.start_angle;
+                                    worldClock.Time.end_angle = text.end_angle;
+                                    worldClock.Time.mode = text.mode;
+                                }
+
                                 worldClock.Time.visible = true;
                                 worldClock.Time.position = offset;
                             }
@@ -37207,6 +37367,15 @@ namespace Watch_Face_Editor
                                 worldClock.TimeZone.unit_type = text.unit_type;
                                 worldClock.TimeZone.unit_string = text.unit_string;
                                 worldClock.TimeZone.unit_end = text.unit_end;
+
+                                if (text.use_text_circle)
+                                {
+                                    worldClock.TimeZone.use_text_circle = text.use_text_circle;
+                                    worldClock.TimeZone.radius = text.radius;
+                                    worldClock.TimeZone.start_angle = text.start_angle;
+                                    worldClock.TimeZone.end_angle = text.end_angle;
+                                    worldClock.TimeZone.mode = text.mode;
+                                }
 
                                 worldClock.TimeZone.visible = true;
                                 worldClock.TimeZone.position = offset;
@@ -37257,6 +37426,15 @@ namespace Watch_Face_Editor
                                 worldClock.CityName.unit_string = text.unit_string;
                                 worldClock.CityName.unit_end = text.unit_end;
 
+                                if (text.use_text_circle)
+                                {
+                                    worldClock.CityName.use_text_circle = text.use_text_circle;
+                                    worldClock.CityName.radius = text.radius;
+                                    worldClock.CityName.start_angle = text.start_angle;
+                                    worldClock.CityName.end_angle = text.end_angle;
+                                    worldClock.CityName.mode = text.mode;
+                                }
+
                                 worldClock.CityName.visible = true;
                                 worldClock.CityName.position = offset;
                             }
@@ -37305,6 +37483,15 @@ namespace Watch_Face_Editor
                                 worldClock.TimeDifference.unit_type = text.unit_type;
                                 worldClock.TimeDifference.unit_string = text.unit_string;
                                 worldClock.TimeDifference.unit_end = text.unit_end;
+
+                                if (text.use_text_circle)
+                                {
+                                    worldClock.TimeDifference.use_text_circle = text.use_text_circle;
+                                    worldClock.TimeDifference.radius = text.radius;
+                                    worldClock.TimeDifference.start_angle = text.start_angle;
+                                    worldClock.TimeDifference.end_angle = text.end_angle;
+                                    worldClock.TimeDifference.mode = text.mode;
+                                }
 
                                 worldClock.TimeDifference.visible = true;
                                 worldClock.TimeDifference.position = offset;
@@ -37362,6 +37549,15 @@ namespace Watch_Face_Editor
                                 weather.City_Name.unit_string = text.unit_string;
                                 weather.City_Name.unit_end = text.unit_end;
 
+                                if (text.use_text_circle)
+                                {
+                                    weather.City_Name.use_text_circle = text.use_text_circle;
+                                    weather.City_Name.radius = text.radius;
+                                    weather.City_Name.start_angle = text.start_angle;
+                                    weather.City_Name.end_angle = text.end_angle;
+                                    weather.City_Name.mode = text.mode;
+                                }
+
                                 weather.City_Name.visible = true;
                                 weather.City_Name.position = offset;
                             }
@@ -37412,6 +37608,15 @@ namespace Watch_Face_Editor
                                 weather.City_Name.unit_string = text.unit_string;
                                 weather.City_Name.unit_end = text.unit_end;
 
+                                if (text.use_text_circle)
+                                {
+                                    weather.City_Name.use_text_circle = text.use_text_circle;
+                                    weather.City_Name.radius = text.radius;
+                                    weather.City_Name.start_angle = text.start_angle;
+                                    weather.City_Name.end_angle = text.end_angle;
+                                    weather.City_Name.mode = text.mode;
+                                }
+
                                 weather.City_Name.visible = true;
                                 weather.City_Name.position = offset;
                             }
@@ -37460,6 +37665,15 @@ namespace Watch_Face_Editor
                                 dateDay.Number_Font.unit_type = text.unit_type;
                                 dateDay.Number_Font.unit_string = text.unit_string;
                                 dateDay.Number_Font.unit_end = text.unit_end;
+
+                                if (text.use_text_circle)
+                                {
+                                    dateDay.Number_Font.use_text_circle = text.use_text_circle;
+                                    dateDay.Number_Font.radius = text.radius;
+                                    dateDay.Number_Font.start_angle = text.start_angle;
+                                    dateDay.Number_Font.end_angle = text.end_angle;
+                                    dateDay.Number_Font.mode = text.mode;
+                                }
 
                                 dateDay.Number_Font.visible = true;
                                 dateDay.Number_Font.position = offset;
@@ -37510,6 +37724,15 @@ namespace Watch_Face_Editor
                                 dateDay.Day_Month_Font.unit_string = text.unit_string;
                                 dateDay.Day_Month_Font.unit_end = text.unit_end;
 
+                                if (text.use_text_circle)
+                                {
+                                    dateDay.Day_Month_Font.use_text_circle = text.use_text_circle;
+                                    dateDay.Day_Month_Font.radius = text.radius;
+                                    dateDay.Day_Month_Font.start_angle = text.start_angle;
+                                    dateDay.Day_Month_Font.end_angle = text.end_angle;
+                                    dateDay.Day_Month_Font.mode = text.mode;
+                                }
+
                                 dateDay.Day_Month_Font.visible = true;
                                 dateDay.Day_Month_Font.position = offset;
                             }
@@ -37558,6 +37781,15 @@ namespace Watch_Face_Editor
                                 dateDay.Day_Month_Year_Font.unit_type = text.unit_type;
                                 dateDay.Day_Month_Year_Font.unit_string = text.unit_string;
                                 dateDay.Day_Month_Year_Font.unit_end = text.unit_end;
+
+                                if (text.use_text_circle)
+                                {
+                                    dateDay.Day_Month_Year_Font.use_text_circle = text.use_text_circle;
+                                    dateDay.Day_Month_Year_Font.radius = text.radius;
+                                    dateDay.Day_Month_Year_Font.start_angle = text.start_angle;
+                                    dateDay.Day_Month_Year_Font.end_angle = text.end_angle;
+                                    dateDay.Day_Month_Year_Font.mode = text.mode;
+                                }
 
                                 dateDay.Day_Month_Year_Font.visible = true;
                                 dateDay.Day_Month_Year_Font.position = offset;
@@ -37608,6 +37840,15 @@ namespace Watch_Face_Editor
                                 dateMonth.Number_Font.unit_string = text.unit_string;
                                 dateMonth.Number_Font.unit_end = text.unit_end;
 
+                                if (text.use_text_circle)
+                                {
+                                    dateMonth.Number_Font.use_text_circle = text.use_text_circle;
+                                    dateMonth.Number_Font.radius = text.radius;
+                                    dateMonth.Number_Font.start_angle = text.start_angle;
+                                    dateMonth.Number_Font.end_angle = text.end_angle;
+                                    dateMonth.Number_Font.mode = text.mode;
+                                }
+
                                 dateMonth.Number_Font.visible = true;
                                 dateMonth.Number_Font.position = offset;
                             }
@@ -37657,6 +37898,15 @@ namespace Watch_Face_Editor
                                 dateMonth.Month_Font.unit_string = text.unit_string;
                                 dateMonth.Month_Font.unit_end = text.unit_end;
 
+                                if (text.use_text_circle)
+                                {
+                                    dateMonth.Month_Font.use_text_circle = text.use_text_circle;
+                                    dateMonth.Month_Font.radius = text.radius;
+                                    dateMonth.Month_Font.start_angle = text.start_angle;
+                                    dateMonth.Month_Font.end_angle = text.end_angle;
+                                    dateMonth.Month_Font.mode = text.mode;
+                                }
+
                                 dateMonth.Month_Font.visible = true;
                                 dateMonth.Month_Font.position = offset;
                             }
@@ -37704,6 +37954,15 @@ namespace Watch_Face_Editor
                                 dateYear.Number_Font.unit_string = text.unit_string;
                                 dateYear.Number_Font.unit_end = text.unit_end;
 
+                                if (text.use_text_circle)
+                                {
+                                    dateYear.Number_Font.use_text_circle = text.use_text_circle;
+                                    dateYear.Number_Font.radius = text.radius;
+                                    dateYear.Number_Font.start_angle = text.start_angle;
+                                    dateYear.Number_Font.end_angle = text.end_angle;
+                                    dateYear.Number_Font.mode = text.mode;
+                                }
+
                                 dateYear.Number_Font.visible = true;
                                 dateYear.Number_Font.position = offset;
                             }
@@ -37747,6 +38006,15 @@ namespace Watch_Face_Editor
                                 weekDay.DayOfWeek_Font.unit_type = text.unit_type;
                                 weekDay.DayOfWeek_Font.unit_string = text.unit_string;
                                 weekDay.DayOfWeek_Font.unit_end = text.unit_end;
+
+                                if (text.use_text_circle)
+                                {
+                                    weekDay.DayOfWeek_Font.use_text_circle = text.use_text_circle;
+                                    weekDay.DayOfWeek_Font.radius = text.radius;
+                                    weekDay.DayOfWeek_Font.start_angle = text.start_angle;
+                                    weekDay.DayOfWeek_Font.end_angle = text.end_angle;
+                                    weekDay.DayOfWeek_Font.mode = text.mode;
+                                }
 
                                 weekDay.DayOfWeek_Font.visible = true;
                                 weekDay.DayOfWeek_Font.position = offset;
@@ -37810,6 +38078,15 @@ namespace Watch_Face_Editor
                                 time_hour_text.Group_Hour.Number_Font.unit_string = text.unit_string;
                                 time_hour_text.Group_Hour.Number_Font.unit_end = text.unit_end;
 
+                                if (text.use_text_circle)
+                                {
+                                    time_hour_text.Group_Hour.Number_Font.use_text_circle = text.use_text_circle;
+                                    time_hour_text.Group_Hour.Number_Font.radius = text.radius;
+                                    time_hour_text.Group_Hour.Number_Font.start_angle = text.start_angle;
+                                    time_hour_text.Group_Hour.Number_Font.end_angle = text.end_angle;
+                                    time_hour_text.Group_Hour.Number_Font.mode = text.mode;
+                                }
+
                                 time_hour_text.Group_Hour.Number_Font.visible = true;
                                 if (time_hour_text.Group_Hour.position < 0) time_hour_text.Group_Hour.position = offset;
                             }
@@ -37871,6 +38148,15 @@ namespace Watch_Face_Editor
                                 time_minute_text.Group_Minute.Number_Font.unit_type = text.unit_type;
                                 time_minute_text.Group_Minute.Number_Font.unit_string = text.unit_string;
                                 time_minute_text.Group_Minute.Number_Font.unit_end = text.unit_end;
+
+                                if (text.use_text_circle)
+                                {
+                                    time_minute_text.Group_Minute.Number_Font.use_text_circle = text.use_text_circle;
+                                    time_minute_text.Group_Minute.Number_Font.radius = text.radius;
+                                    time_minute_text.Group_Minute.Number_Font.start_angle = text.start_angle;
+                                    time_minute_text.Group_Minute.Number_Font.end_angle = text.end_angle;
+                                    time_minute_text.Group_Minute.Number_Font.mode = text.mode;
+                                }
 
                                 time_minute_text.Group_Minute.Number_Font.visible = true;
                                 if (time_minute_text.Group_Minute.position < 0) time_minute_text.Group_Minute.position = offset;
@@ -37934,6 +38220,15 @@ namespace Watch_Face_Editor
                                 second_text_font.Group_Second.Number_Font.unit_string = text.unit_string;
                                 second_text_font.Group_Second.Number_Font.unit_end = text.unit_end;
 
+                                if (text.use_text_circle)
+                                {
+                                    second_text_font.Group_Second.Number_Font.use_text_circle = text.use_text_circle;
+                                    second_text_font.Group_Second.Number_Font.radius = text.radius;
+                                    second_text_font.Group_Second.Number_Font.start_angle = text.start_angle;
+                                    second_text_font.Group_Second.Number_Font.end_angle = text.end_angle;
+                                    second_text_font.Group_Second.Number_Font.mode = text.mode;
+                                }
+
                                 second_text_font.Group_Second.Number_Font.visible = true;
                                 if (second_text_font.Group_Second.position < 0) second_text_font.Group_Second.position = offset;
                             }
@@ -37994,6 +38289,15 @@ namespace Watch_Face_Editor
                                 time_hour_min_text.Hour_Min_Font.unit_type = text.unit_type;
                                 time_hour_min_text.Hour_Min_Font.unit_string = text.unit_string;
                                 time_hour_min_text.Hour_Min_Font.unit_end = text.unit_end;
+
+                                if (text.use_text_circle)
+                                {
+                                    time_hour_min_text.Hour_Min_Font.use_text_circle = text.use_text_circle;
+                                    time_hour_min_text.Hour_Min_Font.radius = text.radius;
+                                    time_hour_min_text.Hour_Min_Font.start_angle = text.start_angle;
+                                    time_hour_min_text.Hour_Min_Font.end_angle = text.end_angle;
+                                    time_hour_min_text.Hour_Min_Font.mode = text.mode;
+                                }
 
                                 time_hour_min_text.Hour_Min_Font.visible = true;
                                 time_hour_min_text.Hour_Min_Font.position = offset;
@@ -38056,6 +38360,15 @@ namespace Watch_Face_Editor
                                 time_hour_min_sec_text.Hour_Min_Sec_Font.unit_string = text.unit_string;
                                 time_hour_min_sec_text.Hour_Min_Sec_Font.unit_end = text.unit_end;
 
+                                if (text.use_text_circle)
+                                {
+                                    time_hour_min_sec_text.Hour_Min_Sec_Font.use_text_circle = text.use_text_circle;
+                                    time_hour_min_sec_text.Hour_Min_Sec_Font.radius = text.radius;
+                                    time_hour_min_sec_text.Hour_Min_Sec_Font.start_angle = text.start_angle;
+                                    time_hour_min_sec_text.Hour_Min_Sec_Font.end_angle = text.end_angle;
+                                    time_hour_min_sec_text.Hour_Min_Sec_Font.mode = text.mode;
+                                }
+
                                 time_hour_min_sec_text.Hour_Min_Sec_Font.visible = true;
                                 time_hour_min_sec_text.Hour_Min_Sec_Font.position = offset;
                             }
@@ -38104,6 +38417,15 @@ namespace Watch_Face_Editor
                                 compass.Number_Font.unit_type = text.unit_type;
                                 compass.Number_Font.unit_string = text.unit_string;
                                 compass.Number_Font.unit_end = text.unit_end;
+
+                                if (text.use_text_circle)
+                                {
+                                    compass.Number_Font.use_text_circle = text.use_text_circle;
+                                    compass.Number_Font.radius = text.radius;
+                                    compass.Number_Font.start_angle = text.start_angle;
+                                    compass.Number_Font.end_angle = text.end_angle;
+                                    compass.Number_Font.mode = text.mode;
+                                }
 
                                 compass.Number_Font.visible = true;
                                 compass.Number_Font.position = offset;
@@ -38430,6 +38752,15 @@ namespace Watch_Face_Editor
                                 steps.Number_Font.padding = text_font.padding;
                                 steps.Number_Font.unit_type = text_font.unit_type;
 
+                                if (text_font.use_text_circle)
+                                {
+                                    steps.Number_Font.use_text_circle = text_font.use_text_circle;
+                                    steps.Number_Font.radius = text_font.radius;
+                                    steps.Number_Font.start_angle = text_font.start_angle;
+                                    steps.Number_Font.end_angle = text_font.end_angle;
+                                    steps.Number_Font.mode = text_font.mode;
+                                }
+
                                 steps.Number_Font.type = text_font.type;
 
                                 steps.Number_Font.visible = true;
@@ -38484,6 +38815,15 @@ namespace Watch_Face_Editor
                                 steps.Number_Target_Font.padding = text_font.padding;
                                 steps.Number_Target_Font.unit_type = text_font.unit_type;
 
+                                if (text_font.use_text_circle)
+                                {
+                                    steps.Number_Target_Font.use_text_circle = text_font.use_text_circle;
+                                    steps.Number_Target_Font.radius = text_font.radius;
+                                    steps.Number_Target_Font.start_angle = text_font.start_angle;
+                                    steps.Number_Target_Font.end_angle = text_font.end_angle;
+                                    steps.Number_Target_Font.mode = text_font.mode;
+                                }
+
                                 steps.Number_Target_Font.type = text_font.type;
 
                                 steps.Number_Target_Font.visible = true;
@@ -38533,6 +38873,15 @@ namespace Watch_Face_Editor
 
                                 battery.Number_Font.padding = text_font.padding;
                                 battery.Number_Font.unit_type = text_font.unit_type;
+
+                                if (text_font.use_text_circle)
+                                {
+                                    battery.Number_Font.use_text_circle = text_font.use_text_circle;
+                                    battery.Number_Font.radius = text_font.radius;
+                                    battery.Number_Font.start_angle = text_font.start_angle;
+                                    battery.Number_Font.end_angle = text_font.end_angle;
+                                    battery.Number_Font.mode = text_font.mode;
+                                }
 
                                 battery.Number_Font.type = text_font.type;
 
@@ -38588,6 +38937,15 @@ namespace Watch_Face_Editor
                                 calorie.Number_Font.padding = text_font.padding;
                                 calorie.Number_Font.unit_type = text_font.unit_type;
 
+                                if (text_font.use_text_circle)
+                                {
+                                    calorie.Number_Font.use_text_circle = text_font.use_text_circle;
+                                    calorie.Number_Font.radius = text_font.radius;
+                                    calorie.Number_Font.start_angle = text_font.start_angle;
+                                    calorie.Number_Font.end_angle = text_font.end_angle;
+                                    calorie.Number_Font.mode = text_font.mode;
+                                }
+
                                 calorie.Number_Font.type = text_font.type;
 
                                 calorie.Number_Font.visible = true;
@@ -38642,6 +39000,15 @@ namespace Watch_Face_Editor
                                 calorie.Number_Target_Font.padding = text_font.padding;
                                 calorie.Number_Target_Font.unit_type = text_font.unit_type;
 
+                                if (text_font.use_text_circle)
+                                {
+                                    calorie.Number_Target_Font.use_text_circle = text_font.use_text_circle;
+                                    calorie.Number_Target_Font.radius = text_font.radius;
+                                    calorie.Number_Target_Font.start_angle = text_font.start_angle;
+                                    calorie.Number_Target_Font.end_angle = text_font.end_angle;
+                                    calorie.Number_Target_Font.mode = text_font.mode;
+                                }
+
                                 calorie.Number_Target_Font.type = text_font.type;
 
                                 calorie.Number_Target_Font.visible = true;
@@ -38691,6 +39058,15 @@ namespace Watch_Face_Editor
 
                                 heart.Number_Font.padding = text_font.padding;
                                 heart.Number_Font.unit_type = text_font.unit_type;
+
+                                if (text_font.use_text_circle)
+                                {
+                                    heart.Number_Font.use_text_circle = text_font.use_text_circle;
+                                    heart.Number_Font.radius = text_font.radius;
+                                    heart.Number_Font.start_angle = text_font.start_angle;
+                                    heart.Number_Font.end_angle = text_font.end_angle;
+                                    heart.Number_Font.mode = text_font.mode;
+                                }
 
                                 heart.Number_Font.type = text_font.type;
 
@@ -38743,6 +39119,15 @@ namespace Watch_Face_Editor
                                 pai.Number_Target_Font.padding = text_font.padding;
                                 pai.Number_Target_Font.unit_type = text_font.unit_type;
 
+                                if (text_font.use_text_circle)
+                                {
+                                    pai.Number_Target_Font.use_text_circle = text_font.use_text_circle;
+                                    pai.Number_Target_Font.radius = text_font.radius;
+                                    pai.Number_Target_Font.start_angle = text_font.start_angle;
+                                    pai.Number_Target_Font.end_angle = text_font.end_angle;
+                                    pai.Number_Target_Font.mode = text_font.mode;
+                                }
+
                                 pai.Number_Target_Font.type = text_font.type;
 
                                 pai.Number_Target_Font.visible = true;
@@ -38787,6 +39172,15 @@ namespace Watch_Face_Editor
 
                                 distance.Number_Font.padding = text_font.padding;
                                 distance.Number_Font.unit_type = text_font.unit_type;
+
+                                if (text_font.use_text_circle)
+                                {
+                                    distance.Number_Font.use_text_circle = text_font.use_text_circle;
+                                    distance.Number_Font.radius = text_font.radius;
+                                    distance.Number_Font.start_angle = text_font.start_angle;
+                                    distance.Number_Font.end_angle = text_font.end_angle;
+                                    distance.Number_Font.mode = text_font.mode;
+                                }
 
                                 distance.Number_Font.type = text_font.type;
 
@@ -38842,6 +39236,15 @@ namespace Watch_Face_Editor
                                 stand.Number_Font.padding = text_font.padding;
                                 stand.Number_Font.unit_type = text_font.unit_type;
 
+                                if (text_font.use_text_circle)
+                                {
+                                    stand.Number_Font.use_text_circle = text_font.use_text_circle;
+                                    stand.Number_Font.radius = text_font.radius;
+                                    stand.Number_Font.start_angle = text_font.start_angle;
+                                    stand.Number_Font.end_angle = text_font.end_angle;
+                                    stand.Number_Font.mode = text_font.mode;
+                                }
+
                                 stand.Number_Font.type = text_font.type;
 
                                 stand.Number_Font.visible = true;
@@ -38896,6 +39299,15 @@ namespace Watch_Face_Editor
                                 stand.Number_Target_Font.padding = text_font.padding;
                                 stand.Number_Target_Font.unit_type = text_font.unit_type;
 
+                                if (text_font.use_text_circle)
+                                {
+                                    stand.Number_Target_Font.use_text_circle = text_font.use_text_circle;
+                                    stand.Number_Target_Font.radius = text_font.radius;
+                                    stand.Number_Target_Font.start_angle = text_font.start_angle;
+                                    stand.Number_Target_Font.end_angle = text_font.end_angle;
+                                    stand.Number_Target_Font.mode = text_font.mode;
+                                }
+
                                 stand.Number_Target_Font.type = text_font.type;
 
                                 stand.Number_Target_Font.visible = true;
@@ -38945,6 +39357,15 @@ namespace Watch_Face_Editor
 
                                 activity.Number_Font.padding = text_font.padding;
                                 activity.Number_Font.unit_type = text_font.unit_type;
+
+                                if (text_font.use_text_circle)
+                                {
+                                    activity.Number_Font.use_text_circle = text_font.use_text_circle;
+                                    activity.Number_Font.radius = text_font.radius;
+                                    activity.Number_Font.start_angle = text_font.start_angle;
+                                    activity.Number_Font.end_angle = text_font.end_angle;
+                                    activity.Number_Font.mode = text_font.mode;
+                                }
 
                                 activity.Number_Font.type = text_font.type;
 
@@ -38996,6 +39417,15 @@ namespace Watch_Face_Editor
                                 activity.Number_Target_Font.padding = text_font.padding;
                                 activity.Number_Target_Font.unit_type = text_font.unit_type;
 
+                                if (text_font.use_text_circle)
+                                {
+                                    activity.Number_Target_Font.use_text_circle = text_font.use_text_circle;
+                                    activity.Number_Target_Font.radius = text_font.radius;
+                                    activity.Number_Target_Font.start_angle = text_font.start_angle;
+                                    activity.Number_Target_Font.end_angle = text_font.end_angle;
+                                    activity.Number_Target_Font.mode = text_font.mode;
+                                }
+
                                 activity.Number_Target_Font.type = text_font.type;
 
                                 activity.Number_Target_Font.visible = true;
@@ -39040,6 +39470,15 @@ namespace Watch_Face_Editor
 
                                 spo2.Number_Font.padding = text_font.padding;
                                 spo2.Number_Font.unit_type = text_font.unit_type;
+
+                                if (text_font.use_text_circle)
+                                {
+                                    spo2.Number_Font.use_text_circle = text_font.use_text_circle;
+                                    spo2.Number_Font.radius = text_font.radius;
+                                    spo2.Number_Font.start_angle = text_font.start_angle;
+                                    spo2.Number_Font.end_angle = text_font.end_angle;
+                                    spo2.Number_Font.mode = text_font.mode;
+                                }
 
                                 spo2.Number_Font.type = text_font.type;
 
@@ -39086,6 +39525,15 @@ namespace Watch_Face_Editor
 
                                 stress.Number_Font.padding = text_font.padding;
                                 stress.Number_Font.unit_type = text_font.unit_type;
+
+                                if (text_font.use_text_circle)
+                                {
+                                    stress.Number_Font.use_text_circle = text_font.use_text_circle;
+                                    stress.Number_Font.radius = text_font.radius;
+                                    stress.Number_Font.start_angle = text_font.start_angle;
+                                    stress.Number_Font.end_angle = text_font.end_angle;
+                                    stress.Number_Font.mode = text_font.mode;
+                                }
 
                                 stress.Number_Font.type = text_font.type;
 
@@ -39141,6 +39589,15 @@ namespace Watch_Face_Editor
                                 fat_burning.Number_Font.padding = text_font.padding;
                                 fat_burning.Number_Font.unit_type = text_font.unit_type;
 
+                                if (text_font.use_text_circle)
+                                {
+                                    fat_burning.Number_Font.use_text_circle = text_font.use_text_circle;
+                                    fat_burning.Number_Font.radius = text_font.radius;
+                                    fat_burning.Number_Font.start_angle = text_font.start_angle;
+                                    fat_burning.Number_Font.end_angle = text_font.end_angle;
+                                    fat_burning.Number_Font.mode = text_font.mode;
+                                }
+
                                 fat_burning.Number_Font.type = text_font.type;
 
                                 fat_burning.Number_Font.visible = true;
@@ -39194,6 +39651,15 @@ namespace Watch_Face_Editor
 
                                 fat_burning.Number_Target_Font.padding = text_font.padding;
                                 fat_burning.Number_Target_Font.unit_type = text_font.unit_type;
+
+                                if (text_font.use_text_circle)
+                                {
+                                    fat_burning.Number_Target_Font.use_text_circle = text_font.use_text_circle;
+                                    fat_burning.Number_Target_Font.radius = text_font.radius;
+                                    fat_burning.Number_Target_Font.start_angle = text_font.start_angle;
+                                    fat_burning.Number_Target_Font.end_angle = text_font.end_angle;
+                                    fat_burning.Number_Target_Font.mode = text_font.mode;
+                                }
 
                                 fat_burning.Number_Target_Font.type = text_font.type;
 
@@ -39250,6 +39716,15 @@ namespace Watch_Face_Editor
                                 weather.Number_Font.padding = text_font.padding;
                                 weather.Number_Font.unit_type = text_font.unit_type;
 
+                                if (text_font.use_text_circle)
+                                {
+                                    weather.Number_Font.use_text_circle = text_font.use_text_circle;
+                                    weather.Number_Font.radius = text_font.radius;
+                                    weather.Number_Font.start_angle = text_font.start_angle;
+                                    weather.Number_Font.end_angle = text_font.end_angle;
+                                    weather.Number_Font.mode = text_font.mode;
+                                }
+
                                 weather.Number_Font.type = text_font.type;
 
                                 weather.Number_Font.visible = true;
@@ -39302,6 +39777,15 @@ namespace Watch_Face_Editor
 
                                 weather.Number_Min_Font.padding = text_font.padding;
                                 weather.Number_Min_Font.unit_type = text_font.unit_type;
+
+                                if (text_font.use_text_circle)
+                                {
+                                    weather.Number_Min_Font.use_text_circle = text_font.use_text_circle;
+                                    weather.Number_Min_Font.radius = text_font.radius;
+                                    weather.Number_Min_Font.start_angle = text_font.start_angle;
+                                    weather.Number_Min_Font.end_angle = text_font.end_angle;
+                                    weather.Number_Min_Font.mode = text_font.mode;
+                                }
 
                                 weather.Number_Min_Font.type = text_font.type;
 
@@ -39356,6 +39840,15 @@ namespace Watch_Face_Editor
                                 weather.Number_Max_Font.padding = text_font.padding;
                                 weather.Number_Max_Font.unit_type = text_font.unit_type;
 
+                                if (text_font.use_text_circle)
+                                {
+                                    weather.Number_Max_Font.use_text_circle = text_font.use_text_circle;
+                                    weather.Number_Max_Font.radius = text_font.radius;
+                                    weather.Number_Max_Font.start_angle = text_font.start_angle;
+                                    weather.Number_Max_Font.end_angle = text_font.end_angle;
+                                    weather.Number_Max_Font.mode = text_font.mode;
+                                }
+
                                 weather.Number_Max_Font.type = text_font.type;
 
                                 weather.Number_Max_Font.visible = true;
@@ -39409,6 +39902,15 @@ namespace Watch_Face_Editor
                                 weather.Number_Min_Max_Font.padding = text_font.padding;
                                 weather.Number_Min_Max_Font.unit_type = text_font.unit_type;
 
+                                if (text_font.use_text_circle)
+                                {
+                                    weather.Number_Min_Max_Font.use_text_circle = text_font.use_text_circle;
+                                    weather.Number_Min_Max_Font.radius = text_font.radius;
+                                    weather.Number_Min_Max_Font.start_angle = text_font.start_angle;
+                                    weather.Number_Min_Max_Font.end_angle = text_font.end_angle;
+                                    weather.Number_Min_Max_Font.mode = text_font.mode;
+                                }
+
                                 weather.Number_Min_Max_Font.type = text_font.type;
 
                                 weather.Number_Min_Max_Font.visible = true;
@@ -39457,6 +39959,15 @@ namespace Watch_Face_Editor
 
                                 weather.Group_Current.Number_Font.padding = text_font.padding;
                                 weather.Group_Current.Number_Font.unit_type = text_font.unit_type;
+
+                                if (text_font.use_text_circle)
+                                {
+                                    weather.Group_Current.Number_Font.use_text_circle = text_font.use_text_circle;
+                                    weather.Group_Current.Number_Font.radius = text_font.radius;
+                                    weather.Group_Current.Number_Font.start_angle = text_font.start_angle;
+                                    weather.Group_Current.Number_Font.end_angle = text_font.end_angle;
+                                    weather.Group_Current.Number_Font.mode = text_font.mode;
+                                }
 
                                 weather.Group_Current.Number_Font.type = text_font.type;
 
@@ -39507,6 +40018,15 @@ namespace Watch_Face_Editor
                                 weather.Group_Min.Number_Font.padding = text_font.padding;
                                 weather.Group_Min.Number_Font.unit_type = text_font.unit_type;
 
+                                if (text_font.use_text_circle)
+                                {
+                                    weather.Group_Min.Number_Font.use_text_circle = text_font.use_text_circle;
+                                    weather.Group_Min.Number_Font.radius = text_font.radius;
+                                    weather.Group_Min.Number_Font.start_angle = text_font.start_angle;
+                                    weather.Group_Min.Number_Font.end_angle = text_font.end_angle;
+                                    weather.Group_Min.Number_Font.mode = text_font.mode;
+                                }
+
                                 weather.Group_Min.Number_Font.type = text_font.type;
 
                                 weather.Group_Min.Number_Font.visible = true;
@@ -39555,6 +40075,15 @@ namespace Watch_Face_Editor
 
                                 weather.Group_Max.Number_Font.padding = text_font.padding;
                                 weather.Group_Max.Number_Font.unit_type = text_font.unit_type;
+
+                                if (text_font.use_text_circle)
+                                {
+                                    weather.Group_Max.Number_Font.use_text_circle = text_font.use_text_circle;
+                                    weather.Group_Max.Number_Font.radius = text_font.radius;
+                                    weather.Group_Max.Number_Font.start_angle = text_font.start_angle;
+                                    weather.Group_Max.Number_Font.end_angle = text_font.end_angle;
+                                    weather.Group_Max.Number_Font.mode = text_font.mode;
+                                }
 
                                 weather.Group_Max.Number_Font.type = text_font.type;
 
@@ -39605,6 +40134,15 @@ namespace Watch_Face_Editor
                                 weather.Group_Max_Min.Number_Font.padding = text_font.padding;
                                 weather.Group_Max_Min.Number_Font.unit_type = text_font.unit_type;
 
+                                if (text_font.use_text_circle)
+                                {
+                                    weather.Group_Max_Min.Number_Font.use_text_circle = text_font.use_text_circle;
+                                    weather.Group_Max_Min.Number_Font.radius = text_font.radius;
+                                    weather.Group_Max_Min.Number_Font.start_angle = text_font.start_angle;
+                                    weather.Group_Max_Min.Number_Font.end_angle = text_font.end_angle;
+                                    weather.Group_Max_Min.Number_Font.mode = text_font.mode;
+                                }
+
                                 weather.Group_Max_Min.Number_Font.type = text_font.type;
 
                                 weather.Group_Max_Min.Number_Font.visible = true;
@@ -39652,6 +40190,15 @@ namespace Watch_Face_Editor
                                 uv_index.Number_Font.padding = text_font.padding;
                                 uv_index.Number_Font.unit_type = text_font.unit_type;
 
+                                if (text_font.use_text_circle)
+                                {
+                                    uv_index.Number_Font.use_text_circle = text_font.use_text_circle;
+                                    uv_index.Number_Font.radius = text_font.radius;
+                                    uv_index.Number_Font.start_angle = text_font.start_angle;
+                                    uv_index.Number_Font.end_angle = text_font.end_angle;
+                                    uv_index.Number_Font.mode = text_font.mode;
+                                }
+
                                 uv_index.Number_Font.type = text_font.type;
 
                                 uv_index.Number_Font.visible = true;
@@ -39697,6 +40244,15 @@ namespace Watch_Face_Editor
 
                                 humidity.Number_Font.padding = text_font.padding;
                                 humidity.Number_Font.unit_type = text_font.unit_type;
+
+                                if (text_font.use_text_circle)
+                                {
+                                    humidity.Number_Font.use_text_circle = text_font.use_text_circle;
+                                    humidity.Number_Font.radius = text_font.radius;
+                                    humidity.Number_Font.start_angle = text_font.start_angle;
+                                    humidity.Number_Font.end_angle = text_font.end_angle;
+                                    humidity.Number_Font.mode = text_font.mode;
+                                }
 
                                 humidity.Number_Font.type = text_font.type;
 
@@ -39744,6 +40300,15 @@ namespace Watch_Face_Editor
                                 altimeter.Number_Font.padding = text_font.padding;
                                 altimeter.Number_Font.unit_type = text_font.unit_type;
 
+                                if (text_font.use_text_circle)
+                                {
+                                    altimeter.Number_Font.use_text_circle = text_font.use_text_circle;
+                                    altimeter.Number_Font.radius = text_font.radius;
+                                    altimeter.Number_Font.start_angle = text_font.start_angle;
+                                    altimeter.Number_Font.end_angle = text_font.end_angle;
+                                    altimeter.Number_Font.mode = text_font.mode;
+                                }
+
                                 altimeter.Number_Font.type = text_font.type;
 
                                 altimeter.Number_Font.visible = true;
@@ -39789,6 +40354,15 @@ namespace Watch_Face_Editor
 
                                 altimeter.Number_Target_Font.padding = text_font.padding;
                                 altimeter.Number_Target_Font.unit_type = text_font.unit_type;
+
+                                if (text_font.use_text_circle)
+                                {
+                                    altimeter.Number_Target_Font.use_text_circle = text_font.use_text_circle;
+                                    altimeter.Number_Target_Font.radius = text_font.radius;
+                                    altimeter.Number_Target_Font.start_angle = text_font.start_angle;
+                                    altimeter.Number_Target_Font.end_angle = text_font.end_angle;
+                                    altimeter.Number_Target_Font.mode = text_font.mode;
+                                }
 
                                 altimeter.Number_Target_Font.type = text_font.type;
 
@@ -39843,6 +40417,15 @@ namespace Watch_Face_Editor
                                 sunrise.Sunrise_Font.padding = text_font.padding;
                                 sunrise.Sunrise_Font.unit_type = text_font.unit_type;
 
+                                if (text_font.use_text_circle)
+                                {
+                                    sunrise.Sunrise_Font.use_text_circle = text_font.use_text_circle;
+                                    sunrise.Sunrise_Font.radius = text_font.radius;
+                                    sunrise.Sunrise_Font.start_angle = text_font.start_angle;
+                                    sunrise.Sunrise_Font.end_angle = text_font.end_angle;
+                                    sunrise.Sunrise_Font.mode = text_font.mode;
+                                }
+
                                 sunrise.Sunrise_Font.type = text_font.type;
 
                                 sunrise.Sunrise_Font.visible = true;
@@ -39896,6 +40479,15 @@ namespace Watch_Face_Editor
                                 sunrise.Sunset_Font.padding = text_font.padding;
                                 sunrise.Sunset_Font.unit_type = text_font.unit_type;
 
+                                if (text_font.use_text_circle)
+                                {
+                                    sunrise.Sunset_Font.use_text_circle = text_font.use_text_circle;
+                                    sunrise.Sunset_Font.radius = text_font.radius;
+                                    sunrise.Sunset_Font.start_angle = text_font.start_angle;
+                                    sunrise.Sunset_Font.end_angle = text_font.end_angle;
+                                    sunrise.Sunset_Font.mode = text_font.mode;
+                                }
+
                                 sunrise.Sunset_Font.type = text_font.type;
 
                                 sunrise.Sunset_Font.visible = true;
@@ -39943,6 +40535,15 @@ namespace Watch_Face_Editor
 
                                 moon.Sunrise_Font.padding = text_font.padding;
                                 moon.Sunrise_Font.unit_type = text_font.unit_type;
+
+                                if (text_font.use_text_circle)
+                                {
+                                    moon.Sunrise_Font.use_text_circle = text_font.use_text_circle;
+                                    moon.Sunrise_Font.radius = text_font.radius;
+                                    moon.Sunrise_Font.start_angle = text_font.start_angle;
+                                    moon.Sunrise_Font.end_angle = text_font.end_angle;
+                                    moon.Sunrise_Font.mode = text_font.mode;
+                                }
 
                                 moon.Sunrise_Font.type = text_font.type;
 
@@ -39992,6 +40593,15 @@ namespace Watch_Face_Editor
                                 moon.Sunset_Font.padding = text_font.padding;
                                 moon.Sunset_Font.unit_type = text_font.unit_type;
 
+                                if (text_font.use_text_circle)
+                                {
+                                    moon.Sunset_Font.use_text_circle = text_font.use_text_circle;
+                                    moon.Sunset_Font.radius = text_font.radius;
+                                    moon.Sunset_Font.start_angle = text_font.start_angle;
+                                    moon.Sunset_Font.end_angle = text_font.end_angle;
+                                    moon.Sunset_Font.mode = text_font.mode;
+                                }
+
                                 moon.Sunset_Font.type = text_font.type;
 
                                 moon.Sunset_Font.visible = true;
@@ -40039,6 +40649,15 @@ namespace Watch_Face_Editor
                                 wind.Number_Font.padding = text_font.padding;
                                 wind.Number_Font.unit_type = text_font.unit_type;
 
+                                if (text_font.use_text_circle)
+                                {
+                                    wind.Number_Font.use_text_circle = text_font.use_text_circle;
+                                    wind.Number_Font.radius = text_font.radius;
+                                    wind.Number_Font.start_angle = text_font.start_angle;
+                                    wind.Number_Font.end_angle = text_font.end_angle;
+                                    wind.Number_Font.mode = text_font.mode;
+                                }
+
                                 wind.Number_Font.type = text_font.type;
 
                                 wind.Number_Font.visible = true;
@@ -40083,6 +40702,15 @@ namespace Watch_Face_Editor
 
                                 alarm_clock.Number_Font.padding = text_font.padding;
                                 alarm_clock.Number_Font.unit_type = text_font.unit_type;
+
+                                if (text_font.use_text_circle)
+                                {
+                                    alarm_clock.Number_Font.use_text_circle = text_font.use_text_circle;
+                                    alarm_clock.Number_Font.radius = text_font.radius;
+                                    alarm_clock.Number_Font.start_angle = text_font.start_angle;
+                                    alarm_clock.Number_Font.end_angle = text_font.end_angle;
+                                    alarm_clock.Number_Font.mode = text_font.mode;
+                                }
 
                                 alarm_clock.Number_Font.type = text_font.type;
 
@@ -40131,6 +40759,15 @@ namespace Watch_Face_Editor
                                 training_load.Number_Font.padding = text_font.padding;
                                 training_load.Number_Font.unit_type = text_font.unit_type;
 
+                                if (text_font.use_text_circle)
+                                {
+                                    training_load.Number_Font.use_text_circle = text_font.use_text_circle;
+                                    training_load.Number_Font.radius = text_font.radius;
+                                    training_load.Number_Font.start_angle = text_font.start_angle;
+                                    training_load.Number_Font.end_angle = text_font.end_angle;
+                                    training_load.Number_Font.mode = text_font.mode;
+                                }
+
                                 training_load.Number_Font.type = text_font.type;
 
                                 training_load.Number_Font.visible = true;
@@ -40177,6 +40814,15 @@ namespace Watch_Face_Editor
 
                                 vo2max.Number_Font.padding = text_font.padding;
                                 vo2max.Number_Font.unit_type = text_font.unit_type;
+
+                                if (text_font.use_text_circle)
+                                {
+                                    vo2max.Number_Font.use_text_circle = text_font.use_text_circle;
+                                    vo2max.Number_Font.radius = text_font.radius;
+                                    vo2max.Number_Font.start_angle = text_font.start_angle;
+                                    vo2max.Number_Font.end_angle = text_font.end_angle;
+                                    vo2max.Number_Font.mode = text_font.mode;
+                                }
 
                                 vo2max.Number_Font.type = text_font.type;
 
@@ -40225,6 +40871,15 @@ namespace Watch_Face_Editor
                                 aqi.Number_Font.padding = text_font.padding;
                                 aqi.Number_Font.unit_type = text_font.unit_type;
 
+                                if (text_font.use_text_circle)
+                                {
+                                    aqi.Number_Font.use_text_circle = text_font.use_text_circle;
+                                    aqi.Number_Font.radius = text_font.radius;
+                                    aqi.Number_Font.start_angle = text_font.start_angle;
+                                    aqi.Number_Font.end_angle = text_font.end_angle;
+                                    aqi.Number_Font.mode = text_font.mode;
+                                }
+
                                 aqi.Number_Font.type = text_font.type;
 
                                 aqi.Number_Font.visible = true;
@@ -40268,6 +40923,15 @@ namespace Watch_Face_Editor
                                 body_temp.Number_Font.padding = text_font.padding;
                                 body_temp.Number_Font.unit_type = text_font.unit_type;
 
+                                if (text_font.use_text_circle)
+                                {
+                                    body_temp.Number_Font.use_text_circle = text_font.use_text_circle;
+                                    body_temp.Number_Font.radius = text_font.radius;
+                                    body_temp.Number_Font.start_angle = text_font.start_angle;
+                                    body_temp.Number_Font.end_angle = text_font.end_angle;
+                                    body_temp.Number_Font.mode = text_font.mode;
+                                }
+
                                 body_temp.Number_Font.type = text_font.type;
 
                                 body_temp.Number_Font.visible = true;
@@ -40310,6 +40974,15 @@ namespace Watch_Face_Editor
 
                                 floor.Number_Font.padding = text_font.padding;
                                 floor.Number_Font.unit_type = text_font.unit_type;
+
+                                if (text_font.use_text_circle)
+                                {
+                                    floor.Number_Font.use_text_circle = text_font.use_text_circle;
+                                    floor.Number_Font.radius = text_font.radius;
+                                    floor.Number_Font.start_angle = text_font.start_angle;
+                                    floor.Number_Font.end_angle = text_font.end_angle;
+                                    floor.Number_Font.mode = text_font.mode;
+                                }
 
                                 floor.Number_Font.type = text_font.type;
 
@@ -40358,6 +41031,15 @@ namespace Watch_Face_Editor
                                 readiness.Number_Font.padding = text_font.padding;
                                 readiness.Number_Font.unit_type = text_font.unit_type;
 
+                                if (text_font.use_text_circle)
+                                {
+                                    readiness.Number_Font.use_text_circle = text_font.use_text_circle;
+                                    readiness.Number_Font.radius = text_font.radius;
+                                    readiness.Number_Font.start_angle = text_font.start_angle;
+                                    readiness.Number_Font.end_angle = text_font.end_angle;
+                                    readiness.Number_Font.mode = text_font.mode;
+                                }
+
                                 readiness.Number_Font.type = text_font.type;
 
                                 readiness.Number_Font.visible = true;
@@ -40400,6 +41082,15 @@ namespace Watch_Face_Editor
 
                                 hrv.Number_Font.padding = text_font.padding;
                                 hrv.Number_Font.unit_type = text_font.unit_type;
+
+                                if (text_font.use_text_circle)
+                                {
+                                    hrv.Number_Font.use_text_circle = text_font.use_text_circle;
+                                    hrv.Number_Font.radius = text_font.radius;
+                                    hrv.Number_Font.start_angle = text_font.start_angle;
+                                    hrv.Number_Font.end_angle = text_font.end_angle;
+                                    hrv.Number_Font.mode = text_font.mode;
+                                }
 
                                 hrv.Number_Font.type = text_font.type;
 
@@ -43171,6 +43862,18 @@ namespace Watch_Face_Editor
             if (parametrs.ContainsKey("unit_type") && Int32.TryParse(parametrs["unit_type"], out value)) text.unit_type = value;
             if (parametrs.ContainsKey("// unit_end") && Int32.TryParse(parametrs["// unit_end"], out value)) text.unit_end = value;
             if (parametrs.ContainsKey("// unit_string")) text.unit_string = parametrs["// unit_string"];
+
+            if (parametrs.ContainsKey("// use_text_circle")) text.use_text_circle = StringToBool(parametrs["// use_text_circle"]);
+            if (text.use_text_circle)
+            {
+                if (parametrs.ContainsKey("// radius") && Int32.TryParse(parametrs["// radius"], out value)) text.radius = value;
+                text.x += text.radius;
+                text.y += text.radius;
+                if (parametrs.ContainsKey("start_angle") && Int32.TryParse(parametrs["start_angle"], out value)) text.start_angle = value;
+                if (parametrs.ContainsKey("end_angle") && Int32.TryParse(parametrs["end_angle"], out value)) text.end_angle = value;
+                if (parametrs.ContainsKey("mode") && Int32.TryParse(parametrs["mode"], out value)) text.mode = value;
+
+            }
 
             if (parametrs.ContainsKey("type"))
             {

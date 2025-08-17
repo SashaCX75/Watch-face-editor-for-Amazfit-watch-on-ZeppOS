@@ -261,6 +261,12 @@ namespace Watch_Face_Editor
                     centreVertically = this.Second_Font.centreVertically,
                     alpha = this.Second_Font.alpha,
 
+                    use_text_circle = this.Second_Font.use_text_circle,
+                    radius = this.Second_Font.radius,
+                    start_angle = this.Second_Font.start_angle,
+                    end_angle = this.Second_Font.end_angle,
+                    mode = this.Second_Font.mode,
+
                     position = this.Second_Font.position,
                     visible = this.Second_Font.visible,
                     show_level = this.Second_Font.show_level,
@@ -325,6 +331,12 @@ namespace Watch_Face_Editor
                     centreHorizontally = this.Minute_Font.centreHorizontally,
                     centreVertically = this.Minute_Font.centreVertically,
                     alpha = this.Minute_Font.alpha,
+
+                    use_text_circle = this.Minute_Font.use_text_circle,
+                    radius = this.Minute_Font.radius,
+                    start_angle = this.Minute_Font.start_angle,
+                    end_angle = this.Minute_Font.end_angle,
+                    mode = this.Minute_Font.mode,
 
                     position = this.Minute_Font.position,
                     visible = this.Minute_Font.visible,
@@ -391,6 +403,12 @@ namespace Watch_Face_Editor
                     centreVertically = this.Hour_Font.centreVertically,
                     alpha = this.Hour_Font.alpha,
 
+                    use_text_circle = this.Hour_Font.use_text_circle,
+                    radius = this.Hour_Font.radius,
+                    start_angle = this.Hour_Font.start_angle,
+                    end_angle = this.Hour_Font.end_angle,
+                    mode = this.Hour_Font.mode,
+
                     position = this.Hour_Font.position,
                     visible = this.Hour_Font.visible,
                     show_level = this.Hour_Font.show_level,
@@ -425,6 +443,12 @@ namespace Watch_Face_Editor
                     centreVertically = this.Hour_min_Font.centreVertically,
                     alpha = this.Hour_min_Font.alpha,
 
+                    use_text_circle = this.Hour_min_Font.use_text_circle,
+                    radius = this.Hour_min_Font.radius,
+                    start_angle = this.Hour_min_Font.start_angle,
+                    end_angle = this.Hour_min_Font.end_angle,
+                    mode = this.Hour_min_Font.mode,
+
                     position = this.Hour_min_Font.position,
                     visible = this.Hour_min_Font.visible,
                     show_level = this.Hour_min_Font.show_level,
@@ -458,6 +482,12 @@ namespace Watch_Face_Editor
                     centreHorizontally = this.Hour_min_sec_Font.centreHorizontally,
                     centreVertically = this.Hour_min_sec_Font.centreVertically,
                     alpha = this.Hour_min_sec_Font.alpha,
+
+                    use_text_circle = this.Hour_min_sec_Font.use_text_circle,
+                    radius = this.Hour_min_sec_Font.radius,
+                    start_angle = this.Hour_min_sec_Font.start_angle,
+                    end_angle = this.Hour_min_sec_Font.end_angle,
+                    mode = this.Hour_min_sec_Font.mode,
 
                     position = this.Hour_min_sec_Font.position,
                     visible = this.Hour_min_sec_Font.visible,
@@ -755,6 +785,12 @@ namespace Watch_Face_Editor
                     centreVertically = this.Hour_Min_Font.centreVertically,
                     alpha = this.Hour_Min_Font.alpha,
 
+                    use_text_circle = this.Hour_Min_Font.use_text_circle,
+                    radius = this.Hour_Min_Font.radius,
+                    start_angle = this.Hour_Min_Font.start_angle,
+                    end_angle = this.Hour_Min_Font.end_angle,
+                    mode = this.Hour_Min_Font.mode,
+
                     position = this.Hour_Min_Font.position,
                     visible = this.Hour_Min_Font.visible,
                     show_level = this.Hour_Min_Font.show_level,
@@ -788,6 +824,12 @@ namespace Watch_Face_Editor
                     centreHorizontally = this.Hour_Min_Sec_Font.centreHorizontally,
                     centreVertically = this.Hour_Min_Sec_Font.centreVertically,
                     alpha = this.Hour_Min_Sec_Font.alpha,
+
+                    use_text_circle = this.Hour_Min_Sec_Font.use_text_circle,
+                    radius = this.Hour_Min_Sec_Font.radius,
+                    start_angle = this.Hour_Min_Sec_Font.start_angle,
+                    end_angle = this.Hour_Min_Sec_Font.end_angle,
+                    mode = this.Hour_Min_Sec_Font.mode,
 
                     position = this.Hour_Min_Sec_Font.position,
                     visible = this.Hour_Min_Sec_Font.visible,
@@ -902,6 +944,12 @@ namespace Watch_Face_Editor
                     centreHorizontally = this.Number_Font.centreHorizontally,
                     centreVertically = this.Number_Font.centreVertically,
                     alpha = this.Number_Font.alpha,
+
+                    use_text_circle = this.Number_Font.use_text_circle,
+                    radius = this.Number_Font.radius,
+                    start_angle = this.Number_Font.start_angle,
+                    end_angle = this.Number_Font.end_angle,
+                    mode = this.Number_Font.mode,
 
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
@@ -1386,6 +1434,12 @@ namespace Watch_Face_Editor
                     centreVertically = this.Time.centreVertically,
                     alpha = this.Time.alpha,
 
+                    use_text_circle = this.Time.use_text_circle,
+                    radius = this.Time.radius,
+                    start_angle = this.Time.start_angle,
+                    end_angle = this.Time.end_angle,
+                    mode = this.Time.mode,
+
                     position = this.Time.position,
                     visible = this.Time.visible,
                     show_level = this.Time.show_level,
@@ -1419,6 +1473,12 @@ namespace Watch_Face_Editor
                     centreHorizontally = this.TimeZone.centreHorizontally,
                     centreVertically = this.TimeZone.centreVertically,
                     alpha = this.TimeZone.alpha,
+
+                    use_text_circle = this.TimeZone.use_text_circle,
+                    radius = this.TimeZone.radius,
+                    start_angle = this.TimeZone.start_angle,
+                    end_angle = this.TimeZone.end_angle,
+                    mode = this.TimeZone.mode,
 
                     position = this.TimeZone.position,
                     visible = this.TimeZone.visible,
@@ -1454,6 +1514,12 @@ namespace Watch_Face_Editor
                     centreVertically = this.CityName.centreVertically,
                     alpha = this.CityName.alpha,
 
+                    use_text_circle = this.CityName.use_text_circle,
+                    radius = this.CityName.radius,
+                    start_angle = this.CityName.start_angle,
+                    end_angle = this.CityName.end_angle,
+                    mode = this.CityName.mode,
+
                     position = this.CityName.position,
                     visible = this.CityName.visible,
                     show_level = this.CityName.show_level,
@@ -1487,6 +1553,12 @@ namespace Watch_Face_Editor
                     centreHorizontally = this.TimeDifference.centreHorizontally,
                     centreVertically = this.TimeDifference.centreVertically,
                     alpha = this.TimeDifference.alpha,
+
+                    use_text_circle = this.TimeDifference.use_text_circle,
+                    radius = this.TimeDifference.radius,
+                    start_angle = this.TimeDifference.start_angle,
+                    end_angle = this.TimeDifference.end_angle,
+                    mode = this.TimeDifference.mode,
 
                     position = this.TimeDifference.position,
                     visible = this.TimeDifference.visible,
@@ -1717,6 +1789,12 @@ namespace Watch_Face_Editor
                     centreVertically = this.Number_Font.centreVertically,
                     alpha = this.Number_Font.alpha,
 
+                    use_text_circle = this.Number_Font.use_text_circle,
+                    radius = this.Number_Font.radius,
+                    start_angle = this.Number_Font.start_angle,
+                    end_angle = this.Number_Font.end_angle,
+                    mode = this.Number_Font.mode,
+
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
                     show_level = this.Number_Font.show_level,
@@ -1751,6 +1829,12 @@ namespace Watch_Face_Editor
                     centreVertically = this.Day_Month_Font.centreVertically,
                     alpha = this.Day_Month_Font.alpha,
 
+                    use_text_circle = this.Day_Month_Font.use_text_circle,
+                    radius = this.Day_Month_Font.radius,
+                    start_angle = this.Day_Month_Font.start_angle,
+                    end_angle = this.Day_Month_Font.end_angle,
+                    mode = this.Day_Month_Font.mode,
+
                     position = this.Day_Month_Font.position,
                     visible = this.Day_Month_Font.visible,
                     show_level = this.Day_Month_Font.show_level,
@@ -1784,6 +1868,12 @@ namespace Watch_Face_Editor
                     centreHorizontally = this.Day_Month_Year_Font.centreHorizontally,
                     centreVertically = this.Day_Month_Year_Font.centreVertically,
                     alpha = this.Day_Month_Year_Font.alpha,
+
+                    use_text_circle = this.Day_Month_Year_Font.use_text_circle,
+                    radius = this.Day_Month_Year_Font.radius,
+                    start_angle = this.Day_Month_Year_Font.start_angle,
+                    end_angle = this.Day_Month_Year_Font.end_angle,
+                    mode = this.Day_Month_Year_Font.mode,
 
                     position = this.Day_Month_Year_Font.position,
                     visible = this.Day_Month_Year_Font.visible,
@@ -1971,6 +2061,12 @@ namespace Watch_Face_Editor
                     centreVertically = this.Number_Font.centreVertically,
                     alpha = this.Number_Font.alpha,
 
+                    use_text_circle = this.Number_Font.use_text_circle,
+                    radius = this.Number_Font.radius,
+                    start_angle = this.Number_Font.start_angle,
+                    end_angle = this.Number_Font.end_angle,
+                    mode = this.Number_Font.mode,
+
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
                     show_level = this.Number_Font.show_level,
@@ -2004,6 +2100,12 @@ namespace Watch_Face_Editor
                     centreHorizontally = this.Month_Font.centreHorizontally,
                     centreVertically = this.Month_Font.centreVertically,
                     alpha = this.Month_Font.alpha,
+
+                    use_text_circle = this.Month_Font.use_text_circle,
+                    radius = this.Month_Font.radius,
+                    start_angle = this.Month_Font.start_angle,
+                    end_angle = this.Month_Font.end_angle,
+                    mode = this.Month_Font.mode,
 
                     position = this.Month_Font.position,
                     visible = this.Month_Font.visible,
@@ -2180,6 +2282,12 @@ namespace Watch_Face_Editor
                     centreHorizontally = this.Number_Font.centreHorizontally,
                     centreVertically = this.Number_Font.centreVertically,
                     alpha = this.Number_Font.alpha,
+
+                    use_text_circle = this.Number_Font.use_text_circle,
+                    radius = this.Number_Font.radius,
+                    start_angle = this.Number_Font.start_angle,
+                    end_angle = this.Number_Font.end_angle,
+                    mode = this.Number_Font.mode,
 
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
@@ -2365,6 +2473,12 @@ namespace Watch_Face_Editor
                     centreHorizontally = this.DayOfWeek_Font.centreHorizontally,
                     centreVertically = this.DayOfWeek_Font.centreVertically,
                     alpha = this.DayOfWeek_Font.alpha,
+
+                    use_text_circle = this.DayOfWeek_Font.use_text_circle,
+                    radius = this.DayOfWeek_Font.radius,
+                    start_angle = this.DayOfWeek_Font.start_angle,
+                    end_angle = this.DayOfWeek_Font.end_angle,
+                    mode = this.DayOfWeek_Font.mode,
 
                     position = this.DayOfWeek_Font.position,
                     visible = this.DayOfWeek_Font.visible,
@@ -3263,6 +3377,12 @@ namespace Watch_Face_Editor
                     centreVertically = this.Number_Font.centreVertically,
                     alpha = this.Number_Font.alpha,
 
+                    use_text_circle = this.Number_Font.use_text_circle,
+                    radius = this.Number_Font.radius,
+                    start_angle = this.Number_Font.start_angle,
+                    end_angle = this.Number_Font.end_angle,
+                    mode = this.Number_Font.mode,
+
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
                     show_level = this.Number_Font.show_level,
@@ -3387,6 +3507,12 @@ namespace Watch_Face_Editor
                     centreHorizontally = this.Number_Target_Font.centreHorizontally,
                     centreVertically = this.Number_Target_Font.centreVertically,
                     alpha = this.Number_Target_Font.alpha,
+
+                    use_text_circle = this.Number_Target_Font.use_text_circle,
+                    radius = this.Number_Target_Font.radius,
+                    start_angle = this.Number_Target_Font.start_angle,
+                    end_angle = this.Number_Target_Font.end_angle,
+                    mode = this.Number_Target_Font.mode,
 
                     position = this.Number_Target_Font.position,
                     visible = this.Number_Target_Font.visible,
@@ -3684,6 +3810,12 @@ namespace Watch_Face_Editor
                     centreHorizontally = this.Number_Font.centreHorizontally,
                     centreVertically = this.Number_Font.centreVertically,
                     alpha = this.Number_Font.alpha,
+
+                    use_text_circle = this.Number_Font.use_text_circle,
+                    radius = this.Number_Font.radius,
+                    start_angle = this.Number_Font.start_angle,
+                    end_angle = this.Number_Font.end_angle,
+                    mode = this.Number_Font.mode,
 
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
@@ -3984,6 +4116,12 @@ namespace Watch_Face_Editor
                     centreVertically = this.Number_Font.centreVertically,
                     alpha = this.Number_Font.alpha,
 
+                    use_text_circle = this.Number_Font.use_text_circle,
+                    radius = this.Number_Font.radius,
+                    start_angle = this.Number_Font.start_angle,
+                    end_angle = this.Number_Font.end_angle,
+                    mode = this.Number_Font.mode,
+
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
                     show_level = this.Number_Font.show_level,
@@ -4108,6 +4246,12 @@ namespace Watch_Face_Editor
                     centreHorizontally = this.Number_Target_Font.centreHorizontally,
                     centreVertically = this.Number_Target_Font.centreVertically,
                     alpha = this.Number_Target_Font.alpha,
+
+                    use_text_circle = this.Number_Target_Font.use_text_circle,
+                    radius = this.Number_Target_Font.radius,
+                    start_angle = this.Number_Target_Font.start_angle,
+                    end_angle = this.Number_Target_Font.end_angle,
+                    mode = this.Number_Target_Font.mode,
 
                     position = this.Number_Target_Font.position,
                     visible = this.Number_Target_Font.visible,
@@ -4406,6 +4550,12 @@ namespace Watch_Face_Editor
                     centreHorizontally = this.Number_Font.centreHorizontally,
                     centreVertically = this.Number_Font.centreVertically,
                     alpha = this.Number_Font.alpha,
+
+                    use_text_circle = this.Number_Font.use_text_circle,
+                    radius = this.Number_Font.radius,
+                    start_angle = this.Number_Font.start_angle,
+                    end_angle = this.Number_Font.end_angle,
+                    mode = this.Number_Font.mode,
 
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
@@ -4734,6 +4884,12 @@ namespace Watch_Face_Editor
                     centreVertically = this.Number_Target_Font.centreVertically,
                     alpha = this.Number_Target_Font.alpha,
 
+                    use_text_circle = this.Number_Target_Font.use_text_circle,
+                    radius = this.Number_Target_Font.radius,
+                    start_angle = this.Number_Target_Font.start_angle,
+                    end_angle = this.Number_Target_Font.end_angle,
+                    mode = this.Number_Target_Font.mode,
+
                     position = this.Number_Target_Font.position,
                     visible = this.Number_Target_Font.visible,
                     show_level = this.Number_Target_Font.show_level,
@@ -4988,6 +5144,12 @@ namespace Watch_Face_Editor
                     centreVertically = this.Number_Font.centreVertically,
                     alpha = this.Number_Font.alpha,
 
+                    use_text_circle = this.Number_Font.use_text_circle,
+                    radius = this.Number_Font.radius,
+                    start_angle = this.Number_Font.start_angle,
+                    end_angle = this.Number_Font.end_angle,
+                    mode = this.Number_Font.mode,
+
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
                     show_level = this.Number_Font.show_level,
@@ -5213,6 +5375,12 @@ namespace Watch_Face_Editor
                     centreVertically = this.Number_Font.centreVertically,
                     alpha = this.Number_Font.alpha,
 
+                    use_text_circle = this.Number_Font.use_text_circle,
+                    radius = this.Number_Font.radius,
+                    start_angle = this.Number_Font.start_angle,
+                    end_angle = this.Number_Font.end_angle,
+                    mode = this.Number_Font.mode,
+
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
                     show_level = this.Number_Font.show_level,
@@ -5337,6 +5505,12 @@ namespace Watch_Face_Editor
                     centreHorizontally = this.Number_Target_Font.centreHorizontally,
                     centreVertically = this.Number_Target_Font.centreVertically,
                     alpha = this.Number_Target_Font.alpha,
+
+                    use_text_circle = this.Number_Target_Font.use_text_circle,
+                    radius = this.Number_Target_Font.radius,
+                    start_angle = this.Number_Target_Font.start_angle,
+                    end_angle = this.Number_Target_Font.end_angle,
+                    mode = this.Number_Target_Font.mode,
 
                     position = this.Number_Target_Font.position,
                     visible = this.Number_Target_Font.visible,
@@ -5639,6 +5813,13 @@ namespace Watch_Face_Editor
                     centreVertically = this.Number_Font.centreVertically,
                     alpha = this.Number_Font.alpha,
 
+                    use_text_circle = this.Number_Font.use_text_circle,
+                    radius = this.Number_Font.radius,
+                    start_angle = this.Number_Font.start_angle,
+                    end_angle = this.Number_Font.end_angle,
+                    mode = this.Number_Font.mode,
+
+
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
                     show_level = this.Number_Font.show_level,
@@ -5703,6 +5884,12 @@ namespace Watch_Face_Editor
                     centreHorizontally = this.Number_Target_Font.centreHorizontally,
                     centreVertically = this.Number_Target_Font.centreVertically,
                     alpha = this.Number_Target_Font.alpha,
+
+                    use_text_circle = this.Number_Target_Font.use_text_circle,
+                    radius = this.Number_Target_Font.radius,
+                    start_angle = this.Number_Target_Font.start_angle,
+                    end_angle = this.Number_Target_Font.end_angle,
+                    mode = this.Number_Target_Font.mode,
 
                     position = this.Number_Target_Font.position,
                     visible = this.Number_Target_Font.visible,
@@ -5897,6 +6084,12 @@ namespace Watch_Face_Editor
                     centreHorizontally = this.Number_Font.centreHorizontally,
                     centreVertically = this.Number_Font.centreVertically,
                     alpha = this.Number_Font.alpha,
+
+                    use_text_circle = this.Number_Font.use_text_circle,
+                    radius = this.Number_Font.radius,
+                    start_angle = this.Number_Font.start_angle,
+                    end_angle = this.Number_Font.end_angle,
+                    mode = this.Number_Font.mode,
 
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
@@ -6111,6 +6304,12 @@ namespace Watch_Face_Editor
                     centreVertically = this.Number_Font.centreVertically,
                     alpha = this.Number_Font.alpha,
 
+                    use_text_circle = this.Number_Font.use_text_circle,
+                    radius = this.Number_Font.radius,
+                    start_angle = this.Number_Font.start_angle,
+                    end_angle = this.Number_Font.end_angle,
+                    mode = this.Number_Font.mode,
+
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
                     show_level = this.Number_Font.show_level,
@@ -6299,6 +6498,12 @@ namespace Watch_Face_Editor
                     centreVertically = this.Number_Font.centreVertically,
                     alpha = this.Number_Font.alpha,
 
+                    use_text_circle = this.Number_Font.use_text_circle,
+                    radius = this.Number_Font.radius,
+                    start_angle = this.Number_Font.start_angle,
+                    end_angle = this.Number_Font.end_angle,
+                    mode = this.Number_Font.mode,
+
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
                     show_level = this.Number_Font.show_level,
@@ -6423,6 +6628,12 @@ namespace Watch_Face_Editor
                     centreHorizontally = this.Number_Target_Font.centreHorizontally,
                     centreVertically = this.Number_Target_Font.centreVertically,
                     alpha = this.Number_Target_Font.alpha,
+
+                    use_text_circle = this.Number_Target_Font.use_text_circle,
+                    radius = this.Number_Target_Font.radius,
+                    start_angle = this.Number_Target_Font.start_angle,
+                    end_angle = this.Number_Target_Font.end_angle,
+                    mode = this.Number_Target_Font.mode,
 
                     position = this.Number_Target_Font.position,
                     visible = this.Number_Target_Font.visible,
@@ -6711,6 +6922,12 @@ namespace Watch_Face_Editor
                     centreVertically = this.Number_Font.centreVertically,
                     alpha = this.Number_Font.alpha,
 
+                    use_text_circle = this.Number_Font.use_text_circle,
+                    radius = this.Number_Font.radius,
+                    start_angle = this.Number_Font.start_angle,
+                    end_angle = this.Number_Font.end_angle,
+                    mode = this.Number_Font.mode,
+
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
                     show_level = this.Number_Font.show_level,
@@ -6775,6 +6992,12 @@ namespace Watch_Face_Editor
                     centreHorizontally = this.Number_Min_Font.centreHorizontally,
                     centreVertically = this.Number_Min_Font.centreVertically,
                     alpha = this.Number_Min_Font.alpha,
+
+                    use_text_circle = this.Number_Min_Font.use_text_circle,
+                    radius = this.Number_Min_Font.radius,
+                    start_angle = this.Number_Min_Font.start_angle,
+                    end_angle = this.Number_Min_Font.end_angle,
+                    mode = this.Number_Min_Font.mode,
 
                     position = this.Number_Min_Font.position,
                     visible = this.Number_Min_Font.visible,
@@ -6905,6 +7128,12 @@ namespace Watch_Face_Editor
                     centreVertically = this.Number_Max_Font.centreVertically,
                     alpha = this.Number_Max_Font.alpha,
 
+                    use_text_circle = this.Number_Max_Font.use_text_circle,
+                    radius = this.Number_Max_Font.radius,
+                    start_angle = this.Number_Max_Font.start_angle,
+                    end_angle = this.Number_Max_Font.end_angle,
+                    mode = this.Number_Max_Font.mode,
+
                     position = this.Number_Max_Font.position,
                     visible = this.Number_Max_Font.visible,
                     show_level = this.Number_Max_Font.show_level,
@@ -7003,6 +7232,12 @@ namespace Watch_Face_Editor
                     centreVertically = this.Number_Min_Max_Font.centreVertically,
                     alpha = this.Number_Min_Max_Font.alpha,
 
+                    use_text_circle = this.Number_Min_Max_Font.use_text_circle,
+                    radius = this.Number_Min_Max_Font.radius,
+                    start_angle = this.Number_Min_Max_Font.start_angle,
+                    end_angle = this.Number_Min_Max_Font.end_angle,
+                    mode = this.Number_Min_Max_Font.mode,
+
                     position = this.Number_Min_Max_Font.position,
                     visible = this.Number_Min_Max_Font.visible,
                     show_level = this.Number_Min_Max_Font.show_level,
@@ -7036,6 +7271,12 @@ namespace Watch_Face_Editor
                     centreHorizontally = this.City_Name.centreHorizontally,
                     centreVertically = this.City_Name.centreVertically,
                     alpha = this.City_Name.alpha,
+
+                    use_text_circle = this.City_Name.use_text_circle,
+                    radius = this.City_Name.radius,
+                    start_angle = this.City_Name.start_angle,
+                    end_angle = this.City_Name.end_angle,
+                    mode = this.City_Name.mode,
 
                     position = this.City_Name.position,
                     visible = this.City_Name.visible,
@@ -7175,6 +7416,12 @@ namespace Watch_Face_Editor
                     centreHorizontally = this.City_Name.centreHorizontally,
                     centreVertically = this.City_Name.centreVertically,
                     alpha = this.City_Name.alpha,
+
+                    use_text_circle = this.City_Name.use_text_circle,
+                    radius = this.City_Name.radius,
+                    start_angle = this.City_Name.start_angle,
+                    end_angle = this.City_Name.end_angle,
+                    mode = this.City_Name.mode,
 
                     position = this.City_Name.position,
                     visible = this.City_Name.visible,
@@ -7401,6 +7648,12 @@ namespace Watch_Face_Editor
                     centreVertically = this.Number_Font_Max.centreVertically,
                     alpha = this.Number_Font_Max.alpha,
 
+                    use_text_circle = this.Number_Font_Max.use_text_circle,
+                    radius = this.Number_Font_Max.radius,
+                    start_angle = this.Number_Font_Max.start_angle,
+                    end_angle = this.Number_Font_Max.end_angle,
+                    mode = this.Number_Font_Max.mode,
+
                     position = this.Number_Font_Max.position,
                     visible = this.Number_Font_Max.visible,
                     show_level = this.Number_Font_Max.show_level,
@@ -7465,6 +7718,12 @@ namespace Watch_Face_Editor
                     centreHorizontally = this.Number_Font_Min.centreHorizontally,
                     centreVertically = this.Number_Font_Min.centreVertically,
                     alpha = this.Number_Font_Min.alpha,
+
+                    use_text_circle = this.Number_Font_Min.use_text_circle,
+                    radius = this.Number_Font_Min.radius,
+                    start_angle = this.Number_Font_Min.start_angle,
+                    end_angle = this.Number_Font_Min.end_angle,
+                    mode = this.Number_Font_Min.mode,
 
                     position = this.Number_Font_Min.position,
                     visible = this.Number_Font_Min.visible,
@@ -7532,6 +7791,12 @@ namespace Watch_Face_Editor
                     centreVertically = this.Number_Font_MaxMin.centreVertically,
                     alpha = this.Number_Font_MaxMin.alpha,
 
+                    use_text_circle = this.Number_Font_MaxMin.use_text_circle,
+                    radius = this.Number_Font_MaxMin.radius,
+                    start_angle = this.Number_Font_MaxMin.start_angle,
+                    end_angle = this.Number_Font_MaxMin.end_angle,
+                    mode = this.Number_Font_MaxMin.mode,
+
                     position = this.Number_Font_MaxMin.position,
                     visible = this.Number_Font_MaxMin.visible,
                     show_level = this.Number_Font_MaxMin.show_level,
@@ -7597,6 +7862,12 @@ namespace Watch_Face_Editor
                     centreVertically = this.Number_Font_Average.centreVertically,
                     alpha = this.Number_Font_Average.alpha,
 
+                    use_text_circle = this.Number_Font_Average.use_text_circle,
+                    radius = this.Number_Font_Average.radius,
+                    start_angle = this.Number_Font_Average.start_angle,
+                    end_angle = this.Number_Font_Average.end_angle,
+                    mode = this.Number_Font_Average.mode,
+
                     position = this.Number_Font_Average.position,
                     visible = this.Number_Font_Average.visible,
                     show_level = this.Number_Font_Average.show_level,
@@ -7649,6 +7920,12 @@ namespace Watch_Face_Editor
                     //centreHorizontally = this.DayOfWeek_Font.centreHorizontally,
                     //centreVertically = this.DayOfWeek_Font.centreVertically,
                     alpha = this.DayOfWeek_Font.alpha,
+
+                    use_text_circle = this.DayOfWeek_Font.use_text_circle,
+                    radius = this.DayOfWeek_Font.radius,
+                    start_angle = this.DayOfWeek_Font.start_angle,
+                    end_angle = this.DayOfWeek_Font.end_angle,
+                    mode = this.DayOfWeek_Font.mode,
 
                     position = this.DayOfWeek_Font.position,
                     visible = this.DayOfWeek_Font.visible,
@@ -7767,6 +8044,12 @@ namespace Watch_Face_Editor
                     centreHorizontally = this.Number_Font.centreHorizontally,
                     centreVertically = this.Number_Font.centreVertically,
                     alpha = this.Number_Font.alpha,
+
+                    use_text_circle = this.Number_Font.use_text_circle,
+                    radius = this.Number_Font.radius,
+                    start_angle = this.Number_Font.start_angle,
+                    end_angle = this.Number_Font.end_angle,
+                    mode = this.Number_Font.mode,
 
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
@@ -7966,6 +8249,12 @@ namespace Watch_Face_Editor
                     centreVertically = this.Number_Font.centreVertically,
                     alpha = this.Number_Font.alpha,
 
+                    use_text_circle = this.Number_Font.use_text_circle,
+                    radius = this.Number_Font.radius,
+                    start_angle = this.Number_Font.start_angle,
+                    end_angle = this.Number_Font.end_angle,
+                    mode = this.Number_Font.mode,
+
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
                     show_level = this.Number_Font.show_level,
@@ -8150,6 +8439,12 @@ namespace Watch_Face_Editor
                     centreVertically = this.Number_Font.centreVertically,
                     alpha = this.Number_Font.alpha,
 
+                    use_text_circle = this.Number_Font.use_text_circle,
+                    radius = this.Number_Font.radius,
+                    start_angle = this.Number_Font.start_angle,
+                    end_angle = this.Number_Font.end_angle,
+                    mode = this.Number_Font.mode,
+
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
                     show_level = this.Number_Font.show_level,
@@ -8295,6 +8590,12 @@ namespace Watch_Face_Editor
                     centreVertically = this.Number_Font.centreVertically,
                     alpha = this.Number_Font.alpha,
 
+                    use_text_circle = this.Number_Font.use_text_circle,
+                    radius = this.Number_Font.radius,
+                    start_angle = this.Number_Font.start_angle,
+                    end_angle = this.Number_Font.end_angle,
+                    mode = this.Number_Font.mode,
+
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
                     show_level = this.Number_Font.show_level,
@@ -8359,6 +8660,12 @@ namespace Watch_Face_Editor
                     centreHorizontally = this.Number_Target_Font.centreHorizontally,
                     centreVertically = this.Number_Target_Font.centreVertically,
                     alpha = this.Number_Target_Font.alpha,
+
+                    use_text_circle = this.Number_Target_Font.use_text_circle,
+                    radius = this.Number_Target_Font.radius,
+                    start_angle = this.Number_Target_Font.start_angle,
+                    end_angle = this.Number_Target_Font.end_angle,
+                    mode = this.Number_Target_Font.mode,
 
                     position = this.Number_Target_Font.position,
                     visible = this.Number_Target_Font.visible,
@@ -8547,6 +8854,12 @@ namespace Watch_Face_Editor
                     centreVertically = this.Sunrise_Font.centreVertically,
                     alpha = this.Sunrise_Font.alpha,
 
+                    use_text_circle = this.Sunrise_Font.use_text_circle,
+                    radius = this.Sunrise_Font.radius,
+                    start_angle = this.Sunrise_Font.start_angle,
+                    end_angle = this.Sunrise_Font.end_angle,
+                    mode = this.Sunrise_Font.mode,
+
                     position = this.Sunrise_Font.position,
                     visible = this.Sunrise_Font.visible,
                     show_level = this.Sunrise_Font.show_level,
@@ -8675,6 +8988,12 @@ namespace Watch_Face_Editor
                     centreHorizontally = this.Sunset_Font.centreHorizontally,
                     centreVertically = this.Sunset_Font.centreVertically,
                     alpha = this.Sunset_Font.alpha,
+
+                    use_text_circle = this.Sunset_Font.use_text_circle,
+                    radius = this.Sunset_Font.radius,
+                    start_angle = this.Sunset_Font.start_angle,
+                    end_angle = this.Sunset_Font.end_angle,
+                    mode = this.Sunset_Font.mode,
 
                     position = this.Sunset_Font.position,
                     visible = this.Sunset_Font.visible,
@@ -8959,6 +9278,12 @@ namespace Watch_Face_Editor
                     centreVertically = this.Number_Font.centreVertically,
                     alpha = this.Number_Font.alpha,
 
+                    use_text_circle = this.Number_Font.use_text_circle,
+                    radius = this.Number_Font.radius,
+                    start_angle = this.Number_Font.start_angle,
+                    end_angle = this.Number_Font.end_angle,
+                    mode = this.Number_Font.mode,
+
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
                     show_level = this.Number_Font.show_level,
@@ -9166,6 +9491,12 @@ namespace Watch_Face_Editor
                     centreVertically = this.Sunrise_Font.centreVertically,
                     alpha = this.Sunrise_Font.alpha,
 
+                    use_text_circle = this.Sunrise_Font.use_text_circle,
+                    radius = this.Sunrise_Font.radius,
+                    start_angle = this.Sunrise_Font.start_angle,
+                    end_angle = this.Sunrise_Font.end_angle,
+                    mode = this.Sunrise_Font.mode,
+
                     position = this.Sunrise_Font.position,
                     visible = this.Sunrise_Font.visible,
                     show_level = this.Sunrise_Font.show_level,
@@ -9230,6 +9561,12 @@ namespace Watch_Face_Editor
                     centreHorizontally = this.Sunset_Font.centreHorizontally,
                     centreVertically = this.Sunset_Font.centreVertically,
                     alpha = this.Sunset_Font.alpha,
+
+                    use_text_circle = this.Sunset_Font.use_text_circle,
+                    radius = this.Sunset_Font.radius,
+                    start_angle = this.Sunset_Font.start_angle,
+                    end_angle = this.Sunset_Font.end_angle,
+                    mode = this.Sunset_Font.mode,
 
                     position = this.Sunset_Font.position,
                     visible = this.Sunset_Font.visible,
@@ -9433,6 +9770,12 @@ namespace Watch_Face_Editor
                     centreVertically = this.Number_Font.centreVertically,
                     alpha = this.Number_Font.alpha,
 
+                    use_text_circle = this.Number_Font.use_text_circle,
+                    radius = this.Number_Font.radius,
+                    start_angle = this.Number_Font.start_angle,
+                    end_angle = this.Number_Font.end_angle,
+                    mode = this.Number_Font.mode,
+
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
                     show_level = this.Number_Font.show_level,
@@ -9634,6 +9977,12 @@ namespace Watch_Face_Editor
                     centreVertically = this.Number_Font.centreVertically,
                     alpha = this.Number_Font.alpha,
 
+                    use_text_circle = this.Number_Font.use_text_circle,
+                    radius = this.Number_Font.radius,
+                    start_angle = this.Number_Font.start_angle,
+                    end_angle = this.Number_Font.end_angle,
+                    mode = this.Number_Font.mode,
+
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
                     show_level = this.Number_Font.show_level,
@@ -9785,6 +10134,12 @@ namespace Watch_Face_Editor
                     centreHorizontally = this.Number_Font.centreHorizontally,
                     centreVertically = this.Number_Font.centreVertically,
                     alpha = this.Number_Font.alpha,
+
+                    use_text_circle = this.Number_Font.use_text_circle,
+                    radius = this.Number_Font.radius,
+                    start_angle = this.Number_Font.start_angle,
+                    end_angle = this.Number_Font.end_angle,
+                    mode = this.Number_Font.mode,
 
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
@@ -9992,6 +10347,12 @@ namespace Watch_Face_Editor
                     centreVertically = this.Number_Font.centreVertically,
                     alpha = this.Number_Font.alpha,
 
+                    use_text_circle = this.Number_Font.use_text_circle,
+                    radius = this.Number_Font.radius,
+                    start_angle = this.Number_Font.start_angle,
+                    end_angle = this.Number_Font.end_angle,
+                    mode = this.Number_Font.mode,
+
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
                     show_level = this.Number_Font.show_level,
@@ -10198,6 +10559,12 @@ namespace Watch_Face_Editor
                     centreVertically = this.Number_Font.centreVertically,
                     alpha = this.Number_Font.alpha,
 
+                    use_text_circle = this.Number_Font.use_text_circle,
+                    radius = this.Number_Font.radius,
+                    start_angle = this.Number_Font.start_angle,
+                    end_angle = this.Number_Font.end_angle,
+                    mode = this.Number_Font.mode,
+
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
                     show_level = this.Number_Font.show_level,
@@ -10363,6 +10730,12 @@ namespace Watch_Face_Editor
                     centreVertically = this.Number_Font.centreVertically,
                     alpha = this.Number_Font.alpha,
 
+                    use_text_circle = this.Number_Font.use_text_circle,
+                    radius = this.Number_Font.radius,
+                    start_angle = this.Number_Font.start_angle,
+                    end_angle = this.Number_Font.end_angle,
+                    mode = this.Number_Font.mode,
+
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
                     show_level = this.Number_Font.show_level,
@@ -10473,6 +10846,12 @@ namespace Watch_Face_Editor
                     centreHorizontally = this.Number_Font.centreHorizontally,
                     centreVertically = this.Number_Font.centreVertically,
                     alpha = this.Number_Font.alpha,
+
+                    use_text_circle = this.Number_Font.use_text_circle,
+                    radius = this.Number_Font.radius,
+                    start_angle = this.Number_Font.start_angle,
+                    end_angle = this.Number_Font.end_angle,
+                    mode = this.Number_Font.mode,
 
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
@@ -10625,6 +11004,12 @@ namespace Watch_Face_Editor
                     centreHorizontally = this.Number_Font.centreHorizontally,
                     centreVertically = this.Number_Font.centreVertically,
                     alpha = this.Number_Font.alpha,
+
+                    use_text_circle = this.Number_Font.use_text_circle,
+                    radius = this.Number_Font.radius,
+                    start_angle = this.Number_Font.start_angle,
+                    end_angle = this.Number_Font.end_angle,
+                    mode = this.Number_Font.mode,
 
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,
@@ -10790,6 +11175,12 @@ namespace Watch_Face_Editor
                     centreHorizontally = this.Number_Font.centreHorizontally,
                     centreVertically = this.Number_Font.centreVertically,
                     alpha = this.Number_Font.alpha,
+
+                    use_text_circle = this.Number_Font.use_text_circle,
+                    radius = this.Number_Font.radius,
+                    start_angle = this.Number_Font.start_angle,
+                    end_angle = this.Number_Font.end_angle,
+                    mode = this.Number_Font.mode,
 
                     position = this.Number_Font.position,
                     visible = this.Number_Font.visible,

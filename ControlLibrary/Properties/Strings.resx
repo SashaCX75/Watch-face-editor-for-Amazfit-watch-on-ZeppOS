@@ -126,6 +126,12 @@
   <data name="FilterJS" xml:space="preserve">
     <value>JS файлы (*.js) | *.js</value>
   </data>
+  <data name="Hint_360_Text_Circle" xml:space="preserve">
+    <value>Разница между конечным и начальным углом не должна превышать 360°</value>
+  </data>
+  <data name="Hint_360_Title" xml:space="preserve">
+    <value>Предупреждение</value>
+  </data>
   <data name="Hint_DOW" xml:space="preserve">
     <value>Названия дней недели, начиная с понедельника, разделенные запятой.</value>
   </data>

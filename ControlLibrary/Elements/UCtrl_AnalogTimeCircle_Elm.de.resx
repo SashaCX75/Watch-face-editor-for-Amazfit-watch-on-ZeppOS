@@ -117,67 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dialog_Title_JS_Open" xml:space="preserve">
-    <value>Add a JS file</value>
+  <data name="button_Format_24hour.Text" xml:space="preserve">
+    <value>24-Stunden-Zeitformat</value>
   </data>
-  <data name="DOW_StrArray" xml:space="preserve">
-    <value>Mo, Tu, We, Th, Fr, Sa, Su</value>
+  <data name="button_SmoothSeconds.Text" xml:space="preserve">
+    <value>Sanfte Bewegung</value>
   </data>
-  <data name="FilterJS" xml:space="preserve">
-    <value>JS files (*.js) | *.js</value>
+  <data name="button_Minute.Text" xml:space="preserve">
+    <value>Minuten</value>
   </data>
-  <data name="Hint_360_Text_Circle" xml:space="preserve">
-    <value>The difference between the end angle and the start angle must not exceed 360°.</value>
+  <data name="button_Hour.Text" xml:space="preserve">
+    <value>Stunden</value>
   </data>
-  <data name="Hint_360_Title" xml:space="preserve">
-    <value>Warning</value>
+  <data name="button_Second.Text" xml:space="preserve">
+    <value>Sekunden</value>
   </data>
-  <data name="Hint_DOW" xml:space="preserve">
-    <value>The names of the days of the week, starting with Monday, separated by a comma.</value>
-  </data>
-  <data name="Hint_Month" xml:space="preserve">
-    <value>Month names in font, separated by a comma.</value>
-  </data>
-  <data name="Message_Del_Caption" xml:space="preserve">
-    <value>Delete file</value>
-  </data>
-  <data name="Message_Error_Caption" xml:space="preserve">
-    <value>Error</value>
-  </data>
-  <data name="Message_JS_Del" xml:space="preserve">
-    <value>Do you really want to delete the JS file?</value>
-  </data>
-  <data name="Message_ReadScript_Error" xml:space="preserve">
-    <value>Error reading user scripts</value>
-  </data>
-  <data name="Message_Warning_Caption" xml:space="preserve">
-    <value>Warning</value>
-  </data>
-  <data name="SystemFont" xml:space="preserve">
-    <value>System Font</value>
-  </data>
-  <data name="UCtrl_Text_Opt_Altitude_true" xml:space="preserve">
-    <value>Symbol "-"</value>
-  </data>
-  <data name="UCtrl_Text_Opt_AmPm_false" xml:space="preserve">
-    <value>Units</value>
-  </data>
-  <data name="UCtrl_Text_Opt_AmPm_true" xml:space="preserve">
-    <value>Style Am/Pm</value>
-  </data>
-  <data name="UCtrl_Text_Opt_SityName_true" xml:space="preserve">
-    <value>Upper case letters</value>
-  </data>
-  <data name="UCtrl_Text_Opt_Sunrise_false" xml:space="preserve">
-    <value>Decimal separator</value>
-  </data>
-  <data name="UCtrl_Text_Opt_Sunrise_true" xml:space="preserve">
-    <value>Separator</value>
-  </data>
-  <data name="UCtrl_Text_Opt_Year_false" xml:space="preserve">
-    <value>Add leading zeros</value>
-  </data>
-  <data name="UCtrl_Text_Opt_Year_true" xml:space="preserve">
-    <value>Full spelling of the year</value>
+  <data name="button_ElementName.Text" xml:space="preserve">
+    <value>Zeitspiralen</value>
   </data>
 </root>

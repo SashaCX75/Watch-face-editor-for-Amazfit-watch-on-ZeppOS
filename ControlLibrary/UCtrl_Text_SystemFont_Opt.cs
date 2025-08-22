@@ -549,7 +549,7 @@ namespace ControlLibrary
                 label_DOW.Visible = DOW_mode;
                 bool unitVisible = DOW_mode || Month_mode;
                 textBox_DOW.Visible = unitVisible;
-                if (DOW_mode) toolTip1.SetToolTip(textBox_DOW, Properties.Strings.Hint_DOW);
+                if (DOW_mode) toolTip.SetToolTip(textBox_DOW, Properties.Strings.Hint_DOW);
             }
         }
 
@@ -567,7 +567,7 @@ namespace ControlLibrary
                 label_Month.Visible = Month_mode;
                 bool unitVisible = DOW_mode || Month_mode;
                 textBox_DOW.Visible = unitVisible;
-                if (Month_mode) toolTip1.SetToolTip(textBox_DOW, Properties.Strings.Hint_Month);
+                if (Month_mode) toolTip.SetToolTip(textBox_DOW, Properties.Strings.Hint_Month);
             }
         }
 
@@ -818,6 +818,16 @@ namespace ControlLibrary
             {
                 EventArgs eventArgs = new EventArgs();
                 ValueChanged(this, eventArgs);
+            }
+            NumericUpDown numericUpDown = sender as NumericUpDown;
+            if (numericUpDown.Name == "numericUpDown_start_angle" || numericUpDown.Name == "numericUpDown_end_angle")
+            {
+                if (Math.Abs(numericUpDown_end_angle.Value - numericUpDown_start_angle.Value) > 360)
+                {
+                    toolTip_Hint360.ToolTipTitle = Properties.Strings.Hint_360_Title;
+                    toolTip_Hint360.Show(Properties.Strings.Hint_360_Text_Circle, numericUpDown, numericUpDown.Width, 0, 2000);
+                }
+                
             }
         }
 
@@ -1163,9 +1173,9 @@ namespace ControlLibrary
         {
             if(numericUpDown_Size.Value > 150) 
             {
-                string text = toolTip1.GetToolTip(numericUpDown_Size);
+                string text = toolTip.GetToolTip(numericUpDown_Size);
                 Point p = new Point(MouseСoordinates.X, MouseСoordinates.Y); 
-                toolTip1.Show(text, numericUpDown_Size, p, 1500);
+                toolTip.Show(text, numericUpDown_Size, p, 1500);
             }
             if (ValueChanged != null && !setValue)
             {

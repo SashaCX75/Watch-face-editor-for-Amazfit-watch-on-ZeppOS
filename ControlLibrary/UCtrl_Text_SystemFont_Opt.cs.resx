@@ -124,9 +124,6 @@
     <value>Šířka</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="contextMenuStrip_X.Size" type="System.Drawing.Size, System.Drawing">
-    <value>179, 82</value>
-  </data>
   <data name="вставитьКоординатуХToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAfxJREFUOE9j
@@ -192,7 +189,7 @@
   <data name="вставитьToolStripMenuItemX.Text" xml:space="preserve">
     <value>Vložit</value>
   </data>
-  <data name="contextMenuStrip_Y.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="contextMenuStrip_X.Size" type="System.Drawing.Size, System.Drawing">
     <value>179, 82</value>
   </data>
   <data name="вставитьКоординатуYToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -260,11 +257,20 @@
   <data name="вставитьToolStripMenuItemY.Text" xml:space="preserve">
     <value>Vložit</value>
   </data>
+  <data name="contextMenuStrip_Y.Size" type="System.Drawing.Size, System.Drawing">
+    <value>179, 82</value>
+  </data>
+  <data name="numericUpDown_Size.ToolTip" xml:space="preserve">
+    <value>Nedoporučuje se nastavovat velikost větší než 150</value>
+  </data>
   <data name="label01.Size" type="System.Drawing.Size, System.Drawing">
     <value>62, 13</value>
   </data>
   <data name="label01.Text" xml:space="preserve">
     <value>Souřadnice</value>
+  </data>
+  <data name="label06.Size" type="System.Drawing.Size, System.Drawing">
+    <value>55, 30</value>
   </data>
   <data name="label06.Text" xml:space="preserve">
     <value>Odsazení</value>
@@ -367,26 +373,35 @@ vertikálně</value>
   <data name="label8.Text" xml:space="preserve">
     <value>!!! Některá data se nemusí zobrazit (v závislosti na modelu hodinek). Zkontrolujte možnost zobrazení dat na reálném zařízení.</value>
   </data>
-  <data name="вставитьСвойстваToolStripMenuItem.Text" xml:space="preserve">
-    <value>Vložit vlastnosti</value>
+  <data name="копироватьСвойстваToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>178, 22</value>
   </data>
   <data name="копироватьСвойстваToolStripMenuItem.Text" xml:space="preserve">
     <value>Kopírovat vlastnosti</value>
   </data>
-  <data name="checkBox_inEnd.Text" xml:space="preserve">
-    <value>Nakonec</value>
+  <data name="вставитьСвойстваToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>178, 22</value>
   </data>
-  <data name="label_DOW.Text" xml:space="preserve">
-    <value>Názvy dnů v týdnu</value>
+  <data name="вставитьСвойстваToolStripMenuItem.Text" xml:space="preserve">
+    <value>Vložit vlastnosti</value>
+  </data>
+  <data name="context_WidgetProperty.Size" type="System.Drawing.Size, System.Drawing">
+    <value>179, 48</value>
   </data>
   <data name="label_unit_string.Text" xml:space="preserve">
     <value>Oddělovač</value>
   </data>
-  <data name="numericUpDown_Size.ToolTip" xml:space="preserve">
-    <value>Nedoporučuje se nastavovat velikost větší než 150</value>
+  <data name="checkBox_inEnd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 17</value>
+  </data>
+  <data name="checkBox_inEnd.Text" xml:space="preserve">
+    <value>Nakonec</value>
   </data>
   <data name="textBox_DOW.ToolTip" xml:space="preserve">
     <value>Názvy dnů v týdnu, počínaje pondělím, oddělené čárkami.</value>
+  </data>
+  <data name="label_DOW.Text" xml:space="preserve">
+    <value>Názvy dnů v týdnu</value>
   </data>
   <data name="label_Month.Text" xml:space="preserve">
     <value>Názvy měsíců - písmem</value>

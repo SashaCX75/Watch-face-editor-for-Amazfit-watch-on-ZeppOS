@@ -1662,7 +1662,8 @@ namespace Watch_Face_Editor
                                         }
 
                                         Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                        align_h, align_v, text_style, BBorder);
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                                     }
                                     else
                                     {
@@ -1851,7 +1852,8 @@ namespace Watch_Face_Editor
                                         }
 
                                         Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                        align_h, align_v, text_style, BBorder);
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                                     }
                                     else
                                     {
@@ -2040,7 +2042,8 @@ namespace Watch_Face_Editor
                                         }
 
                                         Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                        align_h, align_v, text_style, BBorder);
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                                     }
                                     else
                                     {
@@ -2222,7 +2225,8 @@ namespace Watch_Face_Editor
                                     }
 
                                     Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                    align_h, align_v, text_style, BBorder);
+                                                    align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                                 }
                                 else
                                 {
@@ -2319,7 +2323,8 @@ namespace Watch_Face_Editor
                                     }
 
                                     Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                    align_h, align_v, text_style, BBorder);
+                                                    align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                                 }
                                 else
                                 {
@@ -2872,7 +2877,8 @@ namespace Watch_Face_Editor
                                     }
 
                                     Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                    align_h, align_v, text_style, BBorder);
+                                                    align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                                 }
                                 else
                                 {
@@ -2951,7 +2957,8 @@ namespace Watch_Face_Editor
                                     }
 
                                     Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                    align_h, align_v, text_style, BBorder);
+                                                    align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                                 }
                                 else
                                 {
@@ -3035,7 +3042,8 @@ namespace Watch_Face_Editor
                                     }
 
                                     Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                    align_h, align_v, text_style, BBorder);
+                                                    align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                                 }
                                 else
                                 {
@@ -3253,7 +3261,8 @@ namespace Watch_Face_Editor
                                     }
 
                                     Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                    align_h, align_v, text_style, BBorder);
+                                                    align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                                 }
                                 else
                                 {
@@ -3325,7 +3334,8 @@ namespace Watch_Face_Editor
                                         }
 
                                         Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                        align_h, align_v, text_style, BBorder);
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                                     }
                                     else
                                     {
@@ -3567,7 +3577,8 @@ namespace Watch_Face_Editor
                                 }
 
                                 Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                align_h, align_v, text_style, BBorder);
+                                                align_h, align_v, text_style, BBorder,
+                                                showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                             }
                             else
                             {
@@ -3804,7 +3815,8 @@ namespace Watch_Face_Editor
                                         }
 
                                         Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                        align_h, align_v, text_style, BBorder);
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                                     }
                                     else
                                     {
@@ -6315,7 +6327,8 @@ namespace Watch_Face_Editor
                             }
 
                             Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                            align_h, align_v, text_style, BBorder);
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
                         else
                         {
@@ -6482,7 +6495,8 @@ namespace Watch_Face_Editor
                             }
 
                             Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                            align_h, align_v, text_style, BBorder);
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
                         else
                         {
@@ -6828,7 +6842,8 @@ namespace Watch_Face_Editor
                             }
 
                             Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                            align_h, align_v, text_style, BBorder);
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
                         else
                         {
@@ -7079,7 +7094,8 @@ namespace Watch_Face_Editor
                             }
 
                             Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                            align_h, align_v, text_style, BBorder);
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
                         else
                         {
@@ -7311,7 +7327,8 @@ namespace Watch_Face_Editor
                             }
 
                             Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                            align_h, align_v, text_style, BBorder);
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
                         else
                         {
@@ -7443,7 +7460,8 @@ namespace Watch_Face_Editor
                             }
 
                             Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                            align_h, align_v, text_style, BBorder);
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
                         else
                         {
@@ -7640,7 +7658,8 @@ namespace Watch_Face_Editor
                             }
 
                             Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                            align_h, align_v, text_style, BBorder);
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
                         else
                         {
@@ -7777,7 +7796,8 @@ namespace Watch_Face_Editor
                             }
 
                             Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                            align_h, align_v, text_style, BBorder);
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
                         else
                         {
@@ -7872,7 +7892,8 @@ namespace Watch_Face_Editor
                             }
                                 
                             Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                            align_h, align_v, text_style, BBorder);
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
                         else
                         {
@@ -8048,7 +8069,8 @@ namespace Watch_Face_Editor
                                 }
 
                                 Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                align_h, align_v, text_style, BBorder);
+                                                align_h, align_v, text_style, BBorder,
+                                                showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                             }
                             else
                             {
@@ -8252,7 +8274,8 @@ namespace Watch_Face_Editor
                                 }
 
                                 Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                align_h, align_v, text_style, BBorder);
+                                                align_h, align_v, text_style, BBorder,
+                                                showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                             }
                             else
                             {
@@ -8456,7 +8479,8 @@ namespace Watch_Face_Editor
                                 }
 
                                 Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                align_h, align_v, text_style, BBorder);
+                                                align_h, align_v, text_style, BBorder,
+                                                showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                             }
                             else
                             {
@@ -8682,7 +8706,8 @@ namespace Watch_Face_Editor
                                 }
 
                                 Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                align_h, align_v, text_style, BBorder);
+                                                align_h, align_v, text_style, BBorder,
+                                                showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                             }
                             else
                             {
@@ -8847,7 +8872,8 @@ namespace Watch_Face_Editor
                             }
 
                             Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                            align_h, align_v, text_style, BBorder);
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
                         else
                         {
@@ -9234,7 +9260,8 @@ namespace Watch_Face_Editor
                                     }
 
                                     Draw_text_userFont(gPanel, posX, posDayY, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                    align_h, align_v, text_style, BBorder);
+                                                    align_h, align_v, text_style, BBorder,
+                                                    false, false, 0, 0, 0, 0);
                                 }
                                 else
                                 {
@@ -9373,7 +9400,8 @@ namespace Watch_Face_Editor
                                     }
 
                                     Draw_text_userFont(gPanel, posX, posDayY, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                    align_h, align_v, text_style, BBorder);
+                                                    align_h, align_v, text_style, BBorder,
+                                                    false, false, 0, 0, 0, 0);
                                 }
                                 else
                                 {
@@ -9511,7 +9539,8 @@ namespace Watch_Face_Editor
                                     }
 
                                     Draw_text_userFont(gPanel, posX, posDayY, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                    align_h, align_v, text_style, BBorder);
+                                                    align_h, align_v, text_style, BBorder,
+                                                    false, false, 0, 0, 0, 0);
                                 }
                                 else
                                 {
@@ -9644,7 +9673,8 @@ namespace Watch_Face_Editor
                                     }
 
                                     Draw_text_userFont(gPanel, posX, posDayY, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                    align_h, align_v, text_style, BBorder);
+                                                    align_h, align_v, text_style, BBorder,
+                                                    false, false, 0, 0, 0, 0);
                                 }
                                 else
                                 {
@@ -9747,7 +9777,8 @@ namespace Watch_Face_Editor
                                         }
 
                                         Draw_text_userFont(gPanel, posX, posY, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                        align_h, align_v, text_style, BBorder);
+                                                        align_h, align_v, text_style, BBorder,
+                                                        false, false, 0, 0, 0, 0);
                                     }
                                     else
                                     {
@@ -10060,7 +10091,8 @@ namespace Watch_Face_Editor
                             }
 
                             Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                            align_h, align_v, text_style, BBorder);
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
                         else
                         {
@@ -10242,7 +10274,8 @@ namespace Watch_Face_Editor
                             }
 
                             Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                            align_h, align_v, text_style, BBorder);
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
                         else
                         {
@@ -10597,7 +10630,8 @@ namespace Watch_Face_Editor
                             }
 
                             Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                            align_h, align_v, text_style, BBorder);
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
                         else
                         {
@@ -10764,7 +10798,8 @@ namespace Watch_Face_Editor
                             }
 
                             Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                            align_h, align_v, text_style, BBorder);
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
                         else
                         {
@@ -11066,7 +11101,8 @@ namespace Watch_Face_Editor
                             }
 
                             Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                            align_h, align_v, text_style, BBorder);
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
                         else
                         {
@@ -11180,7 +11216,8 @@ namespace Watch_Face_Editor
                             }
 
                             Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                            align_h, align_v, text_style, BBorder);
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
                         else
                         {
@@ -11439,7 +11476,8 @@ namespace Watch_Face_Editor
                             }
 
                             Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                            align_h, align_v, text_style, BBorder);
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
                         else
                         {
@@ -11707,7 +11745,8 @@ namespace Watch_Face_Editor
                             }
 
                             Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                align_h, align_v, text_style, BBorder);
+                                align_h, align_v, text_style, BBorder,
+                                showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
                         else
                         {
@@ -11881,7 +11920,8 @@ namespace Watch_Face_Editor
                                 }
 
                                 Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                align_h, align_v, text_style, BBorder);
+                                    align_h, align_v, text_style, BBorder,
+                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                             }
                             else
                             {
@@ -11949,7 +11989,8 @@ namespace Watch_Face_Editor
                                 }
 
                                 Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                align_h, align_v, text_style, BBorder);
+                                    align_h, align_v, text_style, BBorder,
+                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                             }
                             else
                             {
@@ -12017,7 +12058,8 @@ namespace Watch_Face_Editor
                                 }
 
                                 Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                align_h, align_v, text_style, BBorder);
+                                    align_h, align_v, text_style, BBorder,
+                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                             }
                             else
                             {
@@ -12085,7 +12127,8 @@ namespace Watch_Face_Editor
                                 }
 
                                 Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                align_h, align_v, text_style, BBorder);
+                                    align_h, align_v, text_style, BBorder,
+                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                             }
                             else
                             {
@@ -13552,6 +13595,7 @@ namespace Watch_Face_Editor
         /// <param name="align_v">Вертикальное выравнивание</param>
         /// <param name="text_style">Стиль вписывания текста</param>
         /// <param name="BBorder">Рисовать рамку по координатам, вокруг элементов с выравниванием</param>
+        /// <param name="showCentrHend">Подсвечивать центр вращения</param>
         /// <param name="use_text_circle">Отображать текст по окружности</param>
         /// <param name="radius">Радиус</param>
         /// <param name="start_angle">Начальный угол</param>
@@ -13782,9 +13826,22 @@ namespace Watch_Face_Editor
         /// <param name="align_v">Вертикальное выравнивание</param>
         /// <param name="text_style">Стиль вписывания текста</param>
         /// <param name="BBorder">Рисовать рамку по координатам, вокруг элементов с выравниванием</param>
+        /// <param name="showCentrHend">Подсвечивать центр вращения</param>
+        /// <param name="use_text_circle">Отображать текст по окружности</param>
+        /// <param name="radius">Радиус</param>
+        /// <param name="start_angle">Начальный угол</param>
+        /// <param name="end_angle">Конечный угол</param>
+        /// <param name="mode">По часовой или против часовой стрелке</param>
         private void Draw_text_userFont(Graphics graphics, int x, int y, int w, int h, Font drawFont, float size, int spacing_h, int spacing_v,
-            Color color, int alpha, string value, string align_h, string align_v, string text_style, bool BBorder)
+            Color color, int alpha, string value, string align_h, string align_v, string text_style, bool BBorder, bool showCentrHend,
+            bool use_text_circle, int radius, int start_angle, int end_angle, int mode)
         {
+            if (use_text_circle && radius > size)
+            {
+                DrawTextOnCircle(graphics, x, y, radius, drawFont, size, color, start_angle, end_angle,
+                    align_h, value, mode, spacing_h, BBorder, showCentrHend);
+                return;
+            }
             if (w < 5 || h < 5) return;
             Bitmap bitmap = new Bitmap(Convert.ToInt32(w), Convert.ToInt32(h), PixelFormat.Format32bppArgb);
             Graphics gPanel = Graphics.FromImage(bitmap);
@@ -14822,171 +14879,7 @@ namespace Watch_Face_Editor
         /// <param name="text">Отображаемая величина</param>
         /// <param name="font">Шрифт</param>
         /// <param name="BBorder">Рисовать рамку по координатам, вокруг элементов с выравниванием</param>
-
-        // version 3
-        //public void DrawTextOnCircle(
-        //    Graphics graphics,
-        //    int centerX,
-        //    int centerY,
-        //    int radius,
-        //    Font font,
-        //    float size,
-        //    Color color,
-        //    float startAngle,
-        //    float endAngle,
-        //    string align_h,
-        //    string text,
-        //    int mode,
-        //    int spacing, // расстояние между символами (в пикселях вдоль дуги)
-        //    bool BBorder
-        //)
-        //{
-        //    if (string.IsNullOrEmpty(text)) return;
-
-        //    if (radius <= 0) radius = 1; // чтобы не делить на ноль
-        //    if (startAngle == endAngle) return;
-
-        //    bool clockwise = true;
-        //    if (mode == 1) clockwise = false;
-
-        //    if (startAngle > endAngle)
-        //    {
-        //        (endAngle, startAngle) = (startAngle, endAngle);
-        //        //startAngle += 180;
-        //        //endAngle += 180;
-        //    }
-        //    // Определяем направление (по часовой стрелке или против)
-        //    if (!clockwise)
-        //    {
-        //        // Для против часовой стрелки меняем углы местами и инвертируем
-        //        //float temp = startAngle;
-        //        //startAngle = 360 - endAngle;
-        //        //endAngle = 360 - temp;
-        //        //(endAngle, startAngle) = (startAngle, endAngle);
-        //        text = new string(text.Reverse().ToArray());
-        //    }
-
-        //    if (font == null) font = new Font(fonts.Families[0], size /** 0.99f*/, GraphicsUnit.World);
-        //    StringFormat strFormat = new StringFormat();
-        //    strFormat.FormatFlags = StringFormatFlags.FitBlackBox;
-        //    strFormat.Alignment = StringAlignment.Near;
-        //    strFormat.LineAlignment = StringAlignment.Near;
-        //    Size strSize1 = TextRenderer.MeasureText(graphics, "0", font);
-        //    Size strSize2 = TextRenderer.MeasureText(graphics, "00" + Environment.NewLine + "0", font);
-        //    int chWidth = strSize2.Width - strSize1.Width;
-        //    int offsetX = strSize1.Width - chWidth;
-        //    int chHeight = strSize2.Height - strSize1.Height;
-        //    //float offsetY = strSize2.Height - strSize1.Height;
-        //    float offsetY = strSize1.Height - size;
-
-        //    // Рассчитываем общую длину текста
-        //    float totalLength = 0;
-        //    foreach (char c in text)
-        //    {
-        //        totalLength += graphics.MeasureString(c.ToString(), font).Width - 0.53f * offsetX;
-        //    }
-        //    if (clockwise) totalLength += (text.Length - 1) * spacing /** (1 + font.Size * 1.5f / radius)*/;
-        //    else
-        //    {
-        //        totalLength += (text.Length - 1) * spacing /** (1 + font.Size * 1.5f / radius)*/;
-        //        totalLength = totalLength * (1 - 0.9f * (font.Size - offsetY) / radius);
-        //    }
-
-        //    // Рассчитываем угол на один пиксель
-        //    //float anglePerPixel = (endAngle - startAngle) / totalLength;
-        //    //float anglePerPixel = (float)((endAngle - startAngle) / (radius * 2 * Math.PI));
-        //    float anglePerPixel = (float)(360 / ((radius - /*1.1f**/font.Size) * 2 * Math.PI));
-
-        //    float currentAngle = startAngle;
-
-        //    // Корректируем начальный угол в зависимости от выравнивания
-        //    if (clockwise)
-        //    {
-        //        switch (align_h)
-        //        {
-        //            case "CENTER_H":
-        //                currentAngle += (endAngle - startAngle - totalLength * anglePerPixel) / 2;
-        //                break;
-        //            case "RIGHT":
-        //                currentAngle += endAngle - startAngle - totalLength * anglePerPixel;
-        //                break;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        //currentAngle = endAngle + 180;
-        //        switch (align_h)
-        //        {
-        //            case "CENTER_H":
-        //                currentAngle += (endAngle - startAngle - totalLength * anglePerPixel) / 2;
-        //                break;
-        //            case "LEFT":
-        //                currentAngle += endAngle - startAngle - totalLength * anglePerPixel;
-        //                break;
-        //        }
-        //    }
-
-        //    for (int i = 0; i < text.Length; i++)
-        //    {
-        //        char c = text[i];
-        //        string charStr = c.ToString();
-        //        SizeF charSize = graphics.MeasureString(charStr, font);
-
-        //        // Рассчитываем позицию символа
-        //        float charAngle = currentAngle + (charSize.Width / 2) * anglePerPixel;
-        //        //float charAngle = currentAngle + charSize.Width  * anglePerPixel;
-        //        //if (!clockwise) charAngle = currentAngle + ((charSize.Width + offsetX / 2) / 2) * anglePerPixel;
-
-        //        // Преобразуем угол в радианы
-        //        double angleRad = (charAngle - 90) * Math.PI / 180;
-
-        //        // Вычисляем координаты символа
-        //        float x = centerX + radius * (float)Math.Cos(angleRad);
-        //        float y = centerY + radius * (float)Math.Sin(angleRad);
-
-        //        // Создаем матрицу преобразования
-        //        Matrix transform = new Matrix();
-
-        //        // Поворачиваем символ в соответствии с направлением
-        //        float rotationAngle = clockwise ? charAngle : charAngle + 180;
-        //        transform.RotateAt(rotationAngle, new PointF(centerX, centerY));
-
-        //        // Применяем преобразование
-        //        graphics.Transform = transform;
-
-        //        // Рисуем символ
-        //        if (clockwise)
-        //        {
-        //            if (currentAngle >= startAngle && currentAngle <= endAngle) // Пропускаем символы, которые выходят за пределы углов
-        //            {
-        //                if (clockwise) graphics.DrawString(charStr, font, new SolidBrush(color), centerX - offsetX / 2, centerY - (int)(radius - font.Size + offsetY),
-        //                    new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
-        //            }
-        //            // Перемещаем текущий угол на следующий символ
-        //            currentAngle += (charSize.Width - 0.53f * offsetX + spacing) * anglePerPixel;
-        //        }
-        //        else
-        //        {
-        //            if (currentAngle >= startAngle && currentAngle <= endAngle) // Пропускаем символы, которые выходят за пределы углов
-        //            {
-        //                graphics.DrawString(charStr, font, new SolidBrush(color), centerX + offsetX / 2, centerY + (int)(radius - font.Size + 1.5f*offsetY),
-        //                    new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
-        //            }
-        //            // Перемещаем текущий угол на следующий символ
-        //            currentAngle += ((charSize.Width - 0.53f * offsetX + spacing) * anglePerPixel) * (1 - 0.9f * (font.Size - offsetY) / radius);
-        //        }
-
-
-        //        // Сбрасываем преобразование
-        //        graphics.ResetTransform();
-
-        //        //// Перемещаем текущий угол на следующий символ
-        //        //if (clockwise) currentAngle += (charSize.Width - 0.35f*offsetX + spacing /** (1 + font.Size / radius)*/) * anglePerPixel;
-        //        //else currentAngle += ((charSize.Width - 0.35f * offsetX + spacing /** (1 + font.Size / radius)*/) * anglePerPixel) * (1 - 0.9f * (font.Size - offsetY) / radius);
-        //    }
-        //}
-
-        // version 4
+        /// <param name="showCentrHend">Подсвечивать центр вращения</param>
         public void DrawTextOnCircle(
             Graphics graphics,
             int centerX,
@@ -15170,6 +15063,55 @@ namespace Watch_Face_Editor
 
                 // Сбрасываем преобразование
                 graphics.ResetTransform();
+            }
+
+            radius -= (int)size;
+            radius += (int)(1.5f*offsetY);
+            startAngle -= 90;
+            endAngle -= 90;
+            if (BBorder)
+            {
+                // подсвечивание шкалы заливкой
+                HatchBrush myHatchBrush = new HatchBrush(HatchStyle.Percent20, Color.White, Color.Transparent);
+                Pen pen = new Pen(myHatchBrush);
+                pen.Width = size;
+                //float start_angl = (float)(startAngle + size);
+                float sweepAngle = endAngle - startAngle;
+                int smallRadius = (int)(radius - size);
+                if (smallRadius < 1) smallRadius = 1;
+                graphics.DrawArc(pen, centerX - radius, centerY - radius, radius * 2, radius * 2, startAngle, sweepAngle);
+                myHatchBrush = new HatchBrush(HatchStyle.Percent10, Color.Black, Color.Transparent);
+                pen.Brush = myHatchBrush;
+                graphics.DrawArc(pen, centerX - radius, centerY - radius, radius * 2, radius * 2, startAngle, sweepAngle);
+
+                // подсвечивание внешней и внутреней дуги на шкале
+                using (Pen pen1 = new Pen(Color.White, 1))
+                {
+                    graphics.DrawArc(pen1, centerX - radius - size / 2, centerY - radius - size / 2, radius * 2 + size, radius * 2 + size, startAngle, sweepAngle);
+                    graphics.DrawArc(pen1, centerX - smallRadius - size / 2, centerY - smallRadius - size / 2, smallRadius * 2 + size, smallRadius * 2 + size, startAngle, sweepAngle);
+                }
+                using (Pen pen2 = new Pen(Color.Black, 1))
+                {
+                    pen2.DashStyle = DashStyle.Dash;
+                    graphics.DrawArc(pen2, centerX - radius - size / 2, centerY - radius - size / 2, radius * 2 + size, radius * 2 + size, startAngle, sweepAngle);
+                    graphics.DrawArc(pen2, centerX - smallRadius - size / 2, centerY - smallRadius - size / 2, smallRadius * 2 + size, smallRadius * 2 + size, startAngle, sweepAngle);
+                }
+            }
+
+            if (showCentrHend)
+            {
+                Logger.WriteLine("Draw showCentrHend");
+                using (Pen pen1 = new Pen(Color.White, 1))
+                {
+                    graphics.DrawLine(pen1, new Point(centerX - 5, centerY), new Point(centerX + 5, centerY));
+                    graphics.DrawLine(pen1, new Point(centerX, centerY - 5), new Point(centerX, centerY + 5));
+                }
+                using (Pen pen2 = new Pen(Color.Black, 1))
+                {
+                    pen2.DashStyle = DashStyle.Dot;
+                    graphics.DrawLine(pen2, new Point(centerX - 5, centerY), new Point(centerX + 5, centerY));
+                    graphics.DrawLine(pen2, new Point(centerX, centerY - 5), new Point(centerX, centerY + 5));
+                }
             }
         }
 
@@ -15656,15 +15598,9 @@ namespace Watch_Face_Editor
                 int s = Math.Sign(fullAngle);
                 float start_angl = (float)(startAngle + 0.08 * s * width);
                 float end_angl = (float)(fullAngle - 0.16 * s * width);
-                //graphics.DrawArc(pen, arcX, arcY, CircleWidth, CircleWidth, startAngle, endAngle);
-                //graphics.DrawArc(pen, arcX, arcY, CircleWidth, CircleWidth,
-                //    (float)(startAngle - 0.007 * s * width), (float)(fullAngle + 0.015 * s * width));
                 graphics.DrawArc(pen, arcX, arcY, CircleWidth, CircleWidth, start_angl, end_angl);
                 myHatchBrush = new HatchBrush(HatchStyle.Percent10, Color.Black, Color.Transparent);
                 pen.Brush = myHatchBrush;
-                //graphics.DrawArc(pen, arcX, arcY, CircleWidth, CircleWidth, startAngle, endAngle);
-                //graphics.DrawArc(pen, arcX, arcY, CircleWidth, CircleWidth,
-                //    (float)(startAngle - 0.007 * s * width), (float)(fullAngle + 0.015 * s * width));
                 graphics.DrawArc(pen, arcX, arcY, CircleWidth, CircleWidth, start_angl, end_angl);
 
                 // подсвечивание внешней и внутреней дуги на шкале

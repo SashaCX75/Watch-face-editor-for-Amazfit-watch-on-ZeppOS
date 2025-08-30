@@ -117,22 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="button_Format_24hour.Text" xml:space="preserve">
-    <value>formato de 24 horas</value>
+  <data name="button_CityName.Text" xml:space="preserve">
+    <value>Jméno města</value>
   </data>
-  <data name="button_SmoothSeconds.Text" xml:space="preserve">
-    <value>Movimiento suave</value>
+  <data name="button_ButtonPrev.Text" xml:space="preserve">
+    <value>Předchozí město</value>
   </data>
-  <data name="button_Minute.Text" xml:space="preserve">
-    <value>Minutos</value>
+  <data name="button_TimeDiff.Text" xml:space="preserve">
+    <value>Časový rozdíl</value>
   </data>
-  <data name="button_Hour.Text" xml:space="preserve">
-    <value>Horas</value>
+  <data name="button_Time.Text" xml:space="preserve">
+    <value>Čas</value>
   </data>
-  <data name="button_Second.Text" xml:space="preserve">
-    <value>Segundos</value>
+  <data name="button_TimeZone.Text" xml:space="preserve">
+    <value>Časové pásmo</value>
+  </data>
+  <data name="button_ButtonNext.Text" xml:space="preserve">
+    <value>Další město</value>
+  </data>
+  <data name="button_Icon.Text" xml:space="preserve">
+    <value>Ikona</value>
   </data>
   <data name="button_ElementName.Text" xml:space="preserve">
-    <value>Progreso del círculo</value>
+    <value>Světový čas</value>
   </data>
 </root>

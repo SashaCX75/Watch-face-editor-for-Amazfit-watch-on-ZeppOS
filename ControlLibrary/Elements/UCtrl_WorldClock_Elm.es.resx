@@ -117,28 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="button_ButtonNext.Text" xml:space="preserve">
-    <value>Próxima ciudad</value>
+  <data name="button_CityName.Text" xml:space="preserve">
+    <value>Nombre de la ciudad</value>
   </data>
   <data name="button_ButtonPrev.Text" xml:space="preserve">
     <value>Ciudad anterior</value>
   </data>
-  <data name="button_CityName.Text" xml:space="preserve">
-    <value>Nombre de la ciudad</value>
-  </data>
-  <data name="button_ElementName.Text" xml:space="preserve">
-    <value>Hora mundial</value>
-  </data>
-  <data name="button_Icon.Text" xml:space="preserve">
-    <value>Icono</value>
+  <data name="button_TimeDiff.Text" xml:space="preserve">
+    <value>Diferencia horaria</value>
   </data>
   <data name="button_Time.Text" xml:space="preserve">
     <value>Hora</value>
   </data>
-  <data name="button_TimeDiff.Text" xml:space="preserve">
-    <value>Diferencia horaria</value>
-  </data>
   <data name="button_TimeZone.Text" xml:space="preserve">
     <value>Zona Horaria</value>
+  </data>
+  <data name="button_ButtonNext.Text" xml:space="preserve">
+    <value>Próxima ciudad</value>
+  </data>
+  <data name="button_Icon.Text" xml:space="preserve">
+    <value>Icono</value>
+  </data>
+  <data name="button_ElementName.Text" xml:space="preserve">
+    <value>Hora mundial</value>
   </data>
 </root>

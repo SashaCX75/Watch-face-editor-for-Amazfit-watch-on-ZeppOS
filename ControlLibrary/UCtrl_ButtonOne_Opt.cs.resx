@@ -118,40 +118,40 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="label8.Text" xml:space="preserve">
-    <value>Color del texto</value>
+    <value>Barva textu</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
-    <value>Texto</value>
+    <value>Text</value>
   </data>
   <data name="label6.Text" xml:space="preserve">
-    <value>Tamaño del texto</value>
+    <value>Velikost textu</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
-    <value>Estado presionado</value>
+    <value>Stlačený stav</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
-    <value>Radio</value>
+    <value>Poloměr</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Estado normal</value>
+    <value>Normální stav</value>
   </data>
   <data name="groupBox_color.Text" xml:space="preserve">
-    <value>Color</value>
+    <value>Barva</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Estado presionado</value>
+    <value>Stlačený stav</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Estado normal</value>
+    <value>Normální stav</value>
   </data>
   <data name="groupBox_image.Text" xml:space="preserve">
-    <value>Imagen</value>
+    <value>Obrázek</value>
   </data>
   <data name="label06.Text" xml:space="preserve">
-    <value>Altura del botón</value>
+    <value>Výška tlačítek</value>
   </data>
   <data name="label07.Text" xml:space="preserve">
-    <value>Ancho del botón</value>
+    <value>šířka tlačítka</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="вставитьКоординатуХToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -169,10 +169,10 @@
 </value>
   </data>
   <data name="вставитьКоординатуХToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 26</value>
+    <value>178, 26</value>
   </data>
   <data name="вставитьКоординатуХToolStripMenuItem.Text" xml:space="preserve">
-    <value>Pegar coordenada X</value>
+    <value>Vložte souřadnici X</value>
   </data>
   <data name="копироватьToolStripMenuItemX.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -191,10 +191,10 @@
 </value>
   </data>
   <data name="копироватьToolStripMenuItemX.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 26</value>
+    <value>178, 26</value>
   </data>
   <data name="копироватьToolStripMenuItemX.Text" xml:space="preserve">
-    <value>Copiar</value>
+    <value>Kopírovat</value>
   </data>
   <data name="вставитьToolStripMenuItemX.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -214,19 +214,19 @@
 </value>
   </data>
   <data name="вставитьToolStripMenuItemX.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 26</value>
+    <value>178, 26</value>
   </data>
   <data name="вставитьToolStripMenuItemX.Text" xml:space="preserve">
-    <value>Pegar</value>
+    <value>Vložit</value>
   </data>
   <data name="contextMenuStrip_X.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 82</value>
+    <value>179, 82</value>
   </data>
   <data name="label02.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 13</value>
+    <value>62, 13</value>
   </data>
   <data name="label02.Text" xml:space="preserve">
-    <value>Coordenadas</value>
+    <value>Souřadnice</value>
   </data>
   <data name="вставитьКоординатуYToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -243,10 +243,10 @@
 </value>
   </data>
   <data name="вставитьКоординатуYToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 26</value>
+    <value>178, 26</value>
   </data>
   <data name="вставитьКоординатуYToolStripMenuItem.Text" xml:space="preserve">
-    <value>Pegar coodenadas Y</value>
+    <value>Vložte souřadnici Y</value>
   </data>
   <data name="копироватьToolStripMenuItemY.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -265,10 +265,10 @@
 </value>
   </data>
   <data name="копироватьToolStripMenuItemY.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 26</value>
+    <value>178, 26</value>
   </data>
   <data name="копироватьToolStripMenuItemY.Text" xml:space="preserve">
-    <value>Copiar</value>
+    <value>Kopírovat</value>
   </data>
   <data name="вставитьToolStripMenuItemY.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -288,33 +288,33 @@
 </value>
   </data>
   <data name="вставитьToolStripMenuItemY.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 26</value>
+    <value>178, 26</value>
   </data>
   <data name="вставитьToolStripMenuItemY.Text" xml:space="preserve">
-    <value>Pegar</value>
+    <value>Vložit</value>
   </data>
   <data name="contextMenuStrip_Y.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 82</value>
+    <value>179, 82</value>
   </data>
   <data name="копироватьСвойстваToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 22</value>
+    <value>178, 22</value>
   </data>
   <data name="копироватьСвойстваToolStripMenuItem.Text" xml:space="preserve">
-    <value>Copiar propiedades</value>
+    <value>Kopírovat vlastnosti</value>
   </data>
   <data name="вставитьСвойстваToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 22</value>
+    <value>178, 22</value>
   </data>
   <data name="вставитьСвойстваToolStripMenuItem.Text" xml:space="preserve">
-    <value>Insertar propiedades</value>
+    <value>Vložit vlastnosti</value>
   </data>
   <data name="context_WidgetProperty.Size" type="System.Drawing.Size, System.Drawing">
-    <value>182, 48</value>
+    <value>179, 48</value>
   </data>
   <data name="checkBox_vibro.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 17</value>
+    <value>62, 17</value>
   </data>
   <data name="checkBox_vibro.Text" xml:space="preserve">
-    <value>Vibración</value>
+    <value>Vibrace</value>
   </data>
 </root>

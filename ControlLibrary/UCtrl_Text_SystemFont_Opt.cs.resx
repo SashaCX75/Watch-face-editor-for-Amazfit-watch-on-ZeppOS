@@ -412,4 +412,28 @@ vertikálně</value>
   <data name="label_alpha.Text" xml:space="preserve">
     <value>Průhlednost</value>
   </data>
+  <data name="checkBox_use_text_circle.Text" xml:space="preserve">
+    <value>Zobrazit text v kruhu</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Poloměr</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Počáteční úhel</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>Koncový úhel</value>
+  </data>
+  <data name="radioButton_clockwise.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 17</value>
+  </data>
+  <data name="radioButton_clockwise.Text" xml:space="preserve">
+    <value>Po směru ručiček</value>
+  </data>
+  <data name="radioButton_counterclockwise.Size" type="System.Drawing.Size, System.Drawing">
+    <value>115, 17</value>
+  </data>
+  <data name="radioButton_counterclockwise.Text" xml:space="preserve">
+    <value>Proti směru ručiček</value>
+  </data>
 </root>

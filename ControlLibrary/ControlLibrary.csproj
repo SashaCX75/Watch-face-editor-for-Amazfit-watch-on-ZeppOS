@@ -839,6 +839,9 @@
     <EmbeddedResource Include="Elements\UCtrl_Altimeter_Elm.zh.resx">
       <DependentUpon>UCtrl_Altimeter_Elm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_AnalogTimeCircle_Elm.cs.resx">
+      <DependentUpon>UCtrl_AnalogTimeCircle_Elm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_AnalogTimeCircle_Elm.de.resx">
       <DependentUpon>UCtrl_AnalogTimeCircle_Elm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1935,6 +1938,9 @@
     <EmbeddedResource Include="Elements\UCtrl_Wind_Elm.zh.resx">
       <DependentUpon>UCtrl_Wind_Elm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_WorldClock_Elm.cs.resx">
+      <DependentUpon>UCtrl_WorldClock_Elm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_WorldClock_Elm.de.resx">
       <DependentUpon>UCtrl_WorldClock_Elm.cs</DependentUpon>
     </EmbeddedResource>
@@ -2270,6 +2276,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_BodyTemp_Elm.resx">
       <DependentUpon>UCtrl_BodyTemp_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_ButtonOne_Opt.cs.resx">
+      <DependentUpon>UCtrl_ButtonOne_Opt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UCtrl_ButtonOne_Opt.de.resx">
       <DependentUpon>UCtrl_ButtonOne_Opt.cs</DependentUpon>

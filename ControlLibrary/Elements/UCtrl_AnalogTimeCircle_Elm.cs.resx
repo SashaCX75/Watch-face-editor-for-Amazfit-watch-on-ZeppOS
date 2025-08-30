@@ -118,21 +118,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="button_Format_24hour.Text" xml:space="preserve">
-    <value>formato de 24 horas</value>
+    <value>24hodinový formát času</value>
   </data>
   <data name="button_SmoothSeconds.Text" xml:space="preserve">
-    <value>Movimiento suave</value>
+    <value>Plynulý pohyb</value>
   </data>
   <data name="button_Minute.Text" xml:space="preserve">
-    <value>Minutos</value>
+    <value>Minut</value>
   </data>
   <data name="button_Hour.Text" xml:space="preserve">
-    <value>Horas</value>
+    <value>Hodiny</value>
   </data>
   <data name="button_Second.Text" xml:space="preserve">
-    <value>Segundos</value>
+    <value>Sekundy</value>
   </data>
   <data name="button_ElementName.Text" xml:space="preserve">
-    <value>Progreso del círculo</value>
+    <value>Časové kruhy</value>
   </data>
 </root>

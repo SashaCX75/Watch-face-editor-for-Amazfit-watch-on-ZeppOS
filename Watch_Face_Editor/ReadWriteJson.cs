@@ -23331,7 +23331,6 @@ namespace Watch_Face_Editor
 
             options += TabInString(7 + tabOffset) + "text_size: " + text.text_size.ToString() + "," + Environment.NewLine;
             options += TabInString(7 + tabOffset) + "char_space: " + text.char_space.ToString() + "," + Environment.NewLine;
-            options += TabInString(7 + tabOffset) + "line_space: " + text.line_space.ToString() + "," + Environment.NewLine;
 
             if (SelectedModel.versionOS >= 2 && text.font != null && text.font.Length > 3)
             {

@@ -1035,6 +1035,12 @@
   <data name="comboBox_AddTime.Items4" xml:space="preserve">
     <value>Аналоговое время (Pro)</value>
   </data>
+  <data name="comboBox_AddTime.Items5" xml:space="preserve">
+    <value>Круги времени</value>
+  </data>
+  <data name="comboBox_AddTime.Items6" xml:space="preserve">
+    <value>Мировое время</value>
+  </data>
   <data name="comboBox_AddTime.Location" type="System.Drawing.Point, System.Drawing">
     <value>30, 24</value>
   </data>
@@ -1138,7 +1144,7 @@
     <value>Fill</value>
   </data>
   <data name="panel_UC_EditableElements.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 374</value>
+    <value>0, 442</value>
   </data>
   <data name="panel_UC_EditableElements.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -1336,7 +1342,7 @@
     <value>Fill</value>
   </data>
   <data name="panel_UC_DateDay.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 408</value>
+    <value>0, 476</value>
   </data>
   <data name="panel_UC_DateDay.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -1468,7 +1474,7 @@
     <value>Fill</value>
   </data>
   <data name="panel_UC_DateMonth.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 442</value>
+    <value>0, 510</value>
   </data>
   <data name="panel_UC_DateMonth.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -1534,7 +1540,7 @@
     <value>Fill</value>
   </data>
   <data name="panel_UC_DateYear.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 476</value>
+    <value>0, 544</value>
   </data>
   <data name="panel_UC_DateYear.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -1600,7 +1606,7 @@
     <value>Fill</value>
   </data>
   <data name="panel_UC_Background.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 1700</value>
+    <value>0, 1768</value>
   </data>
   <data name="panel_UC_Background.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -1666,7 +1672,7 @@
     <value>Fill</value>
   </data>
   <data name="panel_UC_DateWeek.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 510</value>
+    <value>0, 578</value>
   </data>
   <data name="panel_UC_DateWeek.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -1732,7 +1738,7 @@
     <value>Fill</value>
   </data>
   <data name="panel_UC_Steps.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 612</value>
+    <value>0, 680</value>
   </data>
   <data name="panel_UC_Steps.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -1798,7 +1804,7 @@
     <value>Fill</value>
   </data>
   <data name="panel_UC_Statuses.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 578</value>
+    <value>0, 646</value>
   </data>
   <data name="panel_UC_Statuses.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -1864,7 +1870,7 @@
     <value>Top</value>
   </data>
   <data name="panel_UC_Shortcuts.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 544</value>
+    <value>0, 612</value>
   </data>
   <data name="panel_UC_Shortcuts.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -1930,7 +1936,7 @@
     <value>Fill</value>
   </data>
   <data name="panel_UC_Battery.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 646</value>
+    <value>0, 714</value>
   </data>
   <data name="panel_UC_Battery.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -1996,7 +2002,7 @@
     <value>Fill</value>
   </data>
   <data name="panel_UC_Heart.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 680</value>
+    <value>0, 748</value>
   </data>
   <data name="panel_UC_Heart.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -2062,7 +2068,7 @@
     <value>Fill</value>
   </data>
   <data name="panel_UC_Calories.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 714</value>
+    <value>0, 782</value>
   </data>
   <data name="panel_UC_Calories.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -2128,7 +2134,7 @@
     <value>Fill</value>
   </data>
   <data name="panel_UC_PAI.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 748</value>
+    <value>0, 816</value>
   </data>
   <data name="panel_UC_PAI.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -2194,7 +2200,7 @@
     <value>Fill</value>
   </data>
   <data name="panel_UC_Distance.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 782</value>
+    <value>0, 850</value>
   </data>
   <data name="panel_UC_Distance.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -2260,7 +2266,7 @@
     <value>Fill</value>
   </data>
   <data name="panel_UC_Weather.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 918</value>
+    <value>0, 986</value>
   </data>
   <data name="panel_UC_Weather.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -2326,7 +2332,7 @@
     <value>Fill</value>
   </data>
   <data name="panel_UC_Stand.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 816</value>
+    <value>0, 884</value>
   </data>
   <data name="panel_UC_Stand.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -2392,7 +2398,7 @@
     <value>Fill</value>
   </data>
   <data name="panel_UC_Activity.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 850</value>
+    <value>0, 918</value>
   </data>
   <data name="panel_UC_Activity.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -2458,7 +2464,7 @@
     <value>Fill</value>
   </data>
   <data name="panel_UC_SpO2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 884</value>
+    <value>0, 952</value>
   </data>
   <data name="panel_UC_SpO2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -2524,7 +2530,7 @@
     <value>Fill</value>
   </data>
   <data name="panel_UC_UVIndex.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 1020</value>
+    <value>0, 1088</value>
   </data>
   <data name="panel_UC_UVIndex.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -2590,7 +2596,7 @@
     <value>Fill</value>
   </data>
   <data name="panel_UC_Humidity.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 1054</value>
+    <value>0, 1122</value>
   </data>
   <data name="panel_UC_Humidity.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -2656,7 +2662,7 @@
     <value>Fill</value>
   </data>
   <data name="panel_UC_Stress.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 1088</value>
+    <value>0, 1156</value>
   </data>
   <data name="panel_UC_Stress.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -2722,7 +2728,7 @@
     <value>Fill</value>
   </data>
   <data name="panel_UC_FatBurning.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 1122</value>
+    <value>0, 1190</value>
   </data>
   <data name="panel_UC_FatBurning.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -2788,7 +2794,7 @@
     <value>Fill</value>
   </data>
   <data name="panel_UC_Altimeter.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 1156</value>
+    <value>0, 1224</value>
   </data>
   <data name="panel_UC_Altimeter.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -2920,7 +2926,7 @@
     <value>Fill</value>
   </data>
   <data name="panel_UC_Sunrise.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 1190</value>
+    <value>0, 1258</value>
   </data>
   <data name="panel_UC_Sunrise.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -2986,7 +2992,7 @@
     <value>Fill</value>
   </data>
   <data name="panel_UC_Wind.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 1224</value>
+    <value>0, 1292</value>
   </data>
   <data name="panel_UC_Wind.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -3052,7 +3058,7 @@
     <value>Fill</value>
   </data>
   <data name="panel_UC_Moon.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 1292</value>
+    <value>0, 1360</value>
   </data>
   <data name="panel_UC_Moon.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -3118,7 +3124,7 @@
     <value>Fill</value>
   </data>
   <data name="panel_UC_Animation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 1666</value>
+    <value>0, 1734</value>
   </data>
   <data name="panel_UC_Animation.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -3316,7 +3322,7 @@
     <value>Fill</value>
   </data>
   <data name="panel_UC_Image.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 1258</value>
+    <value>0, 1326</value>
   </data>
   <data name="panel_UC_Image.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -3514,7 +3520,7 @@
     <value>Fill</value>
   </data>
   <data name="panel_UC_JS.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 1632</value>
+    <value>0, 1700</value>
   </data>
   <data name="panel_UC_JS.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -3580,7 +3586,7 @@
     <value>Fill</value>
   </data>
   <data name="panel_UC_Compass.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 1326</value>
+    <value>0, 1394</value>
   </data>
   <data name="panel_UC_Compass.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -3646,7 +3652,7 @@
     <value>Fill</value>
   </data>
   <data name="panel_UC_Weather_v2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 952</value>
+    <value>0, 1020</value>
   </data>
   <data name="panel_UC_Weather_v2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -3712,7 +3718,7 @@
     <value>Fill</value>
   </data>
   <data name="panel_UC_Weather_FewDay.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 986</value>
+    <value>0, 1054</value>
   </data>
   <data name="panel_UC_Weather_FewDay.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -3976,7 +3982,7 @@
     <value>Top</value>
   </data>
   <data name="panel_UC_AlarmClock.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 1360</value>
+    <value>0, 1428</value>
   </data>
   <data name="panel_UC_AlarmClock.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -4042,7 +4048,7 @@
     <value>Top</value>
   </data>
   <data name="panel_UC_TrainingLoad.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 1394</value>
+    <value>0, 1462</value>
   </data>
   <data name="panel_UC_TrainingLoad.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -4108,7 +4114,7 @@
     <value>Top</value>
   </data>
   <data name="panel_UC_VO2Max.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 1428</value>
+    <value>0, 1496</value>
   </data>
   <data name="panel_UC_VO2Max.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -4174,7 +4180,7 @@
     <value>Top</value>
   </data>
   <data name="panel_UC_AQI.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 1462</value>
+    <value>0, 1530</value>
   </data>
   <data name="panel_UC_AQI.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -4240,7 +4246,7 @@
     <value>Top</value>
   </data>
   <data name="panel_UC_BodyTemp.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 1496</value>
+    <value>0, 1564</value>
   </data>
   <data name="panel_UC_BodyTemp.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -4306,7 +4312,7 @@
     <value>Top</value>
   </data>
   <data name="panel_UC_Floor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 1530</value>
+    <value>0, 1598</value>
   </data>
   <data name="panel_UC_Floor.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -4372,7 +4378,7 @@
     <value>Top</value>
   </data>
   <data name="panel_UC_Readiness.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 1564</value>
+    <value>0, 1632</value>
   </data>
   <data name="panel_UC_Readiness.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -4435,7 +4441,7 @@
     <value>Top</value>
   </data>
   <data name="panel_UC_HRV.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 1598</value>
+    <value>0, 1666</value>
   </data>
   <data name="panel_UC_HRV.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -4458,6 +4464,132 @@
   <data name="&gt;&gt;panel_UC_HRV.ZOrder" xml:space="preserve">
     <value>50</value>
   </data>
+  <data name="panel_UC_AnalogTimeCircle.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="uCtrl_AnalogTimeCircle_Elm.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="uCtrl_AnalogTimeCircle_Elm.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="uCtrl_AnalogTimeCircle_Elm.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="uCtrl_AnalogTimeCircle_Elm.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="uCtrl_AnalogTimeCircle_Elm.Size" type="System.Drawing.Size, System.Drawing">
+    <value>231, 34</value>
+  </data>
+  <data name="uCtrl_AnalogTimeCircle_Elm.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="uCtrl_AnalogTimeCircle_Elm.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;uCtrl_AnalogTimeCircle_Elm.Name" xml:space="preserve">
+    <value>uCtrl_AnalogTimeCircle_Elm</value>
+  </data>
+  <data name="&gt;&gt;uCtrl_AnalogTimeCircle_Elm.Type" xml:space="preserve">
+    <value>ControlLibrary.UCtrl_AnalogTimeCircle_Elm, ControlLibrary, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;uCtrl_AnalogTimeCircle_Elm.Parent" xml:space="preserve">
+    <value>panel_UC_AnalogTimeCircle</value>
+  </data>
+  <data name="&gt;&gt;uCtrl_AnalogTimeCircle_Elm.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panel_UC_AnalogTimeCircle.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="panel_UC_AnalogTimeCircle.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 374</value>
+  </data>
+  <data name="panel_UC_AnalogTimeCircle.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="panel_UC_AnalogTimeCircle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>231, 34</value>
+  </data>
+  <data name="panel_UC_AnalogTimeCircle.TabIndex" type="System.Int32, mscorlib">
+    <value>134</value>
+  </data>
+  <data name="&gt;&gt;panel_UC_AnalogTimeCircle.Name" xml:space="preserve">
+    <value>panel_UC_AnalogTimeCircle</value>
+  </data>
+  <data name="&gt;&gt;panel_UC_AnalogTimeCircle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel_UC_AnalogTimeCircle.Parent" xml:space="preserve">
+    <value>tableLayoutPanel_ElemetsWatchFace</value>
+  </data>
+  <data name="&gt;&gt;panel_UC_AnalogTimeCircle.ZOrder" xml:space="preserve">
+    <value>51</value>
+  </data>
+  <data name="panel_UC_WorldClock.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="uCtrl_WorldClock_Elm.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="uCtrl_WorldClock_Elm.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="uCtrl_WorldClock_Elm.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="uCtrl_WorldClock_Elm.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="uCtrl_WorldClock_Elm.Size" type="System.Drawing.Size, System.Drawing">
+    <value>231, 34</value>
+  </data>
+  <data name="uCtrl_WorldClock_Elm.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="uCtrl_WorldClock_Elm.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;uCtrl_WorldClock_Elm.Name" xml:space="preserve">
+    <value>uCtrl_WorldClock_Elm</value>
+  </data>
+  <data name="&gt;&gt;uCtrl_WorldClock_Elm.Type" xml:space="preserve">
+    <value>ControlLibrary.UCtrl_WorldClock_Elm, ControlLibrary, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;uCtrl_WorldClock_Elm.Parent" xml:space="preserve">
+    <value>panel_UC_WorldClock</value>
+  </data>
+  <data name="&gt;&gt;uCtrl_WorldClock_Elm.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panel_UC_WorldClock.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="panel_UC_WorldClock.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 408</value>
+  </data>
+  <data name="panel_UC_WorldClock.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="panel_UC_WorldClock.Size" type="System.Drawing.Size, System.Drawing">
+    <value>231, 34</value>
+  </data>
+  <data name="panel_UC_WorldClock.TabIndex" type="System.Int32, mscorlib">
+    <value>135</value>
+  </data>
+  <data name="&gt;&gt;panel_UC_WorldClock.Name" xml:space="preserve">
+    <value>panel_UC_WorldClock</value>
+  </data>
+  <data name="&gt;&gt;panel_UC_WorldClock.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel_UC_WorldClock.Parent" xml:space="preserve">
+    <value>tableLayoutPanel_ElemetsWatchFace</value>
+  </data>
+  <data name="&gt;&gt;panel_UC_WorldClock.ZOrder" xml:space="preserve">
+    <value>52</value>
+  </data>
   <data name="tableLayoutPanel_ElemetsWatchFace.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
   </data>
@@ -4465,10 +4597,10 @@
     <value>0, 0</value>
   </data>
   <data name="tableLayoutPanel_ElemetsWatchFace.RowCount" type="System.Int32, mscorlib">
-    <value>51</value>
+    <value>53</value>
   </data>
   <data name="tableLayoutPanel_ElemetsWatchFace.Size" type="System.Drawing.Size, System.Drawing">
-    <value>231, 1734</value>
+    <value>231, 1802</value>
   </data>
   <data name="tableLayoutPanel_ElemetsWatchFace.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -4486,7 +4618,7 @@
     <value>0</value>
   </data>
   <data name="tableLayoutPanel_ElemetsWatchFace.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="panel_UC_EditableElements" Row="11" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_DigitalTime" Row="9" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_AnalogTime" Row="8" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_DateDay" Row="12" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_RepeatingAlert" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_DateMonth" Row="13" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_DateYear" Row="14" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Background" Row="50" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_DateWeek" Row="15" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Steps" Row="18" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Statuses" Row="17" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Shortcuts" Row="16" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Battery" Row="19" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Heart" Row="20" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Calories" Row="21" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_PAI" Row="22" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Distance" Row="23" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Weather" Row="27" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Stand" Row="24" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Activity" Row="25" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_SpO2" Row="26" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_UVIndex" Row="30" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Humidity" Row="31" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Stress" Row="32" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_FatBurning" Row="33" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Altimeter" Row="34" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_EditableTimePointer" Row="6" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Sunrise" Row="35" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Wind" Row="36" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Moon" Row="38" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Animation" Row="49" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_DisconnectAlert" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_AnalogTimePro" Row="7" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Image" Row="37" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_TopImage" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Buttons" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_JS" Row="48" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Compass" Row="39" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Weather_v2" Row="28" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Weather_FewDay" Row="29" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_DigitalTime_v2" Row="10" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Switch_Background" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_Switch_BG_Color" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_AlarmClock" Row="40" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_TrainingLoad" Row="41" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_VO2Max" Row="42" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_AQI" Row="43" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_BodyTemp" Row="44" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Floor" Row="45" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Readiness" Row="46" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_HRV" Row="47" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="panel_UC_EditableElements" Row="13" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_DigitalTime" Row="9" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_AnalogTime" Row="8" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_DateDay" Row="14" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_RepeatingAlert" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_DateMonth" Row="15" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_DateYear" Row="16" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Background" Row="52" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_DateWeek" Row="17" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Steps" Row="20" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Statuses" Row="19" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Shortcuts" Row="18" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Battery" Row="21" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Heart" Row="22" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Calories" Row="23" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_PAI" Row="24" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Distance" Row="25" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Weather" Row="29" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Stand" Row="26" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Activity" Row="27" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_SpO2" Row="28" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_UVIndex" Row="32" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Humidity" Row="33" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Stress" Row="34" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_FatBurning" Row="35" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Altimeter" Row="36" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_EditableTimePointer" Row="6" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Sunrise" Row="37" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Wind" Row="38" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Moon" Row="40" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Animation" Row="51" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_DisconnectAlert" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_AnalogTimePro" Row="7" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Image" Row="39" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_TopImage" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Buttons" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_JS" Row="50" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Compass" Row="41" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Weather_v2" Row="30" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Weather_FewDay" Row="31" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_DigitalTime_v2" Row="10" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Switch_Background" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_Switch_BG_Color" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_AlarmClock" Row="42" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_TrainingLoad" Row="43" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_VO2Max" Row="44" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_AQI" Row="45" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_BodyTemp" Row="46" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Floor" Row="47" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_Readiness" Row="48" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_HRV" Row="49" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_AnalogTimeCircle" Row="11" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_UC_WorldClock" Row="12" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="panel_WatchfaceElements.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 3</value>
@@ -4516,7 +4648,7 @@
     <value>Top</value>
   </data>
   <data name="uCtrl_Switch_BG_Color_Opt.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 425</value>
+    <value>0, 440</value>
   </data>
   <data name="uCtrl_Switch_BG_Color_Opt.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -4546,7 +4678,7 @@
     <value>Top</value>
   </data>
   <data name="uCtrl_Switch_Background_Opt.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 410</value>
+    <value>0, 425</value>
   </data>
   <data name="uCtrl_Switch_Background_Opt.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -4576,7 +4708,7 @@
     <value>Top</value>
   </data>
   <data name="uCtrl_TemperatureGraph_Opt.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 395</value>
+    <value>0, 410</value>
   </data>
   <data name="uCtrl_TemperatureGraph_Opt.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -4609,7 +4741,7 @@
     <value>Top</value>
   </data>
   <data name="uCtrl_Weather_FewDays_Opt.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 380</value>
+    <value>0, 395</value>
   </data>
   <data name="uCtrl_Weather_FewDays_Opt.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -4639,7 +4771,7 @@
     <value>Top</value>
   </data>
   <data name="uCtrl_JS_script_Opt.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 365</value>
+    <value>0, 380</value>
   </data>
   <data name="uCtrl_JS_script_Opt.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -4664,6 +4796,36 @@
   </data>
   <data name="&gt;&gt;uCtrl_JS_script_Opt.ZOrder" xml:space="preserve">
     <value>4</value>
+  </data>
+  <data name="uCtrl_ButtonOne_Opt.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="uCtrl_ButtonOne_Opt.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 365</value>
+  </data>
+  <data name="uCtrl_ButtonOne_Opt.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="uCtrl_ButtonOne_Opt.Size" type="System.Drawing.Size, System.Drawing">
+    <value>258, 15</value>
+  </data>
+  <data name="uCtrl_ButtonOne_Opt.TabIndex" type="System.Int32, mscorlib">
+    <value>47</value>
+  </data>
+  <data name="uCtrl_ButtonOne_Opt.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;uCtrl_ButtonOne_Opt.Name" xml:space="preserve">
+    <value>uCtrl_ButtonOne_Opt</value>
+  </data>
+  <data name="&gt;&gt;uCtrl_ButtonOne_Opt.Type" xml:space="preserve">
+    <value>ControlLibrary.UCtrl_ButtonOne_Opt, ControlLibrary, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;uCtrl_ButtonOne_Opt.Parent" xml:space="preserve">
+    <value>panel_ElementsOpt</value>
+  </data>
+  <data name="&gt;&gt;uCtrl_ButtonOne_Opt.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
   <data name="uCtrl_Button_Opt.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -4693,7 +4855,7 @@
     <value>panel_ElementsOpt</value>
   </data>
   <data name="&gt;&gt;uCtrl_Button_Opt.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="uCtrl_Text_Rotate_Opt.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -4723,7 +4885,7 @@
     <value>panel_ElementsOpt</value>
   </data>
   <data name="&gt;&gt;uCtrl_Text_Rotate_Opt.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="uCtrl_Text_Circle_Opt.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -4753,7 +4915,7 @@
     <value>panel_ElementsOpt</value>
   </data>
   <data name="&gt;&gt;uCtrl_Text_Circle_Opt.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="uCtrl_RepeatingAlert_Opt.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -4786,7 +4948,7 @@
     <value>panel_ElementsOpt</value>
   </data>
   <data name="&gt;&gt;uCtrl_RepeatingAlert_Opt.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="uCtrl_SmoothSeconds_Opt.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -4816,7 +4978,7 @@
     <value>panel_ElementsOpt</value>
   </data>
   <data name="&gt;&gt;uCtrl_SmoothSeconds_Opt.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="uCtrl_DisconnectAlert_Opt.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -4849,7 +5011,7 @@
     <value>panel_ElementsOpt</value>
   </data>
   <data name="&gt;&gt;uCtrl_DisconnectAlert_Opt.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="uCtrl_EditableTimePointer_Opt.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -4879,7 +5041,7 @@
     <value>panel_ElementsOpt</value>
   </data>
   <data name="&gt;&gt;uCtrl_EditableTimePointer_Opt.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="uCtrl_Animation_Rotate_Opt.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -4909,7 +5071,7 @@
     <value>panel_ElementsOpt</value>
   </data>
   <data name="&gt;&gt;uCtrl_Animation_Rotate_Opt.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="uCtrl_Animation_Motion_Opt.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -4939,7 +5101,7 @@
     <value>panel_ElementsOpt</value>
   </data>
   <data name="&gt;&gt;uCtrl_Animation_Motion_Opt.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="uCtrl_Animation_Frame_Opt.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -4969,7 +5131,7 @@
     <value>panel_ElementsOpt</value>
   </data>
   <data name="&gt;&gt;uCtrl_Animation_Frame_Opt.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>15</value>
   </data>
   <data name="uCtrl_Text_SystemFont_Opt.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -4999,7 +5161,7 @@
     <value>panel_ElementsOpt</value>
   </data>
   <data name="&gt;&gt;uCtrl_Text_SystemFont_Opt.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>16</value>
   </data>
   <data name="uCtrl_Text_Weather_Opt.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -5029,7 +5191,7 @@
     <value>panel_ElementsOpt</value>
   </data>
   <data name="&gt;&gt;uCtrl_Text_Weather_Opt.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>17</value>
   </data>
   <data name="uCtrl_Shortcut_Opt.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -5059,7 +5221,7 @@
     <value>panel_ElementsOpt</value>
   </data>
   <data name="&gt;&gt;uCtrl_Shortcut_Opt.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>18</value>
   </data>
   <data name="uCtrl_Segments_Opt.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -5089,7 +5251,7 @@
     <value>panel_ElementsOpt</value>
   </data>
   <data name="&gt;&gt;uCtrl_Segments_Opt.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>19</value>
   </data>
   <data name="uCtrl_Icon_Opt.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -5119,7 +5281,7 @@
     <value>panel_ElementsOpt</value>
   </data>
   <data name="&gt;&gt;uCtrl_Icon_Opt.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>20</value>
   </data>
   <data name="uCtrl_Linear_Scale_Opt.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -5149,7 +5311,7 @@
     <value>panel_ElementsOpt</value>
   </data>
   <data name="&gt;&gt;uCtrl_Linear_Scale_Opt.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>21</value>
   </data>
   <data name="uCtrl_Circle_Scale_Opt.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -5179,7 +5341,7 @@
     <value>panel_ElementsOpt</value>
   </data>
   <data name="&gt;&gt;uCtrl_Circle_Scale_Opt.ZOrder" xml:space="preserve">
-    <value>21</value>
+    <value>22</value>
   </data>
   <data name="uCtrl_Images_Opt.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -5209,7 +5371,7 @@
     <value>panel_ElementsOpt</value>
   </data>
   <data name="&gt;&gt;uCtrl_Images_Opt.ZOrder" xml:space="preserve">
-    <value>22</value>
+    <value>23</value>
   </data>
   <data name="uCtrl_Pointer_Opt.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -5239,7 +5401,7 @@
     <value>panel_ElementsOpt</value>
   </data>
   <data name="&gt;&gt;uCtrl_Pointer_Opt.ZOrder" xml:space="preserve">
-    <value>23</value>
+    <value>24</value>
   </data>
   <data name="uCtrl_AmPm_Opt.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -5269,7 +5431,7 @@
     <value>panel_ElementsOpt</value>
   </data>
   <data name="&gt;&gt;uCtrl_AmPm_Opt.ZOrder" xml:space="preserve">
-    <value>24</value>
+    <value>25</value>
   </data>
   <data name="uCtrl_Text_Opt.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -5302,7 +5464,7 @@
     <value>panel_ElementsOpt</value>
   </data>
   <data name="&gt;&gt;uCtrl_Text_Opt.ZOrder" xml:space="preserve">
-    <value>25</value>
+    <value>26</value>
   </data>
   <data name="uCtrl_EditableBackground_Opt.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -5335,7 +5497,7 @@
     <value>panel_ElementsOpt</value>
   </data>
   <data name="&gt;&gt;uCtrl_EditableBackground_Opt.ZOrder" xml:space="preserve">
-    <value>26</value>
+    <value>27</value>
   </data>
   <data name="userCtrl_Background_Options.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -5362,7 +5524,7 @@
     <value>panel_ElementsOpt</value>
   </data>
   <data name="&gt;&gt;userCtrl_Background_Options.ZOrder" xml:space="preserve">
-    <value>27</value>
+    <value>28</value>
   </data>
   <data name="uCtrl_EditableElements_Opt.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -5392,7 +5554,7 @@
     <value>panel_ElementsOpt</value>
   </data>
   <data name="&gt;&gt;uCtrl_EditableElements_Opt.ZOrder" xml:space="preserve">
-    <value>28</value>
+    <value>29</value>
   </data>
   <data name="panel_ElementsOpt.Location" type="System.Drawing.Point, System.Drawing">
     <value>262, 3</value>
@@ -6684,6 +6846,33 @@
   <data name="&gt;&gt;tabPageConverting.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="checkBox_DevelopmentMode.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="checkBox_DevelopmentMode.Location" type="System.Drawing.Point, System.Drawing">
+    <value>427, 461</value>
+  </data>
+  <data name="checkBox_DevelopmentMode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>390, 34</value>
+  </data>
+  <data name="checkBox_DevelopmentMode.TabIndex" type="System.Int32, mscorlib">
+    <value>63</value>
+  </data>
+  <data name="checkBox_DevelopmentMode.Text" xml:space="preserve">
+    <value>Создавать циферблаты в режиме разработчика (для опытных пользователей, позволяет отображать логи в циферблатах)</value>
+  </data>
+  <data name="&gt;&gt;checkBox_DevelopmentMode.Name" xml:space="preserve">
+    <value>checkBox_DevelopmentMode</value>
+  </data>
+  <data name="&gt;&gt;checkBox_DevelopmentMode.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBox_DevelopmentMode.Parent" xml:space="preserve">
+    <value>tabPage_Settings</value>
+  </data>
+  <data name="&gt;&gt;checkBox_DevelopmentMode.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="label_AutoSave.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -6712,7 +6901,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;label_AutoSave.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="numericUpDown_AutoSave_Time.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -6736,7 +6925,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;numericUpDown_AutoSave_Time.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="checkBox_AutoSave.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -6766,7 +6955,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;checkBox_AutoSave.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="checkBox_Del_Confirm.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -6796,7 +6985,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;checkBox_Del_Confirm.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="checkBox_CreateZPK.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -6826,7 +7015,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;checkBox_CreateZPK.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="numericUpDown_ARGB_color_count.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -6973,7 +7162,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;groupBox4.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="button_SavePNG_button.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -7117,7 +7306,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="comboBox_Animation_Preview_Speed.Items" xml:space="preserve">
     <value>10</value>
@@ -7156,7 +7345,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;comboBox_Animation_Preview_Speed.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="button_Reset.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -7186,7 +7375,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;button_Reset.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="numericUpDown_Gif_Speed.Location" type="System.Drawing.Point, System.Drawing">
     <value>595, 363</value>
@@ -7207,7 +7396,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;numericUpDown_Gif_Speed.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="checkBox_AllWidgetsInGif.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -7240,7 +7429,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;checkBox_AllWidgetsInGif.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="button_WatchSkin_PathGet.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -7351,7 +7540,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="label355.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -7381,7 +7570,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;label355.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="checkBox_ShowIn12hourFormat.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -7411,7 +7600,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;checkBox_ShowIn12hourFormat.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="button_SavePNG_shortcut.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -7588,7 +7777,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;groupBox8.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>15</value>
   </data>
   <data name="checkBox_JsonWarnings.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -7621,7 +7810,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;checkBox_JsonWarnings.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>16</value>
   </data>
   <data name="comboBox_Language.Items" xml:space="preserve">
     <value>Čeština</value>
@@ -7669,7 +7858,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;comboBox_Language.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>17</value>
   </data>
   <data name="label356.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -7699,7 +7888,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;label356.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>18</value>
   </data>
   <data name="radioButton_Settings_Pack_DoNotning.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -7813,7 +8002,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;groupBox7.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>19</value>
   </data>
   <data name="button_PreviewStates_PathGet.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -8014,7 +8203,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;groupBox6.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>20</value>
   </data>
   <data name="radioButton_Settings_AfterUnpack_DoNothing.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8128,7 +8317,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;groupBox5.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>21</value>
   </data>
   <data name="radioButton_Settings_Unpack_Replace.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8242,7 +8431,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>21</value>
+    <value>22</value>
   </data>
   <data name="label483.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8274,7 +8463,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;label483.ZOrder" xml:space="preserve">
-    <value>22</value>
+    <value>23</value>
   </data>
   <data name="tabPage_Settings.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -9722,7 +9911,7 @@ Ukrainian - kartoris82</value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACk
-        DQAAAk1TRnQBSQFMAgEBBgEAATwBQgE8AUIBEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        DQAAAk1TRnQBSQFMAgEBBgEAAewBQgHsAUIBEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAASADAAEBAQABCAYAAQgYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA

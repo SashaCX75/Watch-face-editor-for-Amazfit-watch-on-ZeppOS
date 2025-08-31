@@ -98,6 +98,7 @@ namespace Watch_Face_Editor
                 }
                 else
                 {
+                    Logger.WriteLine("Create Settings");
                     Properties.Settings.Default.FormLocation = centrPosition;
                     Properties.Settings.Default.PreviewLocation = centrPositionPreview;
                     Properties.Settings.Default.Save();
@@ -293,8 +294,10 @@ namespace Watch_Face_Editor
             //SplashScreen.SplashScreen formSplashScreen = new SplashScreen.SplashScreen();
             //formSplashScreen.Show();
             string splashScreenPath = Application.StartupPath + @"\Libs\SplashScreen.exe";
+            Logger.WriteLine("* splashScreenPath = " + splashScreenPath);
             if (File.Exists(splashScreenPath))
             {
+                Logger.WriteLine("* SplashScreen Exists");
                 ProcessStartInfo startInfo = new ProcessStartInfo();
                 startInfo.FileName = splashScreenPath;
                 Process exeProcess = Process.Start(startInfo);
@@ -437,6 +440,7 @@ namespace Watch_Face_Editor
             checkBox_AllWidgetsInGif.Checked = ProgramSettings.DrawAllWidgets;
             numericUpDown_ARGB_color_count.Value = ProgramSettings.ARGB_encoding_color_count;
             radioButton_ARGB_forced.Checked = ProgramSettings.ARGB_encoding_forced;
+            checkBox_DevelopmentMode.Checked = ProgramSettings.DevelopmentMode;
 
             if (ProgramSettings.language.Length > 1) comboBox_Language.Text = ProgramSettings.language;
             checkBox_CreateZPK.Checked = ProgramSettings.CreateZPK;
@@ -537,6 +541,7 @@ namespace Watch_Face_Editor
             uCtrl_RepeatingAlert_Opt.AutoSize = true;
             uCtrl_SmoothSeconds_Opt.AutoSize = true;
             uCtrl_Button_Opt.AutoSize = true;
+            uCtrl_ButtonOne_Opt.AutoSize = true;
             uCtrl_Switch_Background_Opt.AutoSize = true;
             uCtrl_Switch_BG_Color_Opt.AutoSize = true;
             uCtrl_Weather_FewDays_Opt.AutoSize = true;
@@ -714,6 +719,7 @@ namespace Watch_Face_Editor
             ProgramSettings.ARGB_encoding_color = radioButton_ARGB_color.Checked;
             ProgramSettings.ARGB_encoding_forced = radioButton_ARGB_forced.Checked;
             ProgramSettings.ARGB_encoding_color_count = (int)numericUpDown_ARGB_color_count.Value;
+            ProgramSettings.DevelopmentMode = checkBox_DevelopmentMode.Checked;
 
             ProgramSettings.Shortcuts_Area = checkBox_Shortcuts_Area.Checked;
             ProgramSettings.Shortcuts_Border = checkBox_Shortcuts_Border.Checked;
@@ -1421,6 +1427,8 @@ namespace Watch_Face_Editor
             if (e.Data.GetDataPresent(typeof(UCtrl_DigitalTime_Elm_v2))) typeReturn = false;
             if (e.Data.GetDataPresent(typeof(UCtrl_AnalogTime_Elm))) typeReturn = false;
             if (e.Data.GetDataPresent(typeof(UCtrl_AnalogTimePro_Elm))) typeReturn = false;
+            if (e.Data.GetDataPresent(typeof(UCtrl_AnalogTimeCircle_Elm))) typeReturn = false;
+            if (e.Data.GetDataPresent(typeof(UCtrl_WorldClock_Elm))) typeReturn = false;
             //if (e.Data.GetDataPresent(typeof(UCtrl_EditableTimePointer_Elm))) typeReturn = false;
             if (e.Data.GetDataPresent(typeof(UCtrl_DateDay_Elm))) typeReturn = false;
             if (e.Data.GetDataPresent(typeof(UCtrl_DateMonth_Elm))) typeReturn = false;
@@ -1520,6 +1528,22 @@ namespace Watch_Face_Editor
                             (ElementAnalogTimePro)Elements.Find(e1 => e1.GetType().Name == "ElementAnalogTimePro");
                         index = Elements.IndexOf(analogTimePro);
                         draggedUCtrl_Elm = (UCtrl_AnalogTimePro_Elm)e.Data.GetData(typeof(UCtrl_AnalogTimePro_Elm));
+                        if (draggedUCtrl_Elm != null) draggedPanel = (Panel)draggedUCtrl_Elm.Parent;
+                        break;
+
+                    case "ControlLibrary.UCtrl_AnalogTimeCircle_Elm":
+                        ElementTimeCircle analogTimeCircle =
+                            (ElementTimeCircle)Elements.Find(e1 => e1.GetType().Name == "ElementTimeCircle");
+                        index = Elements.IndexOf(analogTimeCircle);
+                        draggedUCtrl_Elm = (UCtrl_AnalogTimeCircle_Elm)e.Data.GetData(typeof(UCtrl_AnalogTimeCircle_Elm));
+                        if (draggedUCtrl_Elm != null) draggedPanel = (Panel)draggedUCtrl_Elm.Parent;
+                        break;
+
+                    case "ControlLibrary.UCtrl_WorldClock_Elm":
+                        ElementWorldClock worldClock =
+                            (ElementWorldClock)Elements.Find(e1 => e1.GetType().Name == "ElementWorldClock");
+                        index = Elements.IndexOf(worldClock);
+                        draggedUCtrl_Elm = (UCtrl_WorldClock_Elm)e.Data.GetData(typeof(UCtrl_WorldClock_Elm));
                         if (draggedUCtrl_Elm != null) draggedPanel = (Panel)draggedUCtrl_Elm.Parent;
                         break;
 
@@ -2031,6 +2055,9 @@ namespace Watch_Face_Editor
                 case "Buttons":
                     uCtrl_Button_Opt.Visible = true;
                     break;
+                case "ButtonOne":
+                    uCtrl_ButtonOne_Opt.Visible = true;
+                    break;
                 case "SwitchBG":
                     uCtrl_Switch_Background_Opt.Visible = true;
                     break;
@@ -2080,6 +2107,7 @@ namespace Watch_Face_Editor
             uCtrl_RepeatingAlert_Opt.Visible = false;
             uCtrl_SmoothSeconds_Opt.Visible = false;
             uCtrl_Button_Opt.Visible = false;
+            uCtrl_ButtonOne_Opt.Visible = false;
             uCtrl_Switch_Background_Opt.Visible = false;
             uCtrl_Switch_BG_Color_Opt.Visible = false;
             uCtrl_Weather_FewDays_Opt.Visible = false;
@@ -2094,8 +2122,12 @@ namespace Watch_Face_Editor
             if (selectElementName != "DigitalTime_v2") uCtrl_DigitalTime_Elm_v2.ResetHighlightState();
             if (selectElementName != "AnalogTime") uCtrl_AnalogTime_Elm.ResetHighlightState();
             if (selectElementName != "AnalogTimePro") uCtrl_AnalogTimePro_Elm.ResetHighlightState();
+            if (selectElementName != "AnalogTimeCircle") uCtrl_AnalogTimeCircle_Elm.ResetHighlightState();
+            if (selectElementName != "WorldClock") uCtrl_WorldClock_Elm.ResetHighlightState();
+
             if (selectElementName != "EditablePointers") uCtrl_EditableTimePointer_Elm.ResetHighlightState();
             if (selectElementName != "EditableElements") uCtrl_EditableElements_Elm.ResetHighlightState();
+
             if (selectElementName != "DateDay") uCtrl_DateDay_Elm.ResetHighlightState();
             if (selectElementName != "DateMonth") uCtrl_DateMonth_Elm.ResetHighlightState();
             if (selectElementName != "DateYear") uCtrl_DateYear_Elm.ResetHighlightState();
@@ -2175,6 +2207,8 @@ namespace Watch_Face_Editor
             uCtrl_DigitalTime_Elm_v2.SettingsClear();
             uCtrl_AnalogTime_Elm.SettingsClear();
             uCtrl_AnalogTimePro_Elm.SettingsClear();
+            uCtrl_AnalogTimeCircle_Elm.SettingsClear();
+            uCtrl_WorldClock_Elm.SettingsClear();
             uCtrl_EditableTimePointer_Elm.SettingsClear();
             uCtrl_EditableElements_Elm.SettingsClear();
 
@@ -2688,6 +2722,7 @@ namespace Watch_Face_Editor
 
             }
         }
+
         private void uCtrl_AnalogTimePro_Elm_SelectChanged(object sender, EventArgs eventArgs)
         {
             string selectElement = uCtrl_AnalogTimePro_Elm.selectedElement;
@@ -2762,6 +2797,176 @@ namespace Watch_Face_Editor
 
                     case "Format_24hour":
                         HideAllElemenrOptions();
+                        break;
+                }
+
+            }
+        }
+
+        private void uCtrl_AnalogTimeCircle_Elm_SelectChanged(object sender, EventArgs eventArgs)
+        {
+            string selectElement = uCtrl_AnalogTimeCircle_Elm.selectedElement;
+            if (selectElement.Length == 0) HideAllElemenrOptions();
+            ResetHighlightState("AnalogTimeCircle");
+
+            ElementTimeCircle timeCircle = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    timeCircle = (ElementTimeCircle)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementTimeCircle");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    timeCircle = (ElementTimeCircle)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementTimeCircle");
+                }
+            }
+            if (timeCircle != null)
+            {
+
+                Circle_Scale circle_scale = null;
+
+                switch (selectElement)
+                {
+                    case "Hour":
+                        if (uCtrl_AnalogTimeCircle_Elm.checkBox_Hour.Checked)
+                        {
+                            circle_scale = timeCircle.Hour;
+                            Read_CircleScale_Options(circle_scale, false);
+                            ShowElemenrOptions("Circle_Scale");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Minute":
+                        if (uCtrl_AnalogTimeCircle_Elm.checkBox_Minute.Checked)
+                        {
+                            circle_scale = timeCircle.Minute;
+                            Read_CircleScale_Options(circle_scale, false);
+                            ShowElemenrOptions("Circle_Scale");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Second":
+                        if (uCtrl_AnalogTimeCircle_Elm.checkBox_Second.Checked)
+                        {
+                            circle_scale = timeCircle.Second;
+                            Read_CircleScale_Options(circle_scale, false);
+                            ShowElemenrOptions("Circle_Scale");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+
+                    case "SmoothSecond":
+                        HideAllElemenrOptions();
+                        break;
+
+                    case "Format_24hour":
+                        HideAllElemenrOptions();
+                        break;
+                }
+
+            }
+        }
+
+        private void uCtrl_WorldClock_Elm_SelectChanged(object sender, EventArgs eventArgs)
+        {
+            string selectElement = uCtrl_WorldClock_Elm.selectedElement;
+            if (selectElement.Length == 0) HideAllElemenrOptions();
+            ResetHighlightState("WorldClock");
+
+            ElementWorldClock worldClock = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    worldClock = (ElementWorldClock)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementWorldClock");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    worldClock = (ElementWorldClock)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementWorldClock");
+                }
+            }
+            if (worldClock != null)
+            {
+                hmUI_widget_IMG icon = null;
+                hmUI_widget_TEXT text = null;
+                Button button = null;
+
+                switch (selectElement)
+                {
+                    case "Time":
+                        if (uCtrl_WorldClock_Elm.checkBox_Time.Checked)
+                        {
+                            text = worldClock.Time;
+                            Read_Text_Options(text, true, true, true, true);
+                            ShowElemenrOptions("SystemFont");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "TimeZone":
+                        if (uCtrl_WorldClock_Elm.checkBox_TimeZone.Checked)
+                        {
+                            text = worldClock.TimeZone;
+                            Read_Text_Options(text, false, false, true);
+                            ShowElemenrOptions("SystemFont");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "CityName":
+                        if (uCtrl_WorldClock_Elm.checkBox_CityName.Checked)
+                        {
+                            text = worldClock.CityName;
+                            Read_Text_Options(text, true, false);
+                            uCtrl_Text_SystemFont_Opt.SityName = true;
+                            ShowElemenrOptions("SystemFont");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "TimeDiff":
+                        if (uCtrl_WorldClock_Elm.checkBox_TimeDiff.Checked)
+                        {
+                            text = worldClock.TimeDifference;
+                            Read_Text_Options(text, false, false, true);
+                            ShowElemenrOptions("SystemFont");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "ButtonPrev":
+                        if (uCtrl_WorldClock_Elm.checkBox_ButtonPrev.Checked)
+                        {
+                            button = worldClock.ButtonPrev;
+                            Read_ButtonOne_Options(button);
+                            ShowElemenrOptions("ButtonOne");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "ButtonNext":
+                        if (uCtrl_WorldClock_Elm.checkBox_ButtonNext.Checked)
+                        {
+                            button = worldClock.ButtonNext;
+                            Read_ButtonOne_Options(button);
+                            ShowElemenrOptions("ButtonOne");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Icon":
+                        if (uCtrl_WorldClock_Elm.checkBox_Icon.Checked)
+                        {
+                            icon = worldClock.Icon;
+                            Read_Icon_Options(icon);
+                            ShowElemenrOptions("Icon");
+                        }
+                        else HideAllElemenrOptions();
                         break;
                 }
 
@@ -3072,6 +3277,7 @@ namespace Watch_Face_Editor
             uCtrl_EditableElements_Opt.ComboBoxAddItems(ListImages, ListImagesFullName);
             uCtrl_EditableTimePointer_Opt.ComboBoxAddItems(ListImages, ListImagesFullName);
             uCtrl_Button_Opt.ComboBoxAddItems(ListImages, ListImagesFullName);
+            uCtrl_ButtonOne_Opt.ComboBoxAddItems(ListImages, ListImagesFullName);
             uCtrl_Switch_Background_Opt.ComboBoxAddItems(ListImages, ListImagesFullName);
             uCtrl_Switch_BG_Color_Opt.ComboBoxAddItems(ListImages, ListImagesFullName);
             //uCtrl_Animation_Frame_Opt.ComboBoxAddItems(ListImages, ListImagesFullName);
@@ -3925,7 +4131,33 @@ namespace Watch_Face_Editor
                     //    panel_WatchfaceElements.VerticalScroll.Maximum); 
                 }
             }
-            
+            if (comboBox_AddTime.SelectedIndex == 4)
+            {
+                if (AddTimeCircle())
+                {
+                    ShowElemetsWatchFace();
+                    JSON_Modified = true;
+                    FormText();
+
+                    //panel_WatchfaceElements.AutoScrollPosition = new Point(
+                    //    Math.Abs(panel_WatchfaceElements.AutoScrollPosition.X),
+                    //    panel_WatchfaceElements.VerticalScroll.Maximum); 
+                }
+            }
+            if (comboBox_AddTime.SelectedIndex == 5)
+            {
+                if (AddWorldClock())
+                {
+                    ShowElemetsWatchFace();
+                    JSON_Modified = true;
+                    FormText();
+
+                    //panel_WatchfaceElements.AutoScrollPosition = new Point(
+                    //    Math.Abs(panel_WatchfaceElements.AutoScrollPosition.X),
+                    //    panel_WatchfaceElements.VerticalScroll.Maximum); 
+                }
+            }
+
             PreviewView = false;
             comboBox_AddTime.Items.Insert(0, Properties.FormStrings.Elemet_Time);
             comboBox_AddTime.SelectedIndex = 0;
@@ -4705,6 +4937,84 @@ namespace Watch_Face_Editor
                 if (!existsShortcuts) Elements.Add(analogTime);
                 else Elements.Insert(Elements.Count - 1, analogTime);
                 uCtrl_AnalogTimePro_Elm.SettingsClear();
+                return true;
+            }
+            else MessageBox.Show(Properties.FormStrings.Message_Widget_Exists, Properties.FormStrings.Message_Warning_Caption,
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return false;
+        }
+
+        /// <summary>Добавляем круги времени</summary>
+        private bool AddTimeCircle()
+        {
+            if (!PreviewView) return false;
+            List<object> Elements = new List<object>();
+            if (Watch_Face == null) Watch_Face = new WATCH_FACE();
+            ElementTimeCircle analogTime = new ElementTimeCircle();
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face.ScreenNormal == null) Watch_Face.ScreenNormal = new ScreenNormal();
+                if (Watch_Face.ScreenNormal.Elements == null) Watch_Face.ScreenNormal.Elements = new List<object>();
+                Elements = Watch_Face.ScreenNormal.Elements;
+            }
+            else
+            {
+                if (Watch_Face.ScreenAOD == null) Watch_Face.ScreenAOD = new ScreenAOD();
+                if (Watch_Face.ScreenAOD.Elements == null) Watch_Face.ScreenAOD.Elements = new List<object>();
+                Elements = Watch_Face.ScreenAOD.Elements;
+
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null) Elements = Watch_Face.ScreenAOD.Elements;
+
+                analogTime.Smooth = false;
+            }
+
+            analogTime.visible = true;
+            bool exists = Elements.Exists(e => e.GetType().Name == "ElementTimeCircle"); // проверяем что такого элемента нет
+            bool existsShortcuts = Elements.Exists(e => e.GetType().Name == "ElementShortcuts"); // проверяем что нет ярлыков
+            if (!exists)
+            {
+                if (!existsShortcuts) Elements.Add(analogTime);
+                else Elements.Insert(Elements.Count - 1, analogTime);
+                uCtrl_AnalogTimeCircle_Elm.SettingsClear();
+                return true;
+            }
+            else MessageBox.Show(Properties.FormStrings.Message_Widget_Exists, Properties.FormStrings.Message_Warning_Caption,
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return false;
+        }
+
+        /// <summary>Добавляем мировое время</summary>
+        private bool AddWorldClock()
+        {
+            if (!PreviewView) return false;
+            List<object> Elements = new List<object>();
+            if (Watch_Face == null) Watch_Face = new WATCH_FACE();
+            ElementWorldClock analogTime = new ElementWorldClock();
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face.ScreenNormal == null) Watch_Face.ScreenNormal = new ScreenNormal();
+                if (Watch_Face.ScreenNormal.Elements == null) Watch_Face.ScreenNormal.Elements = new List<object>();
+                Elements = Watch_Face.ScreenNormal.Elements;
+            }
+            else
+            {
+                if (Watch_Face.ScreenAOD == null) Watch_Face.ScreenAOD = new ScreenAOD();
+                if (Watch_Face.ScreenAOD.Elements == null) Watch_Face.ScreenAOD.Elements = new List<object>();
+                Elements = Watch_Face.ScreenAOD.Elements;
+
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null) Elements = Watch_Face.ScreenAOD.Elements;
+            }
+
+            analogTime.visible = true;
+            bool exists = Elements.Exists(e => e.GetType().Name == "ElementWorldClock"); // проверяем что такого элемента нет
+            bool existsShortcuts = Elements.Exists(e => e.GetType().Name == "ElementShortcuts"); // проверяем что нет ярлыков
+            if (!exists)
+            {
+                if (!existsShortcuts) Elements.Add(analogTime);
+                else Elements.Insert(Elements.Count - 1, analogTime);
+                uCtrl_WorldClock_Elm.SettingsClear();
                 return true;
             }
             else MessageBox.Show(Properties.FormStrings.Message_Widget_Exists, Properties.FormStrings.Message_Warning_Caption,
@@ -6289,6 +6599,8 @@ namespace Watch_Face_Editor
             uCtrl_DigitalTime_Elm_v2.Visible = false;
             uCtrl_AnalogTime_Elm.Visible = false;
             uCtrl_AnalogTimePro_Elm.Visible = false;
+            uCtrl_AnalogTimeCircle_Elm.Visible = false;
+            uCtrl_WorldClock_Elm.Visible = false;
             uCtrl_EditableTimePointer_Elm.Visible = false;
             uCtrl_EditableElements_Elm.Visible = false;
 
@@ -6321,9 +6633,8 @@ namespace Watch_Face_Editor
             uCtrl_Altimeter_Elm.Visible = false;
             uCtrl_Sunrise_Elm.Visible = false;
             uCtrl_Wind_Elm.Visible = false;
-            uCtrl_Moon_Elm.Visible = false;
-            uCtrl_Compass_Elm.Visible = false;
             uCtrl_Image_Elm.Visible = false;
+            uCtrl_Moon_Elm.Visible = false;
             uCtrl_Compass_Elm.Visible = false;
 
             uCtrl_AlarmClock_Elm.Visible = false;
@@ -6671,6 +6982,91 @@ namespace Watch_Face_Editor
                                 uCtrl_AnalogTimePro_Elm.SetOptionsPosition(elementOptions);
 
                                 uCtrl_AnalogTimePro_Elm.Visible = true;
+                                SetElementPositionInGUI(type, count - i - 2);
+                                //SetElementPositionInGUI(type, i + 1);
+                                break;
+                            #endregion
+
+                            #region ElementTimeCircle
+                            case "ElementTimeCircle":
+                                ElementTimeCircle TimeCircle = (ElementTimeCircle)element;
+                                uCtrl_AnalogTimeCircle_Elm.SetVisibilityElementStatus(TimeCircle.visible);
+                                elementOptions = new Dictionary<int, string>();
+                                if (TimeCircle.Second != null)
+                                {
+                                    uCtrl_AnalogTimeCircle_Elm.checkBox_Second.Checked = TimeCircle.Second.visible;
+                                    elementOptions.Add(TimeCircle.Second.position, "Second");
+                                }
+                                if (TimeCircle.Minute != null)
+                                {
+                                    uCtrl_AnalogTimeCircle_Elm.checkBox_Minute.Checked = TimeCircle.Minute.visible;
+                                    elementOptions.Add(TimeCircle.Minute.position, "Minute");
+                                }
+                                if (TimeCircle.Hour != null)
+                                {
+                                    uCtrl_AnalogTimeCircle_Elm.checkBox_Hour.Checked = TimeCircle.Hour.visible;
+                                    elementOptions.Add(TimeCircle.Hour.position, "Hour");
+                                }
+
+                                uCtrl_AnalogTimeCircle_Elm.checkBox_SmoothSeconds.Checked = TimeCircle.Smooth;
+                                elementOptions.Add(TimeCircle.Smooth_position, "SmoothSecond");
+
+                                uCtrl_AnalogTimeCircle_Elm.checkBox_Format_24hour.Checked = TimeCircle.Format_24hour;
+                                elementOptions.Add(TimeCircle.Format_24hour_position, "Format_24hour");
+
+                                uCtrl_AnalogTimeCircle_Elm.SetOptionsPosition(elementOptions);
+
+                                uCtrl_AnalogTimeCircle_Elm.Visible = true;
+                                SetElementPositionInGUI(type, count - i - 2);
+                                //SetElementPositionInGUI(type, i + 1);
+                                break;
+                            #endregion
+
+                            #region ElementWorldClock
+                            case "ElementWorldClock":
+                                ElementWorldClock WorldClock = (ElementWorldClock)element;
+                                uCtrl_WorldClock_Elm.SetVisibilityElementStatus(WorldClock.visible);
+                                uCtrl_WorldClock_Elm.AOD_Mode = !radioButton_ScreenNormal.Checked;
+                                elementOptions = new Dictionary<int, string>();
+                                if (WorldClock.Time != null)
+                                {
+                                    uCtrl_WorldClock_Elm.checkBox_Time.Checked = WorldClock.Time.visible;
+                                    elementOptions.Add(WorldClock.Time.position, "Time");
+                                }
+                                if (WorldClock.TimeZone != null)
+                                {
+                                    uCtrl_WorldClock_Elm.checkBox_TimeZone.Checked = WorldClock.TimeZone.visible;
+                                    elementOptions.Add(WorldClock.TimeZone.position, "TimeZone");
+                                }
+                                if (WorldClock.CityName != null)
+                                {
+                                    uCtrl_WorldClock_Elm.checkBox_CityName.Checked = WorldClock.CityName.visible;
+                                    elementOptions.Add(WorldClock.CityName.position, "CityName");
+                                }
+                                if (WorldClock.TimeDifference != null)
+                                {
+                                    uCtrl_WorldClock_Elm.checkBox_TimeDiff.Checked = WorldClock.TimeDifference.visible;
+                                    elementOptions.Add(WorldClock.TimeDifference.position, "TimeDifference");
+                                }
+                                if (WorldClock.ButtonNext != null)
+                                {
+                                    uCtrl_WorldClock_Elm.checkBox_ButtonNext.Checked = WorldClock.ButtonNext.visible;
+                                    elementOptions.Add(WorldClock.ButtonNext.position, "ButtonNext");
+                                }
+                                if (WorldClock.ButtonPrev != null)
+                                {
+                                    uCtrl_WorldClock_Elm.checkBox_ButtonPrev.Checked = WorldClock.ButtonPrev.visible;
+                                    elementOptions.Add(WorldClock.ButtonPrev.position, "ButtonPrev");
+                                }
+                                if (WorldClock.Icon != null)
+                                {
+                                    uCtrl_WorldClock_Elm.checkBox_Icon.Checked = WorldClock.Icon.visible;
+                                    elementOptions.Add(WorldClock.Icon.position, "Icon");
+                                }
+
+                            uCtrl_WorldClock_Elm.SetOptionsPosition(elementOptions);
+
+                                uCtrl_WorldClock_Elm.Visible = true;
                                 SetElementPositionInGUI(type, count - i - 2);
                                 //SetElementPositionInGUI(type, i + 1);
                                 break;
@@ -9169,6 +9565,12 @@ namespace Watch_Face_Editor
                 case "ElementDigitalTime_v2":
                     panel = panel_UC_DigitalTime_v2;
                     break;
+                case "ElementTimeCircle":
+                    panel = panel_UC_AnalogTimeCircle;
+                    break;
+                case "ElementWorldClock":
+                    panel = panel_UC_WorldClock;
+                    break;
                 case "ElementEditablePointers":
                     panel = panel_UC_EditableTimePointer;
                     break;
@@ -9372,6 +9774,7 @@ namespace Watch_Face_Editor
             ProgramSettings.ShowIn12hourFormat = checkBox_ShowIn12hourFormat.Checked;
             ProgramSettings.WatchSkin_Use = checkBox_WatchSkin_Use.Checked;
             ProgramSettings.DrawAllWidgets = checkBox_AllWidgetsInGif.Checked;
+            ProgramSettings.DevelopmentMode = checkBox_DevelopmentMode.Checked;
 
             ProgramSettings.Use_ARGB_encoding = checkBox_Use_ARGB.Checked;
             ProgramSettings.ARGB_encoding_color = radioButton_ARGB_color.Checked;
@@ -10072,6 +10475,12 @@ namespace Watch_Face_Editor
                     break;
                 case "UCtrl_AnalogTimePro_Elm":
                     objectName = "ElementAnalogTimePro";
+                    break;
+                case "UCtrl_AnalogTimeCircle_Elm":
+                    objectName = "ElementTimeCircle";
+                    break;
+                case "UCtrl_WorldClock_Elm":
+                    objectName = "ElementWorldClock";
                     break;
                 //case "UCtrl_EditableTimePointer_Elm":
                 //    objectName = "ElementEditablePointers";
@@ -11763,7 +12172,16 @@ namespace Watch_Face_Editor
                     }
                 }
             }
-            if (Watch_Face.ScreenAOD != null && Watch_Face.ScreenAOD.Elements != null && Watch_Face.ScreenAOD.Elements.Count > 0) app.module.watchface.lockscreen = 1;
+            if (Watch_Face.ScreenAOD != null) {
+                if (Watch_Face.ScreenAOD.Elements != null && Watch_Face.ScreenAOD.Elements.Count > 0) app.module.watchface.lockscreen = 1;
+                if (Watch_Face.ScreenAOD.Background != null && Watch_Face.ScreenAOD.Background.visible)
+                {
+                    if (Watch_Face.ScreenAOD.Background.BackgroundImage != null && 
+                        Watch_Face.ScreenAOD.Background.BackgroundImage.src != null && 
+                        Watch_Face.ScreenAOD.Background.BackgroundImage.src.Length > 0) app.module.watchface.lockscreen = 1;
+                    if (Watch_Face.ScreenAOD.Background.BackgroundColor != null) app.module.watchface.lockscreen = 1;
+                }
+            }
             if (Watch_Face.ScreenNormal != null && Watch_Face.ScreenNormal.Background != null)
             {
                 if (Watch_Face.ScreenNormal.Background.Editable_Background != null &&
@@ -11780,6 +12198,8 @@ namespace Watch_Face_Editor
             {
                 app.platforms.Add(new Platform() { name = SelectedModel.name, deviceSource = id });
             }
+
+            if (ProgramSettings.DevelopmentMode) app.packageInfo.mode = "development";
 
 #if DEBUG
             app.packageInfo.mode = "development";
@@ -11818,11 +12238,23 @@ namespace Watch_Face_Editor
             int pos_destory = indexText.IndexOf("heart_rate.addEventListener");
             if (pos_destory > 0)
             {
-                pos_destory = indexText.IndexOf("logger.log(\"index page.js on destroy invoke\")");
+                pos_destory = indexText.IndexOf("logger.log('index page.js on destroy invoke');");
                 if (pos_destory > 0)
                 {
                     indexText = indexText.Insert(pos_destory, "heart_rate.removeEventListener(heart.event.CURRENT, hrCurrListener);"
                                 + Environment.NewLine + TabInString(8)); 
+                }
+            }
+
+            // удаляем мировое время
+            pos_destory = indexText.IndexOf("worldClock.init()");
+            if (pos_destory > 0)
+            {
+                pos_destory = indexText.IndexOf("logger.log('index page.js on destroy invoke');");
+                if (pos_destory > 0)
+                {
+                    indexText = indexText.Insert(pos_destory, "worldClock.uninit();"
+                                + Environment.NewLine + TabInString(8));
                 }
             }
             indexText = indexText.Replace("\r", "");
@@ -13291,6 +13723,312 @@ namespace Watch_Face_Editor
             if (analogTime != null)
             {
                 analogTime.visible = visible;
+            }
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_AnalogTimeCircle_Elm_VisibleOptionsChanged(object sender, EventArgs eventArgs)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+
+            ElementTimeCircle timeCircle = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenNormal.Elements.Exists(e => e.GetType().Name == "ElementTimeCircle");
+                    if (!exists) Watch_Face.ScreenNormal.Elements.Add(new ElementTimeCircle());
+                    timeCircle = (ElementTimeCircle)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementTimeCircle");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenAOD.Elements.Exists(e => e.GetType().Name == "ElementTimeCircle");
+                    if (!exists) Watch_Face.ScreenAOD.Elements.Add(new ElementTimeCircle());
+                    timeCircle = (ElementTimeCircle)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementTimeCircle");
+                }
+            }
+
+            if (timeCircle != null)
+            {
+                if (timeCircle.Hour == null) timeCircle.Hour = new Circle_Scale();
+                if (timeCircle.Minute == null) timeCircle.Minute = new Circle_Scale();
+                if (timeCircle.Second == null) timeCircle.Second = new Circle_Scale();
+
+                Dictionary<string, int> elementOptions = uCtrl_AnalogTimeCircle_Elm.GetOptionsPosition();
+                if (elementOptions.ContainsKey("Hour")) timeCircle.Hour.position = elementOptions["Hour"];
+                if (elementOptions.ContainsKey("Minute")) timeCircle.Minute.position = elementOptions["Minute"];
+                if (elementOptions.ContainsKey("Second")) timeCircle.Second.position = elementOptions["Second"];
+
+                CheckBox checkBox = (CheckBox)sender;
+                string name = checkBox.Name;
+                switch (name)
+                {
+                    case "checkBox_Hour":
+                        timeCircle.Hour.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Minute":
+                        timeCircle.Minute.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Second":
+                        timeCircle.Second.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_SmoothSeconds":
+                        timeCircle.Smooth = checkBox.Checked;
+                        break;
+                    case "checkBox_Format_24hour":
+                        timeCircle.Format_24hour = checkBox.Checked;
+                        break;
+                }
+
+            }
+
+            uCtrl_AnalogTimeCircle_Elm_SelectChanged(sender, eventArgs);
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_AnalogTimeCircle_Elm_OptionsMoved(object sender, EventArgs eventArgs, Dictionary<string, int> elementOptions)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+
+            ElementTimeCircle timeCircle = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenNormal.Elements.Exists(e => e.GetType().Name == "ElementTimeCircle");
+                    if (!exists) Watch_Face.ScreenNormal.Elements.Add(new ElementTimeCircle());
+                    timeCircle = (ElementTimeCircle)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementTimeCircle");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenAOD.Elements.Exists(e => e.GetType().Name == "ElementTimeCircle");
+                    if (!exists) Watch_Face.ScreenAOD.Elements.Add(new ElementTimeCircle());
+                    timeCircle = (ElementTimeCircle)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementTimeCircle");
+                }
+            }
+
+            if (timeCircle != null)
+            {
+                if (timeCircle.Hour == null) timeCircle.Hour = new Circle_Scale();
+                if (timeCircle.Minute == null) timeCircle.Minute = new Circle_Scale();
+                if (timeCircle.Second == null) timeCircle.Second = new Circle_Scale();
+
+                //Dictionary<string, int> elementOptions = uCtrl_AnalogTime_Elm.GetOptionsPosition();
+                if (elementOptions.ContainsKey("Hour")) timeCircle.Hour.position = elementOptions["Hour"];
+                if (elementOptions.ContainsKey("Minute")) timeCircle.Minute.position = elementOptions["Minute"];
+                if (elementOptions.ContainsKey("Second")) timeCircle.Second.position = elementOptions["Second"];
+
+            }
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_AnalogTimeCircle_Elm_VisibleElementChanged(object sender, EventArgs eventArgs, bool visible)
+        {
+            ElementTimeCircle timeCircle = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    timeCircle = (ElementTimeCircle)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementTimeCircle");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    timeCircle = (ElementTimeCircle)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementTimeCircle");
+                }
+            }
+            if (timeCircle != null)
+            {
+                timeCircle.visible = visible;
+            }
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_WorldClock_Elm_VisibleOptionsChanged(object sender, EventArgs eventArgs)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+
+            ElementWorldClock worldClock = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenNormal.Elements.Exists(e => e.GetType().Name == "ElementWorldClock");
+                    if (!exists) Watch_Face.ScreenNormal.Elements.Add(new ElementWorldClock());
+                    worldClock = (ElementWorldClock)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementWorldClock");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenAOD.Elements.Exists(e => e.GetType().Name == "ElementWorldClock");
+                    if (!exists) Watch_Face.ScreenAOD.Elements.Add(new ElementWorldClock());
+                    worldClock = (ElementWorldClock)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementWorldClock");
+                }
+            }
+
+            if (worldClock != null)
+            {
+                if (worldClock.Time == null) worldClock.Time = new hmUI_widget_TEXT();
+                if (worldClock.TimeZone == null) worldClock.TimeZone = new hmUI_widget_TEXT();
+                if (worldClock.CityName == null) worldClock.CityName = new hmUI_widget_TEXT();
+                if (worldClock.TimeDifference == null) worldClock.TimeDifference = new hmUI_widget_TEXT();
+                if (worldClock.ButtonPrev == null) worldClock.ButtonPrev = new Button();
+                if (worldClock.ButtonNext == null) worldClock.ButtonNext = new Button();
+                if (worldClock.Icon == null) worldClock.Icon = new hmUI_widget_IMG();
+
+                Dictionary<string, int> elementOptions = uCtrl_WorldClock_Elm.GetOptionsPosition();
+                if (elementOptions.ContainsKey("Time")) worldClock.Time.position = elementOptions["Time"];
+                if (elementOptions.ContainsKey("TimeZone")) worldClock.TimeZone.position = elementOptions["TimeZone"];
+                if (elementOptions.ContainsKey("CityName")) worldClock.CityName.position = elementOptions["CityName"];
+                if (elementOptions.ContainsKey("TimeDifference")) worldClock.TimeDifference.position = elementOptions["TimeDifference"];
+                if (elementOptions.ContainsKey("ButtonPrev")) worldClock.ButtonPrev.position = elementOptions["ButtonPrev"];
+                if (elementOptions.ContainsKey("ButtonNext")) worldClock.ButtonNext.position = elementOptions["ButtonNext"];
+                if (elementOptions.ContainsKey("Icon")) worldClock.Icon.position = elementOptions["Icon"];
+
+                CheckBox checkBox = (CheckBox)sender;
+                string name = checkBox.Name;
+                switch (name)
+                {
+                    case "checkBox_Time":
+                        worldClock.Time.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_TimeZone":
+                        worldClock.TimeZone.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_CityName":
+                        worldClock.CityName.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_TimeDiff":
+                        worldClock.TimeDifference.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_ButtonNext":
+                        worldClock.ButtonNext.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_ButtonPrev":
+                        worldClock.ButtonPrev.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Icon":
+                        worldClock.Icon.visible = checkBox.Checked;
+                        break;
+                }
+
+            }
+
+            uCtrl_WorldClock_Elm_SelectChanged(sender, eventArgs);
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_WorldClock_Elm_OptionsMoved(object sender, EventArgs eventArgs, Dictionary<string, int> elementOptions)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+
+            ElementWorldClock worldClock = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenNormal.Elements.Exists(e => e.GetType().Name == "ElementWorldClock");
+                    if (!exists) Watch_Face.ScreenNormal.Elements.Add(new ElementWorldClock());
+                    worldClock = (ElementWorldClock)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementWorldClock");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenAOD.Elements.Exists(e => e.GetType().Name == "ElementWorldClock");
+                    if (!exists) Watch_Face.ScreenAOD.Elements.Add(new ElementWorldClock());
+                    worldClock = (ElementWorldClock)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementWorldClock");
+                }
+            }
+
+            if (worldClock != null)
+            {
+                if (worldClock.Time == null) worldClock.Time = new hmUI_widget_TEXT();
+                if (worldClock.TimeZone == null) worldClock.TimeZone = new hmUI_widget_TEXT();
+                if (worldClock.CityName == null) worldClock.CityName = new hmUI_widget_TEXT();
+                if (worldClock.TimeDifference == null) worldClock.TimeDifference = new hmUI_widget_TEXT();
+                if (worldClock.ButtonPrev == null) worldClock.ButtonPrev = new Button();
+                if (worldClock.ButtonNext == null) worldClock.ButtonNext = new Button();
+                if (worldClock.Icon == null) worldClock.Icon = new hmUI_widget_IMG();
+
+                //Dictionary<string, int> elementOptions = uCtrl_AnalogTime_Elm.GetOptionsPosition();
+                if (elementOptions.ContainsKey("Time")) worldClock.Time.position = elementOptions["Time"];
+                if (elementOptions.ContainsKey("TimeZone")) worldClock.TimeZone.position = elementOptions["TimeZone"];
+                if (elementOptions.ContainsKey("CityName")) worldClock.CityName.position = elementOptions["CityName"];
+                if (elementOptions.ContainsKey("TimeDifference")) worldClock.TimeDifference.position = elementOptions["TimeDifference"];
+                if (elementOptions.ContainsKey("ButtonPrev")) worldClock.ButtonPrev.position = elementOptions["ButtonPrev"];
+                if (elementOptions.ContainsKey("ButtonNext")) worldClock.ButtonNext.position = elementOptions["ButtonNext"];
+                if (elementOptions.ContainsKey("Icon")) worldClock.Icon.position = elementOptions["Icon"];
+
+            }
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_WorldClock_Elm_VisibleElementChanged(object sender, EventArgs eventArgs, bool visible)
+        {
+            ElementWorldClock worldClock = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    worldClock = (ElementWorldClock)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementWorldClock");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    worldClock = (ElementWorldClock)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementWorldClock");
+                }
+            }
+            if (worldClock != null)
+            {
+                worldClock.visible = visible;
             }
 
             JSON_Modified = true;
@@ -18498,6 +19236,22 @@ namespace Watch_Face_Editor
                             ElementAnalogTimePro AnalogTimePro_temp = (ElementAnalogTimePro)AnalogTimePro.Clone();
                             if (AnalogTimePro_temp.SmoothSecond != null) AnalogTimePro_temp.SmoothSecond.type = 2;
                             Watch_Face.ScreenAOD.Elements.Add(AnalogTimePro_temp);
+                            break;
+                        #endregion
+
+                        #region ElementTimeCircle
+                        case "ElementTimeCircle":
+                            ElementTimeCircle AnalogTimeCircle = (ElementTimeCircle)element;
+                            ElementTimeCircle AnalogTimeCircle_temp = (ElementTimeCircle)AnalogTimeCircle.Clone();
+                            AnalogTimeCircle_temp.Smooth = false;
+                            Watch_Face.ScreenAOD.Elements.Add(AnalogTimeCircle_temp);
+                            break;
+                        #endregion
+
+                        #region ElementWorldClock
+                        case "ElementWorldClock":
+                            ElementWorldClock WorldClock = (ElementWorldClock)element;
+                            Watch_Face.ScreenAOD.Elements.Add((ElementWorldClock)WorldClock.Clone());
                             break;
                         #endregion
 

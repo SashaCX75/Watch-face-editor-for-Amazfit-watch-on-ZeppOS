@@ -10,6 +10,7 @@ using System.Drawing.Text;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -207,7 +208,8 @@ namespace Watch_Face_Editor
                                 {
                                     Draw_elements(element, gPanel, scale, crop, WMesh, BMesh, BBorder, showShortcuts,
                                         showShortcutsArea, showShortcutsBorder, showShortcutsImage, showAnimation, showProgressArea, showCentrHend,
-                                        showWidgetsArea, link, Shortcuts_In_Gif, time_value_sec, showEeditMode, edit_mode);
+                                        showWidgetsArea, link, Shortcuts_In_Gif, time_value_sec, showEeditMode, edit_mode,
+                                        showButtons, showButtonsArea, showButtonsBorder, Buttons_In_Gif);
                                 }
                             }
                         }
@@ -233,7 +235,8 @@ namespace Watch_Face_Editor
                         {
                             Draw_elements(edit_group.Elements[selected_element], gPanel, scale, crop, WMesh, BMesh, BBorder, showShortcuts,
                                 showShortcutsArea, showShortcutsBorder, showShortcutsImage, showAnimation, showProgressArea, showCentrHend,
-                                showWidgetsArea, link, Shortcuts_In_Gif, time_value_sec, showEeditMode, edit_mode);
+                                showWidgetsArea, link, Shortcuts_In_Gif, time_value_sec, showEeditMode, edit_mode,
+                                showButtons, showButtonsArea, showButtonsBorder, Buttons_In_Gif);
                         }
 
                     }
@@ -259,7 +262,7 @@ namespace Watch_Face_Editor
                 {
                     Draw_elements(element, gPanel, scale, crop, WMesh, BMesh, BBorder, showShortcuts, showShortcutsArea, showShortcutsBorder,
                         showShortcutsImage, showAnimation, showProgressArea, showCentrHend, showWidgetsArea, link, Shortcuts_In_Gif, time_value_sec,
-                        showEeditMode, edit_mode);
+                        showEeditMode, edit_mode, showButtons, showButtonsArea, showButtonsBorder, Buttons_In_Gif);
                 }
             }
             #endregion
@@ -287,7 +290,8 @@ namespace Watch_Face_Editor
                                 {
                                     Draw_elements(element, gPanel, scale, crop, WMesh, BMesh, BBorder, showShortcuts,
                                         showShortcutsArea, showShortcutsBorder, showShortcutsImage, showAnimation, showProgressArea, showCentrHend,
-                                        showWidgetsArea, link, Shortcuts_In_Gif, time_value_sec, showEeditMode, edit_mode);
+                                        showWidgetsArea, link, Shortcuts_In_Gif, time_value_sec, showEeditMode, edit_mode,
+                                        showButtons, showButtonsArea, showButtonsBorder, Buttons_In_Gif);
                                 }
                             }
                         }
@@ -313,7 +317,8 @@ namespace Watch_Face_Editor
                         {
                             Draw_elements(edit_group.Elements[selected_element], gPanel, scale, crop, WMesh, BMesh, BBorder, showShortcuts, 
                                 showShortcutsArea, showShortcutsBorder, showShortcutsImage, showAnimation, showProgressArea, showCentrHend,
-                                showWidgetsArea, link, Shortcuts_In_Gif, time_value_sec, showEeditMode, edit_mode);
+                                showWidgetsArea, link, Shortcuts_In_Gif, time_value_sec, showEeditMode, edit_mode,
+                                showButtons, showButtonsArea, showButtonsBorder, Buttons_In_Gif);
                         }
          
                     }
@@ -623,6 +628,15 @@ namespace Watch_Face_Editor
             }
             #endregion
 
+            #region ElementButtonsWorltTime
+            if (link == 0 && Watch_Face != null && Watch_Face.ScreenNormal != null && Watch_Face.ScreenNormal.Elements != null)
+            {
+                Elements = Watch_Face.ScreenNormal.Elements;
+                ElementWorldClock WorldClock = (ElementWorldClock)Elements.Find(e => e.GetType().Name == "ElementWorldClock");
+                DrawWorldClock(gPanel, WorldClock, BBorder, showCentrHend, showButtons, showButtonsArea, showButtonsBorder, Buttons_In_Gif, link, true);
+            }
+            #endregion
+
             #region ElementButtons
             if (link == 0 && Watch_Face != null && Watch_Face.Buttons != null && Watch_Face.Buttons.enable)
             {
@@ -742,7 +756,8 @@ namespace Watch_Face_Editor
         public void Draw_elements(Object element, Graphics gPanel, float scale, bool crop, bool WMesh, bool BMesh, bool BBorder,
             bool showShortcuts, bool showShortcutsArea, bool showShortcutsBorder, bool showShortcutsImage,
             bool showAnimation, bool showProgressArea, bool showCentrHend,
-            bool showWidgetsArea, int link, bool Shortcuts_In_Gif, float time_value_sec, bool showEeditMode, int edit_mode)
+            bool showWidgetsArea, int link, bool Shortcuts_In_Gif, float time_value_sec, bool showEeditMode, int edit_mode,
+            bool showButtons, bool showButtonsArea, bool showButtonsBorder, bool Buttons_In_Gif)
         {
             Bitmap src = new Bitmap(1, 1);
             hmUI_widget_IMG_LEVEL img_level = null;
@@ -1627,6 +1642,12 @@ namespace Watch_Face_Editor
                                     align_v = "CENTER_V";
                                 }
 
+                                bool use_text_circle = number_font.use_text_circle;
+                                int radius = number_font.radius;
+                                int start_angle = number_font.start_angle;
+                                int end_angle = number_font.end_angle;
+                                int mode = number_font.mode;
+
                                 if (number_font.font != null && number_font.font.Length > 3 && FontsList.ContainsKey(number_font.font))
                                 {
                                     string font_fileName = FontsList[number_font.font];
@@ -1641,17 +1662,20 @@ namespace Watch_Face_Editor
                                         }
 
                                         Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                        align_h, align_v, text_style, BBorder);
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                                     }
                                     else
                                     {
-                                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                                     }
 
                                 }
                                 else
                                 {
-                                    Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                                    Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                                 }
                             }
 
@@ -1808,6 +1832,12 @@ namespace Watch_Face_Editor
                                     align_v = "CENTER_V";
                                 }
 
+                                bool use_text_circle = number_font.use_text_circle;
+                                int radius = number_font.radius;
+                                int start_angle = number_font.start_angle;
+                                int end_angle = number_font.end_angle;
+                                int mode = number_font.mode;
+
                                 if (number_font.font != null && number_font.font.Length > 3 && FontsList.ContainsKey(number_font.font))
                                 {
                                     string font_fileName = FontsList[number_font.font];
@@ -1822,17 +1852,20 @@ namespace Watch_Face_Editor
                                         }
 
                                         Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                        align_h, align_v, text_style, BBorder);
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                                     }
                                     else
                                     {
-                                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                                     }
 
                                 }
                                 else
                                 {
-                                    Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                                    Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                                 }
                             }
 
@@ -1989,6 +2022,12 @@ namespace Watch_Face_Editor
                                     align_v = "CENTER_V";
                                 }
 
+                                bool use_text_circle = number_font.use_text_circle;
+                                int radius = number_font.radius;
+                                int start_angle = number_font.start_angle;
+                                int end_angle = number_font.end_angle;
+                                int mode = number_font.mode;
+
                                 if (number_font.font != null && number_font.font.Length > 3 && FontsList.ContainsKey(number_font.font))
                                 {
                                     string font_fileName = FontsList[number_font.font];
@@ -2003,17 +2042,20 @@ namespace Watch_Face_Editor
                                         }
 
                                         Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                        align_h, align_v, text_style, BBorder);
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                                     }
                                     else
                                     {
-                                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                                     }
 
                                 }
                                 else
                                 {
-                                    Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                                    Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                                 }
                             }
 
@@ -2148,8 +2190,8 @@ namespace Watch_Face_Editor
                             valueStr = valueHourStr + delimeter + valueMinStr;
                             if (checkBox_ShowIn12hourFormat.Checked)
                             {
-                                if (number_font.unit_end) valueStr = valueStr + " " + unitStr;
-                                else valueStr = unitStr + " " + valueStr;
+                                if (number_font.unit_end == 1) valueStr = valueStr + " " + unitStr;
+                                else if (number_font.unit_end == 0) valueStr = unitStr + " " + valueStr;
                             }
 
                             if (number_font.centreHorizontally)
@@ -2162,6 +2204,12 @@ namespace Watch_Face_Editor
                                 y = (SelectedModel.background.h - h) / 2;
                                 align_v = "CENTER_V";
                             }
+
+                            bool use_text_circle = number_font.use_text_circle;
+                            int radius = number_font.radius;
+                            int start_angle = number_font.start_angle;
+                            int end_angle = number_font.end_angle;
+                            int mode = number_font.mode;
 
                             if (number_font.font != null && number_font.font.Length > 3 && FontsList.ContainsKey(number_font.font))
                             {
@@ -2177,17 +2225,20 @@ namespace Watch_Face_Editor
                                     }
 
                                     Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                    align_h, align_v, text_style, BBorder);
+                                                    align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                                 }
                                 else
                                 {
-                                    Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                                    Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                                 }
 
                             }
                             else
                             {
-                                Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                                Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                             }
                         }
 
@@ -2237,8 +2288,8 @@ namespace Watch_Face_Editor
                             valueStr = valueHourStr + delimeter + valueMinStr + delimeter + valueSecStr;
                             if (checkBox_ShowIn12hourFormat.Checked)
                             {
-                                if (number_font.unit_end) valueStr = valueStr + " " + unitStr;
-                                else valueStr = unitStr + " " + valueStr;
+                                if (number_font.unit_end == 1) valueStr = valueStr + " " + unitStr;
+                                else if (number_font.unit_end == 0) valueStr = unitStr + " " + valueStr;
                             }
 
                             if (number_font.centreHorizontally)
@@ -2251,6 +2302,12 @@ namespace Watch_Face_Editor
                                 y = (SelectedModel.background.h - h) / 2;
                                 align_v = "CENTER_V";
                             }
+
+                            bool use_text_circle = number_font.use_text_circle;
+                            int radius = number_font.radius;
+                            int start_angle = number_font.start_angle;
+                            int end_angle = number_font.end_angle;
+                            int mode = number_font.mode;
 
                             if (number_font.font != null && number_font.font.Length > 3 && FontsList.ContainsKey(number_font.font))
                             {
@@ -2266,17 +2323,20 @@ namespace Watch_Face_Editor
                                     }
 
                                     Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                    align_h, align_v, text_style, BBorder);
+                                                    align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                                 }
                                 else
                                 {
-                                    Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha,valueStr, align_h, align_v, text_style, BBorder);
+                                    Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha,valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                                 }
 
                             }
                             else
                             {
-                                Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                                Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                             }
                         }
 
@@ -2471,6 +2531,152 @@ namespace Watch_Face_Editor
                     break;
                 #endregion
 
+                #region ElementTimeCircle
+                case "ElementTimeCircle":
+                    ElementTimeCircle TimeCircle = (ElementTimeCircle)element;
+                    if (!TimeCircle.visible) return;
+
+                    Circle_Scale circleScaleHour = TimeCircle.Hour;
+                    Circle_Scale circleScaleMinute = TimeCircle.Minute;
+                    Circle_Scale circleScaleSecond = TimeCircle.Second;
+
+                    for (int index = 1; index <= 5; index++)
+                    {
+                        if (circleScaleHour != null && index == circleScaleHour.position && circleScaleHour.visible)
+                        {
+                            int x = circleScaleHour.center_x;
+                            int y = circleScaleHour.center_y;
+                            int radius = circleScaleHour.radius;
+                            int width = circleScaleHour.line_width;
+                            int startAngle = circleScaleHour.start_angle;
+                            int endAngle = circleScaleHour.end_angle;
+                            bool mirror = circleScaleHour.mirror;
+                            bool inversion = circleScaleHour.inversion;
+                            Color color = StringToColor(circleScaleHour.color);
+                            float fullAngle = endAngle - startAngle;
+                            int alpha = circleScaleHour.alpha;
+
+                            string flatness = circleScaleHour.line_cap;
+                            int lineCap = 3;
+                            if (inversion)
+                            {
+                                if (flatness == "Rounded") lineCap = 0;
+                            }
+                            else
+                            {
+                                if (flatness == "Rounded")
+                                {
+                                    if (mirror) lineCap = 2;
+                                    else lineCap = 0;
+                                }
+                            }
+
+                            int hour = WatchFacePreviewSet.DateTime.Time.Hour;
+                            int minute = WatchFacePreviewSet.DateTime.Time.Minute;
+                            float progressCircle = (hour + minute / 60f) / 24f;
+                            if (!TimeCircle.Format_24hour)
+                            {
+                                if (hour >= 12) hour = hour - 12;
+                                progressCircle = (hour + minute / 60f) / 12f;
+                            }
+
+                            DrawScaleCircle(gPanel, x, y, radius, width, lineCap, startAngle, fullAngle, progressCircle,
+                                color, inversion, alpha, showProgressArea, showCentrHend);
+
+                            if (mirror) DrawScaleCircle(gPanel, x, y, radius, width, lineCap, startAngle, -fullAngle, progressCircle,
+                                 color, inversion, alpha, showProgressArea, showCentrHend);
+                        }
+
+                        if (circleScaleMinute != null && index == circleScaleMinute.position && circleScaleMinute.visible)
+                        {
+                            int x = circleScaleMinute.center_x;
+                            int y = circleScaleMinute.center_y;
+                            int radius = circleScaleMinute.radius;
+                            int width = circleScaleMinute.line_width;
+                            int startAngle = circleScaleMinute.start_angle;
+                            int endAngle = circleScaleMinute.end_angle;
+                            bool mirror = circleScaleMinute.mirror;
+                            bool inversion = circleScaleMinute.inversion;
+                            Color color = StringToColor(circleScaleMinute.color);
+                            float fullAngle = endAngle - startAngle;
+                            int alpha = circleScaleMinute.alpha;
+
+                            string flatness = circleScaleMinute.line_cap;
+                            int lineCap = 3;
+                            if (inversion)
+                            {
+                                if (flatness == "Rounded") lineCap = 0;
+                            }
+                            else
+                            {
+                                if (flatness == "Rounded")
+                                {
+                                    if (mirror) lineCap = 2;
+                                    else lineCap = 0;
+                                }
+                            }
+
+                            int minute = WatchFacePreviewSet.DateTime.Time.Minute;
+                            int second = WatchFacePreviewSet.DateTime.Time.Second;
+                            float progressCircle = (minute + second / 60f) / 60f;
+
+                            DrawScaleCircle(gPanel, x, y, radius, width, lineCap, startAngle, fullAngle, progressCircle,
+                                color, inversion, alpha, showProgressArea, showCentrHend);
+
+                            if (mirror) DrawScaleCircle(gPanel, x, y, radius, width, lineCap, startAngle, -fullAngle, progressCircle,
+                                 color, inversion, alpha, showProgressArea, showCentrHend);
+                        }
+
+                        if (circleScaleSecond != null && index == circleScaleSecond.position && circleScaleSecond.visible)
+                        {
+                            int x = circleScaleSecond.center_x;
+                            int y = circleScaleSecond.center_y;
+                            int radius = circleScaleSecond.radius;
+                            int width = circleScaleSecond.line_width;
+                            int startAngle = circleScaleSecond.start_angle;
+                            int endAngle = circleScaleSecond.end_angle;
+                            bool mirror = circleScaleSecond.mirror;
+                            bool inversion = circleScaleSecond.inversion;
+                            Color color = StringToColor(circleScaleSecond.color);
+                            float fullAngle = endAngle - startAngle;
+                            int alpha = circleScaleSecond.alpha;
+
+                            string flatness = circleScaleSecond.line_cap;
+                            int lineCap = 3;
+                            if (inversion)
+                            {
+                                if (flatness == "Rounded") lineCap = 0;
+                            }
+                            else
+                            {
+                                if (flatness == "Rounded")
+                                {
+                                    if (mirror) lineCap = 2;
+                                    else lineCap = 0;
+                                }
+                            }
+
+                            int second = WatchFacePreviewSet.DateTime.Time.Second;
+                            float progressCircle = second / 60f;
+
+                            DrawScaleCircle(gPanel, x, y, radius, width, lineCap, startAngle, fullAngle, progressCircle,
+                                color, inversion, alpha, showProgressArea, showCentrHend);
+
+                            if (mirror) DrawScaleCircle(gPanel, x, y, radius, width, lineCap, startAngle, -fullAngle, progressCircle,
+                                 color, inversion, alpha, showProgressArea, showCentrHend);
+                        }
+                    }
+
+                    break;
+                #endregion
+
+                #region ElementWorldClock
+                case "ElementWorldClock":
+                    ElementWorldClock WorldClock = (ElementWorldClock)element;
+                    DrawWorldClock(gPanel, WorldClock, BBorder, showCentrHend, showButtons, showButtonsArea, showButtonsBorder, Buttons_In_Gif, link, false);
+                    break;
+                #endregion
+
                 #region ElementEditablePointers
                 /*case "ElementEditablePointers":
                     ElementEditablePointers EditablePointers = (ElementEditablePointers)element;
@@ -2651,6 +2857,12 @@ namespace Watch_Face_Editor
                                 align_v = "CENTER_V";
                             }
 
+                            bool use_text_circle = number_font.use_text_circle;
+                            int radius = number_font.radius;
+                            int start_angle = number_font.start_angle;
+                            int end_angle = number_font.end_angle;
+                            int mode = number_font.mode;
+
                             if (number_font.font != null && number_font.font.Length > 3 && FontsList.ContainsKey(number_font.font))
                             {
                                 string font_fileName = FontsList[number_font.font];
@@ -2665,17 +2877,20 @@ namespace Watch_Face_Editor
                                     }
 
                                     Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                    align_h, align_v, text_style, BBorder);
+                                                    align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                                 }
                                 else
                                 {
-                                    Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                                    Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                                 }
 
                             }
                             else
                             {
-                                Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                                Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                             }
                         }
 
@@ -2720,6 +2935,12 @@ namespace Watch_Face_Editor
                                 align_v = "CENTER_V";
                             }
 
+                            bool use_text_circle = number_font.use_text_circle;
+                            int radius = number_font.radius;
+                            int start_angle = number_font.start_angle;
+                            int end_angle = number_font.end_angle;
+                            int mode = number_font.mode;
+
                             string valueStr = valueDayStr + delimeter + valueMonthStr;
 
                             if (number_font.font != null && number_font.font.Length > 3 && FontsList.ContainsKey(number_font.font))
@@ -2736,17 +2957,20 @@ namespace Watch_Face_Editor
                                     }
 
                                     Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                    align_h, align_v, text_style, BBorder);
+                                                    align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                                 }
                                 else
                                 {
-                                    Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                                    Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                                 }
 
                             }
                             else
                             {
-                                Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                                Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                             }
                         }
 
@@ -2796,6 +3020,12 @@ namespace Watch_Face_Editor
                                 align_v = "CENTER_V";
                             }
 
+                            bool use_text_circle = number_font.use_text_circle;
+                            int radius = number_font.radius;
+                            int start_angle = number_font.start_angle;
+                            int end_angle = number_font.end_angle;
+                            int mode = number_font.mode;
+
                             string valueStr = valueDayStr + delimeter + valueMonthStr + delimeter + valueYearStr;
 
                             if (number_font.font != null && number_font.font.Length > 3 && FontsList.ContainsKey(number_font.font))
@@ -2812,17 +3042,20 @@ namespace Watch_Face_Editor
                                     }
 
                                     Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                    align_h, align_v, text_style, BBorder);
+                                                    align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                                 }
                                 else
                                 {
-                                    Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                                    Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                                 }
 
                             }
                             else
                             {
-                                Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                                Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                             }
                         }
 
@@ -3008,6 +3241,12 @@ namespace Watch_Face_Editor
                                 align_v = "CENTER_V";
                             }
 
+                            bool use_text_circle = number_font.use_text_circle;
+                            int radius = number_font.radius;
+                            int start_angle = number_font.start_angle;
+                            int end_angle = number_font.end_angle;
+                            int mode = number_font.mode;
+
                             if (number_font.font != null && number_font.font.Length > 3 && FontsList.ContainsKey(number_font.font))
                             {
                                 string font_fileName = FontsList[number_font.font];
@@ -3022,17 +3261,20 @@ namespace Watch_Face_Editor
                                     }
 
                                     Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                    align_h, align_v, text_style, BBorder);
+                                                    align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                                 }
                                 else
                                 {
-                                    Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                                    Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                                 }
 
                             }
                             else
                             {
-                                Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                                Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                             }
                         }
 
@@ -3072,6 +3314,12 @@ namespace Watch_Face_Editor
                                     align_v = "CENTER_V";
                                 }
 
+                                bool use_text_circle = month_font.use_text_circle;
+                                int radius = month_font.radius;
+                                int start_angle = month_font.start_angle;
+                                int end_angle = month_font.end_angle;
+                                int mode = month_font.mode;
+
                                 if (month_font.font != null && month_font.font.Length > 3 && FontsList.ContainsKey(month_font.font))
                                 {
                                     string font_fileName = FontsList[month_font.font];
@@ -3086,17 +3334,20 @@ namespace Watch_Face_Editor
                                         }
 
                                         Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                        align_h, align_v, text_style, BBorder);
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                                     }
                                     else
                                     {
-                                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                                     }
 
                                 }
                                 else
                                 {
-                                    Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                                    Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                                 }
                             }
                         }
@@ -3306,7 +3557,13 @@ namespace Watch_Face_Editor
                             align_v = "CENTER_V";
                         }
 
-                        if (number_font.font != null && number_font.font.Length > 3 && FontsList.ContainsKey(number_font.font))
+                            bool use_text_circle = number_font.use_text_circle;
+                            int radius = number_font.radius;
+                            int start_angle = number_font.start_angle;
+                            int end_angle = number_font.end_angle;
+                            int mode = number_font.mode;
+
+                            if (number_font.font != null && number_font.font.Length > 3 && FontsList.ContainsKey(number_font.font))
                         {
                             string font_fileName = FontsList[number_font.font];
                             //string font_fileName = ProjectDir + @"\assets\fonts\" + number_font.font;
@@ -3320,17 +3577,20 @@ namespace Watch_Face_Editor
                                 }
 
                                 Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                align_h, align_v, text_style, BBorder);
+                                                align_h, align_v, text_style, BBorder,
+                                                showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                             }
                             else
                             {
-                                Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                                Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                             }
 
                         }
                         else
                         {
-                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
                     }
 
@@ -3535,6 +3795,12 @@ namespace Watch_Face_Editor
                                     align_v = "CENTER_V";
                                 }
 
+                                bool use_text_circle = dow_font.use_text_circle;
+                                int radius = dow_font.radius;
+                                int start_angle = dow_font.start_angle;
+                                int end_angle = dow_font.end_angle;
+                                int mode = dow_font.mode;
+
                                 if (dow_font.font != null && dow_font.font.Length > 3 && FontsList.ContainsKey(dow_font.font))
                                 {
                                     string font_fileName = FontsList[dow_font.font];
@@ -3549,17 +3815,20 @@ namespace Watch_Face_Editor
                                         }
 
                                         Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                        align_h, align_v, text_style, BBorder);
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                                     }
                                     else
                                     {
-                                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                                     }
 
                                 }
                                 else
                                 {
-                                    Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                                    Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                                 } 
                             }
                         }
@@ -4940,7 +5209,7 @@ namespace Watch_Face_Editor
                     elementValue = WatchFacePreviewSet.System.BodyTemp;
                     float bodyTemp_value = (float)Math.Round(elementValue / 10f, 1);
 
-                    DrawBodyTemp(gPanel, img_number, font_number, icon, bodyTemp_value, BBorder);
+                    DrawBodyTemp(gPanel, img_number, font_number, icon, bodyTemp_value, BBorder, showCentrHend);
 
 
                     break;
@@ -5392,7 +5661,7 @@ namespace Watch_Face_Editor
                     if (SelectedModel.versionOS >= 1.5) valueStr = Properties.FormStrings.Tip_Background.TrimEnd();
 
                     Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, 255, valueStr,
-                    align_h, align_v, text_style, false);
+                    align_h, align_v, text_style, false, false, false, 0, 0, 0, 0);
                 }
             }
 
@@ -5531,7 +5800,7 @@ namespace Watch_Face_Editor
                             }
 
                                     Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, 255, valueStr,
-                            align_h, align_v, text_style, false); 
+                            align_h, align_v, text_style, false, false, false, 0, 0, 0, 0); 
                         }
                     } 
                 }
@@ -5571,7 +5840,7 @@ namespace Watch_Face_Editor
                     if (SelectedModel.versionOS >= 1.5) valueStr = Properties.FormStrings.Tip_Pointer.TrimEnd();
 
                     Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, 255, valueStr,
-                        align_h, align_v, text_style, false);
+                        align_h, align_v, text_style, false, false, false, 0, 0, 0, 0);
                 }
             }
 
@@ -6038,6 +6307,12 @@ namespace Watch_Face_Editor
                         align_v = "CENTER_V";
                     }
 
+                    bool use_text_circle = number_font.use_text_circle;
+                    int radius = number_font.radius;
+                    int start_angle = number_font.start_angle;
+                    int end_angle = number_font.end_angle;
+                    int mode = number_font.mode;
+
                     if (number_font.font != null && number_font.font.Length > 3 && FontsList.ContainsKey(number_font.font))
                     {
                         string font_fileName = FontsList[number_font.font];
@@ -6052,17 +6327,20 @@ namespace Watch_Face_Editor
                             }
 
                             Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                            align_h, align_v, text_style, BBorder);
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
                         else
                         {
-                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
 
                     }
                     else
                     {
-                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                     }
                 }
 
@@ -6197,6 +6475,12 @@ namespace Watch_Face_Editor
                         align_v = "CENTER_V";
                     }
 
+                    bool use_text_circle = numberTarget_font.use_text_circle;
+                    int radius = numberTarget_font.radius;
+                    int start_angle = numberTarget_font.start_angle;
+                    int end_angle = numberTarget_font.end_angle;
+                    int mode = numberTarget_font.mode;
+
                     if (numberTarget_font.font != null && numberTarget_font.font.Length > 3 && FontsList.ContainsKey(numberTarget_font.font))
                     {
                         string font_fileName = FontsList[numberTarget_font.font];
@@ -6211,17 +6495,20 @@ namespace Watch_Face_Editor
                             }
 
                             Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                            align_h, align_v, text_style, BBorder);
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
                         else
                         {
-                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
 
                     }
                     else
                     {
-                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                     }
                 }
 
@@ -6535,6 +6822,12 @@ namespace Watch_Face_Editor
                         align_v = "CENTER_V";
                     }
 
+                    bool use_text_circle = number_font.use_text_circle;
+                    int radius = number_font.radius;
+                    int start_angle = number_font.start_angle;
+                    int end_angle = number_font.end_angle;
+                    int mode = number_font.mode;
+
                     if (number_font.font != null && number_font.font.Length > 3 && FontsList.ContainsKey(number_font.font))
                     {
                         string font_fileName = FontsList[number_font.font];
@@ -6549,17 +6842,20 @@ namespace Watch_Face_Editor
                             }
 
                             Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                            align_h, align_v, text_style, BBorder);
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
                         else
                         {
-                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
 
                     }
                     else
                     {
-                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                     }
                 }
 
@@ -6665,7 +6961,7 @@ namespace Watch_Face_Editor
         /// <param name="temperature_value">Значение показателя</param>
         /// <param name="BBorder">Рисовать рамку по координатам, вокруг элементов с выравниванием</param>
         private void DrawBodyTemp(Graphics gPanel, hmUI_widget_IMG_NUMBER number, hmUI_widget_TEXT number_font,
-            hmUI_widget_IMG icon, float temperature_value, bool BBorder)
+            hmUI_widget_IMG icon, float temperature_value, bool BBorder, bool showCentrHend)
         {
             Bitmap src = new Bitmap(1, 1);
             string unit = "°";
@@ -6778,6 +7074,12 @@ namespace Watch_Face_Editor
                         align_v = "CENTER_V";
                     }
 
+                    bool use_text_circle = number_font.use_text_circle;
+                    int radius = number_font.radius;
+                    int start_angle = number_font.start_angle;
+                    int end_angle = number_font.end_angle;
+                    int mode = number_font.mode;
+
                     if (number_font.font != null && number_font.font.Length > 3 && FontsList.ContainsKey(number_font.font))
                     {
                         string font_fileName = FontsList[number_font.font];
@@ -6792,17 +7094,20 @@ namespace Watch_Face_Editor
                             }
 
                             Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                            align_h, align_v, text_style, BBorder);
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
                         else
                         {
-                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
 
                     }
                     else
                     {
-                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                     }
                 }
 
@@ -7002,6 +7307,12 @@ namespace Watch_Face_Editor
                         align_v = "CENTER_V";
                     }
 
+                    bool use_text_circle = number_font.use_text_circle;
+                    int radius = number_font.radius;
+                    int start_angle = number_font.start_angle;
+                    int end_angle = number_font.end_angle;
+                    int mode = number_font.mode;
+
                     if (number_font.font != null && number_font.font.Length > 3 && FontsList.ContainsKey(number_font.font))
                     {
                         string font_fileName = FontsList[number_font.font];
@@ -7016,17 +7327,20 @@ namespace Watch_Face_Editor
                             }
 
                             Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                            align_h, align_v, text_style, BBorder);
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
                         else
                         {
-                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
 
                     }
                     else
                     {
-                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                     }
                 }
 
@@ -7126,6 +7440,12 @@ namespace Watch_Face_Editor
                         align_v = "CENTER_V";
                     }
 
+                    bool use_text_circle = numberMin_font.use_text_circle;
+                    int radius = numberMin_font.radius;
+                    int start_angle = numberMin_font.start_angle;
+                    int end_angle = numberMin_font.end_angle;
+                    int mode = numberMin_font.mode;
+
                     if (numberMin_font.font != null && numberMin_font.font.Length > 3 && FontsList.ContainsKey(numberMin_font.font))
                     {
                         string font_fileName = FontsList[numberMin_font.font];
@@ -7140,17 +7460,20 @@ namespace Watch_Face_Editor
                             }
 
                             Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                            align_h, align_v, text_style, BBorder);
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
                         else
                         {
-                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
 
                     }
                     else
                     {
-                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                     }
                 }
 
@@ -7315,6 +7638,12 @@ namespace Watch_Face_Editor
                         align_v = "CENTER_V";
                     }
 
+                    bool use_text_circle = numberMax_font.use_text_circle;
+                    int radius = numberMax_font.radius;
+                    int start_angle = numberMax_font.start_angle;
+                    int end_angle = numberMax_font.end_angle;
+                    int mode = numberMax_font.mode;
+
                     if (numberMax_font.font != null && numberMax_font.font.Length > 3 && FontsList.ContainsKey(numberMax_font.font))
                     {
                         string font_fileName = FontsList[numberMax_font.font];
@@ -7329,17 +7658,20 @@ namespace Watch_Face_Editor
                             }
 
                             Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                            align_h, align_v, text_style, BBorder);
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
                         else
                         {
-                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
 
                     }
                     else
                     {
-                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                     }
                 }
 
@@ -7444,6 +7776,12 @@ namespace Watch_Face_Editor
                         align_v = "CENTER_V";
                     }
 
+                    bool use_text_circle = numberMinMax_font.use_text_circle;
+                    int radius = numberMinMax_font.radius;
+                    int start_angle = numberMinMax_font.start_angle;
+                    int end_angle = numberMinMax_font.end_angle;
+                    int mode = numberMinMax_font.mode;
+
                     if (numberMinMax_font.font != null && numberMinMax_font.font.Length > 3 && FontsList.ContainsKey(numberMinMax_font.font))
                     {
                         string font_fileName = FontsList[numberMinMax_font.font];
@@ -7458,17 +7796,20 @@ namespace Watch_Face_Editor
                             }
 
                             Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                            align_h, align_v, text_style, BBorder);
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
                         else
                         {
-                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
 
                     }
                     else
                     {
-                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                     }
                 }
 
@@ -7531,6 +7872,12 @@ namespace Watch_Face_Editor
                         align_v = "CENTER_V";
                     }
 
+                    bool use_text_circle = cityName.use_text_circle;
+                    int radius = cityName.radius;
+                    int start_angle = cityName.start_angle;
+                    int end_angle = cityName.end_angle;
+                    int mode = cityName.mode;
+
                     if (cityName.font != null && cityName.font.Length > 3 && FontsList.ContainsKey(cityName.font))
                     {
                         string font_fileName = FontsList[cityName.font];
@@ -7545,17 +7892,20 @@ namespace Watch_Face_Editor
                             }
                                 
                             Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                            align_h, align_v, text_style, BBorder);
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
                         else
                         {
-                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
 
                     }
                     else
                     {
-                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                     }
                 }
 
@@ -7699,6 +8049,12 @@ namespace Watch_Face_Editor
                             align_v = "CENTER_V";
                         }
 
+                        bool use_text_circle = number_font.use_text_circle;
+                        int radius = number_font.radius;
+                        int start_angle = number_font.start_angle;
+                        int end_angle = number_font.end_angle;
+                        int mode = number_font.mode;
+
                         if (number_font.font != null && number_font.font.Length > 3 && FontsList.ContainsKey(number_font.font))
                         {
                             string font_fileName = FontsList[number_font.font];
@@ -7713,17 +8069,20 @@ namespace Watch_Face_Editor
                                 }
 
                                 Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                align_h, align_v, text_style, BBorder);
+                                                align_h, align_v, text_style, BBorder,
+                                                showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                             }
                             else
                             {
-                                Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                                Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                             }
 
                         }
                         else
                         {
-                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
                     }
 
@@ -7895,6 +8254,12 @@ namespace Watch_Face_Editor
                             align_v = "CENTER_V";
                         }
 
+                        bool use_text_circle = number_font.use_text_circle;
+                        int radius = number_font.radius;
+                        int start_angle = number_font.start_angle;
+                        int end_angle = number_font.end_angle;
+                        int mode = number_font.mode;
+
                         if (number_font.font != null && number_font.font.Length > 3 && FontsList.ContainsKey(number_font.font))
                         {
                             string font_fileName = FontsList[number_font.font];
@@ -7909,17 +8274,20 @@ namespace Watch_Face_Editor
                                 }
 
                                 Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                align_h, align_v, text_style, BBorder);
+                                                align_h, align_v, text_style, BBorder,
+                                                showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                             }
                             else
                             {
-                                Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                                Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                             }
 
                         }
                         else
                         {
-                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
                     }
 
@@ -8091,6 +8459,12 @@ namespace Watch_Face_Editor
                             align_v = "CENTER_V";
                         }
 
+                        bool use_text_circle = number_font.use_text_circle;
+                        int radius = number_font.radius;
+                        int start_angle = number_font.start_angle;
+                        int end_angle = number_font.end_angle;
+                        int mode = number_font.mode;
+
                         if (number_font.font != null && number_font.font.Length > 3 && FontsList.ContainsKey(number_font.font))
                         {
                             string font_fileName = FontsList[number_font.font];
@@ -8105,17 +8479,20 @@ namespace Watch_Face_Editor
                                 }
 
                                 Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                align_h, align_v, text_style, BBorder);
+                                                align_h, align_v, text_style, BBorder,
+                                                showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                             }
                             else
                             {
-                                Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                                Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                             }
 
                         }
                         else
                         {
-                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
                     }
 
@@ -8309,6 +8686,12 @@ namespace Watch_Face_Editor
                             align_v = "CENTER_V";
                         }
 
+                        bool use_text_circle = number_font.use_text_circle;
+                        int radius = number_font.radius;
+                        int start_angle = number_font.start_angle;
+                        int end_angle = number_font.end_angle;
+                        int mode = number_font.mode;
+
                         if (number_font.font != null && number_font.font.Length > 3 && FontsList.ContainsKey(number_font.font))
                         {
                             string font_fileName = FontsList[number_font.font];
@@ -8323,17 +8706,20 @@ namespace Watch_Face_Editor
                                 }
 
                                 Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                align_h, align_v, text_style, BBorder);
+                                                align_h, align_v, text_style, BBorder,
+                                                showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                             }
                             else
                             {
-                                Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                                Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                             }
 
                         }
                         else
                         {
-                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
                     }
 
@@ -8466,6 +8852,12 @@ namespace Watch_Face_Editor
                     if (cityName.unit_type == 1) valueStr = valueStr.ToUpper();
                     if (cityName.unit_type == 2) valueStr = valueStr.ToLower();
 
+                    bool use_text_circle = cityName.use_text_circle;
+                    int radius = cityName.radius;
+                    int start_angle = cityName.start_angle;
+                    int end_angle = cityName.end_angle;
+                    int mode = cityName.mode;
+
                     if (cityName.font != null && cityName.font.Length > 3 && FontsList.ContainsKey(cityName.font))
                     {
                         string font_fileName = FontsList[cityName.font];
@@ -8480,17 +8872,20 @@ namespace Watch_Face_Editor
                             }
 
                             Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                            align_h, align_v, text_style, BBorder);
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
                         else
                         {
-                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
 
                     }
                     else
                     {
-                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                     }
                 }
 
@@ -8865,17 +9260,20 @@ namespace Watch_Face_Editor
                                     }
 
                                     Draw_text_userFont(gPanel, posX, posDayY, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                    align_h, align_v, text_style, BBorder);
+                                                    align_h, align_v, text_style, BBorder,
+                                                    false, false, 0, 0, 0, 0);
                                 }
                                 else
                                 {
-                                    Draw_text(gPanel, posX, posDayY, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                                    Draw_text(gPanel, posX, posDayY, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    false, false, 0, 0, 0, 0);
                                 }
 
                             }
                             else
                             {
-                                Draw_text(gPanel, posX, posDayY, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                                Draw_text(gPanel, posX, posDayY, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    false, false, 0, 0, 0, 0);
                             } 
                         }
                     }
@@ -9002,17 +9400,20 @@ namespace Watch_Face_Editor
                                     }
 
                                     Draw_text_userFont(gPanel, posX, posDayY, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                    align_h, align_v, text_style, BBorder);
+                                                    align_h, align_v, text_style, BBorder,
+                                                    false, false, 0, 0, 0, 0);
                                 }
                                 else
                                 {
-                                    Draw_text(gPanel, posX, posDayY, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                                    Draw_text(gPanel, posX, posDayY, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    false, false, 0, 0, 0, 0);
                                 }
 
                             }
                             else
                             {
-                                Draw_text(gPanel, posX, posDayY, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                                Draw_text(gPanel, posX, posDayY, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    false, false, 0, 0, 0, 0);
                             } 
                         }
                     }
@@ -9138,17 +9539,20 @@ namespace Watch_Face_Editor
                                     }
 
                                     Draw_text_userFont(gPanel, posX, posDayY, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                    align_h, align_v, text_style, BBorder);
+                                                    align_h, align_v, text_style, BBorder,
+                                                    false, false, 0, 0, 0, 0);
                                 }
                                 else
                                 {
-                                    Draw_text(gPanel, posX, posDayY, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                                    Draw_text(gPanel, posX, posDayY, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    false, false, 0, 0, 0, 0);
                                 }
 
                             }
                             else
                             {
-                                Draw_text(gPanel, posX, posDayY, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                                Draw_text(gPanel, posX, posDayY, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    false, false, 0, 0, 0, 0);
                             } 
                         }
                     }
@@ -9269,17 +9673,20 @@ namespace Watch_Face_Editor
                                     }
 
                                     Draw_text_userFont(gPanel, posX, posDayY, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                    align_h, align_v, text_style, BBorder);
+                                                    align_h, align_v, text_style, BBorder,
+                                                    false, false, 0, 0, 0, 0);
                                 }
                                 else
                                 {
-                                    Draw_text(gPanel, posX, posDayY, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                                    Draw_text(gPanel, posX, posDayY, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    false, false, 0, 0, 0, 0);
                                 }
 
                             }
                             else
                             {
-                                Draw_text(gPanel, posX, posDayY, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                                Draw_text(gPanel, posX, posDayY, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    false, false, 0, 0, 0, 0);
                             } 
                         }
                     }
@@ -9370,17 +9777,20 @@ namespace Watch_Face_Editor
                                         }
 
                                         Draw_text_userFont(gPanel, posX, posY, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                                        align_h, align_v, text_style, BBorder);
+                                                        align_h, align_v, text_style, BBorder,
+                                                        false, false, 0, 0, 0, 0);
                                     }
                                     else
                                     {
-                                        Draw_text(gPanel, posX, posY, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                                        Draw_text(gPanel, posX, posY, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    false, false, 0, 0, 0, 0);
                                     }
 
                                 }
                                 else
                                 {
-                                    Draw_text(gPanel, posX, posY, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                                    Draw_text(gPanel, posX, posY, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    false, false, 0, 0, 0, 0);
                                 }
                             }
 
@@ -9661,6 +10071,12 @@ namespace Watch_Face_Editor
                         align_v = "CENTER_V";
                     }
 
+                    bool use_text_circle = sunrise_font.use_text_circle;
+                    int radius = sunrise_font.radius;
+                    int start_angle = sunrise_font.start_angle;
+                    int end_angle = sunrise_font.end_angle;
+                    int mode = sunrise_font.mode;
+
                     if (sunrise_font.font != null && sunrise_font.font.Length > 3 && FontsList.ContainsKey(sunrise_font.font))
                     {
                         string font_fileName = FontsList[sunrise_font.font];
@@ -9675,17 +10091,20 @@ namespace Watch_Face_Editor
                             }
 
                             Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                            align_h, align_v, text_style, BBorder);
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
                         else
                         {
-                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
 
                     }
                     else
                     {
-                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                     }
                 }
 
@@ -9835,6 +10254,12 @@ namespace Watch_Face_Editor
                         align_v = "CENTER_V";
                     }
 
+                    bool use_text_circle = sunset_font.use_text_circle;
+                    int radius = sunset_font.radius;
+                    int start_angle = sunset_font.start_angle;
+                    int end_angle = sunset_font.end_angle;
+                    int mode = sunset_font.mode;
+
                     if (sunset_font.font != null && sunset_font.font.Length > 3 && FontsList.ContainsKey(sunset_font.font))
                     {
                         string font_fileName = FontsList[sunset_font.font];
@@ -9849,17 +10274,20 @@ namespace Watch_Face_Editor
                             }
 
                             Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                            align_h, align_v, text_style, BBorder);
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
                         else
                         {
-                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
 
                     }
                     else
                     {
-                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                     }
                 }
 
@@ -10182,6 +10610,12 @@ namespace Watch_Face_Editor
                         align_v = "CENTER_V";
                     }
 
+                    bool use_text_circle = sunrise_font.use_text_circle;
+                    int radius = sunrise_font.radius;
+                    int start_angle = sunrise_font.start_angle;
+                    int end_angle = sunrise_font.end_angle;
+                    int mode = sunrise_font.mode;
+
                     if (sunrise_font.font != null && sunrise_font.font.Length > 3 && FontsList.ContainsKey(sunrise_font.font))
                     {
                         string font_fileName = FontsList[sunrise_font.font];
@@ -10196,17 +10630,20 @@ namespace Watch_Face_Editor
                             }
 
                             Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                            align_h, align_v, text_style, BBorder);
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
                         else
                         {
-                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
 
                     }
                     else
                     {
-                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                     }
                 }
 
@@ -10341,6 +10778,12 @@ namespace Watch_Face_Editor
                         align_v = "CENTER_V";
                     }
 
+                    bool use_text_circle = sunset_font.use_text_circle;
+                    int radius = sunset_font.radius;
+                    int start_angle = sunset_font.start_angle;
+                    int end_angle = sunset_font.end_angle;
+                    int mode = sunset_font.mode;
+
                     if (sunset_font.font != null && sunset_font.font.Length > 3 && FontsList.ContainsKey(sunset_font.font))
                     {
                         string font_fileName = FontsList[sunset_font.font];
@@ -10355,17 +10798,20 @@ namespace Watch_Face_Editor
                             }
 
                             Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                            align_h, align_v, text_style, BBorder);
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
                         else
                         {
-                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
 
                     }
                     else
                     {
-                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                     }
                 }
 
@@ -10635,6 +11081,12 @@ namespace Watch_Face_Editor
                         align_v = "CENTER_V";
                     }
 
+                    bool use_text_circle = number_font.use_text_circle;
+                    int radius = number_font.radius;
+                    int start_angle = number_font.start_angle;
+                    int end_angle = number_font.end_angle;
+                    int mode = number_font.mode;
+
                     if (number_font.font != null && number_font.font.Length > 3 && FontsList.ContainsKey(number_font.font))
                     {
                         string font_fileName = FontsList[number_font.font];
@@ -10649,17 +11101,20 @@ namespace Watch_Face_Editor
                             }
 
                             Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                            align_h, align_v, text_style, BBorder);
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
                         else
                         {
-                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
 
                     }
                     else
                     {
-                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                     }
                 }
 
@@ -10741,6 +11196,12 @@ namespace Watch_Face_Editor
                         align_v = "CENTER_V";
                     }
 
+                    bool use_text_circle = numberAltitude_font.use_text_circle;
+                    int radius = numberAltitude_font.radius;
+                    int start_angle = numberAltitude_font.start_angle;
+                    int end_angle = numberAltitude_font.end_angle;
+                    int mode = numberAltitude_font.mode;
+
                     if (numberAltitude_font.font != null && numberAltitude_font.font.Length > 3 && FontsList.ContainsKey(numberAltitude_font.font))
                     {
                         string font_fileName = FontsList[numberAltitude_font.font];
@@ -10755,17 +11216,20 @@ namespace Watch_Face_Editor
                             }
 
                             Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                            align_h, align_v, text_style, BBorder);
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
                         else
                         {
-                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
 
                     }
                     else
                     {
-                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                     }
                 }
 
@@ -10992,6 +11456,12 @@ namespace Watch_Face_Editor
                         align_v = "CENTER_V";
                     }
 
+                    bool use_text_circle = number_font.use_text_circle;
+                    int radius = number_font.radius;
+                    int start_angle = number_font.start_angle;
+                    int end_angle = number_font.end_angle;
+                    int mode = number_font.mode;
+
                     if (number_font.font != null && number_font.font.Length > 3 && FontsList.ContainsKey(number_font.font))
                     {
                         string font_fileName = FontsList[number_font.font];
@@ -11006,17 +11476,20 @@ namespace Watch_Face_Editor
                             }
 
                             Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                            align_h, align_v, text_style, BBorder);
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
                         else
                         {
-                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
 
                     }
                     else
                     {
-                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                     }
                 }
 
@@ -11135,8 +11608,11 @@ namespace Watch_Face_Editor
 
         /// <summary>Рисуем время будильника</summary>
         /// <param name="gPanel">Поверхность для рисования</param>
-        /// <param name="number">Параметры цифрового значения</param>
-        /// <param name="number_font">Параметры отображения данных шрифтом</param>
+        /// <param name="alarm">Параметры будильника</param>
+        /// <param name="alarm_font">Шрифт будильника</param>
+        /// <param name="icon">Параметры для иконки</param>
+        /// <param name="hour">Часы</param>
+        /// <param name="minute">Минуты</param>
         /// <param name="BBorder">Рисовать рамку по координатам, вокруг элементов с выравниванием</param>
         /// <param name="showProgressArea">Подсвечивать круговую шкалу при наличии фонового изображения</param>
         /// <param name="showCentrHend">Подсвечивать центр стрелки</param>
@@ -11145,7 +11621,7 @@ namespace Watch_Face_Editor
         {
             Bitmap src = new Bitmap(1, 1);
 
-            for (int index = 1; index <= 15; index++)
+            for (int index = 1; index <= 5; index++)
             {
 
                 if (alarm != null && alarm.img_First != null && alarm.img_First.Length > 0 &&
@@ -11159,8 +11635,8 @@ namespace Watch_Face_Editor
                     int angl = alarm.angle;
                     int alpha = alarm.alpha;
                     int alarm_alignment = AlignmentToInt(alarm.align);
-                    //bool distance_addZero = img_number.zero;
-                    bool alarm_addZero = true;
+                    bool alarm_addZero = alarm.zero;
+                    //bool alarm_addZero = true;
                     int alarm_separator_index = -1;
                     if (alarm.unit != null && alarm.unit.Length > 0)
                         alarm_separator_index = ListImages.IndexOf(alarm.unit);
@@ -11247,6 +11723,12 @@ namespace Watch_Face_Editor
                         y = (SelectedModel.background.h - h) / 2;
                         align_v = "CENTER_V";
                     }
+
+                    bool use_text_circle = alarm_font.use_text_circle;
+                    int radius = alarm_font.radius;
+                    int start_angle = alarm_font.start_angle;
+                    int end_angle = alarm_font.end_angle;
+                    int mode = alarm_font.mode;
                     if (!WatchFacePreviewSet.System.Status.Alarm) valueStr = "--";
 
                     if (alarm_font.font != null && alarm_font.font.Length > 3 && FontsList.ContainsKey(alarm_font.font))
@@ -11263,17 +11745,20 @@ namespace Watch_Face_Editor
                             }
 
                             Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
-                                align_h, align_v, text_style, BBorder);
+                                align_h, align_v, text_style, BBorder,
+                                showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
                         else
                         {
-                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                         }
 
                     }
                     else
                     {
-                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder);
+                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
                     }
                 }
 
@@ -11312,6 +11797,389 @@ namespace Watch_Face_Editor
 
             src.Dispose();
         }
+
+        /// <summary>формируем изображение на панедли Graphics</summary>
+        /// <param name="gPanel">Поверхность для рисования</param>
+        /// <param name="worldClock">Параметры мирового времени</param>
+        /// <param name="BBorder">Рисовать рамку по координатам, вокруг элементов с выравниванием</param>
+        /// <param name="showButtons">Подсвечивать область кнопок</param>
+        /// <param name="showButtonsArea">Подсвечивать область кнопок рамкой</param>
+        /// <param name="showButtonsBorder">Подсвечивать область кнопок заливкой</param>
+        /// <param name="link">0 - основной экран; 1 - AOD</param>
+        /// <param name="previewButtons">Показывать кнопки или основные элементы</param>
+        private void DrawWorldClock(Graphics gPanel, ElementWorldClock worldClock, bool BBorder, bool showCentrHend,
+            bool showButtons, bool showButtonsArea, bool showButtonsBorder, bool Buttons_In_Gif, int link, bool previewButtons)
+        {
+            if (worldClock == null) return;
+            if (!worldClock.visible) return;
+            bool am_pm = checkBox_ShowIn12hourFormat.Checked;
+
+            for (int index = 1; index <= 10; index++)
+            {
+                if (previewButtons)
+                {
+                    Button buttonPrev = worldClock.ButtonPrev;
+                    Button buttonNext = worldClock.ButtonNext;
+
+                    if (link == 0 && buttonPrev != null && index == buttonPrev.position && buttonPrev.visible)
+                    {
+                        DrawButton(gPanel, buttonPrev, false, showButtons, showButtonsArea, showButtonsBorder, Buttons_In_Gif);
+                    }
+
+                    if (link == 0 && buttonNext != null && index == buttonNext.position && buttonNext.visible)
+                    {
+                        DrawButton(gPanel, buttonNext, false, showButtons, showButtonsArea, showButtonsBorder, Buttons_In_Gif);
+                    }
+                }
+                else
+                {
+                    hmUI_widget_TEXT time = worldClock.Time;
+                    hmUI_widget_TEXT timeZone = worldClock.TimeZone;
+                    hmUI_widget_TEXT cityName = worldClock.CityName;
+                    hmUI_widget_TEXT timeDiff = worldClock.TimeDifference;
+                    Button buttonPrev = worldClock.ButtonPrev;
+                    hmUI_widget_IMG icon = worldClock.Icon;
+
+                    if (time != null && time.visible)
+                    {
+                        int x = time.x;
+                        int y = time.y;
+                        int h = time.h;
+                        int w = time.w;
+
+                        int size = time.text_size;
+                        int space_h = time.char_space;
+                        int space_v = time.line_space;
+
+                        Color color = StringToColor(time.color);
+                        int alpha = time.alpha;
+                        //int align_h = AlignmentToInt(time.align_h);
+                        //int align_v = AlignmentVerticalToInt(time.align_v);
+                        string align_h = time.align_h;
+                        string align_v = time.align_v;
+                        string text_style = time.text_style;
+                        string unitStr = "Am";
+                        int value = WatchFacePreviewSet.DateTime.Time.Hour;
+                        value-=1; // смещение на 1 час для мирового времени
+                        if (value < 0) value += 24;
+                        if (ProgramSettings.ShowIn12hourFormat)
+                        {
+                            if (value > 11)
+                            {
+                                value -= 12;
+                                unitStr = "Pm";
+                            }
+                            if (value == 0) value = 12;
+                        }
+                        string valueHourStr = value.ToString();
+                        if (time.padding) valueHourStr = valueHourStr.PadLeft(2, '0');
+                        string valueMinStr = WatchFacePreviewSet.DateTime.Time.Minute.ToString();
+                        valueMinStr = valueMinStr.PadLeft(2, '0');
+
+                        string delimeter = ":";
+                        if (time.unit_string != null && time.unit_string.Length > 0) delimeter = time.unit_string;
+
+                        string valueStr = "";
+                        if (time.unit_type == 0) unitStr = unitStr.ToLower();
+                        if (time.unit_type == 2) unitStr = unitStr.ToUpper();
+                        valueStr = valueHourStr + delimeter + valueMinStr;
+                        if (checkBox_ShowIn12hourFormat.Checked)
+                        {
+                            if (time.unit_end == 1) valueStr = valueStr + " " + unitStr;
+                            else if (time.unit_end == 0) valueStr = unitStr + " " + valueStr;
+                        }
+
+                        if (time.centreHorizontally)
+                        {
+                            x = (SelectedModel.background.w - w) / 2;
+                            align_h = "CENTER_H";
+                        }
+                        if (time.centreVertically)
+                        {
+                            y = (SelectedModel.background.h - h) / 2;
+                            align_v = "CENTER_V";
+                        }
+
+                        bool use_text_circle = time.use_text_circle;
+                        int radius = time.radius;
+                        int start_angle = time.start_angle;
+                        int end_angle = time.end_angle;
+                        int mode = time.mode;
+
+                        if (time.font != null && time.font.Length > 3 && FontsList.ContainsKey(time.font))
+                        {
+                            string font_fileName = FontsList[time.font];
+                            //string font_fileName = ProjectDir + @"\assets\fonts\" + time.font;
+                            if (SelectedModel.versionOS >= 2 && File.Exists(font_fileName))
+                            {
+                                Font drawFont = null;
+                                using (System.Drawing.Text.PrivateFontCollection fonts = new System.Drawing.Text.PrivateFontCollection())
+                                {
+                                    fonts.AddFontFile(font_fileName);
+                                    drawFont = new Font(fonts.Families[0], size, GraphicsUnit.World);
+                                }
+
+                                Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
+                                    align_h, align_v, text_style, BBorder,
+                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                            }
+                            else
+                            {
+                                Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                            }
+
+                        }
+                        else
+                        {
+                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                        }
+                    }
+
+                    if (timeZone != null && index == timeZone.position && timeZone.visible)
+                    {
+                        int x = timeZone.x;
+                        int y = timeZone.y;
+                        int h = timeZone.h;
+                        int w = timeZone.w;
+
+                        int size = timeZone.text_size;
+                        int space_h = timeZone.char_space;
+                        int space_v = timeZone.line_space;
+
+                        Color color = StringToColor(timeZone.color);
+                        int alpha = timeZone.alpha;
+                        string align_h = timeZone.align_h;
+                        string align_v = timeZone.align_v;
+                        string text_style = timeZone.text_style;
+
+                        string delimeter = ":";
+                        if (timeZone.unit_string != null && timeZone.unit_string.Length > 0) delimeter = timeZone.unit_string;
+                        string valueStr = "+1" + delimeter + "00";
+
+                        if (timeZone.centreHorizontally)
+                        {
+                            x = (SelectedModel.background.w - w) / 2;
+                            align_h = "CENTER_H";
+                        }
+                        if (timeZone.centreVertically)
+                        {
+                            y = (SelectedModel.background.h - h) / 2;
+                            align_v = "CENTER_V";
+                        }
+
+                        bool use_text_circle = timeZone.use_text_circle;
+                        int radius = timeZone.radius;
+                        int start_angle = timeZone.start_angle;
+                        int end_angle = timeZone.end_angle;
+                        int mode = timeZone.mode;
+
+                        if (timeZone.font != null && timeZone.font.Length > 3 && FontsList.ContainsKey(timeZone.font))
+                        {
+                            string font_fileName = FontsList[timeZone.font];
+                            //string font_fileName = ProjectDir + @"\assets\fonts\" + number_font.font;
+                            if (SelectedModel.versionOS >= 2 && File.Exists(font_fileName))
+                            {
+                                Font drawFont = null;
+                                using (System.Drawing.Text.PrivateFontCollection fonts = new System.Drawing.Text.PrivateFontCollection())
+                                {
+                                    fonts.AddFontFile(font_fileName);
+                                    drawFont = new Font(fonts.Families[0], size, GraphicsUnit.World);
+                                }
+
+                                Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
+                                    align_h, align_v, text_style, BBorder,
+                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                            }
+                            else
+                            {
+                                Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                            }
+
+                        }
+                        else
+                        {
+                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                        }
+                    }
+
+                    if (cityName != null && index == cityName.position && cityName.visible)
+                    {
+                        int x = cityName.x;
+                        int y = cityName.y;
+                        int h = cityName.h;
+                        int w = cityName.w;
+
+                        int size = cityName.text_size;
+                        int space_h = cityName.char_space;
+                        int space_v = cityName.line_space;
+
+                        Color color = StringToColor(cityName.color);
+                        int alpha = cityName.alpha;
+                        string align_h = cityName.align_h;
+                        string align_v = cityName.align_v;
+                        string text_style = cityName.text_style;
+                        string valueStr = "City Name GMT";
+
+                        if (cityName.centreHorizontally)
+                        {
+                            x = (SelectedModel.background.w - w) / 2;
+                            align_h = "CENTER_H";
+                        }
+                        if (cityName.centreVertically)
+                        {
+                            y = (SelectedModel.background.h - h) / 2;
+                            align_v = "CENTER_V";
+                        }
+
+                        if (cityName.unit_type == 1) valueStr = valueStr.ToUpper();
+                        if (cityName.unit_type == 2) valueStr = valueStr.ToLower();
+
+                        bool use_text_circle = cityName.use_text_circle;
+                        int radius = cityName.radius;
+                        int start_angle = cityName.start_angle;
+                        int end_angle = cityName.end_angle;
+                        int mode = cityName.mode;
+
+                        if (cityName.font != null && cityName.font.Length > 3 && FontsList.ContainsKey(cityName.font))
+                        {
+                            string font_fileName = FontsList[cityName.font];
+                            //string font_fileName = ProjectDir + @"\assets\fonts\" + number_font.font;
+                            if (SelectedModel.versionOS >= 2 && File.Exists(font_fileName))
+                            {
+                                Font drawFont = null;
+                                using (System.Drawing.Text.PrivateFontCollection fonts = new System.Drawing.Text.PrivateFontCollection())
+                                {
+                                    fonts.AddFontFile(font_fileName);
+                                    drawFont = new Font(fonts.Families[0], size, GraphicsUnit.World);
+                                }
+
+                                Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
+                                    align_h, align_v, text_style, BBorder,
+                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                            }
+                            else
+                            {
+                                Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                            }
+
+                        }
+                        else
+                        {
+                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                        }
+                    }
+
+                    if (timeDiff != null && index == timeDiff.position && timeDiff.visible)
+                    {
+                        int x = timeDiff.x;
+                        int y = timeDiff.y;
+                        int h = timeDiff.h;
+                        int w = timeDiff.w;
+
+                        int size = timeDiff.text_size;
+                        int space_h = timeDiff.char_space;
+                        int space_v = timeDiff.line_space;
+
+                        Color color = StringToColor(timeDiff.color);
+                        int alpha = timeDiff.alpha;
+                        string align_h = timeDiff.align_h;
+                        string align_v = timeDiff.align_v;
+                        string text_style = timeDiff.text_style;
+
+                        string delimeter = ":";
+                        if (timeDiff.unit_string != null && timeDiff.unit_string.Length > 0) delimeter = timeDiff.unit_string;
+                        string valueStr = "-1" + delimeter + "00";
+
+                        if (timeDiff.centreHorizontally)
+                        {
+                            x = (SelectedModel.background.w - w) / 2;
+                            align_h = "CENTER_H";
+                        }
+                        if (timeDiff.centreVertically)
+                        {
+                            y = (SelectedModel.background.h - h) / 2;
+                            align_v = "CENTER_V";
+                        }
+
+                        bool use_text_circle = timeDiff.use_text_circle;
+                        int radius = timeDiff.radius;
+                        int start_angle = timeDiff.start_angle;
+                        int end_angle = timeDiff.end_angle;
+                        int mode = timeDiff.mode;
+
+                        if (timeDiff.font != null && timeDiff.font.Length > 3 && FontsList.ContainsKey(timeDiff.font))
+                        {
+                            string font_fileName = FontsList[timeDiff.font];
+                            //string font_fileName = ProjectDir + @"\assets\fonts\" + number_font.font;
+                            if (SelectedModel.versionOS >= 2 && File.Exists(font_fileName))
+                            {
+                                Font drawFont = null;
+                                using (System.Drawing.Text.PrivateFontCollection fonts = new System.Drawing.Text.PrivateFontCollection())
+                                {
+                                    fonts.AddFontFile(font_fileName);
+                                    drawFont = new Font(fonts.Families[0], size, GraphicsUnit.World);
+                                }
+
+                                Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
+                                    align_h, align_v, text_style, BBorder,
+                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                            }
+                            else
+                            {
+                                Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                            }
+
+                        }
+                        else
+                        {
+                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                        }
+                    }
+
+                    if (icon != null && icon.src != null && icon.src.Length > 0 &&
+                        index == icon.position && icon.visible)
+                    {
+                        int imageIndex = ListImages.IndexOf(icon.src);
+                        int x = icon.x;
+                        int y = icon.y;
+
+                        if (imageIndex < ListImagesFullName.Count)
+                        {
+                            Bitmap src = new Bitmap(1, 1);
+                            src = OpenFileStream(ListImagesFullName[imageIndex]);
+                            if (SelectedModel.versionOS >= 2.1 && icon.alpha != 255)
+                            {
+                                int w = src.Width;
+                                int h = src.Height;
+                                // Создаем матрицу цветов для изменения прозрачности (альфа-канал)
+                                ColorMatrix colorMatrix = new ColorMatrix();
+                                colorMatrix.Matrix33 = icon.alpha / 255f; // значение от 0 до 1
+
+                                // Создаем объект ImageAttributes и применяем к нему матрицу цветов
+                                ImageAttributes imgAttributes = new ImageAttributes();
+                                imgAttributes.SetColorMatrix(colorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+
+                                // Указываем прямоугольник, куда будет помещено изображение
+                                Rectangle rect_alpha = new Rectangle(x, y, w, h);
+                                gPanel.DrawImage(src, rect_alpha, 0, 0, w, h, GraphicsUnit.Pixel, imgAttributes);
+                            }
+                            else gPanel.DrawImage(src, x, y);
+                            src.Dispose();
+                        }
+                    }
+                }
+
+            }
+        }
+
 
         /// <summary>Рисуем покадровую анимацию</summary>
         /// <param name="gPanel">Поверхность для рисования</param>
@@ -12716,6 +13584,7 @@ namespace Watch_Face_Editor
         /// <param name="y">Координата y</param>
         /// <param name="w">Ширина</param>
         /// <param name="h">Высота</param>
+        /// <param name="drawFont">Шрифт</param>
         /// <param name="size">Размер шрифта</param>
         /// <param name="spacing_h">Величина отступа</param>
         /// <param name="spacing_v">Межстрочный интервал</param>
@@ -12726,9 +13595,22 @@ namespace Watch_Face_Editor
         /// <param name="align_v">Вертикальное выравнивание</param>
         /// <param name="text_style">Стиль вписывания текста</param>
         /// <param name="BBorder">Рисовать рамку по координатам, вокруг элементов с выравниванием</param>
+        /// <param name="showCentrHend">Подсвечивать центр вращения</param>
+        /// <param name="use_text_circle">Отображать текст по окружности</param>
+        /// <param name="radius">Радиус</param>
+        /// <param name="start_angle">Начальный угол</param>
+        /// <param name="end_angle">Конечный угол</param>
+        /// <param name="mode">По часовой или против часовой стрелке</param>
         private void Draw_text(Graphics graphics, int x, int y, int w, int h, float size, int spacing_h, int spacing_v, 
-            Color color, int alpha, string value, string align_h, string align_v, string text_style, bool BBorder)
+            Color color, int alpha, string value, string align_h, string align_v, string text_style, bool BBorder, bool showCentrHend,
+            bool use_text_circle, int radius, int start_angle, int end_angle, int mode)
         {
+            if (use_text_circle && radius > size)
+            {
+                DrawTextOnCircle(graphics, x, y, radius, null, size, color, start_angle, end_angle, 
+                    align_h, value, mode, spacing_h, BBorder, showCentrHend);
+                return;
+            }
             size = size * 0.99f;
             if (w < 5 || h < 5) return;
             Bitmap bitmap = new Bitmap(Convert.ToInt32(w), Convert.ToInt32(h), PixelFormat.Format32bppArgb);
@@ -12944,9 +13826,22 @@ namespace Watch_Face_Editor
         /// <param name="align_v">Вертикальное выравнивание</param>
         /// <param name="text_style">Стиль вписывания текста</param>
         /// <param name="BBorder">Рисовать рамку по координатам, вокруг элементов с выравниванием</param>
+        /// <param name="showCentrHend">Подсвечивать центр вращения</param>
+        /// <param name="use_text_circle">Отображать текст по окружности</param>
+        /// <param name="radius">Радиус</param>
+        /// <param name="start_angle">Начальный угол</param>
+        /// <param name="end_angle">Конечный угол</param>
+        /// <param name="mode">По часовой или против часовой стрелке</param>
         private void Draw_text_userFont(Graphics graphics, int x, int y, int w, int h, Font drawFont, float size, int spacing_h, int spacing_v,
-            Color color, int alpha, string value, string align_h, string align_v, string text_style, bool BBorder)
+            Color color, int alpha, string value, string align_h, string align_v, string text_style, bool BBorder, bool showCentrHend,
+            bool use_text_circle, int radius, int start_angle, int end_angle, int mode)
         {
+            if (use_text_circle && radius > size)
+            {
+                DrawTextOnCircle(graphics, x, y, radius, drawFont, size, color, start_angle, end_angle,
+                    align_h, value, mode, spacing_h, BBorder, showCentrHend);
+                return;
+            }
             if (w < 5 || h < 5) return;
             Bitmap bitmap = new Bitmap(Convert.ToInt32(w), Convert.ToInt32(h), PixelFormat.Format32bppArgb);
             Graphics gPanel = Graphics.FromImage(bitmap);
@@ -13971,35 +14866,277 @@ namespace Watch_Face_Editor
 
         /// <summary>Пишем число системным шрифтом по окружности</summary>
         /// <param name="graphics">Поверхность для рисования</param>
+        /// <param name="centerX">Координата X</param>
+        /// <param name="centerY">Координата y</param>
+        /// <param name="radius">Радиус y</param>
+        /// <param name="size">Размер шрифта</param>
+        /// <param name="spacing">Расстояние между символами (в пикселях вдоль дуги)</param>
+        /// <param name="color">Цвет шрифта</param>
+        /// <param name="start_angle">Начальный угол</param>
+        /// <param name="end_angle">Конечный угол</param>
+        /// <param name="align_h">Выровнивание</param>
+        /// <param name="mode">Направление текста</param>
+        /// <param name="text">Отображаемая величина</param>
+        /// <param name="font">Шрифт</param>
+        /// <param name="BBorder">Рисовать рамку по координатам, вокруг элементов с выравниванием</param>
+        /// <param name="showCentrHend">Подсвечивать центр вращения</param>
+        public void DrawTextOnCircle(
+            Graphics graphics,
+            int centerX,
+            int centerY,
+            int radius,
+            Font font,
+            float size,
+            Color color,
+            float startAngle,
+            float endAngle,
+            string align_h,
+            string text,
+            int mode,
+            float spacing, // расстояние между символами (в пикселях вдоль дуги)
+            bool BBorder, 
+            bool showCentrHend
+        )
+        {
+            if (string.IsNullOrEmpty(text)) return;
+
+            //if (radius <= 0) radius = 1; // чтобы не делить на ноль
+            if (startAngle == endAngle) return;
+
+            bool clockwise = true;
+            if (mode == 1) clockwise = false;
+
+            if (startAngle > endAngle)
+            {
+                (endAngle, startAngle) = (startAngle, endAngle);
+                //startAngle += 180;
+                //endAngle += 180;
+            }
+            if (endAngle - startAngle > 360)
+            {
+                // Если угол больше 360, то рисуем полный круг
+                endAngle = startAngle + 360;
+            }
+            // Определяем направление (по часовой стрелке или против)
+            if (!clockwise)
+            {
+                // Для против часовой стрелки меняем углы местами и инвертируем
+                //float temp = startAngle;
+                //startAngle = 360 - endAngle;
+                //endAngle = 360 - temp;
+                //(endAngle, startAngle) = (startAngle, endAngle);
+                text = new string(text.Reverse().ToArray());
+            }
+
+            if (font == null) font = new Font(fonts.Families[0], size , GraphicsUnit.World);
+            if (radius - font.Size <= 0) return; // чтобы не делить на ноль
+            //if (radius - font.Size <= 0) radius = (int)(font.Size + 1); // чтобы не делить на ноль
+            StringFormat strFormat = new StringFormat();
+            strFormat.FormatFlags = StringFormatFlags.FitBlackBox;
+            strFormat.Alignment = StringAlignment.Near;
+            strFormat.LineAlignment = StringAlignment.Near;
+            Size strSize1 = TextRenderer.MeasureText(graphics, "0", font);
+            Size strSize2 = TextRenderer.MeasureText(graphics, "00" + Environment.NewLine + "0", font);
+            int chWidth = strSize2.Width - strSize1.Width;
+            int offsetX = strSize1.Width - chWidth;
+            int chHeight = strSize2.Height - strSize1.Height;
+            //float offsetY = strSize2.Height - strSize1.Height;
+            float offsetY = strSize1.Height - size;
+
+            // Рассчитываем общую длину текста
+            float totalLength = TextRenderer.MeasureText(text.ToString(), font).Width - offsetX;
+            //foreach (char c in text)
+            //{
+            //    totalLength += graphics.MeasureString(c.ToString(), font).Width - 0.53f * offsetX;
+            //}
+            if (clockwise) totalLength += (text.Length - 1) * spacing /** (1 + font.Size * 1.5f / radius)*/;
+            else
+            {
+                totalLength += (text.Length - 1) * spacing * (1 + offsetY / radius);
+                //totalLength = totalLength * (1 - (font.Size - offsetY) / radius);
+            }
+
+            // Рассчитываем угол на один пиксель
+            //float anglePerPixel = (endAngle - startAngle) / totalLength;
+            //float anglePerPixel = (float)((endAngle - startAngle) / (radius * 2 * Math.PI));
+            float anglePerPixel = (float)(360 / ((radius - font.Size) * 2 * Math.PI));
+            if (!clockwise) anglePerPixel = (float)(360 / ((radius - 0.4f*font.Size) * 2 * Math.PI));
+
+            float startTextAngle = startAngle;
+
+            // Корректируем начальный угол в зависимости от выравнивания
+            if (clockwise)
+            {
+                switch (align_h)
+                {
+                    case "CENTER_H":
+                        startTextAngle += (endAngle - startAngle - totalLength * anglePerPixel) / 2;
+                        break;
+                    case "RIGHT":
+                        startTextAngle += endAngle - startAngle - totalLength * anglePerPixel;
+                        break;
+                }
+            }
+            else
+            {
+                //currentAngle = endAngle + 180;
+                switch (align_h)
+                {
+                    case "CENTER_H":
+                        startTextAngle += (endAngle - startAngle - totalLength * anglePerPixel) / 2;
+                        break;
+                    case "LEFT":
+                        startTextAngle += endAngle - startAngle - totalLength * anglePerPixel;
+                        break;
+                }
+            }
+
+            string tempStr = "0";
+            //bool firstChar = true;
+            float oldSringWidth = TextRenderer.MeasureText(tempStr.ToString(), font).Width;
+
+            if (!clockwise) spacing = spacing * (1 + offsetY / radius);
+            float charAngle = startTextAngle;
+            string firstChar = text[0].ToString();
+            SizeF firstCharSize = TextRenderer.MeasureText(firstChar, font);
+            if (clockwise) charAngle += ((firstCharSize.Width - offsetX) / 2) * anglePerPixel;
+            else charAngle += ((firstCharSize.Width - offsetX) / 2) * anglePerPixel;
+            for (int i = 0; i < text.Length; i++)
+            {
+                //char c = text[i];
+                string charStr = text[i].ToString();
+                SizeF charSize = TextRenderer.MeasureText(charStr, font);
+
+                // Рассчитываем позицию символа
+                //float charAngle = startTextAngle + (charSize.Width / 2) * anglePerPixel;
+                //float charAngle = startTextAngle;
+                //if (clockwise) charAngle += ((charSize.Width - offsetX) / 2) * anglePerPixel;
+                //else charAngle -= ((charSize.Width - offsetX) / 2) * anglePerPixel;
+                //if (tempStr.Length > 0) charAngle += (TextRenderer.MeasureText(tempStr, font).Width - offsetX) * anglePerPixel;
+                if (tempStr.Length > 1) {
+                    float firstCharWidth = TextRenderer.MeasureText(tempStr, font).Width - oldSringWidth;
+                    float secondCharWidth = TextRenderer.MeasureText(tempStr + text[i], font).Width - TextRenderer.MeasureText(tempStr, font).Width;
+                    //string drawStr = text.Substring(0, i);
+                    float offsetAngle = (spacing + (firstCharWidth + secondCharWidth) / 2) * anglePerPixel;
+                    charAngle += offsetAngle;
+                    oldSringWidth += firstCharWidth;
+                }
+                //float charAngle = currentAngle + charSize.Width  * anglePerPixel;
+                //if (!clockwise) charAngle = currentAngle + ((charSize.Width + offsetX / 2) / 2) * anglePerPixel;
+                tempStr += charStr.Replace(" ", "!"); // собираем строку для вычисления длины
+
+                //// Преобразуем угол в радианы
+                //double angleRad = (charAngle - 90) * Math.PI / 180;
+
+                //// Вычисляем координаты символа
+                //float x = centerX + radius * (float)Math.Cos(angleRad);
+                //float y = centerY + radius * (float)Math.Sin(angleRad);
+
+                // Создаем матрицу преобразования
+                Matrix transform = new Matrix();
+
+                // Поворачиваем символ в соответствии с направлением
+                float rotationAngle = clockwise ? charAngle : charAngle + 180;
+                transform.RotateAt(rotationAngle, new PointF(centerX, centerY));
+
+                // Применяем преобразование
+                graphics.Transform = transform;
+
+                // Рисуем символ
+                if (clockwise)
+                {
+                    if (charAngle >= startAngle && charAngle <= endAngle) // Пропускаем символы, которые выходят за пределы углов
+                    {
+                        if (clockwise) graphics.DrawString(charStr, font, new SolidBrush(color), centerX - offsetX / 4, centerY - (int)(radius - font.Size + offsetY),
+                            new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+                    }
+                }
+                else
+                {
+                    if (charAngle >= startAngle && charAngle <= endAngle) // Пропускаем символы, которые выходят за пределы углов
+                    {
+                        graphics.DrawString(charStr, font, new SolidBrush(color), centerX /*+ offsetX / 2*/, centerY + (int)(radius - font.Size + 1.75f * offsetY),
+                            new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+                    }
+                }
+
+
+                // Сбрасываем преобразование
+                graphics.ResetTransform();
+            }
+
+            radius -= (int)size;
+            radius += (int)(1.5f*offsetY);
+            startAngle -= 90;
+            endAngle -= 90;
+            if (BBorder)
+            {
+                // подсвечивание шкалы заливкой
+                HatchBrush myHatchBrush = new HatchBrush(HatchStyle.Percent20, Color.White, Color.Transparent);
+                Pen pen = new Pen(myHatchBrush);
+                pen.Width = size;
+                //float start_angl = (float)(startAngle + size);
+                float sweepAngle = endAngle - startAngle;
+                int smallRadius = (int)(radius - size);
+                if (smallRadius < 1) smallRadius = 1;
+                graphics.DrawArc(pen, centerX - radius, centerY - radius, radius * 2, radius * 2, startAngle, sweepAngle);
+                myHatchBrush = new HatchBrush(HatchStyle.Percent10, Color.Black, Color.Transparent);
+                pen.Brush = myHatchBrush;
+                graphics.DrawArc(pen, centerX - radius, centerY - radius, radius * 2, radius * 2, startAngle, sweepAngle);
+
+                // подсвечивание внешней и внутреней дуги на шкале
+                using (Pen pen1 = new Pen(Color.White, 1))
+                {
+                    graphics.DrawArc(pen1, centerX - radius - size / 2, centerY - radius - size / 2, radius * 2 + size, radius * 2 + size, startAngle, sweepAngle);
+                    graphics.DrawArc(pen1, centerX - smallRadius - size / 2, centerY - smallRadius - size / 2, smallRadius * 2 + size, smallRadius * 2 + size, startAngle, sweepAngle);
+                }
+                using (Pen pen2 = new Pen(Color.Black, 1))
+                {
+                    pen2.DashStyle = DashStyle.Dash;
+                    graphics.DrawArc(pen2, centerX - radius - size / 2, centerY - radius - size / 2, radius * 2 + size, radius * 2 + size, startAngle, sweepAngle);
+                    graphics.DrawArc(pen2, centerX - smallRadius - size / 2, centerY - smallRadius - size / 2, smallRadius * 2 + size, smallRadius * 2 + size, startAngle, sweepAngle);
+                }
+            }
+
+            if (showCentrHend)
+            {
+                Logger.WriteLine("Draw showCentrHend");
+                using (Pen pen1 = new Pen(Color.White, 1))
+                {
+                    graphics.DrawLine(pen1, new Point(centerX - 5, centerY), new Point(centerX + 5, centerY));
+                    graphics.DrawLine(pen1, new Point(centerX, centerY - 5), new Point(centerX, centerY + 5));
+                }
+                using (Pen pen2 = new Pen(Color.Black, 1))
+                {
+                    pen2.DashStyle = DashStyle.Dot;
+                    graphics.DrawLine(pen2, new Point(centerX - 5, centerY), new Point(centerX + 5, centerY));
+                    graphics.DrawLine(pen2, new Point(centerX, centerY - 5), new Point(centerX, centerY + 5));
+                }
+            }
+        }
+
+
+        /// <summary>Пишем число системным шрифтом по окружности</summary>
+        /// <param name="graphics">Поверхность для рисования</param>
         /// <param name="x">Координата X</param>
         /// <param name="y">Координата y</param>
         /// <param name="radius">Радиус y</param>
         /// <param name="size">Размер шрифта</param>
         /// <param name="spacing">Величина отступа</param>
         /// <param name="color">Цвет шрифта</param>
-        /// <param name="angle">Угол поворота надписи в градусах</param>
+        /// <param name="start_angle">Начальный угол</param>
+        /// <param name="end_angle">Конечный угол</param>
+        /// <param name="align_h">Выровнивание</param>
         /// <param name="rotate_direction">Направление текста</param>
         /// <param name="value">Отображаемая величина</param>
-        /// <param name="addZero">Отображать начальные нули</param>
-        /// <param name="value_lenght">Количество отображаемых символов</param>
+        /// <param name="drawFont">Шрифт</param>
         /// <param name="BBorder">Рисовать рамку по координатам, вокруг элементов с выравниванием</param>
-        /// <param name="ActivityType">Номер активности (при необходимости)</param>
         private float Draw_text_rotate(Graphics graphics, int x, int y, int radius, float size, int spacing,
-            Color color, float angle, int rotate_direction, string value, bool BBorder, int ActivityType = 0)
+            Color color, float angle, int rotate_direction, string value, Font drawFont, bool BBorder)
         {
-            while (spacing > 127)
-            {
-                spacing = spacing - 255;
-            }
-            while (spacing < -127)
-            {
-                spacing = spacing + 255;
-            }
-
-            size = size * 0.9f;
             if (radius == 0) radius = 1;
             //Font drawFont = new Font("Times New Roman", size, GraphicsUnit.World);
-            Font drawFont = new Font(fonts.Families[0], size, GraphicsUnit.World);
+            if (drawFont == null) drawFont = new Font(fonts.Families[0], size, GraphicsUnit.World);
             StringFormat strFormat = new StringFormat();
             strFormat.FormatFlags = StringFormatFlags.FitBlackBox;
             strFormat.Alignment = StringAlignment.Near;
@@ -14461,15 +15598,9 @@ namespace Watch_Face_Editor
                 int s = Math.Sign(fullAngle);
                 float start_angl = (float)(startAngle + 0.08 * s * width);
                 float end_angl = (float)(fullAngle - 0.16 * s * width);
-                //graphics.DrawArc(pen, arcX, arcY, CircleWidth, CircleWidth, startAngle, endAngle);
-                //graphics.DrawArc(pen, arcX, arcY, CircleWidth, CircleWidth,
-                //    (float)(startAngle - 0.007 * s * width), (float)(fullAngle + 0.015 * s * width));
                 graphics.DrawArc(pen, arcX, arcY, CircleWidth, CircleWidth, start_angl, end_angl);
                 myHatchBrush = new HatchBrush(HatchStyle.Percent10, Color.Black, Color.Transparent);
                 pen.Brush = myHatchBrush;
-                //graphics.DrawArc(pen, arcX, arcY, CircleWidth, CircleWidth, startAngle, endAngle);
-                //graphics.DrawArc(pen, arcX, arcY, CircleWidth, CircleWidth,
-                //    (float)(startAngle - 0.007 * s * width), (float)(fullAngle + 0.015 * s * width));
                 graphics.DrawArc(pen, arcX, arcY, CircleWidth, CircleWidth, start_angl, end_angl);
 
                 // подсвечивание внешней и внутреней дуги на шкале
@@ -15001,7 +16132,7 @@ namespace Watch_Face_Editor
             }
 
             if (button.text.Length > 0) Draw_text(graphics, x, y, width, height, button.text_size, 0, 0, StringToColor(button.color), 255,
-                button.text, "CENTER_H", "CENTER_V", "ELLIPSIS", false);
+                button.text, "CENTER_H", "CENTER_V", "ELLIPSIS", false, false, false, 0, 0, 0, 0);
 
             if (showButtons)
             {

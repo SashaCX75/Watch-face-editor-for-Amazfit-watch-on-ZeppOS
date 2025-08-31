@@ -322,6 +322,12 @@
   <data name="comboBox_AddTime.Items4" xml:space="preserve">
     <value>Horloge analogique (Pro)</value>
   </data>
+  <data name="comboBox_AddTime.Items5" xml:space="preserve">
+    <value>Cercles du temps</value>
+  </data>
+  <data name="comboBox_AddTime.Items6" xml:space="preserve">
+    <value>Horloge Mondiale</value>
+  </data>
   <data name="groupBox_AddElemets.Text" xml:space="preserve">
     <value>Ajouter des éléments au cadran</value>
   </data>
@@ -435,6 +441,9 @@
   </data>
   <data name="tabPageConverting.Text" xml:space="preserve">
     <value>Conversion</value>
+  </data>
+  <data name="checkBox_DevelopmentMode.Text" xml:space="preserve">
+    <value>Créer des cadrans de montre en mode développeur (pour les utilisateurs avancés, permet d'afficher les journaux sur les cadrans de montre)</value>
   </data>
   <data name="label_AutoSave.Location" type="System.Drawing.Point, System.Drawing">
     <value>238, 628</value>
@@ -843,7 +852,7 @@ PayPal: sashacx75@gmail.com</value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACk
-        DQAAAk1TRnQBSQFMAgEBBgEAAcABNgHAATYBEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        DQAAAk1TRnQBSQFMAgEBBgEAAcwBNgHMATYBEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAASADAAEBAQABCAYAAQgYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA

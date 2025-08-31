@@ -409,4 +409,34 @@ zentrieren</value>
   <data name="label_alpha.Text" xml:space="preserve">
     <value>Transparenz</value>
   </data>
+  <data name="checkBox_use_text_circle.Text" xml:space="preserve">
+    <value>Text im Kreis anzeigen</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Radius</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Startwinkel</value>
+  </data>
+  <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
+    <value>81, 26</value>
+  </data>
+  <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>85, 30</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>Abschlusswinkel</value>
+  </data>
+  <data name="radioButton_clockwise.Size" type="System.Drawing.Size, System.Drawing">
+    <value>103, 17</value>
+  </data>
+  <data name="radioButton_clockwise.Text" xml:space="preserve">
+    <value>Im Uhrzeigersinn</value>
+  </data>
+  <data name="radioButton_counterclockwise.Size" type="System.Drawing.Size, System.Drawing">
+    <value>124, 17</value>
+  </data>
+  <data name="radioButton_counterclockwise.Text" xml:space="preserve">
+    <value>Gegen Uhrzeigersinn</value>
+  </data>
 </root>

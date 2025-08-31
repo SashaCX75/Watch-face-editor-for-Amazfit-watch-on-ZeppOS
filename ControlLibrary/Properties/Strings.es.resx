@@ -126,6 +126,12 @@
   <data name="FilterJS" xml:space="preserve">
     <value>Archivos JS (*.js) | *.js</value>
   </data>
+  <data name="Hint_360_Text_Circle" xml:space="preserve">
+    <value>La diferencia entre el ángulo final y el ángulo inicial no debe superar los 360°.</value>
+  </data>
+  <data name="Hint_360_Title" xml:space="preserve">
+    <value>Advertencia</value>
+  </data>
   <data name="Hint_DOW" xml:space="preserve">
     <value>Los nombres de los días de la semana, comenzando por el lunes, separados por coma.</value>
   </data>

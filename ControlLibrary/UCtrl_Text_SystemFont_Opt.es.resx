@@ -269,6 +269,9 @@
   <data name="label01.Text" xml:space="preserve">
     <value>Coordenadas</value>
   </data>
+  <data name="label06.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 30</value>
+  </data>
   <data name="label06.Text" xml:space="preserve">
     <value>Espaciado</value>
   </data>
@@ -408,5 +411,29 @@ verticalmente</value>
   </data>
   <data name="label_alpha.Text" xml:space="preserve">
     <value>Transparencia</value>
+  </data>
+  <data name="checkBox_use_text_circle.Text" xml:space="preserve">
+    <value>Mostrar texto en un círculo</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Radio</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Ángulo inicial</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>Ángulo final</value>
+  </data>
+  <data name="radioButton_clockwise.Size" type="System.Drawing.Size, System.Drawing">
+    <value>95, 17</value>
+  </data>
+  <data name="radioButton_clockwise.Text" xml:space="preserve">
+    <value>Sentido agujas</value>
+  </data>
+  <data name="radioButton_counterclockwise.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 17</value>
+  </data>
+  <data name="radioButton_counterclockwise.Text" xml:space="preserve">
+    <value>Contrario agujas</value>
   </data>
 </root>

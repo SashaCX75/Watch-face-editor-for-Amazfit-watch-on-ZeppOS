@@ -289,6 +289,22 @@ namespace Watch_Face_Editor
                     Scale_IMG_POINTER(elementAnalogTimePro.Minute, scale);
                     Scale_IMG_POINTER(elementAnalogTimePro.Second, scale);
                     break;
+                case "ElementTimeCircle":
+                    ElementTimeCircle elementTimeCircle = (ElementTimeCircle)elements;
+                    Scale_Circle_Scale(elementTimeCircle.Hour, scale);
+                    Scale_Circle_Scale(elementTimeCircle.Minute, scale);
+                    Scale_Circle_Scale(elementTimeCircle.Second, scale);
+                    break;
+                case "ElementWorldClock":
+                    ElementWorldClock elementWorldClock = (ElementWorldClock)elements;
+                    Scale_TEXT(elementWorldClock.Time, scale);
+                    Scale_TEXT(elementWorldClock.TimeZone, scale);
+                    Scale_TEXT(elementWorldClock.CityName, scale);
+                    Scale_TEXT(elementWorldClock.TimeDifference, scale);
+                    Scale_Button(elementWorldClock.ButtonPrev, scale);
+                    Scale_Button(elementWorldClock.ButtonNext, scale);
+                    Scale_IMG(elementWorldClock.Icon, scale);
+                    break;
                 case "ElementDateDay":
                     ElementDateDay elementDateDay = (ElementDateDay)elements;
                     Scale_IMG_NUMBER(elementDateDay.Number, scale);
@@ -788,6 +804,7 @@ namespace Watch_Face_Editor
             text.text_size = (int)Math.Round((text.text_size * scale), MidpointRounding.AwayFromZero);
             text.line_space = (int)Math.Round((text.line_space * scale), MidpointRounding.AwayFromZero);
             text.char_space = (int)Math.Round((text.char_space * scale), MidpointRounding.AwayFromZero);
+            text.radius = (int)Math.Round((text.radius * scale), MidpointRounding.AwayFromZero);
         }
 
         private void Scale_AmPm(hmUI_widget_IMG_TIME_am_pm am_pm, float scale)

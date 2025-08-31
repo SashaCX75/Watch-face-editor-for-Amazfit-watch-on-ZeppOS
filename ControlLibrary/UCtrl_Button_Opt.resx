@@ -602,7 +602,7 @@
     <value>NoControl</value>
   </data>
   <data name="label04.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 198</value>
+    <value>4, 193</value>
   </data>
   <data name="label04.Size" type="System.Drawing.Size, System.Drawing">
     <value>17, 13</value>
@@ -797,7 +797,7 @@
     <value>NoControl</value>
   </data>
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 94</value>
+    <value>3, 94</value>
   </data>
   <data name="label5.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
@@ -830,7 +830,7 @@
     <value>False</value>
   </data>
   <data name="comboBox_press_color.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 127</value>
+    <value>5, 127</value>
   </data>
   <data name="comboBox_press_color.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 21</value>
@@ -1189,6 +1189,24 @@
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
     <value>255, 491</value>
   </data>
+  <data name="&gt;&gt;Index.Name" xml:space="preserve">
+    <value>Index</value>
+  </data>
+  <data name="&gt;&gt;Index.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Button.Name" xml:space="preserve">
+    <value>Button</value>
+  </data>
+  <data name="&gt;&gt;Button.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;VisibleButton.Name" xml:space="preserve">
+    <value>VisibleButton</value>
+  </data>
+  <data name="&gt;&gt;VisibleButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewCheckBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;вставитьКоординатуХToolStripMenuItem.Name" xml:space="preserve">
     <value>вставитьКоординатуХToolStripMenuItem</value>
   </data>
@@ -1224,24 +1242,6 @@
   </data>
   <data name="&gt;&gt;вставитьToolStripMenuItemY.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Index.Name" xml:space="preserve">
-    <value>Index</value>
-  </data>
-  <data name="&gt;&gt;Index.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Button.Name" xml:space="preserve">
-    <value>Button</value>
-  </data>
-  <data name="&gt;&gt;Button.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;VisibleButton.Name" xml:space="preserve">
-    <value>VisibleButton</value>
-  </data>
-  <data name="&gt;&gt;VisibleButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewCheckBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>UCtrl_Button_Opt</value>

@@ -33,6 +33,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCtrl_Button_Opt));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView_buttons = new System.Windows.Forms.DataGridView();
+            this.Index = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Button = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.VisibleButton = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.button_add = new System.Windows.Forms.Button();
             this.button_del = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -72,9 +75,6 @@
             this.comboBox_Text_color = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.Index = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Button = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.VisibleButton = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_buttons)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_width)).BeginInit();
@@ -109,6 +109,37 @@
             this.dataGridView_buttons.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_bottons_RowEnter);
             this.dataGridView_buttons.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView_buttons_KeyDown);
             this.dataGridView_buttons.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView_buttons_MouseDoubleClick);
+            // 
+            // Index
+            // 
+            this.Index.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Index.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Index.FillWeight = 13F;
+            resources.ApplyResources(this.Index, "Index");
+            this.Index.Name = "Index";
+            this.Index.ReadOnly = true;
+            this.Index.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Button
+            // 
+            this.Button.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
+            this.Button.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Button.FillWeight = 120F;
+            resources.ApplyResources(this.Button, "Button");
+            this.Button.Name = "Button";
+            this.Button.ReadOnly = true;
+            this.Button.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // VisibleButton
+            // 
+            this.VisibleButton.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.VisibleButton.FillWeight = 10F;
+            resources.ApplyResources(this.VisibleButton, "VisibleButton");
+            this.VisibleButton.Name = "VisibleButton";
+            this.VisibleButton.ReadOnly = true;
+            this.VisibleButton.TrueValue = "true";
             // 
             // button_add
             // 
@@ -461,37 +492,6 @@
             // 
             resources.ApplyResources(this.label9, "label9");
             this.label9.Name = "label9";
-            // 
-            // Index
-            // 
-            this.Index.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Index.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Index.FillWeight = 13F;
-            resources.ApplyResources(this.Index, "Index");
-            this.Index.Name = "Index";
-            this.Index.ReadOnly = true;
-            this.Index.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Button
-            // 
-            this.Button.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
-            this.Button.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Button.FillWeight = 120F;
-            resources.ApplyResources(this.Button, "Button");
-            this.Button.Name = "Button";
-            this.Button.ReadOnly = true;
-            this.Button.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // VisibleButton
-            // 
-            this.VisibleButton.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.VisibleButton.FillWeight = 10F;
-            resources.ApplyResources(this.VisibleButton, "VisibleButton");
-            this.VisibleButton.Name = "VisibleButton";
-            this.VisibleButton.ReadOnly = true;
-            this.VisibleButton.TrueValue = "true";
             // 
             // UCtrl_Button_Opt
             // 

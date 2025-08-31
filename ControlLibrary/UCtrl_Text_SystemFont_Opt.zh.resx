@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label08.Text" xml:space="preserve">
+    <value>高度</value>
+  </data>
+  <data name="label07.Text" xml:space="preserve">
+    <value>宽度</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="вставитьКоординатуХToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -131,6 +137,12 @@
         v//mQ5XiBhMmTGD7+fNn7t+/f/dp9cj+t1mkBvTC7wO/f//OX7hoIQdUGWHw7v27LLcZxv8dZtkCw+Mf
         YZvRQX9/PxvQkJx3797lIWxmYAAA7pt3k8xS7ogAAAAASUVORK5CYII=
 </value>
+  </data>
+  <data name="вставитьКоординатуХToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>135, 26</value>
+  </data>
+  <data name="вставитьКоординатуХToolStripMenuItem.Text" xml:space="preserve">
+    <value>粘贴X坐标</value>
   </data>
   <data name="копироватьToolStripMenuItemX.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -147,6 +159,12 @@
         aTd35+adAzmrI4ijA3Amk+lat7fXT4Snqp0uA/VkLJcUmL06e4e4fy2j0XjJYn28trhoXjWbLasWi/UT
         gfobN285p6dNt5F2ps/+r+K4P4wyYm9nlNBiAAAAAElFTkSuQmCC
 </value>
+  </data>
+  <data name="копироватьToolStripMenuItemX.Size" type="System.Drawing.Size, System.Drawing">
+    <value>135, 26</value>
+  </data>
+  <data name="копироватьToolStripMenuItemX.Text" xml:space="preserve">
+    <value>复制</value>
   </data>
   <data name="вставитьToolStripMenuItemX.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -165,6 +183,15 @@
         zqO/TnAxx2CuMF/jKtTrXEWk1Wk1ZkEQhL+gXkz+KXzH3gAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="вставитьToolStripMenuItemX.Size" type="System.Drawing.Size, System.Drawing">
+    <value>135, 26</value>
+  </data>
+  <data name="вставитьToolStripMenuItemX.Text" xml:space="preserve">
+    <value>粘贴</value>
+  </data>
+  <data name="contextMenuStrip_X.Size" type="System.Drawing.Size, System.Drawing">
+    <value>136, 82</value>
+  </data>
   <data name="вставитьКоординатуYToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAfxJREFUOE9j
@@ -178,6 +205,12 @@
         v//mQ5XiBhMmTGD7+fNn7t+/f/dp9cj+t1mkBvTC7wO/f//OX7hoIQdUGWHw7v27LLcZxv8dZtkCw+Mf
         YZvRQX9/PxvQkJx3797lIWxmYAAA7pt3k8xS7ogAAAAASUVORK5CYII=
 </value>
+  </data>
+  <data name="вставитьКоординатуYToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>135, 26</value>
+  </data>
+  <data name="вставитьКоординатуYToolStripMenuItem.Text" xml:space="preserve">
+    <value>粘贴Y坐标</value>
   </data>
   <data name="копироватьToolStripMenuItemY.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -194,6 +227,12 @@
         aTd35+adAzmrI4ijA3Amk+lat7fXT4Snqp0uA/VkLJcUmL06e4e4fy2j0XjJYn28trhoXjWbLasWi/UT
         gfobN285p6dNt5F2ps/+r+K4P4wyYm9nlNBiAAAAAElFTkSuQmCC
 </value>
+  </data>
+  <data name="копироватьToolStripMenuItemY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>135, 26</value>
+  </data>
+  <data name="копироватьToolStripMenuItemY.Text" xml:space="preserve">
+    <value>复制</value>
   </data>
   <data name="вставитьToolStripMenuItemY.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -212,6 +251,30 @@
         zqO/TnAxx2CuMF/jKtTrXEWk1Wk1ZkEQhL+gXkz+KXzH3gAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="вставитьToolStripMenuItemY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>135, 26</value>
+  </data>
+  <data name="вставитьToolStripMenuItemY.Text" xml:space="preserve">
+    <value>粘贴</value>
+  </data>
+  <data name="contextMenuStrip_Y.Size" type="System.Drawing.Size, System.Drawing">
+    <value>136, 82</value>
+  </data>
+  <data name="numericUpDown_Size.ToolTip" xml:space="preserve">
+    <value>不建议设置大于150的尺寸</value>
+  </data>
+  <data name="label01.Size" type="System.Drawing.Size, System.Drawing">
+    <value>31, 13</value>
+  </data>
+  <data name="label01.Text" xml:space="preserve">
+    <value>坐标</value>
+  </data>
+  <data name="label06.Text" xml:space="preserve">
+    <value>间隔</value>
+  </data>
+  <data name="label05.Text" xml:space="preserve">
+    <value>大小</value>
+  </data>
   <data name="comboBox_alignmentHorizontal.Items" xml:space="preserve">
     <value>左对齐</value>
   </data>
@@ -220,6 +283,9 @@
   </data>
   <data name="comboBox_alignmentHorizontal.Items2" xml:space="preserve">
     <value>右对齐</value>
+  </data>
+  <data name="label09.Text" xml:space="preserve">
+    <value>水平对齐</value>
   </data>
   <data name="comboBox_alignmentVertical.Items" xml:space="preserve">
     <value>顶部</value>
@@ -230,33 +296,6 @@
   <data name="comboBox_alignmentVertical.Items2" xml:space="preserve">
     <value>底部</value>
   </data>
-  <data name="comboBox_textStyle.Items" xml:space="preserve">
-    <value>滚动文本</value>
-  </data>
-  <data name="comboBox_textStyle.Items1" xml:space="preserve">
-    <value>自动换行</value>
-  </data>
-  <data name="comboBox_textStyle.Items2" xml:space="preserve">
-    <value>单行</value>
-  </data>
-  <data name="label01.Text" xml:space="preserve">
-    <value>坐标</value>
-  </data>
-  <data name="label05.Text" xml:space="preserve">
-    <value>大小</value>
-  </data>
-  <data name="label06.Text" xml:space="preserve">
-    <value>间隔</value>
-  </data>
-  <data name="label07.Text" xml:space="preserve">
-    <value>宽度</value>
-  </data>
-  <data name="label08.Text" xml:space="preserve">
-    <value>高度</value>
-  </data>
-  <data name="label09.Text" xml:space="preserve">
-    <value>水平对齐</value>
-  </data>
   <data name="label1.Text" xml:space="preserve">
     <value>垂直对齐</value>
   </data>
@@ -266,85 +305,106 @@
   <data name="label3.Text" xml:space="preserve">
     <value>行距</value>
   </data>
+  <data name="comboBox_textStyle.Items" xml:space="preserve">
+    <value>滚动文本</value>
+  </data>
+  <data name="comboBox_textStyle.Items1" xml:space="preserve">
+    <value>自动换行</value>
+  </data>
+  <data name="comboBox_textStyle.Items2" xml:space="preserve">
+    <value>单行</value>
+  </data>
   <data name="label4.Text" xml:space="preserve">
     <value>文字环绕</value>
+  </data>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 26</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>*文本的大小和位置可能与手表上的图像不同。请自行检查文本在实机上的位置。</value>
   </data>
-  <data name="вставитьToolStripMenuItemX.Text" xml:space="preserve">
-    <value>粘贴</value>
-  </data>
-  <data name="вставитьToolStripMenuItemY.Text" xml:space="preserve">
-    <value>粘贴</value>
-  </data>
-  <data name="вставитьКоординатуYToolStripMenuItem.Text" xml:space="preserve">
-    <value>粘贴Y坐标</value>
-  </data>
-  <data name="вставитьКоординатуХToolStripMenuItem.Text" xml:space="preserve">
-    <value>粘贴X坐标</value>
-  </data>
-  <data name="копироватьToolStripMenuItemX.Text" xml:space="preserve">
-    <value>复制</value>
-  </data>
-  <data name="копироватьToolStripMenuItemY.Text" xml:space="preserve">
-    <value>复制</value>
+  <data name="label6.Text" xml:space="preserve">
+    <value>字体</value>
   </data>
   <data name="button_AddFont.Text" xml:space="preserve">
     <value>添加</value>
   </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>字体</value>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>230, 26</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>** 使用第三方字体时，建议安装表盘后重启手表。</value>
   </data>
   <data name="button_DelFont.Text" xml:space="preserve">
     <value>删除</value>
   </data>
-  <data name="checkBox_addZero.Text" xml:space="preserve">
-    <value>前面加0</value>
+  <data name="checkBox_CentreHorizontally.Size" type="System.Drawing.Size, System.Drawing">
+    <value>62, 30</value>
   </data>
   <data name="checkBox_CentreHorizontally.Text" xml:space="preserve">
     <value>中心
 水平地</value>
   </data>
+  <data name="checkBox_CentreVertically.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 30</value>
+  </data>
   <data name="checkBox_CentreVertically.Text" xml:space="preserve">
     <value>中心
 垂直</value>
   </data>
-  <data name="checkBox_inEnd.Text" xml:space="preserve">
-    <value>在最后</value>
+  <data name="checkBox_addZero.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 17</value>
+  </data>
+  <data name="checkBox_addZero.Text" xml:space="preserve">
+    <value>前面加0</value>
+  </data>
+  <data name="checkBox_unit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 17</value>
   </data>
   <data name="checkBox_unit.Text" xml:space="preserve">
     <value>单位</value>
   </data>
-  <data name="label7.Text" xml:space="preserve">
-    <value>** 使用第三方字体时，建议安装表盘后重启手表。</value>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>235, 26</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
     <value>!!! 部分数据可能无法显示（取决于手表型号）。 检查数据是否可以在实际设备上显示。</value>
   </data>
-  <data name="label_DOW.Text" xml:space="preserve">
-    <value>一周中各天的名称</value>
-  </data>
-  <data name="label_unit_string.Text" xml:space="preserve">
-    <value>分隔符</value>
-  </data>
-  <data name="numericUpDown_Size.ToolTip" xml:space="preserve">
-    <value>不建议设置大于150的尺寸</value>
-  </data>
-  <data name="textBox_DOW.ToolTip" xml:space="preserve">
-    <value>一周中各天的名称，从星期一开始，以逗号分隔。</value>
-  </data>
-  <data name="вставитьСвойстваToolStripMenuItem.Text" xml:space="preserve">
-    <value>插入属性</value>
+  <data name="копироватьСвойстваToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>122, 22</value>
   </data>
   <data name="копироватьСвойстваToolStripMenuItem.Text" xml:space="preserve">
     <value>复制属性</value>
   </data>
-  <data name="label_Color2.Text" xml:space="preserve">
-    <value>周末颜色</value>
+  <data name="вставитьСвойстваToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>122, 22</value>
+  </data>
+  <data name="вставитьСвойстваToolStripMenuItem.Text" xml:space="preserve">
+    <value>插入属性</value>
+  </data>
+  <data name="context_WidgetProperty.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 48</value>
+  </data>
+  <data name="label_unit_string.Text" xml:space="preserve">
+    <value>分隔符</value>
+  </data>
+  <data name="checkBox_inEnd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>62, 17</value>
+  </data>
+  <data name="checkBox_inEnd.Text" xml:space="preserve">
+    <value>在最后</value>
+  </data>
+  <data name="textBox_DOW.ToolTip" xml:space="preserve">
+    <value>一周中各天的名称，从星期一开始，以逗号分隔。</value>
+  </data>
+  <data name="label_DOW.Text" xml:space="preserve">
+    <value>一周中各天的名称</value>
   </data>
   <data name="label_Month.Text" xml:space="preserve">
     <value>月份名称字体</value>
+  </data>
+  <data name="label_Color2.Text" xml:space="preserve">
+    <value>周末颜色</value>
   </data>
   <data name="label_alpha.Text" xml:space="preserve">
     <value>透明度</value>

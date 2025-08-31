@@ -126,6 +126,12 @@
   <data name="FilterJS" xml:space="preserve">
     <value>JS files (*.js) | *.js</value>
   </data>
+  <data name="Hint_360_Text_Circle" xml:space="preserve">
+    <value>The difference between the end angle and the start angle must not exceed 360°.</value>
+  </data>
+  <data name="Hint_360_Title" xml:space="preserve">
+    <value>Warning</value>
+  </data>
   <data name="Hint_DOW" xml:space="preserve">
     <value>The names of the days of the week, starting with Monday, separated by a comma.</value>
   </data>

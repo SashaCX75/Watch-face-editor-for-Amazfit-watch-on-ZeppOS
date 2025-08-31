@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -284,15 +285,45 @@ namespace ControlLibrary
         }
 
         /// <summary>Устанавливаем место отображения am/pm</summary>
-        public void SetUnitEnd(bool unit_end)
+        public void SetUnitEnd(int unit_end)
         {
-            checkBox_inEnd.Checked = unit_end;
+            //checkBox_inEnd.Checked = unit_end;
+            switch (unit_end)
+            {
+                case 0:
+                    checkBox_inEnd.CheckState = CheckState.Unchecked;
+                    break;
+                case 1:
+                    checkBox_inEnd.CheckState = CheckState.Checked;
+                    break;
+                case 2:
+                    checkBox_inEnd.CheckState = CheckState.Indeterminate;
+                    break;
+
+                default:
+                    checkBox_inEnd.CheckState = CheckState.Unchecked;
+                    break;
+            }
         }
 
         /// <summary>Возвращает место отображения am/pm</summary>
-        public bool GetUnitEnd()
-        {  
-            return checkBox_inEnd.Checked;
+        public int GetUnitEnd()
+        {
+            int unit_end = 0;
+            switch (checkBox_inEnd.CheckState)
+            {
+                case CheckState.Unchecked:
+                    unit_end = 0;
+                    break;
+                case CheckState.Checked:
+                    unit_end = 1;
+                    break;
+                case CheckState.Indeterminate:
+                    unit_end = 2;
+                    break;
+            }
+            return unit_end;
+            //return checkBox_inEnd.Checked;
         }
 
         /// <summary>Возвращает имя файла выбраного шрифта</summary>
@@ -518,7 +549,7 @@ namespace ControlLibrary
                 label_DOW.Visible = DOW_mode;
                 bool unitVisible = DOW_mode || Month_mode;
                 textBox_DOW.Visible = unitVisible;
-                if (DOW_mode) toolTip1.SetToolTip(textBox_DOW, Properties.Strings.Hint_DOW);
+                if (DOW_mode) toolTip.SetToolTip(textBox_DOW, Properties.Strings.Hint_DOW);
             }
         }
 
@@ -536,7 +567,7 @@ namespace ControlLibrary
                 label_Month.Visible = Month_mode;
                 bool unitVisible = DOW_mode || Month_mode;
                 textBox_DOW.Visible = unitVisible;
-                if (Month_mode) toolTip1.SetToolTip(textBox_DOW, Properties.Strings.Hint_Month);
+                if (Month_mode) toolTip.SetToolTip(textBox_DOW, Properties.Strings.Hint_Month);
             }
         }
 
@@ -788,6 +819,16 @@ namespace ControlLibrary
                 EventArgs eventArgs = new EventArgs();
                 ValueChanged(this, eventArgs);
             }
+            NumericUpDown numericUpDown = sender as NumericUpDown;
+            if (numericUpDown.Name == "numericUpDown_start_angle" || numericUpDown.Name == "numericUpDown_end_angle")
+            {
+                if (Math.Abs(numericUpDown_end_angle.Value - numericUpDown_start_angle.Value) > 360)
+                {
+                    toolTip_Hint360.ToolTipTitle = Properties.Strings.Hint_360_Title;
+                    toolTip_Hint360.Show(Properties.Strings.Hint_360_Text_Circle, numericUpDown, numericUpDown.Width, 0, 2000);
+                }
+                
+            }
         }
 
         #endregion
@@ -898,6 +939,18 @@ namespace ControlLibrary
             else return textBox_DOW.Text;
         }
 
+        public void SetMode(int mode)
+        {
+            if (mode == 1) radioButton_counterclockwise.Checked = true;
+            else  radioButton_clockwise.Checked = true;
+        }
+
+        public int GetMode()
+        {
+            if (radioButton_counterclockwise.Checked) return 1;
+            else return 0;
+        }
+
         #region Settings Set/Clear
 
         /// <summary>Очищает выпадающие списки с картинками, сбрасывает данные на значения по умолчанию</summary>
@@ -940,6 +993,9 @@ namespace ControlLibrary
             Use2color = false;
             Alpha = false;
             SityName = false;
+
+            checkBox_use_text_circle.Checked = false;
+            radioButton_clockwise.Checked = true;
 
             setValue = false;
         }
@@ -1117,9 +1173,9 @@ namespace ControlLibrary
         {
             if(numericUpDown_Size.Value > 150) 
             {
-                string text = toolTip1.GetToolTip(numericUpDown_Size);
+                string text = toolTip.GetToolTip(numericUpDown_Size);
                 Point p = new Point(MouseСoordinates.X, MouseСoordinates.Y); 
-                toolTip1.Show(text, numericUpDown_Size, p, 1500);
+                toolTip.Show(text, numericUpDown_Size, p, 1500);
             }
             if (ValueChanged != null && !setValue)
             {
@@ -1136,6 +1192,46 @@ namespace ControlLibrary
             label_Color2.Enabled = use;
             comboBox_Color2.Enabled = use;
 
+            if (ValueChanged != null && !setValue)
+            {
+                EventArgs eventArgs = new EventArgs();
+                ValueChanged(this, eventArgs);
+            }
+        }
+
+        private void checkBox_use_text_circle_CheckedChanged(object sender, EventArgs e)
+        {
+            bool use_text_circle = checkBox_use_text_circle.Checked;
+
+            label9.Enabled = use_text_circle;
+            label10.Enabled = use_text_circle;
+            label11.Enabled = use_text_circle;
+            numericUpDown_start_angle.Enabled = use_text_circle;
+            numericUpDown_end_angle.Enabled = use_text_circle;
+            numericUpDown_radius.Enabled = use_text_circle;
+            radioButton_clockwise.Enabled = use_text_circle;
+            radioButton_counterclockwise.Enabled = use_text_circle;
+
+            label07.Enabled = !use_text_circle;
+            label08.Enabled = !use_text_circle;
+            label1.Enabled = !use_text_circle;
+            label3.Enabled = !use_text_circle;
+            label4.Enabled = !use_text_circle;
+            numericUpDown_Width.Enabled = !use_text_circle;
+            numericUpDown_Height.Enabled = !use_text_circle;
+            comboBox_alignmentVertical.Enabled = !use_text_circle;
+            numericUpDown_LineSpace.Enabled = !use_text_circle;
+            comboBox_textStyle.Enabled = !use_text_circle;
+
+            if (ValueChanged != null && !setValue)
+            {
+                EventArgs eventArgs = new EventArgs();
+                ValueChanged(this, eventArgs);
+            }
+        }
+
+        private void radioButton_clockwise_CheckedChanged(object sender, EventArgs e)
+        {
             if (ValueChanged != null && !setValue)
             {
                 EventArgs eventArgs = new EventArgs();

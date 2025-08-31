@@ -433,6 +433,16 @@ namespace ControlLibrary.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap hr_min_icon {
+            get {
+                object obj = ResourceManager.GetObject("hr_min_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap hrv {
             get {
                 object obj = ResourceManager.GetObject("hrv", resourceCulture);
@@ -1006,6 +1016,16 @@ namespace ControlLibrary.Properties {
         internal static System.Drawing.Bitmap wind {
             get {
                 object obj = ResourceManager.GetObject("wind", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap world_clock {
+            get {
+                object obj = ResourceManager.GetObject("world_clock", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

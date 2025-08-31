@@ -126,6 +126,12 @@
   <data name="FilterJS" xml:space="preserve">
     <value>JS soubor (*.js) | *.js</value>
   </data>
+  <data name="Hint_360_Text_Circle" xml:space="preserve">
+    <value>Rozdíl mezi konečným a počátečním úhlem nesmí překročit 360°</value>
+  </data>
+  <data name="Hint_360_Title" xml:space="preserve">
+    <value>Varování</value>
+  </data>
   <data name="Hint_DOW" xml:space="preserve">
     <value>Názvy dnů v týdnu počínaje pondělím oddělené čárkou.</value>
   </data>

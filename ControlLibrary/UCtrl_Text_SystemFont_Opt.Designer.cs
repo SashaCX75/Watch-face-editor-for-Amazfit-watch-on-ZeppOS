@@ -80,7 +80,8 @@ namespace ControlLibrary
             this.label_unit_string = new System.Windows.Forms.Label();
             this.checkBox_inEnd = new System.Windows.Forms.CheckBox();
             this.textBox_DOW = new System.Windows.Forms.TextBox();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.numericUpDown_radius = new System.Windows.Forms.NumericUpDown();
             this.label_DOW = new System.Windows.Forms.Label();
             this.label_Month = new System.Windows.Forms.Label();
             this.comboBox_Color2 = new System.Windows.Forms.ComboBox();
@@ -88,6 +89,16 @@ namespace ControlLibrary
             this.checkBox_Color2 = new System.Windows.Forms.CheckBox();
             this.numericUpDown_Alpha = new System.Windows.Forms.NumericUpDown();
             this.label_alpha = new System.Windows.Forms.Label();
+            this.checkBox_use_text_circle = new System.Windows.Forms.CheckBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.numericUpDown_start_angle = new System.Windows.Forms.NumericUpDown();
+            this.label10 = new System.Windows.Forms.Label();
+            this.numericUpDown_end_angle = new System.Windows.Forms.NumericUpDown();
+            this.label11 = new System.Windows.Forms.Label();
+            this.radioButton_clockwise = new System.Windows.Forms.RadioButton();
+            this.radioButton_counterclockwise = new System.Windows.Forms.RadioButton();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.toolTip_Hint360 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Width)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Height)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_X)).BeginInit();
@@ -98,7 +109,11 @@ namespace ControlLibrary
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Spacing)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_LineSpace)).BeginInit();
             this.context_WidgetProperty.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_radius)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Alpha)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_start_angle)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_end_angle)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // numericUpDown_Width
@@ -115,6 +130,8 @@ namespace ControlLibrary
             0,
             -2147483648});
             this.numericUpDown_Width.Name = "numericUpDown_Width";
+            this.toolTip.SetToolTip(this.numericUpDown_Width, resources.GetString("numericUpDown_Width.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.numericUpDown_Width, resources.GetString("numericUpDown_Width.ToolTip1"));
             this.numericUpDown_Width.Value = new decimal(new int[] {
             180,
             0,
@@ -138,6 +155,8 @@ namespace ControlLibrary
             0,
             -2147483648});
             this.numericUpDown_Height.Name = "numericUpDown_Height";
+            this.toolTip.SetToolTip(this.numericUpDown_Height, resources.GetString("numericUpDown_Height.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.numericUpDown_Height, resources.GetString("numericUpDown_Height.ToolTip1"));
             this.numericUpDown_Height.Value = new decimal(new int[] {
             180,
             0,
@@ -151,16 +170,20 @@ namespace ControlLibrary
             // 
             resources.ApplyResources(this.label08, "label08");
             this.label08.Name = "label08";
+            this.toolTip.SetToolTip(this.label08, resources.GetString("label08.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.label08, resources.GetString("label08.ToolTip1"));
             // 
             // label07
             // 
             resources.ApplyResources(this.label07, "label07");
             this.label07.Name = "label07";
+            this.toolTip.SetToolTip(this.label07, resources.GetString("label07.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.label07, resources.GetString("label07.ToolTip1"));
             // 
             // numericUpDown_X
             // 
-            this.numericUpDown_X.ContextMenuStrip = this.contextMenuStrip_X;
             resources.ApplyResources(this.numericUpDown_X, "numericUpDown_X");
+            this.numericUpDown_X.ContextMenuStrip = this.contextMenuStrip_X;
             this.numericUpDown_X.Maximum = new decimal(new int[] {
             999,
             0,
@@ -172,19 +195,23 @@ namespace ControlLibrary
             0,
             -2147483648});
             this.numericUpDown_X.Name = "numericUpDown_X";
+            this.toolTip.SetToolTip(this.numericUpDown_X, resources.GetString("numericUpDown_X.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.numericUpDown_X, resources.GetString("numericUpDown_X.ToolTip1"));
             this.numericUpDown_X.ValueChanged += new System.EventHandler(this.numericUpDown_ValueChanged);
             this.numericUpDown_X.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericUpDown_Pos_KeyDown);
             this.numericUpDown_X.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.numericUpDown_picturesX_MouseDoubleClick);
             // 
             // contextMenuStrip_X
             // 
+            resources.ApplyResources(this.contextMenuStrip_X, "contextMenuStrip_X");
             this.contextMenuStrip_X.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip_X.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.вставитьКоординатуХToolStripMenuItem,
             this.копироватьToolStripMenuItemX,
             this.вставитьToolStripMenuItemX});
             this.contextMenuStrip_X.Name = "contextMenuStrip_X";
-            resources.ApplyResources(this.contextMenuStrip_X, "contextMenuStrip_X");
+            this.toolTip_Hint360.SetToolTip(this.contextMenuStrip_X, resources.GetString("contextMenuStrip_X.ToolTip"));
+            this.toolTip.SetToolTip(this.contextMenuStrip_X, resources.GetString("contextMenuStrip_X.ToolTip1"));
             this.contextMenuStrip_X.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip_X_Opening);
             // 
             // вставитьКоординатуХToolStripMenuItem
@@ -207,8 +234,8 @@ namespace ControlLibrary
             // 
             // numericUpDown_Y
             // 
-            this.numericUpDown_Y.ContextMenuStrip = this.contextMenuStrip_Y;
             resources.ApplyResources(this.numericUpDown_Y, "numericUpDown_Y");
+            this.numericUpDown_Y.ContextMenuStrip = this.contextMenuStrip_Y;
             this.numericUpDown_Y.Maximum = new decimal(new int[] {
             999,
             0,
@@ -220,19 +247,23 @@ namespace ControlLibrary
             0,
             -2147483648});
             this.numericUpDown_Y.Name = "numericUpDown_Y";
+            this.toolTip.SetToolTip(this.numericUpDown_Y, resources.GetString("numericUpDown_Y.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.numericUpDown_Y, resources.GetString("numericUpDown_Y.ToolTip1"));
             this.numericUpDown_Y.ValueChanged += new System.EventHandler(this.numericUpDown_ValueChanged);
             this.numericUpDown_Y.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numericUpDown_Pos_KeyDown);
             this.numericUpDown_Y.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.numericUpDown_picturesY_MouseDoubleClick);
             // 
             // contextMenuStrip_Y
             // 
+            resources.ApplyResources(this.contextMenuStrip_Y, "contextMenuStrip_Y");
             this.contextMenuStrip_Y.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip_Y.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.вставитьКоординатуYToolStripMenuItem,
             this.копироватьToolStripMenuItemY,
             this.вставитьToolStripMenuItemY});
             this.contextMenuStrip_Y.Name = "contextMenuStrip_X";
-            resources.ApplyResources(this.contextMenuStrip_Y, "contextMenuStrip_Y");
+            this.toolTip_Hint360.SetToolTip(this.contextMenuStrip_Y, resources.GetString("contextMenuStrip_Y.ToolTip"));
+            this.toolTip.SetToolTip(this.contextMenuStrip_Y, resources.GetString("contextMenuStrip_Y.ToolTip1"));
             this.contextMenuStrip_Y.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip_Y_Opening);
             // 
             // вставитьКоординатуYToolStripMenuItem
@@ -267,7 +298,8 @@ namespace ControlLibrary
             0,
             0});
             this.numericUpDown_Size.Name = "numericUpDown_Size";
-            this.toolTip1.SetToolTip(this.numericUpDown_Size, resources.GetString("numericUpDown_Size.ToolTip"));
+            this.toolTip.SetToolTip(this.numericUpDown_Size, resources.GetString("numericUpDown_Size.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.numericUpDown_Size, resources.GetString("numericUpDown_Size.ToolTip1"));
             this.numericUpDown_Size.Value = new decimal(new int[] {
             25,
             0,
@@ -289,80 +321,104 @@ namespace ControlLibrary
             0,
             -2147483648});
             this.numericUpDown_Spacing.Name = "numericUpDown_Spacing";
+            this.toolTip.SetToolTip(this.numericUpDown_Spacing, resources.GetString("numericUpDown_Spacing.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.numericUpDown_Spacing, resources.GetString("numericUpDown_Spacing.ToolTip1"));
             this.numericUpDown_Spacing.ValueChanged += new System.EventHandler(this.numericUpDown_ValueChanged);
             // 
             // label01
             // 
             resources.ApplyResources(this.label01, "label01");
             this.label01.Name = "label01";
+            this.toolTip.SetToolTip(this.label01, resources.GetString("label01.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.label01, resources.GetString("label01.ToolTip1"));
             // 
             // label04
             // 
             resources.ApplyResources(this.label04, "label04");
             this.label04.Name = "label04";
+            this.toolTip.SetToolTip(this.label04, resources.GetString("label04.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.label04, resources.GetString("label04.ToolTip1"));
             // 
             // label03
             // 
             resources.ApplyResources(this.label03, "label03");
             this.label03.Name = "label03";
+            this.toolTip.SetToolTip(this.label03, resources.GetString("label03.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.label03, resources.GetString("label03.ToolTip1"));
             // 
             // label06
             // 
             resources.ApplyResources(this.label06, "label06");
             this.label06.Name = "label06";
+            this.toolTip.SetToolTip(this.label06, resources.GetString("label06.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.label06, resources.GetString("label06.ToolTip1"));
             // 
             // label05
             // 
             resources.ApplyResources(this.label05, "label05");
             this.label05.Name = "label05";
+            this.toolTip.SetToolTip(this.label05, resources.GetString("label05.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.label05, resources.GetString("label05.ToolTip1"));
             // 
             // comboBox_alignmentHorizontal
             // 
+            resources.ApplyResources(this.comboBox_alignmentHorizontal, "comboBox_alignmentHorizontal");
             this.comboBox_alignmentHorizontal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_alignmentHorizontal.FormattingEnabled = true;
             this.comboBox_alignmentHorizontal.Items.AddRange(new object[] {
             resources.GetString("comboBox_alignmentHorizontal.Items"),
             resources.GetString("comboBox_alignmentHorizontal.Items1"),
             resources.GetString("comboBox_alignmentHorizontal.Items2")});
-            resources.ApplyResources(this.comboBox_alignmentHorizontal, "comboBox_alignmentHorizontal");
             this.comboBox_alignmentHorizontal.Name = "comboBox_alignmentHorizontal";
+            this.toolTip_Hint360.SetToolTip(this.comboBox_alignmentHorizontal, resources.GetString("comboBox_alignmentHorizontal.ToolTip"));
+            this.toolTip.SetToolTip(this.comboBox_alignmentHorizontal, resources.GetString("comboBox_alignmentHorizontal.ToolTip1"));
             this.comboBox_alignmentHorizontal.SelectedIndexChanged += new System.EventHandler(this.comboBox_SelectedIndexChanged);
             // 
             // label09
             // 
             resources.ApplyResources(this.label09, "label09");
             this.label09.Name = "label09";
+            this.toolTip.SetToolTip(this.label09, resources.GetString("label09.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.label09, resources.GetString("label09.ToolTip1"));
             // 
             // comboBox_alignmentVertical
             // 
+            resources.ApplyResources(this.comboBox_alignmentVertical, "comboBox_alignmentVertical");
             this.comboBox_alignmentVertical.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_alignmentVertical.FormattingEnabled = true;
             this.comboBox_alignmentVertical.Items.AddRange(new object[] {
             resources.GetString("comboBox_alignmentVertical.Items"),
             resources.GetString("comboBox_alignmentVertical.Items1"),
             resources.GetString("comboBox_alignmentVertical.Items2")});
-            resources.ApplyResources(this.comboBox_alignmentVertical, "comboBox_alignmentVertical");
             this.comboBox_alignmentVertical.Name = "comboBox_alignmentVertical";
+            this.toolTip_Hint360.SetToolTip(this.comboBox_alignmentVertical, resources.GetString("comboBox_alignmentVertical.ToolTip"));
+            this.toolTip.SetToolTip(this.comboBox_alignmentVertical, resources.GetString("comboBox_alignmentVertical.ToolTip1"));
             this.comboBox_alignmentVertical.SelectedIndexChanged += new System.EventHandler(this.comboBox_SelectedIndexChanged);
             // 
             // label1
             // 
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
+            this.toolTip.SetToolTip(this.label1, resources.GetString("label1.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.label1, resources.GetString("label1.ToolTip1"));
             // 
             // comboBox_Color
             // 
+            resources.ApplyResources(this.comboBox_Color, "comboBox_Color");
             this.comboBox_Color.BackColor = System.Drawing.Color.DarkOrange;
             this.comboBox_Color.DropDownHeight = 1;
             this.comboBox_Color.FormattingEnabled = true;
-            resources.ApplyResources(this.comboBox_Color, "comboBox_Color");
             this.comboBox_Color.Name = "comboBox_Color";
+            this.toolTip_Hint360.SetToolTip(this.comboBox_Color, resources.GetString("comboBox_Color.ToolTip"));
+            this.toolTip.SetToolTip(this.comboBox_Color, resources.GetString("comboBox_Color.ToolTip1"));
             this.comboBox_Color.Click += new System.EventHandler(this.comboBox_Color_Click);
             // 
             // label2
             // 
             resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
+            this.toolTip.SetToolTip(this.label2, resources.GetString("label2.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.label2, resources.GetString("label2.ToolTip1"));
             // 
             // numericUpDown_LineSpace
             // 
@@ -378,53 +434,69 @@ namespace ControlLibrary
             0,
             -2147483648});
             this.numericUpDown_LineSpace.Name = "numericUpDown_LineSpace";
+            this.toolTip.SetToolTip(this.numericUpDown_LineSpace, resources.GetString("numericUpDown_LineSpace.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.numericUpDown_LineSpace, resources.GetString("numericUpDown_LineSpace.ToolTip1"));
             this.numericUpDown_LineSpace.ValueChanged += new System.EventHandler(this.numericUpDown_ValueChanged);
             // 
             // label3
             // 
             resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
+            this.toolTip.SetToolTip(this.label3, resources.GetString("label3.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.label3, resources.GetString("label3.ToolTip1"));
             // 
             // comboBox_textStyle
             // 
+            resources.ApplyResources(this.comboBox_textStyle, "comboBox_textStyle");
             this.comboBox_textStyle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_textStyle.FormattingEnabled = true;
             this.comboBox_textStyle.Items.AddRange(new object[] {
             resources.GetString("comboBox_textStyle.Items"),
             resources.GetString("comboBox_textStyle.Items1"),
             resources.GetString("comboBox_textStyle.Items2")});
-            resources.ApplyResources(this.comboBox_textStyle, "comboBox_textStyle");
             this.comboBox_textStyle.Name = "comboBox_textStyle";
+            this.toolTip_Hint360.SetToolTip(this.comboBox_textStyle, resources.GetString("comboBox_textStyle.ToolTip"));
+            this.toolTip.SetToolTip(this.comboBox_textStyle, resources.GetString("comboBox_textStyle.ToolTip1"));
             this.comboBox_textStyle.SelectedIndexChanged += new System.EventHandler(this.comboBox_SelectedIndexChanged);
             // 
             // label4
             // 
             resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
+            this.toolTip.SetToolTip(this.label4, resources.GetString("label4.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.label4, resources.GetString("label4.ToolTip1"));
             // 
             // label5
             // 
             resources.ApplyResources(this.label5, "label5");
             this.label5.Name = "label5";
+            this.toolTip.SetToolTip(this.label5, resources.GetString("label5.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.label5, resources.GetString("label5.ToolTip1"));
             // 
             // comboBox_fonts
             // 
+            resources.ApplyResources(this.comboBox_fonts, "comboBox_fonts");
             this.comboBox_fonts.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_fonts.DropDownWidth = 160;
             this.comboBox_fonts.FormattingEnabled = true;
-            resources.ApplyResources(this.comboBox_fonts, "comboBox_fonts");
             this.comboBox_fonts.Name = "comboBox_fonts";
+            this.toolTip_Hint360.SetToolTip(this.comboBox_fonts, resources.GetString("comboBox_fonts.ToolTip"));
+            this.toolTip.SetToolTip(this.comboBox_fonts, resources.GetString("comboBox_fonts.ToolTip1"));
             this.comboBox_fonts.SelectedIndexChanged += new System.EventHandler(this.comboBox_fonts_SelectedIndexChanged);
             // 
             // label6
             // 
             resources.ApplyResources(this.label6, "label6");
             this.label6.Name = "label6";
+            this.toolTip.SetToolTip(this.label6, resources.GetString("label6.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.label6, resources.GetString("label6.ToolTip1"));
             // 
             // button_AddFont
             // 
             resources.ApplyResources(this.button_AddFont, "button_AddFont");
             this.button_AddFont.Name = "button_AddFont";
+            this.toolTip.SetToolTip(this.button_AddFont, resources.GetString("button_AddFont.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.button_AddFont, resources.GetString("button_AddFont.ToolTip1"));
             this.button_AddFont.UseVisualStyleBackColor = true;
             this.button_AddFont.Click += new System.EventHandler(this.button_AddFont_Click);
             // 
@@ -432,11 +504,15 @@ namespace ControlLibrary
             // 
             resources.ApplyResources(this.label7, "label7");
             this.label7.Name = "label7";
+            this.toolTip.SetToolTip(this.label7, resources.GetString("label7.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.label7, resources.GetString("label7.ToolTip1"));
             // 
             // button_DelFont
             // 
             resources.ApplyResources(this.button_DelFont, "button_DelFont");
             this.button_DelFont.Name = "button_DelFont";
+            this.toolTip.SetToolTip(this.button_DelFont, resources.GetString("button_DelFont.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.button_DelFont, resources.GetString("button_DelFont.ToolTip1"));
             this.button_DelFont.UseVisualStyleBackColor = true;
             this.button_DelFont.Click += new System.EventHandler(this.button_DelFont_Click);
             // 
@@ -444,6 +520,8 @@ namespace ControlLibrary
             // 
             resources.ApplyResources(this.checkBox_CentreHorizontally, "checkBox_CentreHorizontally");
             this.checkBox_CentreHorizontally.Name = "checkBox_CentreHorizontally";
+            this.toolTip.SetToolTip(this.checkBox_CentreHorizontally, resources.GetString("checkBox_CentreHorizontally.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.checkBox_CentreHorizontally, resources.GetString("checkBox_CentreHorizontally.ToolTip1"));
             this.checkBox_CentreHorizontally.UseVisualStyleBackColor = true;
             this.checkBox_CentreHorizontally.CheckedChanged += new System.EventHandler(this.checkBox_CentreHorizontally_CheckedChanged);
             // 
@@ -451,6 +529,8 @@ namespace ControlLibrary
             // 
             resources.ApplyResources(this.checkBox_CentreVertically, "checkBox_CentreVertically");
             this.checkBox_CentreVertically.Name = "checkBox_CentreVertically";
+            this.toolTip.SetToolTip(this.checkBox_CentreVertically, resources.GetString("checkBox_CentreVertically.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.checkBox_CentreVertically, resources.GetString("checkBox_CentreVertically.ToolTip1"));
             this.checkBox_CentreVertically.UseVisualStyleBackColor = true;
             this.checkBox_CentreVertically.CheckedChanged += new System.EventHandler(this.checkBox_CentreVertically_CheckedChanged);
             // 
@@ -458,6 +538,8 @@ namespace ControlLibrary
             // 
             resources.ApplyResources(this.checkBox_addZero, "checkBox_addZero");
             this.checkBox_addZero.Name = "checkBox_addZero";
+            this.toolTip.SetToolTip(this.checkBox_addZero, resources.GetString("checkBox_addZero.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.checkBox_addZero, resources.GetString("checkBox_addZero.ToolTip1"));
             this.checkBox_addZero.UseVisualStyleBackColor = true;
             this.checkBox_addZero.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
@@ -466,6 +548,8 @@ namespace ControlLibrary
             resources.ApplyResources(this.checkBox_unit, "checkBox_unit");
             this.checkBox_unit.Name = "checkBox_unit";
             this.checkBox_unit.ThreeState = true;
+            this.toolTip.SetToolTip(this.checkBox_unit, resources.GetString("checkBox_unit.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.checkBox_unit, resources.GetString("checkBox_unit.ToolTip1"));
             this.checkBox_unit.UseVisualStyleBackColor = true;
             this.checkBox_unit.CheckStateChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
@@ -473,83 +557,123 @@ namespace ControlLibrary
             // 
             resources.ApplyResources(this.label8, "label8");
             this.label8.Name = "label8";
+            this.toolTip.SetToolTip(this.label8, resources.GetString("label8.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.label8, resources.GetString("label8.ToolTip1"));
             // 
             // context_WidgetProperty
             // 
+            resources.ApplyResources(this.context_WidgetProperty, "context_WidgetProperty");
             this.context_WidgetProperty.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.копироватьСвойстваToolStripMenuItem,
             this.вставитьСвойстваToolStripMenuItem});
             this.context_WidgetProperty.Name = "context_WidgetProperty";
-            resources.ApplyResources(this.context_WidgetProperty, "context_WidgetProperty");
+            this.toolTip_Hint360.SetToolTip(this.context_WidgetProperty, resources.GetString("context_WidgetProperty.ToolTip"));
+            this.toolTip.SetToolTip(this.context_WidgetProperty, resources.GetString("context_WidgetProperty.ToolTip1"));
             this.context_WidgetProperty.Opening += new System.ComponentModel.CancelEventHandler(this.context_WidgetProperty_Opening);
             // 
             // копироватьСвойстваToolStripMenuItem
             // 
+            resources.ApplyResources(this.копироватьСвойстваToolStripMenuItem, "копироватьСвойстваToolStripMenuItem");
             this.копироватьСвойстваToolStripMenuItem.Image = global::ControlLibrary.Properties.Resources.copy_prop;
             this.копироватьСвойстваToolStripMenuItem.Name = "копироватьСвойстваToolStripMenuItem";
-            resources.ApplyResources(this.копироватьСвойстваToolStripMenuItem, "копироватьСвойстваToolStripMenuItem");
             this.копироватьСвойстваToolStripMenuItem.Click += new System.EventHandler(this.копироватьСвойстваToolStripMenuItem_Click);
             // 
             // вставитьСвойстваToolStripMenuItem
             // 
+            resources.ApplyResources(this.вставитьСвойстваToolStripMenuItem, "вставитьСвойстваToolStripMenuItem");
             this.вставитьСвойстваToolStripMenuItem.Image = global::ControlLibrary.Properties.Resources.paste_prop;
             this.вставитьСвойстваToolStripMenuItem.Name = "вставитьСвойстваToolStripMenuItem";
-            resources.ApplyResources(this.вставитьСвойстваToolStripMenuItem, "вставитьСвойстваToolStripMenuItem");
             this.вставитьСвойстваToolStripMenuItem.Click += new System.EventHandler(this.вставитьСвойстваToolStripMenuItem_Click);
             // 
             // textBox_unit_string
             // 
             resources.ApplyResources(this.textBox_unit_string, "textBox_unit_string");
             this.textBox_unit_string.Name = "textBox_unit_string";
+            this.toolTip_Hint360.SetToolTip(this.textBox_unit_string, resources.GetString("textBox_unit_string.ToolTip"));
+            this.toolTip.SetToolTip(this.textBox_unit_string, resources.GetString("textBox_unit_string.ToolTip1"));
             this.textBox_unit_string.TextChanged += new System.EventHandler(this.textBox_unit_string_TextChanged);
             // 
             // label_unit_string
             // 
             resources.ApplyResources(this.label_unit_string, "label_unit_string");
             this.label_unit_string.Name = "label_unit_string";
+            this.toolTip.SetToolTip(this.label_unit_string, resources.GetString("label_unit_string.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.label_unit_string, resources.GetString("label_unit_string.ToolTip1"));
             // 
             // checkBox_inEnd
             // 
             resources.ApplyResources(this.checkBox_inEnd, "checkBox_inEnd");
             this.checkBox_inEnd.Name = "checkBox_inEnd";
+            this.checkBox_inEnd.ThreeState = true;
+            this.toolTip.SetToolTip(this.checkBox_inEnd, resources.GetString("checkBox_inEnd.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.checkBox_inEnd, resources.GetString("checkBox_inEnd.ToolTip1"));
             this.checkBox_inEnd.UseVisualStyleBackColor = true;
-            this.checkBox_inEnd.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
+            this.checkBox_inEnd.CheckStateChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
             // textBox_DOW
             // 
             resources.ApplyResources(this.textBox_DOW, "textBox_DOW");
             this.textBox_DOW.Name = "textBox_DOW";
-            this.toolTip1.SetToolTip(this.textBox_DOW, resources.GetString("textBox_DOW.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.textBox_DOW, resources.GetString("textBox_DOW.ToolTip"));
+            this.toolTip.SetToolTip(this.textBox_DOW, resources.GetString("textBox_DOW.ToolTip1"));
             this.textBox_DOW.TextChanged += new System.EventHandler(this.textBox_unit_string_TextChanged);
+            // 
+            // numericUpDown_radius
+            // 
+            resources.ApplyResources(this.numericUpDown_radius, "numericUpDown_radius");
+            this.numericUpDown_radius.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.numericUpDown_radius.Name = "numericUpDown_radius";
+            this.toolTip.SetToolTip(this.numericUpDown_radius, resources.GetString("numericUpDown_radius.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.numericUpDown_radius, resources.GetString("numericUpDown_radius.ToolTip1"));
+            this.numericUpDown_radius.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.numericUpDown_radius.ValueChanged += new System.EventHandler(this.numericUpDown_ValueChanged);
             // 
             // label_DOW
             // 
             resources.ApplyResources(this.label_DOW, "label_DOW");
             this.label_DOW.Name = "label_DOW";
+            this.toolTip.SetToolTip(this.label_DOW, resources.GetString("label_DOW.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.label_DOW, resources.GetString("label_DOW.ToolTip1"));
             // 
             // label_Month
             // 
             resources.ApplyResources(this.label_Month, "label_Month");
             this.label_Month.Name = "label_Month";
+            this.toolTip.SetToolTip(this.label_Month, resources.GetString("label_Month.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.label_Month, resources.GetString("label_Month.ToolTip1"));
             // 
             // comboBox_Color2
             // 
+            resources.ApplyResources(this.comboBox_Color2, "comboBox_Color2");
             this.comboBox_Color2.BackColor = System.Drawing.Color.DarkOrange;
             this.comboBox_Color2.DropDownHeight = 1;
-            resources.ApplyResources(this.comboBox_Color2, "comboBox_Color2");
             this.comboBox_Color2.FormattingEnabled = true;
             this.comboBox_Color2.Name = "comboBox_Color2";
+            this.toolTip_Hint360.SetToolTip(this.comboBox_Color2, resources.GetString("comboBox_Color2.ToolTip"));
+            this.toolTip.SetToolTip(this.comboBox_Color2, resources.GetString("comboBox_Color2.ToolTip1"));
             this.comboBox_Color2.Click += new System.EventHandler(this.comboBox_Color_Click);
             // 
             // label_Color2
             // 
             resources.ApplyResources(this.label_Color2, "label_Color2");
             this.label_Color2.Name = "label_Color2";
+            this.toolTip.SetToolTip(this.label_Color2, resources.GetString("label_Color2.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.label_Color2, resources.GetString("label_Color2.ToolTip1"));
             // 
             // checkBox_Color2
             // 
             resources.ApplyResources(this.checkBox_Color2, "checkBox_Color2");
             this.checkBox_Color2.Name = "checkBox_Color2";
+            this.toolTip.SetToolTip(this.checkBox_Color2, resources.GetString("checkBox_Color2.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.checkBox_Color2, resources.GetString("checkBox_Color2.ToolTip1"));
             this.checkBox_Color2.UseVisualStyleBackColor = true;
             this.checkBox_Color2.CheckedChanged += new System.EventHandler(this.checkBox_Color2_CheckedChanged);
             // 
@@ -562,6 +686,8 @@ namespace ControlLibrary
             0,
             0});
             this.numericUpDown_Alpha.Name = "numericUpDown_Alpha";
+            this.toolTip.SetToolTip(this.numericUpDown_Alpha, resources.GetString("numericUpDown_Alpha.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.numericUpDown_Alpha, resources.GetString("numericUpDown_Alpha.ToolTip1"));
             this.numericUpDown_Alpha.Value = new decimal(new int[] {
             255,
             0,
@@ -571,15 +697,129 @@ namespace ControlLibrary
             // 
             // label_alpha
             // 
-            this.label_alpha.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.label_alpha, "label_alpha");
+            this.label_alpha.BackColor = System.Drawing.Color.Transparent;
             this.label_alpha.Name = "label_alpha";
+            this.toolTip.SetToolTip(this.label_alpha, resources.GetString("label_alpha.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.label_alpha, resources.GetString("label_alpha.ToolTip1"));
+            // 
+            // checkBox_use_text_circle
+            // 
+            resources.ApplyResources(this.checkBox_use_text_circle, "checkBox_use_text_circle");
+            this.checkBox_use_text_circle.Name = "checkBox_use_text_circle";
+            this.toolTip.SetToolTip(this.checkBox_use_text_circle, resources.GetString("checkBox_use_text_circle.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.checkBox_use_text_circle, resources.GetString("checkBox_use_text_circle.ToolTip1"));
+            this.checkBox_use_text_circle.CheckedChanged += new System.EventHandler(this.checkBox_use_text_circle_CheckedChanged);
+            // 
+            // label9
+            // 
+            resources.ApplyResources(this.label9, "label9");
+            this.label9.Name = "label9";
+            this.toolTip.SetToolTip(this.label9, resources.GetString("label9.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.label9, resources.GetString("label9.ToolTip1"));
+            // 
+            // numericUpDown_start_angle
+            // 
+            resources.ApplyResources(this.numericUpDown_start_angle, "numericUpDown_start_angle");
+            this.numericUpDown_start_angle.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.numericUpDown_start_angle.Minimum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDown_start_angle.Name = "numericUpDown_start_angle";
+            this.toolTip.SetToolTip(this.numericUpDown_start_angle, resources.GetString("numericUpDown_start_angle.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.numericUpDown_start_angle, resources.GetString("numericUpDown_start_angle.ToolTip1"));
+            this.numericUpDown_start_angle.ValueChanged += new System.EventHandler(this.numericUpDown_ValueChanged);
+            // 
+            // label10
+            // 
+            resources.ApplyResources(this.label10, "label10");
+            this.label10.Name = "label10";
+            this.toolTip.SetToolTip(this.label10, resources.GetString("label10.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.label10, resources.GetString("label10.ToolTip1"));
+            // 
+            // numericUpDown_end_angle
+            // 
+            resources.ApplyResources(this.numericUpDown_end_angle, "numericUpDown_end_angle");
+            this.numericUpDown_end_angle.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.numericUpDown_end_angle.Minimum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDown_end_angle.Name = "numericUpDown_end_angle";
+            this.toolTip.SetToolTip(this.numericUpDown_end_angle, resources.GetString("numericUpDown_end_angle.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.numericUpDown_end_angle, resources.GetString("numericUpDown_end_angle.ToolTip1"));
+            this.numericUpDown_end_angle.Value = new decimal(new int[] {
+            180,
+            0,
+            0,
+            0});
+            this.numericUpDown_end_angle.ValueChanged += new System.EventHandler(this.numericUpDown_ValueChanged);
+            // 
+            // label11
+            // 
+            resources.ApplyResources(this.label11, "label11");
+            this.label11.Name = "label11";
+            this.toolTip.SetToolTip(this.label11, resources.GetString("label11.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.label11, resources.GetString("label11.ToolTip1"));
+            // 
+            // radioButton_clockwise
+            // 
+            resources.ApplyResources(this.radioButton_clockwise, "radioButton_clockwise");
+            this.radioButton_clockwise.Checked = true;
+            this.radioButton_clockwise.Name = "radioButton_clockwise";
+            this.radioButton_clockwise.TabStop = true;
+            this.toolTip.SetToolTip(this.radioButton_clockwise, resources.GetString("radioButton_clockwise.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.radioButton_clockwise, resources.GetString("radioButton_clockwise.ToolTip1"));
+            this.radioButton_clockwise.UseVisualStyleBackColor = true;
+            this.radioButton_clockwise.CheckedChanged += new System.EventHandler(this.radioButton_clockwise_CheckedChanged);
+            // 
+            // radioButton_counterclockwise
+            // 
+            resources.ApplyResources(this.radioButton_counterclockwise, "radioButton_counterclockwise");
+            this.radioButton_counterclockwise.Name = "radioButton_counterclockwise";
+            this.toolTip.SetToolTip(this.radioButton_counterclockwise, resources.GetString("radioButton_counterclockwise.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this.radioButton_counterclockwise, resources.GetString("radioButton_counterclockwise.ToolTip1"));
+            this.radioButton_counterclockwise.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            resources.ApplyResources(this.panel1, "panel1");
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.checkBox_use_text_circle);
+            this.panel1.Controls.Add(this.radioButton_counterclockwise);
+            this.panel1.Controls.Add(this.label9);
+            this.panel1.Controls.Add(this.radioButton_clockwise);
+            this.panel1.Controls.Add(this.numericUpDown_radius);
+            this.panel1.Controls.Add(this.numericUpDown_end_angle);
+            this.panel1.Controls.Add(this.label10);
+            this.panel1.Controls.Add(this.label11);
+            this.panel1.Controls.Add(this.numericUpDown_start_angle);
+            this.panel1.Name = "panel1";
+            this.toolTip_Hint360.SetToolTip(this.panel1, resources.GetString("panel1.ToolTip"));
+            this.toolTip.SetToolTip(this.panel1, resources.GetString("panel1.ToolTip1"));
+            // 
+            // toolTip_Hint360
+            // 
+            this.toolTip_Hint360.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Warning;
+            this.toolTip_Hint360.ToolTipTitle = "Warning";
             // 
             // UCtrl_Text_SystemFont_Opt
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ContextMenuStrip = this.context_WidgetProperty;
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.label06);
             this.Controls.Add(this.label09);
             this.Controls.Add(this.numericUpDown_Alpha);
@@ -626,6 +866,8 @@ namespace ControlLibrary
             this.Controls.Add(this.label03);
             this.Controls.Add(this.label05);
             this.Name = "UCtrl_Text_SystemFont_Opt";
+            this.toolTip.SetToolTip(this, resources.GetString("$this.ToolTip"));
+            this.toolTip_Hint360.SetToolTip(this, resources.GetString("$this.ToolTip1"));
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Width)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Height)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_X)).EndInit();
@@ -636,7 +878,12 @@ namespace ControlLibrary
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Spacing)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_LineSpace)).EndInit();
             this.context_WidgetProperty.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_radius)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Alpha)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_start_angle)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_end_angle)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -693,7 +940,7 @@ namespace ControlLibrary
         private System.Windows.Forms.Label label_unit_string;
         private System.Windows.Forms.CheckBox checkBox_inEnd;
         private System.Windows.Forms.TextBox textBox_DOW;
-        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.ToolTip toolTip;
         protected System.Windows.Forms.Label label_DOW;
         protected System.Windows.Forms.Label label_Month;
         private System.Windows.Forms.ComboBox comboBox_Color2;
@@ -701,5 +948,16 @@ namespace ControlLibrary
         public System.Windows.Forms.CheckBox checkBox_Color2;
         public System.Windows.Forms.NumericUpDown numericUpDown_Alpha;
         private System.Windows.Forms.Label label_alpha;
+        public System.Windows.Forms.CheckBox checkBox_use_text_circle;
+        public System.Windows.Forms.NumericUpDown numericUpDown_radius;
+        private System.Windows.Forms.Label label9;
+        public System.Windows.Forms.NumericUpDown numericUpDown_start_angle;
+        private System.Windows.Forms.Label label10;
+        public System.Windows.Forms.NumericUpDown numericUpDown_end_angle;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.RadioButton radioButton_clockwise;
+        private System.Windows.Forms.RadioButton radioButton_counterclockwise;
+        private System.Windows.Forms.ToolTip toolTip_Hint360;
     }
 }

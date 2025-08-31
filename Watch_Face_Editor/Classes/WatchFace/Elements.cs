@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlTypes;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Watch_Face_Editor
 {
@@ -760,7 +762,8 @@ namespace Watch_Face_Editor
         public string unit_string { get; set; } = "";
 
         /// <summary>am/pm в конце</summary>
-        public bool unit_end { get; set; } = false;
+        [JsonConverter(typeof(BoolToIntConverter))]
+        public int unit_end { get; set; } = 0;
 
         /// <summary>Центрировать горизонтально</summary>
         public bool centreHorizontally { get; set; } = false;
@@ -768,11 +771,44 @@ namespace Watch_Face_Editor
         /// <summary>Центрировать вертикально</summary>
         public bool centreVertically { get; set; } = false;
 
+        /// <summary>Использовать текст по окружности</summary>
+        public bool use_text_circle { get; set; } = false;
+
+        /// <summary>Радиус</summary>
+        public int radius { get; set; } = 150;
+
+        /// <summary>Начальный угол</summary>
+        public int start_angle { get; set; }
+
+        /// <summary>Конечный угол</summary>
+        public int end_angle { get; set; } = 180;
+
+        /// <summary>Направление: 0 - по часовой, 1 - против часовой</summary>
+        public int mode { get; set; }
+
         /// <summary>Основной экран или AOD</summary>
         public string show_level = "";
 
         /// <summary>Тип активности</summary>
         public string type { get; set; }
+    }
+
+    public class BoolToIntConverter : JsonConverter<int>
+    {
+        public override int ReadJson(JsonReader reader, Type objectType, int existingValue, bool hasExistingValue, JsonSerializer serializer)
+        {
+            if (reader.TokenType == JsonToken.Boolean)
+                return (bool)reader.Value ? 1 : 0;
+            if (reader.TokenType == JsonToken.Integer)
+                return Convert.ToInt32(reader.Value);
+
+            throw new JsonSerializationException($"Unexpected token {reader.TokenType} when parsing unit_end");
+        }
+
+        public override void WriteJson(JsonWriter writer, int value, JsonSerializer serializer)
+        {
+            writer.WriteValue(value);
+        }
     }
 
     /// <summary>Набор покадровой анимация</summary>
@@ -1154,6 +1190,9 @@ namespace Watch_Face_Editor
     /// <summary>Кнопки</summary>
     public class Button
     {
+        /// <summary>Позиция в наборе элементов</summary>
+        public int position = -1;
+
         /// <summary>Координаты элемента</summary>
         public int x = 0;
 
@@ -1195,6 +1234,9 @@ namespace Watch_Face_Editor
 
         /// <summary>Функция при долгом нажатии кнопки</summary>
         public string longpress_func = "";
+
+        /// <summary>Вибрация при нажатии</summary>
+        public bool vibro = false;
 
         /// <summary>Видимость кнопки</summary>
         public bool visible = true;

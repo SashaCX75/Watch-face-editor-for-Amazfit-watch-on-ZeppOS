@@ -88,6 +88,24 @@ namespace ControlLibrary.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Разница между конечным и начальным углом не должна превышать 360°.
+        /// </summary>
+        internal static string Hint_360_Text_Circle {
+            get {
+                return ResourceManager.GetString("Hint_360_Text_Circle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Предупреждение.
+        /// </summary>
+        internal static string Hint_360_Title {
+            get {
+                return ResourceManager.GetString("Hint_360_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Названия дней недели, начиная с понедельника, разделенные запятой..
         /// </summary>
         internal static string Hint_DOW {

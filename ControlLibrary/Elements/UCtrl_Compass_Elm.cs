@@ -313,6 +313,7 @@ namespace ControlLibrary
             highlight_number_font = false;
             highlight_text_rotation = false;
             highlight_text_circle = true;
+            highlight_pointer = false;
             highlight_icon = false;
 
             SelectElement();

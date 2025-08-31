@@ -322,6 +322,46 @@ namespace Watch_Face_Editor
                         break;
                     #endregion
 
+                    #region TimeCircle
+                    case "TimeCircle":
+                        ElementTimeCircle TimeCircle = null;
+                        try
+                        {
+                            TimeCircle = JsonConvert.DeserializeObject<ElementTimeCircle>(elementStr, new JsonSerializerSettings
+                            {
+                                //DefaultValueHandling = DefaultValueHandling.Ignore,
+                                NullValueHandling = NullValueHandling.Ignore
+                            });
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(Properties.FormStrings.Message_JsonError_Text + Environment.NewLine + ex,
+                                Properties.FormStrings.Message_Error_Caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        if (TimeCircle != null) NewElements.Add(TimeCircle);
+                        break;
+                    #endregion
+
+                    #region WorldClock
+                    case "WorldClock":
+                        ElementWorldClock WorldClock = null;
+                        try
+                        {
+                            WorldClock = JsonConvert.DeserializeObject<ElementWorldClock>(elementStr, new JsonSerializerSettings
+                            {
+                                //DefaultValueHandling = DefaultValueHandling.Ignore,
+                                NullValueHandling = NullValueHandling.Ignore
+                            });
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(Properties.FormStrings.Message_JsonError_Text + Environment.NewLine + ex,
+                                Properties.FormStrings.Message_Error_Caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        if (WorldClock != null) NewElements.Add(WorldClock);
+                        break;
+                    #endregion
+
                     /*#region ElementEditablePointers
                     case "ElementEditablePointers":
                         ElementEditablePointers EditablePointers = null;
@@ -1231,7 +1271,7 @@ namespace Watch_Face_Editor
         {
             string name = "elementName";
             string returnStr = "";
-            int indexOf = str.IndexOf("elementName");
+            int indexOf = str.IndexOf(name);
             if (indexOf >= 0)
             {
                 str = str.Substring(indexOf + name.Length + 2);
@@ -2247,6 +2287,12 @@ namespace Watch_Face_Editor
             uCtrl_Text_SystemFont_Opt.SetUnitType(system_font.unit_type);
             uCtrl_Text_SystemFont_Opt.SetUnitEnd(system_font.unit_end);
 
+            uCtrl_Text_SystemFont_Opt.checkBox_use_text_circle.Checked = system_font.use_text_circle;
+            uCtrl_Text_SystemFont_Opt.numericUpDown_radius.Value = system_font.radius;
+            uCtrl_Text_SystemFont_Opt.numericUpDown_start_angle.Value = system_font.start_angle;
+            uCtrl_Text_SystemFont_Opt.numericUpDown_end_angle.Value = system_font.end_angle;
+            uCtrl_Text_SystemFont_Opt.SetMode(system_font.mode);
+
             PreviewView = true;
         }
 
@@ -2391,6 +2437,32 @@ namespace Watch_Face_Editor
             List<String> scriptLongPressList = ButtonLongPressScriptToString(buttonsList);
             List<bool> visibleList = ButtonVisibleList(buttonsList);
             uCtrl_Button_Opt.UpdateButtonsList(scriptClickList, scriptLongPressList, visibleList);
+
+            PreviewView = true;
+        }
+
+        /// <summary>Читаем настройки кнопки</summary>
+        private void Read_ButtonOne_Options(Button button)
+        {
+            PreviewView = false;
+
+            uCtrl_ButtonOne_Opt.SettingsClear();
+            uCtrl_ButtonOne_Opt.Visible = true;
+            uCtrl_ButtonOne_Opt._Button = button;
+
+            uCtrl_ButtonOne_Opt.numericUpDown_buttonX.Value = button.x;
+            uCtrl_ButtonOne_Opt.numericUpDown_buttonY.Value = button.y;
+            uCtrl_ButtonOne_Opt.numericUpDown_width.Value = button.w;
+            uCtrl_ButtonOne_Opt.numericUpDown_height.Value = button.h;
+            uCtrl_ButtonOne_Opt.numericUpDown_radius.Value = button.radius;
+            uCtrl_ButtonOne_Opt.numericUpDown_textSize.Value = button.text_size;
+            uCtrl_ButtonOne_Opt.SetColorText(StringToColor(button.color));
+            uCtrl_ButtonOne_Opt.SetText(button.text);
+            uCtrl_ButtonOne_Opt.SetPressImage(button.press_src);
+            uCtrl_ButtonOne_Opt.SetNormalImage(button.normal_src);
+            uCtrl_ButtonOne_Opt.SetColorNormal(StringToColor(button.normal_color));
+            uCtrl_ButtonOne_Opt.SetColorPress(StringToColor(button.press_color));
+            uCtrl_ButtonOne_Opt.checkBox_vibro.Checked = button.vibro;
 
             PreviewView = true;
         }
@@ -3015,6 +3087,12 @@ namespace Watch_Face_Editor
             systemFont.padding = uCtrl_Text_SystemFont_Opt.checkBox_addZero.Checked;
             systemFont.unit_type = uCtrl_Text_SystemFont_Opt.GetUnitType();
             systemFont.unit_end = uCtrl_Text_SystemFont_Opt.GetUnitEnd();
+
+            systemFont.use_text_circle = uCtrl_Text_SystemFont_Opt.checkBox_use_text_circle.Checked;
+            systemFont.start_angle = (int)uCtrl_Text_SystemFont_Opt.numericUpDown_start_angle.Value;
+            systemFont.end_angle = (int)uCtrl_Text_SystemFont_Opt.numericUpDown_end_angle.Value;
+            systemFont.radius = (int)uCtrl_Text_SystemFont_Opt.numericUpDown_radius.Value;
+            systemFont.mode = uCtrl_Text_SystemFont_Opt.GetMode();
 
             JSON_Modified = true;
             PreviewImage();
@@ -4103,6 +4181,32 @@ namespace Watch_Face_Editor
             }
         }
 
+        private void uCtrl_ButtonOne_Opt_ValueChanged(object sender, EventArgs eventArgs)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+
+            Button button = (Button)uCtrl_ButtonOne_Opt._Button;
+
+            button.x = (int)uCtrl_ButtonOne_Opt.numericUpDown_buttonX.Value;
+            button.y = (int)uCtrl_ButtonOne_Opt.numericUpDown_buttonY.Value;
+            button.w = (int)uCtrl_ButtonOne_Opt.numericUpDown_width.Value;
+            button.h = (int)uCtrl_ButtonOne_Opt.numericUpDown_height.Value;
+            button.radius = (int)uCtrl_ButtonOne_Opt.numericUpDown_radius.Value;
+            button.text_size = (int)uCtrl_ButtonOne_Opt.numericUpDown_textSize.Value;
+            button.color = ColorToString(uCtrl_ButtonOne_Opt.GetColorText());
+            button.text = uCtrl_ButtonOne_Opt.GetText();
+            button.press_src = uCtrl_ButtonOne_Opt.GetPressImage();
+            button.normal_src = uCtrl_ButtonOne_Opt.GetNormalImage();
+            button.normal_color = ColorToString(uCtrl_ButtonOne_Opt.GetColorNormal());
+            button.press_color = ColorToString(uCtrl_ButtonOne_Opt.GetColorPress());
+            button.vibro = uCtrl_ButtonOne_Opt.checkBox_vibro.Checked;
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
         private void uCtrl_Button_Opt_ScriptChanged(int rowIndex, string clickFunc, string longPressFunc)
         {
             if (!PreviewView) return;
@@ -5130,6 +5234,8 @@ namespace Watch_Face_Editor
             systemFont.alpha = (int)uCtrl_Text_SystemFont_Opt.numericUpDown_Alpha.Value;
 
             systemFont.color = ColorToString(uCtrl_Text_SystemFont_Opt.GetColorText());
+            systemFont.color_2 = ColorToString(uCtrl_Text_SystemFont_Opt.GetColor2Text());
+            systemFont.use_color_2 = uCtrl_Text_SystemFont_Opt.checkBox_Color2.Checked;
 
             systemFont.align_h = uCtrl_Text_SystemFont_Opt.GetHorizontalAlignment();
             systemFont.align_v = uCtrl_Text_SystemFont_Opt.GetVerticalAlignment();
@@ -5144,6 +5250,12 @@ namespace Watch_Face_Editor
             systemFont.padding = uCtrl_Text_SystemFont_Opt.checkBox_addZero.Checked;
             systemFont.unit_type = uCtrl_Text_SystemFont_Opt.GetUnitType();
             systemFont.unit_end = uCtrl_Text_SystemFont_Opt.GetUnitEnd();
+
+            systemFont.use_text_circle = uCtrl_Text_SystemFont_Opt.checkBox_use_text_circle.Checked;
+            systemFont.start_angle = (int)uCtrl_Text_SystemFont_Opt.numericUpDown_start_angle.Value;
+            systemFont.end_angle = (int)uCtrl_Text_SystemFont_Opt.numericUpDown_end_angle.Value;
+            systemFont.radius = (int)uCtrl_Text_SystemFont_Opt.numericUpDown_radius.Value;
+            systemFont.mode = uCtrl_Text_SystemFont_Opt.GetMode();
 
             WidgetProperty.Add("hmUI_widget_TEXT", systemFont);
             uCtrl_Text_SystemFont_Opt.WidgetProperty = WidgetProperty;
@@ -5170,6 +5282,8 @@ namespace Watch_Face_Editor
             uCtrl_Text_SystemFont_Opt.numericUpDown_Alpha.Value = system_font.alpha;
 
             uCtrl_Text_SystemFont_Opt.SetColorText(StringToColor(system_font.color));
+            uCtrl_Text_SystemFont_Opt.SetColor2Text(StringToColor(system_font.color_2));
+            uCtrl_Text_SystemFont_Opt.checkBox_Color2.Checked = system_font.use_color_2;
 
             uCtrl_Text_SystemFont_Opt.SetHorizontalAlignment(system_font.align_h);
             uCtrl_Text_SystemFont_Opt.SetVerticalAlignment(system_font.align_v);
@@ -5184,6 +5298,12 @@ namespace Watch_Face_Editor
             uCtrl_Text_SystemFont_Opt.checkBox_addZero.Checked = system_font.padding;
             uCtrl_Text_SystemFont_Opt.SetUnitType(system_font.unit_type);
             uCtrl_Text_SystemFont_Opt.SetUnitEnd(system_font.unit_end);
+
+            uCtrl_Text_SystemFont_Opt.checkBox_use_text_circle.Checked = system_font.use_text_circle;
+            uCtrl_Text_SystemFont_Opt.numericUpDown_radius.Value = system_font.radius;
+            uCtrl_Text_SystemFont_Opt.numericUpDown_start_angle.Value = system_font.start_angle;
+            uCtrl_Text_SystemFont_Opt.numericUpDown_end_angle.Value = system_font.end_angle;
+            uCtrl_Text_SystemFont_Opt.SetMode(system_font.mode);
 
             PreviewView = true;
             uCtrl_Text_SystemFont_Opt_ValueChanged(sender, eventArgs);
@@ -5323,6 +5443,60 @@ namespace Watch_Face_Editor
 
             PreviewView = true;
             uCtrl_Text_Rotate_Opt_ValueChanged(sender, eventArgs);
+        }
+
+
+        private void uCtrl_ButtonOne_Opt_WidgetProperty_Copy(object sender, EventArgs eventArgs)
+        {
+            if (WidgetProperty.ContainsKey("Button")) WidgetProperty.Remove("Button");
+            Button button = new Button();
+
+            button.x = (int)uCtrl_ButtonOne_Opt.numericUpDown_buttonX.Value;
+            button.y = (int)uCtrl_ButtonOne_Opt.numericUpDown_buttonY.Value;
+            button.w = (int)uCtrl_ButtonOne_Opt.numericUpDown_width.Value;
+            button.h = (int)uCtrl_ButtonOne_Opt.numericUpDown_height.Value;
+            button.radius = (int)uCtrl_ButtonOne_Opt.numericUpDown_radius.Value;
+            button.text_size = (int)uCtrl_ButtonOne_Opt.numericUpDown_textSize.Value;
+            button.color = ColorToString(uCtrl_ButtonOne_Opt.GetColorText());
+            button.text = uCtrl_ButtonOne_Opt.GetText();
+            button.press_src = uCtrl_ButtonOne_Opt.GetPressImage();
+            button.normal_src = uCtrl_ButtonOne_Opt.GetNormalImage();
+            button.normal_color = ColorToString(uCtrl_ButtonOne_Opt.GetColorNormal());
+            button.press_color = ColorToString(uCtrl_ButtonOne_Opt.GetColorPress());
+
+            WidgetProperty.Add("Button", button);
+            uCtrl_ButtonOne_Opt.WidgetProperty = WidgetProperty;
+        }
+
+        private void uCtrl_ButtonOne_Opt_WidgetProperty_Paste(object sender, EventArgs eventArgs)
+        {
+            if (!WidgetProperty.ContainsKey("Button")) return;
+            Object obj = null;
+            WidgetProperty.TryGetValue("Button", out obj);
+            if (obj == null) return;
+            Button button = (Button)obj;
+            PreviewView = false;
+
+            if (button == null)
+            {
+                PreviewView = true;
+                return;
+            }
+            uCtrl_ButtonOne_Opt.numericUpDown_buttonX.Value = button.x;
+            uCtrl_ButtonOne_Opt.numericUpDown_buttonY.Value = button.y;
+            uCtrl_ButtonOne_Opt.numericUpDown_width.Value = button.w;
+            uCtrl_ButtonOne_Opt.numericUpDown_height.Value = button.h;
+            uCtrl_ButtonOne_Opt.numericUpDown_radius.Value = button.radius;
+            uCtrl_ButtonOne_Opt.numericUpDown_textSize.Value = button.text_size;
+            uCtrl_ButtonOne_Opt.SetColorText(StringToColor(button.color));
+            uCtrl_ButtonOne_Opt.SetText(button.text);
+            uCtrl_ButtonOne_Opt.SetPressImage(button.press_src);
+            uCtrl_ButtonOne_Opt.SetNormalImage(button.normal_src);
+            uCtrl_ButtonOne_Opt.SetColorNormal(StringToColor(button.normal_color));
+            uCtrl_ButtonOne_Opt.SetColorPress(StringToColor(button.press_color));
+
+            PreviewView = true;
+            uCtrl_ButtonOne_Opt_ValueChanged(sender, eventArgs);
         }
 
     }

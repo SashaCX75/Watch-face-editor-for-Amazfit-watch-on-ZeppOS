@@ -854,6 +854,9 @@
     <EmbeddedResource Include="Elements\UCtrl_AnalogTimeCircle_Elm.fr.resx">
       <DependentUpon>UCtrl_AnalogTimeCircle_Elm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_AnalogTimeCircle_Elm.it.resx">
+      <DependentUpon>UCtrl_AnalogTimeCircle_Elm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_AnalogTimeCircle_Elm.uk.resx">
       <DependentUpon>UCtrl_AnalogTimeCircle_Elm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1953,6 +1956,9 @@
     <EmbeddedResource Include="Elements\UCtrl_WorldClock_Elm.fr.resx">
       <DependentUpon>UCtrl_WorldClock_Elm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_WorldClock_Elm.it.resx">
+      <DependentUpon>UCtrl_WorldClock_Elm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_WorldClock_Elm.uk.resx">
       <DependentUpon>UCtrl_WorldClock_Elm.cs</DependentUpon>
     </EmbeddedResource>
@@ -2290,6 +2296,9 @@
       <DependentUpon>UCtrl_ButtonOne_Opt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UCtrl_ButtonOne_Opt.fr.resx">
+      <DependentUpon>UCtrl_ButtonOne_Opt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_ButtonOne_Opt.it.resx">
       <DependentUpon>UCtrl_ButtonOne_Opt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UCtrl_ButtonOne_Opt.resx">

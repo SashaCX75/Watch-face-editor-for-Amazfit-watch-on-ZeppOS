@@ -312,4 +312,7 @@
   <data name="WorldClock" xml:space="preserve">
     <value>世界时间</value>
   </data>
+  <data name="WorldClockNew" xml:space="preserve">
+    <value>世界时间 *</value>
+  </data>
 </root>

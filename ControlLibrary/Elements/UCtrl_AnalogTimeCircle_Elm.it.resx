@@ -117,67 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dialog_Title_JS_Open" xml:space="preserve">
-    <value>Aggiungi un file JS</value>
+  <data name="button_Format_24hour.Text" xml:space="preserve">
+    <value>Formato orario 24 ore</value>
   </data>
-  <data name="DOW_StrArray" xml:space="preserve">
-    <value>Lu,Ma,Me,Gi;Ve,Sa,Do</value>
+  <data name="button_SmoothSeconds.Text" xml:space="preserve">
+    <value>Movimento Fluido</value>
   </data>
-  <data name="FilterJS" xml:space="preserve">
-    <value>File JS (*.js)| *.json</value>
+  <data name="button_Minute.Text" xml:space="preserve">
+    <value>Minuti</value>
   </data>
-  <data name="Hint_360_Text_Circle" xml:space="preserve">
-    <value>La differenza tra l'angolo finale e l'angolo di partenza non deve superare i 360°.</value>
+  <data name="button_Hour.Text" xml:space="preserve">
+    <value>Ore</value>
   </data>
-  <data name="Hint_360_Title" xml:space="preserve">
-    <value>Attenzione</value>
+  <data name="button_Second.Text" xml:space="preserve">
+    <value>Secondi</value>
   </data>
-  <data name="Hint_DOW" xml:space="preserve">
-    <value>I nomi dei giorni della settimana, a partire da lunedì, separati da una virgola.</value>
-  </data>
-  <data name="Hint_Month" xml:space="preserve">
-    <value>Nome Mese in Font, sepatato da una virgola</value>
-  </data>
-  <data name="Message_Del_Caption" xml:space="preserve">
-    <value>Elimina File</value>
-  </data>
-  <data name="Message_Error_Caption" xml:space="preserve">
-    <value>Errore</value>
-  </data>
-  <data name="Message_JS_Del" xml:space="preserve">
-    <value>Vuoi veramente eliminare il file JS?</value>
-  </data>
-  <data name="Message_ReadScript_Error" xml:space="preserve">
-    <value>Errore nella lettura dello script utente</value>
-  </data>
-  <data name="Message_Warning_Caption" xml:space="preserve">
-    <value>Attenzione</value>
-  </data>
-  <data name="SystemFont" xml:space="preserve">
-    <value>Font di sistema</value>
-  </data>
-  <data name="UCtrl_Text_Opt_Altitude_true" xml:space="preserve">
-    <value>Simbolo "-"</value>
-  </data>
-  <data name="UCtrl_Text_Opt_AmPm_false" xml:space="preserve">
-    <value>Unità</value>
-  </data>
-  <data name="UCtrl_Text_Opt_AmPm_true" xml:space="preserve">
-    <value>Stile per AM/PM</value>
-  </data>
-  <data name="UCtrl_Text_Opt_SityName_true" xml:space="preserve">
-    <value>Lettere Maiuscole</value>
-  </data>
-  <data name="UCtrl_Text_Opt_Sunrise_false" xml:space="preserve">
-    <value>Separatore decimale</value>
-  </data>
-  <data name="UCtrl_Text_Opt_Sunrise_true" xml:space="preserve">
-    <value>Separatore</value>
-  </data>
-  <data name="UCtrl_Text_Opt_Year_false" xml:space="preserve">
-    <value>Aggiungi zeri iniziali</value>
-  </data>
-  <data name="UCtrl_Text_Opt_Year_true" xml:space="preserve">
-    <value>Ortografia completa dell'anno</value>
+  <data name="button_ElementName.Text" xml:space="preserve">
+    <value>Tempo Circolare</value>
   </data>
 </root>

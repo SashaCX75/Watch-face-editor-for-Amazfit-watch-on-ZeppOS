@@ -692,7 +692,7 @@ namespace Watch_Face_Editor
             Logger.WriteLine("* SetLanguage (end)");
         }
 
-        private void radioButton_Settings_CheckedChanged(object sender, EventArgs e)
+        private void Save_Settings()
         {
             if (Settings_Load) return;
             ProgramSettings.Settings_AfterUnpack_Dialog = radioButton_Settings_AfterUnpack_Dialog.Checked;
@@ -736,8 +736,6 @@ namespace Watch_Face_Editor
             ProgramSettings.Pointer_Center_marker = checkBox_center_marker.Checked;
             ProgramSettings.Show_Widgets_Area = checkBox_WidgetsArea.Checked;
 
-            //ProgramSettings.language = comboBox_Language.Text;
-
             if (comboBox_watch_model.SelectedIndex != -1) ProgramSettings.Watch_Model = comboBox_watch_model.Text;
             ProgramSettings.CreateZPK = checkBox_CreateZPK.Checked;
 
@@ -747,6 +745,12 @@ namespace Watch_Face_Editor
                 NullValueHandling = NullValueHandling.Ignore
             });
             File.WriteAllText(Application.StartupPath + @"\Settings.json", JSON_String, Encoding.UTF8);
+        }
+
+        private void radioButton_Settings_CheckedChanged(object sender, EventArgs e)
+        {
+            if (Settings_Load) return;
+            Save_Settings();
         }
 
         private void comboBox_Language_SelectedIndexChanged(object sender, EventArgs e)
@@ -914,44 +918,6 @@ namespace Watch_Face_Editor
                 if (fullfilename.IndexOf(Application.StartupPath) == 0)
                     fullfilename = fullfilename.Remove(0, Application.StartupPath.Length);
                 textBox_WatchSkin_Path.Text = fullfilename;
-
-                // TODO :: Понять зачем ... Если путь переносим в конфигурацию модели то вся функция не нужна
-                //switch (ProgramSettings.Watch_Model)
-                //{
-                //    case "GTR 3":
-                //        ProgramSettings.WatchSkin_GTR_3 = textBox_WatchSkin_Path.Text;
-                //        break;
-                //    case "GTR 3 Pro":
-                //        ProgramSettings.WatchSkin_GTR_3_Pro = textBox_WatchSkin_Path.Text;
-                //        break;
-                //    case "GTS 3":
-                //        ProgramSettings.WatchSkin_GTS_3 = textBox_WatchSkin_Path.Text;
-                //        break;
-                //    case "T-Rex 2":
-                //        ProgramSettings.WatchSkin_T_Rex_2 = textBox_WatchSkin_Path.Text;
-                //        break;
-                //    case "T-Rex Ultra":
-                //        ProgramSettings.WatchSkin_T_Rex_Ultra = textBox_WatchSkin_Path.Text;
-                //        break;
-                //    case "GTR 4":
-                //        ProgramSettings.WatchSkin_GTR_4 = textBox_WatchSkin_Path.Text;
-                //        break;
-                //    case "Amazfit Band 7":
-                //        ProgramSettings.WatchSkin_Amazfit_Band_7 = textBox_WatchSkin_Path.Text;
-                //        break;
-                //    case "GTS 4 mini":
-                //        ProgramSettings.WatchSkin_GTS_4_mini = textBox_WatchSkin_Path.Text;
-                //        break;
-                //    case "Falcon":
-                //        ProgramSettings.WatchSkin_Falcon = textBox_WatchSkin_Path.Text;
-                //        break;
-                //    case "GTR mini":
-                //        ProgramSettings.WatchSkin_GTR_mini = textBox_WatchSkin_Path.Text;
-                //        break;
-                //    case "GTS 4":
-                //        ProgramSettings.WatchSkin_GTS_3 = textBox_WatchSkin_Path.Text;
-                //        break;
-                //}
 
                 string JSON_String = JsonConvert.SerializeObject(ProgramSettings, Formatting.Indented, new JsonSerializerSettings
                 {
@@ -1471,6 +1437,7 @@ namespace Watch_Face_Editor
             if (e.Data.GetDataPresent(typeof(UCtrl_Floor_Elm))) typeReturn = false;
             if (e.Data.GetDataPresent(typeof(UCtrl_Readiness_Elm))) typeReturn = false;
             if (e.Data.GetDataPresent(typeof(UCtrl_HRV_Elm))) typeReturn = false;
+            if (e.Data.GetDataPresent(typeof(UCtrl_BioCharge_Elm))) typeReturn = false;
 
             if (e.Data.GetDataPresent(typeof(UCtrl_JSscript_Elm))) typeReturn = false;
             //if (typeReturn) return;
@@ -1859,6 +1826,14 @@ namespace Watch_Face_Editor
                         if (draggedUCtrl_Elm != null) draggedPanel = (Panel)draggedUCtrl_Elm.Parent;
                         break;
 
+                    case "ControlLibrary.UCtrl_BioCharge_Elm":
+                        ElementBioCharge bioCharge =
+                            (ElementBioCharge)Elements.Find(e1 => e1.GetType().Name == "ElementBioCharge");
+                        index = Elements.IndexOf(bioCharge);
+                        draggedUCtrl_Elm = (UCtrl_BioCharge_Elm)e.Data.GetData(typeof(UCtrl_BioCharge_Elm));
+                        if (draggedUCtrl_Elm != null) draggedPanel = (Panel)draggedUCtrl_Elm.Parent;
+                        break;
+
 
 
                     case "ControlLibrary.UCtrl_JSscript_Elm":
@@ -2169,6 +2144,7 @@ namespace Watch_Face_Editor
             if (selectElementName != "Floor") uCtrl_Floor_Elm.ResetHighlightState();
             if (selectElementName != "Readiness") uCtrl_Readiness_Elm.ResetHighlightState();
             if (selectElementName != "HRV") uCtrl_HRV_Elm.ResetHighlightState();
+            if (selectElementName != "BioCharge") uCtrl_BioCharge_Elm.ResetHighlightState();
 
             if (selectElementName != "DisconnectAlert") uCtrl_DisconnectAlert_Elm.ResetHighlightState();
             if (selectElementName != "RepeatingAlert") uCtrl_RepeatingAlert_Elm.ResetHighlightState();
@@ -2253,6 +2229,7 @@ namespace Watch_Face_Editor
             uCtrl_Floor_Elm.SettingsClear();
             uCtrl_Readiness_Elm.SettingsClear();
             uCtrl_HRV_Elm.SettingsClear();
+            uCtrl_BioCharge_Elm.SettingsClear();
 
             uCtrl_DisconnectAlert_Elm.SettingsClear();
             uCtrl_RepeatingAlert_Elm.SettingsClear();
@@ -4408,6 +4385,19 @@ namespace Watch_Face_Editor
                         panel_WatchfaceElements.VerticalScroll.Maximum);
                 }
             }
+            if (comboBox_AddActivity.SelectedIndex == 14)
+            {
+                if (AddBioCharge())
+                {
+                    ShowElemetsWatchFace();
+                    JSON_Modified = true;
+                    FormText();
+
+                    panel_WatchfaceElements.AutoScrollPosition = new Point(
+                        Math.Abs(panel_WatchfaceElements.AutoScrollPosition.X),
+                        panel_WatchfaceElements.VerticalScroll.Maximum);
+                }
+            }
 
             PreviewView = false;
             comboBox_AddActivity.Items.Insert(0, Properties.FormStrings.Elemet_Activity);
@@ -6023,6 +6013,43 @@ namespace Watch_Face_Editor
             return false;
         }
 
+        /// <summary>Добавляем BioCharge в циферблат</summary>
+        private bool AddBioCharge()
+        {
+            if (!PreviewView) return false;
+            List<object> Elements = new List<object>();
+            if (Watch_Face == null) Watch_Face = new WATCH_FACE();
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face.ScreenNormal == null) Watch_Face.ScreenNormal = new ScreenNormal();
+                if (Watch_Face.ScreenNormal.Elements == null) Watch_Face.ScreenNormal.Elements = new List<object>();
+                Elements = Watch_Face.ScreenNormal.Elements;
+            }
+            else
+            {
+                if (Watch_Face.ScreenAOD == null) Watch_Face.ScreenAOD = new ScreenAOD();
+                if (Watch_Face.ScreenAOD.Elements == null) Watch_Face.ScreenAOD.Elements = new List<object>();
+                Elements = Watch_Face.ScreenAOD.Elements;
+
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null) Elements = Watch_Face.ScreenAOD.Elements;
+            }
+
+            bool exists = Elements.Exists(e => e.GetType().Name == "ElementBioCharge"); // проверяем что такого элемента нет
+            if (!exists)
+            {
+                ElementBioCharge bioCharge = new ElementBioCharge();
+                bioCharge.visible = true;
+
+                Elements.Insert(0, bioCharge);
+                uCtrl_BioCharge_Elm.SettingsClear();
+                return true;
+            }
+            else MessageBox.Show(Properties.FormStrings.Message_Widget_Exists, Properties.FormStrings.Message_Warning_Caption,
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return false;
+        }
+
 
 
         /// <summary>Добавляем погоду в циферблат</summary>
@@ -6645,6 +6672,7 @@ namespace Watch_Face_Editor
             uCtrl_Floor_Elm.Visible = false;
             uCtrl_Readiness_Elm.Visible = false;
             uCtrl_HRV_Elm.Visible = false;
+            uCtrl_BioCharge_Elm.Visible = false;
 
             uCtrl_DisconnectAlert_Elm.Visible = false;
             uCtrl_RepeatingAlert_Elm.Visible = false;
@@ -9046,6 +9074,55 @@ namespace Watch_Face_Editor
                                 SetElementPositionInGUI(type, count - i - 2);
                                 //SetElementPositionInGUI(type, i + 1);
                                 break;
+                        #endregion
+
+                        #region ElementBioCharge
+                        case "ElementBioCharge":
+                            ElementBioCharge BioCharge = (ElementBioCharge)element;
+                            uCtrl_BioCharge_Elm.SetVisibilityElementStatus(BioCharge.visible);
+                            elementOptions = new Dictionary<int, string>();
+                            if (BioCharge.Images != null)
+                            {
+                                uCtrl_BioCharge_Elm.checkBox_Images.Checked = BioCharge.Images.visible;
+                                elementOptions.Add(BioCharge.Images.position, "Images");
+                            }
+                            if (BioCharge.Segments != null)
+                            {
+                                uCtrl_BioCharge_Elm.checkBox_Segments.Checked = BioCharge.Segments.visible;
+                                elementOptions.Add(BioCharge.Segments.position, "Segments");
+                            }
+                            if (BioCharge.Number != null)
+                            {
+                                uCtrl_BioCharge_Elm.checkBox_Number.Checked = BioCharge.Number.visible;
+                                elementOptions.Add(BioCharge.Number.position, "Number");
+                            }
+                            if (BioCharge.Number_Font != null)
+                            {
+                                uCtrl_BioCharge_Elm.checkBox_Number_Font.Checked = BioCharge.Number_Font.visible;
+                                elementOptions.Add(BioCharge.Number_Font.position, "Number_Font");
+                            }
+                            if (BioCharge.Pointer != null)
+                            {
+                                uCtrl_BioCharge_Elm.checkBox_Pointer.Checked = BioCharge.Pointer.visible;
+                                elementOptions.Add(BioCharge.Pointer.position, "Pointer");
+                            }
+                            if (BioCharge.Circle_Scale != null)
+                            {
+                                uCtrl_BioCharge_Elm.checkBox_Circle_Scale.Checked = BioCharge.Circle_Scale.visible;
+                                elementOptions.Add(BioCharge.Circle_Scale.position, "Circle_Scale");
+                            }
+                            if (BioCharge.Icon != null)
+                            {
+                                uCtrl_BioCharge_Elm.checkBox_Icon.Checked = BioCharge.Icon.visible;
+                                elementOptions.Add(BioCharge.Icon.position, "Icon");
+                            }
+
+                            uCtrl_BioCharge_Elm.SetOptionsPosition(elementOptions);
+
+                            uCtrl_BioCharge_Elm.Visible = true;
+                            SetElementPositionInGUI(type, count - i - 2);
+                            //SetElementPositionInGUI(type, i + 1);
+                            break;
                             #endregion
                     }
 
@@ -9693,6 +9770,9 @@ namespace Watch_Face_Editor
                 case "ElementHRV":
                     panel = panel_UC_HRV;
                     break;
+                case "ElementBioCharge":
+                    panel = panel_UC_BioCharge;
+                    break;
 
                 case "Buttons":
                     panel = panel_UC_Buttons;
@@ -9755,71 +9835,7 @@ namespace Watch_Face_Editor
         private void checkBox_VisibleSettings_CheckedChanged(object sender, EventArgs e)
         {
             if (Settings_Load) return;
-            ProgramSettings.Settings_AfterUnpack_Dialog = radioButton_Settings_AfterUnpack_Dialog.Checked;
-            ProgramSettings.Settings_AfterUnpack_DoNothing = radioButton_Settings_AfterUnpack_DoNothing.Checked;
-            ProgramSettings.Settings_AfterUnpack_Download = radioButton_Settings_AfterUnpack_Download.Checked;
-
-            ProgramSettings.Settings_Open_Dialog = radioButton_Settings_Open_Dialog.Checked;
-            ProgramSettings.Settings_Open_DoNotning = radioButton_Settings_Open_DoNotning.Checked;
-            ProgramSettings.Settings_Open_Download = radioButton_Settings_Open_Download.Checked;
-
-            ProgramSettings.Settings_Pack_Dialog = radioButton_Settings_Pack_Dialog.Checked;
-            ProgramSettings.Settings_Pack_DoNotning = radioButton_Settings_Pack_DoNotning.Checked;
-            ProgramSettings.Settings_Pack_GoToFile = radioButton_Settings_Pack_GoToFile.Checked;
-
-            ProgramSettings.Settings_Unpack_Dialog = radioButton_Settings_Unpack_Dialog.Checked;
-            ProgramSettings.Settings_Unpack_Replace = radioButton_Settings_Unpack_Replace.Checked;
-            ProgramSettings.Settings_Unpack_Save = radioButton_Settings_Unpack_Save.Checked;
-
-            ProgramSettings.ShowIn12hourFormat = checkBox_ShowIn12hourFormat.Checked;
-            ProgramSettings.WatchSkin_Use = checkBox_WatchSkin_Use.Checked;
-            ProgramSettings.DrawAllWidgets = checkBox_AllWidgetsInGif.Checked;
-            ProgramSettings.DevelopmentMode = checkBox_DevelopmentMode.Checked;
-
-            ProgramSettings.Use_ARGB_encoding = checkBox_Use_ARGB.Checked;
-            ProgramSettings.ARGB_encoding_color = radioButton_ARGB_color.Checked;
-            ProgramSettings.ARGB_encoding_forced = radioButton_ARGB_forced.Checked;
-            ProgramSettings.ARGB_encoding_color_count = (int)numericUpDown_ARGB_color_count.Value;
-
-            ProgramSettings.Shortcuts_Area = checkBox_Shortcuts_Area.Checked;
-            ProgramSettings.Shortcuts_Border = checkBox_Shortcuts_Border.Checked;
-            //ProgramSettings.Shortcuts_Image = checkBox_Shortcuts_Image.Checked;
-            ProgramSettings.Show_Shortcuts = checkBox_Show_Shortcuts.Checked;
-            ProgramSettings.Shortcuts_In_Gif = checkBox_Shortcuts_In_Gif.Checked;
-
-            ProgramSettings.Buttons_Area = checkBox_Buttons_Area.Checked;
-            ProgramSettings.Buttons_Border = checkBox_Buttons_Border.Checked;
-            ProgramSettings.Show_Buttons = checkBox_Show_Buttons.Checked;
-            ProgramSettings.Buttons_In_Gif = checkBox_Buttons_In_Gif.Checked;
-
-            ProgramSettings.Buttons_Area = checkBox_Buttons_Area.Checked;
-            ProgramSettings.Buttons_Border = checkBox_Buttons_Border.Checked;
-            ProgramSettings.Show_Buttons = checkBox_Show_Buttons.Checked;
-            ProgramSettings.Buttons_In_Gif = checkBox_Buttons_In_Gif.Checked;
-
-            ProgramSettings.ShowBorder = checkBox_border.Checked;
-            ProgramSettings.Crop = checkBox_crop.Checked;
-            ProgramSettings.Show_CircleScale_Area = checkBox_CircleScaleImage.Checked;
-            ProgramSettings.Pointer_Center_marker = checkBox_center_marker.Checked;
-            ProgramSettings.Show_Widgets_Area = checkBox_WidgetsArea.Checked;
-
-            ProgramSettings.CreateZPK = checkBox_CreateZPK.Checked;
-            ProgramSettings.DelConfirm = checkBox_Del_Confirm.Checked;
-
-
-            //ProgramSettings.language = comboBox_Language.Text;
-            if (comboBox_watch_model.SelectedIndex != -1)
-            {
-                ProgramSettings.Watch_Model = comboBox_watch_model.Text;
-
-            }
-
-            string JSON_String = JsonConvert.SerializeObject(ProgramSettings, Formatting.Indented, new JsonSerializerSettings
-            {
-                //DefaultValueHandling = DefaultValueHandling.Ignore,
-                NullValueHandling = NullValueHandling.Ignore
-            });
-            File.WriteAllText(Application.StartupPath + @"\Settings.json", JSON_String, Encoding.UTF8);
+            Save_Settings();
 
             PreviewImage();
             FormText();
@@ -9828,59 +9844,7 @@ namespace Watch_Face_Editor
         private void checkBox_UnvisibleSettings_CheckedChanged(object sender, EventArgs e)
         {
             if (Settings_Load) return;
-            ProgramSettings.Settings_AfterUnpack_Dialog = radioButton_Settings_AfterUnpack_Dialog.Checked;
-            ProgramSettings.Settings_AfterUnpack_DoNothing = radioButton_Settings_AfterUnpack_DoNothing.Checked;
-            ProgramSettings.Settings_AfterUnpack_Download = radioButton_Settings_AfterUnpack_Download.Checked;
-
-            ProgramSettings.Settings_Open_Dialog = radioButton_Settings_Open_Dialog.Checked;
-            ProgramSettings.Settings_Open_DoNotning = radioButton_Settings_Open_DoNotning.Checked;
-            ProgramSettings.Settings_Open_Download = radioButton_Settings_Open_Download.Checked;
-
-            ProgramSettings.Settings_Pack_Dialog = radioButton_Settings_Pack_Dialog.Checked;
-            ProgramSettings.Settings_Pack_DoNotning = radioButton_Settings_Pack_DoNotning.Checked;
-            ProgramSettings.Settings_Pack_GoToFile = radioButton_Settings_Pack_GoToFile.Checked;
-
-            ProgramSettings.Settings_Unpack_Dialog = radioButton_Settings_Unpack_Dialog.Checked;
-            ProgramSettings.Settings_Unpack_Replace = radioButton_Settings_Unpack_Replace.Checked;
-            ProgramSettings.Settings_Unpack_Save = radioButton_Settings_Unpack_Save.Checked;
-
-            ProgramSettings.Use_ARGB_encoding = checkBox_Use_ARGB.Checked;
-            ProgramSettings.ARGB_encoding_color = radioButton_ARGB_color.Checked;
-            ProgramSettings.ARGB_encoding_forced = radioButton_ARGB_forced.Checked;
-            ProgramSettings.ARGB_encoding_color_count = (int)numericUpDown_ARGB_color_count.Value;
-
-            ProgramSettings.ShowIn12hourFormat = checkBox_ShowIn12hourFormat.Checked;
-            ProgramSettings.WatchSkin_Use = checkBox_WatchSkin_Use.Checked;
-            ProgramSettings.DrawAllWidgets = checkBox_AllWidgetsInGif.Checked;
-            ProgramSettings.Shortcuts_Area = checkBox_Shortcuts_Area.Checked;
-            ProgramSettings.Shortcuts_Border = checkBox_Shortcuts_Border.Checked;
-            //ProgramSettings.Shortcuts_Image = checkBox_Shortcuts_Image.Checked;
-            ProgramSettings.Shortcuts_In_Gif = checkBox_Shortcuts_In_Gif.Checked;
-            ProgramSettings.Show_Shortcuts = checkBox_Show_Shortcuts.Checked;
-
-            ProgramSettings.Buttons_Area = checkBox_Buttons_Area.Checked;
-            ProgramSettings.Buttons_Border = checkBox_Buttons_Border.Checked;
-            ProgramSettings.Show_Buttons = checkBox_Show_Buttons.Checked;
-            ProgramSettings.Buttons_In_Gif = checkBox_Buttons_In_Gif.Checked;
-
-            ProgramSettings.ShowBorder = checkBox_border.Checked;
-            ProgramSettings.Crop = checkBox_crop.Checked;
-            ProgramSettings.Show_CircleScale_Area = checkBox_CircleScaleImage.Checked;
-            ProgramSettings.Pointer_Center_marker = checkBox_center_marker.Checked;
-            ProgramSettings.Show_Widgets_Area = checkBox_WidgetsArea.Checked;
-
-            //ProgramSettings.language = comboBox_Language.Text;
-            if (comboBox_watch_model.SelectedIndex != -1) ProgramSettings.Watch_Model = comboBox_watch_model.Text;
-
-            ProgramSettings.CreateZPK = checkBox_CreateZPK.Checked;
-            ProgramSettings.DelConfirm = checkBox_Del_Confirm.Checked;
-
-            string JSON_String = JsonConvert.SerializeObject(ProgramSettings, Formatting.Indented, new JsonSerializerSettings
-            {
-                //DefaultValueHandling = DefaultValueHandling.Ignore,
-                NullValueHandling = NullValueHandling.Ignore
-            });
-            File.WriteAllText(Application.StartupPath + @"\Settings.json", JSON_String, Encoding.UTF8);
+            Save_Settings();
         }
 
         private void checkBox_AutoSave_CheckedChanged(object sender, EventArgs e)
@@ -10125,36 +10089,23 @@ namespace Watch_Face_Editor
 
             if (digitalTime != null)
             {
-                if (digitalTime.Group_Hour == null)
-                {
-                    digitalTime.Group_Hour = new DigitalTimeGroup
-                    {
-                        Number = new hmUI_widget_IMG_NUMBER(),
-                        Number_Font = new hmUI_widget_TEXT(),
-                        Text_rotation = new hmUI_widget_IMG_NUMBER(),
-                        Text_circle = new Text_Circle()
-                    };
-                }
-                if (digitalTime.Group_Minute == null)
-                {
-                    digitalTime.Group_Minute = new DigitalTimeGroup
-                    {
-                        Number = new hmUI_widget_IMG_NUMBER(),
-                        Number_Font = new hmUI_widget_TEXT(),
-                        Text_rotation = new hmUI_widget_IMG_NUMBER(),
-                        Text_circle = new Text_Circle()
-                    };
-                }
-                if (digitalTime.Group_Second == null)
-                {
-                    digitalTime.Group_Second = new DigitalTimeGroup
-                    {
-                        Number = new hmUI_widget_IMG_NUMBER(),
-                        Number_Font = new hmUI_widget_TEXT(),
-                        Text_rotation = new hmUI_widget_IMG_NUMBER(),
-                        Text_circle = new Text_Circle()
-                    };
-                }
+                if (digitalTime.Group_Hour == null) digitalTime.Group_Hour = new DigitalTimeGroup();
+                if (digitalTime.Group_Hour.Number == null) digitalTime.Group_Hour.Number = new hmUI_widget_IMG_NUMBER();
+                if (digitalTime.Group_Hour.Number_Font == null) digitalTime.Group_Hour.Number_Font = new hmUI_widget_TEXT();
+                if (digitalTime.Group_Hour.Text_rotation == null) digitalTime.Group_Hour.Text_rotation = new hmUI_widget_IMG_NUMBER();
+                if (digitalTime.Group_Hour.Text_circle == null) digitalTime.Group_Hour.Text_circle = new Text_Circle();
+
+                if (digitalTime.Group_Minute == null) digitalTime.Group_Minute = new DigitalTimeGroup();
+                if (digitalTime.Group_Minute.Number == null) digitalTime.Group_Minute.Number = new hmUI_widget_IMG_NUMBER();
+                if (digitalTime.Group_Minute.Number_Font == null) digitalTime.Group_Minute.Number_Font = new hmUI_widget_TEXT();
+                if (digitalTime.Group_Minute.Text_rotation == null) digitalTime.Group_Minute.Text_rotation = new hmUI_widget_IMG_NUMBER();
+                if (digitalTime.Group_Minute.Text_circle == null) digitalTime.Group_Minute.Text_circle = new Text_Circle();
+
+                if (digitalTime.Group_Second == null) digitalTime.Group_Second = new DigitalTimeGroup();
+                if (digitalTime.Group_Second.Number == null) digitalTime.Group_Second.Number = new hmUI_widget_IMG_NUMBER();
+                if (digitalTime.Group_Second.Number_Font == null) digitalTime.Group_Second.Number_Font = new hmUI_widget_TEXT();
+                if (digitalTime.Group_Second.Text_rotation == null) digitalTime.Group_Second.Text_rotation = new hmUI_widget_IMG_NUMBER();
+                if (digitalTime.Group_Second.Text_circle == null) digitalTime.Group_Second.Text_circle = new Text_Circle();
 
                 if (digitalTime.AmPm == null) digitalTime.AmPm = new hmUI_widget_IMG_TIME_am_pm();
 
@@ -10600,6 +10551,9 @@ namespace Watch_Face_Editor
                 case "UCtrl_HRV_Elm":
                     objectName = "ElementHRV";
                     break;
+                case "UCtrl_BioCharge_Elm":
+                    objectName = "ElementBioCharge";
+                    break;
 
                 case "UCtrl_JSscript_Elm":
                     objectName = "ElementScript";
@@ -11028,6 +10982,7 @@ namespace Watch_Face_Editor
             int floor = rnd.Next(0, 30);
             int readiness = rnd.Next(50, 101);
             int hrv = rnd.Next(0, 80);
+            int bioCharge = rnd.Next(0, 101);
 
             WatchFacePreviewSet.DateTime.Date.Year = year;
             WatchFacePreviewSet.DateTime.Date.Month = month;
@@ -11055,6 +11010,7 @@ namespace Watch_Face_Editor
             WatchFacePreviewSet.Activity.Floor = floor;
             WatchFacePreviewSet.Activity.Readiness = readiness;
             WatchFacePreviewSet.Activity.HRV = hrv;
+            WatchFacePreviewSet.Activity.BioCharge = bioCharge;
 
 
             WatchFacePreviewSet.System.Status.Bluetooth = bluetooth;
@@ -18513,6 +18469,109 @@ namespace Watch_Face_Editor
             }
         }
 
+        private void uCtrl_BioCharge_Elm_SelectChanged(object sender, EventArgs eventArgs)
+        {
+            string selectElement = uCtrl_BioCharge_Elm.selectedElement;
+            if (selectElement.Length == 0) HideAllElemenrOptions();
+            ResetHighlightState("BioCharge");
+
+            ElementBioCharge brainingLoad = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    brainingLoad = (ElementBioCharge)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementBioCharge");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    brainingLoad = (ElementBioCharge)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementBioCharge");
+                }
+            }
+            if (brainingLoad != null)
+            {
+                hmUI_widget_IMG_LEVEL img_level = null;
+                hmUI_widget_IMG_PROGRESS img_prorgess = null;
+                hmUI_widget_IMG_NUMBER img_number = null;
+                hmUI_widget_IMG_POINTER img_pointer = null;
+                Circle_Scale circle_scale = null;
+                hmUI_widget_IMG icon = null;
+                hmUI_widget_TEXT text = null;
+
+                switch (selectElement)
+                {
+                    case "Images":
+                        if (uCtrl_BioCharge_Elm.checkBox_Images.Checked)
+                        {
+                            img_level = brainingLoad.Images;
+                            Read_ImgLevel_Options(img_level, 10, true, true);
+                            ShowElemenrOptions("Images");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Segments":
+                        if (uCtrl_BioCharge_Elm.checkBox_Segments.Checked)
+                        {
+                            img_prorgess = brainingLoad.Segments;
+                            Read_ImgProrgess_Options(img_prorgess, 10, false);
+                            ShowElemenrOptions("Segments");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Number":
+                        if (uCtrl_BioCharge_Elm.checkBox_Number.Checked)
+                        {
+                            img_number = brainingLoad.Number;
+                            Read_ImgNumber_Options(img_number, false, false, "", true, false, true, true);
+                            ShowElemenrOptions("Text");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Number_Font":
+                        if (uCtrl_BioCharge_Elm.checkBox_Number_Font.Checked)
+                        {
+                            text = brainingLoad.Number_Font;
+                            Read_Text_Options(text, false, true);
+                            ShowElemenrOptions("SystemFont");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Pointer":
+                        if (uCtrl_BioCharge_Elm.checkBox_Pointer.Checked)
+                        {
+                            img_pointer = brainingLoad.Pointer;
+                            Read_ImgPointer_Options(img_pointer, false);
+                            ShowElemenrOptions("Pointer");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Circle_Scale":
+                        if (uCtrl_BioCharge_Elm.checkBox_Circle_Scale.Checked)
+                        {
+                            circle_scale = brainingLoad.Circle_Scale;
+                            Read_CircleScale_Options(circle_scale, false);
+                            ShowElemenrOptions("Circle_Scale");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Icon":
+                        if (uCtrl_BioCharge_Elm.checkBox_Icon.Checked)
+                        {
+                            icon = brainingLoad.Icon;
+                            Read_Icon_Options(icon);
+                            ShowElemenrOptions("Icon");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                }
+
+            }
+        }
+
         private void uCtrl_Image_Elm_SelectChanged(object sender, EventArgs eventArgs)
         {
             ResetHighlightState("Image");
@@ -19507,6 +19566,13 @@ namespace Watch_Face_Editor
                         case "ElementHRV":
                             ElementHRV hrvElement = (ElementHRV)element;
                             Watch_Face.ScreenAOD.Elements.Add((ElementHRV)hrvElement.Clone());
+                            break;
+                        #endregion
+
+                        #region ElementBioCharge
+                        case "ElementBioCharge":
+                            ElementBioCharge bioChargeElement = (ElementBioCharge)element;
+                            Watch_Face.ScreenAOD.Elements.Add((ElementBioCharge)bioChargeElement.Clone());
                             break;
                         #endregion
 
@@ -21387,6 +21453,60 @@ namespace Watch_Face_Editor
             FormText();
         }
 
+        private void uCtrl_BioCharge_Elm_OptionsMoved(object sender, EventArgs eventArgs, Dictionary<string, int> elementOptions)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+
+            ElementBioCharge bioCharge = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenNormal.Elements.Exists(e => e.GetType().Name == "ElementBioCharge");
+                    //digitalTime = (ElementAnalogTime)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementAnalogTime");
+                    if (!exists) Watch_Face.ScreenNormal.Elements.Add(new ElementBioCharge());
+                    bioCharge = (ElementBioCharge)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementBioCharge");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenAOD.Elements.Exists(e => e.GetType().Name == "ElementBioCharge");
+                    //digitalTime = (ElementAnalogTime)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementAnalogTime");
+                    if (!exists) Watch_Face.ScreenAOD.Elements.Add(new ElementBioCharge());
+                    bioCharge = (ElementBioCharge)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementBioCharge");
+                }
+            }
+
+            if (bioCharge != null)
+            {
+                if (bioCharge.Images == null) bioCharge.Images = new hmUI_widget_IMG_LEVEL();
+                if (bioCharge.Segments == null) bioCharge.Segments = new hmUI_widget_IMG_PROGRESS();
+                if (bioCharge.Number == null) bioCharge.Number = new hmUI_widget_IMG_NUMBER();
+                if (bioCharge.Number_Font == null) bioCharge.Number_Font = new hmUI_widget_TEXT();
+                if (bioCharge.Pointer == null) bioCharge.Pointer = new hmUI_widget_IMG_POINTER();
+                if (bioCharge.Circle_Scale == null) bioCharge.Circle_Scale = new Circle_Scale();
+                if (bioCharge.Icon == null) bioCharge.Icon = new hmUI_widget_IMG();
+
+                if (elementOptions.ContainsKey("Images")) bioCharge.Images.position = elementOptions["Images"];
+                if (elementOptions.ContainsKey("Segments")) bioCharge.Segments.position = elementOptions["Segments"];
+                if (elementOptions.ContainsKey("Number")) bioCharge.Number.position = elementOptions["Number"];
+                if (elementOptions.ContainsKey("Number_Font")) bioCharge.Number_Font.position = elementOptions["Number_Font"];
+                if (elementOptions.ContainsKey("Pointer")) bioCharge.Pointer.position = elementOptions["Pointer"];
+                if (elementOptions.ContainsKey("Circle_Scale")) bioCharge.Circle_Scale.position = elementOptions["Circle_Scale"];
+                if (elementOptions.ContainsKey("Icon")) bioCharge.Icon.position = elementOptions["Icon"];
+
+            }
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
         #endregion
 
         private void uCtrl_Shortcuts_Elm_VisibleElementChanged(object sender, EventArgs eventArgs, bool visible)
@@ -22339,6 +22459,35 @@ namespace Watch_Face_Editor
             if (hrv != null)
             {
                 hrv.visible = visible;
+            }
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_BioCharge_Elm_VisibleElementChanged(object sender, EventArgs eventArgs, bool visible)
+        {
+            ElementBioCharge bioCharge = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    bioCharge = (ElementBioCharge)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementBioCharge");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    bioCharge = (ElementBioCharge)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementBioCharge");
+                }
+            }
+            if (bioCharge != null)
+            {
+                bioCharge.visible = visible;
             }
 
             JSON_Modified = true;
@@ -25534,6 +25683,88 @@ namespace Watch_Face_Editor
             FormText();
         }
 
+        private void uCtrl_BioCharge_Elm_VisibleOptionsChanged(object sender, EventArgs eventArgs)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+
+            ElementBioCharge bioCharge = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenNormal.Elements.Exists(e => e.GetType().Name == "ElementBioCharge");
+                    if (!exists) Watch_Face.ScreenNormal.Elements.Add(new ElementBioCharge());
+                    bioCharge = (ElementBioCharge)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementBioCharge");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenAOD.Elements.Exists(e => e.GetType().Name == "ElementBioCharge");
+                    if (!exists) Watch_Face.ScreenAOD.Elements.Add(new ElementBioCharge());
+                    bioCharge = (ElementBioCharge)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementBioCharge");
+                }
+            }
+
+            if (bioCharge != null)
+            {
+                if (bioCharge.Images == null) bioCharge.Images = new hmUI_widget_IMG_LEVEL();
+                if (bioCharge.Segments == null) bioCharge.Segments = new hmUI_widget_IMG_PROGRESS();
+                if (bioCharge.Number == null) bioCharge.Number = new hmUI_widget_IMG_NUMBER();
+                if (bioCharge.Number_Font == null) bioCharge.Number_Font = new hmUI_widget_TEXT();
+                if (bioCharge.Pointer == null) bioCharge.Pointer = new hmUI_widget_IMG_POINTER();
+                if (bioCharge.Circle_Scale == null) bioCharge.Circle_Scale = new Circle_Scale();
+                if (bioCharge.Icon == null) bioCharge.Icon = new hmUI_widget_IMG();
+
+                Dictionary<string, int> elementOptions = uCtrl_BioCharge_Elm.GetOptionsPosition();
+                if (elementOptions.ContainsKey("Images")) bioCharge.Images.position = elementOptions["Images"];
+                if (elementOptions.ContainsKey("Segments")) bioCharge.Segments.position = elementOptions["Segments"];
+                if (elementOptions.ContainsKey("Number")) bioCharge.Number.position = elementOptions["Number"];
+                if (elementOptions.ContainsKey("Number_Font")) bioCharge.Number_Font.position = elementOptions["Number_Font"];
+                if (elementOptions.ContainsKey("Pointer")) bioCharge.Pointer.position = elementOptions["Pointer"];
+                if (elementOptions.ContainsKey("Circle_Scale")) bioCharge.Circle_Scale.position = elementOptions["Circle_Scale"];
+                if (elementOptions.ContainsKey("Icon")) bioCharge.Icon.position = elementOptions["Icon"];
+
+                CheckBox checkBox = (CheckBox)sender;
+                string name = checkBox.Name;
+                switch (name)
+                {
+                    case "checkBox_Images":
+                        bioCharge.Images.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Segments":
+                        bioCharge.Segments.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Number":
+                        bioCharge.Number.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Number_Font":
+                        bioCharge.Number_Font.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Pointer":
+                        bioCharge.Pointer.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Circle_Scale":
+                        bioCharge.Circle_Scale.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Icon":
+                        bioCharge.Icon.visible = checkBox.Checked;
+                        break;
+                }
+
+            }
+
+            uCtrl_BioCharge_Elm_SelectChanged(sender, eventArgs);
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
         #endregion
 
         private void button_SavePNG_Click(object sender, EventArgs e)
@@ -26185,6 +26416,10 @@ namespace Watch_Face_Editor
                         comboBox_ConvertingInput_Model.Text = "466 (GTR 4)";
                         comboBox_ConvertingOutput_Model.Text = "454 (GTR 3)";
                         break;
+                    case "T-Rex 3 Pro (44mm)":
+                        comboBox_ConvertingInput_Model.Text = "466 (T-Rex 3 Pro 44mm)";
+                        comboBox_ConvertingOutput_Model.Text = "480 (Balance 2)";
+                        break;
 
                     case "Balance":
                         comboBox_ConvertingInput_Model.Text = "480 (Balance)";
@@ -26204,6 +26439,10 @@ namespace Watch_Face_Editor
                         break;
                     case "T-Rex 3":
                         comboBox_ConvertingInput_Model.Text = "480 (T-Rex 3)";
+                        comboBox_ConvertingOutput_Model.Text = "454 (T-Rex 2)";
+                        break;
+                    case "T-Rex 3 Pro (48mm)":
+                        comboBox_ConvertingInput_Model.Text = "480 (T-Rex 3 Pro 48mm)";
                         comboBox_ConvertingOutput_Model.Text = "454 (T-Rex 2)";
                         break;
 
@@ -26260,6 +26499,7 @@ namespace Watch_Face_Editor
                     break;
                 case "466 (GTR 4)":
                 case "466 (Active 2)":
+                case "466 (T-Rex 3 Pro 44mm)":
                     numericUpDown_ConvertingInput_Custom.Value = 466;
                     break;
                 case "480 (GTR 3 Pro)":
@@ -26267,6 +26507,7 @@ namespace Watch_Face_Editor
                 case "480 (Balance)":
                 case "480 (Balance 2)":
                 case "480 (T-Rex 3)":
+                case "480 (T-Rex 3 Pro 48mm)":
                     numericUpDown_ConvertingInput_Custom.Value = 480;
                     break;
             }
@@ -26307,6 +26548,7 @@ namespace Watch_Face_Editor
                     break;
                 case "466 (GTR 4)":
                 case "466 (Active 2)":
+                case "466 (T-Rex 3 Pro 44mm)":
                     numericUpDown_ConvertingOutput_Custom.Value = 466;
                     break;
                 case "480 (GTR 3 Pro)":
@@ -26314,6 +26556,7 @@ namespace Watch_Face_Editor
                 case "480 (Balance)":
                 case "480 (Balance 2)":
                 case "480 (T-Rex 3)":
+                case "480 (T-Rex 3 Pro 48mm)":
                     numericUpDown_ConvertingOutput_Custom.Value = 480;
                     break;
             }
@@ -27138,8 +27381,6 @@ namespace Watch_Face_Editor
             {
             }
         }
-
-        
     }
 }
 

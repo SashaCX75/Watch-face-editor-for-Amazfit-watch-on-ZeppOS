@@ -138,8 +138,14 @@
   <data name="BatteryManager" xml:space="preserve">
     <value>Statistiques d'utilisation *</value>
   </data>
+  <data name="BioCharge" xml:space="preserve">
+    <value>BioCharge *</value>
+  </data>
   <data name="BodyComposition" xml:space="preserve">
     <value>Composition corporelle *</value>
+  </data>
+  <data name="CalendarPlus" xml:space="preserve">
+    <value>Calendrier Plus *</value>
   </data>
   <data name="Camera" xml:space="preserve">
     <value>Contrôle appareil photo</value>
@@ -149,6 +155,9 @@
   </data>
   <data name="Compass" xml:space="preserve">
     <value>Boussole</value>
+  </data>
+  <data name="CompassV" xml:space="preserve">
+    <value>Boussole (verticale) *</value>
   </data>
   <data name="Contacts" xml:space="preserve">
     <value>Contacts *</value>
@@ -180,6 +189,9 @@
   <data name="HeartRete" xml:space="preserve">
     <value>Pulsations cardiaques</value>
   </data>
+  <data name="HRV" xml:space="preserve">
+    <value>VRC</value>
+  </data>
   <data name="Light" xml:space="preserve">
     <value>Luminosité</value>
   </data>
@@ -188,6 +200,9 @@
   </data>
   <data name="LowBattery" xml:space="preserve">
     <value>Économie de batterie</value>
+  </data>
+  <data name="Map" xml:space="preserve">
+    <value>Carte</value>
   </data>
   <data name="Menstrual" xml:space="preserve">
     <value>Calendrier féminin</value>
@@ -279,6 +294,9 @@
   <data name="System" xml:space="preserve">
     <value>Onglet "Système"</value>
   </data>
+  <data name="TalkingWatch" xml:space="preserve">
+    <value>Horloge parlante *</value>
+  </data>
   <data name="Test1" xml:space="preserve">
     <value>Test</value>
   </data>
@@ -303,6 +321,12 @@
   <data name="WeatherInformer" xml:space="preserve">
     <value>Weather Informer *</value>
   </data>
+  <data name="WeatherRu" xml:space="preserve">
+    <value>RWeather</value>
+  </data>
+  <data name="WeatherService" xml:space="preserve">
+    <value>Service météo *</value>
+  </data>
   <data name="WeekActivity" xml:space="preserve">
     <value>Activité hebdomadaire *</value>
   </data>
@@ -311,5 +335,8 @@
   </data>
   <data name="WorldClock" xml:space="preserve">
     <value>Horloge Mondiale</value>
+  </data>
+  <data name="WorldClockNew" xml:space="preserve">
+    <value>Horloge Mondiale *</value>
   </data>
 </root>

@@ -935,6 +935,88 @@
     "fixSize": true,
     "versionOS": 4.0
   },
+  "T-Rex 3 Pro (44mm)": {
+    "name": "Amazfit T-Rex 3 Pro (44mm)",
+    "designWidth": 466,
+    "deviceSource_ids": [
+      10682624,
+      10682625,
+      10682627
+    ],
+    "background": {
+      "w": 466,
+      "h": 466
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 230,
+        "h": 230
+      },
+      "scaling_1_0": {
+        "w": 468,
+        "h": 468
+      },
+      "scaling_1_5": {
+        "w": 701,
+        "h": 701
+      },
+      "scaling_2_0": {
+        "w": 933,
+        "h": 933
+      },
+      "scaling_2_5": {
+        "w": 1166,
+        "h": 1166
+      }
+    },
+    "maskImage": "mask_gtr_4.png",
+    "watchSkin": "WatchSkin_T_Rex_3_Pro_44.json",
+    "previewHeight": 314,
+    "colorScheme": 1,
+    "fixSize": true,
+    "versionOS": 3.5
+  },
+  "T-Rex 3 Pro (48mm)": {
+    "name": "Amazfit T-Rex 3 Pro (48mm)",
+    "designWidth": 480,
+    "deviceSource_ids": [
+      10551552,
+      10551553,
+      10551555
+    ],
+    "background": {
+      "w": 480,
+      "h": 480
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 230,
+        "h": 230
+      },
+      "scaling_1_0": {
+        "w": 482,
+        "h": 482
+      },
+      "scaling_1_5": {
+        "w": 722,
+        "h": 722
+      },
+      "scaling_2_0": {
+        "w": 961,
+        "h": 961
+      },
+      "scaling_2_5": {
+        "w": 1201,
+        "h": 1201
+      }
+    },
+    "maskImage": "mask_gtr_3_pro.png",
+    "watchSkin": "WatchSkin_T_Rex_3_Pro_48.json",
+    "previewHeight": 324,
+    "colorScheme": 1,
+    "fixSize": true,
+    "versionOS": 4.0
+  },
   "T-Rex Ultra": {
     "name": "Amazfit T-Rex Ultra",
     "designWidth": 454,

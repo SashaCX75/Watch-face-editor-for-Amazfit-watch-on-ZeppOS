@@ -9,15 +9,6 @@ namespace Watch_Face_Editor
     public class Watch_Face_Preview_Set
     {
         public DateTimeSet DateTime { get; set; }
-        //public DateSet Date { get; set; }
-        //public TimeSet Time { get; set; }
-        //public TimeSet Sunrise { get; set; }
-        //public TimeSet Sunset { get; set; }
-        //public TimeSet Moonrise { get; set; }
-        //public TimeSet Moonset { get; set; }
-        //public TimeSet AlarmClock { get; set; }
-        //public TimeSet SleepStart { get; set; }
-        //public TimeSet SleepEnd { get; set; }
         public ActivitySet Activity { get; set; }
         public WeatherSet Air { get; set; }
         public SystemSet System { get; set; }
@@ -72,6 +63,7 @@ namespace Watch_Face_Editor
         public int Floor { get; set; } = 7;
         public int Readiness { get; set; } = 87;
         public int HRV { get; set; } = 37;
+        public int BioCharge { get; set; } = 73;
     }
 
     public class WeatherSet

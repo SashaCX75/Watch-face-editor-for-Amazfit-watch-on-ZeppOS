@@ -1220,6 +1220,26 @@ namespace Watch_Face_Editor
                         break;
                     #endregion
 
+                    #region ElementBioCharge
+                    case "ElementBioCharge":
+                        ElementBioCharge BioCharge = null;
+                        try
+                        {
+                            BioCharge = JsonConvert.DeserializeObject<ElementBioCharge>(elementStr, new JsonSerializerSettings
+                            {
+                                //DefaultValueHandling = DefaultValueHandling.Ignore,
+                                NullValueHandling = NullValueHandling.Ignore
+                            });
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(Properties.FormStrings.Message_JsonError_Text + Environment.NewLine + ex,
+                                Properties.FormStrings.Message_Error_Caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        if (BioCharge != null) NewElements.Add(BioCharge);
+                        break;
+                    #endregion
+
 
                     #region ElementScript
                     case "ElementScript":
@@ -2429,7 +2449,7 @@ namespace Watch_Face_Editor
         {
             PreviewView = false;
 
-            uCtrl_Button_Opt.SettingsClear(SelectedModel.versionOS);
+            uCtrl_Button_Opt.SettingsClear(SelectedModel.versionOS, SelectedModel.background.w, SelectedModel.background.h);
             uCtrl_Button_Opt.Visible = true;
 
             //List<Button> buttonsList = Watch_Face.Buttons.Button;

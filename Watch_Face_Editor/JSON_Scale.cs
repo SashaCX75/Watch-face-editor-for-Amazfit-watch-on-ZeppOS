@@ -699,6 +699,16 @@ namespace Watch_Face_Editor
                     Scale_TEXT(elementHRV.Number_Font, scale);
                     Scale_IMG(elementHRV.Icon, scale);
                     break;
+                case "ElementBioCharge":
+                    ElementBioCharge elementBioCharge = (ElementBioCharge)elements;
+                    Scale_IMG_LEVEL(elementBioCharge.Images, scale);
+                    Scale_IMG_PROGRESS(elementBioCharge.Segments, scale);
+                    Scale_IMG_NUMBER(elementBioCharge.Number, scale);
+                    Scale_TEXT(elementBioCharge.Number_Font, scale);
+                    Scale_IMG_POINTER(elementBioCharge.Pointer, scale);
+                    Scale_Circle_Scale(elementBioCharge.Circle_Scale, scale);
+                    Scale_IMG(elementBioCharge.Icon, scale);
+                    break;
             }
         }
 

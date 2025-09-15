@@ -138,8 +138,14 @@
   <data name="BatteryManager" xml:space="preserve">
     <value>Статистика використання *</value>
   </data>
+  <data name="BioCharge" xml:space="preserve">
+    <value>BioCharge *</value>
+  </data>
   <data name="BodyComposition" xml:space="preserve">
     <value>Склад тіла *</value>
+  </data>
+  <data name="CalendarPlus" xml:space="preserve">
+    <value>Календар Плюс *</value>
   </data>
   <data name="Camera" xml:space="preserve">
     <value>Керування камерою</value>
@@ -149,6 +155,12 @@
   </data>
   <data name="Compass" xml:space="preserve">
     <value>Компас</value>
+  </data>
+  <data name="CompassV" xml:space="preserve">
+    <value>Компас (вертикальний) *</value>
+  </data>
+  <data name="CompassV_function" xml:space="preserve">
+    <value>hmApp.startApp({url: 'SportDiveCompassSetTargetScreen', native: true });</value>
   </data>
   <data name="Contacts" xml:space="preserve">
     <value>Контакти *</value>
@@ -180,6 +192,9 @@
   <data name="HeartRete" xml:space="preserve">
     <value>Пульс</value>
   </data>
+  <data name="HRV" xml:space="preserve">
+    <value>HRV</value>
+  </data>
   <data name="Light" xml:space="preserve">
     <value>Яскравість</value>
   </data>
@@ -188,6 +203,9 @@
   </data>
   <data name="LowBattery" xml:space="preserve">
     <value>Економія заряду</value>
+  </data>
+  <data name="Map" xml:space="preserve">
+    <value>Карта</value>
   </data>
   <data name="Menstrual" xml:space="preserve">
     <value>Жіночий календар</value>
@@ -279,6 +297,9 @@
   <data name="System" xml:space="preserve">
     <value>Розділ "Система"</value>
   </data>
+  <data name="TalkingWatch" xml:space="preserve">
+    <value>Говорячий годинник *</value>
+  </data>
   <data name="Test1" xml:space="preserve">
     <value>Тест</value>
   </data>
@@ -303,6 +324,12 @@
   <data name="WeatherInformer" xml:space="preserve">
     <value>Погодний інформер *</value>
   </data>
+  <data name="WeatherRu" xml:space="preserve">
+    <value>RWeather</value>
+  </data>
+  <data name="WeatherService" xml:space="preserve">
+    <value>Погодний сервіс *</value>
+  </data>
   <data name="WeekActivity" xml:space="preserve">
     <value>Активність за тиждень *</value>
   </data>
@@ -311,5 +338,8 @@
   </data>
   <data name="WorldClock" xml:space="preserve">
     <value>Світовий час</value>
+  </data>
+  <data name="WorldClockNew" xml:space="preserve">
+    <value>Світовий час *</value>
   </data>
 </root>

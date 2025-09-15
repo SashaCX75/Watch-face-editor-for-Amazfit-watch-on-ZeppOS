@@ -5297,6 +5297,44 @@ namespace Watch_Face_Editor
                     break;
                 #endregion
 
+                #region ElementBioCharge
+                case "ElementBioCharge":
+                    ElementBioCharge activityElementBioCharge = (ElementBioCharge)element;
+                    if (!activityElementBioCharge.visible) return;
+
+                    img_level = activityElementBioCharge.Images;
+                    img_prorgess = activityElementBioCharge.Segments;
+                    img_number = activityElementBioCharge.Number;
+                    font_number = activityElementBioCharge.Number_Font;
+                    img_pointer = activityElementBioCharge.Pointer;
+                    circle_scale = activityElementBioCharge.Circle_Scale;
+                    icon = activityElementBioCharge.Icon;
+
+                    elementValue = WatchFacePreviewSet.Activity.BioCharge;
+                    value_lenght = 3;
+                    goal = 100;
+                    progress = (float)elementValue / goal;
+
+                    if (img_level != null && img_level.image_length > 0)
+                    {
+                        imgCount = img_level.image_length;
+                        valueImgIndex = IMG_progress_index(elementValue, goal, imgCount, "ElementBioCharge");
+                    }
+                    if (img_prorgess != null && img_prorgess.image_length > 0)
+                    {
+                        segmentCount = img_prorgess.image_length;
+                        valueSegmentIndex = IMG_progress_index(elementValue, goal, segmentCount, "ElementBioCharge");
+                    }
+
+                    DrawActivity(gPanel, img_level, img_prorgess, img_number, font_number, text_rotation, text_circle, img_number_target, font_number_target,
+                        text_rotation_target, text_circle_target, img_pointer, circle_scale, linear_scale, icon, elementValue, value_lenght, goal,
+                        progress, valueImgIndex, valueSegmentIndex, BBorder, showProgressArea,
+                        showCentrHend, "ElementBioCharge");
+
+
+                    break;
+                #endregion
+
 
                 #region ElementAnimation
                 case "ElementAnimation":
@@ -6639,8 +6677,19 @@ namespace Watch_Face_Editor
                         } 
                     }
 
-                    float progressCircle = progress;
-                    if (elementName == "ElementHeart") progressCircle = progressPercent / 100f;
+                    string[] percentElements =
+                    {
+                        "ElementHeart",
+                        "ElementTrainingLoad",
+                        "ElementVO2Max",
+                        "ElementAQI",
+                        "ElementReadiness",
+                        "ElementBioCharge"
+                    };
+
+                    float progressCircle = percentElements.Contains(elementName)
+                        ? progressPercent / 100f
+                        : progress;
 
                     DrawScaleCircle(gPanel, x, y, radius, width, lineCap, startAngle, fullAngle, progressCircle,
                         color, inversion, alpha, showProgressArea, showCentrHend);

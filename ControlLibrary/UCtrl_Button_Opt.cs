@@ -22,6 +22,8 @@ namespace ControlLibrary
         private List<string> ListUserScriptClick;
         private List<string> ListUserScriptLongPress;
         private float apiLevel = 0;
+        private int _width = -1;
+        private int _height = -1;
 
         public UCtrl_Button_Opt()
         {
@@ -281,6 +283,11 @@ namespace ControlLibrary
                 case "hmApp.startApp({url: 'oneKeyNightMonitorScreen', native: true });":
                     functinName = Properties.ButtonFunctions.NightMonitor;
                     break;
+                case "hmApp.startApp({ appid: 1047865, url: 'page/round/index' });":
+                case "hmApp.startApp({ appid: 1047865, url: 'page/square/index' });":
+                case "hmApp.startApp({ appid: 1047865, url: 'page/square_pamir/index' });":
+                    functinName = Properties.ButtonFunctions.HRV;
+                    break;
                 #endregion
 
                 #region программы
@@ -292,6 +299,9 @@ namespace ControlLibrary
                     break;
                 case "hmApp.startApp({url: 'WorldClockScreen', native: true });":
                     functinName = Properties.ButtonFunctions.WorldClock;
+                    break;
+                case "hmApp.startApp({ appid: 1049670, url: 'page/wclk_showLayer' })":
+                    functinName = Properties.ButtonFunctions.WorldClockNew;
                     break;
                 case "hmApp.startApp({url: 'ScheduleListScreen', native: true });":
                     functinName = Properties.ButtonFunctions.ScheduleList;
@@ -319,6 +329,9 @@ namespace ControlLibrary
                     break;
                 case "hmApp.startApp({url: 'CompassScreen', native: true });":
                     functinName = Properties.ButtonFunctions.Compass;
+                    break;
+                case "hmApp.startApp({url: 'SportDiveCompassSetTargetScreen', native: true });":
+                    functinName = Properties.ButtonFunctions.CompassV;
                     break;
                 case "hmApp.startApp({url: 'BaroAltimeterScreen', native: true });":
                     functinName = Properties.ButtonFunctions.Baro;
@@ -374,8 +387,23 @@ namespace ControlLibrary
                 case "hmApp.startApp({url: 'readinessAppScreen', native: true });":
                     functinName = Properties.ButtonFunctions.Readiness;
                     break;
+                case "hmApp.startApp({url: 'BioChargeHomeScreen', native: true });":
+                    functinName = Properties.ButtonFunctions.BioCharge;
+                    break;
                 case "hmApp.startApp({ appid: 1051195, url: 'page/index', params: { from_wf: true} });":
                     functinName = Properties.ButtonFunctions.WeatherInformer;
+                    break;
+                case "hmApp.startApp({ appid: 1065824, url: 'page/index' });":
+                    functinName = Properties.ButtonFunctions.WeatherService;
+                    break;
+                case "hmApp.startApp({ appid: 1057409, url: 'page/index' });":
+                    functinName = Properties.ButtonFunctions.CalendarPlus;
+                    break;
+                case "hmApp.startApp({ appid: 1066653, url: 'page/index.page' });":
+                    functinName = Properties.ButtonFunctions.TalkingWatch;
+                    break;
+                case "hmApp.startApp({ appid: 1066654, url: 'page/index' });":
+                    functinName = Properties.ButtonFunctions.WeatherRu;
                     break;
 
                 #endregion
@@ -665,7 +693,7 @@ namespace ControlLibrary
         }
 
         /// <summary>Очищает выпадающие списки с картинками, сбрасывает данные на значения по умолчанию</summary>
-        public void SettingsClear(float api_level)
+        public void SettingsClear(float api_level, int width, int height)
         {
             setValue = true;
 
@@ -683,6 +711,8 @@ namespace ControlLibrary
             button_del.Enabled = false;
 
             apiLevel = api_level;
+            _width = width;
+            _height = height;
 
             setValue = false;
         }
@@ -1079,7 +1109,7 @@ namespace ControlLibrary
                 string scriptLongPress = "";
                 if (rowIndex < ListUserScriptClick.Count) scriptClick = ListUserScriptClick[rowIndex];
                 if (rowIndex < ListUserScriptLongPress.Count) scriptLongPress = ListUserScriptLongPress[rowIndex];
-                AddButtonFunction f = new AddButtonFunction(scriptClick, scriptLongPress, apiLevel);
+                AddButtonFunction f = new AddButtonFunction(scriptClick, scriptLongPress, apiLevel, _width, _height);
                 f.ShowDialog();
                 bool dialogResult = f.UpdateFunction; 
                 if (dialogResult)

@@ -166,11 +166,25 @@
     <value>hmApp.startApp({url: 'Settings_batteryManagerScreen', native: true });</value>
     <comment>Do not translate</comment>
   </data>
+  <data name="BioCharge" xml:space="preserve">
+    <value>BioCharge *</value>
+  </data>
+  <data name="BioCharge_function" xml:space="preserve">
+    <value>hmApp.startApp({url: 'BioChargeHomeScreen', native: true });</value>
+    <comment>Do not translate</comment>
+  </data>
   <data name="BodyComposition" xml:space="preserve">
     <value>Состав тела *</value>
   </data>
   <data name="BodyComposition_function" xml:space="preserve">
     <value>hmApp.startApp({url: 'BodyCompositionResultScreen', native: true });</value>
+    <comment>Do not translate</comment>
+  </data>
+  <data name="CalendarPlus" xml:space="preserve">
+    <value>Календарь Плюс *</value>
+  </data>
+  <data name="CalendarPlus_function" xml:space="preserve">
+    <value>hmApp.startApp({ appid: 1057409, url: 'page/index' });</value>
     <comment>Do not translate</comment>
   </data>
   <data name="Camera" xml:space="preserve">
@@ -189,6 +203,13 @@
   </data>
   <data name="Compass" xml:space="preserve">
     <value>Компас</value>
+  </data>
+  <data name="CompassV" xml:space="preserve">
+    <value>Компас (вертикальный) *</value>
+  </data>
+  <data name="CompassV_function" xml:space="preserve">
+    <value>hmApp.startApp({url: 'SportDiveCompassSetTargetScreen', native: true });</value>
+    <comment>Do not translate</comment>
   </data>
   <data name="Compass_function" xml:space="preserve">
     <value>hmApp.startApp({url: 'CompassScreen', native: true });</value>
@@ -264,6 +285,17 @@
     <value>hmApp.startApp({url: 'heart_app_Screen', native: true });</value>
     <comment>Do not translate</comment>
   </data>
+  <data name="HRV" xml:space="preserve">
+    <value>HRV</value>
+  </data>
+  <data name="HRV_functionR" xml:space="preserve">
+    <value>hmApp.startApp({ appid: 1047865, url: 'page/round/index' });</value>
+    <comment>Do not translate</comment>
+  </data>
+  <data name="HRV_functionS" xml:space="preserve">
+    <value>hmApp.startApp({ appid: 1047865, url: 'page/square_pamir/index' });</value>
+    <comment>Do not translate</comment>
+  </data>
   <data name="Light" xml:space="preserve">
     <value>Яркость</value>
   </data>
@@ -283,6 +315,13 @@
   </data>
   <data name="LowBattery_function" xml:space="preserve">
     <value>hmApp.startApp({url: 'LowBatteryScreen', native: true });</value>
+    <comment>Do not translate</comment>
+  </data>
+  <data name="Map" xml:space="preserve">
+    <value>Карта</value>
+  </data>
+  <data name="Map_function" xml:space="preserve">
+    <value>hmApp.startApp({url: 'OfflineMapScreen', native: true });</value>
     <comment>Do not translate</comment>
   </data>
   <data name="Menstrual" xml:space="preserve">
@@ -495,6 +534,13 @@
     <value>hmApp.startApp({url: 'Settings_systemScreen', native: true });</value>
     <comment>Do not translate</comment>
   </data>
+  <data name="TalkingWatch" xml:space="preserve">
+    <value>Говорящие часы *</value>
+  </data>
+  <data name="TalkingWatch_function" xml:space="preserve">
+    <value>hmApp.startApp({ appid: 1066653, url: 'page/index.page' });</value>
+    <comment>Do not translate</comment>
+  </data>
   <data name="Test1" xml:space="preserve">
     <value>Тест</value>
   </data>
@@ -547,6 +593,20 @@
     <value>hmApp.startApp({ appid: 1051195, url: 'page/index', params: { from_wf: true} });</value>
     <comment>Do not translate</comment>
   </data>
+  <data name="WeatherRu" xml:space="preserve">
+    <value>RWeather</value>
+  </data>
+  <data name="WeatherRu_function" xml:space="preserve">
+    <value>hmApp.startApp({ appid: 1066654, url: 'page/index' });</value>
+    <comment>Do not translate</comment>
+  </data>
+  <data name="WeatherService" xml:space="preserve">
+    <value>Погодный сервис *</value>
+  </data>
+  <data name="WeatherService_function" xml:space="preserve">
+    <value>hmApp.startApp({ appid: 1065824, url: 'page/index' });</value>
+    <comment>Do not translate</comment>
+  </data>
   <data name="Weather_function" xml:space="preserve">
     <value>hmApp.startApp({url: 'WeatherScreen', native: true });</value>
     <comment>Do not translate</comment>
@@ -567,6 +627,13 @@
   </data>
   <data name="WorldClock" xml:space="preserve">
     <value>Мировое время</value>
+  </data>
+  <data name="WorldClockNew" xml:space="preserve">
+    <value>Мировое время *</value>
+  </data>
+  <data name="WorldClockNew_function" xml:space="preserve">
+    <value>hmApp.startApp({ appid: 1049670, url: 'page/wclk_showLayer' });</value>
+    <comment>Do not translate</comment>
   </data>
   <data name="WorldClock_function" xml:space="preserve">
     <value>hmApp.startApp({url: 'WorldClockScreen', native: true });</value>

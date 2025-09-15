@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using System.Text.Json;
 
 namespace ControlLibrary
 {
@@ -19,6 +21,8 @@ namespace ControlLibrary
         string clickFunc = "";
         string longPressFunc = "";
         float apiLevel = 0;
+        int _width = -1;
+        int _height = -1;
         public bool UpdateFunction
         {
             get
@@ -43,12 +47,14 @@ namespace ControlLibrary
 
         private Dictionary<string, string> UserScriptList = new Dictionary<string, string>();
 
-        public AddButtonFunction(string click_func, string longpress_func, float api_level)
+        public AddButtonFunction(string click_func, string longpress_func, float api_level, int width, int height)
         {
             InitializeComponent();
             clickFunc = click_func;
             longPressFunc = longpress_func;
             apiLevel = api_level;
+            _width = width;
+            _height = height;
         }
 
         private void AddButtonFunction_Load(object sender, EventArgs e)
@@ -56,6 +62,7 @@ namespace ControlLibrary
             comboBox_Activity.Items.Add(Properties.Buttons.comboBox_Activity);
             comboBox_Activity.Items.Add(Properties.ButtonFunctions.Steps);
             comboBox_Activity.Items.Add(Properties.ButtonFunctions.HeartRete);
+            comboBox_Activity.Items.Add(Properties.ButtonFunctions.HRV);
             comboBox_Activity.Items.Add(Properties.ButtonFunctions.PAI);
             comboBox_Activity.Items.Add(Properties.ButtonFunctions.Sleep);
             comboBox_Activity.Items.Add(Properties.ButtonFunctions.Stress);
@@ -74,7 +81,9 @@ namespace ControlLibrary
             comboBox_App.Items.Add(Properties.Buttons.comboBox_App);
             comboBox_App.Items.Add(Properties.ButtonFunctions.Alarm);
             comboBox_App.Items.Add(Properties.ButtonFunctions.Schedule);
+            comboBox_App.Items.Add(Properties.ButtonFunctions.CalendarPlus);
             comboBox_App.Items.Add(Properties.ButtonFunctions.WorldClock);
+            comboBox_App.Items.Add(Properties.ButtonFunctions.WorldClockNew);
             comboBox_App.Items.Add(Properties.ButtonFunctions.ScheduleList);
             comboBox_App.Items.Add(Properties.ButtonFunctions.ToDoList);
             comboBox_App.Items.Add(Properties.ButtonFunctions.PhoneMusic);
@@ -84,6 +93,8 @@ namespace ControlLibrary
             comboBox_App.Items.Add(Properties.ButtonFunctions.Weather);
             comboBox_App.Items.Add(Properties.ButtonFunctions.Sunset);
             comboBox_App.Items.Add(Properties.ButtonFunctions.Compass);
+            comboBox_App.Items.Add(Properties.ButtonFunctions.CompassV);
+            comboBox_App.Items.Add(Properties.ButtonFunctions.Map);
             comboBox_App.Items.Add(Properties.ButtonFunctions.Baro);
             comboBox_App.Items.Add(Properties.ButtonFunctions.ClubCards);
             comboBox_App.Items.Add(Properties.ButtonFunctions.StopWatch);
@@ -102,7 +113,11 @@ namespace ControlLibrary
             comboBox_App.Items.Add(Properties.ButtonFunctions.DialCall);
             comboBox_App.Items.Add(Properties.ButtonFunctions.BodyComposition);
             comboBox_App.Items.Add(Properties.ButtonFunctions.Readiness);
+            comboBox_App.Items.Add(Properties.ButtonFunctions.BioCharge);
             comboBox_App.Items.Add(Properties.ButtonFunctions.WeatherInformer);
+            comboBox_App.Items.Add(Properties.ButtonFunctions.WeatherService);
+            comboBox_App.Items.Add(Properties.ButtonFunctions.WeatherRu);
+            comboBox_App.Items.Add(Properties.ButtonFunctions.TalkingWatch);
 
             comboBox_System.Items.Add(Properties.Buttons.comboBox_System);
             comboBox_System.Items.Add(Properties.ButtonFunctions.Settings);
@@ -225,6 +240,7 @@ namespace ControlLibrary
             int index = 0;
             if (comboBox_Activity.SelectedIndex == index++) script = Properties.ButtonFunctions.Steps_function;
             if (comboBox_Activity.SelectedIndex == index++) script = Properties.ButtonFunctions.HeartRete_function;
+            if (comboBox_Activity.SelectedIndex == index++) script = GetHRV_function();
             if (comboBox_Activity.SelectedIndex == index++) script = Properties.ButtonFunctions.PAI_function;
             if (comboBox_Activity.SelectedIndex == index++) script = Properties.ButtonFunctions.Sleep_function;
             if (comboBox_Activity.SelectedIndex == index++) script = Properties.ButtonFunctions.Stress_function;
@@ -256,7 +272,9 @@ namespace ControlLibrary
             int index = 0;
             if (comboBox_App.SelectedIndex == index++) script = Properties.ButtonFunctions.Alarm_function;
             if (comboBox_App.SelectedIndex == index++) script = Properties.ButtonFunctions.Schedule_function;
+            if (comboBox_App.SelectedIndex == index++) script = Properties.ButtonFunctions.CalendarPlus_function;
             if (comboBox_App.SelectedIndex == index++) script = Properties.ButtonFunctions.WorldClock_function;
+            if (comboBox_App.SelectedIndex == index++) script = Properties.ButtonFunctions.WorldClockNew_function;
             if (comboBox_App.SelectedIndex == index++) script = Properties.ButtonFunctions.ScheduleList_function;
             if (comboBox_App.SelectedIndex == index++) script = Properties.ButtonFunctions.ToDoList_function;
             if (comboBox_App.SelectedIndex == index++) script = Properties.ButtonFunctions.PhoneMusic_function;
@@ -266,6 +284,8 @@ namespace ControlLibrary
             if (comboBox_App.SelectedIndex == index++) script = Properties.ButtonFunctions.Weather_function;
             if (comboBox_App.SelectedIndex == index++) script = Properties.ButtonFunctions.Sunset_function;
             if (comboBox_App.SelectedIndex == index++) script = Properties.ButtonFunctions.Compass_function;
+            if (comboBox_App.SelectedIndex == index++) script = Properties.ButtonFunctions.CompassV_function;
+            if (comboBox_App.SelectedIndex == index++) script = Properties.ButtonFunctions.Map_function;
             if (comboBox_App.SelectedIndex == index++) script = Properties.ButtonFunctions.Baro_function;
             if (comboBox_App.SelectedIndex == index++) script = Properties.ButtonFunctions.ClubCards_function;
             if (comboBox_App.SelectedIndex == index++) script = Properties.ButtonFunctions.StopWatch_function;
@@ -284,7 +304,11 @@ namespace ControlLibrary
             if (comboBox_App.SelectedIndex == index++) script = Properties.ButtonFunctions.DialCall_function;
             if (comboBox_App.SelectedIndex == index++) script = Properties.ButtonFunctions.BodyComposition_function;
             if (comboBox_App.SelectedIndex == index++) script = Properties.ButtonFunctions.Readiness_function;
+            if (comboBox_App.SelectedIndex == index++) script = Properties.ButtonFunctions.BioCharge_function;
             if (comboBox_App.SelectedIndex == index++) script = Properties.ButtonFunctions.WeatherInformer_function;
+            if (comboBox_App.SelectedIndex == index++) script = Properties.ButtonFunctions.WeatherService_function;
+            if (comboBox_App.SelectedIndex == index++) script = Properties.ButtonFunctions.WeatherRu_function;
+            if (comboBox_App.SelectedIndex == index++) script = Properties.ButtonFunctions.TalkingWatch_function;
 
             comboBox_App.Items.Insert(0, Properties.Buttons.comboBox_App);
             comboBox_App.SelectedIndex = 0;
@@ -330,6 +354,11 @@ namespace ControlLibrary
             }
         }
 
+        private string GetHRV_function()
+        {
+            if (_width == _height && _width > 0) return Properties.ButtonFunctions.HRV_functionR;
+            else return Properties.ButtonFunctions.HRV_functionS;
+        }
         private void comboBox_UserScript_DropDownClosed(object sender, EventArgs e)
         {
             string script = "";

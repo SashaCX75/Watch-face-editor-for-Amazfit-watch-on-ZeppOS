@@ -20,14 +20,8 @@ namespace ControlLibrary
 
         // Скрытые значения, не меняются через интерфейс
         Dictionary<string, List<int>> ForecastData = new Dictionary<string, List<int>>();
-        //private int SpO2 = 97;
-        //private int TrainingLoad = 280;
         private int TrainingLoadGoal = 560;
-        //private int VO2Max = 47;
-        //private int Floor = 7;
-        //private int Readiness = 87;
-        //private int BodyTemp = 327;
-        //private int HRV = 37;
+        private int BioCharge = 73;
 
         public UCtrl_Set()
         {
@@ -264,6 +258,7 @@ namespace ControlLibrary
             Activity.Add("VO2Max", (int)numericUpDown_VO2Max_Set.Value);
             Activity.Add("Floor", (int)numericUpDown_Floor_Set.Value);
             Activity.Add("Readiness", (int)numericUpDown_Readiness_Set.Value);
+            Activity.Add("BioCharge", BioCharge);
 
 
             Air.Add("Weather_Icon", comboBox_WeatherSet_Icon.SelectedIndex);
@@ -394,6 +389,7 @@ namespace ControlLibrary
                 ["Floor"] = (int)numericUpDown_Floor_Set.Value,
                 ["Readiness"] = (int)numericUpDown_Readiness_Set.Value,
                 ["HRV"] = (int)numericUpDown_HRV_Set.Value,
+                ["BioCharge"] = BioCharge,
 
             };
 
@@ -543,6 +539,7 @@ namespace ControlLibrary
             Activity.TryGetValue("Floor", out Floor);
             int Readiness;
             Activity.TryGetValue("Readiness", out Readiness);
+            Activity.TryGetValue("BioCharge", out BioCharge);
 
             try
             {
@@ -740,6 +737,7 @@ namespace ControlLibrary
                         if (json["Activity"]["Floor"] != null) numericUpDown_Floor_Set.Value = json["Activity"]["Floor"].Value<int>();
                         if (json["Activity"]["Readiness"] != null) numericUpDown_Readiness_Set.Value = json["Activity"]["Readiness"].Value<int>();
                         if (json["Activity"]["HRV"] != null) numericUpDown_HRV_Set.Value = json["Activity"]["HRV"].Value<int>();
+                        if (json["Activity"]["BioCharge"] != null) BioCharge = json["Activity"]["BioCharge"].Value<int>();
                     }
 
                     if (json["Air"] != null)
@@ -844,6 +842,7 @@ namespace ControlLibrary
             numericUpDown_Floor_Set.Value = rnd.Next(0, 30);
             numericUpDown_Readiness_Set.Value = rnd.Next(50, 101);
             numericUpDown_HRV_Set.Value = rnd.Next(0, 80);
+            BioCharge = rnd.Next(0, 101);
 
 
             comboBox_WeatherSet_Icon.SelectedIndex = rnd.Next(0, 29);

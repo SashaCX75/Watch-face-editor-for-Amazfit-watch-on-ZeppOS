@@ -41,8 +41,6 @@ namespace Watch_Face_Editor.Classes
 
     public struct AmazfitPlatform
     {
-        // Внутренний идентификатор, используемый внутри программы
-        //public String int_id;  // Излишний параметр
         // Название
         public String name;
         // Нужное
@@ -53,21 +51,6 @@ namespace Watch_Face_Editor.Classes
 
         // настройки для масштабирования предпросмотра
         public Scaling scaling;
-
-        //// Размер pictureBox при масштабе 0.5
-        //public PlatformBackground scaling_0_5;
-
-        //// Размер pictureBox при масштабе 1.0
-        //public PlatformBackground scaling_1_0;
-
-        //// Размер pictureBox при масштабе 1.5
-        //public PlatformBackground scaling_1_5;
-
-        //// Размер pictureBox при масштабе 2.0
-        //public PlatformBackground scaling_2_0;
-
-        //// Размер pictureBox при масштабе 2.5
-        //public PlatformBackground scaling_2_5;
 
         // Маска
         public string maskImage;

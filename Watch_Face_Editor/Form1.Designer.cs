@@ -190,6 +190,8 @@ namespace Watch_Face_Editor
             this.uCtrl_AnalogTimeCircle_Elm = new ControlLibrary.UCtrl_AnalogTimeCircle_Elm();
             this.panel_UC_WorldClock = new System.Windows.Forms.Panel();
             this.uCtrl_WorldClock_Elm = new ControlLibrary.UCtrl_WorldClock_Elm();
+            this.panel_UC_BioCharge = new System.Windows.Forms.Panel();
+            this.uCtrl_BioCharge_Elm = new ControlLibrary.UCtrl_BioCharge_Elm();
             this.panel_ElementsOpt = new System.Windows.Forms.Panel();
             this.uCtrl_Switch_BG_Color_Opt = new ControlLibrary.UCtrl_Switch_BG_Color_Opt();
             this.uCtrl_Switch_Background_Opt = new ControlLibrary.UCtrl_Switch_Background_Opt();
@@ -439,6 +441,7 @@ namespace Watch_Face_Editor
             this.panel_UC_HRV.SuspendLayout();
             this.panel_UC_AnalogTimeCircle.SuspendLayout();
             this.panel_UC_WorldClock.SuspendLayout();
+            this.panel_UC_BioCharge.SuspendLayout();
             this.panel_ElementsOpt.SuspendLayout();
             this.panel_MainScreen_AOD.SuspendLayout();
             this.tabPage_Show_Set.SuspendLayout();
@@ -916,7 +919,8 @@ namespace Watch_Face_Editor
             resources.GetString("comboBox_AddActivity.Items11"),
             resources.GetString("comboBox_AddActivity.Items12"),
             resources.GetString("comboBox_AddActivity.Items13"),
-            resources.GetString("comboBox_AddActivity.Items14")});
+            resources.GetString("comboBox_AddActivity.Items14"),
+            resources.GetString("comboBox_AddActivity.Items15")});
             resources.ApplyResources(this.comboBox_AddActivity, "comboBox_AddActivity");
             this.comboBox_AddActivity.Name = "comboBox_AddActivity";
             this.comboBox_AddActivity.DropDownClosed += new System.EventHandler(this.comboBox_AddActivity_DropDownClosed);
@@ -973,7 +977,7 @@ namespace Watch_Face_Editor
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_RepeatingAlert, 0, 4);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_DateMonth, 0, 15);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_DateYear, 0, 16);
-            this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Background, 0, 52);
+            this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Background, 0, 53);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_DateWeek, 0, 17);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Steps, 0, 20);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Statuses, 0, 19);
@@ -996,13 +1000,13 @@ namespace Watch_Face_Editor
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Sunrise, 0, 37);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Wind, 0, 38);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Moon, 0, 40);
-            this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Animation, 0, 51);
+            this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Animation, 0, 52);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_DisconnectAlert, 0, 3);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_AnalogTimePro, 0, 7);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Image, 0, 39);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_TopImage, 0, 5);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Buttons, 0, 2);
-            this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_JS, 0, 50);
+            this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_JS, 0, 51);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Compass, 0, 41);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Weather_v2, 0, 30);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Weather_FewDay, 0, 31);
@@ -1019,6 +1023,7 @@ namespace Watch_Face_Editor
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_HRV, 0, 49);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_AnalogTimeCircle, 0, 11);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_WorldClock, 0, 12);
+            this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_BioCharge, 0, 50);
             this.tableLayoutPanel_ElemetsWatchFace.Name = "tableLayoutPanel_ElemetsWatchFace";
             this.tableLayoutPanel_ElemetsWatchFace.DragOver += new System.Windows.Forms.DragEventHandler(this.tableLayoutPanel1_DragOver);
             // 
@@ -2016,6 +2021,25 @@ namespace Watch_Face_Editor
             this.uCtrl_WorldClock_Elm.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Control_MouseMove);
             this.uCtrl_WorldClock_Elm.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Control_MouseUp);
             // 
+            // panel_UC_BioCharge
+            // 
+            resources.ApplyResources(this.panel_UC_BioCharge, "panel_UC_BioCharge");
+            this.panel_UC_BioCharge.Controls.Add(this.uCtrl_BioCharge_Elm);
+            this.panel_UC_BioCharge.Name = "panel_UC_BioCharge";
+            // 
+            // uCtrl_BioCharge_Elm
+            // 
+            resources.ApplyResources(this.uCtrl_BioCharge_Elm, "uCtrl_BioCharge_Elm");
+            this.uCtrl_BioCharge_Elm.Name = "uCtrl_BioCharge_Elm";
+            this.uCtrl_BioCharge_Elm.VisibleElementChanged += new ControlLibrary.UCtrl_TrainingLoad_Elm.VisibleElementChangedHandler(this.uCtrl_BioCharge_Elm_VisibleElementChanged);
+            this.uCtrl_BioCharge_Elm.VisibleOptionsChanged += new ControlLibrary.UCtrl_TrainingLoad_Elm.VisibleOptionsChangedHandler(this.uCtrl_BioCharge_Elm_VisibleOptionsChanged);
+            this.uCtrl_BioCharge_Elm.OptionsMoved += new ControlLibrary.UCtrl_TrainingLoad_Elm.OptionsMovedHandler(this.uCtrl_BioCharge_Elm_OptionsMoved);
+            this.uCtrl_BioCharge_Elm.SelectChanged += new ControlLibrary.UCtrl_TrainingLoad_Elm.SelectChangedHandler(this.uCtrl_BioCharge_Elm_SelectChanged);
+            this.uCtrl_BioCharge_Elm.DelElement += new ControlLibrary.UCtrl_TrainingLoad_Elm.DelElementHandler(this.uCtrl_Elm_DelElement);
+            this.uCtrl_BioCharge_Elm.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Control_MouseDown);
+            this.uCtrl_BioCharge_Elm.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Control_MouseMove);
+            this.uCtrl_BioCharge_Elm.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Control_MouseUp);
+            // 
             // panel_ElementsOpt
             // 
             resources.ApplyResources(this.panel_ElementsOpt, "panel_ElementsOpt");
@@ -2652,7 +2676,9 @@ namespace Watch_Face_Editor
             resources.GetString("comboBox_ConvertingOutput_Model.Items19"),
             resources.GetString("comboBox_ConvertingOutput_Model.Items20"),
             resources.GetString("comboBox_ConvertingOutput_Model.Items21"),
-            resources.GetString("comboBox_ConvertingOutput_Model.Items22")});
+            resources.GetString("comboBox_ConvertingOutput_Model.Items22"),
+            resources.GetString("comboBox_ConvertingOutput_Model.Items23"),
+            resources.GetString("comboBox_ConvertingOutput_Model.Items24")});
             resources.ApplyResources(this.comboBox_ConvertingOutput_Model, "comboBox_ConvertingOutput_Model");
             this.comboBox_ConvertingOutput_Model.Name = "comboBox_ConvertingOutput_Model";
             this.comboBox_ConvertingOutput_Model.SelectedIndexChanged += new System.EventHandler(this.comboBox_ConvertingOutput_Model_SelectedIndexChanged);
@@ -2713,7 +2739,9 @@ namespace Watch_Face_Editor
             resources.GetString("comboBox_ConvertingInput_Model.Items19"),
             resources.GetString("comboBox_ConvertingInput_Model.Items20"),
             resources.GetString("comboBox_ConvertingInput_Model.Items21"),
-            resources.GetString("comboBox_ConvertingInput_Model.Items22")});
+            resources.GetString("comboBox_ConvertingInput_Model.Items22"),
+            resources.GetString("comboBox_ConvertingInput_Model.Items23"),
+            resources.GetString("comboBox_ConvertingInput_Model.Items24")});
             resources.ApplyResources(this.comboBox_ConvertingInput_Model, "comboBox_ConvertingInput_Model");
             this.comboBox_ConvertingInput_Model.Name = "comboBox_ConvertingInput_Model";
             this.comboBox_ConvertingInput_Model.SelectedIndexChanged += new System.EventHandler(this.comboBox_ConvertingInput_Model_SelectedIndexChanged);
@@ -3814,6 +3842,8 @@ namespace Watch_Face_Editor
             this.panel_UC_AnalogTimeCircle.PerformLayout();
             this.panel_UC_WorldClock.ResumeLayout(false);
             this.panel_UC_WorldClock.PerformLayout();
+            this.panel_UC_BioCharge.ResumeLayout(false);
+            this.panel_UC_BioCharge.PerformLayout();
             this.panel_ElementsOpt.ResumeLayout(false);
             this.panel_MainScreen_AOD.ResumeLayout(false);
             this.panel_MainScreen_AOD.PerformLayout();
@@ -4191,6 +4221,8 @@ namespace Watch_Face_Editor
         private System.Windows.Forms.Panel panel_UC_WorldClock;
         private ControlLibrary.UCtrl_WorldClock_Elm uCtrl_WorldClock_Elm;
         private ControlLibrary.UCtrl_ButtonOne_Opt uCtrl_ButtonOne_Opt;
+        private System.Windows.Forms.Panel panel_UC_BioCharge;
+        private ControlLibrary.UCtrl_BioCharge_Elm uCtrl_BioCharge_Elm;
     }
 }
 

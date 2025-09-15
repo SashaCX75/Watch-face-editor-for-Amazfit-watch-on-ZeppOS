@@ -187,6 +187,24 @@ namespace ControlLibrary.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на BioCharge *.
+        /// </summary>
+        internal static string BioCharge {
+            get {
+                return ResourceManager.GetString("BioCharge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на hmApp.startApp({url: &apos;BioChargeHomeScreen&apos;, native: true });.
+        /// </summary>
+        internal static string BioCharge_function {
+            get {
+                return ResourceManager.GetString("BioCharge_function", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Состав тела *.
         /// </summary>
         internal static string BodyComposition {
@@ -201,6 +219,24 @@ namespace ControlLibrary.Properties {
         internal static string BodyComposition_function {
             get {
                 return ResourceManager.GetString("BodyComposition_function", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Календарь Плюс *.
+        /// </summary>
+        internal static string CalendarPlus {
+            get {
+                return ResourceManager.GetString("CalendarPlus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на hmApp.startApp({ appid: 1057409, url: &apos;page/index&apos; });.
+        /// </summary>
+        internal static string CalendarPlus_function {
+            get {
+                return ResourceManager.GetString("CalendarPlus_function", resourceCulture);
             }
         }
         
@@ -255,6 +291,24 @@ namespace ControlLibrary.Properties {
         internal static string Compass_function {
             get {
                 return ResourceManager.GetString("Compass_function", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Компас (вертикальный) *.
+        /// </summary>
+        internal static string CompassV {
+            get {
+                return ResourceManager.GetString("CompassV", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на hmApp.startApp({url: &apos;SportDiveCompassSetTargetScreen&apos;, native: true });.
+        /// </summary>
+        internal static string CompassV_function {
+            get {
+                return ResourceManager.GetString("CompassV_function", resourceCulture);
             }
         }
         
@@ -439,6 +493,33 @@ namespace ControlLibrary.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на HRV.
+        /// </summary>
+        internal static string HRV {
+            get {
+                return ResourceManager.GetString("HRV", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на hmApp.startApp({ appid: 1047865, url: &apos;page/round/index&apos; });.
+        /// </summary>
+        internal static string HRV_functionR {
+            get {
+                return ResourceManager.GetString("HRV_functionR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на hmApp.startApp({ appid: 1047865, url: &apos;page/square_pamir/index&apos; });.
+        /// </summary>
+        internal static string HRV_functionS {
+            get {
+                return ResourceManager.GetString("HRV_functionS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Яркость.
         /// </summary>
         internal static string Light {
@@ -489,6 +570,24 @@ namespace ControlLibrary.Properties {
         internal static string LowBattery_function {
             get {
                 return ResourceManager.GetString("LowBattery_function", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Карта.
+        /// </summary>
+        internal static string Map {
+            get {
+                return ResourceManager.GetString("Map", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на hmApp.startApp({url: &apos;OfflineMapScreen&apos;, native: true });.
+        /// </summary>
+        internal static string Map_function {
+            get {
+                return ResourceManager.GetString("Map_function", resourceCulture);
             }
         }
         
@@ -1033,6 +1132,24 @@ namespace ControlLibrary.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Говорящие часы *.
+        /// </summary>
+        internal static string TalkingWatch {
+            get {
+                return ResourceManager.GetString("TalkingWatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на hmApp.startApp({ appid: 1066653, url: &apos;page/index.page&apos; });.
+        /// </summary>
+        internal static string TalkingWatch_function {
+            get {
+                return ResourceManager.GetString("TalkingWatch_function", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Тест.
         /// </summary>
         internal static string Test1 {
@@ -1177,6 +1294,42 @@ namespace ControlLibrary.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на RWeather.
+        /// </summary>
+        internal static string WeatherRu {
+            get {
+                return ResourceManager.GetString("WeatherRu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на hmApp.startApp({ appid: 1066654, url: &apos;page/index&apos; });.
+        /// </summary>
+        internal static string WeatherRu_function {
+            get {
+                return ResourceManager.GetString("WeatherRu_function", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Погодный сервис *.
+        /// </summary>
+        internal static string WeatherService {
+            get {
+                return ResourceManager.GetString("WeatherService", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на hmApp.startApp({ appid: 1065824, url: &apos;page/index&apos; });.
+        /// </summary>
+        internal static string WeatherService_function {
+            get {
+                return ResourceManager.GetString("WeatherService_function", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Активность за неделю *.
         /// </summary>
         internal static string WeekActivity {
@@ -1227,6 +1380,24 @@ namespace ControlLibrary.Properties {
         internal static string WorldClock_function {
             get {
                 return ResourceManager.GetString("WorldClock_function", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Мировое время *.
+        /// </summary>
+        internal static string WorldClockNew {
+            get {
+                return ResourceManager.GetString("WorldClockNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на hmApp.startApp({ appid: 1049670, url: &apos;page/wclk_showLayer&apos; });.
+        /// </summary>
+        internal static string WorldClockNew_function {
+            get {
+                return ResourceManager.GetString("WorldClockNew_function", resourceCulture);
             }
         }
     }

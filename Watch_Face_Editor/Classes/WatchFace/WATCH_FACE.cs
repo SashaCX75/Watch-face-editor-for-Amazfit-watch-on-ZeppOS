@@ -11219,6 +11219,218 @@ namespace Watch_Face_Editor
         }
     }
 
+    public class ElementBioCharge : ICloneable
+    {
+        public string elementName = "ElementBioCharge";
+
+        ///// <summary>Позиция в наборе элементов</summary>
+        //public int position = -1;
+
+        /// <summary>Видимость элемента</summary>
+        public bool visible = true;
+
+        public hmUI_widget_IMG_LEVEL Images { get; set; }
+        public hmUI_widget_IMG_PROGRESS Segments { get; set; }
+        public hmUI_widget_IMG_NUMBER Number { get; set; }
+        public hmUI_widget_TEXT Number_Font { get; set; }
+        public hmUI_widget_IMG_POINTER Pointer { get; set; }
+        public Circle_Scale Circle_Scale { get; set; }
+        public hmUI_widget_IMG Icon { get; set; }
+
+        public object Clone()
+        {
+
+            hmUI_widget_IMG_LEVEL Images = null;
+            if (this.Images != null)
+            {
+                Images = new hmUI_widget_IMG_LEVEL
+                {
+                    X = this.Images.X,
+                    Y = this.Images.Y,
+                    img_First = this.Images.img_First,
+                    image_length = this.Images.image_length,
+                    shortcut = this.Images.shortcut,
+                    alpha = this.Images.alpha,
+
+                    position = this.Images.position,
+                    visible = this.Images.visible,
+                    show_level = this.Images.show_level,
+                    type = this.Images.type,
+                };
+            }
+
+            hmUI_widget_IMG_PROGRESS Segments = null;
+            if (this.Segments != null)
+            {
+                Segments = new hmUI_widget_IMG_PROGRESS
+                {
+                    X = this.Segments.X,
+                    Y = this.Segments.Y,
+                    img_First = this.Segments.img_First,
+                    image_length = this.Segments.image_length,
+
+                    position = this.Segments.position,
+                    visible = this.Segments.visible,
+                    show_level = this.Segments.show_level,
+                    type = this.Segments.type,
+                };
+            }
+
+            hmUI_widget_IMG_NUMBER Number = null;
+            if (this.Number != null)
+            {
+                Number = new hmUI_widget_IMG_NUMBER
+                {
+                    imageX = this.Number.imageX,
+                    imageY = this.Number.imageY,
+                    space = this.Number.space,
+                    angle = this.Number.angle,
+                    zero = this.Number.zero,
+                    align = this.Number.align,
+                    img_First = this.Number.img_First,
+                    unit = this.Number.unit,
+                    imperial_unit = this.Number.imperial_unit,
+                    icon = this.Number.icon,
+                    iconPosX = this.Number.iconPosX,
+                    iconPosY = this.Number.iconPosY,
+                    negative_image = this.Number.negative_image,
+                    invalid_image = this.Number.invalid_image,
+                    dot_image = this.Number.dot_image,
+                    follow = this.Number.follow,
+                    alpha = this.Number.alpha,
+                    icon_alpha = this.Number.icon_alpha,
+
+                    position = this.Number.position,
+                    visible = this.Number.visible,
+                    show_level = this.Number.show_level,
+                    type = this.Number.type,
+                };
+            }
+
+            hmUI_widget_TEXT Number_Font = null;
+            if (this.Number_Font != null)
+            {
+                Number_Font = new hmUI_widget_TEXT
+                {
+                    x = this.Number_Font.x,
+                    y = this.Number_Font.y,
+                    w = this.Number_Font.w,
+                    h = this.Number_Font.h,
+                    color = this.Number_Font.color,
+                    color_2 = this.Number_Font.color_2,
+                    use_color_2 = this.Number_Font.use_color_2,
+                    align_h = this.Number_Font.align_h,
+                    align_v = this.Number_Font.align_v,
+                    text_size = this.Number_Font.text_size,
+                    text_style = this.Number_Font.text_style,
+                    line_space = this.Number_Font.line_space,
+                    char_space = this.Number_Font.char_space,
+                    font = this.Number_Font.font,
+                    padding = this.Number_Font.padding,
+                    unit_type = this.Number_Font.unit_type,
+                    unit_string = this.Number_Font.unit_string,
+                    unit_end = this.Number_Font.unit_end,
+                    centreHorizontally = this.Number_Font.centreHorizontally,
+                    centreVertically = this.Number_Font.centreVertically,
+                    alpha = this.Number_Font.alpha,
+
+                    use_text_circle = this.Number_Font.use_text_circle,
+                    radius = this.Number_Font.radius,
+                    start_angle = this.Number_Font.start_angle,
+                    end_angle = this.Number_Font.end_angle,
+                    mode = this.Number_Font.mode,
+
+                    position = this.Number_Font.position,
+                    visible = this.Number_Font.visible,
+                    show_level = this.Number_Font.show_level,
+                    type = this.Number_Font.type,
+                };
+            }
+
+            hmUI_widget_IMG_POINTER Pointer = null;
+            if (this.Pointer != null)
+            {
+                Pointer = new hmUI_widget_IMG_POINTER
+                {
+                    src = this.Pointer.src,
+                    center_x = this.Pointer.center_x,
+                    center_y = this.Pointer.center_y,
+                    pos_x = this.Pointer.pos_x,
+                    pos_y = this.Pointer.pos_y,
+                    start_angle = this.Pointer.start_angle,
+                    end_angle = this.Pointer.end_angle,
+                    cover_path = this.Pointer.cover_path,
+                    cover_x = this.Pointer.cover_x,
+                    cover_y = this.Pointer.cover_y,
+                    scale = this.Pointer.scale,
+                    scale_x = this.Pointer.scale_x,
+                    scale_y = this.Pointer.scale_y,
+
+                    position = this.Pointer.position,
+                    visible = this.Pointer.visible,
+                    show_level = this.Pointer.show_level,
+                    type = this.Pointer.type,
+                };
+            }
+
+            Circle_Scale Circle_Scale = null;
+            if (this.Circle_Scale != null)
+            {
+                Circle_Scale = new Circle_Scale
+                {
+                    center_x = this.Circle_Scale.center_x,
+                    center_y = this.Circle_Scale.center_y,
+                    start_angle = this.Circle_Scale.start_angle,
+                    end_angle = this.Circle_Scale.end_angle,
+                    color = this.Circle_Scale.color,
+                    radius = this.Circle_Scale.radius,
+                    line_width = this.Circle_Scale.line_width,
+                    line_cap = this.Circle_Scale.line_cap,
+                    mirror = this.Circle_Scale.mirror,
+                    inversion = this.Circle_Scale.inversion,
+                    alpha = this.Circle_Scale.alpha,
+
+                    position = this.Circle_Scale.position,
+                    visible = this.Circle_Scale.visible,
+                    show_level = this.Circle_Scale.show_level,
+                    type = this.Circle_Scale.type,
+                };
+            }
+
+            hmUI_widget_IMG Icon = null;
+            if (this.Icon != null)
+            {
+                Icon = new hmUI_widget_IMG
+                {
+                    x = this.Icon.x,
+                    y = this.Icon.y,
+                    w = this.Icon.w,
+                    h = this.Icon.h,
+                    src = this.Icon.src,
+                    alpha = this.Icon.alpha,
+
+                    position = this.Icon.position,
+                    visible = this.Icon.visible,
+                    show_level = this.Icon.show_level,
+                };
+            }
+
+            return new ElementBioCharge
+            {
+                elementName = this.elementName,
+                visible = this.visible,
+
+                Images = Images,
+                Segments = Segments,
+                Number = Number,
+                Number_Font = Number_Font,
+                Pointer = Pointer,
+                Circle_Scale = Circle_Scale,
+                Icon = Icon,
+            };
+        }
+    }
+
     public class ElementImage : ICloneable
     {
         public string elementName = "ElementImage";

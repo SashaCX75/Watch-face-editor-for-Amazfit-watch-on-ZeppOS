@@ -6,20 +6,20 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ControlLibrary
 {
-    public partial class UCtrl_ButtonOne_Opt : UserControl
+    public partial class UCtrl_SleepChart_Opt : UserControl
     {
         private bool setValue; // режим задания параметров
         private List<string> ListImagesFullName = new List<string>(); // перечень путей к файлам с картинками
-        public Object _Button;
-        public Dictionary<string, Object> WidgetProperty = new Dictionary<string, Object>();
+        public Object _ChartSettings;
 
-        public UCtrl_ButtonOne_Opt()
+        public UCtrl_SleepChart_Opt()
         {
             InitializeComponent();
             setValue = false;
@@ -66,104 +66,115 @@ namespace ControlLibrary
             }
         }
 
+        public void SetDeepSleepColour(Color color)
+        {
+            comboBox_deepSleep_colour.BackColor = color;
+        }
+        public Color GetDeepSleepColour()
+        {
+            return comboBox_deepSleep_colour.BackColor;
+        }
+
+        public void SetLightSleepColour(Color color)
+        {
+            comboBox_lightSleep_colour.BackColor = color;
+        }
+        public Color GetLightSleepColour()
+        {
+            return comboBox_lightSleep_colour.BackColor;
+        }
+
+        public void SetRemColour(Color color)
+        {
+            comboBox_REM_colour.BackColor = color;
+        }
+        public Color GetRemColour()
+        {
+            return comboBox_REM_colour.BackColor;
+        }
+
+        public void SetWakeupColour(Color color)
+        {
+            comboBox_wakeup_colour.BackColor = color;
+        }
+        public Color GetWakeupColour()
+        {
+            return comboBox_wakeup_colour.BackColor;
+        }
+
+        public void SetHRColour(Color color)
+        {
+            comboBox_hr_colour.BackColor = color;
+        }
+        public Color GetHRColour()
+        {
+            return comboBox_hr_colour.BackColor;
+        }
+
         [Browsable(true)]
-        [Description("Происходит при изменении выбранной кнопки")]
+        [Description("Происходит при изменении выбора элемента")]
         public event ValueChangedHandler ValueChanged;
         public delegate void ValueChangedHandler(object sender, EventArgs eventArgs);
 
-        [Browsable(true)]
-        [Description("Происходит при копировании свойст виджета")]
-        public event WidgetProperty_Copy_Handler WidgetProperty_Copy;
-        public delegate void WidgetProperty_Copy_Handler(object sender, EventArgs eventArgs);
-
-        [Browsable(true)]
-        [Description("Происходит при вставке свойст виджета")]
-        public event WidgetProperty_Paste_Handler WidgetProperty_Paste;
-        public delegate void WidgetProperty_Paste_Handler(object sender, EventArgs eventArgs);
-
-        public void SetNormalImage(string value)
+        public void SetBackground(string value)
         {
-            comboBox_normal_image.Text = value;
-            if (comboBox_normal_image.SelectedIndex < 0) comboBox_normal_image.Text = "";
+            comboBox_image.Text = value;
+            if (comboBox_image.SelectedIndex < 0) comboBox_image.Text = "";
         }
 
         /// <summary>Возвращает название выбранной картинки</summary>
-        public string GetNormalImage()
+        public string GetBackground()
         {
-            if (comboBox_normal_image.SelectedIndex < 0) return "";
-            return comboBox_normal_image.Text;
+            if (comboBox_image.SelectedIndex < 0) return "";
+            return comboBox_image.Text;
         }
 
         /// <summary>Возвращает SelectedIndex выпадающего списка</summary>
-        public int comboBoxGetSelectedIndexNormalImage()
+        public int comboBoxGetSelectedIndexBackground()
         {
-            return comboBox_normal_image.SelectedIndex;
-        }
-
-        public void SetPressImage(string value)
-        {
-            comboBox_press_image.Text = value;
-            if (comboBox_press_image.SelectedIndex < 0) comboBox_press_image.Text = "";
-        }
-
-        /// <summary>Возвращает название выбранной картинки</summary>
-        public string GetPressImage()
-        {
-            if (comboBox_press_image.SelectedIndex < 0) return "";
-            return comboBox_press_image.Text;
-        }
-
-        /// <summary>Возвращает SelectedIndex выпадающего списка</summary>
-        public int comboBoxGetSelectedIndexPressImage()
-        {
-            return comboBox_press_image.SelectedIndex;
-        }
-
-        public void SetColorText(Color color)
-        {
-            comboBox_Text_color.BackColor = color;
-        }
-
-        public Color GetColorText()
-        {
-            return comboBox_Text_color.BackColor;
-        }
-
-        public void SetColorNormal(Color color)
-        {
-            comboBox_normal_color.BackColor = color;
-        }
-
-        public Color GetColorNormal()
-        {
-            return comboBox_normal_color.BackColor;
-        }
-
-        public void SetColorPress(Color color)
-        {
-            comboBox_press_color.BackColor = color;
-        }
-
-        public Color GetColorPress()
-        {
-            return comboBox_press_color.BackColor;
-        }
-
-        public void SetText(string text)
-        {
-            textBox_text.Text = text;
-        }
-
-        public string GetText()
-        {
-            return textBox_text.Text;
+            return comboBox_image.SelectedIndex;
         }
 
         #region Standard events
 
-        private void textBox_text_TextChanged(object sender, EventArgs e)
+        private void comboBox_color_Click(object sender, EventArgs e)
         {
-            if (ValueChanged != null && !setValue)
+            Program_Settings ProgramSettings = new Program_Settings();
+            ColorDialog colorDialog = new ColorDialog();
+            ComboBox comboBox_color = sender as ComboBox;
+            colorDialog.Color = comboBox_color.BackColor;
+            colorDialog.FullOpen = true;
+
+            // читаем пользовательские цвета из настроек
+            if (File.Exists(Application.StartupPath + @"\Settings.json"))
+            {
+                ProgramSettings = JsonConvert.DeserializeObject<Program_Settings>
+                            (File.ReadAllText(Application.StartupPath + @"\Settings.json"), new JsonSerializerSettings
+                            {
+                                //DefaultValueHandling = DefaultValueHandling.Ignore,
+                                NullValueHandling = NullValueHandling.Ignore
+                            });
+            }
+            colorDialog.CustomColors = ProgramSettings.CustomColors;
+
+
+            if (colorDialog.ShowDialog() == DialogResult.Cancel) return;
+
+            // установка цвета формы
+            comboBox_color.BackColor = colorDialog.Color;
+            if (ProgramSettings.CustomColors != colorDialog.CustomColors)
+            {
+                ProgramSettings.CustomColors = colorDialog.CustomColors;
+
+                string JSON_String = JsonConvert.SerializeObject(ProgramSettings, Formatting.Indented, new JsonSerializerSettings
+                {
+                    //DefaultValueHandling = DefaultValueHandling.Ignore,
+                    NullValueHandling = NullValueHandling.Ignore
+                });
+                File.WriteAllText(Application.StartupPath + @"\Settings.json", JSON_String, Encoding.UTF8);
+            }
+
+            if (ValueChanged != null)
             {
                 EventArgs eventArgs = new EventArgs();
                 ValueChanged(this, eventArgs);
@@ -177,8 +188,7 @@ namespace ControlLibrary
                 ComboBox comboBox = sender as ComboBox;
                 comboBox.Text = "";
                 comboBox.SelectedIndex = -1;
-
-                if (ValueChanged != null)
+                if (ValueChanged != null && !setValue)
                 {
                     EventArgs eventArgs = new EventArgs();
                     ValueChanged(this, eventArgs);
@@ -236,62 +246,6 @@ namespace ControlLibrary
 
         private void comboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ValueChanged != null)
-            {
-                EventArgs eventArgs = new EventArgs();
-                ValueChanged(this, eventArgs);
-            }
-
-            if (comboBox_normal_image.Text.Length > 0 && comboBox_press_image.Text.Length > 0) groupBox_color.Enabled = false;
-            else groupBox_color.Enabled = true;
-        }
-
-        private void comboBox_color_Click(object sender, EventArgs e)
-        {
-            Program_Settings ProgramSettings = new Program_Settings();
-            ColorDialog colorDialog = new ColorDialog();
-            ComboBox comboBox_color = sender as ComboBox;
-            colorDialog.Color = comboBox_color.BackColor;
-            colorDialog.FullOpen = true;
-
-            // читаем пользовательские цвета из настроек
-            if (File.Exists(Application.StartupPath + @"\Settings.json"))
-            {
-                ProgramSettings = JsonConvert.DeserializeObject<Program_Settings>
-                            (File.ReadAllText(Application.StartupPath + @"\Settings.json"), new JsonSerializerSettings
-                            {
-                                //DefaultValueHandling = DefaultValueHandling.Ignore,
-                                NullValueHandling = NullValueHandling.Ignore
-                            });
-            }
-            colorDialog.CustomColors = ProgramSettings.CustomColors;
-
-
-            if (colorDialog.ShowDialog() == DialogResult.Cancel) return;
-
-            // установка цвета формы
-            comboBox_color.BackColor = colorDialog.Color;
-            if (ProgramSettings.CustomColors != colorDialog.CustomColors)
-            {
-                ProgramSettings.CustomColors = colorDialog.CustomColors;
-
-                string JSON_String = JsonConvert.SerializeObject(ProgramSettings, Formatting.Indented, new JsonSerializerSettings
-                {
-                    //DefaultValueHandling = DefaultValueHandling.Ignore,
-                    NullValueHandling = NullValueHandling.Ignore
-                });
-                File.WriteAllText(Application.StartupPath + @"\Settings.json", JSON_String, Encoding.UTF8);
-            }
-
-            if (ValueChanged != null)
-            {
-                EventArgs eventArgs = new EventArgs();
-                ValueChanged(this, eventArgs);
-            }
-        }
-
-        private void checkBox_CheckedChanged(object sender, EventArgs e)
-        {
             if (ValueChanged != null && !setValue)
             {
                 EventArgs eventArgs = new EventArgs();
@@ -305,28 +259,23 @@ namespace ControlLibrary
         /// <summary>Добавляет ссылки на картинки в выпадающие списки</summary>
         public void ComboBoxAddItems(List<string> ListImages, List<string> _ListImagesFullName)
         {
-            comboBox_normal_image.Items.Clear();
-            comboBox_press_image.Items.Clear();
+            comboBox_image.Items.Clear();
 
-            comboBox_normal_image.Items.AddRange(ListImages.ToArray());
-            comboBox_press_image.Items.AddRange(ListImages.ToArray());
+            comboBox_image.Items.AddRange(ListImages.ToArray());
             ListImagesFullName = _ListImagesFullName;
 
             int count = ListImages.Count;
             if (count == 0)
             {
-                comboBox_normal_image.DropDownHeight = 1;
-                comboBox_press_image.DropDownHeight = 1;
+                comboBox_image.DropDownHeight = 1;
             }
             else if (count < 5)
             {
-                comboBox_normal_image.DropDownHeight = 35 * count + 1;
-                comboBox_press_image.DropDownHeight = 35 * count + 1;
+                comboBox_image.DropDownHeight = 35 * count + 1;
             }
             else
             {
-                comboBox_normal_image.DropDownHeight = 106;
-                comboBox_press_image.DropDownHeight = 106;
+                comboBox_image.DropDownHeight = 106;
             }
         }
 
@@ -335,15 +284,13 @@ namespace ControlLibrary
         {
             setValue = true;
 
-            comboBox_normal_image.Text = null;
-            comboBox_press_image.Text = null;
+            comboBox_image.Text = null;
 
-            numericUpDown_buttonX.Value = 0;
-            numericUpDown_buttonY.Value = 0;
-            numericUpDown_width.Value = 100;
-            numericUpDown_height.Value = 40;
-            numericUpDown_radius.Value = 12;
-            numericUpDown_textSize.Value = 25;
+            numericUpDown_posX.Value = 0;
+            numericUpDown_posY.Value = 0;
+
+            numericUpDown_height.Value = 7;
+            numericUpDown_width.Value = 50;
 
             setValue = false;
         }
@@ -502,74 +449,46 @@ namespace ControlLibrary
 
         private void numericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            if (ValueChanged != null)
+            if (ValueChanged != null && !setValue)
             {
                 EventArgs eventArgs = new EventArgs();
                 ValueChanged(this, eventArgs);
             }
         }
 
-        private void numericUpDown_width_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            if (MouseСoordinates.X < 0) return;
-            NumericUpDown numericUpDown = sender as NumericUpDown;
-            if (e.X <= numericUpDown.Controls[1].Width + 1)
-            {
-                // Click is in text area
-                if ((MouseСoordinates.X - numericUpDown_buttonX.Value) > 0)
-                {
-                    numericUpDown.Value = MouseСoordinates.X - numericUpDown_buttonX.Value;
-                }
-                else numericUpDown.Value = 1;
-            }
-        }
+        #endregion
 
-        private void numericUpDown_height_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            if (MouseСoordinates.Y < 0) return;
-            NumericUpDown numericUpDown = sender as NumericUpDown;
-            if (e.X <= numericUpDown.Controls[1].Width + 1)
-            {
-                // Click is in text area
-                if ((MouseСoordinates.Y - numericUpDown_buttonY.Value) > 0)
-                {
-                    numericUpDown.Value = MouseСoordinates.Y - numericUpDown_buttonY.Value;
-                }
-                else numericUpDown.Value = 1;
-            }
-        }
-
-        private void numericUpDown_position_KeyDown(object sender, KeyEventArgs e)
+        private void numericUpDown_pos_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Control && (e.KeyCode == Keys.Left || e.KeyCode == Keys.Right || e.KeyCode == Keys.Up || e.KeyCode == Keys.Down))
             {
                 NumericUpDown numericUpDown = sender as NumericUpDown;
-                if (e.KeyCode == Keys.Up && numericUpDown.Name == "numericUpDown_buttonX")
+                if (e.KeyCode == Keys.Up && numericUpDown.Name == "numericUpDown_posX")
                 {
                     e.SuppressKeyPress = false;
-                    numericUpDown_buttonY.DownButton();
+                    numericUpDown_posY.DownButton();
                 }
-                if (e.KeyCode == Keys.Down && numericUpDown.Name == "numericUpDown_buttonX")
+                if (e.KeyCode == Keys.Down && numericUpDown.Name == "numericUpDown_posX")
                 {
                     e.SuppressKeyPress = false;
-                    numericUpDown_buttonY.UpButton();
-                }
-
-                if (e.KeyCode == Keys.Up && numericUpDown.Name == "numericUpDown_buttonY")
-                {
-                    e.SuppressKeyPress = false;
-                    numericUpDown_buttonY.DownButton();
-                }
-                if (e.KeyCode == Keys.Down && numericUpDown.Name == "numericUpDown_buttonY")
-                {
-                    e.SuppressKeyPress = false;
-                    numericUpDown_buttonY.UpButton();
+                    numericUpDown_posY.UpButton();
                 }
 
-                if (e.KeyCode == Keys.Left && (numericUpDown.Name == "numericUpDown_buttonX" || numericUpDown.Name == "numericUpDown_buttonY"))
-                    numericUpDown_buttonX.DownButton();
-                if (e.KeyCode == Keys.Right && (numericUpDown.Name == "numericUpDown_buttonX" || numericUpDown.Name == "numericUpDown_buttonY"))
-                    numericUpDown_buttonX.UpButton();
+                if (e.KeyCode == Keys.Up && numericUpDown.Name == "numericUpDown_posY")
+                {
+                    e.SuppressKeyPress = false;
+                    numericUpDown_posY.DownButton();
+                }
+                if (e.KeyCode == Keys.Down && numericUpDown.Name == "numericUpDown_posY")
+                {
+                    e.SuppressKeyPress = false;
+                    numericUpDown_posY.UpButton();
+                }
+
+                if (e.KeyCode == Keys.Left && (numericUpDown.Name == "numericUpDown_posX" || numericUpDown.Name == "numericUpDown_posY"))
+                    numericUpDown_posX.DownButton();
+                if (e.KeyCode == Keys.Right && (numericUpDown.Name == "numericUpDown_posX" || numericUpDown.Name == "numericUpDown_posY"))
+                    numericUpDown_posX.UpButton();
 
                 e.Handled = true;
             }
@@ -611,30 +530,81 @@ namespace ControlLibrary
             }
         }
 
-        #endregion
-
-        private void context_WidgetProperty_Opening(object sender, CancelEventArgs e)
+        private void checkBox_graph_fullScreen_CheckedChanged(object sender, EventArgs e)
         {
-            if (WidgetProperty.ContainsKey("Button")) context_WidgetProperty.Items[1].Enabled = true;
-            else context_WidgetProperty.Items[1].Enabled = false;
-        }
-
-        private void копироватьСвойстваToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (WidgetProperty_Copy != null && !setValue)
+            if (ValueChanged != null && !setValue)
             {
                 EventArgs eventArgs = new EventArgs();
-                WidgetProperty_Copy(this, eventArgs);
+                ValueChanged(this, eventArgs);
             }
         }
 
-        private void вставитьСвойстваToolStripMenuItem_Click(object sender, EventArgs e)
+        private void numericUpDown_width_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            this.Focus();
-            if (WidgetProperty_Paste != null && !setValue)
+            if (MouseСoordinates.X < 0) return;
+            NumericUpDown numericUpDown = sender as NumericUpDown;
+            if (e.X <= numericUpDown.Controls[1].Width + 1)
+            {
+                // Click is in text area
+                if ((MouseСoordinates.X - numericUpDown_posX.Value) > 0)
+                {
+                    numericUpDown.Value = MouseСoordinates.X - numericUpDown_posX.Value;
+                }
+                else numericUpDown.Value = 1;
+            }
+        }
+
+        private void numericUpDown_height_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (MouseСoordinates.Y < 0) return;
+            NumericUpDown numericUpDown = sender as NumericUpDown;
+            if (e.X <= numericUpDown.Controls[1].Width + 1)
+            {
+                // Click is in text area
+                if ((MouseСoordinates.Y - numericUpDown_posY.Value) > 0)
+                {
+                    numericUpDown.Value = MouseСoordinates.Y - numericUpDown_posY.Value;
+                }
+                else numericUpDown.Value = 1;
+            }
+        }
+
+        private void checkBox_use_chartSleep_CheckedChanged(object sender, EventArgs e)
+        {
+            bool cheked = checkBox_use_chartSleep.Checked;
+            comboBox_deepSleep_colour.Enabled = cheked;
+            comboBox_lightSleep_colour.Enabled = cheked;
+            comboBox_REM_colour.Enabled = cheked;
+            comboBox_wakeup_colour.Enabled = cheked;
+            numericUpDown_radius.Enabled = cheked;
+            //checkBox_graph_fullScreen.Enabled = cheked;
+
+            label16.Enabled = cheked;
+            label5.Enabled = cheked;
+            label4.Enabled = cheked;
+            label3.Enabled = cheked;
+            label2.Enabled = cheked;
+
+            if (ValueChanged != null && !setValue)
             {
                 EventArgs eventArgs = new EventArgs();
-                WidgetProperty_Paste(this, eventArgs);
+                ValueChanged(this, eventArgs);
+            }
+        }
+
+        private void checkBox_use_chartHR_CheckedChanged(object sender, EventArgs e)
+        {
+            bool cheked = checkBox_use_chartHR.Checked;
+            comboBox_hr_colour.Enabled = cheked;
+            numericUpDown_hr_lineWidth.Enabled = cheked;
+
+            label6.Enabled = cheked;
+            label7.Enabled = cheked;
+
+            if (ValueChanged != null && !setValue)
+            {
+                EventArgs eventArgs = new EventArgs();
+                ValueChanged(this, eventArgs);
             }
         }
     }

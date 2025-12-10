@@ -40,6 +40,7 @@ namespace Watch_Face_Editor
             string compass_error = "";
             string weather_few_days = "";
             string weather_few_days_end = "";
+            string sleep_function = "";
             string onDigitalCrown = "";
             if (Watch_Face == null) return;
 
@@ -296,7 +297,7 @@ namespace Watch_Face_Editor
                     {
                         AddElementToJS(element, "ONLY_NORMAL", ref variables, ref items, ref scale_update_function,
                             ref resume_call, ref pause_call, ref time_update, ref text_update, ref fonts_cache, 
-                            ref compass_update, ref compass_error, ref weather_few_days, ref weather_few_days_end);
+                            ref compass_update, ref compass_error, ref weather_few_days, ref weather_few_days_end, ref sleep_function);
                     }
                 }
             }
@@ -333,7 +334,7 @@ namespace Watch_Face_Editor
                     {
                         AddElementToJS(element, "ONLY_AOD", ref variables, ref items, ref scale_update_function,
                             ref resume_call, ref pause_call, ref time_update, ref text_update, ref fonts_cache, 
-                            ref compass_update, ref compass_error, ref weather_few_days, ref weather_few_days_end);
+                            ref compass_update, ref compass_error, ref weather_few_days, ref weather_few_days_end, ref sleep_function);
                     }
                 }
             }
@@ -859,7 +860,7 @@ namespace Watch_Face_Editor
                 items += TabInString(6) + "console.log('Watch_Face.Shortcuts');" + Environment.NewLine;
                 AddElementToJS(Watch_Face.Shortcuts, "ONLY_NORMAL", ref variables, ref items, ref scale_update_function,
                     ref resume_call, ref pause_call, ref time_update, ref text_update, ref fonts_cache, 
-                    ref compass_update, ref compass_error, ref weather_few_days, ref weather_few_days_end);
+                    ref compass_update, ref compass_error, ref weather_few_days, ref weather_few_days_end, ref sleep_function);
             }
 
             // кнопки морового времени
@@ -999,7 +1000,7 @@ namespace Watch_Face_Editor
                 items += Environment.NewLine + TabInString(6) + "console.log('Watch_Face.Buttons');";
                 AddElementToJS(Watch_Face.Buttons, "ONLY_NORMAL", ref variables, ref items, ref scale_update_function,
                     ref resume_call, ref pause_call, ref time_update, ref text_update, ref fonts_cache, 
-                    ref compass_update, ref compass_error, ref weather_few_days, ref weather_few_days_end);
+                    ref compass_update, ref compass_error, ref weather_few_days, ref weather_few_days_end, ref sleep_function);
             }
 
             // кнопка переключения фонового изображения
@@ -1009,7 +1010,7 @@ namespace Watch_Face_Editor
                 items += Environment.NewLine + TabInString(6) + "console.log('Watch_Face.SwitchBackground');";
                 AddElementToJS(Watch_Face.SwitchBackground, "ONLY_NORMAL", ref variables, ref items, ref scale_update_function,
                     ref resume_call, ref pause_call, ref time_update, ref text_update, ref fonts_cache,
-                    ref compass_update, ref compass_error, ref weather_few_days, ref weather_few_days_end);
+                    ref compass_update, ref compass_error, ref weather_few_days, ref weather_few_days_end, ref sleep_function);
 
                 bool useInAOD = false;
                 if (Watch_Face.SwitchBackground.use_in_AOD && Watch_Face.ScreenAOD != null &&
@@ -1101,7 +1102,7 @@ namespace Watch_Face_Editor
                 items += Environment.NewLine + TabInString(6) + "console.log('Watch_Face.SwitchBG_Color');";
                 AddElementToJS(Watch_Face.SwitchBG_Color, "ONLY_NORMAL", ref variables, ref items, ref scale_update_function,
                     ref resume_call, ref pause_call, ref time_update, ref text_update, ref fonts_cache,
-                    ref compass_update, ref compass_error, ref weather_few_days, ref weather_few_days_end);
+                    ref compass_update, ref compass_error, ref weather_few_days, ref weather_few_days_end, ref sleep_function);
 
                 bool useInAOD = false;
                 if (Watch_Face.SwitchBG_Color.use_in_AOD && Watch_Face.ScreenAOD != null &&
@@ -1539,7 +1540,25 @@ namespace Watch_Face_Editor
                 //items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
             }
 
-            if (scale_update_function.Length > 5 || resume_call.Length > 0 || pause_call.Length > 0 || time_update.Length > 5 || text_update.Length > 5)
+            if (sleep_function.Length > 5)
+            {
+                variables += TabInString(4) + "let sleepSensor = '';" + Environment.NewLine;
+                if (items.IndexOf("if (!sleepSensor) sleepSensor = hmSensor.createSensor(hmSensor.id.SLEEP);") < 0)
+                    items += Environment.NewLine + TabInString(6) + "if (!sleepSensor) sleepSensor = hmSensor.createSensor(hmSensor.id.SLEEP);";
+
+                //items += Environment.NewLine + TabInString(6) + "//start of ignored block";
+                items += Environment.NewLine + TabInString(6) + "//#region sleep_update";
+                items += Environment.NewLine + TabInString(6) + "function sleep_update() {";
+                items += Environment.NewLine + TabInString(7) + "console.log('sleep_update()');";
+                if (sleep_function.Contains("sleepInfo.")) items += Environment.NewLine + TabInString(7) + "let sleepInfo = sleepSensor.getBasicInfo();";
+                items += Environment.NewLine + sleep_function;
+                items += Environment.NewLine + TabInString(6) + "};" + Environment.NewLine;
+                items += Environment.NewLine + TabInString(6) + "//#endregion";
+                //items += Environment.NewLine + TabInString(6) + "//end of ignored block";
+            }
+
+            if (scale_update_function.Length > 5 || resume_call.Length > 0 || pause_call.Length > 0 || time_update.Length > 5 || 
+                text_update.Length > 5 || sleep_function.Length > 5)
             {
                 if (scale_update_function.Length > 5)
                 {
@@ -1555,6 +1574,7 @@ namespace Watch_Face_Editor
                 if (scale_update_function.Length > 5) items += Environment.NewLine + TabInString(8) + "scale_call();";
                 if (time_update.Length > 5) items += Environment.NewLine + TabInString(8) + "time_update(true, true);";
                 if (text_update.Length > 5) items += Environment.NewLine + TabInString(8) + "text_update();";
+                if (sleep_function.Length > 5) items += Environment.NewLine + TabInString(8) + "sleep_update();";
                 if (resume_call.Length > 0) items += Environment.NewLine + resume_call;
                 items += Environment.NewLine + TabInString(7) + "}),";
                 if (pause_call.Length > 0)
@@ -1592,7 +1612,8 @@ namespace Watch_Face_Editor
         /// <param name="time_update">Код для обновления времени</param>
         private void AddElementToJS(Object element, string show_level, ref string variables, ref string items, ref string scale_update_function, 
             ref string resume_call, ref string pause_call, ref string time_update, ref string text_update, ref string fonts_cache, 
-            ref string compass_update, ref string compass_error, ref string weather_few_days, ref string weather_few_days_end)
+            ref string compass_update, ref string compass_error, ref string weather_few_days, ref string weather_few_days_end,
+            ref string sleep_function)
         {
             string optionNameStart = "normal_";
             if (show_level == "ONLY_AOD") optionNameStart = "idle_";
@@ -2249,7 +2270,7 @@ namespace Watch_Face_Editor
                             if (DigitalTime.Hour_min_Font.padding) time_update += Environment.NewLine + TabInString(8) + HourMinStr + " = " + HourMinStr + ".padStart(2, '0');";
                             string delimeter = ":";
                             if (DigitalTime.Hour_min_Font.unit_string.Length > 0) delimeter = DigitalTime.Hour_min_Font.unit_string;
-                            time_update += Environment.NewLine + TabInString(8) + HourMinStr + " = " + HourMinStr + " + '" + delimeter + "' + minute.toString().padStart(2, '0')";
+                            time_update += Environment.NewLine + TabInString(8) + HourMinStr + " = " + HourMinStr + " + '" + delimeter + "' + minute.toString().padStart(2, '0');";
                             string unitAmStr = "Am";
                             string unitPmStr = "Pm";
                             if (DigitalTime.Hour_min_Font.unit_type == 0)
@@ -2918,6 +2939,9 @@ namespace Watch_Face_Editor
                         {
                             if (optionsHour_v2.Length > 5 && optionsMinute_v2.Length > 5)
                             {
+                                if (DigitalTime_v2.Group_Hour.Number.alpha != 255 && optionsHour_v2.Contains("// alpha:"))
+                                    optionsHour_v2 = optionsHour_v2.Replace("// alpha:", "alpha:");
+
                                 variables += TabInString(4) + "let " + optionNameStart +
                                                         "digital_clock_img_time = ''" + Environment.NewLine;
                                 options = optionsHour_v2 + optionsMinute_v2 + optionsSecond_v2 + Environment.NewLine +
@@ -2926,8 +2950,8 @@ namespace Watch_Face_Editor
                                     optionNameStart + "digital_clock_img_time = hmUI.createWidget(hmUI.widget.IMG_TIME, {" +
                                         options + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (DigitalTime_v2.Group_Hour.Number.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
-                                        "digital_clock_img_time.setAlpha(" + DigitalTime_v2.Group_Hour.Number.alpha.ToString() + ");" + Environment.NewLine;
+                                //if (DigitalTime_v2.Group_Hour.Number.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                //        "digital_clock_img_time.setAlpha(" + DigitalTime_v2.Group_Hour.Number.alpha.ToString() + ");" + Environment.NewLine;
 
                                 if (optionsHour_separator_v2.Length > 5)
                                 {
@@ -2976,6 +3000,9 @@ namespace Watch_Face_Editor
                                 // Hour_Number
                                 if (optionsHour_v2.Length > 5)
                                 {
+                                    if (DigitalTime_v2.Group_Hour.Number.alpha != 255 && optionsHour_v2.Contains("// alpha:"))
+                                        optionsHour_v2 = optionsHour_v2.Replace("// alpha:", "alpha:");
+
                                     variables += TabInString(4) + "let " + optionNameStart +
                                                                 "digital_clock_img_time_hour = ''" + Environment.NewLine;
                                     optionsHour_v2 += TabInString(7) + "show_level: hmUI.show_level." + show_level + "," + Environment.NewLine;
@@ -2983,8 +3010,8 @@ namespace Watch_Face_Editor
                                         optionNameStart + "digital_clock_img_time_hour = hmUI.createWidget(hmUI.widget.IMG_TIME, {" +
                                             optionsHour_v2 + TabInString(6) + "});" + Environment.NewLine;
 
-                                    if (DigitalTime_v2.Group_Hour.Number.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
-                                            "digital_clock_img_time_hour.setAlpha(" + DigitalTime_v2.Group_Hour.Number.alpha.ToString() + ");" + Environment.NewLine;
+                                    //if (DigitalTime_v2.Group_Hour.Number.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                    //        "digital_clock_img_time_hour.setAlpha(" + DigitalTime_v2.Group_Hour.Number.alpha.ToString() + ");" + Environment.NewLine;
 
                                     if (optionsHour_separator_v2.Length > 5)
                                     {
@@ -3005,6 +3032,9 @@ namespace Watch_Face_Editor
                                 // Minute_Number
                                 if (optionsMinute_v2.Length > 5)
                                 {
+                                    if (DigitalTime_v2.Group_Minute.Number.alpha != 255 && optionsMinute_v2.Contains("// alpha:"))
+                                        optionsMinute_v2 = optionsMinute_v2.Replace("// alpha:", "alpha:");
+
                                     variables += TabInString(4) + "let " + optionNameStart +
                                                                "digital_clock_img_time_minute = ''" + Environment.NewLine;
                                     optionsMinute_v2 += TabInString(7) + "show_level: hmUI.show_level." + show_level + "," + Environment.NewLine;
@@ -3012,8 +3042,8 @@ namespace Watch_Face_Editor
                                         optionNameStart + "digital_clock_img_time_minute = hmUI.createWidget(hmUI.widget.IMG_TIME, {" +
                                             optionsMinute_v2 + TabInString(6) + "});" + Environment.NewLine;
 
-                                    if (DigitalTime_v2.Group_Minute.Number.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
-                                            "digital_clock_img_time_minute.setAlpha(" + DigitalTime_v2.Group_Minute.Number.alpha.ToString() + ");" + Environment.NewLine;
+                                    //if (DigitalTime_v2.Group_Minute.Number.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                    //        "digital_clock_img_time_minute.setAlpha(" + DigitalTime_v2.Group_Minute.Number.alpha.ToString() + ");" + Environment.NewLine;
 
                                     if (optionsMinute_separator_v2.Length > 5)
                                     {
@@ -3034,6 +3064,9 @@ namespace Watch_Face_Editor
                                 // Second_Number
                                 if (optionsSecond_v2.Length > 5)
                                 {
+                                    if (DigitalTime_v2.Group_Second.Number.alpha != 255 && optionsSecond_v2.Contains("// alpha:"))
+                                        optionsSecond_v2 = optionsSecond_v2.Replace("// alpha:", "alpha:");
+
                                     variables += TabInString(4) + "let " + optionNameStart +
                                                                "digital_clock_img_time_second = ''" + Environment.NewLine;
                                     optionsSecond_v2 += TabInString(7) + "show_level: hmUI.show_level." + show_level + "," + Environment.NewLine;
@@ -3041,8 +3074,8 @@ namespace Watch_Face_Editor
                                         optionNameStart + "digital_clock_img_time_second = hmUI.createWidget(hmUI.widget.IMG_TIME, {" +
                                             optionsSecond_v2 + TabInString(6) + "});" + Environment.NewLine;
 
-                                    if (DigitalTime_v2.Group_Second.Number.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
-                                            "digital_clock_img_time_second.setAlpha(" + DigitalTime_v2.Group_Second.Number.alpha.ToString() + ");" + Environment.NewLine;
+                                    //if (DigitalTime_v2.Group_Second.Number.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                    //        "digital_clock_img_time_second.setAlpha(" + DigitalTime_v2.Group_Second.Number.alpha.ToString() + ");" + Environment.NewLine;
 
                                     if (optionsSecond_separator_v2.Length > 5)
                                     {
@@ -3141,7 +3174,7 @@ namespace Watch_Face_Editor
                             if (DigitalTime_v2.Hour_Min_Font.padding) time_update += Environment.NewLine + TabInString(8) + HourMinStr + " = " + HourMinStr + ".padStart(2, '0');";
                             string delimeter = ":";
                             if (DigitalTime_v2.Hour_Min_Font.unit_string.Length > 0) delimeter = DigitalTime_v2.Hour_Min_Font.unit_string;
-                            time_update += Environment.NewLine + TabInString(8) + HourMinStr + " = " + HourMinStr + " + '" + delimeter + "' + minute.toString().padStart(2, '0')";
+                            time_update += Environment.NewLine + TabInString(8) + HourMinStr + " = " + HourMinStr + " + '" + delimeter + "' + minute.toString().padStart(2, '0');";
                             string unitAmStr = "Am";
                             string unitPmStr = "Pm";
                             if (DigitalTime_v2.Hour_Min_Font.unit_type == 0)
@@ -15575,6 +15608,13 @@ namespace Watch_Face_Editor
                     break;
                 #endregion
 
+                #region ElementSleep
+                case "ElementSleep":
+                    ElementSleep Sleep = (ElementSleep)element;
+                    AddSleep(Sleep, show_level, optionNameStart, ref variables, ref items, ref pause_call, ref sleep_function, ref fonts_cache);
+                    break;
+                #endregion
+
 
 
                 #region ElementButtons
@@ -15826,12 +15866,14 @@ namespace Watch_Face_Editor
                         items += Environment.NewLine + TabInString(9) + "show_level: hmUI.show_level." + show_level + ",";
                     }
                     items += Environment.NewLine + TabInString(8) + "});";
+                    if (images.alpha != 255) items += Environment.NewLine + TabInString(8) + variableName + "[i]" +
+                            ".setAlpha(" + images.alpha.ToString() + ");" + Environment.NewLine;
                     //items += Environment.NewLine + TabInString(8) + variableName + "[i].setProperty(hmUI.prop.VISIBLE, false);";
                     items += Environment.NewLine + TabInString(7) + "};";
                     items += Environment.NewLine + TabInString(6) + "};";
 
-                    if (images.alpha != 255) items += Environment.NewLine + TabInString(6) + variableName + "[i]" +
-                            ".setAlpha(" + images.alpha.ToString() + ");" + Environment.NewLine;
+                    //if (images.alpha != 255) items += Environment.NewLine + TabInString(6) + variableName + "[i]" +
+                    //        ".setAlpha(" + images.alpha.ToString() + ");" + Environment.NewLine;
 
                     items += Environment.NewLine + TabInString(6) + "//#endregion" + Environment.NewLine;
                     //items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
@@ -15896,12 +15938,14 @@ namespace Watch_Face_Editor
                         items += Environment.NewLine + TabInString(9) + "show_level: hmUI.show_level." + show_level + ",";
                     }
                     items += Environment.NewLine + TabInString(8) + "});";
+                    if (dow_images.alpha != 255) items += Environment.NewLine + TabInString(8) + variableName + "[i]" +
+                            ".setAlpha(" + dow_images.alpha.ToString() + ");" + Environment.NewLine;
                     //items += Environment.NewLine + TabInString(8) + variableName + "[i].setProperty(hmUI.prop.VISIBLE, false);";
                     items += Environment.NewLine + TabInString(7) + "};";
                     items += Environment.NewLine + TabInString(6) + "};";
 
-                    if (dow_images.alpha != 255) items += Environment.NewLine + TabInString(6) + variableName + "[i]" +
-                            ".setAlpha(" + dow_images.alpha.ToString() + ");" + Environment.NewLine;
+                    //if (dow_images.alpha != 255) items += Environment.NewLine + TabInString(6) + variableName + "[i]" +
+                    //        ".setAlpha(" + dow_images.alpha.ToString() + ");" + Environment.NewLine;
 
                     items += Environment.NewLine + TabInString(6) + "//#endregion" + Environment.NewLine;
                     //items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
@@ -17571,6 +17615,761 @@ namespace Watch_Face_Editor
 
                 items += Environment.NewLine + TabInString(6) + "//#endregion" + Environment.NewLine;
                 //items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
+            }
+        }
+
+        private void AddSleep(ElementSleep elementSleep, string show_level, string optionNameStart, ref string variables,
+            ref string items, ref string pause_call, ref string sleep_function, ref string fonts_cache)
+        {
+            if (elementSleep == null) return;
+            if (!elementSleep.visible) return;
+
+            int chartSleepPosition = 99;
+            int startSleepPosition = 99;
+            int endSleepPosition = 99;
+            int durationTotalPosition = 99;
+            int durationPosition = 99;
+            int wakeUpPosition = 99;
+            int wakeUpCountPosition = 99;
+            int scorePosition = 99;
+            int iconPosition = 99;
+
+            string chartBgOptions = "";
+            string chartSleepOptions = "";
+            string chartHROptions = "";
+            string startSleepOptions = "";
+            string endSleepOptions = "";
+            string durationTotalOptions = "";
+            string durationOptions = "";
+            string wakeUpOptions = "";
+            string wakeUpCountOptions = "";
+            string scoreOptions = "";
+            string iconOptions = "";
+
+            if (elementSleep.SleepChartSettings != null && elementSleep.SleepChartSettings.visible)
+            {
+                chartSleepPosition = elementSleep.SleepChartSettings.position;
+
+                if (elementSleep.SleepChartSettings.Background != null && elementSleep.SleepChartSettings.Background.Length > 0)
+                {
+                    hmUI_widget_IMG char_bg = new hmUI_widget_IMG();
+                    char_bg.x = elementSleep.SleepChartSettings.X;
+                    char_bg.y = elementSleep.SleepChartSettings.Y;
+                    char_bg.src = elementSleep.SleepChartSettings.Background;
+                    chartBgOptions = IMG_Options(char_bg, show_level);
+                }
+
+                if (elementSleep.SleepChartSettings.useHRChart)
+                {
+                    chartSleepPosition = elementSleep.SleepChartSettings.position;
+                    SleepChartSettings sleep_chart = elementSleep.SleepChartSettings;
+                    chartSleepOptions = SleepChart_Сommented_Options(sleep_chart, show_level);
+                }
+
+                if (elementSleep.SleepChartSettings.useHRChart)
+                {
+                    int x = elementSleep.SleepChartSettings.X;
+                    int y = elementSleep.SleepChartSettings.Y;
+                    int w = elementSleep.SleepChartSettings.Width;
+                    int h = elementSleep.SleepChartSettings.Height;
+                    int line_width = elementSleep.SleepChartSettings.HR_lineWidth;
+                    string color = elementSleep.SleepChartSettings.HR_color;
+                    chartHROptions = Chart_Options(x, y, w, h, line_width, color, "SLEEP_HR", show_level);
+                }
+            }
+
+            if (elementSleep.StartSleep != null && elementSleep.StartSleep.visible)
+            {
+                startSleepPosition = elementSleep.StartSleep.position;
+                hmUI_widget_TEXT text = elementSleep.StartSleep;
+                startSleepOptions = TEXT_Options(text, show_level);
+            }
+
+            if (elementSleep.EndSleep != null && elementSleep.EndSleep.visible)
+            {
+                endSleepPosition = elementSleep.EndSleep.position;
+                hmUI_widget_TEXT text = elementSleep.EndSleep;
+                endSleepOptions = TEXT_Options(text, show_level);
+            }
+
+            if (elementSleep.DurationSleep_total != null && elementSleep.DurationSleep_total.visible)
+            {
+                durationTotalPosition = elementSleep.DurationSleep_total.position;
+                hmUI_widget_TEXT text = elementSleep.DurationSleep_total;
+                durationTotalOptions = TEXT_Options(text, show_level);
+            }
+
+            if (elementSleep.DurationSleep != null && elementSleep.DurationSleep.visible)
+            {
+                durationPosition = elementSleep.DurationSleep.position;
+                hmUI_widget_TEXT text = elementSleep.DurationSleep;
+                durationOptions = TEXT_Options(text, show_level);
+            }
+
+            if (elementSleep.WakeUp != null && elementSleep.WakeUp.visible)
+            {
+                wakeUpPosition = elementSleep.WakeUp.position;
+                hmUI_widget_TEXT text = elementSleep.WakeUp;
+                wakeUpOptions = TEXT_Options(text, show_level);
+            }
+
+            if (elementSleep.WakeUpCount != null && elementSleep.WakeUpCount.visible)
+            {
+                wakeUpCountPosition = elementSleep.WakeUpCount.position;
+                hmUI_widget_TEXT text = elementSleep.WakeUpCount;
+                wakeUpCountOptions = TEXT_Options(text, show_level);
+            }
+
+            if (elementSleep.Score != null && elementSleep.Score.visible)
+            {
+                scorePosition = elementSleep.Score.position;
+                hmUI_widget_TEXT text = elementSleep.Score;
+                scoreOptions = TEXT_Options(text, show_level);
+            }
+
+            if (elementSleep.Icon != null && elementSleep.Icon.visible)
+            {
+                iconPosition = elementSleep.Icon.position;
+                hmUI_widget_IMG img_icon = elementSleep.Icon;
+                iconOptions = IMG_Options(img_icon, show_level);
+            }
+
+            for (int index = 1; index <= 15; index++)
+            {
+                // Chart
+                if (index == chartSleepPosition)
+                {
+                    // Background
+                    if (chartBgOptions.Length > 5)
+                    {
+                        variables += TabInString(4) + "let " + optionNameStart + "sleep_chart_bg_img = ''" + Environment.NewLine;
+                        items += Environment.NewLine + TabInString(6) + optionNameStart + "sleep_chart_bg_img = hmUI.createWidget(hmUI.widget.IMG, {" +
+                            chartBgOptions + TabInString(6) + "});" + Environment.NewLine;
+                    }
+
+                    if (elementSleep.SleepChartSettings.useSleepChart)
+                    {
+                        if (chartSleepOptions.Length > 5)
+                        {
+                            items += Environment.NewLine + TabInString(6) + "// " + optionNameStart + "sleep_chart = hmUI.createWidget(hmUI.widget.SLEEP_CHART, {" +
+                                chartSleepOptions + TabInString(6) + "// });" + Environment.NewLine;
+                        }
+
+                        if (!variables.Contains("let array_sleep_chart = []")) variables += TabInString(4) + "let array_sleep_chart = []" + Environment.NewLine;
+                        variables += TabInString(4) + "let " + optionNameStart + "sleep_chart_group = ''" + Environment.NewLine;
+                        items += Environment.NewLine + TabInString(6) + optionNameStart + "sleep_chart_group = hmUI.createWidget(hmUI.widget.GROUP, {";
+                        items += Environment.NewLine + TabInString(7) + "x: " + elementSleep.SleepChartSettings.X.ToString() + ",";
+                        items += Environment.NewLine + TabInString(7) + "y: " + elementSleep.SleepChartSettings.Y.ToString() + ",";
+                        items += Environment.NewLine + TabInString(7) + "w: " + elementSleep.SleepChartSettings.Width.ToString() + ",";
+                        items += Environment.NewLine + TabInString(7) + "h: " + elementSleep.SleepChartSettings.Height.ToString() + ",";
+                        items += Environment.NewLine + TabInString(7) + "show_level: hmUI.show_level." + show_level + ",";
+                        items += Environment.NewLine + TabInString(6) + "});" + Environment.NewLine;
+
+                        if (items.IndexOf("let screenType = hmSetting.getScreenType();") < 0)
+                            items += Environment.NewLine + TabInString(6) + "let screenType = hmSetting.getScreenType();";
+
+                        sleep_function += Environment.NewLine + TabInString(7) + "console.log('sleep chart');";
+                        sleep_function += Environment.NewLine + TabInString(7) + "let " + optionNameStart + "sleepColors = [" +
+                            elementSleep.SleepChartSettings.DEEP_STAGE_color + ", " +
+                            elementSleep.SleepChartSettings.LIGHT_STAGE_color + ", " +
+                            elementSleep.SleepChartSettings.REM_STAGE_color + ", " +
+                            elementSleep.SleepChartSettings.WAKE_STAGE_color + "];";
+                        sleep_function += Environment.NewLine + TabInString(7) + "let " + optionNameStart + "sleppChartWidth = " + 
+                            elementSleep.SleepChartSettings.Width.ToString() + ";";
+                        sleep_function += Environment.NewLine + TabInString(7) + "let " + optionNameStart + "sleppChartHeight = " +
+                            elementSleep.SleepChartSettings.Height.ToString() + ";";
+                        sleep_function += Environment.NewLine + TabInString(7) + "let " + optionNameStart + "sleepScaleX = " +
+                            optionNameStart + "sleppChartWidth / sleepSensor.getTotalTime();";
+                        sleep_function += Environment.NewLine + TabInString(7) + "let " + optionNameStart + "sleepScaleY = " +
+                            optionNameStart + "sleppChartHeight / 4;";
+
+                        if (!sleep_function.Contains("const modelData = sleepSensor.getSleepStageModel();"))
+                            sleep_function += Environment.NewLine + TabInString(7) + "const modelData = sleepSensor.getSleepStageModel();";
+                        if (!sleep_function.Contains("let sleepStageArray ="))
+                            sleep_function += Environment.NewLine + TabInString(7) + "let sleepStageArray = sleepSensor.getSleepStageData();";
+
+                        if (!sleep_function.Contains("let sleepChartStartTime = 0;"))
+                        {
+                            sleep_function += Environment.NewLine + TabInString(7) + "let sleepChartStartTime = 0;";
+
+                            sleep_function += Environment.NewLine + TabInString(7) + "if (array_sleep_chart.length > 0) {";
+                            sleep_function += Environment.NewLine + TabInString(8) + "console.log('deleteWidget screen on');";
+                            sleep_function += Environment.NewLine + TabInString(8) + "for (let i = 0; i < array_sleep_chart.length; i++) {";
+                            sleep_function += Environment.NewLine + TabInString(9) + "if (array_sleep_chart[i]) hmUI.deleteWidget(array_sleep_chart[i]);";
+                            sleep_function += Environment.NewLine + TabInString(8) + "}";
+                            sleep_function += Environment.NewLine + TabInString(8) + "array_sleep_chart = [];";
+                            sleep_function += Environment.NewLine + TabInString(7) + "} // end if" + Environment.NewLine;
+
+                            sleep_function += Environment.NewLine + TabInString(7) + "if (sleepStageArray != undefined && sleepStageArray.length > 0) sleepChartStartTime = sleepStageArray[0].start;";
+                        }
+
+                        if (!pause_call.Contains("if (array_sleep_chart.length > 0) {"))
+                        {
+                            pause_call += Environment.NewLine + TabInString(8) + "if (array_sleep_chart.length > 0) {";
+                            pause_call += Environment.NewLine + TabInString(8) + "console.log('deleteWidget screen off');";
+                            pause_call += Environment.NewLine + TabInString(9) + "for (let i = 0; i < array_sleep_chart.length; i++) {";
+                            pause_call += Environment.NewLine + TabInString(10) + "if (array_sleep_chart[i]) hmUI.deleteWidget(array_sleep_chart[i]);";
+                            pause_call += Environment.NewLine + TabInString(9) + "}";
+                            pause_call += Environment.NewLine + TabInString(9) + "array_sleep_chart = [];";
+                            pause_call += Environment.NewLine + TabInString(8) + "} // end if" + Environment.NewLine;
+                        }
+
+                        if (!sleep_function.Contains("for (let i = 0; i < sleepStageArray.length; i++) { //" + show_level))
+                        {
+                            sleep_function += Environment.NewLine + TabInString(7) + "// console.log('draw " + optionNameStart + "sleep_chart');";
+                            if (show_level == "ONLY_NORMAL")
+                                sleep_function += Environment.NewLine + TabInString(7) + "if (screenType == hmSetting.screen_type.WATCHFACE) {";
+                            else sleep_function += Environment.NewLine + TabInString(7) + "if (screenType == hmSetting.screen_type.AOD) {";
+
+                            sleep_function += Environment.NewLine + TabInString(8) + "for (let i = 0; i < sleepStageArray.length; i++) { //" + show_level;
+                            sleep_function += Environment.NewLine + TabInString(9) + "let data = sleepStageArray[i];";
+
+                            sleep_function += Environment.NewLine + TabInString(9) + "let " + optionNameStart + "color = " + optionNameStart + "sleepColors[0];";
+                            sleep_function += Environment.NewLine + TabInString(9) + "let " + optionNameStart + "posY = 3 * " + optionNameStart + "sleepScaleY;" + Environment.NewLine;
+
+                            sleep_function += Environment.NewLine + TabInString(9) + "switch (data.model) {";
+
+                            sleep_function += Environment.NewLine + TabInString(10) + "case modelData.WAKE_STAGE:";
+                            sleep_function += Environment.NewLine + TabInString(11) + optionNameStart + "color = " + optionNameStart + "sleepColors[3];";
+                            sleep_function += Environment.NewLine + TabInString(11) + optionNameStart + "posY = 0;";
+                            sleep_function += Environment.NewLine + TabInString(11) + "break;";
+
+                            sleep_function += Environment.NewLine + TabInString(10) + "case modelData.REM_STAGE:";
+                            sleep_function += Environment.NewLine + TabInString(11) + optionNameStart + "color = " + optionNameStart + "sleepColors[2];";
+                            sleep_function += Environment.NewLine + TabInString(11) + optionNameStart + "posY = " + optionNameStart + "sleepScaleY; ";
+                            sleep_function += Environment.NewLine + TabInString(11) + "break;";
+
+                            sleep_function += Environment.NewLine + TabInString(10) + "case modelData.LIGHT_STAGE:";
+                            sleep_function += Environment.NewLine + TabInString(11) + optionNameStart + "color = " + optionNameStart + "sleepColors[1];";
+                            sleep_function += Environment.NewLine + TabInString(11) + optionNameStart + "posY = 2 * " + optionNameStart + "sleepScaleY; ";
+                            sleep_function += Environment.NewLine + TabInString(11) + "break;";
+                            sleep_function += Environment.NewLine + TabInString(9) + "};";
+
+                            sleep_function += Environment.NewLine + TabInString(9) + "let " + optionNameStart + "x = (data.start - sleepChartStartTime) * " + optionNameStart + "sleepScaleX;";
+                            sleep_function += Environment.NewLine + TabInString(9) + "let " + optionNameStart + "w = (data.stop + 1 - data.start) * " + optionNameStart + "sleepScaleX;";
+                            sleep_function += Environment.NewLine + TabInString(9) + "const fill_rect = " + optionNameStart + "sleep_chart_group.createWidget(hmUI.widget.FILL_RECT, {";
+                            sleep_function += Environment.NewLine + TabInString(10) + "x: " + optionNameStart + "x,";
+                            sleep_function += Environment.NewLine + TabInString(10) + "y: " + optionNameStart + "posY,";
+                            sleep_function += Environment.NewLine + TabInString(10) + "w: " + optionNameStart + "w < 2 ? 2 : " + optionNameStart + "w,";
+                            //sleep_function += Environment.NewLine + TabInString(10) + "w: " + optionNameStart + "w,";
+                            sleep_function += Environment.NewLine + TabInString(10) + "h: " + optionNameStart + "sleepScaleY,";
+                            sleep_function += Environment.NewLine + TabInString(10) + "radius: " + elementSleep.SleepChartSettings.Radius.ToString() + ",";
+                            sleep_function += Environment.NewLine + TabInString(10) + "color: " + optionNameStart + "color,";
+                            sleep_function += Environment.NewLine + TabInString(9) + "});";
+                            sleep_function += Environment.NewLine + TabInString(9) + "array_sleep_chart.push(fill_rect);";
+
+                            sleep_function += Environment.NewLine + TabInString(8) + "}; // for";
+                            sleep_function += Environment.NewLine + TabInString(7) + "}; // end screenType" + Environment.NewLine;
+                        }
+
+                        
+                        //int posInStr = sleep_function.IndexOf("console.log('draw " + optionNameStart + "sleep_chart');");
+                        //if (posInStr > 0)
+                        //{
+                        //    posInStr += ("console.log('draw " + optionNameStart + "sleep chart');").Length;
+                        //    sleep_function = sleep_function.Insert(posInStr, temp_function_str);
+                        //}
+
+                    }
+
+                    // ChartHR
+                    if (chartHROptions.Length > 5)
+                    {
+                        variables += TabInString(4) + "let " + optionNameStart + "sleep_chart_hr = ''" + Environment.NewLine;
+                        items += Environment.NewLine + TabInString(6) + optionNameStart + "sleep_chart_hr = hmUI.createWidget(hmUI.widget.GRADKIENT_POLYLINE, {" +
+                            chartHROptions + TabInString(6) + "});" + Environment.NewLine;
+
+                        sleep_function += Environment.NewLine + TabInString(7) + "console.log('sleep HR chart');";
+                        if (!sleep_function.Contains("let sleepHrData = sleepSensor.getSleepHrData();"))
+                        {
+                            string chartWidthStr = elementSleep.SleepChartSettings.Width.ToString();
+                            string chartHeightStr = elementSleep.SleepChartSettings.Height.ToString();
+                            sleep_function += Environment.NewLine + TabInString(7) + "let sleepHrData = sleepSensor.getSleepHrData();";
+                            sleep_function += Environment.NewLine + TabInString(7) + "const sleepHrData_replaced = sleepHrData.map(v => v === 255 ? 0 : v);";
+                            //sleep_function += Environment.NewLine + TabInString(7) + "const sleepHrData_filtered = sleepHrData_replaced.filter(v => v !== 0);";
+                            sleep_function += Environment.NewLine + TabInString(7) + "let lineHrDatas = [];";
+                            sleep_function += Environment.NewLine + TabInString(7) + "let maxHR = Math.max(...sleepHrData_replaced);";
+                            sleep_function += Environment.NewLine + TabInString(7) + "let oldHR = Math.min(...sleepHrData);";
+                            sleep_function += Environment.NewLine + TabInString(7) + "for (let i = 0; i < sleepHrData_replaced.length; i++) {";
+                            //sleep_function += Environment.NewLine + TabInString(8) + "let y = " + chartHeightStr + " - (sleepHrData_replaced[i] * (" + chartHeightStr + " / maxHR));";
+                            sleep_function += Environment.NewLine + TabInString(8) + "if (sleepHrData_replaced[i] > 0) oldHR = sleepHrData_replaced[i];";
+                            sleep_function += Environment.NewLine + TabInString(8) + "let y = " + chartHeightStr + " - (oldHR * (" + chartHeightStr + " / maxHR));";
+                            sleep_function += Environment.NewLine + TabInString(8) + "lineHrDatas.push({x: i * (" + chartWidthStr + " / sleepHrData_replaced.length), y: y});";
+                            sleep_function += Environment.NewLine + TabInString(7) + "};";
+                        }
+
+                        if (show_level == "ONLY_NORMAL")
+                            sleep_function += Environment.NewLine + TabInString(7) + "if (screenType == hmSetting.screen_type.WATCHFACE) {";
+                        else sleep_function += Environment.NewLine + TabInString(7) + "if (screenType == hmSetting.screen_type.AOD) {";
+
+                        sleep_function += Environment.NewLine + TabInString(8) + optionNameStart + "sleep_chart_hr.clear();";
+                        sleep_function += Environment.NewLine + TabInString(8) + optionNameStart + "sleep_chart_hr.addLine({";
+                        sleep_function += Environment.NewLine + TabInString(9) + "data: lineHrDatas,";
+                        sleep_function += Environment.NewLine + TabInString(9) + "count: lineHrDatas.length";
+                        sleep_function += Environment.NewLine + TabInString(8) + "});";
+                        
+                        sleep_function += Environment.NewLine + TabInString(7) + "};";
+
+                    }
+                }
+                // StartSleep
+                if (index == startSleepPosition && startSleepOptions.Length > 5)
+                {
+                    if (SelectedModel.versionOS >= 2 && elementSleep.StartSleep.font != null && elementSleep.StartSleep.font.Length > 3)
+                    {
+                        string cacheName = "// FontName: " + elementSleep.StartSleep.font + "; FontSize: " + elementSleep.StartSleep.text_size.ToString();
+                        //if (elementSleep.StartSleep.unit_type > 0)
+                        //    cacheName = "// FontName: " + elementSleep.StartSleep.font + "; FontSize: " + elementSleep.StartSleep.text_size.ToString() + "; Cache: full";
+                        if (fonts_cache.IndexOf(cacheName) < 0)
+                        {
+                            string fontCacheOptions = TEXT_Cache_Options(elementSleep.StartSleep, false);
+                            if (fontCacheOptions.Length > 5)
+                            {
+                                fonts_cache += Environment.NewLine + TabInString(6) + cacheName + Environment.NewLine;
+                                fonts_cache += TabInString(6) + "hmUI.createWidget(hmUI.widget.TEXT, {" + fontCacheOptions +
+                                    TabInString(6) + "});" + Environment.NewLine;
+                            }
+                        }
+                    }
+
+                    string variableName = optionNameStart + "sleep_start_font";
+                    variables += TabInString(4) + "let " + variableName + " = ''" + Environment.NewLine;
+
+                    
+                    items += Environment.NewLine + TabInString(6) + variableName + " = hmUI.createWidget(hmUI.widget.TEXT, {" +
+                            startSleepOptions + TabInString(6) + "});" + Environment.NewLine;
+
+                    sleep_function += Environment.NewLine + TabInString(7) + "console.log('sleep start time');";
+                    //if (!sleep_function.Contains("let sleepInfo = sleepSensor.getBasicInfo();"))
+                    //    sleep_function += Environment.NewLine + TabInString(7) + "let sleepInfo = sleepSensor.getBasicInfo();";
+                    if (!sleep_function.Contains("let sleepStartTime = sleepInfo.startTime;"))
+                    {
+                        if (items.IndexOf("if (!timeSensor) timeSensor = hmSensor.createSensor(hmSensor.id.TIME);") < 0)
+                            items += Environment.NewLine + TabInString(6) + "if (!timeSensor) timeSensor = hmSensor.createSensor(hmSensor.id.TIME);";
+
+                        sleep_function += Environment.NewLine + TabInString(7) + "let sleepStartTime = sleepInfo.startTime;";
+                        sleep_function += Environment.NewLine + TabInString(7) + "if (sleepStartTime >= 24*60) sleepStartTime -= 24*60;";
+                        sleep_function += Environment.NewLine + TabInString(7) + "let sleepStartHour = Math.floor(sleepStartTime / 60);";
+                        sleep_function += Environment.NewLine + TabInString(7) + "if (!timeSensor.is24Hour) {";
+                        sleep_function += Environment.NewLine + TabInString(8) + "if (sleepStartHour >= 12) sleepStartHour -= 12;";
+                        sleep_function += Environment.NewLine + TabInString(8) + "if (sleepStartHour == 0) sleepStartHour = 12;";
+                        sleep_function += Environment.NewLine + TabInString(7) + "};";
+                        sleep_function += Environment.NewLine + TabInString(7) + "let sleepStartMin = sleepStartTime % 60;" + Environment.NewLine;
+                    }
+                    sleep_function += Environment.NewLine + TabInString(7) + "let " + optionNameStart + "SleepStartHourStr = sleepStartHour.toString();";
+                    if (elementSleep.StartSleep.padding) 
+                        sleep_function += Environment.NewLine + TabInString(7) + optionNameStart + "SleepStartHourStr = " + optionNameStart + "SleepStartHourStr.padStart(2, '0');";
+                    sleep_function += Environment.NewLine + TabInString(7) + "let " + optionNameStart + "SleepStartMinStr = sleepStartMin.toString().padStart(2, '0');";
+
+                    string sleepStartTimeStr = optionNameStart + "SleepStartStr";
+                    string delimeter = ":";
+                    if (elementSleep.StartSleep.unit_string.Length > 0) delimeter = elementSleep.StartSleep.unit_string;
+                    sleep_function += Environment.NewLine + TabInString(7) + "let " + sleepStartTimeStr + " = " + optionNameStart + "SleepStartHourStr + '" + delimeter + "' + " + optionNameStart + "SleepStartMinStr;";
+                    string unitAmStr = "Am";
+                    string unitPmStr = "Pm";
+                    if (elementSleep.StartSleep.unit_type == 0)
+                    {
+                        unitAmStr = unitAmStr.ToLower();
+                        unitPmStr = unitPmStr.ToLower();
+                    }
+                    if (elementSleep.StartSleep.unit_type == 2)
+                    {
+                        unitAmStr = unitAmStr.ToUpper();
+                        unitPmStr = unitPmStr.ToUpper();
+                    }
+                    if (elementSleep.StartSleep.unit_end == 1)
+                    {
+                        sleep_function += Environment.NewLine + TabInString(7) + "if (!timeSensor.is24Hour) {";
+                        sleep_function += Environment.NewLine + TabInString(8) + "if (Math.floor(sleepStartTime / 60) > 11) " + sleepStartTimeStr + " = " + sleepStartTimeStr + " + ' " + unitPmStr + "';";
+                        sleep_function += Environment.NewLine + TabInString(8) + "else " + sleepStartTimeStr + " = " + sleepStartTimeStr + " + ' " + unitAmStr + "';";
+                        sleep_function += Environment.NewLine + TabInString(7) + "};";
+                    }
+                    else if (elementSleep.StartSleep.unit_end == 0)
+                    {
+                        sleep_function += Environment.NewLine + TabInString(7) + "if (!timeSensor.is24Hour) {";
+                        sleep_function += Environment.NewLine + TabInString(8) + "if (Math.floor(sleepStartTime / 60) > 11) " + sleepStartTimeStr + " = '" + unitPmStr + " ' + " + sleepStartTimeStr;
+                        sleep_function += Environment.NewLine + TabInString(8) + "else " + sleepStartTimeStr + " = '" + unitAmStr + " ' + " + sleepStartTimeStr;
+                        sleep_function += Environment.NewLine + TabInString(7) + "};";
+                    }
+                    sleep_function += Environment.NewLine + TabInString(7) + "if (" + variableName + ") " + variableName + ".setProperty(hmUI.prop.TEXT, " + sleepStartTimeStr + ");" + Environment.NewLine;
+
+                }
+
+                // EndSleep
+                if (index == endSleepPosition && endSleepOptions.Length > 5)
+                {
+                    if (SelectedModel.versionOS >= 2 && elementSleep.EndSleep.font != null && elementSleep.EndSleep.font.Length > 3)
+                    {
+                        string cacheName = "// FontName: " + elementSleep.EndSleep.font + "; FontSize: " + elementSleep.EndSleep.text_size.ToString();
+                        //if (elementSleep.EndSleep.unit_type > 0)
+                        //    cacheName = "// FontName: " + elementSleep.EndSleep.font + "; FontSize: " + elementSleep.EndSleep.text_size.ToString() + "; Cache: full";
+                        if (fonts_cache.IndexOf(cacheName) < 0)
+                        {
+                            string fontCacheOptions = TEXT_Cache_Options(elementSleep.EndSleep, false);
+                            if (fontCacheOptions.Length > 5)
+                            {
+                                fonts_cache += Environment.NewLine + TabInString(6) + cacheName + Environment.NewLine;
+                                fonts_cache += TabInString(6) + "hmUI.createWidget(hmUI.widget.TEXT, {" + fontCacheOptions +
+                                    TabInString(6) + "});" + Environment.NewLine;
+                            }
+                        }
+                    }
+
+                    string variableName = optionNameStart + "sleep_end_font";
+                    variables += TabInString(4) + "let " + variableName + " = ''" + Environment.NewLine;
+
+
+                    items += Environment.NewLine + TabInString(6) + variableName + " = hmUI.createWidget(hmUI.widget.TEXT, {" +
+                            endSleepOptions + TabInString(6) + "});" + Environment.NewLine;
+
+                    sleep_function += Environment.NewLine + TabInString(7) + "console.log('sleep end time');";
+                    //if (!sleep_function.Contains("let sleepInfo = sleepSensor.getBasicInfo();"))
+                    //    sleep_function += Environment.NewLine + TabInString(7) + "let sleepInfo = sleepSensor.getBasicInfo();";
+                    if (!sleep_function.Contains("let sleepEndTime = sleepInfo.endTime;"))
+                    {
+                        if (items.IndexOf("if (!timeSensor) timeSensor = hmSensor.createSensor(hmSensor.id.TIME);") < 0)
+                            items += Environment.NewLine + TabInString(6) + "if (!timeSensor) timeSensor = hmSensor.createSensor(hmSensor.id.TIME);";
+
+                        sleep_function += Environment.NewLine + TabInString(7) + "let sleepEndTime = sleepInfo.endTime;";
+                        sleep_function += Environment.NewLine + TabInString(7) + "if (sleepEndTime >= 24*60) sleepEndTime -= 24*60;";
+                        sleep_function += Environment.NewLine + TabInString(7) + "let sleepEndHour = Math.floor(sleepEndTime / 60);";
+                        sleep_function += Environment.NewLine + TabInString(7) + "if (!timeSensor.is24Hour) {";
+                        sleep_function += Environment.NewLine + TabInString(8) + "if (sleepEndHour >= 12) sleepEndHour -= 12;";
+                        sleep_function += Environment.NewLine + TabInString(8) + "if (sleepEndHour == 0) sleepEndHour = 12;";
+                        sleep_function += Environment.NewLine + TabInString(7) + "};";
+                        sleep_function += Environment.NewLine + TabInString(7) + "let sleepEndMin = sleepEndTime % 60;" + Environment.NewLine;
+                    }
+                    sleep_function += Environment.NewLine + TabInString(7) + "let " + optionNameStart + "sleepEndHourStr = sleepEndHour.toString();";
+                    if (elementSleep.EndSleep.padding)
+                        sleep_function += Environment.NewLine + TabInString(7) + optionNameStart + "sleepEndHourStr = " + optionNameStart + "sleepEndHourStr.padStart(2, '0');";
+                    sleep_function += Environment.NewLine + TabInString(7) + "let " + optionNameStart + "SleepEndMinStr = sleepEndMin.toString().padStart(2, '0');";
+
+                    string sleepEndTimeStr = optionNameStart + "SleepEndStr";
+                    string delimeter = ":";
+                    if (elementSleep.EndSleep.unit_string.Length > 0) delimeter = elementSleep.EndSleep.unit_string;
+                    sleep_function += Environment.NewLine + TabInString(7) + "let " + sleepEndTimeStr + " = " + optionNameStart + "sleepEndHourStr + '" + delimeter + "' + " + optionNameStart + "SleepEndMinStr;";
+                    string unitAmStr = "Am";
+                    string unitPmStr = "Pm";
+                    if (elementSleep.EndSleep.unit_type == 0)
+                    {
+                        unitAmStr = unitAmStr.ToLower();
+                        unitPmStr = unitPmStr.ToLower();
+                    }
+                    if (elementSleep.EndSleep.unit_type == 2)
+                    {
+                        unitAmStr = unitAmStr.ToUpper();
+                        unitPmStr = unitPmStr.ToUpper();
+                    }
+                    if (elementSleep.EndSleep.unit_end == 1)
+                    {
+                        sleep_function += Environment.NewLine + TabInString(7) + "if (!timeSensor.is24Hour) {";
+                        sleep_function += Environment.NewLine + TabInString(8) + "if (Math.floor(sleepEndTime / 60) > 11) " + sleepEndTimeStr + " = " + sleepEndTimeStr + " + ' " + unitPmStr + "';";
+                        sleep_function += Environment.NewLine + TabInString(8) + "else " + sleepEndTimeStr + " = " + sleepEndTimeStr + " + ' " + unitAmStr + "';";
+                        sleep_function += Environment.NewLine + TabInString(7) + "};";
+                    }
+                    else if (elementSleep.EndSleep.unit_end == 0)
+                    {
+                        sleep_function += Environment.NewLine + TabInString(7) + "if (!timeSensor.is24Hour) {";
+                        sleep_function += Environment.NewLine + TabInString(8) + "if (Math.floor(sleepEndTime / 60) > 11) " + sleepEndTimeStr + " = '" + unitPmStr + " ' + " + sleepEndTimeStr;
+                        sleep_function += Environment.NewLine + TabInString(8) + "else " + sleepEndTimeStr + " = '" + unitAmStr + " ' + " + sleepEndTimeStr;
+                        sleep_function += Environment.NewLine + TabInString(7) + "};";
+                    }
+                    sleep_function += Environment.NewLine + TabInString(7) + "if (" + variableName + ") " + variableName + ".setProperty(hmUI.prop.TEXT, " + sleepEndTimeStr + ");" + Environment.NewLine;
+
+                }
+
+                // Duration total
+                if (index == durationTotalPosition && durationTotalOptions.Length > 5)
+                {
+                    if (SelectedModel.versionOS >= 2 && elementSleep.DurationSleep_total.font != null && elementSleep.DurationSleep_total.font.Length > 3)
+                    {
+                        string cacheName = "// FontName: " + elementSleep.DurationSleep_total.font + "; FontSize: " + elementSleep.DurationSleep_total.text_size.ToString();
+                        //if (elementSleep.DurationSleep_total.unit_type > 0)
+                        //    cacheName = "// FontName: " + elementSleep.DurationSleep_total.font + "; FontSize: " + elementSleep.DurationSleep_total.text_size.ToString() + "; Cache: full";
+                        if (fonts_cache.IndexOf(cacheName) < 0)
+                        {
+                            string fontCacheOptions = TEXT_Cache_Options(elementSleep.DurationSleep_total, false);
+                            if (fontCacheOptions.Length > 5)
+                            {
+                                fonts_cache += Environment.NewLine + TabInString(6) + cacheName + Environment.NewLine;
+                                fonts_cache += TabInString(6) + "hmUI.createWidget(hmUI.widget.TEXT, {" + fontCacheOptions +
+                                    TabInString(6) + "});" + Environment.NewLine;
+                            }
+                        }
+                    }
+
+                    string variableName = optionNameStart + "sleep_duration_total_font";
+                    variables += TabInString(4) + "let " + variableName + " = ''" + Environment.NewLine;
+
+
+                    items += Environment.NewLine + TabInString(6) + variableName + " = hmUI.createWidget(hmUI.widget.TEXT, {" +
+                            durationTotalOptions + TabInString(6) + "});" + Environment.NewLine;
+
+                    //if (!sleep_function.Contains("let sleepTotalTime = sleep.getTotalTime();"))
+                    //    sleep_function += Environment.NewLine + TabInString(7) + "let sleepTotalTime = sleep.getTotalTime();";
+
+                    sleep_function += Environment.NewLine + TabInString(7) + "console.log('sleep duration total time');";
+
+                    if (!sleep_function.Contains("let sleepDurationTotalTime = sleepSensor.getTotalTime();"))
+                    {
+                        sleep_function += Environment.NewLine + TabInString(7) + "let sleepDurationTotalTime = sleepSensor.getTotalTime();";
+                        sleep_function += Environment.NewLine + TabInString(7) + "let sleepDurationTotalHour = Math.floor(sleepDurationTotalTime / 60);";
+                        sleep_function += Environment.NewLine + TabInString(7) + "let sleepDurationTotalMin = sleepDurationTotalTime % 60;" + Environment.NewLine;
+                    }
+                    sleep_function += Environment.NewLine + TabInString(7) + "let " + optionNameStart + "sleepDurationTotalHourStr = sleepDurationTotalHour.toString();";
+                    if (elementSleep.DurationSleep_total.padding)
+                        sleep_function += Environment.NewLine + TabInString(7) + optionNameStart + "sleepDurationTotalHourStr = " + optionNameStart + "sleepDurationTotalHourStr.padStart(2, '0');";
+                    sleep_function += Environment.NewLine + TabInString(7) + "let " + optionNameStart + "sleepDurationTotalMinStr = sleepDurationTotalMin.toString().padStart(2, '0');";
+
+                    string sleepDurationlTimeStr = optionNameStart + "SleepDurationStr";
+                    string delimeter = ":";
+                    if (elementSleep.DurationSleep_total.unit_string.Length > 0) delimeter = elementSleep.DurationSleep_total.unit_string;
+                    sleep_function += Environment.NewLine + TabInString(7) + "let " + sleepDurationlTimeStr + " = " + optionNameStart + "sleepDurationTotalHourStr + '" + delimeter + "' + " + optionNameStart + "sleepDurationTotalMinStr;";
+                    
+                    sleep_function += Environment.NewLine + TabInString(7) + "if (" + variableName + ") " + variableName + ".setProperty(hmUI.prop.TEXT, " + sleepDurationlTimeStr + ");" + Environment.NewLine;
+
+                }
+
+                // Duration
+                if (index == durationPosition && durationOptions.Length > 5)
+                {
+                    if (SelectedModel.versionOS >= 2 && elementSleep.DurationSleep.font != null && elementSleep.DurationSleep.font.Length > 3)
+                    {
+                        string cacheName = "// FontName: " + elementSleep.DurationSleep.font + "; FontSize: " + elementSleep.DurationSleep.text_size.ToString();
+                        //if (elementSleep.DurationSleep.unit_type > 0)
+                        //    cacheName = "// FontName: " + elementSleep.DurationSleep.font + "; FontSize: " + elementSleep.DurationSleep.text_size.ToString() + "; Cache: full";
+                        if (fonts_cache.IndexOf(cacheName) < 0)
+                        {
+                            string fontCacheOptions = TEXT_Cache_Options(elementSleep.DurationSleep, false);
+                            if (fontCacheOptions.Length > 5)
+                            {
+                                fonts_cache += Environment.NewLine + TabInString(6) + cacheName + Environment.NewLine;
+                                fonts_cache += TabInString(6) + "hmUI.createWidget(hmUI.widget.TEXT, {" + fontCacheOptions +
+                                    TabInString(6) + "});" + Environment.NewLine;
+                            }
+                        }
+                    }
+
+                    string variableName = optionNameStart + "sleep_time_font";
+                    variables += TabInString(4) + "let " + variableName + " = ''" + Environment.NewLine;
+
+                    items += Environment.NewLine + TabInString(6) + variableName + " = hmUI.createWidget(hmUI.widget.TEXT, {" +
+                            durationOptions + TabInString(6) + "});" + Environment.NewLine;
+
+                    sleep_function += Environment.NewLine + TabInString(7) + "console.log('sleep duration time');";
+
+                    if (!sleep_function.Contains("let sleepTime = sleepSensor.getTotalTime();"))
+                    {
+                        sleep_function += Environment.NewLine + TabInString(7) + "let sleepTime = sleepSensor.getTotalTime();";
+                        if (!sleep_function.Contains("const modelData = sleepSensor.getSleepStageModel();")) 
+                            sleep_function += Environment.NewLine + TabInString(7) + "const modelData = sleepSensor.getSleepStageModel();";
+                        if (!sleep_function.Contains("let sleepStageArray =")) 
+                            sleep_function += Environment.NewLine + TabInString(7) + "let sleepStageArray = sleepSensor.getSleepStageData();";
+                        sleep_function += Environment.NewLine + TabInString(7) + "let wakeupTime = 0;";
+                        sleep_function += Environment.NewLine + TabInString(7) + "let wakeupCount = 0;" + Environment.NewLine;
+                        sleep_function += Environment.NewLine + TabInString(7) + "for (let i = 0; i < sleepStageArray.length; i++) {";
+                        sleep_function += Environment.NewLine + TabInString(8) + "let data = sleepStageArray[i];";
+                        sleep_function += Environment.NewLine + TabInString(8) + "if (data.model == modelData.WAKE_STAGE) {";
+                        sleep_function += Environment.NewLine + TabInString(9) + "wakeupTime += data.stop + 1 - data.start;";
+                        sleep_function += Environment.NewLine + TabInString(9) + "wakeupCount++;";
+                        sleep_function += Environment.NewLine + TabInString(8) + "};";
+                        sleep_function += Environment.NewLine + TabInString(7) + "};";
+                        sleep_function += Environment.NewLine + TabInString(7) + "sleepTime -= wakeupTime;";
+                    }
+                    if (!sleep_function.Contains("let sleepTimeHour = Math.floor(sleepTime / 60);"))
+                    {
+                        sleep_function += Environment.NewLine + TabInString(7) + "let sleepTimeHour = Math.floor(sleepTime / 60);";
+                        sleep_function += Environment.NewLine + TabInString(7) + "let sleepTimeMin = sleepTime % 60;" + Environment.NewLine;
+                    }
+
+                    sleep_function += Environment.NewLine + TabInString(7) + "let " + optionNameStart + "sleepTimeHourStr = sleepTimeHour.toString();";
+                    if (elementSleep.DurationSleep.padding)
+                        sleep_function += Environment.NewLine + TabInString(7) + optionNameStart + "sleepTimeHourStr = " + optionNameStart + "sleepTimeHourStr.padStart(2, '0');";
+                    sleep_function += Environment.NewLine + TabInString(7) + "let " + optionNameStart + "sleepTimeMinStr = sleepTimeMin.toString().padStart(2, '0');";
+
+                    string sleepTimeStr = optionNameStart + "sleepTimeStr";
+                    string delimeter = ":";
+                    if (elementSleep.DurationSleep.unit_string.Length > 0) delimeter = elementSleep.DurationSleep.unit_string;
+                    sleep_function += Environment.NewLine + TabInString(7) + "let " + sleepTimeStr + " = " + optionNameStart + "sleepTimeHourStr + '" + delimeter + "' + " + optionNameStart + "sleepTimeMinStr;";
+                    
+                    sleep_function += Environment.NewLine + TabInString(7) + "if (" + variableName + ") " + variableName + ".setProperty(hmUI.prop.TEXT, " + sleepTimeStr + ");" + Environment.NewLine;
+
+                }
+
+                // WakeUp
+                if (index == wakeUpPosition && wakeUpOptions.Length > 5)
+                {
+                    if (SelectedModel.versionOS >= 2 && elementSleep.WakeUp.font != null && elementSleep.WakeUp.font.Length > 3)
+                    {
+                        string cacheName = "// FontName: " + elementSleep.WakeUp.font + "; FontSize: " + elementSleep.WakeUp.text_size.ToString();
+                        //if (elementSleep.WakeUp.unit_type > 0)
+                        //    cacheName = "// FontName: " + elementSleep.WakeUp.font + "; FontSize: " + elementSleep.WakeUp.text_size.ToString() + "; Cache: full";
+                        if (fonts_cache.IndexOf(cacheName) < 0)
+                        {
+                            string fontCacheOptions = TEXT_Cache_Options(elementSleep.WakeUp, false);
+                            if (fontCacheOptions.Length > 5)
+                            {
+                                fonts_cache += Environment.NewLine + TabInString(6) + cacheName + Environment.NewLine;
+                                fonts_cache += TabInString(6) + "hmUI.createWidget(hmUI.widget.TEXT, {" + fontCacheOptions +
+                                    TabInString(6) + "});" + Environment.NewLine;
+                            }
+                        }
+                    }
+
+                    string variableName = optionNameStart + "wakeup_time_font";
+                    variables += TabInString(4) + "let " + variableName + " = ''" + Environment.NewLine;
+
+                    items += Environment.NewLine + TabInString(6) + variableName + " = hmUI.createWidget(hmUI.widget.TEXT, {" +
+                            wakeUpOptions + TabInString(6) + "});" + Environment.NewLine;
+
+                    sleep_function += Environment.NewLine + TabInString(7) + "console.log('sleep wakeup time');";
+
+                    if (!sleep_function.Contains("let sleepTime = sleepSensor.getTotalTime();"))
+                    {
+                        sleep_function += Environment.NewLine + TabInString(7) + "let sleepTime = sleepSensor.getTotalTime();";
+                        sleep_function += Environment.NewLine + TabInString(7) + "const modelData = sleepSensor.getSleepStageModel();";
+                        if (!sleep_function.Contains("let sleepStageArray ="))
+                            sleep_function += Environment.NewLine + TabInString(7) + "let sleepStageArray = sleepSensor.getSleepStageData();";
+                        sleep_function += Environment.NewLine + TabInString(7) + "let wakeupTime = 0;";
+                        sleep_function += Environment.NewLine + TabInString(7) + "let wakeupCount = 0;" + Environment.NewLine;
+                        sleep_function += Environment.NewLine + TabInString(7) + "for (let i = 0; i < sleepStageArray.length; i++) {";
+                        sleep_function += Environment.NewLine + TabInString(8) + "let data = sleepStageArray[i];";
+                        sleep_function += Environment.NewLine + TabInString(8) + "if (data.model == modelData.WAKE_STAGE) {";
+                        sleep_function += Environment.NewLine + TabInString(9) + "wakeupTime += data.stop + 1 - data.start;";
+                        sleep_function += Environment.NewLine + TabInString(9) + "wakeupCount++;";
+                        sleep_function += Environment.NewLine + TabInString(8) + "};";
+                        sleep_function += Environment.NewLine + TabInString(7) + "};";
+                        sleep_function += Environment.NewLine + TabInString(7) + "sleepTime -= wakeupTime;";
+                    }
+                    if (!sleep_function.Contains("let wakeupTimeHour = Math.floor(wakeupTime / 60);"))
+                    {
+                        sleep_function += Environment.NewLine + TabInString(7) + "let wakeupTimeHour = Math.floor(wakeupTime / 60);";
+                        sleep_function += Environment.NewLine + TabInString(7) + "let wakeupTimeMin = wakeupTime % 60;" + Environment.NewLine;
+                    }
+
+
+                    if (elementSleep.WakeUp.unit_string.Length > 0)
+                    {
+                        string wakeupTimeStr = optionNameStart + "wakeupTimeStr";
+                        sleep_function += Environment.NewLine + TabInString(7) + "let " + optionNameStart + "wakeupTimeHourStr = wakeupTimeHour.toString();";
+                        if (elementSleep.WakeUp.padding)
+                            sleep_function += Environment.NewLine + TabInString(7) + optionNameStart + "wakeupTimeHourStr = " + optionNameStart + "wakeupTimeHourStr.padStart(2, '0');";
+                        sleep_function += Environment.NewLine + TabInString(7) + "let " + optionNameStart + "wakeupTimeMinStr = wakeupTimeMin.toString().padStart(2, '0');";
+                        string delimeter = elementSleep.WakeUp.unit_string;
+                        sleep_function += Environment.NewLine + TabInString(7) + "let " + wakeupTimeStr + " = " + optionNameStart + "wakeupTimeHourStr + '" + delimeter + "' + " + optionNameStart + "wakeupTimeMinStr;";
+
+                        sleep_function += Environment.NewLine + TabInString(7) + "if (" + variableName + ") " + variableName + ".setProperty(hmUI.prop.TEXT, " + wakeupTimeStr + ");" + Environment.NewLine;
+                    }
+                    else
+                    {
+                        sleep_function += Environment.NewLine + TabInString(7) + "if (" + variableName + ") " + variableName + ".setProperty(hmUI.prop.TEXT, wakeupTime.toString());" + Environment.NewLine;
+                    }
+
+                }
+
+                // WakeUpCount
+                if (index == wakeUpCountPosition && wakeUpCountOptions.Length > 5)
+                {
+                    if (SelectedModel.versionOS >= 2 && elementSleep.WakeUpCount.font != null && elementSleep.WakeUpCount.font.Length > 3)
+                    {
+                        string cacheName = "// FontName: " + elementSleep.WakeUpCount.font + "; FontSize: " + elementSleep.WakeUpCount.text_size.ToString();
+                        //if (elementSleep.WakeUpCount.unit_type > 0)
+                        //    cacheName = "// FontName: " + elementSleep.WakeUpCount.font + "; FontSize: " + elementSleep.WakeUpCount.text_size.ToString() + "; Cache: full";
+                        if (fonts_cache.IndexOf(cacheName) < 0)
+                        {
+                            string fontCacheOptions = TEXT_Cache_Options(elementSleep.WakeUpCount, false);
+                            if (fontCacheOptions.Length > 5)
+                            {
+                                fonts_cache += Environment.NewLine + TabInString(6) + cacheName + Environment.NewLine;
+                                fonts_cache += TabInString(6) + "hmUI.createWidget(hmUI.widget.TEXT, {" + fontCacheOptions +
+                                    TabInString(6) + "});" + Environment.NewLine;
+                            }
+                        }
+                    }
+
+                    string variableName = optionNameStart + "wakeup_count_font";
+                    variables += TabInString(4) + "let " + variableName + " = ''" + Environment.NewLine;
+
+                    items += Environment.NewLine + TabInString(6) + variableName + " = hmUI.createWidget(hmUI.widget.TEXT, {" +
+                            wakeUpCountOptions + TabInString(6) + "});" + Environment.NewLine;
+
+                    sleep_function += Environment.NewLine + TabInString(7) + "console.log('sleep wakeup count');";
+
+                    if (!sleep_function.Contains("let sleepTime = sleepSensor.getTotalTime();"))
+                    {
+                        sleep_function += Environment.NewLine + TabInString(7) + "let sleepTime = sleepSensor.getTotalTime();";
+                        sleep_function += Environment.NewLine + TabInString(7) + "const modelData = sleepSensor.getSleepStageModel();";
+                        if (!sleep_function.Contains("let sleepStageArray ="))
+                            sleep_function += Environment.NewLine + TabInString(7) + "let sleepStageArray = sleepSensor.getSleepStageData();";
+                        sleep_function += Environment.NewLine + TabInString(7) + "let wakeupTime = 0;";
+                        sleep_function += Environment.NewLine + TabInString(7) + "let wakeupCount = 0;" + Environment.NewLine;
+                        sleep_function += Environment.NewLine + TabInString(7) + "for (let i = 0; i < sleepStageArray.length; i++) {";
+                        sleep_function += Environment.NewLine + TabInString(8) + "let data = sleepStageArray[i];";
+                        sleep_function += Environment.NewLine + TabInString(8) + "if (data.model == modelData.WAKE_STAGE) {";
+                        sleep_function += Environment.NewLine + TabInString(9) + "wakeupTime += data.stop + 1 - data.start;";
+                        sleep_function += Environment.NewLine + TabInString(9) + "wakeupCount++;";
+                        sleep_function += Environment.NewLine + TabInString(8) + "};";
+                        sleep_function += Environment.NewLine + TabInString(7) + "};";
+                        sleep_function += Environment.NewLine + TabInString(7) + "sleepTime -= wakeupTime;";
+                    }
+
+                    sleep_function += Environment.NewLine + TabInString(7) + "if (" + variableName + ") " + variableName + ".setProperty(hmUI.prop.TEXT, String(wakeupCount));" + Environment.NewLine;
+
+                }
+
+                // Score
+                if (index == scorePosition && scoreOptions.Length > 5)
+                {
+                    if (SelectedModel.versionOS >= 2 && elementSleep.Score.font != null && elementSleep.Score.font.Length > 3)
+                    {
+                        string cacheName = "// FontName: " + elementSleep.DurationSleep_total.font + "; FontSize: " + elementSleep.Score.text_size.ToString();
+                        //if (elementSleep.Score.unit_type > 0)
+                        //    cacheName = "// FontName: " + elementSleep.Score.font + "; FontSize: " + elementSleep.Score.text_size.ToString() + "; Cache: full";
+                        if (fonts_cache.IndexOf(cacheName) < 0)
+                        {
+                            string fontCacheOptions = TEXT_Cache_Options(elementSleep.Score, false);
+                            if (fontCacheOptions.Length > 5)
+                            {
+                                fonts_cache += Environment.NewLine + TabInString(6) + cacheName + Environment.NewLine;
+                                fonts_cache += TabInString(6) + "hmUI.createWidget(hmUI.widget.TEXT, {" + fontCacheOptions +
+                                    TabInString(6) + "});" + Environment.NewLine;
+                            }
+                        }
+                    }
+
+                    string variableName = optionNameStart + "sleep_score_font";
+                    variables += TabInString(4) + "let " + variableName + " = ''" + Environment.NewLine;
+
+
+                    items += Environment.NewLine + TabInString(6) + variableName + " = hmUI.createWidget(hmUI.widget.TEXT, {" +
+                            scoreOptions + TabInString(6) + "});" + Environment.NewLine;
+
+                    //if (!sleep_function.Contains("let sleepTotalTime = sleep.getTotalTime();"))
+                    //    sleep_function += Environment.NewLine + TabInString(7) + "let sleepTotalTime = sleep.getTotalTime();";
+
+                    sleep_function += Environment.NewLine + TabInString(7) + "console.log('sleep score');";
+
+                    if (!sleep_function.Contains("let sleepScore = sleepInfo.score;"))
+                        sleep_function += Environment.NewLine + TabInString(7) + "let sleepScore = sleepInfo.score;";
+
+                    sleep_function += Environment.NewLine + TabInString(7) + "if (" + variableName + ") " + variableName + ".setProperty(hmUI.prop.TEXT, String(sleepScore));" + Environment.NewLine;
+
+                }
+
+                // Icon
+                if (index == iconPosition && iconOptions.Length > 5)
+                {
+                    variables += TabInString(4) + "let " + optionNameStart +
+                        "sleep_icon_img = ''" + Environment.NewLine;
+                    items += Environment.NewLine + TabInString(6) +
+                        optionNameStart + "sleep_icon_img = hmUI.createWidget(hmUI.widget.IMG, {" +
+                            iconOptions + TabInString(6) + "});" + Environment.NewLine;
+
+                    if (elementSleep.Icon.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            "sleep_icon_img.setAlpha(" + elementSleep.Icon.alpha.ToString() + ");" + Environment.NewLine;
+                }
+
+
             }
         }
 
@@ -22381,7 +23180,7 @@ namespace Watch_Face_Editor
                     options += TabInString(10) + "line_width_ls_" + optionNameStart + type + "_draw_mirror = -lenght_ls_" +
                         optionNameStart + type + "_mirror;" + Environment.NewLine;
                     options += TabInString(10) + "start_y_" + optionNameStart + type +
-                        "_draw_mirror = start_y_" + optionNameStart + type + "_draw - line_width_ls_" +
+                        "_draw_mirror = start_y_" + optionNameStart + type + "_draw_mirror - line_width_ls_" +
                         optionNameStart + type + "_draw_mirror;" + Environment.NewLine;
                     options += TabInString(9) + "};" + Environment.NewLine;
                 }
@@ -22396,7 +23195,7 @@ namespace Watch_Face_Editor
                     options += TabInString(10) + "lenght_ls_" + optionNameStart + type +
                         "_draw_mirror = -lenght_ls_" + optionNameStart + type + "_mirror;" + Environment.NewLine;
                     options += TabInString(10) + "start_x_" + optionNameStart + type + "_draw_mirror = start_x_" +
-                        optionNameStart + type + " - lenght_ls_" + optionNameStart + type + "_draw_mirror;" + Environment.NewLine;
+                        optionNameStart + type + "_draw_mirror - lenght_ls_" + optionNameStart + type + "_draw_mirror;" + Environment.NewLine;
                     options += TabInString(9) + "};" + Environment.NewLine;
                 }
 
@@ -23612,6 +24411,56 @@ namespace Watch_Face_Editor
             options += TabInString(7 + tabOffset) + "text: \"" + stringCache + "\"," + Environment.NewLine;
 
             options += TabInString(7 + tabOffset) + "show_level: hmUI.show_level.ONLY_NORMAL," + Environment.NewLine;
+
+            return options;
+        }
+
+
+        private string Chart_Options(int x, int y, int w, int h, int line_width, string color, string type, string show_level, int tabOffset = 0, bool commentType = true)
+        {
+            string options = Environment.NewLine;
+
+            options += TabInString(7 + tabOffset) + "x: " + x.ToString() + "," + Environment.NewLine;
+            options += TabInString(7 + tabOffset) + "y: " + y.ToString() + "," + Environment.NewLine;
+            options += TabInString(7 + tabOffset) + "w: " + w.ToString() + "," + Environment.NewLine;
+            options += TabInString(7 + tabOffset) + "h: " + h.ToString() + "," + Environment.NewLine;
+
+            options += TabInString(7 + tabOffset) + "line_width: " + line_width.ToString() + "," + Environment.NewLine;
+            options += TabInString(7 + tabOffset) + "line_color: " + color + "," + Environment.NewLine;
+
+            if (type.Length > 0) { 
+                if (commentType) options += TabInString(7) + "// type: hmUI.data_type." + type + "," + Environment.NewLine;
+                else options += TabInString(7) + "type: hmUI.data_type." + type + "," + Environment.NewLine;
+            }
+            if (show_level.Length > 0)
+            {
+                options += TabInString(7 + tabOffset) + "show_level: hmUI.show_level." + show_level + "," + Environment.NewLine;
+            }
+
+            return options;
+        }
+
+
+        private string SleepChart_Сommented_Options(SleepChartSettings sleep_chart, string show_level, int tabOffset = 0)
+        {
+            string options = Environment.NewLine;
+
+            options += TabInString(7 + tabOffset) + "// x: " + sleep_chart.X.ToString() + "," + Environment.NewLine;
+            options += TabInString(7 + tabOffset) + "// y: " + sleep_chart.Y.ToString() + "," + Environment.NewLine;
+            options += TabInString(7 + tabOffset) + "// w: " + sleep_chart.Width.ToString() + "," + Environment.NewLine;
+            options += TabInString(7 + tabOffset) + "// h: " + sleep_chart.Height.ToString() + "," + Environment.NewLine;
+            options += TabInString(7 + tabOffset) + "// radius: " + sleep_chart.Radius.ToString() + "," + Environment.NewLine;
+
+            //options += TabInString(7 + tabOffset) + "// use_sleep_chart: " + sleep_chart.useSleepChart.ToString() + "," + Environment.NewLine;
+            options += TabInString(7 + tabOffset) + "// deep_stage_color: " + sleep_chart.DEEP_STAGE_color + "," + Environment.NewLine;
+            options += TabInString(7 + tabOffset) + "// light_stage_color: " + sleep_chart.LIGHT_STAGE_color + "," + Environment.NewLine;
+            options += TabInString(7 + tabOffset) + "// rem_stage_color: " + sleep_chart.REM_STAGE_color + "," + Environment.NewLine;
+            options += TabInString(7 + tabOffset) + "// wake_stage_color: " + sleep_chart.WAKE_STAGE_color + "," + Environment.NewLine;
+
+            if (show_level.Length > 0)
+            {
+                options += TabInString(7 + tabOffset) + "// show_level: hmUI.show_level." + show_level + "," + Environment.NewLine;
+            }
 
             return options;
         }
@@ -25942,6 +26791,39 @@ namespace Watch_Face_Editor
                                     }
                                 }
 
+
+
+                                if (objectName.EndsWith("sleep_icon_img"))
+                                {
+                                    ElementSleep sleep = (ElementSleep)elementsList.Find(e => e.GetType().Name == "ElementSleep");
+                                    if (sleep == null)
+                                    {
+                                        elementsList.Add(new ElementSleep());
+                                        sleep = (ElementSleep)elementsList.Find(e => e.GetType().Name == "ElementSleep");
+                                    }
+                                    if (sleep != null)
+                                    {
+                                        int offset = 1;
+                                        if (sleep.SleepChartSettings != null) offset++;
+                                        if (sleep.StartSleep != null) offset++;
+                                        if (sleep.EndSleep != null) offset++;
+                                        if (sleep.DurationSleep_total != null) offset++;
+                                        if (sleep.DurationSleep != null) offset++;
+                                        if (sleep.WakeUp != null) offset++;
+                                        if (sleep.WakeUpCount != null) offset++;
+                                        if (sleep.Score != null) offset++;
+                                        //if (sleep.Icon != null) offset++;
+
+                                        sleep.Icon = new hmUI_widget_IMG();
+                                        sleep.Icon.src = img.src;
+                                        sleep.Icon.x = img.x;
+                                        sleep.Icon.y = img.y;
+                                        sleep.Icon.alpha = img.alpha;
+                                        sleep.Icon.visible = true;
+                                        sleep.Icon.position = offset;
+                                    }
+                                }
+
                             }
 
                             if (objectName.EndsWith("image_img"))
@@ -26048,6 +26930,39 @@ namespace Watch_Face_Editor
                                     wfd_background.FewDays.Background = img.src;
                                 }
                             }*/
+
+                            if (objectName.EndsWith("sleep_chart_bg_img"))
+                            {
+
+                                ElementSleep sleep_chart_bg = (ElementSleep)elementsList.Find(e => e.GetType().Name == "ElementSleep");
+                                if (sleep_chart_bg == null)
+                                {
+                                    elementsList.Add(new ElementSleep());
+                                    sleep_chart_bg = (ElementSleep)elementsList.Find(e => e.GetType().Name == "ElementSleep");
+                                }
+                                if (sleep_chart_bg != null)
+                                {
+                                    if (sleep_chart_bg.SleepChartSettings == null) { 
+                                        sleep_chart_bg.SleepChartSettings = new SleepChartSettings();
+                                        sleep_chart_bg.SleepChartSettings.useSleepChart = false;
+
+                                        int offset = 1;
+                                        //if (sleep.SleepChartSettings != null) offset++;
+                                        if (sleep_chart_bg.StartSleep != null) offset++;
+                                        if (sleep_chart_bg.EndSleep != null) offset++;
+                                        if (sleep_chart_bg.DurationSleep_total != null) offset++;
+                                        if (sleep_chart_bg.DurationSleep != null) offset++;
+                                        if (sleep_chart_bg.WakeUp != null) offset++;
+                                        if (sleep_chart_bg.WakeUpCount != null) offset++;
+                                        if (sleep_chart_bg.Score != null) offset++;
+                                        if (sleep_chart_bg.Icon != null) offset++;
+                                        sleep_chart_bg.SleepChartSettings.position = offset;
+                                    }
+                                    sleep_chart_bg.SleepChartSettings.Background = img.src;
+                                    sleep_chart_bg.SleepChartSettings.X = img.x;
+                                    sleep_chart_bg.SleepChartSettings.Y = img.y;
+                                }
+                            }
 
                             if (objectName.Length == 0 || objectName == "normal_img0")
                             {
@@ -28053,13 +28968,53 @@ namespace Watch_Face_Editor
                         case "FewDays":
                             FewDays fewDays = Object_FewDays(parametrs);
                             elementsList = null;
-                            if (objectName.StartsWith("// normal"))
+                            if (objectName.StartsWith("normal_") || objectName.StartsWith("// normal"))
                             {
                                 if (Watch_Face.ScreenNormal.Elements == null)
                                     Watch_Face.ScreenNormal.Elements = new List<object>();
                                 elementsList = Watch_Face.ScreenNormal.Elements;
                             }
-                            else if (objectName.StartsWith("// idle"))
+                            else if (objectName.StartsWith("idle_") || objectName.StartsWith("// idle"))
+                            {
+                                if (Watch_Face.ScreenAOD.Elements == null)
+                                    Watch_Face.ScreenAOD.Elements = new List<object>();
+                                elementsList = Watch_Face.ScreenAOD.Elements;
+                            }
+                            ParametrsToObject(elementsList, parametrs);
+                            break;
+                        #endregion
+
+                        #region GRADKIENT_POLYLINE
+                        case "GRADKIENT_POLYLINE":
+                            hmUI_widget_GRADKIENT_POLYLINE polyline = Object_GRADKIENT_POLYLINE(parametrs);
+                            elementsList = null;
+                            if (polyline.show_level == "ONLY_NORMAL" || objectName.StartsWith("normal"))
+                            {
+                                if (Watch_Face.ScreenNormal.Elements == null)
+                                    Watch_Face.ScreenNormal.Elements = new List<object>();
+                                elementsList = Watch_Face.ScreenNormal.Elements;
+                            }
+                            else if (polyline.show_level == "ONLY_AOD" || objectName.StartsWith("idle"))
+                            {
+                                if (Watch_Face.ScreenAOD.Elements == null)
+                                    Watch_Face.ScreenAOD.Elements = new List<object>();
+                                elementsList = Watch_Face.ScreenAOD.Elements;
+                            }
+                            ParametrsToObject(elementsList, parametrs);
+                            break;
+                        #endregion
+
+                        #region SLEEP_CHART
+                        case "SLEEP_CHART":
+                            SleepChartSettings sleep_chart = Object_SLEEP_CHART(parametrs);
+                            elementsList = null;
+                            if (sleep_chart.show_level == "ONLY_NORMAL" || objectName.StartsWith("normal"))
+                            {
+                                if (Watch_Face.ScreenNormal.Elements == null)
+                                    Watch_Face.ScreenNormal.Elements = new List<object>();
+                                elementsList = Watch_Face.ScreenNormal.Elements;
+                            }
+                            else if (sleep_chart.show_level == "ONLY_AOD" || objectName.StartsWith("idle"))
                             {
                                 if (Watch_Face.ScreenAOD.Elements == null)
                                     Watch_Face.ScreenAOD.Elements = new List<object>();
@@ -38396,6 +39351,7 @@ namespace Watch_Face_Editor
                             }
                         }
 
+
                         if (objectName.EndsWith("time_hour_text_font"))
                         {
                             ElementDigitalTime_v2 time_hour_text = (ElementDigitalTime_v2)elementsList.Find(e => e.GetType().Name == "ElementDigitalTime_v2");
@@ -38804,6 +39760,427 @@ namespace Watch_Face_Editor
 
                                 compass.Number_Font.visible = true;
                                 compass.Number_Font.position = offset;
+                            }
+                        }
+
+                        /////
+                        if (objectName.EndsWith("sleep_start_font"))
+                        {
+                            ElementSleep sleep = (ElementSleep)elementsList.Find(e => e.GetType().Name == "ElementSleep");
+                            if (sleep == null)
+                            {
+                                elementsList.Add(new ElementSleep());
+                                sleep = (ElementSleep)elementsList.Find(e => e.GetType().Name == "ElementSleep");
+                            }
+                            if (sleep != null)
+                            {
+                                int offset = 1;
+                                if (sleep.SleepChartSettings != null) offset++;
+                                //if (sleep.StartSleep != null) offset++;
+                                if (sleep.EndSleep != null) offset++;
+                                if (sleep.DurationSleep_total != null) offset++;
+                                if (sleep.DurationSleep != null) offset++;
+                                if (sleep.WakeUp != null) offset++;
+                                if (sleep.WakeUpCount != null) offset++;
+                                if (sleep.Score != null) offset++;
+                                if (sleep.Icon != null) offset++;
+
+                                sleep.StartSleep = new hmUI_widget_TEXT();
+                                sleep.StartSleep.x = text.x;
+                                sleep.StartSleep.y = text.y;
+                                sleep.StartSleep.w = text.w;
+                                sleep.StartSleep.h = text.h;
+
+                                sleep.StartSleep.text_size = text.text_size;
+                                sleep.StartSleep.char_space = text.char_space;
+                                sleep.StartSleep.line_space = text.line_space;
+                                sleep.StartSleep.alpha = text.alpha;
+
+                                sleep.StartSleep.font = text.font;
+                                sleep.StartSleep.color = text.color;
+                                sleep.StartSleep.color_2 = text.color_2;
+                                sleep.StartSleep.use_color_2 = text.use_color_2;
+
+                                sleep.StartSleep.align_h = text.align_h;
+                                sleep.StartSleep.align_v = text.align_v;
+                                sleep.StartSleep.text_style = text.text_style;
+
+                                sleep.StartSleep.padding = text.padding;
+                                sleep.StartSleep.unit_type = text.unit_type;
+                                sleep.StartSleep.unit_string = text.unit_string;
+                                sleep.StartSleep.unit_end = text.unit_end;
+
+                                if (text.use_text_circle)
+                                {
+                                    sleep.StartSleep.use_text_circle = text.use_text_circle;
+                                    sleep.StartSleep.radius = text.radius;
+                                    sleep.StartSleep.start_angle = text.start_angle;
+                                    sleep.StartSleep.end_angle = text.end_angle;
+                                    sleep.StartSleep.mode = text.mode;
+                                }
+
+                                sleep.StartSleep.visible = true;
+                                sleep.StartSleep.position = offset;
+                            }
+                        }
+
+                        if (objectName.EndsWith("sleep_end_font"))
+                        {
+                            ElementSleep sleep = (ElementSleep)elementsList.Find(e => e.GetType().Name == "ElementSleep");
+                            if (sleep == null)
+                            {
+                                elementsList.Add(new ElementSleep());
+                                sleep = (ElementSleep)elementsList.Find(e => e.GetType().Name == "ElementSleep");
+                            }
+                            if (sleep != null)
+                            {
+                                int offset = 1;
+                                if (sleep.SleepChartSettings != null) offset++;
+                                if (sleep.StartSleep != null) offset++;
+                                //if (sleep.EndSleep != null) offset++;
+                                if (sleep.DurationSleep_total != null) offset++;
+                                if (sleep.DurationSleep != null) offset++;
+                                if (sleep.WakeUp != null) offset++;
+                                if (sleep.WakeUpCount != null) offset++;
+                                if (sleep.Score != null) offset++;
+                                if (sleep.Icon != null) offset++;
+
+                                sleep.EndSleep = new hmUI_widget_TEXT();
+                                sleep.EndSleep.x = text.x;
+                                sleep.EndSleep.y = text.y;
+                                sleep.EndSleep.w = text.w;
+                                sleep.EndSleep.h = text.h;
+
+                                sleep.EndSleep.text_size = text.text_size;
+                                sleep.EndSleep.char_space = text.char_space;
+                                sleep.EndSleep.line_space = text.line_space;
+                                sleep.EndSleep.alpha = text.alpha;
+
+                                sleep.EndSleep.font = text.font;
+                                sleep.EndSleep.color = text.color;
+                                sleep.EndSleep.color_2 = text.color_2;
+                                sleep.EndSleep.use_color_2 = text.use_color_2;
+
+                                sleep.EndSleep.align_h = text.align_h;
+                                sleep.EndSleep.align_v = text.align_v;
+                                sleep.EndSleep.text_style = text.text_style;
+
+                                sleep.EndSleep.padding = text.padding;
+                                sleep.EndSleep.unit_type = text.unit_type;
+                                sleep.EndSleep.unit_string = text.unit_string;
+                                sleep.EndSleep.unit_end = text.unit_end;
+
+                                if (text.use_text_circle)
+                                {
+                                    sleep.EndSleep.use_text_circle = text.use_text_circle;
+                                    sleep.EndSleep.radius = text.radius;
+                                    sleep.EndSleep.start_angle = text.start_angle;
+                                    sleep.EndSleep.end_angle = text.end_angle;
+                                    sleep.EndSleep.mode = text.mode;
+                                }
+
+                                sleep.EndSleep.visible = true;
+                                sleep.EndSleep.position = offset;
+                            }
+                        }
+
+                        if (objectName.EndsWith("sleep_duration_total_font"))
+                        {
+                            ElementSleep sleep = (ElementSleep)elementsList.Find(e => e.GetType().Name == "ElementSleep");
+                            if (sleep == null)
+                            {
+                                elementsList.Add(new ElementSleep());
+                                sleep = (ElementSleep)elementsList.Find(e => e.GetType().Name == "ElementSleep");
+                            }
+                            if (sleep != null)
+                            {
+                                int offset = 1;
+                                if (sleep.SleepChartSettings != null) offset++;
+                                if (sleep.StartSleep != null) offset++;
+                                if (sleep.EndSleep != null) offset++;
+                                //if (sleep.DurationSleep_total != null) offset++;
+                                if (sleep.DurationSleep != null) offset++;
+                                if (sleep.WakeUp != null) offset++;
+                                if (sleep.WakeUpCount != null) offset++;
+                                if (sleep.Score != null) offset++;
+                                if (sleep.Icon != null) offset++;
+
+                                sleep.DurationSleep_total = new hmUI_widget_TEXT();
+                                sleep.DurationSleep_total.x = text.x;
+                                sleep.DurationSleep_total.y = text.y;
+                                sleep.DurationSleep_total.w = text.w;
+                                sleep.DurationSleep_total.h = text.h;
+
+                                sleep.DurationSleep_total.text_size = text.text_size;
+                                sleep.DurationSleep_total.char_space = text.char_space;
+                                sleep.DurationSleep_total.line_space = text.line_space;
+                                sleep.DurationSleep_total.alpha = text.alpha;
+
+                                sleep.DurationSleep_total.font = text.font;
+                                sleep.DurationSleep_total.color = text.color;
+                                sleep.DurationSleep_total.color_2 = text.color_2;
+                                sleep.DurationSleep_total.use_color_2 = text.use_color_2;
+
+                                sleep.DurationSleep_total.align_h = text.align_h;
+                                sleep.DurationSleep_total.align_v = text.align_v;
+                                sleep.DurationSleep_total.text_style = text.text_style;
+
+                                sleep.DurationSleep_total.padding = text.padding;
+                                sleep.DurationSleep_total.unit_type = text.unit_type;
+                                sleep.DurationSleep_total.unit_string = text.unit_string;
+                                sleep.DurationSleep_total.unit_end = text.unit_end;
+
+                                if (text.use_text_circle)
+                                {
+                                    sleep.DurationSleep_total.use_text_circle = text.use_text_circle;
+                                    sleep.DurationSleep_total.radius = text.radius;
+                                    sleep.DurationSleep_total.start_angle = text.start_angle;
+                                    sleep.DurationSleep_total.end_angle = text.end_angle;
+                                    sleep.DurationSleep_total.mode = text.mode;
+                                }
+
+                                sleep.DurationSleep_total.visible = true;
+                                sleep.DurationSleep_total.position = offset;
+                            }
+                        }
+
+                        if (objectName.EndsWith("sleep_time_font"))
+                        {
+                            ElementSleep sleep = (ElementSleep)elementsList.Find(e => e.GetType().Name == "ElementSleep");
+                            if (sleep == null)
+                            {
+                                elementsList.Add(new ElementSleep());
+                                sleep = (ElementSleep)elementsList.Find(e => e.GetType().Name == "ElementSleep");
+                            }
+                            if (sleep != null)
+                            {
+                                int offset = 1;
+                                if (sleep.SleepChartSettings != null) offset++;
+                                if (sleep.StartSleep != null) offset++;
+                                if (sleep.EndSleep != null) offset++;
+                                if (sleep.DurationSleep_total != null) offset++;
+                                //if (sleep.DurationSleep != null) offset++;
+                                if (sleep.WakeUp != null) offset++;
+                                if (sleep.WakeUpCount != null) offset++;
+                                if (sleep.Score != null) offset++;
+                                if (sleep.Icon != null) offset++;
+
+                                sleep.DurationSleep = new hmUI_widget_TEXT();
+                                sleep.DurationSleep.x = text.x;
+                                sleep.DurationSleep.y = text.y;
+                                sleep.DurationSleep.w = text.w;
+                                sleep.DurationSleep.h = text.h;
+
+                                sleep.DurationSleep.text_size = text.text_size;
+                                sleep.DurationSleep.char_space = text.char_space;
+                                sleep.DurationSleep.line_space = text.line_space;
+                                sleep.DurationSleep.alpha = text.alpha;
+
+                                sleep.DurationSleep.font = text.font;
+                                sleep.DurationSleep.color = text.color;
+                                sleep.DurationSleep.color_2 = text.color_2;
+                                sleep.DurationSleep.use_color_2 = text.use_color_2;
+
+                                sleep.DurationSleep.align_h = text.align_h;
+                                sleep.DurationSleep.align_v = text.align_v;
+                                sleep.DurationSleep.text_style = text.text_style;
+
+                                sleep.DurationSleep.padding = text.padding;
+                                sleep.DurationSleep.unit_type = text.unit_type;
+                                sleep.DurationSleep.unit_string = text.unit_string;
+                                sleep.DurationSleep.unit_end = text.unit_end;
+
+                                if (text.use_text_circle)
+                                {
+                                    sleep.DurationSleep.use_text_circle = text.use_text_circle;
+                                    sleep.DurationSleep.radius = text.radius;
+                                    sleep.DurationSleep.start_angle = text.start_angle;
+                                    sleep.DurationSleep.end_angle = text.end_angle;
+                                    sleep.DurationSleep.mode = text.mode;
+                                }
+
+                                sleep.DurationSleep.visible = true;
+                                sleep.DurationSleep.position = offset;
+                            }
+                        }
+
+                        if (objectName.EndsWith("wakeup_time_font"))
+                        {
+                            ElementSleep sleep = (ElementSleep)elementsList.Find(e => e.GetType().Name == "ElementSleep");
+                            if (sleep == null)
+                            {
+                                elementsList.Add(new ElementSleep());
+                                sleep = (ElementSleep)elementsList.Find(e => e.GetType().Name == "ElementSleep");
+                            }
+                            if (sleep != null)
+                            {
+                                int offset = 1;
+                                if (sleep.SleepChartSettings != null) offset++;
+                                if (sleep.StartSleep != null) offset++;
+                                if (sleep.EndSleep != null) offset++;
+                                if (sleep.DurationSleep_total != null) offset++;
+                                if (sleep.DurationSleep != null) offset++;
+                                //if (sleep.WakeUp != null) offset++;
+                                if (sleep.WakeUpCount != null) offset++;
+                                if (sleep.Score != null) offset++;
+                                if (sleep.Icon != null) offset++;
+
+                                sleep.WakeUp = new hmUI_widget_TEXT();
+                                sleep.WakeUp.x = text.x;
+                                sleep.WakeUp.y = text.y;
+                                sleep.WakeUp.w = text.w;
+                                sleep.WakeUp.h = text.h;
+
+                                sleep.WakeUp.text_size = text.text_size;
+                                sleep.WakeUp.char_space = text.char_space;
+                                sleep.WakeUp.line_space = text.line_space;
+                                sleep.WakeUp.alpha = text.alpha;
+
+                                sleep.WakeUp.font = text.font;
+                                sleep.WakeUp.color = text.color;
+                                sleep.WakeUp.color_2 = text.color_2;
+                                sleep.WakeUp.use_color_2 = text.use_color_2;
+
+                                sleep.WakeUp.align_h = text.align_h;
+                                sleep.WakeUp.align_v = text.align_v;
+                                sleep.WakeUp.text_style = text.text_style;
+
+                                sleep.WakeUp.padding = text.padding;
+                                sleep.WakeUp.unit_type = text.unit_type;
+                                sleep.WakeUp.unit_string = text.unit_string;
+                                sleep.WakeUp.unit_end = text.unit_end;
+
+                                if (text.use_text_circle)
+                                {
+                                    sleep.WakeUp.use_text_circle = text.use_text_circle;
+                                    sleep.WakeUp.radius = text.radius;
+                                    sleep.WakeUp.start_angle = text.start_angle;
+                                    sleep.WakeUp.end_angle = text.end_angle;
+                                    sleep.WakeUp.mode = text.mode;
+                                }
+
+                                sleep.WakeUp.visible = true;
+                                sleep.WakeUp.position = offset;
+                            }
+                        }
+
+                        if (objectName.EndsWith("wakeup_count_font"))
+                        {
+                            ElementSleep sleep = (ElementSleep)elementsList.Find(e => e.GetType().Name == "ElementSleep");
+                            if (sleep == null)
+                            {
+                                elementsList.Add(new ElementSleep());
+                                sleep = (ElementSleep)elementsList.Find(e => e.GetType().Name == "ElementSleep");
+                            }
+                            if (sleep != null)
+                            {
+                                int offset = 1;
+                                if (sleep.SleepChartSettings != null) offset++;
+                                if (sleep.StartSleep != null) offset++;
+                                if (sleep.EndSleep != null) offset++;
+                                if (sleep.DurationSleep_total != null) offset++;
+                                if (sleep.DurationSleep != null) offset++;
+                                if (sleep.WakeUp != null) offset++;
+                                //if (sleep.WakeUpCount != null) offset++;
+                                if (sleep.Score != null) offset++;
+                                if (sleep.Icon != null) offset++;
+
+                                sleep.WakeUpCount = new hmUI_widget_TEXT();
+                                sleep.WakeUpCount.x = text.x;
+                                sleep.WakeUpCount.y = text.y;
+                                sleep.WakeUpCount.w = text.w;
+                                sleep.WakeUpCount.h = text.h;
+
+                                sleep.WakeUpCount.text_size = text.text_size;
+                                sleep.WakeUpCount.char_space = text.char_space;
+                                sleep.WakeUpCount.line_space = text.line_space;
+                                sleep.WakeUpCount.alpha = text.alpha;
+
+                                sleep.WakeUpCount.font = text.font;
+                                sleep.WakeUpCount.color = text.color;
+                                sleep.WakeUpCount.color_2 = text.color_2;
+                                sleep.WakeUpCount.use_color_2 = text.use_color_2;
+
+                                sleep.WakeUpCount.align_h = text.align_h;
+                                sleep.WakeUpCount.align_v = text.align_v;
+                                sleep.WakeUpCount.text_style = text.text_style;
+
+                                sleep.WakeUpCount.padding = text.padding;
+                                sleep.WakeUpCount.unit_type = text.unit_type;
+                                sleep.WakeUpCount.unit_string = text.unit_string;
+                                sleep.WakeUpCount.unit_end = text.unit_end;
+
+                                if (text.use_text_circle)
+                                {
+                                    sleep.WakeUpCount.use_text_circle = text.use_text_circle;
+                                    sleep.WakeUpCount.radius = text.radius;
+                                    sleep.WakeUpCount.start_angle = text.start_angle;
+                                    sleep.WakeUpCount.end_angle = text.end_angle;
+                                    sleep.WakeUpCount.mode = text.mode;
+                                }
+
+                                sleep.WakeUpCount.visible = true;
+                                sleep.WakeUpCount.position = offset;
+                            }
+                        }
+
+                        if (objectName.EndsWith("sleep_score_font"))
+                        {
+                            ElementSleep sleep = (ElementSleep)elementsList.Find(e => e.GetType().Name == "ElementSleep");
+                            if (sleep == null)
+                            {
+                                elementsList.Add(new ElementSleep());
+                                sleep = (ElementSleep)elementsList.Find(e => e.GetType().Name == "ElementSleep");
+                            }
+                            if (sleep != null)
+                            {
+                                int offset = 1;
+                                if (sleep.SleepChartSettings != null) offset++;
+                                if (sleep.StartSleep != null) offset++;
+                                if (sleep.EndSleep != null) offset++;
+                                if (sleep.DurationSleep_total != null) offset++;
+                                if (sleep.DurationSleep != null) offset++;
+                                if (sleep.WakeUp != null) offset++;
+                                if (sleep.WakeUpCount != null) offset++;
+                                //if (sleep.Score != null) offset++;
+                                if (sleep.Icon != null) offset++;
+
+                                sleep.Score = new hmUI_widget_TEXT();
+                                sleep.Score.x = text.x;
+                                sleep.Score.y = text.y;
+                                sleep.Score.w = text.w;
+                                sleep.Score.h = text.h;
+
+                                sleep.Score.text_size = text.text_size;
+                                sleep.Score.char_space = text.char_space;
+                                sleep.Score.line_space = text.line_space;
+                                sleep.Score.alpha = text.alpha;
+
+                                sleep.Score.font = text.font;
+                                sleep.Score.color = text.color;
+                                sleep.Score.color_2 = text.color_2;
+                                sleep.Score.use_color_2 = text.use_color_2;
+
+                                sleep.Score.align_h = text.align_h;
+                                sleep.Score.align_v = text.align_v;
+                                sleep.Score.text_style = text.text_style;
+
+                                sleep.Score.padding = text.padding;
+                                sleep.Score.unit_type = text.unit_type;
+                                sleep.Score.unit_string = text.unit_string;
+                                sleep.Score.unit_end = text.unit_end;
+
+                                if (text.use_text_circle)
+                                {
+                                    sleep.Score.use_text_circle = text.use_text_circle;
+                                    sleep.Score.radius = text.radius;
+                                    sleep.Score.start_angle = text.start_angle;
+                                    sleep.Score.end_angle = text.end_angle;
+                                    sleep.Score.mode = text.mode;
+                                }
+
+                                sleep.Score.visible = true;
+                                sleep.Score.position = offset;
                             }
                         }
 
@@ -41532,6 +42909,104 @@ namespace Watch_Face_Editor
 
 
 
+                        break;
+                    #endregion
+
+                    #region GRADKIENT_POLYLINE
+                    case "GRADKIENT_POLYLINE":
+                        hmUI_widget_GRADKIENT_POLYLINE polyline = Object_GRADKIENT_POLYLINE(parametrs);
+
+                        if (polyline.type == "SLEEP_HR")
+                        {
+                            ElementSleep sleep = (ElementSleep)elementsList.Find(e => e.GetType().Name == "ElementSleep");
+                            if (sleep == null)
+                            {
+                                elementsList.Add(new ElementSleep());
+                                sleep = (ElementSleep)elementsList.Find(e => e.GetType().Name == "ElementSleep");
+                            }
+                            if (sleep != null)
+                            {
+
+                                if (sleep.SleepChartSettings == null)
+                                {
+                                    int offset = 1;
+                                    //if (sleep.SleepChartSettings != null) offset++;
+                                    if (sleep.StartSleep != null) offset++;
+                                    if (sleep.EndSleep != null) offset++;
+                                    if (sleep.DurationSleep_total != null) offset++;
+                                    if (sleep.DurationSleep != null) offset++;
+                                    if (sleep.WakeUp != null) offset++;
+                                    if (sleep.WakeUpCount != null) offset++;
+                                    if (sleep.Score != null) offset++;
+                                    if (sleep.Icon != null) offset++;
+
+                                    sleep.SleepChartSettings = new SleepChartSettings();
+                                    sleep.SleepChartSettings.position = offset;
+                                    sleep.SleepChartSettings.useSleepChart = false;
+
+                                    sleep.SleepChartSettings.X = polyline.x;
+                                    sleep.SleepChartSettings.Y = polyline.y;
+                                }
+                                sleep.SleepChartSettings.HR_lineWidth = polyline.line_width;
+                                sleep.SleepChartSettings.HR_color = polyline.line_color;
+
+                                if (sleep.SleepChartSettings.Width == 0) sleep.SleepChartSettings.Width = polyline.w;
+                                if (sleep.SleepChartSettings.Height == 0) sleep.SleepChartSettings.Height = polyline.h;
+
+                                sleep.SleepChartSettings.visible = true;
+                                sleep.SleepChartSettings.useHRChart = true;
+                            }
+                        }
+                        break;
+                    #endregion
+
+                    #region SLEEP_CHART
+                    case "SLEEP_CHART":
+                        SleepChartSettings sleep_chart = Object_SLEEP_CHART(parametrs);
+
+                        if (objectName.EndsWith("sleep_chart"))
+                        {
+                            ElementSleep sleep = (ElementSleep)elementsList.Find(e => e.GetType().Name == "ElementSleep");
+                            if (sleep == null)
+                            {
+                                elementsList.Add(new ElementSleep());
+                                sleep = (ElementSleep)elementsList.Find(e => e.GetType().Name == "ElementSleep");
+                            }
+                            if (sleep != null)
+                            {
+
+                                if (sleep.SleepChartSettings == null)
+                                {
+                                    int offset = 1;
+                                    //if (sleep.SleepChartSettings != null) offset++;
+                                    if (sleep.StartSleep != null) offset++;
+                                    if (sleep.EndSleep != null) offset++;
+                                    if (sleep.DurationSleep_total != null) offset++;
+                                    if (sleep.DurationSleep != null) offset++;
+                                    if (sleep.WakeUp != null) offset++;
+                                    if (sleep.WakeUpCount != null) offset++;
+                                    if (sleep.Score != null) offset++;
+                                    if (sleep.Icon != null) offset++;
+
+                                    sleep.SleepChartSettings = new SleepChartSettings();
+                                    sleep.SleepChartSettings.position = offset;
+
+                                    sleep.SleepChartSettings.X = sleep_chart.X;
+                                    sleep.SleepChartSettings.Y = sleep_chart.Y;
+                                }
+                                sleep.SleepChartSettings.Radius = sleep_chart.Radius;
+                                sleep.SleepChartSettings.DEEP_STAGE_color = sleep_chart.DEEP_STAGE_color;
+                                sleep.SleepChartSettings.LIGHT_STAGE_color = sleep_chart.LIGHT_STAGE_color;
+                                sleep.SleepChartSettings.REM_STAGE_color = sleep_chart.REM_STAGE_color;
+                                sleep.SleepChartSettings.WAKE_STAGE_color = sleep_chart.WAKE_STAGE_color;
+
+                                if (sleep.SleepChartSettings.Width == 0) sleep.SleepChartSettings.Width = sleep_chart.Width;
+                                if (sleep.SleepChartSettings.Height == 0) sleep.SleepChartSettings.Height = sleep_chart.Height;
+
+                                sleep.SleepChartSettings.visible = true;
+                                sleep.SleepChartSettings.useSleepChart = true;
+                            }
+                        }
                         break;
                     #endregion
 
@@ -44388,6 +45863,67 @@ namespace Watch_Face_Editor
 
             return text;
         }
+
+        private hmUI_widget_GRADKIENT_POLYLINE Object_GRADKIENT_POLYLINE(Dictionary<string, string> parametrs)
+        {
+            hmUI_widget_GRADKIENT_POLYLINE polyline = new hmUI_widget_GRADKIENT_POLYLINE();
+            int value;
+            string paramName = "";
+            if (parametrs.ContainsKey("x") && Int32.TryParse(parametrs["x"], out value)) polyline.x = value;
+            if (parametrs.ContainsKey("y") && Int32.TryParse(parametrs["y"], out value)) polyline.y = value;
+            if (parametrs.ContainsKey("w") && Int32.TryParse(parametrs["w"], out value)) polyline.w = value;
+            if (parametrs.ContainsKey("h") && Int32.TryParse(parametrs["h"], out value)) polyline.h = value;
+            if (parametrs.ContainsKey("line_width") && Int32.TryParse(parametrs["line_width"], out value)) polyline.line_width = value;
+            if (parametrs.ContainsKey("color")) polyline.line_color = parametrs["color"].Replace("'", "");
+
+            if (parametrs.ContainsKey("// type"))
+            {
+                string typeName = parametrs["// type"].Replace("hmUI.data_type.", "");
+                polyline.type = typeName;
+            }
+
+            if (parametrs.ContainsKey("type"))
+            {
+                string typeName = parametrs["type"].Replace("hmUI.data_type.", "");
+                polyline.type = typeName;
+            }
+
+            if (parametrs.ContainsKey("show_level"))
+            {
+                paramName = parametrs["show_level"].Replace("hmUI.show_level.", "");
+                polyline.show_level = paramName;
+            }
+            polyline.visible = true;
+            polyline.position = 1;
+
+            return polyline;
+        }
+
+        private SleepChartSettings Object_SLEEP_CHART(Dictionary<string, string> parametrs)
+        {
+            SleepChartSettings sleep_chart = new SleepChartSettings();
+            int value;
+            string paramName = "";
+            if (parametrs.ContainsKey("// x") && Int32.TryParse(parametrs["// x"], out value)) sleep_chart.X = value;
+            if (parametrs.ContainsKey("// y") && Int32.TryParse(parametrs["// y"], out value)) sleep_chart.Y = value;
+            if (parametrs.ContainsKey("// w") && Int32.TryParse(parametrs["// w"], out value)) sleep_chart.Width = value;
+            if (parametrs.ContainsKey("// h") && Int32.TryParse(parametrs["// h"], out value)) sleep_chart.Height = value;
+            if (parametrs.ContainsKey("// radius") && Int32.TryParse(parametrs["// h"], out value)) sleep_chart.Radius = value;
+            if (parametrs.ContainsKey("// deep_stage_color")) sleep_chart.DEEP_STAGE_color = parametrs["// deep_stage_color"].Replace("'", "");
+            if (parametrs.ContainsKey("// light_stage_color")) sleep_chart.LIGHT_STAGE_color = parametrs["// light_stage_color"].Replace("'", "");
+            if (parametrs.ContainsKey("// rem_stage_color")) sleep_chart.REM_STAGE_color = parametrs["// rem_stage_color"].Replace("'", "");
+            if (parametrs.ContainsKey("// wake_stage_color")) sleep_chart.WAKE_STAGE_color = parametrs["// wake_stage_color"].Replace("'", "");
+
+            if (parametrs.ContainsKey("// show_level"))
+            {
+                paramName = parametrs["// show_level"].Replace("hmUI.show_level.", "");
+                sleep_chart.show_level = paramName;
+            }
+            sleep_chart.position = 1;
+
+            return sleep_chart;
+        }
+
 
         private hmUI_widget_IMG_ANIM Object_IMG_ANIM(Dictionary<string, string> parametrs)
         {

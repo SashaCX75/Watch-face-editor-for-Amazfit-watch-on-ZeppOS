@@ -1243,6 +1243,7 @@ namespace Watch_Face_Editor
 
     }
 
+    /// <summary>Общие настройки графика погоды на несколько дней</summary>
     public class FewDays
     {
         /// <summary>X координата</summary>
@@ -1265,6 +1266,7 @@ namespace Watch_Face_Editor
 
     }
 
+    /// <summary>График погоды на несколько дней</summary>
     public class Weather_Diagram
     {
         /// <summary>Позиция в наборе элементов</summary>
@@ -1342,5 +1344,99 @@ namespace Watch_Face_Editor
         /// <summary>Создавать график на весь экран</summary>
         public bool GraphFullScreen { get; set; } = true;
 
+    }
+
+    /// <summary>Общие настройки графика сна</summary>
+    public class SleepChartSettings
+    {
+        /// <summary>Позиция в наборе элементов</summary>
+        public int position = -1;
+
+        /// <summary>Видимость элемента</summary>
+        public bool visible = false;
+
+        /// <summary>X координата</summary>
+        public int X { get; set; }
+
+        /// <summary>Y координата</summary>
+        public int Y { get; set; }
+
+        /// <summary>Ширина графикаи</summary>
+        public int Width { get; set; } = 300;
+
+        /// <summary>Высота графика</summary>
+        public int Height { get; set; } = 80;
+
+        /// <summary>Задний фон</summary>
+        public string Background { get; set; }
+
+        /// <summary>Создавать график на весь экран</summary>
+        //public bool GraphFullScreen { get; set; } = true;
+
+        // Sleep Chart
+
+        /// <summary>Видимость элемента</summary>
+        public bool useSleepChart = true;
+
+        /// <summary>Цвет глубокого сна</summary>
+        public string DEEP_STAGE_color { get; set; } = "0x743ED4";  // "0x984CE5";"0x743ED4"; 
+
+        /// <summary>Цвет легкого сна</summary>
+        public string LIGHT_STAGE_color { get; set; } = "0x6284EF";  // "0x3985E1";"0x6284EF";
+
+        /// <summary>Цвет фазы пробуждения</summary>
+        public string REM_STAGE_color { get; set; } = "0x46C536";  // "0x3CA4CE";"0x01AA6F"; "0x46C536"; 
+
+        /// <summary>Цвет REM фазы</summary>
+        public string WAKE_STAGE_color { get; set; } = "0xAE433B";  // "0xDB5461";"0xAE433B";
+
+        /// <summary>Радиус углов блоков</summary>
+        public int Radius { get; set; } = 5;
+
+        // HR Chart
+
+        /// <summary>Видимость элемента</summary>
+        public bool useHRChart = false;
+
+        /// <summary>Цвет графика пульса</summary>
+        public string HR_color { get; set; } = "0xC42742";
+
+        /// <summary>Размер графика пульса</summary>
+        public int HR_lineWidth { get; set; } = 3;
+
+        /// <summary>Основной экран или AOD (для распаковки)</summary>
+        public string show_level = "";
+
+    }
+
+    /// <summary>Стандартный график полилинией</summary>
+    public class hmUI_widget_GRADKIENT_POLYLINE // только как всеременный объект при распаковке.
+    {
+        /// <summary>Позиция в наборе элементов</summary>
+        public int position = -1;
+
+        /// <summary>Видимость элемента</summary>
+        public bool visible = false;
+
+        public int x { get; set; }
+        public int y { get; set; }
+
+        /// <summary>Ширина</summary>
+        public int w { get; set; }
+
+        /// <summary>Высота</summary>
+        public int h { get; set; }
+
+        /// <summary>Толщина линии</summary>
+        public int line_width { get; set; }
+
+        /// <summary>Цвет линии</summary>
+        public string line_color { get; set; }
+
+        /// <summary>Основной экран или AOD</summary>
+        public string show_level = "";
+
+        /// <summary>Тип активности</summary>
+        public string type { get; set; }
     }
 }

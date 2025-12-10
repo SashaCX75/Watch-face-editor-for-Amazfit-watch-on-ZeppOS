@@ -2124,9 +2124,6 @@
   <data name="&gt;&gt;button_Collaps_Time.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="label8.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="label8.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -2157,9 +2154,6 @@
   <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="dateTimePicker_SleepEnd_Set.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="dateTimePicker_SleepEnd_Set.Location" type="System.Drawing.Point, System.Drawing">
     <value>374, 65</value>
   </data>
@@ -2180,9 +2174,6 @@
   </data>
   <data name="&gt;&gt;dateTimePicker_SleepEnd_Set.ZOrder" xml:space="preserve">
     <value>1</value>
-  </data>
-  <data name="label9.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="label9.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -2213,9 +2204,6 @@
   </data>
   <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
     <value>2</value>
-  </data>
-  <data name="dateTimePicker_SleepStart_Set.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="dateTimePicker_SleepStart_Set.Location" type="System.Drawing.Point, System.Drawing">
     <value>251, 65</value>

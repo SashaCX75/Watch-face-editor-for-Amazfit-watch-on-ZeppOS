@@ -546,6 +546,7 @@ namespace Watch_Face_Editor
             uCtrl_Switch_BG_Color_Opt.AutoSize = true;
             uCtrl_Weather_FewDays_Opt.AutoSize = true;
             uCtrl_TemperatureGraph_Opt.AutoSize = true;
+            uCtrl_SleepChart_Opt.AutoSize = true;
             uCtrl_JS_script_Opt.AutoSize = true;
 
             button_CreatePreview.Location = button_RefreshPreview.Location;
@@ -738,6 +739,7 @@ namespace Watch_Face_Editor
 
             if (comboBox_watch_model.SelectedIndex != -1) ProgramSettings.Watch_Model = comboBox_watch_model.Text;
             ProgramSettings.CreateZPK = checkBox_CreateZPK.Checked;
+            ProgramSettings.DelConfirm = checkBox_Del_Confirm.Checked;
 
             string JSON_String = JsonConvert.SerializeObject(ProgramSettings, Formatting.Indented, new JsonSerializerSettings
             {
@@ -1438,6 +1440,7 @@ namespace Watch_Face_Editor
             if (e.Data.GetDataPresent(typeof(UCtrl_Readiness_Elm))) typeReturn = false;
             if (e.Data.GetDataPresent(typeof(UCtrl_HRV_Elm))) typeReturn = false;
             if (e.Data.GetDataPresent(typeof(UCtrl_BioCharge_Elm))) typeReturn = false;
+            if (e.Data.GetDataPresent(typeof(UCtrl_Sleep_Elm))) typeReturn = false;
 
             if (e.Data.GetDataPresent(typeof(UCtrl_JSscript_Elm))) typeReturn = false;
             //if (typeReturn) return;
@@ -1834,6 +1837,14 @@ namespace Watch_Face_Editor
                         if (draggedUCtrl_Elm != null) draggedPanel = (Panel)draggedUCtrl_Elm.Parent;
                         break;
 
+                    case "ControlLibrary.UCtrl_Sleep_Elm":
+                        ElementSleep sleep =
+                            (ElementSleep)Elements.Find(e1 => e1.GetType().Name == "ElementSleep");
+                        index = Elements.IndexOf(sleep);
+                        draggedUCtrl_Elm = (UCtrl_Sleep_Elm)e.Data.GetData(typeof(UCtrl_Sleep_Elm));
+                        if (draggedUCtrl_Elm != null) draggedPanel = (Panel)draggedUCtrl_Elm.Parent;
+                        break;
+
 
 
                     case "ControlLibrary.UCtrl_JSscript_Elm":
@@ -2045,6 +2056,9 @@ namespace Watch_Face_Editor
                 case "WeatherDiagram":
                     uCtrl_TemperatureGraph_Opt.Visible = true;
                     break;
+                case "SleepChart":
+                    uCtrl_SleepChart_Opt.Visible = true;
+                    break;
                 case "Script":
                     uCtrl_JS_script_Opt.Visible = true;
                     break;
@@ -2087,6 +2101,7 @@ namespace Watch_Face_Editor
             uCtrl_Switch_BG_Color_Opt.Visible = false;
             uCtrl_Weather_FewDays_Opt.Visible = false;
             uCtrl_TemperatureGraph_Opt.Visible = false;
+            uCtrl_SleepChart_Opt.Visible = false;
             uCtrl_JS_script_Opt.Visible = false;
         }
 
@@ -2145,6 +2160,7 @@ namespace Watch_Face_Editor
             if (selectElementName != "Readiness") uCtrl_Readiness_Elm.ResetHighlightState();
             if (selectElementName != "HRV") uCtrl_HRV_Elm.ResetHighlightState();
             if (selectElementName != "BioCharge") uCtrl_BioCharge_Elm.ResetHighlightState();
+            if (selectElementName != "Sleep") uCtrl_Sleep_Elm.ResetHighlightState();
 
             if (selectElementName != "DisconnectAlert") uCtrl_DisconnectAlert_Elm.ResetHighlightState();
             if (selectElementName != "RepeatingAlert") uCtrl_RepeatingAlert_Elm.ResetHighlightState();
@@ -2230,6 +2246,7 @@ namespace Watch_Face_Editor
             uCtrl_Readiness_Elm.SettingsClear();
             uCtrl_HRV_Elm.SettingsClear();
             uCtrl_BioCharge_Elm.SettingsClear();
+            uCtrl_Sleep_Elm.SettingsClear();
 
             uCtrl_DisconnectAlert_Elm.SettingsClear();
             uCtrl_RepeatingAlert_Elm.SettingsClear();
@@ -3250,6 +3267,7 @@ namespace Watch_Face_Editor
             uCtrl_Linear_Scale_Opt.ComboBoxAddItems(ListImages, ListImagesFullName);
             uCtrl_Icon_Opt.ComboBoxAddItems(ListImages, ListImagesFullName);
             uCtrl_Weather_FewDays_Opt.ComboBoxAddItems(ListImages, ListImagesFullName);
+            uCtrl_SleepChart_Opt.ComboBoxAddItems(ListImages, ListImagesFullName);
             uCtrl_Shortcut_Opt.ComboBoxAddItems(ListImages, ListImagesFullName);
             uCtrl_EditableElements_Opt.ComboBoxAddItems(ListImages, ListImagesFullName);
             uCtrl_EditableTimePointer_Opt.ComboBoxAddItems(ListImages, ListImagesFullName);
@@ -4388,6 +4406,19 @@ namespace Watch_Face_Editor
             if (comboBox_AddActivity.SelectedIndex == 14)
             {
                 if (AddBioCharge())
+                {
+                    ShowElemetsWatchFace();
+                    JSON_Modified = true;
+                    FormText();
+
+                    panel_WatchfaceElements.AutoScrollPosition = new Point(
+                        Math.Abs(panel_WatchfaceElements.AutoScrollPosition.X),
+                        panel_WatchfaceElements.VerticalScroll.Maximum);
+                }
+            }
+            if (comboBox_AddActivity.SelectedIndex == 15)
+            {
+                if (AddSleep())
                 {
                     ShowElemetsWatchFace();
                     JSON_Modified = true;
@@ -6050,6 +6081,43 @@ namespace Watch_Face_Editor
             return false;
         }
 
+        /// <summary>Добавляем сон в циферблат</summary>
+        private bool AddSleep()
+        {
+            if (!PreviewView) return false;
+            List<object> Elements = new List<object>();
+            if (Watch_Face == null) Watch_Face = new WATCH_FACE();
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face.ScreenNormal == null) Watch_Face.ScreenNormal = new ScreenNormal();
+                if (Watch_Face.ScreenNormal.Elements == null) Watch_Face.ScreenNormal.Elements = new List<object>();
+                Elements = Watch_Face.ScreenNormal.Elements;
+            }
+            else
+            {
+                if (Watch_Face.ScreenAOD == null) Watch_Face.ScreenAOD = new ScreenAOD();
+                if (Watch_Face.ScreenAOD.Elements == null) Watch_Face.ScreenAOD.Elements = new List<object>();
+                Elements = Watch_Face.ScreenAOD.Elements;
+
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null) Elements = Watch_Face.ScreenAOD.Elements;
+            }
+
+            bool exists = Elements.Exists(e => e.GetType().Name == "ElementSleep"); // проверяем что такого элемента нет
+            if (!exists)
+            {
+                ElementSleep sleep = new ElementSleep();
+                sleep.visible = true;
+
+                Elements.Insert(0, sleep);
+                uCtrl_Sleep_Elm.SettingsClear();
+                return true;
+            }
+            else MessageBox.Show(Properties.FormStrings.Message_Widget_Exists, Properties.FormStrings.Message_Warning_Caption,
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return false;
+        }
+
 
 
         /// <summary>Добавляем погоду в циферблат</summary>
@@ -6673,6 +6741,7 @@ namespace Watch_Face_Editor
             uCtrl_Readiness_Elm.Visible = false;
             uCtrl_HRV_Elm.Visible = false;
             uCtrl_BioCharge_Elm.Visible = false;
+            uCtrl_Sleep_Elm.Visible = false;
 
             uCtrl_DisconnectAlert_Elm.Visible = false;
             uCtrl_RepeatingAlert_Elm.Visible = false;
@@ -9076,53 +9145,113 @@ namespace Watch_Face_Editor
                                 break;
                         #endregion
 
-                        #region ElementBioCharge
-                        case "ElementBioCharge":
-                            ElementBioCharge BioCharge = (ElementBioCharge)element;
-                            uCtrl_BioCharge_Elm.SetVisibilityElementStatus(BioCharge.visible);
-                            elementOptions = new Dictionary<int, string>();
-                            if (BioCharge.Images != null)
-                            {
-                                uCtrl_BioCharge_Elm.checkBox_Images.Checked = BioCharge.Images.visible;
-                                elementOptions.Add(BioCharge.Images.position, "Images");
-                            }
-                            if (BioCharge.Segments != null)
-                            {
-                                uCtrl_BioCharge_Elm.checkBox_Segments.Checked = BioCharge.Segments.visible;
-                                elementOptions.Add(BioCharge.Segments.position, "Segments");
-                            }
-                            if (BioCharge.Number != null)
-                            {
-                                uCtrl_BioCharge_Elm.checkBox_Number.Checked = BioCharge.Number.visible;
-                                elementOptions.Add(BioCharge.Number.position, "Number");
-                            }
-                            if (BioCharge.Number_Font != null)
-                            {
-                                uCtrl_BioCharge_Elm.checkBox_Number_Font.Checked = BioCharge.Number_Font.visible;
-                                elementOptions.Add(BioCharge.Number_Font.position, "Number_Font");
-                            }
-                            if (BioCharge.Pointer != null)
-                            {
-                                uCtrl_BioCharge_Elm.checkBox_Pointer.Checked = BioCharge.Pointer.visible;
-                                elementOptions.Add(BioCharge.Pointer.position, "Pointer");
-                            }
-                            if (BioCharge.Circle_Scale != null)
-                            {
-                                uCtrl_BioCharge_Elm.checkBox_Circle_Scale.Checked = BioCharge.Circle_Scale.visible;
-                                elementOptions.Add(BioCharge.Circle_Scale.position, "Circle_Scale");
-                            }
-                            if (BioCharge.Icon != null)
-                            {
-                                uCtrl_BioCharge_Elm.checkBox_Icon.Checked = BioCharge.Icon.visible;
-                                elementOptions.Add(BioCharge.Icon.position, "Icon");
-                            }
+                            #region ElementBioCharge
+                            case "ElementBioCharge":
+                                ElementBioCharge BioCharge = (ElementBioCharge)element;
+                                uCtrl_BioCharge_Elm.SetVisibilityElementStatus(BioCharge.visible);
+                                elementOptions = new Dictionary<int, string>();
+                                if (BioCharge.Images != null)
+                                {
+                                    uCtrl_BioCharge_Elm.checkBox_Images.Checked = BioCharge.Images.visible;
+                                    elementOptions.Add(BioCharge.Images.position, "Images");
+                                }
+                                if (BioCharge.Segments != null)
+                                {
+                                    uCtrl_BioCharge_Elm.checkBox_Segments.Checked = BioCharge.Segments.visible;
+                                    elementOptions.Add(BioCharge.Segments.position, "Segments");
+                                }
+                                if (BioCharge.Number != null)
+                                {
+                                    uCtrl_BioCharge_Elm.checkBox_Number.Checked = BioCharge.Number.visible;
+                                    elementOptions.Add(BioCharge.Number.position, "Number");
+                                }
+                                if (BioCharge.Number_Font != null)
+                                {
+                                    uCtrl_BioCharge_Elm.checkBox_Number_Font.Checked = BioCharge.Number_Font.visible;
+                                    elementOptions.Add(BioCharge.Number_Font.position, "Number_Font");
+                                }
+                                if (BioCharge.Pointer != null)
+                                {
+                                    uCtrl_BioCharge_Elm.checkBox_Pointer.Checked = BioCharge.Pointer.visible;
+                                    elementOptions.Add(BioCharge.Pointer.position, "Pointer");
+                                }
+                                if (BioCharge.Circle_Scale != null)
+                                {
+                                    uCtrl_BioCharge_Elm.checkBox_Circle_Scale.Checked = BioCharge.Circle_Scale.visible;
+                                    elementOptions.Add(BioCharge.Circle_Scale.position, "Circle_Scale");
+                                }
+                                if (BioCharge.Icon != null)
+                                {
+                                    uCtrl_BioCharge_Elm.checkBox_Icon.Checked = BioCharge.Icon.visible;
+                                    elementOptions.Add(BioCharge.Icon.position, "Icon");
+                                }
 
-                            uCtrl_BioCharge_Elm.SetOptionsPosition(elementOptions);
+                                uCtrl_BioCharge_Elm.SetOptionsPosition(elementOptions);
 
-                            uCtrl_BioCharge_Elm.Visible = true;
-                            SetElementPositionInGUI(type, count - i - 2);
-                            //SetElementPositionInGUI(type, i + 1);
-                            break;
+                                uCtrl_BioCharge_Elm.Visible = true;
+                                SetElementPositionInGUI(type, count - i - 2);
+                                //SetElementPositionInGUI(type, i + 1);
+                                break;
+                        #endregion
+
+                            #region ElementSleep
+                            case "ElementSleep":
+                                ElementSleep Sleep = (ElementSleep)element;
+                                uCtrl_Sleep_Elm.SetVisibilityElementStatus(Sleep.visible);
+                                elementOptions = new Dictionary<int, string>();
+
+                                if (Sleep.SleepChartSettings != null)
+                                {
+                                    uCtrl_Sleep_Elm.checkBox_Chart.Checked = Sleep.SleepChartSettings.visible;
+                                    elementOptions.Add(Sleep.SleepChartSettings.position, "Chart");
+                                }
+                                if (Sleep.StartSleep != null)
+                                {
+                                    uCtrl_Sleep_Elm.checkBox_StartSleep.Checked = Sleep.StartSleep.visible;
+                                    elementOptions.Add(Sleep.StartSleep.position, "StartSleep");
+                                }
+                                if (Sleep.EndSleep != null)
+                                {
+                                    uCtrl_Sleep_Elm.checkBox_EndSleep.Checked = Sleep.EndSleep.visible;
+                                    elementOptions.Add(Sleep.EndSleep.position, "EndSleep");
+                                }
+                                if (Sleep.DurationSleep_total != null)
+                                {
+                                    uCtrl_Sleep_Elm.checkBox_DurationSleep_total.Checked = Sleep.DurationSleep_total.visible;
+                                    elementOptions.Add(Sleep.DurationSleep_total.position, "DurationSleep_total");
+                                }
+                                if (Sleep.DurationSleep != null)
+                                {
+                                    uCtrl_Sleep_Elm.checkBox_DurationSleep.Checked = Sleep.DurationSleep.visible;
+                                    elementOptions.Add(Sleep.DurationSleep.position, "DurationSleep");
+                                }
+                                if (Sleep.WakeUp != null)
+                                {
+                                    uCtrl_Sleep_Elm.checkBox_WakeUp.Checked = Sleep.WakeUp.visible;
+                                    elementOptions.Add(Sleep.WakeUp.position, "WakeUp");
+                                }
+                                if (Sleep.WakeUpCount != null)
+                                {
+                                    uCtrl_Sleep_Elm.checkBox_WakeUpCount.Checked = Sleep.WakeUpCount.visible;
+                                    elementOptions.Add(Sleep.WakeUpCount.position, "WakeUpCount");
+                                }
+                                if (Sleep.Score != null)
+                                {
+                                    uCtrl_Sleep_Elm.checkBox_Score.Checked = Sleep.Score.visible;
+                                    elementOptions.Add(Sleep.Score.position, "Score");
+                                }
+                                if (Sleep.Icon != null)
+                                {
+                                    uCtrl_Sleep_Elm.checkBox_Icon.Checked = Sleep.Icon.visible;
+                                    elementOptions.Add(Sleep.Icon.position, "Icon");
+                                }
+
+                                uCtrl_Sleep_Elm.SetOptionsPosition(elementOptions);
+
+                                uCtrl_Sleep_Elm.Visible = true;
+                                SetElementPositionInGUI(type, count - i - 2);
+                                //SetElementPositionInGUI(type, i + 1);
+                                break;
                             #endregion
                     }
 
@@ -9772,6 +9901,9 @@ namespace Watch_Face_Editor
                     break;
                 case "ElementBioCharge":
                     panel = panel_UC_BioCharge;
+                    break;
+                case "ElementSleep":
+                    panel = panel_UC_Sleep;
                     break;
 
                 case "Buttons":
@@ -10553,6 +10685,9 @@ namespace Watch_Face_Editor
                     break;
                 case "UCtrl_BioCharge_Elm":
                     objectName = "ElementBioCharge";
+                    break;
+                case "UCtrl_Sleep_Elm":
+                    objectName = "ElementSleep";
                     break;
 
                 case "UCtrl_JSscript_Elm":
@@ -18572,6 +18707,130 @@ namespace Watch_Face_Editor
             }
         }
 
+        private void uCtrl_Sleep_Elm_SelectChanged(object sender, EventArgs eventArgs)
+        {
+            string selectElement = uCtrl_Sleep_Elm.selectedElement;
+            if (selectElement.Length == 0) HideAllElemenrOptions();
+            ResetHighlightState("Sleep");
+
+            ElementSleep sleep = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    sleep = (ElementSleep)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementSleep");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    sleep = (ElementSleep)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementSleep");
+                }
+            }
+            if (sleep != null)
+            {
+                hmUI_widget_TEXT text = null;
+                hmUI_widget_IMG icon = null;
+                SleepChartSettings sleepChart = null;
+
+                switch (selectElement)
+                {
+                    case "Chart":
+                        if (uCtrl_Sleep_Elm.checkBox_Chart.Checked)
+                        {
+                            sleepChart = sleep.SleepChartSettings;
+                            Read_SleepChartSettings_Options(sleepChart);
+                            ShowElemenrOptions("SleepChart");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "StartSleep":
+                        if (uCtrl_Sleep_Elm.checkBox_StartSleep.Checked)
+                        {
+                            text = sleep.StartSleep;
+                            Read_Text_Options(text, true, true, true, true);
+                            //uCtrl_Text_SystemFont_Opt.AlignmentsEnabled = false;
+                            ShowElemenrOptions("SystemFont");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "EndSleep":
+                        if (uCtrl_Sleep_Elm.checkBox_EndSleep.Checked)
+                        {
+                            text = sleep.EndSleep;
+                            Read_Text_Options(text, true, true, true, true);
+                            //uCtrl_Text_SystemFont_Opt.AlignmentsEnabled = false;
+                            ShowElemenrOptions("SystemFont");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "DurationSleep_total":
+                        if (uCtrl_Sleep_Elm.checkBox_DurationSleep_total.Checked)
+                        {
+                            text = sleep.DurationSleep_total;
+                            Read_Text_Options(text, false, true, true);
+                            //uCtrl_Text_SystemFont_Opt.AlignmentsEnabled = false;
+                            ShowElemenrOptions("SystemFont");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "DurationSleep":
+                        if (uCtrl_Sleep_Elm.checkBox_DurationSleep.Checked)
+                        {
+                            text = sleep.DurationSleep;
+                            Read_Text_Options(text, false, true, true);
+                            //uCtrl_Text_SystemFont_Opt.AlignmentsEnabled = false;
+                            ShowElemenrOptions("SystemFont");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "WakeUp":
+                        if (uCtrl_Sleep_Elm.checkBox_WakeUp.Checked)
+                        {
+                            text = sleep.WakeUp;
+                            Read_Text_Options(text, false, true, true);
+                            //uCtrl_Text_SystemFont_Opt.AlignmentsEnabled = false;
+                            ShowElemenrOptions("SystemFont");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "WakeUpCount":
+                        if (uCtrl_Sleep_Elm.checkBox_WakeUpCount.Checked)
+                        {
+                            text = sleep.WakeUpCount;
+                            Read_Text_Options(text, false, false);
+                            //uCtrl_Text_SystemFont_Opt.AlignmentsEnabled = false;
+                            ShowElemenrOptions("SystemFont");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Score":
+                        if (uCtrl_Sleep_Elm.checkBox_Score.Checked)
+                        {
+                            text = sleep.Score;
+                            Read_Text_Options(text, false, false);
+                            //uCtrl_Text_SystemFont_Opt.AlignmentsEnabled = false;
+                            ShowElemenrOptions("SystemFont");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Icon":
+                        if (uCtrl_Sleep_Elm.checkBox_Icon.Checked)
+                        {
+                            icon = sleep.Icon;
+                            Read_Icon_Options(icon);
+                            ShowElemenrOptions("Icon");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                }
+
+            }
+        }
+
         private void uCtrl_Image_Elm_SelectChanged(object sender, EventArgs eventArgs)
         {
             ResetHighlightState("Image");
@@ -19573,6 +19832,13 @@ namespace Watch_Face_Editor
                         case "ElementBioCharge":
                             ElementBioCharge bioChargeElement = (ElementBioCharge)element;
                             Watch_Face.ScreenAOD.Elements.Add((ElementBioCharge)bioChargeElement.Clone());
+                            break;
+                        #endregion
+
+                        #region ElementSleep
+                        case "ElementSleep":
+                            ElementSleep sleepElement = (ElementSleep)element;
+                            Watch_Face.ScreenAOD.Elements.Add((ElementSleep)sleepElement.Clone());
                             break;
                         #endregion
 
@@ -21507,6 +21773,64 @@ namespace Watch_Face_Editor
             FormText();
         }
 
+        private void uCtrl_Sleep_Elm_OptionsMoved(object sender, EventArgs eventArgs, Dictionary<string, int> elementOptions)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+
+            ElementSleep sleep = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenNormal.Elements.Exists(e => e.GetType().Name == "ElementSleep");
+                    //digitalTime = (ElementAnalogTime)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementAnalogTime");
+                    if (!exists) Watch_Face.ScreenNormal.Elements.Add(new ElementSleep());
+                    sleep = (ElementSleep)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementSleep");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenAOD.Elements.Exists(e => e.GetType().Name == "ElementSleep");
+                    //digitalTime = (ElementAnalogTime)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementAnalogTime");
+                    if (!exists) Watch_Face.ScreenAOD.Elements.Add(new ElementSleep());
+                    sleep = (ElementSleep)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementSleep");
+                }
+            }
+
+            if (sleep != null)
+            {
+                if (sleep.SleepChartSettings == null) sleep.SleepChartSettings = new SleepChartSettings();
+                if (sleep.StartSleep == null) sleep.StartSleep = new hmUI_widget_TEXT();
+                if (sleep.EndSleep == null) sleep.EndSleep = new hmUI_widget_TEXT();
+                if (sleep.DurationSleep_total == null) sleep.DurationSleep_total = new hmUI_widget_TEXT();
+                if (sleep.DurationSleep == null) sleep.DurationSleep = new hmUI_widget_TEXT();
+                if (sleep.WakeUp == null) sleep.WakeUp = new hmUI_widget_TEXT();
+                if (sleep.WakeUpCount == null) sleep.WakeUpCount = new hmUI_widget_TEXT();
+                if (sleep.Score == null) sleep.Score = new hmUI_widget_TEXT();
+                if (sleep.Icon == null) sleep.Icon = new hmUI_widget_IMG();
+
+                if (elementOptions.ContainsKey("Chart")) sleep.SleepChartSettings.position = elementOptions["Chart"];
+                if (elementOptions.ContainsKey("StartSleep")) sleep.StartSleep.position = elementOptions["StartSleep"];
+                if (elementOptions.ContainsKey("EndSleep")) sleep.EndSleep.position = elementOptions["EndSleep"];
+                if (elementOptions.ContainsKey("DurationSleep_total")) sleep.DurationSleep_total.position = elementOptions["DurationSleep_total"];
+                if (elementOptions.ContainsKey("DurationSleep")) sleep.DurationSleep.position = elementOptions["DurationSleep"];
+                if (elementOptions.ContainsKey("WakeUp")) sleep.WakeUp.position = elementOptions["WakeUp"];
+                if (elementOptions.ContainsKey("WakeUpCount")) sleep.WakeUpCount.position = elementOptions["WakeUpCount"];
+                if (elementOptions.ContainsKey("Score")) sleep.Score.position = elementOptions["Score"];
+                if (elementOptions.ContainsKey("Icon")) sleep.Icon.position = elementOptions["Icon"];
+
+            }
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
         #endregion
 
         private void uCtrl_Shortcuts_Elm_VisibleElementChanged(object sender, EventArgs eventArgs, bool visible)
@@ -22488,6 +22812,35 @@ namespace Watch_Face_Editor
             if (bioCharge != null)
             {
                 bioCharge.visible = visible;
+            }
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_Sleep_Elm_VisibleElementChanged(object sender, EventArgs eventArgs, bool visible)
+        {
+            ElementSleep sleep = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    sleep = (ElementSleep)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementSleep");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    sleep = (ElementSleep)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementSleep");
+                }
+            }
+            if (sleep != null)
+            {
+                sleep.visible = visible;
             }
 
             JSON_Modified = true;
@@ -25765,6 +26118,98 @@ namespace Watch_Face_Editor
             FormText();
         }
 
+        private void uCtrl_Sleep_Elm_VisibleOptionsChanged(object sender, EventArgs eventArgs)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+
+            ElementSleep sleep = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenNormal.Elements.Exists(e => e.GetType().Name == "ElementSleep");
+                    if (!exists) Watch_Face.ScreenNormal.Elements.Add(new ElementSleep());
+                    sleep = (ElementSleep)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementSleep");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    bool exists = Watch_Face.ScreenAOD.Elements.Exists(e => e.GetType().Name == "ElementSleep");
+                    if (!exists) Watch_Face.ScreenAOD.Elements.Add(new ElementSleep());
+                    sleep = (ElementSleep)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementSleep");
+                }
+            }
+
+            if (sleep != null)
+            {
+                if (sleep.SleepChartSettings == null) sleep.SleepChartSettings = new SleepChartSettings();
+                if (sleep.StartSleep == null) sleep.StartSleep = new hmUI_widget_TEXT();
+                if (sleep.EndSleep == null) sleep.EndSleep = new hmUI_widget_TEXT();
+                if (sleep.DurationSleep_total == null) sleep.DurationSleep_total = new hmUI_widget_TEXT();
+                if (sleep.DurationSleep == null) sleep.DurationSleep = new hmUI_widget_TEXT();
+                if (sleep.WakeUp == null) sleep.WakeUp = new hmUI_widget_TEXT();
+                if (sleep.WakeUpCount == null) sleep.WakeUpCount = new hmUI_widget_TEXT();
+                if (sleep.Score == null) sleep.Score = new hmUI_widget_TEXT();
+                if (sleep.Icon == null) sleep.Icon = new hmUI_widget_IMG();
+
+                Dictionary<string, int> elementOptions = uCtrl_Sleep_Elm.GetOptionsPosition();
+                if (elementOptions.ContainsKey("Chart")) sleep.SleepChartSettings.position = elementOptions["Chart"];
+                if (elementOptions.ContainsKey("StartSleep")) sleep.StartSleep.position = elementOptions["StartSleep"];
+                if (elementOptions.ContainsKey("EndSleep")) sleep.EndSleep.position = elementOptions["EndSleep"];
+                if (elementOptions.ContainsKey("DurationSleep_total")) sleep.DurationSleep_total.position = elementOptions["DurationSleep_total"];
+                if (elementOptions.ContainsKey("DurationSleep")) sleep.DurationSleep.position = elementOptions["DurationSleep"];
+                if (elementOptions.ContainsKey("WakeUp")) sleep.WakeUp.position = elementOptions["WakeUp"];
+                if (elementOptions.ContainsKey("WakeUpCount")) sleep.WakeUpCount.position = elementOptions["WakeUpCount"];
+                if (elementOptions.ContainsKey("Score")) sleep.Score.position = elementOptions["Score"];
+                if (elementOptions.ContainsKey("Icon")) sleep.Icon.position = elementOptions["Icon"];
+
+                CheckBox checkBox = (CheckBox)sender;
+                string name = checkBox.Name;
+                switch (name)
+                {
+                    case "checkBox_Chart":
+                        sleep.SleepChartSettings.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_StartSleep":
+                        sleep.StartSleep.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_EndSleep":
+                        sleep.EndSleep.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_DurationSleep_total":
+                        sleep.DurationSleep_total.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_DurationSleep":
+                        sleep.DurationSleep.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_WakeUp":
+                        sleep.WakeUp.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_WakeUpCount":
+                        sleep.WakeUpCount.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Score":
+                        sleep.Score.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Icon":
+                        sleep.Icon.visible = checkBox.Checked;
+                        break;
+                }
+
+            }
+
+            uCtrl_Sleep_Elm_SelectChanged(sender, eventArgs);
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
         #endregion
 
         private void button_SavePNG_Click(object sender, EventArgs e)
@@ -26590,9 +27035,17 @@ namespace Watch_Face_Editor
                         suffix = "_Active_Edge";
                         DeviceName = "Active Edge";
                         break;
+                    case "390 (Active)":
+                        suffix = "_Active";
+                        DeviceName = "Active";
+                        break;
                     case "390 (Bip 6)":
                         suffix = "_Bip_6";
                         DeviceName = "Bip 6";
+                        break;
+                    case "390 (Cheetah (Square))":
+                        suffix = "_Cheetah_(Square)";
+                        DeviceName = "Cheetah (Square)";
                         break;
                     case "390 (GTS 3)":
                         suffix = "_GTS_3";
@@ -26602,14 +27055,6 @@ namespace Watch_Face_Editor
                         suffix = "_GTS_4";
                         DeviceName = "GTS 4";
                         break;
-                    case "390 (Active)":
-                        suffix = "_Active";
-                        DeviceName = "Active";
-                        break;
-                    case "390 (Cheetah (Square))":
-                        suffix = "_Cheetah_(Square)";
-                        DeviceName = "Cheetah (Square)";
-                        break;
                     case "416 (Falcon)":
                         suffix = "_Falcon";
                         DeviceName = "Falcon";
@@ -26617,6 +27062,10 @@ namespace Watch_Face_Editor
                     case "416 (GTR mini)":
                         suffix = "_GTR_mini";
                         DeviceName = "GTR mini";
+                        break;
+                    case "454 (Cheetah)":
+                        suffix = "_Cheetah";
+                        DeviceName = "Cheetah";
                         break;
                     case "454 (GTR 3)":
                         suffix = "_GTR_3";
@@ -26630,25 +27079,17 @@ namespace Watch_Face_Editor
                         suffix = "_T_Rex_Ultra";
                         DeviceName = "T-Rex Ultra";
                         break;
-                    case "454 (Cheetah)":
-                        suffix = "_Cheetah";
-                        DeviceName = "Cheetah";
+                    case "466 (Active 2)":
+                        suffix = "_Active_2";
+                        DeviceName = "Active 2";
                         break;
                     case "466 (GTR 4)":
                         suffix = "_GTR_4";
                         DeviceName = "GTR 4";
                         break;
-                    case "466 (Active 2)":
-                        suffix = "_Active_2";
-                        DeviceName = "Active 2";
-                        break;
-                    case "480 (GTR 3 Pro)":
-                        suffix = "_GTR_3_Pro";
-                        DeviceName = "GTR 3 Pro";
-                        break;
-                    case "480 (Cheetah Pro)":
-                        suffix = "_Cheetah_Pro";
-                        DeviceName = "Cheetah Pro";
+                    case "466 (T-Rex 3 Pro 44mm)":
+                        suffix = "_T_Rex_3_Pro_44mm";
+                        DeviceName = "T-Rex 3 Pro (44mm)";
                         break;
                     case "480 (Balance)":
                         suffix = "_Balance";
@@ -26658,9 +27099,21 @@ namespace Watch_Face_Editor
                         suffix = "_Balance_2";
                         DeviceName = "Balance 2";
                         break;
+                    case "480 (Cheetah Pro)":
+                        suffix = "_Cheetah_Pro";
+                        DeviceName = "Cheetah Pro";
+                        break;
+                    case "480 (GTR 3 Pro)":
+                        suffix = "_GTR_3_Pro";
+                        DeviceName = "GTR 3 Pro";
+                        break;
                     case "480 (T-Rex 3)":
                         suffix = "_T_Rex_3";
                         DeviceName = "T-Rex 3";
+                        break;
+                    case "480 (T-Rex 3 Pro 48mm)":
+                        suffix = "_T_Rex_3_Pro_48mm";
+                        DeviceName = "T-Rex 3 Pro (48mm)";
                         break;
                     default:
                         suffix = "_Custom_" + numericUpDown_ConvertingOutput_Custom.Value.ToString();
@@ -27381,6 +27834,7 @@ namespace Watch_Face_Editor
             {
             }
         }
+
     }
 }
 

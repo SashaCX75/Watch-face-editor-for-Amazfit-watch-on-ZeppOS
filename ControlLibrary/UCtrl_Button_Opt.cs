@@ -28,6 +28,7 @@ namespace ControlLibrary
         public UCtrl_Button_Opt()
         {
             InitializeComponent();
+            setValue = false;
 
             dataGridView_buttons.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             ListUserScriptClick = new List<string>();

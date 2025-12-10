@@ -26,7 +26,7 @@ namespace Watch_Face_Editor
         public bool Settings_Open_Download_Your_File = false;
         public string PreviewStates_Path = "";
 
-        public string Watch_Model = "GTR 3";
+        public string Watch_Model = "Balance 2";
 
         public bool ShowBorder = false;
         public bool Crop = true;

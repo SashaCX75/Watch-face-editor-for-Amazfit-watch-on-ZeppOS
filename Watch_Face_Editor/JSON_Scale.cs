@@ -709,6 +709,18 @@ namespace Watch_Face_Editor
                     Scale_Circle_Scale(elementBioCharge.Circle_Scale, scale);
                     Scale_IMG(elementBioCharge.Icon, scale);
                     break;
+                case "ElementSleep":
+                    ElementSleep elementSleep = (ElementSleep)elements;
+                    Scale_SleepChart(elementSleep.SleepChartSettings, scale);
+                    Scale_TEXT(elementSleep.StartSleep, scale);
+                    Scale_TEXT(elementSleep.EndSleep, scale);
+                    Scale_TEXT(elementSleep.DurationSleep_total, scale);
+                    Scale_TEXT(elementSleep.DurationSleep, scale);
+                    Scale_TEXT(elementSleep.WakeUp, scale);
+                    Scale_TEXT(elementSleep.WakeUpCount, scale);
+                    Scale_TEXT(elementSleep.Score, scale);
+                    Scale_IMG(elementSleep.Icon, scale);
+                    break;
             }
         }
 
@@ -865,6 +877,17 @@ namespace Watch_Face_Editor
             diagram.Min_pointSize = (int)Math.Round(diagram.Min_pointSize * scale, MidpointRounding.AwayFromZero);
             diagram.Max_lineWidth = (int)Math.Round(diagram.Max_lineWidth * scale, MidpointRounding.AwayFromZero);
             diagram.Min_lineWidth = (int)Math.Round(diagram.Min_lineWidth * scale, MidpointRounding.AwayFromZero);
+        }
+
+        private void Scale_SleepChart(SleepChartSettings chart, float scale)
+        {
+            if (chart == null) return;
+            chart.X = (int)Math.Round(chart.X * scale, MidpointRounding.AwayFromZero);
+            chart.Y = (int)Math.Round(chart.Y * scale, MidpointRounding.AwayFromZero);
+            chart.Width = (int)Math.Round(chart.Width * scale, MidpointRounding.AwayFromZero);
+            chart.Height = (int)Math.Round(chart.Height * scale, MidpointRounding.AwayFromZero);
+            chart.Radius = (int)Math.Round(chart.Radius * scale, MidpointRounding.AwayFromZero);
+            chart.HR_lineWidth = (int)Math.Round(chart.HR_lineWidth * scale, MidpointRounding.AwayFromZero);
         }
     }
 }

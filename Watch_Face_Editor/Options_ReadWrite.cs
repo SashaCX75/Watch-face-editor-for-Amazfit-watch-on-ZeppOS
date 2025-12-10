@@ -1240,6 +1240,26 @@ namespace Watch_Face_Editor
                         break;
                     #endregion
 
+                    #region ElementSleep
+                    case "ElementSleep":
+                        ElementSleep Sleep = null;
+                        try
+                        {
+                            Sleep = JsonConvert.DeserializeObject<ElementSleep>(elementStr, new JsonSerializerSettings
+                            {
+                                //DefaultValueHandling = DefaultValueHandling.Ignore,
+                                NullValueHandling = NullValueHandling.Ignore
+                            });
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(Properties.FormStrings.Message_JsonError_Text + Environment.NewLine + ex,
+                                Properties.FormStrings.Message_Error_Caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        if (Sleep != null) NewElements.Add(Sleep);
+                        break;
+                    #endregion
+
 
                     #region ElementScript
                     case "ElementScript":
@@ -2628,6 +2648,48 @@ namespace Watch_Face_Editor
             PreviewView = true;
         }
 
+
+        /// <summary>Читаем общие настройки графика сна</summary>
+        private void Read_SleepChartSettings_Options(SleepChartSettings сhartSettings)
+        {
+            PreviewView = false;
+
+            uCtrl_SleepChart_Opt.SettingsClear();
+            uCtrl_SleepChart_Opt.Visible = true;
+
+            uCtrl_SleepChart_Opt._ChartSettings = сhartSettings;
+
+            if (сhartSettings == null)
+            {
+                PreviewView = true;
+                return;
+            }
+
+            if (сhartSettings.Background != null) uCtrl_SleepChart_Opt.SetBackground(сhartSettings.Background);
+            uCtrl_SleepChart_Opt.numericUpDown_posX.Value = сhartSettings.X;
+            uCtrl_SleepChart_Opt.numericUpDown_posY.Value = сhartSettings.Y;
+
+            uCtrl_SleepChart_Opt.numericUpDown_width.Value = сhartSettings.Width;
+            uCtrl_SleepChart_Opt.numericUpDown_height.Value = сhartSettings.Height;
+
+            //uCtrl_SleepChart_Opt.checkBox_graph_fullScreen.Checked = сhartSettings.GraphFullScreen;
+
+            // Sleep Chart
+            uCtrl_SleepChart_Opt.checkBox_use_chartSleep.Checked = сhartSettings.useSleepChart;
+            uCtrl_SleepChart_Opt.SetDeepSleepColour(StringToColor(сhartSettings.DEEP_STAGE_color));
+            uCtrl_SleepChart_Opt.SetLightSleepColour(StringToColor(сhartSettings.LIGHT_STAGE_color));
+            uCtrl_SleepChart_Opt.SetRemColour(StringToColor(сhartSettings.REM_STAGE_color));
+            uCtrl_SleepChart_Opt.SetWakeupColour(StringToColor(сhartSettings.WAKE_STAGE_color));
+
+            uCtrl_SleepChart_Opt.numericUpDown_radius.Value = сhartSettings.Radius;
+
+            // Heart Rate Chart
+            uCtrl_SleepChart_Opt.checkBox_use_chartHR.Checked = сhartSettings.useHRChart;
+            uCtrl_SleepChart_Opt.SetHRColour(StringToColor(сhartSettings.HR_color));
+            uCtrl_SleepChart_Opt.numericUpDown_hr_lineWidth.Value = сhartSettings.HR_lineWidth;
+
+            PreviewView = true;
+        }
 
 
         /// <summary>Меняем настройки фона</summary>
@@ -4292,6 +4354,36 @@ namespace Watch_Face_Editor
             PreviewView = true;
         }
 
+        private void uCtrl_SleepChart_Opt_ValueChanged(object sender, EventArgs eventArgs)
+        {
+            if (!PreviewView) return;
+            if (Watch_Face == null) return;
+
+            SleepChartSettings chart = (SleepChartSettings)uCtrl_SleepChart_Opt._ChartSettings;
+
+            chart.X = (int)uCtrl_SleepChart_Opt.numericUpDown_posX.Value;
+            chart.Y = (int)uCtrl_SleepChart_Opt.numericUpDown_posY.Value;
+            chart.Width = (int)uCtrl_SleepChart_Opt.numericUpDown_width.Value;
+            chart.Height = (int)uCtrl_SleepChart_Opt.numericUpDown_height.Value;
+            //chart.GraphFullScreen = uCtrl_SleepChart_Opt.checkBox_graph_fullScreen.Checked;
+            chart.Background = uCtrl_SleepChart_Opt.GetBackground();
+
+            chart.useSleepChart = uCtrl_SleepChart_Opt.checkBox_use_chartSleep.Checked;
+            chart.DEEP_STAGE_color = ColorToString(uCtrl_SleepChart_Opt.GetDeepSleepColour());
+            chart.LIGHT_STAGE_color = ColorToString(uCtrl_SleepChart_Opt.GetLightSleepColour());
+            chart.REM_STAGE_color = ColorToString(uCtrl_SleepChart_Opt.GetRemColour());
+            chart.WAKE_STAGE_color = ColorToString(uCtrl_SleepChart_Opt.GetWakeupColour());
+            chart.Radius = (int)uCtrl_SleepChart_Opt.numericUpDown_radius.Value;
+
+            chart.useHRChart = uCtrl_SleepChart_Opt.checkBox_use_chartHR.Checked;
+            chart.HR_color = ColorToString(uCtrl_SleepChart_Opt.GetHRColour());
+            chart.HR_lineWidth = (int)uCtrl_SleepChart_Opt.numericUpDown_hr_lineWidth.Value;
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
         //////
         private void uCtrl_Switch_Background_Opt_ValueChanged(object sender, EventArgs eventArgs)
         {
@@ -4522,7 +4614,7 @@ namespace Watch_Face_Editor
         }
         //////
 
-        private Color StringToColor(string color)
+        private static Color StringToColor(string color)
         {
             Color new_color = Color.Black;
             if (color != null)

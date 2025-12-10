@@ -20,6 +20,7 @@ using System.Xml.Linq;
 using Watch_Face_Editor.Classes;
 using static System.Windows.Forms.AxHost;
 using LineCap = System.Drawing.Drawing2D.LineCap;
+using LineJoin = System.Drawing.Drawing2D.LineJoin;
 
 namespace Watch_Face_Editor
 {
@@ -5335,6 +5336,15 @@ namespace Watch_Face_Editor
                     break;
                 #endregion
 
+                #region ElementSleep
+                case "ElementSleep":
+                    ElementSleep activityElementSleep = (ElementSleep)element;
+                    if (!activityElementSleep.visible) return;
+
+                    DrawSleep(gPanel, activityElementSleep, BBorder, showCentrHend, link);
+                    break;
+                #endregion
+
 
                 #region ElementAnimation
                 case "ElementAnimation":
@@ -9878,6 +9888,7 @@ namespace Watch_Face_Editor
                 }
 
             }
+            src.Dispose();
             Logger.WriteLine("* DrawWeatherFewDays (End)");
         }
 
@@ -9945,7 +9956,846 @@ namespace Watch_Face_Editor
                     break;
             }
         }
-        
+
+        /// <summary>Рисуем все параметры элемента погода</summary>
+        /// <param name="gPanel">Поверхность для рисования</param>
+        /// <param name="sleep">Виджет сна</param>
+        /// <param name="BBorder">Рисовать рамку по координатам, вокруг элементов с выравниванием</param>
+        /// <param name="showCentrHend">Подсвечивать центр</param>
+        private void DrawSleep(Graphics gPanel, ElementSleep sleep, bool BBorder, bool showCentrHend, int link)
+        {
+            Logger.WriteLine("* DrawSleep");
+            if (sleep == null) return;
+
+            Bitmap src = new Bitmap(1, 1);
+            for (int index = 0; index <= 10; index++)
+            {
+                if (sleep.SleepChartSettings != null && index == sleep.SleepChartSettings.position && sleep.SleepChartSettings.visible)
+                {
+                    if (sleep.SleepChartSettings.Background != null && sleep.SleepChartSettings.Background.Length > 0)
+                    {
+                        int imageIndex = ListImages.IndexOf(sleep.SleepChartSettings.Background);
+                        int iconPosX = sleep.SleepChartSettings.X;
+                        int iconPosY = sleep.SleepChartSettings.Y;
+
+                        if (imageIndex < ListImagesFullName.Count)
+                        {
+                            src = OpenFileStream(ListImagesFullName[imageIndex]);
+                            //if (SelectedModel.versionOS >= 2.1 && sleep.Icon.alpha != 255)
+                            //{
+                            //    int w = src.Width;
+                            //    int h = src.Height;
+                            //    // Создаем матрицу цветов для изменения прозрачности (альфа-канал)
+                            //    ColorMatrix colorMatrix = new ColorMatrix();
+                            //    colorMatrix.Matrix33 = sleep.Icon.alpha / 255f; // значение от 0 до 1
+
+                            //    // Создаем объект ImageAttributes и применяем к нему матрицу цветов
+                            //    ImageAttributes imgAttributes = new ImageAttributes();
+                            //    imgAttributes.SetColorMatrix(colorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+
+                            //    // Указываем прямоугольник, куда будет помещено изображение
+                            //    Rectangle rect_alpha = new Rectangle(iconPosX, iconPosY, w, h);
+                            //    gPanel.DrawImage(src, rect_alpha, 0, 0, w, h, GraphicsUnit.Pixel, imgAttributes);
+                            //}
+                            //else gPanel.DrawImage(src, iconPosX, iconPosY);
+                            gPanel.DrawImage(src, iconPosX, iconPosY);
+                        }
+                    }
+                    if (sleep.SleepChartSettings.useSleepChart) DrawChartSleep(gPanel, sleep.SleepChartSettings);
+                    if (sleep.SleepChartSettings.useHRChart) DrawChartHR(gPanel, sleep.SleepChartSettings);
+                }
+                if (sleep.StartSleep != null && index == sleep.StartSleep.position && sleep.StartSleep.visible)
+                {
+                    hmUI_widget_TEXT number_font = sleep.StartSleep;
+                    int x = number_font.x;
+                    int y = number_font.y;
+                    int h = number_font.h;
+                    int w = number_font.w;
+
+                    int size = number_font.text_size;
+                    int space_h = number_font.char_space;
+                    int space_v = number_font.line_space;
+
+                    Color color = StringToColor(number_font.color);
+                    int alpha = number_font.alpha;
+                    //int align_h = AlignmentToInt(number_font.align_h);
+                    //int align_v = AlignmentVerticalToInt(number_font.align_v);
+                    string align_h = number_font.align_h;
+                    string align_v = number_font.align_v;
+                    string text_style = number_font.text_style;
+                    string unitStr = "Am";
+                    int value = WatchFacePreviewSet.DateTime.SleepStart.Hour;
+                    if (ProgramSettings.ShowIn12hourFormat)
+                    {
+                        if (value > 11)
+                        {
+                            value -= 12;
+                            unitStr = "Pm";
+                        }
+                        if (value == 0) value = 12;
+                    }
+                    string valueHourStr = value.ToString();
+                    if (number_font.padding) valueHourStr = valueHourStr.PadLeft(2, '0');
+                    string valueMinStr = WatchFacePreviewSet.DateTime.SleepStart.Minute.ToString();
+                    valueMinStr = valueMinStr.PadLeft(2, '0');
+
+                    string delimeter = ":";
+                    if (number_font.unit_string != null && number_font.unit_string.Length > 0) delimeter = number_font.unit_string;
+
+                    string valueStr = "";
+                    if (number_font.unit_type == 0) unitStr = unitStr.ToLower();
+                    if (number_font.unit_type == 2) unitStr = unitStr.ToUpper();
+                    valueStr = valueHourStr + delimeter + valueMinStr;
+                    if (checkBox_ShowIn12hourFormat.Checked)
+                    {
+                        if (number_font.unit_end == 1) valueStr = valueStr + " " + unitStr;
+                        else if (number_font.unit_end == 0) valueStr = unitStr + " " + valueStr;
+                    }
+
+                    if (number_font.centreHorizontally)
+                    {
+                        x = (SelectedModel.background.w - w) / 2;
+                        align_h = "CENTER_H";
+                    }
+                    if (number_font.centreVertically)
+                    {
+                        y = (SelectedModel.background.h - h) / 2;
+                        align_v = "CENTER_V";
+                    }
+
+                    bool use_text_circle = number_font.use_text_circle;
+                    int radius = number_font.radius;
+                    int start_angle = number_font.start_angle;
+                    int end_angle = number_font.end_angle;
+                    int mode = number_font.mode;
+
+                    if (number_font.font != null && number_font.font.Length > 3 && FontsList.ContainsKey(number_font.font))
+                    {
+                        string font_fileName = FontsList[number_font.font];
+                        //string font_fileName = ProjectDir + @"\assets\fonts\" + number_font.font;
+                        if (SelectedModel.versionOS >= 2 && File.Exists(font_fileName))
+                        {
+                            Font drawFont = null;
+                            using (System.Drawing.Text.PrivateFontCollection fonts = new System.Drawing.Text.PrivateFontCollection())
+                            {
+                                fonts.AddFontFile(font_fileName);
+                                drawFont = new Font(fonts.Families[0], size, GraphicsUnit.World);
+                            }
+
+                            Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                        }
+                        else
+                        {
+                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                        }
+
+                    }
+                    else
+                    {
+                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                    }
+                }
+
+                if (sleep.EndSleep != null && index == sleep.EndSleep.position && sleep.EndSleep.visible)
+                {
+                    hmUI_widget_TEXT number_font = sleep.EndSleep;
+                    int x = number_font.x;
+                    int y = number_font.y;
+                    int h = number_font.h;
+                    int w = number_font.w;
+
+                    int size = number_font.text_size;
+                    int space_h = number_font.char_space;
+                    int space_v = number_font.line_space;
+
+                    Color color = StringToColor(number_font.color);
+                    int alpha = number_font.alpha;
+                    string align_h = number_font.align_h;
+                    string align_v = number_font.align_v;
+                    string text_style = number_font.text_style;
+                    string unitStr = "Am";
+                    int value = WatchFacePreviewSet.DateTime.SleepEnd.Hour;
+                    if (ProgramSettings.ShowIn12hourFormat)
+                    {
+                        if (value > 11)
+                        {
+                            value -= 12;
+                            unitStr = "Pm";
+                        }
+                        if (value == 0) value = 12;
+                    }
+                    string valueHourStr = value.ToString();
+                    if (number_font.padding) valueHourStr = valueHourStr.PadLeft(2, '0');
+                    string valueMinStr = WatchFacePreviewSet.DateTime.SleepEnd.Minute.ToString();
+                    valueMinStr = valueMinStr.PadLeft(2, '0');
+
+                    string delimeter = ":";
+                    if (number_font.unit_string != null && number_font.unit_string.Length > 0) delimeter = number_font.unit_string;
+
+                    string valueStr = "";
+                    if (number_font.unit_type == 0) unitStr = unitStr.ToLower();
+                    if (number_font.unit_type == 2) unitStr = unitStr.ToUpper();
+                    valueStr = valueHourStr + delimeter + valueMinStr;
+                    if (checkBox_ShowIn12hourFormat.Checked)
+                    {
+                        if (number_font.unit_end == 1) valueStr = valueStr + " " + unitStr;
+                        else if (number_font.unit_end == 0) valueStr = unitStr + " " + valueStr;
+                    }
+
+                    if (number_font.centreHorizontally)
+                    {
+                        x = (SelectedModel.background.w - w) / 2;
+                        align_h = "CENTER_H";
+                    }
+                    if (number_font.centreVertically)
+                    {
+                        y = (SelectedModel.background.h - h) / 2;
+                        align_v = "CENTER_V";
+                    }
+
+                    bool use_text_circle = number_font.use_text_circle;
+                    int radius = number_font.radius;
+                    int start_angle = number_font.start_angle;
+                    int end_angle = number_font.end_angle;
+                    int mode = number_font.mode;
+
+                    if (number_font.font != null && number_font.font.Length > 3 && FontsList.ContainsKey(number_font.font))
+                    {
+                        string font_fileName = FontsList[number_font.font];
+                        //string font_fileName = ProjectDir + @"\assets\fonts\" + number_font.font;
+                        if (SelectedModel.versionOS >= 2 && File.Exists(font_fileName))
+                        {
+                            Font drawFont = null;
+                            using (System.Drawing.Text.PrivateFontCollection fonts = new System.Drawing.Text.PrivateFontCollection())
+                            {
+                                fonts.AddFontFile(font_fileName);
+                                drawFont = new Font(fonts.Families[0], size, GraphicsUnit.World);
+                            }
+
+                            Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                        }
+                        else
+                        {
+                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                        }
+
+                    }
+                    else
+                    {
+                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                    }
+                }
+
+                if (sleep.DurationSleep_total != null && index == sleep.DurationSleep_total.position && sleep.DurationSleep_total.visible)
+                {
+                    int startSleep = WatchFacePreviewSet.DateTime.SleepStart.Hour * 60 + WatchFacePreviewSet.DateTime.SleepStart.Minute;
+                    int endSleep = WatchFacePreviewSet.DateTime.SleepEnd.Hour * 60 + WatchFacePreviewSet.DateTime.SleepEnd.Minute;
+                    if (startSleep > endSleep) endSleep += 24 * 60;
+                    int durationSleep = endSleep - startSleep;
+                    int durationSleep_hour = durationSleep / 60;
+                    int durationSleep_min = durationSleep % 60;
+
+                    hmUI_widget_TEXT number_font = sleep.DurationSleep_total;
+                    int x = number_font.x;
+                    int y = number_font.y;
+                    int h = number_font.h;
+                    int w = number_font.w;
+
+                    int size = number_font.text_size;
+                    int space_h = number_font.char_space;
+                    int space_v = number_font.line_space;
+
+                    Color color = StringToColor(number_font.color);
+                    int alpha = number_font.alpha;
+                    string align_h = number_font.align_h;
+                    string align_v = number_font.align_v;
+                    string text_style = number_font.text_style;
+                    int value = durationSleep_hour;
+                    string valueHourStr = value.ToString();
+                    if (number_font.padding) valueHourStr = valueHourStr.PadLeft(2, '0');
+                    string valueMinStr = durationSleep_min.ToString();
+                    valueMinStr = valueMinStr.PadLeft(2, '0');
+
+                    string delimeter = ":";
+                    if (number_font.unit_string != null && number_font.unit_string.Length > 0) delimeter = number_font.unit_string;
+
+                    string valueStr = "";
+                    valueStr = valueHourStr + delimeter + valueMinStr;
+
+                    if (number_font.centreHorizontally)
+                    {
+                        x = (SelectedModel.background.w - w) / 2;
+                        align_h = "CENTER_H";
+                    }
+                    if (number_font.centreVertically)
+                    {
+                        y = (SelectedModel.background.h - h) / 2;
+                        align_v = "CENTER_V";
+                    }
+
+                    bool use_text_circle = number_font.use_text_circle;
+                    int radius = number_font.radius;
+                    int start_angle = number_font.start_angle;
+                    int end_angle = number_font.end_angle;
+                    int mode = number_font.mode;
+
+                    if (number_font.font != null && number_font.font.Length > 3 && FontsList.ContainsKey(number_font.font))
+                    {
+                        string font_fileName = FontsList[number_font.font];
+                        //string font_fileName = ProjectDir + @"\assets\fonts\" + number_font.font;
+                        if (SelectedModel.versionOS >= 2 && File.Exists(font_fileName))
+                        {
+                            Font drawFont = null;
+                            using (System.Drawing.Text.PrivateFontCollection fonts = new System.Drawing.Text.PrivateFontCollection())
+                            {
+                                fonts.AddFontFile(font_fileName);
+                                drawFont = new Font(fonts.Families[0], size, GraphicsUnit.World);
+                            }
+
+                            Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                        }
+                        else
+                        {
+                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                        }
+
+                    }
+                    else
+                    {
+                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                    }
+                }
+
+                if (sleep.DurationSleep != null && index == sleep.DurationSleep.position && sleep.DurationSleep.visible)
+                {
+                    int startSleep = WatchFacePreviewSet.DateTime.SleepStart.Hour * 60 + WatchFacePreviewSet.DateTime.SleepStart.Minute;
+                    int endSleep = WatchFacePreviewSet.DateTime.SleepEnd.Hour * 60 + WatchFacePreviewSet.DateTime.SleepEnd.Minute;
+                    if (startSleep > endSleep) endSleep += 24 * 60;
+                    int durationSleep = endSleep - startSleep;
+                    if (durationSleep > 5 * 60) durationSleep -= 25;
+                    else if(durationSleep > 45) durationSleep -= 5;
+                    else if (durationSleep > 15) durationSleep -= 1;
+                    int durationSleep_hour = durationSleep / 60;
+                    int durationSleep_min = durationSleep % 60;
+
+                    hmUI_widget_TEXT number_font = sleep.DurationSleep;
+                    int x = number_font.x;
+                    int y = number_font.y;
+                    int h = number_font.h;
+                    int w = number_font.w;
+
+                    int size = number_font.text_size;
+                    int space_h = number_font.char_space;
+                    int space_v = number_font.line_space;
+
+                    Color color = StringToColor(number_font.color);
+                    int alpha = number_font.alpha;
+                    string align_h = number_font.align_h;
+                    string align_v = number_font.align_v;
+                    string text_style = number_font.text_style;
+                    int value = durationSleep_hour;
+                    string valueHourStr = value.ToString();
+                    if (number_font.padding) valueHourStr = valueHourStr.PadLeft(2, '0');
+                    string valueMinStr = durationSleep_min.ToString();
+                    valueMinStr = valueMinStr.PadLeft(2, '0');
+
+                    string delimeter = ":";
+                    if (number_font.unit_string != null && number_font.unit_string.Length > 0) delimeter = number_font.unit_string;
+
+                    string valueStr = "";
+                    valueStr = valueHourStr + delimeter + valueMinStr;
+
+                    if (number_font.centreHorizontally)
+                    {
+                        x = (SelectedModel.background.w - w) / 2;
+                        align_h = "CENTER_H";
+                    }
+                    if (number_font.centreVertically)
+                    {
+                        y = (SelectedModel.background.h - h) / 2;
+                        align_v = "CENTER_V";
+                    }
+
+                    bool use_text_circle = number_font.use_text_circle;
+                    int radius = number_font.radius;
+                    int start_angle = number_font.start_angle;
+                    int end_angle = number_font.end_angle;
+                    int mode = number_font.mode;
+
+                    if (number_font.font != null && number_font.font.Length > 3 && FontsList.ContainsKey(number_font.font))
+                    {
+                        string font_fileName = FontsList[number_font.font];
+                        //string font_fileName = ProjectDir + @"\assets\fonts\" + number_font.font;
+                        if (SelectedModel.versionOS >= 2 && File.Exists(font_fileName))
+                        {
+                            Font drawFont = null;
+                            using (System.Drawing.Text.PrivateFontCollection fonts = new System.Drawing.Text.PrivateFontCollection())
+                            {
+                                fonts.AddFontFile(font_fileName);
+                                drawFont = new Font(fonts.Families[0], size, GraphicsUnit.World);
+                            }
+
+                            Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                        }
+                        else
+                        {
+                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                        }
+
+                    }
+                    else
+                    {
+                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                    }
+                }
+
+                if (sleep.WakeUp != null && index == sleep.WakeUp.position && sleep.WakeUp.visible)
+                {
+                    int startSleep = WatchFacePreviewSet.DateTime.SleepStart.Hour * 60 + WatchFacePreviewSet.DateTime.SleepStart.Minute;
+                    int endSleep = WatchFacePreviewSet.DateTime.SleepEnd.Hour * 60 + WatchFacePreviewSet.DateTime.SleepEnd.Minute;
+                    if (startSleep > endSleep) endSleep += 24 * 60;
+                    int durationSleep = endSleep - startSleep;
+                    int wakeUp = 0;
+                    if (durationSleep > 5 * 60) wakeUp = 25;
+                    else if (durationSleep > 45) wakeUp = 5;
+                    else if (durationSleep > 15) wakeUp = 1;
+
+                    hmUI_widget_TEXT number_font = sleep.WakeUp;
+                    int x = number_font.x;
+                    int y = number_font.y;
+                    int h = number_font.h;
+                    int w = number_font.w;
+
+                    int size = number_font.text_size;
+                    int space_h = number_font.char_space;
+                    int space_v = number_font.line_space;
+
+                    Color color = StringToColor(number_font.color);
+                    int alpha = number_font.alpha;
+                    string align_h = number_font.align_h;
+                    string align_v = number_font.align_v;
+                    string text_style = number_font.text_style;
+
+                    string valueStr = "";
+                    if (number_font.unit_string != null && number_font.unit_string.Length > 0) {
+                        int wakeUp_hour = wakeUp / 60;
+                        int wakeUp_min = wakeUp % 60;
+                        string valueHourStr = wakeUp_hour.ToString();
+                        if (number_font.padding) valueHourStr = valueHourStr.PadLeft(2, '0');
+                        string valueMinStr = wakeUp_min.ToString();
+                        valueMinStr = valueMinStr.PadLeft(2, '0');
+                        string delimeter = number_font.unit_string;
+                        valueStr = valueHourStr + delimeter + valueMinStr;
+                    }
+                    else valueStr = wakeUp.ToString();
+
+                    if (number_font.centreHorizontally)
+                    {
+                        x = (SelectedModel.background.w - w) / 2;
+                        align_h = "CENTER_H";
+                    }
+                    if (number_font.centreVertically)
+                    {
+                        y = (SelectedModel.background.h - h) / 2;
+                        align_v = "CENTER_V";
+                    }
+
+                    bool use_text_circle = number_font.use_text_circle;
+                    int radius = number_font.radius;
+                    int start_angle = number_font.start_angle;
+                    int end_angle = number_font.end_angle;
+                    int mode = number_font.mode;
+
+                    if (number_font.font != null && number_font.font.Length > 3 && FontsList.ContainsKey(number_font.font))
+                    {
+                        string font_fileName = FontsList[number_font.font];
+                        //string font_fileName = ProjectDir + @"\assets\fonts\" + number_font.font;
+                        if (SelectedModel.versionOS >= 2 && File.Exists(font_fileName))
+                        {
+                            Font drawFont = null;
+                            using (System.Drawing.Text.PrivateFontCollection fonts = new System.Drawing.Text.PrivateFontCollection())
+                            {
+                                fonts.AddFontFile(font_fileName);
+                                drawFont = new Font(fonts.Families[0], size, GraphicsUnit.World);
+                            }
+
+                            Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                        }
+                        else
+                        {
+                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                        }
+
+                    }
+                    else
+                    {
+                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                    }
+                }
+
+                if (sleep.WakeUpCount != null && index == sleep.WakeUpCount.position && sleep.WakeUpCount.visible)
+                {
+                    int startSleep = WatchFacePreviewSet.DateTime.SleepStart.Hour * 60 + WatchFacePreviewSet.DateTime.SleepStart.Minute;
+                    int endSleep = WatchFacePreviewSet.DateTime.SleepEnd.Hour * 60 + WatchFacePreviewSet.DateTime.SleepEnd.Minute;
+                    if (startSleep > endSleep) endSleep += 24 * 60;
+                    int durationSleep = endSleep - startSleep;
+                    int wakeUpCount = 0;
+                    if (durationSleep > 5 * 60) wakeUpCount = 3;
+                    else if (durationSleep > 45) wakeUpCount = 2;
+                    else if (durationSleep > 15) wakeUpCount = 1;
+
+                    hmUI_widget_TEXT number_font = sleep.WakeUpCount;
+                    int x = number_font.x;
+                    int y = number_font.y;
+                    int h = number_font.h;
+                    int w = number_font.w;
+
+                    int size = number_font.text_size;
+                    int space_h = number_font.char_space;
+                    int space_v = number_font.line_space;
+
+                    Color color = StringToColor(number_font.color);
+                    int alpha = number_font.alpha;
+                    string align_h = number_font.align_h;
+                    string align_v = number_font.align_v;
+                    string text_style = number_font.text_style;
+
+                    string valueStr = wakeUpCount.ToString();
+
+                    if (number_font.centreHorizontally)
+                    {
+                        x = (SelectedModel.background.w - w) / 2;
+                        align_h = "CENTER_H";
+                    }
+                    if (number_font.centreVertically)
+                    {
+                        y = (SelectedModel.background.h - h) / 2;
+                        align_v = "CENTER_V";
+                    }
+
+                    bool use_text_circle = number_font.use_text_circle;
+                    int radius = number_font.radius;
+                    int start_angle = number_font.start_angle;
+                    int end_angle = number_font.end_angle;
+                    int mode = number_font.mode;
+
+                    if (number_font.font != null && number_font.font.Length > 3 && FontsList.ContainsKey(number_font.font))
+                    {
+                        string font_fileName = FontsList[number_font.font];
+                        //string font_fileName = ProjectDir + @"\assets\fonts\" + number_font.font;
+                        if (SelectedModel.versionOS >= 2 && File.Exists(font_fileName))
+                        {
+                            Font drawFont = null;
+                            using (System.Drawing.Text.PrivateFontCollection fonts = new System.Drawing.Text.PrivateFontCollection())
+                            {
+                                fonts.AddFontFile(font_fileName);
+                                drawFont = new Font(fonts.Families[0], size, GraphicsUnit.World);
+                            }
+
+                            Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                        }
+                        else
+                        {
+                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                        }
+
+                    }
+                    else
+                    {
+                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                    }
+                }
+
+                if (sleep.Score != null && index == sleep.Score.position && sleep.Score.visible)
+                {
+                    hmUI_widget_TEXT number_font = sleep.Score;
+                    int x = number_font.x;
+                    int y = number_font.y;
+                    int h = number_font.h;
+                    int w = number_font.w;
+
+                    int size = number_font.text_size;
+                    int space_h = number_font.char_space;
+                    int space_v = number_font.line_space;
+
+                    Color color = StringToColor(number_font.color);
+                    int alpha = number_font.alpha;
+                    string align_h = number_font.align_h;
+                    string align_v = number_font.align_v;
+                    string text_style = number_font.text_style;
+                    string valueStr = "87";
+
+                    if (number_font.centreHorizontally)
+                    {
+                        x = (SelectedModel.background.w - w) / 2;
+                        align_h = "CENTER_H";
+                    }
+                    if (number_font.centreVertically)
+                    {
+                        y = (SelectedModel.background.h - h) / 2;
+                        align_v = "CENTER_V";
+                    }
+
+                    bool use_text_circle = number_font.use_text_circle;
+                    int radius = number_font.radius;
+                    int start_angle = number_font.start_angle;
+                    int end_angle = number_font.end_angle;
+                    int mode = number_font.mode;
+
+                    if (number_font.font != null && number_font.font.Length > 3 && FontsList.ContainsKey(number_font.font))
+                    {
+                        string font_fileName = FontsList[number_font.font];
+                        //string font_fileName = ProjectDir + @"\assets\fonts\" + number_font.font;
+                        if (SelectedModel.versionOS >= 2 && File.Exists(font_fileName))
+                        {
+                            Font drawFont = null;
+                            using (System.Drawing.Text.PrivateFontCollection fonts = new System.Drawing.Text.PrivateFontCollection())
+                            {
+                                fonts.AddFontFile(font_fileName);
+                                drawFont = new Font(fonts.Families[0], size, GraphicsUnit.World);
+                            }
+
+                            Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                        }
+                        else
+                        {
+                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                        }
+
+                    }
+                    else
+                    {
+                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                    }
+                }
+
+                if (sleep.Icon != null && sleep.Icon.src != null && sleep.Icon.src.Length > 0 &&
+                        index == sleep.Icon.position && sleep.Icon.visible)
+                {
+                    int imageIndex = ListImages.IndexOf(sleep.Icon.src);
+                    int iconPosX = sleep.Icon.x;
+                    int iconPosY = sleep.Icon.y;
+
+                    if (imageIndex < ListImagesFullName.Count)
+                    {
+                        src = OpenFileStream(ListImagesFullName[imageIndex]);
+                        if (SelectedModel.versionOS >= 2.1 && sleep.Icon.alpha != 255)
+                        {
+                            int w = src.Width;
+                            int h = src.Height;
+                            // Создаем матрицу цветов для изменения прозрачности (альфа-канал)
+                            ColorMatrix colorMatrix = new ColorMatrix();
+                            colorMatrix.Matrix33 = sleep.Icon.alpha / 255f; // значение от 0 до 1
+
+                            // Создаем объект ImageAttributes и применяем к нему матрицу цветов
+                            ImageAttributes imgAttributes = new ImageAttributes();
+                            imgAttributes.SetColorMatrix(colorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+
+                            // Указываем прямоугольник, куда будет помещено изображение
+                            Rectangle rect_alpha = new Rectangle(iconPosX, iconPosY, w, h);
+                            gPanel.DrawImage(src, rect_alpha, 0, 0, w, h, GraphicsUnit.Pixel, imgAttributes);
+                        }
+                        else gPanel.DrawImage(src, iconPosX, iconPosY);
+                        //gPanel.DrawImage(src, iconPosX, iconPosY);
+                    }
+                }
+
+            }
+            src.Dispose();
+            Logger.WriteLine("* DrawSleep (End)");
+        }
+
+        private void DrawChartSleep(Graphics gPanel, SleepChartSettings sleepChart)
+        {
+            if (sleepChart == null) return;
+            int startSleep = WatchFacePreviewSet.DateTime.SleepStart.Hour * 60 + WatchFacePreviewSet.DateTime.SleepStart.Minute;
+            int endSleep = WatchFacePreviewSet.DateTime.SleepEnd.Hour * 60 + WatchFacePreviewSet.DateTime.SleepEnd.Minute;
+            if (startSleep > endSleep) endSleep += 24 * 60;
+            int durationSleep = endSleep - startSleep;
+            if (durationSleep < 0) return;
+
+            float pixelPerMinute = (float)sleepChart.Width / durationSleep;
+            float blockHeight = sleepChart.Height / 4f;
+
+            int wakeUp = 0;
+            if (durationSleep > 5 * 60) wakeUp = 25;
+            else if (durationSleep > 45) wakeUp = 5;
+            else if (durationSleep > 15) wakeUp = 1; 
+            durationSleep-= wakeUp;
+
+            List<(int duration, int type)> sleepStages = new List<(int, int)>();
+            Random random = new Random();
+            int oldType = -1;
+            while (durationSleep > 0)
+            {
+                int time = random.Next(15, 46);
+                int type = random.Next(3);
+                if (type == oldType) type = (type + 1) % 3;
+                if (time > durationSleep) time = durationSleep;
+                sleepStages.Add((time, type));
+                durationSleep -= time;
+                oldType = type;
+            }
+            if (wakeUp > 0)
+            {
+                int index = random.Next(1, sleepStages.Count);
+                sleepStages.Insert(index, (wakeUp, 3));
+            }
+            float x = sleepChart.X;
+            int y = sleepChart.Y + sleepChart.Height;
+            foreach ((int duration, int type) in sleepStages) { 
+                float blockWidth = pixelPerMinute * duration;
+                int posY = y - (int)Math.Round(blockHeight * type + blockHeight);
+                Color color = type == 0 ? StringToColor(sleepChart.DEEP_STAGE_color) :
+                    type == 1 ? StringToColor(sleepChart.LIGHT_STAGE_color) :
+                    type == 2 ? StringToColor(sleepChart.REM_STAGE_color) : 
+                    StringToColor(sleepChart.WAKE_STAGE_color);
+                DrawRoundedRectangle(gPanel, (int)x, posY, (int)blockWidth, (int)blockHeight, sleepChart.Radius, color);
+                x += blockWidth;
+            }
+            //for (int i = 0; i < sleepStages.Count; i++)
+            //{
+            //    int x = sleepChart.X + (int)(pixelPerMinute * (startSleep + sleepStages[i].duration - wakeUp));
+            //    int y = sleepChart.Y + (int)(blockHeight * sleepStages[i].type);
+            //    int width = (int)(pixelPerMinute * sleepStages[i].duration);
+            //}
+        }
+        public static void DrawChartHR(Graphics gPanel, SleepChartSettings sleepChart)
+        {
+            int lineWidth = sleepChart.HR_lineWidth;
+            int x = sleepChart.X + lineWidth / 2;
+            int y = sleepChart.Y;
+            int width = sleepChart.Width - lineWidth;
+            int height = sleepChart.Height;
+            // Исправьте вызов в методе DrawPulseLine:
+            Color color = StringToColor(sleepChart.HR_color);
+            int cycles = 5; // сколько раз повторить ритм
+
+            var oldSmoothing = gPanel.SmoothingMode;
+            gPanel.SmoothingMode = SmoothingMode.None; // т.к. нужна ломаная линия
+
+            float top = y + lineWidth / 2f;
+            float bottom = y + height - lineWidth / 2f;
+            float mid = y + height * 0.5f;
+
+            // Опорные точки (в относительных координатах 0..1)
+            List<PointF> ptsList = new List<PointF>();
+
+            for (int c = 0; c < cycles; c++)
+            {
+                float offsetX = x + (width / (float)cycles) * c;
+                float w = width / (float)cycles;
+
+                ptsList.Add(new PointF(offsetX + w * 0.00f, mid));                      // ровная
+                ptsList.Add(new PointF(offsetX + w * 0.20f, mid));                      // ровная
+                ptsList.Add(new PointF(offsetX + w * 0.30f, mid - height * 0.10f));     // небольшой подъем
+                ptsList.Add(new PointF(offsetX + w * 0.35f, mid + height * 0.15f));     // небольшой спад
+                ptsList.Add(new PointF(offsetX + w * 0.45f, top));                      // пик
+                ptsList.Add(new PointF(offsetX + w * 0.55f, bottom));                   // низ после пика
+                ptsList.Add(new PointF(offsetX + w * 0.70f, mid));                      // возврат
+                ptsList.Add(new PointF(offsetX + w * 1.00f, mid));                      // ровная до конца
+            }
+
+            PointF[] pts = ptsList.ToArray();
+
+            //// Сдвиг к реальным координатам
+            //for (int i = 0; i < pts.Length; i++)
+            //    pts[i] = new PointF(pts[i].X + x, pts[i].Y);
+
+            using (Pen pen = new Pen(color, lineWidth))
+            {
+                pen.StartCap = LineCap.Round;
+                pen.EndCap = LineCap.Round;
+                pen.LineJoin = LineJoin.Round;
+
+                gPanel.DrawLines(pen, pts);
+            }
+
+            gPanel.SmoothingMode = oldSmoothing;
+        }
+
+        /// <summary>Рисует прямоугольник с закруглёнными углами.</summary>
+        /// <param name="g">Объект Graphics для рисования.</param>
+        /// <param name="x">Координата X верхнего левого угла.</param>
+        /// <param name="y">Координата Y верхнего левого угла.</param>
+        /// <param name="width">Ширина прямоугольника.</param>
+        /// <param name="height">Высота прямоугольника.</param>
+        /// <param name="radius">Радиус скругления углов.</param>
+        /// <param name="color">Цвет заливки.</param>
+        public static void DrawRoundedRectangle(Graphics g, int x, int y, int width, int height, int radius, Color color)
+        {
+            // Сохраняем исходный режим сглаживания
+            //var oldSmoothing = g.SmoothingMode;
+            if (radius > Math.Min(width, height) / 2)
+            {
+                radius = Math.Min(width, height) / 2;
+            }
+            try
+            {
+                using (GraphicsPath path = new GraphicsPath())
+                {
+                    if (radius > 0)
+                    {
+                        // Устанавливаем радиус скругления углов
+                        path.AddArc(x, y, radius * 2, radius * 2, 180, 90); // Левый верхний угол
+                        path.AddArc(x + width - radius * 2, y, radius * 2, radius * 2, 270, 90); // Правый верхний
+                        path.AddArc(x + width - radius * 2, y + height - radius * 2, radius * 2, radius * 2, 0, 90); // Правый нижний
+                        path.AddArc(x, y + height - radius * 2, radius * 2, radius * 2, 90, 90); // Левый нижний
+                        path.CloseFigure();
+                    }
+                    else
+                    {
+                        // Рисуем прямоугольник
+                        path.AddRectangle(new Rectangle(x, y, width, height));
+                    }
+
+                    // Включаем сглаживание для плавных краёв
+                    //g.SmoothingMode = SmoothingMode.AntiAlias;
+
+                    using (SolidBrush brush = new SolidBrush(color))
+                    {
+                        g.FillPath(brush, path);
+                    }
+                }
+            }
+            catch (Exception ex){
+                Logger.WriteLine("Error DrawRoundedRectangle: " + ex.Message);
+            }
+            //finally
+            //{
+            //    // Восстанавливаем исходное значение SmoothingMode
+            //    g.SmoothingMode = oldSmoothing;
+            //}
+        }
+
         /// <summary>Рисуем восход, звкат</summary>
         private void DrawSunrise(Graphics gPanel, hmUI_widget_IMG_LEVEL images, hmUI_widget_IMG_PROGRESS segments,
             hmUI_widget_IMG_NUMBER sunrise, hmUI_widget_TEXT sunrise_font, hmUI_widget_IMG_NUMBER sunrise_rotation, Text_Circle sunrise_circle,

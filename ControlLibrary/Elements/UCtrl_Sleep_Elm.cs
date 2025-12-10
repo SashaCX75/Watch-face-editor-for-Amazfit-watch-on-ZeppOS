@@ -10,14 +10,17 @@ using System.Windows.Forms;
 
 namespace ControlLibrary
 {
-    public partial class UCtrl_Altimeter_Elm : UserControl
+    public partial class UCtrl_Sleep_Elm : UserControl
     {
         private bool setValue; // режим задания параметров
-        bool highlight_number = false;
-        bool highlight_number_font = false;
-        bool highlight_number_target = false;
-        bool highlight_number_target_font = false;
-        bool highlight_pointer = false;
+        bool highlight_chart = false;
+        bool highlight_start_sleep = false;
+        bool highlight_end_sleep = false;
+        bool highlight_duration_sleep_total = false;
+        bool highlight_duration_sleep = false;
+        bool highlight_wakeup = false;
+        bool highlight_wakeup_count = false;
+        bool highlight_score = false;
         bool highlight_icon = false;
 
         bool visibility_elements = false; // развернут список с элементами
@@ -28,7 +31,7 @@ namespace ControlLibrary
 
         Point cursorPos = new Point(0, 0);
 
-        public UCtrl_Altimeter_Elm()
+        public UCtrl_Sleep_Elm()
         {
             InitializeComponent();
             setValue = false;
@@ -114,11 +117,14 @@ namespace ControlLibrary
         {
             selectedElement = "";
 
-            highlight_number = false;
-            highlight_number_font = false;
-            highlight_number_target = false;
-            highlight_number_target_font = false;
-            highlight_pointer = false;
+            highlight_chart = false;
+            highlight_start_sleep = false;
+            highlight_end_sleep = false;
+            highlight_duration_sleep_total = false;
+            highlight_duration_sleep = false;
+            highlight_wakeup = false;
+            highlight_wakeup_count = false;
+            highlight_score = false;
             highlight_icon = false;
 
             SelectElement();
@@ -126,69 +132,108 @@ namespace ControlLibrary
 
         private void SelectElement()
         {
-            if (highlight_number)
+            if (highlight_chart)
             {
-                panel_Number.BackColor = SystemColors.ActiveCaption;
-                button_Number.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption;
-                button_Number.FlatAppearance.MouseDownBackColor = SystemColors.ActiveCaption;
+                panel_Chart.BackColor = SystemColors.ActiveCaption;
+                button_Chart.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption;
+                button_Chart.FlatAppearance.MouseDownBackColor = SystemColors.ActiveCaption;
             }
             else
             {
-                panel_Number.BackColor = SystemColors.Control;
-                button_Number.FlatAppearance.MouseOverBackColor = SystemColors.Control;
-                button_Number.FlatAppearance.MouseDownBackColor = SystemColors.Control;
+                panel_Chart.BackColor = SystemColors.Control;
+                button_Chart.FlatAppearance.MouseOverBackColor = SystemColors.Control;
+                button_Chart.FlatAppearance.MouseDownBackColor = SystemColors.Control;
             }
 
-            if (highlight_number_font)
+            if (highlight_start_sleep)
             {
-                panel_Number_Font.BackColor = SystemColors.ActiveCaption;
-                button_Number_Font.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption;
-                button_Number_Font.FlatAppearance.MouseDownBackColor = SystemColors.ActiveCaption;
+                panel_StartSleep.BackColor = SystemColors.ActiveCaption;
+                button_StartSleep.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption;
+                button_StartSleep.FlatAppearance.MouseDownBackColor = SystemColors.ActiveCaption;
             }
             else
             {
-                panel_Number_Font.BackColor = SystemColors.Control;
-                button_Number_Font.FlatAppearance.MouseOverBackColor = SystemColors.Control;
-                button_Number_Font.FlatAppearance.MouseDownBackColor = SystemColors.Control;
+                panel_StartSleep.BackColor = SystemColors.Control;
+                button_StartSleep.FlatAppearance.MouseOverBackColor = SystemColors.Control;
+                button_StartSleep.FlatAppearance.MouseDownBackColor = SystemColors.Control;
             }
 
-            if (highlight_number_target)
+            if (highlight_end_sleep)
             {
-                panel_Number_Target.BackColor = SystemColors.ActiveCaption;
-                button_Number_Target.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption;
-                button_Number_Target.FlatAppearance.MouseDownBackColor = SystemColors.ActiveCaption;
+                panel_EndSleep.BackColor = SystemColors.ActiveCaption;
+                button_EndSleep.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption;
+                button_EndSleep.FlatAppearance.MouseDownBackColor = SystemColors.ActiveCaption;
             }
             else
             {
-                panel_Number_Target.BackColor = SystemColors.Control;
-                button_Number_Target.FlatAppearance.MouseOverBackColor = SystemColors.Control;
-                button_Number_Target.FlatAppearance.MouseDownBackColor = SystemColors.Control;
+                panel_EndSleep.BackColor = SystemColors.Control;
+                button_EndSleep.FlatAppearance.MouseOverBackColor = SystemColors.Control;
+                button_EndSleep.FlatAppearance.MouseDownBackColor = SystemColors.Control;
             }
 
-            if (highlight_number_target_font)
+            if (highlight_duration_sleep_total)
             {
-                panel_Number_Target_Font.BackColor = SystemColors.ActiveCaption;
-                button_Number_Target_Font.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption;
-                button_Number_Target_Font.FlatAppearance.MouseDownBackColor = SystemColors.ActiveCaption;
+                panel_DurationSleep_total.BackColor = SystemColors.ActiveCaption;
+                button_DurationSleep_total.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption;
+                button_DurationSleep_total.FlatAppearance.MouseDownBackColor = SystemColors.ActiveCaption;
             }
             else
             {
-                panel_Number_Target_Font.BackColor = SystemColors.Control;
-                button_Number_Target_Font.FlatAppearance.MouseOverBackColor = SystemColors.Control;
-                button_Number_Target_Font.FlatAppearance.MouseDownBackColor = SystemColors.Control;
+                panel_DurationSleep_total.BackColor = SystemColors.Control;
+                button_DurationSleep_total.FlatAppearance.MouseOverBackColor = SystemColors.Control;
+                button_DurationSleep_total.FlatAppearance.MouseDownBackColor = SystemColors.Control;
             }
 
-            if (highlight_pointer)
+            if (highlight_duration_sleep)
             {
-                panel_Pointer.BackColor = SystemColors.ActiveCaption;
-                button_Pointer.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption;
-                button_Pointer.FlatAppearance.MouseDownBackColor = SystemColors.ActiveCaption;
+                panel_DurationSleep.BackColor = SystemColors.ActiveCaption;
+                button_DurationSleep.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption;
+                button_DurationSleep.FlatAppearance.MouseDownBackColor = SystemColors.ActiveCaption;
             }
             else
             {
-                panel_Pointer.BackColor = SystemColors.Control;
-                button_Pointer.FlatAppearance.MouseOverBackColor = SystemColors.Control;
-                button_Pointer.FlatAppearance.MouseDownBackColor = SystemColors.Control;
+                panel_DurationSleep.BackColor = SystemColors.Control;
+                button_DurationSleep.FlatAppearance.MouseOverBackColor = SystemColors.Control;
+                button_DurationSleep.FlatAppearance.MouseDownBackColor = SystemColors.Control;
+            }
+
+            if (highlight_wakeup)
+            {
+                panel_WakeUp.BackColor = SystemColors.ActiveCaption;
+                button_WakeUp.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption;
+                button_WakeUp.FlatAppearance.MouseDownBackColor = SystemColors.ActiveCaption;
+            }
+            else
+            {
+                panel_WakeUp.BackColor = SystemColors.Control;
+                button_WakeUp.FlatAppearance.MouseOverBackColor = SystemColors.Control;
+                button_WakeUp.FlatAppearance.MouseDownBackColor = SystemColors.Control;
+            }
+
+            if (highlight_wakeup_count)
+            {
+                panel_WakeUpCount.BackColor = SystemColors.ActiveCaption;
+                button_WakeUpCount.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption;
+                button_WakeUpCount.FlatAppearance.MouseDownBackColor = SystemColors.ActiveCaption;
+            }
+            else
+            {
+                panel_WakeUpCount.BackColor = SystemColors.Control;
+                button_WakeUpCount.FlatAppearance.MouseOverBackColor = SystemColors.Control;
+                button_WakeUpCount.FlatAppearance.MouseDownBackColor = SystemColors.Control;
+            }
+
+            if (highlight_score)
+            {
+                panel_Score.BackColor = SystemColors.ActiveCaption;
+                button_Score.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption;
+                button_Score.FlatAppearance.MouseDownBackColor = SystemColors.ActiveCaption;
+            }
+            else
+            {
+                panel_Score.BackColor = SystemColors.Control;
+                button_Score.FlatAppearance.MouseOverBackColor = SystemColors.Control;
+                button_Score.FlatAppearance.MouseDownBackColor = SystemColors.Control;
             }
 
             if (highlight_icon)
@@ -205,15 +250,18 @@ namespace ControlLibrary
             }
         }
 
-        private void panel_Number_Click(object sender, EventArgs e)
+        private void panel_Chart_Click(object sender, EventArgs e)
         {
-            selectedElement = "Number";
+            selectedElement = "Chart";
 
-            highlight_number = true;
-            highlight_number_font = false;
-            highlight_number_target = false;
-            highlight_number_target_font = false;
-            highlight_pointer = false;
+            highlight_chart = true;
+            highlight_start_sleep = false;
+            highlight_end_sleep = false;
+            highlight_duration_sleep_total = false;
+            highlight_duration_sleep = false;
+            highlight_wakeup = false;
+            highlight_wakeup_count = false;
+            highlight_score = false;
             highlight_icon = false;
 
             SelectElement();
@@ -225,15 +273,18 @@ namespace ControlLibrary
             }
         }
 
-        private void panel_Number_Font_Click(object sender, EventArgs e)
+        private void panel_StartSleep_Click(object sender, EventArgs e)
         {
-            selectedElement = "Number_Font";
+            selectedElement = "StartSleep";
 
-            highlight_number = false;
-            highlight_number_font = true;
-            highlight_number_target = false;
-            highlight_number_target_font = false;
-            highlight_pointer = false;
+            highlight_chart = false;
+            highlight_start_sleep = true;
+            highlight_end_sleep = false;
+            highlight_duration_sleep_total = false;
+            highlight_duration_sleep = false;
+            highlight_wakeup = false;
+            highlight_wakeup_count = false;
+            highlight_score = false;
             highlight_icon = false;
 
             SelectElement();
@@ -245,15 +296,18 @@ namespace ControlLibrary
             }
         }
 
-        private void panel_Number_Target_Click(object sender, EventArgs e)
+        private void panel_EndSleep_Click(object sender, EventArgs e)
         {
-            selectedElement = "Number_Target";
+            selectedElement = "EndSleep";
 
-            highlight_number = false;
-            highlight_number_font = false;
-            highlight_number_target = true;
-            highlight_number_target_font = false;
-            highlight_pointer = false;
+            highlight_chart = false;
+            highlight_start_sleep = false;
+            highlight_end_sleep = true;
+            highlight_duration_sleep_total = false;
+            highlight_duration_sleep = false;
+            highlight_wakeup = false;
+            highlight_wakeup_count = false;
+            highlight_score = false;
             highlight_icon = false;
 
             SelectElement();
@@ -265,15 +319,18 @@ namespace ControlLibrary
             }
         }
 
-        private void panel_Number_Target_Font_Click(object sender, EventArgs e)
+        private void panel_DurationSleep_total_Click(object sender, EventArgs e)
         {
-            selectedElement = "Number_Target_Font";
+            selectedElement = "DurationSleep_total";
 
-            highlight_number = false;
-            highlight_number_font = false;
-            highlight_number_target = false;
-            highlight_number_target_font = true;
-            highlight_pointer = false;
+            highlight_chart = false;
+            highlight_start_sleep = false;
+            highlight_end_sleep = false;
+            highlight_duration_sleep_total = true;
+            highlight_duration_sleep = false;
+            highlight_wakeup = false;
+            highlight_wakeup_count = false;
+            highlight_score = false;
             highlight_icon = false;
 
             SelectElement();
@@ -285,15 +342,87 @@ namespace ControlLibrary
             }
         }
 
-        private void panel_Pointer_Click(object sender, EventArgs e)
+        private void panel_DurationSleep_Click(object sender, EventArgs e)
         {
-            selectedElement = "Pointer";
+            selectedElement = "DurationSleep";
 
-            highlight_number = false;
-            highlight_number_font = false;
-            highlight_number_target = false;
-            highlight_number_target_font = false;
-            highlight_pointer = true;
+            highlight_chart = false;
+            highlight_start_sleep = false;
+            highlight_end_sleep = false;
+            highlight_duration_sleep_total = false;
+            highlight_duration_sleep = true;
+            highlight_wakeup = false;
+            highlight_wakeup_count = false;
+            highlight_score = false;
+            highlight_icon = false;
+
+            SelectElement();
+
+            if (SelectChanged != null)
+            {
+                EventArgs eventArgs = new EventArgs();
+                SelectChanged(this, eventArgs);
+            }
+        }
+
+        private void panel_WakeUp_Click(object sender, EventArgs e)
+        {
+            selectedElement = "WakeUp";
+
+            highlight_chart = false;
+            highlight_start_sleep = false;
+            highlight_end_sleep = false;
+            highlight_duration_sleep_total = false;
+            highlight_duration_sleep = false;
+            highlight_wakeup = true;
+            highlight_wakeup_count = false;
+            highlight_score = false;
+            highlight_icon = false;
+
+            SelectElement();
+
+            if (SelectChanged != null)
+            {
+                EventArgs eventArgs = new EventArgs();
+                SelectChanged(this, eventArgs);
+            }
+        }
+
+        private void panel_WakeUpCount_Click(object sender, EventArgs e)
+        {
+            selectedElement = "WakeUpCount";
+
+            highlight_chart = false;
+            highlight_start_sleep = false;
+            highlight_end_sleep = false;
+            highlight_duration_sleep_total = false;
+            highlight_duration_sleep = false;
+            highlight_wakeup = false;
+            highlight_wakeup_count = true;
+            highlight_score = false;
+            highlight_icon = false;
+
+            SelectElement();
+
+            if (SelectChanged != null)
+            {
+                EventArgs eventArgs = new EventArgs();
+                SelectChanged(this, eventArgs);
+            }
+        }
+
+        private void panel_Score_Click(object sender, EventArgs e)
+        {
+            selectedElement = "Score";
+
+            highlight_chart = false;
+            highlight_start_sleep = false;
+            highlight_end_sleep = false;
+            highlight_duration_sleep_total = false;
+            highlight_duration_sleep = false;
+            highlight_wakeup = false;
+            highlight_wakeup_count = false;
+            highlight_score = true;
             highlight_icon = false;
 
             SelectElement();
@@ -309,11 +438,14 @@ namespace ControlLibrary
         {
             selectedElement = "Icon";
 
-            highlight_number = false;
-            highlight_number_font = false;
-            highlight_number_target = false;
-            highlight_number_target_font = false;
-            highlight_pointer = false;
+            highlight_chart = false;
+            highlight_start_sleep = false;
+            highlight_end_sleep = false;
+            highlight_duration_sleep_total = false;
+            highlight_duration_sleep = false;
+            highlight_wakeup = false;
+            highlight_wakeup_count = false;
+            highlight_score = false;
             highlight_icon = true;
 
             SelectElement();
@@ -402,9 +534,15 @@ namespace ControlLibrary
             Point pt = tableLayoutPanel1.PointToClient(new Point(e.X, e.Y));
             Control control = tableLayoutPanel1.GetChildAtPoint(pt);
 
-
-            if (control != null)
+            if (control != null /*&& control.Name != "panel_Settings"*/)
             {
+                /*if (control.Name == "panel_Settings")
+                {
+                    e.Effect = DragDropEffects.None;
+                    return;
+                }
+                else */e.Effect = DragDropEffects.Move;
+
                 var pos = tableLayoutPanel1.GetPositionFromControl(control);
                 var posOld = tableLayoutPanel1.GetPositionFromControl(draggedPanel);
                 if (pos != posOld && pos.Row < posOld.Row)
@@ -455,9 +593,9 @@ namespace ControlLibrary
 
             pictureBox_Del.Location = new Point(button_ElementName.Width - pictureBox_Del.Width - 4, 2);
 
-            if (tableLayoutPanel1.Height > 190)
+            if (tableLayoutPanel1.Height > 285)
             {
-                float currentDPI = tableLayoutPanel1.Height / 151f;
+                float currentDPI = tableLayoutPanel1.Height / 226f;
                 button_ElementName.Image = (Image)(new Bitmap(button_ElementName.Image,
                     new Size((int)(16 * currentDPI), (int)(16 * currentDPI))));
 
@@ -541,7 +679,7 @@ namespace ControlLibrary
             }
         }
 
-        /// <summary>Устанавливаем статус видимости для всего элемента</summary>
+        /// <summary>Устанавливаем статус видимости для всего элемента</summary>DayOfWeek_Images
         public void SetVisibilityElementStatus(bool status)
         {
             visibilityElement = status;
@@ -557,20 +695,23 @@ namespace ControlLibrary
             setValue = true;
             switch (name)
             {
-                case "Number":
-                    checkBox_Number.Checked = status;
+                case "Chart":
+                    checkBox_Chart.Checked = status;
                     break;
-                case "Number_Font":
-                    checkBox_Number_Font.Checked = status;
+                case "StartSleep":
+                    checkBox_StartSleep.Checked = status;
                     break;
-                case "Number_Target":
-                    checkBox_Number_Target.Checked = status;
+                case "EndSleep":
+                    checkBox_EndSleep.Checked = status;
                     break;
-                case "Number_Target_Font":
-                    checkBox_Number_Target_Font.Checked = status;
+                case "DurationSleep_total":
+                    checkBox_DurationSleep_total.Checked = status;
                     break;
-                case "Pointer":
-                    checkBox_Pointer.Checked = status;
+                case "DurationSleep":
+                    checkBox_DurationSleep.Checked = status;
+                    break;
+                case "Score":
+                    checkBox_Score.Checked = status;
                     break;
                 case "Icon":
                     checkBox_Icon.Checked = status;
@@ -591,20 +732,29 @@ namespace ControlLibrary
                     string name = elementOptions[elementCount - key];
                     switch (name)
                     {
-                        case "Number":
-                            panel = panel_Number;
+                        case "Chart":
+                            panel = panel_Chart;
                             break;
-                        case "Number_Font":
-                            panel = panel_Number_Font;
+                        case "StartSleep":
+                            panel = panel_StartSleep;
                             break;
-                        case "Number_Target":
-                            panel = panel_Number_Target;
+                        case "EndSleep":
+                            panel = panel_EndSleep;
                             break;
-                        case "Number_Target_Font":
-                            panel = panel_Number_Target_Font;
+                        case "DurationSleep_total":
+                            panel = panel_DurationSleep_total;
                             break;
-                        case "Pointer":
-                            panel = panel_Pointer;
+                        case "DurationSleep":
+                            panel = panel_DurationSleep;
+                            break;
+                        case "WakeUp":
+                            panel = panel_WakeUp;
+                            break;
+                        case "WakeUpCount":
+                            panel = panel_WakeUpCount;
+                            break;
+                        case "Score":
+                            panel = panel_Score;
                             break;
                         case "Icon":
                             panel = panel_Icon;
@@ -651,20 +801,29 @@ namespace ControlLibrary
                 Control panel = tableLayoutPanel1.GetControlFromPosition(0, i);
                 switch (panel.Name)
                 {
-                    case "panel_Number":
-                        elementOptions.Add("Number", count - i);
+                    case "panel_Chart":
+                        elementOptions.Add("Chart", count - i);
                         break;
-                    case "panel_Number_Font":
-                        elementOptions.Add("Number_Font", count - i);
+                    case "panel_StartSleep":
+                        elementOptions.Add("StartSleep", count - i);
                         break;
-                    case "panel_Number_Target":
-                        elementOptions.Add("Number_Target", count - i);
+                    case "panel_EndSleep":
+                        elementOptions.Add("EndSleep", count - i);
                         break;
-                    case "panel_Number_Target_Font":
-                        elementOptions.Add("Number_Target_Font", count - i);
+                    case "panel_DurationSleep_total":
+                        elementOptions.Add("DurationSleep_total", count - i);
                         break;
-                    case "panel_Pointer":
-                        elementOptions.Add("Pointer", count - i);
+                    case "panel_DurationSleep":
+                        elementOptions.Add("DurationSleep", count - i);
+                        break;
+                    case "panel_WakeUp":
+                        elementOptions.Add("WakeUp", count - i);
+                        break;
+                    case "panel_WakeUpCount":
+                        elementOptions.Add("WakeUpCount", count - i);
+                        break;
+                    case "panel_Score":
+                        elementOptions.Add("Score", count - i);
                         break;
                     case "panel_Icon":
                         elementOptions.Add("Icon", count - i);
@@ -681,18 +840,24 @@ namespace ControlLibrary
             Dictionary<int, string> elementOptions = new Dictionary<int, string>();
             int index = 1;
             elementOptions.Add(index++, "Icon");
-            elementOptions.Add(index++, "Pointer");
-            elementOptions.Add(index++, "Number_Target_Font");
-            elementOptions.Add(index++, "Number_Target");
-            elementOptions.Add(index++, "Number_Font");
-            elementOptions.Add(index++, "Number");
+            elementOptions.Add(index++, "Score");
+            elementOptions.Add(index++, "WakeUpCount");
+            elementOptions.Add(index++, "WakeUp");
+            elementOptions.Add(index++, "DurationSleep");
+            elementOptions.Add(index++, "DurationSleep_total");
+            elementOptions.Add(index++, "EndSleep");
+            elementOptions.Add(index++, "StartSleep");
+            elementOptions.Add(index++, "Chart");
             SetOptionsPosition(elementOptions);
 
-            checkBox_Number.Checked = false;
-            checkBox_Number_Font.Checked = false;
-            checkBox_Number_Target.Checked = false;
-            checkBox_Number_Target_Font.Checked = false;
-            checkBox_Pointer.Checked = false;
+            checkBox_Chart.Checked = false;
+            checkBox_StartSleep.Checked = false;
+            checkBox_EndSleep.Checked = false;
+            checkBox_DurationSleep_total.Checked = false;
+            checkBox_DurationSleep.Checked = false;
+            checkBox_WakeUp.Checked = false;
+            checkBox_WakeUpCount.Checked = false;
+            checkBox_Score.Checked = false;
             checkBox_Icon.Checked = false;
 
             visibility_elements = false;

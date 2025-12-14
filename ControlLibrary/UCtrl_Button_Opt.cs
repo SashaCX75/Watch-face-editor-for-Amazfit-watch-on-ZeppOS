@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
+//using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace ControlLibrary
 {
@@ -709,6 +709,7 @@ namespace ControlLibrary
             numericUpDown_textSize.Value = 25;
 
             dataGridView_buttons.Rows.Clear();
+            button_add.Enabled = true;
             button_del.Enabled = false;
 
             apiLevel = api_level;

@@ -31,7 +31,7 @@ namespace ControlLibrary
             comboBox_scaleCircle_lineCap.SelectedIndex = 0;
         }
 
-        private void comboBox_scaleLinear_color_Click(object sender, EventArgs e)
+        private void comboBox_scaleCircle_color_Click(object sender, EventArgs e)
         {
             Program_Settings ProgramSettings = new Program_Settings();
             ColorDialog colorDialog = new ColorDialog();
@@ -56,6 +56,7 @@ namespace ControlLibrary
                 return;
             // установка цвета формы
             comboBox_color.BackColor = colorDialog.Color;
+            LastColor.last_color = colorDialog.Color;
             if (ProgramSettings.CustomColors != colorDialog.CustomColors)
             {
                 ProgramSettings.CustomColors = colorDialog.CustomColors;

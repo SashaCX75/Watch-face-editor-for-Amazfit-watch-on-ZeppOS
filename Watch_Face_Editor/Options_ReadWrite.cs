@@ -1260,6 +1260,26 @@ namespace Watch_Face_Editor
                         break;
                     #endregion
 
+                    #region ElementTextWidgets
+                    case "ElementTextWidgets":
+                        ElementTextWidgets TextWidgets = null;
+                        try
+                        {
+                            TextWidgets = JsonConvert.DeserializeObject<ElementTextWidgets>(elementStr, new JsonSerializerSettings
+                            {
+                                //DefaultValueHandling = DefaultValueHandling.Ignore,
+                                NullValueHandling = NullValueHandling.Ignore
+                            });
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(Properties.FormStrings.Message_JsonError_Text + Environment.NewLine + ex,
+                                Properties.FormStrings.Message_Error_Caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        if (TextWidgets != null) NewElements.Add(TextWidgets);
+                        break;
+                    #endregion
+
 
                     #region ElementScript
                     case "ElementScript":
@@ -2477,6 +2497,26 @@ namespace Watch_Face_Editor
             List<String> scriptLongPressList = ButtonLongPressScriptToString(buttonsList);
             List<bool> visibleList = ButtonVisibleList(buttonsList);
             uCtrl_Button_Opt.UpdateButtonsList(scriptClickList, scriptLongPressList, visibleList);
+
+            PreviewView = true;
+        }
+
+        /// <summary>Читаем перечень текстовых виджетов</summary>
+        private void Read_TextWidgets_Options(ElementTextWidgets textWidgets)
+        {
+            PreviewView = false;
+
+            uCtrl_Text_Widgets_Opt.SettingsClear();
+            uCtrl_Text_Widgets_Opt.Visible = true;
+            if (SelectedModel.versionOS >= 2) uCtrl_Text_Widgets_Opt.UserFont = true;
+            uCtrl_Text_Widgets_Opt._TextWidgets = textWidgets;
+
+            if (textWidgets.Text == null) textWidgets.Text = new List<hmUI_widget_TEXT>();
+            List<hmUI_widget_TEXT> textWidgetsList = textWidgets.Text;
+
+            List<String> textList = TextWidgets_TextList(textWidgetsList);
+            List<bool> visibleList = TextWidgetsVisibleList(textWidgetsList);
+            uCtrl_Text_Widgets_Opt.UpdateTextList(textList, visibleList);
 
             PreviewView = true;
         }
@@ -4263,6 +4303,51 @@ namespace Watch_Face_Editor
             }
         }
 
+        private void uCtrl_Text_Widgets_Opt_ValueChanged(object sender, EventArgs eventArgs, int rowIndex)
+        {
+            if (!PreviewView) return;
+
+            ElementTextWidgets textWidgets = (ElementTextWidgets)uCtrl_Text_Widgets_Opt._TextWidgets;
+            if (textWidgets.Text == null) textWidgets.Text = new List<hmUI_widget_TEXT>();
+            List<hmUI_widget_TEXT> textList = textWidgets.Text;
+
+            if (rowIndex >= 0 && rowIndex < textList.Count)
+            {
+                hmUI_widget_TEXT text_widget = textList[rowIndex];
+
+                text_widget.x = (int)uCtrl_Text_Widgets_Opt.numericUpDown_X.Value;
+                text_widget.y = (int)uCtrl_Text_Widgets_Opt.numericUpDown_Y.Value;
+                text_widget.h = (int)uCtrl_Text_Widgets_Opt.numericUpDown_Height.Value;
+                text_widget.w = (int)uCtrl_Text_Widgets_Opt.numericUpDown_Width.Value;
+
+                text_widget.text_size = (int)uCtrl_Text_Widgets_Opt.numericUpDown_Size.Value;
+                text_widget.char_space = (int)uCtrl_Text_Widgets_Opt.numericUpDown_Spacing.Value;
+                text_widget.line_space = (int)uCtrl_Text_Widgets_Opt.numericUpDown_LineSpace.Value;
+                text_widget.alpha = (int)uCtrl_Text_Widgets_Opt.numericUpDown_Alpha.Value;
+
+                text_widget.color = ColorToString(uCtrl_Text_Widgets_Opt.GetColorText());
+
+                text_widget.align_h = uCtrl_Text_Widgets_Opt.GetHorizontalAlignment();
+                text_widget.align_v = uCtrl_Text_Widgets_Opt.GetVerticalAlignment();
+                text_widget.text_style = uCtrl_Text_Widgets_Opt.GetTextStyle();
+
+                text_widget.centreHorizontally = uCtrl_Text_Widgets_Opt.checkBox_CentreHorizontally.Checked;
+                text_widget.centreVertically = uCtrl_Text_Widgets_Opt.checkBox_CentreVertically.Checked;
+
+                text_widget.font = uCtrl_Text_Widgets_Opt.GetFont();
+
+                text_widget.use_text_circle = uCtrl_Text_Widgets_Opt.checkBox_use_text_circle.Checked;
+                text_widget.start_angle = (int)uCtrl_Text_Widgets_Opt.numericUpDown_start_angle.Value;
+                text_widget.end_angle = (int)uCtrl_Text_Widgets_Opt.numericUpDown_end_angle.Value;
+                text_widget.radius = (int)uCtrl_Text_Widgets_Opt.numericUpDown_radius.Value;
+                text_widget.mode = uCtrl_Text_Widgets_Opt.GetMode();
+
+                JSON_Modified = true;
+                PreviewImage();
+                FormText();
+            }
+        }
+
         private void uCtrl_ButtonOne_Opt_ValueChanged(object sender, EventArgs eventArgs)
         {
             if (!PreviewView) return;
@@ -4313,6 +4398,30 @@ namespace Watch_Face_Editor
             }
         }
 
+        private void uCtrl_Text_Widgets_Opt_TextStrChanged(string textStr, int rowIndex)
+        {
+            if (!PreviewView) return;
+
+            ElementTextWidgets textWidgets = (ElementTextWidgets)uCtrl_Text_Widgets_Opt._TextWidgets;
+            if (textWidgets.Text == null) textWidgets.Text = new List<hmUI_widget_TEXT>();
+            List<hmUI_widget_TEXT> textList = textWidgets.Text;
+
+            if (rowIndex >= 0 && rowIndex < textList.Count)
+            {
+                hmUI_widget_TEXT text_widget = textList[rowIndex];
+
+                text_widget.textStr = textStr;
+
+                List<String> text_list = TextWidgets_TextList(textList);
+                List<bool> visible_list = TextWidgetsVisibleList(textList);
+                uCtrl_Text_Widgets_Opt.UpdateTextList(text_list, visible_list, rowIndex);
+
+                JSON_Modified = true;
+                PreviewImage();
+                FormText();
+            }
+        }
+
         private void uCtrl_Button_Opt_VisibleButtonChanged(int rowIndex, bool visible)
         {
             if (!PreviewView) return;
@@ -4322,6 +4431,23 @@ namespace Watch_Face_Editor
             if (rowIndex >= 0 && rowIndex < buttonsList.Count)
             {
                 buttonsList[rowIndex].visible = visible;
+
+                JSON_Modified = true;
+                PreviewImage();
+                FormText();
+            }
+        }
+
+        private void uCtrl_Text_Widgets_Opt_VisibleTextChanged(int rowIndex, bool visible)
+        {
+            if (!PreviewView) return;
+            ElementTextWidgets textWidgets = (ElementTextWidgets)uCtrl_Text_Widgets_Opt._TextWidgets;
+            if (textWidgets.Text == null) textWidgets.Text = new List<hmUI_widget_TEXT>();
+            List<hmUI_widget_TEXT> textList = textWidgets.Text;
+
+            if (rowIndex >= 0 && rowIndex < textList.Count)
+            {
+                textList[rowIndex].visible = visible;
 
                 JSON_Modified = true;
                 PreviewImage();
@@ -4350,6 +4476,53 @@ namespace Watch_Face_Editor
                 uCtrl_Button_Opt.SetNormalImage(button.normal_src);
                 uCtrl_Button_Opt.SetColorNormal(StringToColor(button.normal_color));
                 uCtrl_Button_Opt.SetColorPress(StringToColor(button.press_color));
+            }
+            PreviewView = true;
+        }
+
+        /// <summary>Читаем настройки для отображения выбранного виджета текста кнопки</summary>
+        private void uCtrl_Text_Widgets_Opt_SelectTextWidget(int rowIndex)
+        {
+            PreviewView = false;
+            ElementTextWidgets textWidgets = (ElementTextWidgets)uCtrl_Text_Widgets_Opt._TextWidgets;
+            if (textWidgets.Text == null) textWidgets.Text = new List<hmUI_widget_TEXT>();
+            List<hmUI_widget_TEXT> textList = textWidgets.Text;
+
+            if (rowIndex >= 0 && rowIndex < textList.Count)
+            {
+                hmUI_widget_TEXT text_widget = textList[rowIndex];
+
+                //uCtrl_Text_Widgets_Opt.SettingsClear();
+                //uCtrl_Text_Widgets_Opt.Visible = true;
+
+                uCtrl_Text_Widgets_Opt.numericUpDown_X.Value = text_widget.x;
+                uCtrl_Text_Widgets_Opt.numericUpDown_Y.Value = text_widget.y;
+                uCtrl_Text_Widgets_Opt.numericUpDown_Width.Value = text_widget.w;
+                uCtrl_Text_Widgets_Opt.numericUpDown_Height.Value = text_widget.h;
+
+                uCtrl_Text_Widgets_Opt.SetTextStr(text_widget.textStr);
+
+                uCtrl_Text_Widgets_Opt.numericUpDown_Size.Value = text_widget.text_size;
+                uCtrl_Text_Widgets_Opt.numericUpDown_Spacing.Value = text_widget.char_space;
+                uCtrl_Text_Widgets_Opt.numericUpDown_LineSpace.Value = text_widget.line_space;
+                uCtrl_Text_Widgets_Opt.numericUpDown_Alpha.Value = text_widget.alpha;
+
+                uCtrl_Text_Widgets_Opt.SetColorText(StringToColor(text_widget.color));
+
+                uCtrl_Text_Widgets_Opt.SetHorizontalAlignment(text_widget.align_h);
+                uCtrl_Text_Widgets_Opt.SetVerticalAlignment(text_widget.align_v);
+                uCtrl_Text_Widgets_Opt.SetTextStyle(text_widget.text_style);
+
+                uCtrl_Text_Widgets_Opt.checkBox_CentreHorizontally.Checked = text_widget.centreHorizontally;
+                uCtrl_Text_Widgets_Opt.checkBox_CentreVertically.Checked = text_widget.centreVertically;
+
+                uCtrl_Text_Widgets_Opt.SetFont(text_widget.font);
+
+                uCtrl_Text_Widgets_Opt.checkBox_use_text_circle.Checked = text_widget.use_text_circle;
+                uCtrl_Text_Widgets_Opt.numericUpDown_radius.Value = text_widget.radius;
+                uCtrl_Text_Widgets_Opt.numericUpDown_start_angle.Value = text_widget.start_angle;
+                uCtrl_Text_Widgets_Opt.numericUpDown_end_angle.Value = text_widget.end_angle;
+                uCtrl_Text_Widgets_Opt.SetMode(text_widget.mode);
             }
             PreviewView = true;
         }
@@ -4850,6 +5023,59 @@ namespace Watch_Face_Editor
             FormText();
         }
 
+        private void uCtrl_Text_Widgets_Opt_AddText(int rowIndex)
+        {
+            ElementTextWidgets textWidgets = (ElementTextWidgets)uCtrl_Text_Widgets_Opt._TextWidgets;
+            if (textWidgets.Text == null) textWidgets.Text = new List<hmUI_widget_TEXT>();
+            List<hmUI_widget_TEXT> textList = textWidgets.Text;
+            hmUI_widget_TEXT text = new hmUI_widget_TEXT();
+
+            text.x = (int)uCtrl_Text_Widgets_Opt.numericUpDown_X.Value;
+            text.y = (int)uCtrl_Text_Widgets_Opt.numericUpDown_Y.Value;
+            text.h = (int)uCtrl_Text_Widgets_Opt.numericUpDown_Height.Value;
+            text.w = (int)uCtrl_Text_Widgets_Opt.numericUpDown_Width.Value;
+
+            text.textStr = uCtrl_Text_Widgets_Opt.GetTextStr();
+            text.text_size = (int)uCtrl_Text_Widgets_Opt.numericUpDown_Size.Value;
+            text.char_space = (int)uCtrl_Text_Widgets_Opt.numericUpDown_Spacing.Value;
+            text.line_space = (int)uCtrl_Text_Widgets_Opt.numericUpDown_LineSpace.Value;
+            text.alpha = (int)uCtrl_Text_Widgets_Opt.numericUpDown_Alpha.Value;
+
+            text.color = ColorToString(uCtrl_Text_Widgets_Opt.GetColorText());
+
+            text.align_h = uCtrl_Text_Widgets_Opt.GetHorizontalAlignment();
+            text.align_v = uCtrl_Text_Widgets_Opt.GetVerticalAlignment();
+            text.text_style = uCtrl_Text_Widgets_Opt.GetTextStyle();
+
+            text.centreHorizontally = uCtrl_Text_Widgets_Opt.checkBox_CentreHorizontally.Checked;
+            text.centreVertically = uCtrl_Text_Widgets_Opt.checkBox_CentreVertically.Checked;
+
+            text.font = uCtrl_Text_Widgets_Opt.GetFont();
+
+            text.use_text_circle = uCtrl_Text_Widgets_Opt.checkBox_use_text_circle.Checked;
+            text.start_angle = (int)uCtrl_Text_Widgets_Opt.numericUpDown_start_angle.Value;
+            text.end_angle = (int)uCtrl_Text_Widgets_Opt.numericUpDown_end_angle.Value;
+            text.radius = (int)uCtrl_Text_Widgets_Opt.numericUpDown_radius.Value;
+            text.mode = uCtrl_Text_Widgets_Opt.GetMode();
+
+            text.visible = true;
+
+            if (rowIndex < 0 || rowIndex >= textList.Count - 1)
+            {
+                textList.Add(text);
+                rowIndex = textList.Count - 1;
+            }
+            else textList.Insert(++rowIndex, text);
+
+            List<String> text_list = TextWidgets_TextList(textList);
+            List<bool> visible_list = TextWidgetsVisibleList(textList);
+            uCtrl_Text_Widgets_Opt.UpdateTextList(text_list, visible_list, rowIndex);
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
         private void uCtrl_Button_Opt_DelButton(int rowIndex)
         {
             if (Watch_Face.Buttons.Button == null) Watch_Face.Buttons.Button = new List<Button>();
@@ -4862,6 +5088,24 @@ namespace Watch_Face_Editor
             List<String> scriptLongPressList = ButtonLongPressScriptToString(buttonsList);
             List<bool> visibleList = ButtonVisibleList(buttonsList);
             uCtrl_Button_Opt.UpdateButtonsList(scriptClickList, scriptLongPressList, visibleList, rowIndex);
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_Text_Widgets_Opt_DelText(int rowIndex)
+        {
+            ElementTextWidgets textWidgets = (ElementTextWidgets)uCtrl_Text_Widgets_Opt._TextWidgets;
+            if (textWidgets.Text == null) textWidgets.Text = new List<hmUI_widget_TEXT>();
+            List<hmUI_widget_TEXT> textList = textWidgets.Text;
+
+            if (rowIndex >= 0 || rowIndex < textList.Count) textList.RemoveAt(rowIndex);
+            if (rowIndex >= textList.Count) rowIndex = textList.Count - 1;
+
+            List<String> text_list = TextWidgets_TextList(textList);
+            List<bool> visible_list = TextWidgetsVisibleList(textList);
+            uCtrl_Text_Widgets_Opt.UpdateTextList(text_list, visible_list, rowIndex);
 
             JSON_Modified = true;
             PreviewImage();
@@ -4897,6 +5141,28 @@ namespace Watch_Face_Editor
             foreach (Button button in buttonsList)
             {
                 visibleList.Add(button.visible);
+            }
+            return visibleList;
+        }
+
+        private List<String> TextWidgets_TextList(List<hmUI_widget_TEXT> textWidgetsList)
+        {
+            List<String> textList = new List<String>();
+            if (textWidgetsList == null || textWidgetsList.Count == 0) return textList;
+            foreach (hmUI_widget_TEXT textWidgets in textWidgetsList)
+            {
+                textList.Add(textWidgets.textStr);
+            }
+            return textList;
+        }
+
+        private List<bool> TextWidgetsVisibleList(List<hmUI_widget_TEXT> textWidgetsList)
+        {
+            List<bool> visibleList = new List<bool>();
+            if (textWidgetsList == null || textWidgetsList.Count == 0) return visibleList;
+            foreach (hmUI_widget_TEXT textWidgets in textWidgetsList)
+            {
+                visibleList.Add(textWidgets.visible);
             }
             return visibleList;
         }
@@ -5419,6 +5685,129 @@ namespace Watch_Face_Editor
 
             PreviewView = true;
             uCtrl_Text_SystemFont_Opt_ValueChanged(sender, eventArgs);
+        }
+
+        private void uCtrl_Text_Widgets_Opt_WidgetProperty_Copy(object sender, EventArgs eventArgs)
+        {
+            if (WidgetProperty.ContainsKey("hmUI_widget_TEXT")) WidgetProperty.Remove("hmUI_widget_TEXT");
+            hmUI_widget_TEXT systemFont = new hmUI_widget_TEXT();
+
+            systemFont.x = (int)uCtrl_Text_Widgets_Opt.numericUpDown_X.Value;
+            systemFont.y = (int)uCtrl_Text_Widgets_Opt.numericUpDown_Y.Value;
+            systemFont.h = (int)uCtrl_Text_Widgets_Opt.numericUpDown_Height.Value;
+            systemFont.w = (int)uCtrl_Text_Widgets_Opt.numericUpDown_Width.Value;
+
+            systemFont.textStr = uCtrl_Text_Widgets_Opt.GetTextStr();
+
+            systemFont.text_size = (int)uCtrl_Text_Widgets_Opt.numericUpDown_Size.Value;
+            systemFont.char_space = (int)uCtrl_Text_Widgets_Opt.numericUpDown_Spacing.Value;
+            systemFont.line_space = (int)uCtrl_Text_Widgets_Opt.numericUpDown_LineSpace.Value;
+            systemFont.alpha = (int)uCtrl_Text_Widgets_Opt.numericUpDown_Alpha.Value;
+
+            systemFont.color = ColorToString(uCtrl_Text_Widgets_Opt.GetColorText());
+
+            systemFont.align_h = uCtrl_Text_Widgets_Opt.GetHorizontalAlignment();
+            systemFont.align_v = uCtrl_Text_Widgets_Opt.GetVerticalAlignment();
+            systemFont.text_style = uCtrl_Text_Widgets_Opt.GetTextStyle();
+
+            systemFont.centreHorizontally = uCtrl_Text_Widgets_Opt.checkBox_CentreHorizontally.Checked;
+            systemFont.centreVertically = uCtrl_Text_Widgets_Opt.checkBox_CentreVertically.Checked;
+
+            systemFont.font = uCtrl_Text_Widgets_Opt.GetFont();
+
+            systemFont.use_text_circle = uCtrl_Text_Widgets_Opt.checkBox_use_text_circle.Checked;
+            systemFont.start_angle = (int)uCtrl_Text_Widgets_Opt.numericUpDown_start_angle.Value;
+            systemFont.end_angle = (int)uCtrl_Text_Widgets_Opt.numericUpDown_end_angle.Value;
+            systemFont.radius = (int)uCtrl_Text_Widgets_Opt.numericUpDown_radius.Value;
+            systemFont.mode = uCtrl_Text_Widgets_Opt.GetMode();
+
+            WidgetProperty.Add("hmUI_widget_TEXT", systemFont);
+            uCtrl_Text_Widgets_Opt.WidgetProperty = WidgetProperty;
+        }
+
+        private void uCtrl_Text_Widgets_Opt_WidgetProperty_Paste(object sender, EventArgs eventArgs, int rowIndex)
+        {
+            if (!WidgetProperty.ContainsKey("hmUI_widget_TEXT")) return;
+            Object obj = null;
+            WidgetProperty.TryGetValue("hmUI_widget_TEXT", out obj);
+            if (obj == null) return;
+            hmUI_widget_TEXT system_font = (hmUI_widget_TEXT)obj;
+
+            PreviewView = false;
+
+            ElementTextWidgets textWidgets = (ElementTextWidgets)uCtrl_Text_Widgets_Opt._TextWidgets;
+            if (textWidgets.Text == null) textWidgets.Text = new List<hmUI_widget_TEXT>();
+            List<hmUI_widget_TEXT> textList = textWidgets.Text;
+
+            if (rowIndex >= 0 && rowIndex < textList.Count)
+            {
+                hmUI_widget_TEXT text_widget = textList[rowIndex];
+
+                //uCtrl_Text_Widgets_Opt.SettingsClear();
+                //uCtrl_Text_Widgets_Opt.Visible = true;
+
+                uCtrl_Text_Widgets_Opt.numericUpDown_X.Value = text_widget.x;
+                uCtrl_Text_Widgets_Opt.numericUpDown_Y.Value = text_widget.y;
+                uCtrl_Text_Widgets_Opt.numericUpDown_Width.Value = text_widget.w;
+                uCtrl_Text_Widgets_Opt.numericUpDown_Height.Value = text_widget.h;
+
+                uCtrl_Text_Widgets_Opt.SetTextStr(text_widget.textStr);
+
+                uCtrl_Text_Widgets_Opt.numericUpDown_Size.Value = text_widget.text_size;
+                uCtrl_Text_Widgets_Opt.numericUpDown_Spacing.Value = text_widget.char_space;
+                uCtrl_Text_Widgets_Opt.numericUpDown_LineSpace.Value = text_widget.line_space;
+                uCtrl_Text_Widgets_Opt.numericUpDown_Alpha.Value = text_widget.alpha;
+
+                uCtrl_Text_Widgets_Opt.SetColorText(StringToColor(text_widget.color));
+
+                uCtrl_Text_Widgets_Opt.SetHorizontalAlignment(text_widget.align_h);
+                uCtrl_Text_Widgets_Opt.SetVerticalAlignment(text_widget.align_v);
+                uCtrl_Text_Widgets_Opt.SetTextStyle(text_widget.text_style);
+
+                uCtrl_Text_Widgets_Opt.checkBox_CentreHorizontally.Checked = text_widget.centreHorizontally;
+                uCtrl_Text_Widgets_Opt.checkBox_CentreVertically.Checked = text_widget.centreVertically;
+
+                uCtrl_Text_Widgets_Opt.SetFont(text_widget.font);
+
+                uCtrl_Text_Widgets_Opt.checkBox_use_text_circle.Checked = text_widget.use_text_circle;
+                uCtrl_Text_Widgets_Opt.numericUpDown_radius.Value = text_widget.radius;
+                uCtrl_Text_Widgets_Opt.numericUpDown_start_angle.Value = text_widget.start_angle;
+                uCtrl_Text_Widgets_Opt.numericUpDown_end_angle.Value = text_widget.end_angle;
+                uCtrl_Text_Widgets_Opt.SetMode(text_widget.mode);
+            }
+
+            uCtrl_Text_Widgets_Opt.numericUpDown_X.Value = system_font.x;
+            uCtrl_Text_Widgets_Opt.numericUpDown_Y.Value = system_font.y;
+            uCtrl_Text_Widgets_Opt.numericUpDown_Width.Value = system_font.w;
+            uCtrl_Text_Widgets_Opt.numericUpDown_Height.Value = system_font.h;
+
+            uCtrl_Text_Widgets_Opt.SetTextStr(system_font.textStr);
+
+            uCtrl_Text_Widgets_Opt.numericUpDown_Size.Value = system_font.text_size;
+            uCtrl_Text_Widgets_Opt.numericUpDown_Spacing.Value = system_font.char_space;
+            uCtrl_Text_Widgets_Opt.numericUpDown_LineSpace.Value = system_font.line_space;
+            uCtrl_Text_Widgets_Opt.numericUpDown_Alpha.Value = system_font.alpha;
+
+            uCtrl_Text_Widgets_Opt.SetColorText(StringToColor(system_font.color));
+
+            uCtrl_Text_Widgets_Opt.SetHorizontalAlignment(system_font.align_h);
+            uCtrl_Text_Widgets_Opt.SetVerticalAlignment(system_font.align_v);
+            uCtrl_Text_Widgets_Opt.SetTextStyle(system_font.text_style);
+
+            uCtrl_Text_Widgets_Opt.checkBox_CentreHorizontally.Checked = system_font.centreHorizontally;
+            uCtrl_Text_Widgets_Opt.checkBox_CentreVertically.Checked = system_font.centreVertically;
+
+            uCtrl_Text_Widgets_Opt.SetFont(system_font.font);
+
+            uCtrl_Text_Widgets_Opt.checkBox_use_text_circle.Checked = system_font.use_text_circle;
+            uCtrl_Text_Widgets_Opt.numericUpDown_radius.Value = system_font.radius;
+            uCtrl_Text_Widgets_Opt.numericUpDown_start_angle.Value = system_font.start_angle;
+            uCtrl_Text_Widgets_Opt.numericUpDown_end_angle.Value = system_font.end_angle;
+            uCtrl_Text_Widgets_Opt.SetMode(system_font.mode);
+
+            PreviewView = true;
+            uCtrl_Text_Widgets_Opt_ValueChanged(sender, eventArgs, rowIndex);
+            uCtrl_Text_Widgets_Opt_TextStrChanged(system_font.textStr, rowIndex);
         }
 
         private void uCtrl_Text_Circle_Opt_WidgetProperty_Copy(object sender, EventArgs eventArgs)

@@ -5282,12 +5282,36 @@ namespace Watch_Face_Editor
                     ElementHRV activityElementHRV = (ElementHRV)element;
                     if (!activityElementHRV.visible) return;
 
+                    img_level = activityElementHRV.Images;
+                    img_prorgess = activityElementHRV.Segments;
                     img_number = activityElementHRV.Number;
                     font_number = activityElementHRV.Number_Font;
+                    img_pointer = activityElementHRV.Pointer;
+                    circle_scale = activityElementHRV.Circle_Scale;
                     icon = activityElementHRV.Icon;
 
                     elementValue = WatchFacePreviewSet.Activity.HRV;
                     value_lenght = 3;
+                    goal = 110;
+                    progress = (float)elementValue / goal;
+
+                    if (img_level != null && img_level.image_length > 0)
+                    {
+                        imgCount = img_level.image_length;
+                        valueImgIndex = IMG_progress_index(elementValue, goal, imgCount, "ElementReadiness");
+                    }
+                    if (img_prorgess != null && img_prorgess.image_length > 0)
+                    {
+                        segmentCount = img_prorgess.image_length;
+                        valueSegmentIndex = IMG_progress_index(elementValue, goal, segmentCount, "ElementReadiness");
+                    }
+
+                    //img_number = activityElementHRV.Number;
+                    //font_number = activityElementHRV.Number_Font;
+                    //icon = activityElementHRV.Icon;
+
+                    //elementValue = WatchFacePreviewSet.Activity.HRV;
+                    //value_lenght = 3;
 
                     DrawActivity(gPanel, img_level, img_prorgess, img_number, font_number, text_rotation, text_circle, img_number_target, font_number_target,
                         text_rotation_target, text_circle_target, img_pointer, circle_scale, linear_scale, icon, elementValue, value_lenght, goal,
@@ -5342,6 +5366,86 @@ namespace Watch_Face_Editor
                     if (!activityElementSleep.visible) return;
 
                     DrawSleep(gPanel, activityElementSleep, BBorder, showCentrHend, link);
+                    break;
+                #endregion
+
+                #region ElementTextWidgets
+                case "ElementTextWidgets":
+                    ElementTextWidgets activityTextWidgets = (ElementTextWidgets)element;
+                    if (!activityTextWidgets.visible) return;
+
+                    if (activityTextWidgets.Text != null && activityTextWidgets.Text.Count > 0)
+                    {
+                        foreach (hmUI_widget_TEXT textWidget in activityTextWidgets.Text)
+                        {
+                            if (textWidget.visible)
+                            {
+                                int x = textWidget.x;
+                                int y = textWidget.y;
+                                int h = textWidget.h;
+                                int w = textWidget.w;
+
+                                string textStr = textWidget.textStr;
+
+                                int size = textWidget.text_size;
+                                int space_h = textWidget.char_space;
+                                int space_v = textWidget.line_space;
+
+                                Color color = StringToColor(textWidget.color);
+                                int alpha = textWidget.alpha;
+                                string align_h = textWidget.align_h;
+                                string align_v = textWidget.align_v;
+                                string text_style = textWidget.text_style;
+
+                                if (textWidget.centreHorizontally)
+                                {
+                                    x = (SelectedModel.background.w - w) / 2;
+                                    align_h = "CENTER_H";
+                                }
+                                if (textWidget.centreVertically)
+                                {
+                                    y = (SelectedModel.background.h - h) / 2;
+                                    align_v = "CENTER_V";
+                                }
+
+                                bool use_text_circle = textWidget.use_text_circle;
+                                int radius = textWidget.radius;
+                                int start_angle = textWidget.start_angle;
+                                int end_angle = textWidget.end_angle;
+                                int mode = textWidget.mode;
+
+                                if (textWidget.font != null && textWidget.font.Length > 3 && FontsList.ContainsKey(textWidget.font))
+                                {
+                                    string font_fileName = FontsList[textWidget.font];
+                                    //string font_fileName = ProjectDir + @"\assets\fonts\" + textWidget.font;
+                                    if (SelectedModel.versionOS >= 2 && File.Exists(font_fileName))
+                                    {
+                                        Font drawFont = null;
+                                        using (System.Drawing.Text.PrivateFontCollection fonts = new System.Drawing.Text.PrivateFontCollection())
+                                        {
+                                            fonts.AddFontFile(font_fileName);
+                                            drawFont = new Font(fonts.Families[0], size, GraphicsUnit.World);
+                                        }
+
+                                        Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, textStr,
+                                                        align_h, align_v, text_style, BBorder,
+                                                        showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                                    }
+                                    else
+                                    {
+                                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, textStr, align_h, align_v, text_style, BBorder,
+                                                                showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                                    }
+
+                                }
+                                else
+                                {
+                                    Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, textStr, align_h, align_v, text_style, BBorder,
+                                                                showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                                }
+                            }
+                        }
+                    }
                     break;
                 #endregion
 
@@ -7105,20 +7209,13 @@ namespace Watch_Face_Editor
                     string align_v = number_font.align_v;
                     string text_style = number_font.text_style;
                     string valueStr = ((int)temperature_value).ToString();
+                    if (SelectedModel.name.Contains("Amazfit Balance 2") || SelectedModel.name.Contains("T-Rex 3 Pro "))
+                        valueStr = Math.Round(temperature_value, 1).ToString();
 
-                    //string decimalSeparator = Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator;
-                    //if (valueStr.IndexOf(decimalSeparator) < 0) valueStr += decimalSeparator;
-                    //while (valueStr.IndexOf(decimalSeparator) > valueStr.Length - 2/* - 1*/)
-                    //{
-                    //    valueStr += "0";
-                    //}
                     string unitStr = unit;
                     if (number_font.padding) valueStr = valueStr.PadLeft(3, '0');
-                    //if (number_font.unit_type > 0)
-                    //{
-                    //    if (number_font.unit_type == 2) unitStr = unitStr.ToUpper();
-                    //    valueStr += unitStr;
-                    //}
+                    if (SelectedModel.name.Contains("Amazfit Balance 2") || SelectedModel.name.Contains("T-Rex 3 Pro "))
+                        valueStr = valueStr.PadLeft(5, '0');
                     if (number_font.unit_type > 0) valueStr += unitStr;
 
 

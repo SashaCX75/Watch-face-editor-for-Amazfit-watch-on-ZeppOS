@@ -318,7 +318,7 @@ namespace ControlLibrary
             this.comboBox_scaleCircle_color.FormattingEnabled = true;
             resources.ApplyResources(this.comboBox_scaleCircle_color, "comboBox_scaleCircle_color");
             this.comboBox_scaleCircle_color.Name = "comboBox_scaleCircle_color";
-            this.comboBox_scaleCircle_color.Click += new System.EventHandler(this.comboBox_scaleLinear_color_Click);
+            this.comboBox_scaleCircle_color.Click += new System.EventHandler(this.comboBox_scaleCircle_color_Click);
             // 
             // comboBox_scaleCircle_lineCap
             // 

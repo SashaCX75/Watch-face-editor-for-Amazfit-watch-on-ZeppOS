@@ -225,7 +225,6 @@ namespace Watch_Face_Editor
 
         private void ScaleElements(object elements, float scale)
         {
-            string www = elements.GetType().Name;
             switch (elements.GetType().Name)
             {
                 case "ElementDigitalTime":
@@ -720,6 +719,14 @@ namespace Watch_Face_Editor
                     Scale_TEXT(elementSleep.WakeUpCount, scale);
                     Scale_TEXT(elementSleep.Score, scale);
                     Scale_IMG(elementSleep.Icon, scale);
+                    break;
+                case "ElementTextWidgets":
+                    ElementTextWidgets textWidgets = (ElementTextWidgets)elements;
+                    for (int index = 0; index < textWidgets.Text.Count; index++)
+                    {
+                        hmUI_widget_TEXT text = textWidgets.Text[index];
+                        Scale_TEXT(text, scale);
+                    }
                     break;
             }
         }

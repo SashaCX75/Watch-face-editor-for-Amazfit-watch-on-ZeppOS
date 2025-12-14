@@ -15325,6 +15325,18 @@ namespace Watch_Face_Editor
                     ElementHRV HRV = (ElementHRV)element;
 
                     if (!HRV.visible) return;
+                    if (HRV.Images != null && HRV.Images.visible)
+                    {
+                        imagesPosition = HRV.Images.position;
+                        hmUI_widget_IMG_LEVEL img_images = HRV.Images;
+                        imagesOptions = IMG_IMAGES_Options(img_images, "HRV", show_level);
+                    }
+                    if (HRV.Segments != null && HRV.Segments.visible)
+                    {
+                        segmentsPosition = HRV.Segments.position;
+                        hmUI_widget_IMG_PROGRESS img_progress = HRV.Segments;
+                        segmentsOptions = IMG_PROGRESS_Options(img_progress, "HRV", show_level);
+                    }
                     if (HRV.Number != null && HRV.Number.visible)
                     {
                         numberPosition = HRV.Number.position;
@@ -15340,6 +15352,22 @@ namespace Watch_Face_Editor
                         numberFontOptions = TEXT_FONT_Options(text, "HRV", show_level);
                     }
 
+                    if (HRV.Pointer != null && HRV.Pointer.visible)
+                    {
+                        pointerPosition = HRV.Pointer.position;
+                        hmUI_widget_IMG_POINTER img_pointer = HRV.Pointer;
+                        pointerOptions = IMG_POINTER_Options(img_pointer, "HRV", show_level);
+                    }
+
+                    if (HRV.Circle_Scale != null && HRV.Circle_Scale.visible)
+                    {
+                        circleScalePosition = HRV.Circle_Scale.position;
+                        circle_scale = HRV.Circle_Scale;
+
+                        circleScaleProgressOptions = Circle_Scale_Progress_Options(circle_scale, false, show_level, "HRV", 0, true);
+                        circleScaleProgressMirrorOptions = Circle_Scale_Progress_Options(circle_scale, true, show_level, "HRV", 0, true);
+                    }
+
                     if (HRV.Icon != null && HRV.Icon.visible)
                     {
                         iconPosition = HRV.Icon.position;
@@ -15349,6 +15377,29 @@ namespace Watch_Face_Editor
 
                     for (int index = 1; index <= 10; index++)
                     {
+                        // Images
+                        if (index == imagesPosition && imagesOptions.Length > 5)
+                        {
+                            variables += TabInString(4) + "let " + optionNameStart +
+                                "hrv_image_progress_img_level = ''" + Environment.NewLine;
+                            items += Environment.NewLine + TabInString(6) +
+                                optionNameStart + "hrv_image_progress_img_level = hmUI.createWidget(hmUI.widget.IMG_LEVEL, {" +
+                                    imagesOptions + TabInString(6) + "});" + Environment.NewLine;
+
+                            if (HRV.Images.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                    "hrv_image_progress_img_level.setAlpha(" + HRV.Images.alpha.ToString() + ");" + Environment.NewLine;
+                        }
+
+                        // Segments
+                        if (index == segmentsPosition && segmentsOptions.Length > 5)
+                        {
+                            variables += TabInString(4) + "let " + optionNameStart +
+                                "hrv_image_progress_img_progress = ''" + Environment.NewLine;
+                            items += Environment.NewLine + TabInString(6) +
+                                optionNameStart + "hrv_image_progress_img_progress = hmUI.createWidget(hmUI.widget.IMG_PROGRESS, {" +
+                                    segmentsOptions + TabInString(6) + "});" + Environment.NewLine;
+                        }
+
                         // Number
                         if (index == numberPosition && numberOptions.Length > 5)
                         {
@@ -15401,6 +15452,41 @@ namespace Watch_Face_Editor
                             items += Environment.NewLine + TabInString(6) +
                                 optionNameStart + "hrv_current_text_font = hmUI.createWidget(hmUI.widget.TEXT_FONT, {" +
                                     numberFontOptions + TabInString(6) + "});" + Environment.NewLine;
+                        }
+
+                        // Pointer
+                        if (index == pointerPosition && pointerOptions.Length > 5)
+                        {
+                            variables += TabInString(4) + "let " + optionNameStart +
+                                "hrv_pointer_progress_img_pointer = ''" + Environment.NewLine;
+                            items += Environment.NewLine + TabInString(6) +
+                                optionNameStart + "hrv_pointer_progress_img_pointer = hmUI.createWidget(hmUI.widget.IMG_POINTER, {" +
+                                    pointerOptions + TabInString(6) + "});" + Environment.NewLine;
+                        }
+
+                        // Circle_Scale
+                        if (index == circleScalePosition && circle_scale != null && circleScaleProgressOptions.Length > 5)
+                        {
+                            variables += TabInString(4) + "let " + optionNameStart + "hrv_circle_scale = ''" + Environment.NewLine;
+
+                            items += Environment.NewLine + TabInString(6) +
+                            optionNameStart + "hrv_circle_scale = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
+                                circleScaleProgressOptions + TabInString(6) + "});" + Environment.NewLine;
+
+                            if (HRV.Circle_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                    "hrv_circle_scale.setAlpha(" + HRV.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
+
+                            if (circle_scale.mirror)
+                            {
+                                variables += TabInString(4) + "let " + optionNameStart + "hrv_circle_scale_mirror = ''" + Environment.NewLine;
+
+                                items += Environment.NewLine + TabInString(6) +
+                                    optionNameStart + "hrv_circle_scale_mirror = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
+                                        circleScaleProgressMirrorOptions + TabInString(6) + "});" + Environment.NewLine;
+
+                                if (HRV.Circle_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                        "hrv_circle_scale_mirror.setAlpha(" + HRV.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
+                            }
                         }
 
                         // Icon
@@ -15612,6 +15698,13 @@ namespace Watch_Face_Editor
                 case "ElementSleep":
                     ElementSleep Sleep = (ElementSleep)element;
                     AddSleep(Sleep, show_level, optionNameStart, ref variables, ref items, ref pause_call, ref sleep_function, ref fonts_cache);
+                    break;
+                #endregion
+
+                #region ElementTextWidgets
+                case "ElementTextWidgets":
+                    ElementTextWidgets TextWidgets = (ElementTextWidgets)element;
+                    AddTextWidgets(TextWidgets, show_level, optionNameStart, ref variables, ref items, ref fonts_cache);
                     break;
                 #endregion
 
@@ -18370,6 +18463,46 @@ namespace Watch_Face_Editor
                 }
 
 
+            }
+        }
+
+        private void AddTextWidgets(ElementTextWidgets elementTextWidgets, string show_level, string optionNameStart, ref string variables,
+            ref string items, ref string fonts_cache)
+        {
+            if (!elementTextWidgets.visible) return;
+            if (elementTextWidgets.Text == null || elementTextWidgets.Text.Count == 0) return;
+
+            int number = 1;
+            foreach (hmUI_widget_TEXT textWidget in elementTextWidgets.Text)
+            {
+                if (textWidget != null && textWidget.visible)
+                {
+                    string optionsTextWidget = TEXT_Options(textWidget, show_level);
+
+                    if (optionsTextWidget.Length > 5)
+                    {
+                        string name = optionNameStart + "widget_text_" + (number).ToString();
+                        if (SelectedModel.versionOS >= 2 && textWidget.font != null && textWidget.font.Length > 3)
+                        {
+                            string cacheName = "// FontName: " + textWidget.font + "; FontSize: " + textWidget.text_size.ToString();
+                            if (fonts_cache.IndexOf(cacheName) < 0)
+                            {
+                                string fontCacheOptions = TEXT_Cache_Options(textWidget, false);
+                                if (fontCacheOptions.Length > 5)
+                                {
+                                    fonts_cache += Environment.NewLine + TabInString(6) + cacheName + Environment.NewLine;
+                                    fonts_cache += TabInString(6) + "hmUI.createWidget(hmUI.widget.TEXT, {" + fontCacheOptions +
+                                        TabInString(6) + "});" + Environment.NewLine;
+                                }
+                            }
+                        }
+
+                        variables += TabInString(4) + "let " + name + " = ''" + Environment.NewLine;
+                        items += Environment.NewLine + TabInString(6) + name +
+                            " = hmUI.createWidget(hmUI.widget.TEXT, {" + optionsTextWidget + TabInString(6) + "});" + Environment.NewLine;
+                    }
+                }
+                number++;
             }
         }
 
@@ -24215,6 +24348,8 @@ namespace Watch_Face_Editor
 #if DEBUG
             options += TabInString(7 + tabOffset) + "text: 'Test String'," + Environment.NewLine;
 #endif
+
+            if (text.textStr.Length > 0) options += TabInString(7 + tabOffset) + "text: '" + text.textStr + "'," + Environment.NewLine;
 
             if (show_level.Length > 0)
             {
@@ -31479,6 +31614,37 @@ namespace Watch_Face_Editor
                             }
                         }
 
+                        if (imgLevel.type == "HRV")
+                        {
+                            ElementHRV hrv = (ElementHRV)elementsList.Find(e => e.GetType().Name == "ElementHRV");
+                            if (hrv == null)
+                            {
+                                elementsList.Add(new ElementHRV());
+                                hrv = (ElementHRV)elementsList.Find(e => e.GetType().Name == "ElementHRV");
+                            }
+                            if (hrv != null)
+                            {
+                                int offset = 1;
+                                //if (steps.Images != null) offset++;
+                                if (hrv.Segments != null) offset++;
+                                if (hrv.Number != null) offset++;
+                                if (hrv.Number_Font != null) offset++;
+                                if (hrv.Pointer != null) offset++;
+                                if (hrv.Circle_Scale != null) offset++;
+                                if (hrv.Icon != null) offset++;
+
+                                hrv.Images = new hmUI_widget_IMG_LEVEL();
+                                hrv.Images.img_First = imgLevel.img_First;
+                                hrv.Images.image_length = imgLevel.image_length;
+                                hrv.Images.X = imgLevel.X;
+                                hrv.Images.Y = imgLevel.Y;
+                                hrv.Images.shortcut = imgLevel.shortcut;
+                                hrv.Images.alpha = imgLevel.alpha;
+                                hrv.Images.visible = true;
+                                hrv.Images.position = offset;
+                            }
+                        }
+
                         if (imgLevel.type == "BIO_CHARGE")
                         {
                             ElementBioCharge bio_charge = (ElementBioCharge)elementsList.Find(e => e.GetType().Name == "ElementBioCharge");
@@ -32155,6 +32321,35 @@ namespace Watch_Face_Editor
                                 readiness.Segments.Y = imgProgress.Y;
                                 readiness.Segments.visible = true;
                                 readiness.Segments.position = offset;
+                            }
+                        }
+
+                        if (imgProgress.type == "HRV")
+                        {
+                            ElementHRV hrv = (ElementHRV)elementsList.Find(e => e.GetType().Name == "ElementHRV");
+                            if (hrv == null)
+                            {
+                                elementsList.Add(new ElementHRV());
+                                hrv = (ElementHRV)elementsList.Find(e => e.GetType().Name == "ElementHRV");
+                            }
+                            if (hrv != null)
+                            {
+                                int offset = 1;
+                                if (hrv.Images != null) offset++;
+                                //if (steps.Segments != null) offset++;
+                                if (hrv.Number != null) offset++;
+                                if (hrv.Number_Font != null) offset++;
+                                if (hrv.Pointer != null) offset++;
+                                if (hrv.Circle_Scale != null) offset++;
+                                if (hrv.Icon != null) offset++;
+
+                                hrv.Segments = new hmUI_widget_IMG_PROGRESS();
+                                hrv.Segments.img_First = imgProgress.img_First;
+                                hrv.Segments.image_length = imgProgress.image_length;
+                                hrv.Segments.X = imgProgress.X;
+                                hrv.Segments.Y = imgProgress.Y;
+                                hrv.Segments.visible = true;
+                                hrv.Segments.position = offset;
                             }
                         }
 
@@ -37445,6 +37640,44 @@ namespace Watch_Face_Editor
                             }
                         }
 
+                        if (imgPointer.type == "HRV")
+                        {
+                            ElementHRV hrv = (ElementHRV)elementsList.Find(e => e.GetType().Name == "ElementHRV");
+                            if (hrv == null)
+                            {
+                                elementsList.Add(new ElementHRV());
+                                hrv = (ElementHRV)elementsList.Find(e => e.GetType().Name == "ElementHRV");
+                            }
+                            if (hrv != null)
+                            {
+                                int offset = 1;
+                                if (hrv.Images != null) offset++;
+                                if (hrv.Segments != null) offset++;
+                                if (hrv.Number != null) offset++;
+                                if (hrv.Number_Font != null) offset++;
+                                //if (steps.Pointer != null) offset++;
+                                if (hrv.Circle_Scale != null) offset++;
+                                if (hrv.Icon != null) offset++;
+
+                                hrv.Pointer = new hmUI_widget_IMG_POINTER();
+                                hrv.Pointer.src = imgPointer.src;
+                                hrv.Pointer.center_x = imgPointer.center_x;
+                                hrv.Pointer.center_y = imgPointer.center_y;
+                                hrv.Pointer.pos_x = imgPointer.pos_x;
+                                hrv.Pointer.pos_y = imgPointer.pos_y;
+                                hrv.Pointer.start_angle = imgPointer.start_angle;
+                                hrv.Pointer.end_angle = imgPointer.end_angle;
+                                hrv.Pointer.cover_path = imgPointer.cover_path;
+                                hrv.Pointer.cover_x = imgPointer.cover_x;
+                                hrv.Pointer.cover_y = imgPointer.cover_y;
+                                hrv.Pointer.scale = imgPointer.scale;
+                                hrv.Pointer.scale_x = imgPointer.scale_x;
+                                hrv.Pointer.scale_y = imgPointer.scale_y;
+                                hrv.Pointer.visible = true;
+                                hrv.Pointer.position = offset;
+                            }
+                        }
+
                         if (imgPointer.type == "BIO_CHARGE")
                         {
                             ElementBioCharge bio_charge = (ElementBioCharge)elementsList.Find(e => e.GetType().Name == "ElementBioCharge");
@@ -38486,6 +38719,42 @@ namespace Watch_Face_Editor
                                 readiness.Circle_Scale.alpha = arcProgress.alpha;
                                 readiness.Circle_Scale.visible = true;
                                 readiness.Circle_Scale.position = offset;
+                            }
+                        }
+
+                        if (arcProgress.type == "HRV")
+                        {
+                            ElementHRV hrv = (ElementHRV)elementsList.Find(e => e.GetType().Name == "ElementHRV");
+                            if (hrv == null)
+                            {
+                                elementsList.Add(new ElementHRV());
+                                hrv = (ElementHRV)elementsList.Find(e => e.GetType().Name == "ElementHRV");
+                            }
+                            if (hrv != null)
+                            {
+                                int offset = 1;
+                                if (hrv.Images != null) offset++;
+                                if (hrv.Segments != null) offset++;
+                                if (hrv.Number != null) offset++;
+                                if (hrv.Number_Font != null) offset++;
+                                if (hrv.Pointer != null) offset++;
+                                //if (steps.Circle_Scale != null) offset++;
+                                if (hrv.Icon != null) offset++;
+
+                                hrv.Circle_Scale = new Circle_Scale();
+                                hrv.Circle_Scale.center_x = arcProgress.center_x;
+                                hrv.Circle_Scale.center_y = arcProgress.center_y;
+                                hrv.Circle_Scale.start_angle = arcProgress.start_angle;
+                                hrv.Circle_Scale.end_angle = arcProgress.end_angle;
+                                hrv.Circle_Scale.color = arcProgress.color;
+                                hrv.Circle_Scale.radius = arcProgress.radius;
+                                hrv.Circle_Scale.line_width = arcProgress.line_width;
+                                hrv.Circle_Scale.line_cap = arcProgress.line_cap;
+                                hrv.Circle_Scale.mirror = arcProgress.mirror;
+                                hrv.Circle_Scale.inversion = arcProgress.inversion;
+                                hrv.Circle_Scale.alpha = arcProgress.alpha;
+                                hrv.Circle_Scale.visible = true;
+                                hrv.Circle_Scale.position = offset;
                             }
                         }
 

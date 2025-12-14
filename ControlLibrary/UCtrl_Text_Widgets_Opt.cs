@@ -3,43 +3,28 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-//using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace ControlLibrary
 {
-    public partial class UCtrl_Text_SystemFont_Opt : UserControl
+    public partial class UCtrl_Text_Widgets_Opt : UserControl
     {
         private bool setValue; // режим задания параметров
-        public Object _ElementWithSystemFont;
-        //public string fonts_path; // папка со шрифтами
-        public Dictionary<string, Object> WidgetProperty = new Dictionary<string, Object>();
+        public Object _TextWidgets; // Общий виджет
+        //public Object _Text;  // конкретный выбранный виджет
 
         private bool Font_mode;
-        //private bool Number_mode = true;
-        private bool Unit_mode = true;
-        private bool Zero_mode = true;
-        private bool Year_mode = false;
-        private bool DayMonthYear_mode = false;
-        private bool AmPm_mode = false;
-        private bool UnitStr_mode = false;
-        private bool DOW_mode = false;
-        private bool Month_mode = false;
-        private bool Alignments_enabled = true;
-        private bool Use_2_color = false;
-        private bool Alpha_mode = false;
-        private bool SityName_mode = false;
+        public Dictionary<string, Object> WidgetProperty = new Dictionary<string, Object>();
 
-        public UCtrl_Text_SystemFont_Opt()
+        public UCtrl_Text_Widgets_Opt()
         {
             InitializeComponent();
+
             setValue = true;
             comboBox_alignmentHorizontal.SelectedIndex = 0;
             comboBox_alignmentVertical.SelectedIndex = 0;
@@ -48,9 +33,11 @@ namespace ControlLibrary
             comboBox_fonts.SelectedIndex = 0;
             UserFont = false;
             setValue = false;
+
+            dataGridView_buttons.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
 
-        public void AddFonts(Dictionary<string,string> fontsList)
+        public void AddFonts(Dictionary<string, string> fontsList)
         {
             comboBox_fonts.Items.Clear();
             comboBox_fonts.Items.Add(Properties.Strings.SystemFont);
@@ -68,7 +55,7 @@ namespace ControlLibrary
                         string fontName = addFont.Name;
                         string item = fontNames.Key;
                         if (fontName.Length > 3) item += " (" + fontName + ")";
-                        comboBox_fonts.Items.Add(item); 
+                        comboBox_fonts.Items.Add(item);
                     }
 
                 }
@@ -80,6 +67,16 @@ namespace ControlLibrary
             setValue = true;
             comboBox_fonts.SelectedIndex = 0;
             setValue = false;
+        }
+
+        public void SetTextStr(string text)
+        {
+            textBox_TextStr.Text = text;
+        }
+
+        public string GetTextStr()
+        {
+            return textBox_TextStr.Text;
         }
 
         public void SetHorizontalAlignment(string alignment)
@@ -128,6 +125,7 @@ namespace ControlLibrary
             }
             return result;
         }
+
         /// <summary>Возвращает SelectedIndex выпадающего списка</summary>
         public int GetSelectedIndexHorizontalAlignment()
         {
@@ -244,88 +242,6 @@ namespace ControlLibrary
             return comboBox_textStyle.SelectedIndex;
         }
 
-        /// <summary>Устанавливаем тип отображения единиц измерения</summary>
-        public void SetUnitType(int unit_type)
-        {
-            switch (unit_type)
-            {
-                case 0:
-                    checkBox_unit.CheckState= CheckState.Unchecked;
-                    break;
-                case 1:
-                    checkBox_unit.CheckState = CheckState.Checked;
-                    break;
-                case 2:
-                    checkBox_unit.CheckState = CheckState.Indeterminate;
-                    break;
-
-                default:
-                    checkBox_unit.CheckState = CheckState.Indeterminate;
-                    break;
-            }
-        }
-
-        /// <summary>Возвращает тип отображения единиц измерения</summary>
-        public int GetUnitType()
-        {
-            int unit_type = 0;
-            switch (checkBox_unit.CheckState)
-            {
-                case CheckState.Unchecked:
-                    unit_type = 0; 
-                    break;
-                case CheckState.Checked:
-                    unit_type = 1;
-                    break;
-                case CheckState.Indeterminate:
-                    unit_type = 2;
-                    break;
-            }
-            return unit_type;
-        }
-
-        /// <summary>Устанавливаем место отображения am/pm</summary>
-        public void SetUnitEnd(int unit_end)
-        {
-            //checkBox_inEnd.Checked = unit_end;
-            switch (unit_end)
-            {
-                case 0:
-                    checkBox_inEnd.CheckState = CheckState.Unchecked;
-                    break;
-                case 1:
-                    checkBox_inEnd.CheckState = CheckState.Checked;
-                    break;
-                case 2:
-                    checkBox_inEnd.CheckState = CheckState.Indeterminate;
-                    break;
-
-                default:
-                    checkBox_inEnd.CheckState = CheckState.Unchecked;
-                    break;
-            }
-        }
-
-        /// <summary>Возвращает место отображения am/pm</summary>
-        public int GetUnitEnd()
-        {
-            int unit_end = 0;
-            switch (checkBox_inEnd.CheckState)
-            {
-                case CheckState.Unchecked:
-                    unit_end = 0;
-                    break;
-                case CheckState.Checked:
-                    unit_end = 1;
-                    break;
-                case CheckState.Indeterminate:
-                    unit_end = 2;
-                    break;
-            }
-            return unit_end;
-            //return checkBox_inEnd.Checked;
-        }
-
         /// <summary>Возвращает имя файла выбраного шрифта</summary>
         public string GetFont()
         {
@@ -355,6 +271,36 @@ namespace ControlLibrary
             }
         }
 
+        [Browsable(true)]
+        [Description("Происходит при изменении выбранного текста")]
+        public event ValueChangedHandler ValueChanged;
+        public delegate void ValueChangedHandler(object sender, EventArgs eventArgs, int rowIndex);
+
+        [Browsable(true)]
+        [Description("Добавление виджета текста")]
+        public event AddTextHandler AddText;
+        public delegate void AddTextHandler(int rowIndex);
+
+        [Browsable(true)]
+        [Description("Удаление виджета текста")]
+        public event DelTextHandler DelText;
+        public delegate void DelTextHandler(int rowIndex);
+
+        [Browsable(true)]
+        [Description("Выбрали другой виджета текста")]
+        public event SelectTextWidgetHandler SelectTextWidget;
+        public delegate void SelectTextWidgetHandler(int rowIndex);
+
+        [Browsable(true)]
+        [Description("Происходит при изменении надписи в виджете текста")]
+        public event TextChangedHandler TextStrChanged;
+        public delegate void TextChangedHandler(string textStr, int rowIndex);
+
+        [Browsable(true)]
+        [Description("Происходит при изменении видимости выбранного виджета текста")]
+        public event VisibleTextChangedHandler VisibleTextChanged;
+        public delegate void VisibleTextChangedHandler(int rowIndex, bool visible);
+
         /// <summary>Отображение возможности выбора пользовательского шрифта</summary>
         [Description("Отображение возможности выбора пользовательского шрифта")]
         public virtual bool UserFont
@@ -372,244 +318,6 @@ namespace ControlLibrary
                 button_AddFont.Enabled = Font_mode;
             }
         }
-
-        /// <summary>Отображение настроек единиц измерения</summary>
-        [Description("Отображение настроек единиц измерения")]
-        public virtual bool UnitMode
-        {
-            get
-            {
-                return Unit_mode;
-            }
-            set
-            {
-                Unit_mode = value;
-                checkBox_unit.Enabled = Unit_mode;
-            }
-        }
-
-        /// <summary>Отображение настроек ведущих нулей</summary>
-        [Description("Отображение настроек ведущих нулей")]
-        public virtual bool ZeroMode
-        {
-            get
-            {
-                return Zero_mode;
-            }
-            set
-            {
-                Zero_mode = value;
-                checkBox_addZero.Enabled = Zero_mode;
-            }
-        }
-
-        /// <summary>Режим отображения года</summary>
-        [Description("Режим отображения года")]
-        public virtual bool Year
-        {
-            get
-            {
-                return Year_mode;
-            }
-            set
-            {
-                Year_mode = value;
-                if (Year_mode)
-                {
-                    checkBox_addZero.Text = Properties.Strings.UCtrl_Text_Opt_Year_true;
-                }
-                else
-                {
-                    checkBox_addZero.Text = Properties.Strings.UCtrl_Text_Opt_Year_false;
-                }
-            }
-        }
-
-        /// <summary>Режим отображения Am/Pm</summary>
-        [Description("Режим отображения Am/Pm")]
-        public virtual bool AmPm
-        {
-            get
-            {
-                return AmPm_mode;
-            }
-            set
-            {
-                AmPm_mode = value;
-                if (AmPm_mode)
-                {
-                    checkBox_unit.Text = Properties.Strings.UCtrl_Text_Opt_AmPm_true;
-                    checkBox_inEnd.Visible = true;
-                }
-                else
-                {
-                    if (SityName_mode) checkBox_unit.Text = Properties.Strings.UCtrl_Text_Opt_SityName_true;
-                    else if (DayMonthYear_mode) checkBox_unit.Text = Properties.Strings.UCtrl_Text_Opt_Year_true;
-                    else checkBox_unit.Text = Properties.Strings.UCtrl_Text_Opt_AmPm_false;
-                    checkBox_inEnd.Visible = false;
-                }
-            }
-        }
-
-        /// <summary>Режим доступности прозрачности</summary>
-        [Description("Режим доступности прозрачности")]
-        public virtual bool Alpha
-        {
-            get
-            {
-                return Alpha_mode;
-            }
-            set
-            {
-                Alpha_mode = value;
-                label_alpha.Enabled = Alpha_mode;
-                numericUpDown_Alpha.Enabled = Alpha_mode;
-            }
-        }
-
-        /// <summary>Режим отображения для дня/месяца/года</summary>
-        [Description("Режим отображения для дня/месяца/года")]
-        public virtual bool DayMonthYear
-        {
-            get
-            {
-                return DayMonthYear_mode;
-            }
-            set
-            {
-                DayMonthYear_mode = value;
-                if (AmPm_mode)
-                {
-                    checkBox_unit.Text = Properties.Strings.UCtrl_Text_Opt_AmPm_true;
-                    checkBox_inEnd.Visible = true;
-                }
-                else
-                {
-                    if (SityName_mode) checkBox_unit.Text = Properties.Strings.UCtrl_Text_Opt_SityName_true;
-                    else if (DayMonthYear_mode) checkBox_unit.Text = Properties.Strings.UCtrl_Text_Opt_Year_true;
-                    else checkBox_unit.Text = Properties.Strings.UCtrl_Text_Opt_AmPm_false;
-                    checkBox_inEnd.Visible = false;
-                }
-            }
-        }
-
-        /// <summary>Режим отображения названия города</summary>
-        [Description("Режим отображения названия города")]
-        public virtual bool SityName
-        {
-            get
-            {
-                return SityName_mode;
-            }
-            set
-            {
-                SityName_mode = value;
-                if (AmPm_mode)
-                {
-                    checkBox_unit.Text = Properties.Strings.UCtrl_Text_Opt_AmPm_true;
-                    checkBox_inEnd.Visible = true;
-                }
-                else
-                {
-                    if (SityName_mode) checkBox_unit.Text = Properties.Strings.UCtrl_Text_Opt_SityName_true;
-                    else if(DayMonthYear_mode) checkBox_unit.Text = Properties.Strings.UCtrl_Text_Opt_Year_true;
-                    else checkBox_unit.Text = Properties.Strings.UCtrl_Text_Opt_AmPm_false;
-                    checkBox_inEnd.Visible = false;
-                }
-            }
-        }
-
-        /// <summary>Режим отображения строки для единиц измерения</summary>
-        [Description("Режим отображения строки для единиц измерения")]
-        public virtual bool UnitStrMode
-        {
-            get
-            {
-                return UnitStr_mode;
-            }
-            set
-            {
-                UnitStr_mode = value;
-                label_unit_string.Visible = UnitStr_mode;
-                textBox_unit_string.Visible = UnitStr_mode;
-            }
-        }
-
-        /// <summary>Режим отображения названий дней недели</summary>
-        [Description("Режим отображения названий дней недели")]
-        public virtual bool DOWMode
-        {
-            get
-            {
-                return DOW_mode;
-            }
-            set
-            {
-                DOW_mode = value;
-                label_DOW.Visible = DOW_mode;
-                bool unitVisible = DOW_mode || Month_mode;
-                textBox_DOW.Visible = unitVisible;
-                if (DOW_mode) toolTip.SetToolTip(textBox_DOW, Properties.Strings.Hint_DOW);
-            }
-        }
-
-        /// <summary>Режим отображения названий месяцев шрифтом</summary>
-        [Description("Режим отображения названий месяцев шрифтом")]
-        public virtual bool MonthMode
-        {
-            get
-            {
-                return Month_mode;
-            }
-            set
-            {
-                Month_mode = value;
-                label_Month.Visible = Month_mode;
-                bool unitVisible = DOW_mode || Month_mode;
-                textBox_DOW.Visible = unitVisible;
-                if (Month_mode) toolTip.SetToolTip(textBox_DOW, Properties.Strings.Hint_Month);
-            }
-        }
-
-        /// <summary>Отображение параметров выравнивания</summary>
-        [Description("Отображение параметров выравнивания")]
-        public virtual bool AlignmentsEnabled
-        {
-            get
-            {
-                return Alignments_enabled;
-            }
-            set
-            {
-                Alignments_enabled = value;
-
-                checkBox_CentreHorizontally.Enabled = Alignments_enabled;
-                checkBox_CentreVertically.Enabled = Alignments_enabled;
-            }
-        }
-
-        /// <summary>Отображение второго цвета</summary>
-        [Description("Отображение второго цвета")]
-        public virtual bool Use2color
-        {
-            get
-            {
-                return Use_2_color;
-            }
-            set
-            {
-                Use_2_color = value;
-
-                label_Color2.Visible = Use_2_color;
-                checkBox_Color2.Visible = Use_2_color;
-                comboBox_Color2.Visible = Use_2_color;
-            }
-        }
-
-        [Browsable(true)]
-        [Description("Происходит при изменении выбора элемента")]
-        public event ValueChangedHandler ValueChanged;
-        public delegate void ValueChangedHandler(object sender, EventArgs eventArgs);
 
         [Browsable(true)]
         [Description("Происходит при нажатии кнопки добавления шрифта")]
@@ -629,37 +337,66 @@ namespace ControlLibrary
         [Browsable(true)]
         [Description("Происходит при вставке свойст виджета")]
         public event WidgetProperty_Paste_Handler WidgetProperty_Paste;
-        public delegate void WidgetProperty_Paste_Handler(object sender, EventArgs eventArgs);
+        public delegate void WidgetProperty_Paste_Handler(object sender, EventArgs eventArgs, int rowIndex);
 
+        public void UpdateTextList(List<String> textsList, List<bool> widgetsVisibleList, int rowIndex = 0)
+        {
+            setValue = true;
+
+            dataGridView_buttons.Rows.Clear();
+
+            for (int index = 0; index < textsList.Count; index++)
+            {
+                string text = textsList[index];
+                DataGridViewRow RowNew = new DataGridViewRow();
+                RowNew.Cells.Add(new DataGridViewTextBoxCell() { Value = (index + 1).ToString() });
+                RowNew.Cells.Add(new DataGridViewTextBoxCell() { Value = text });
+                RowNew.Cells.Add(new DataGridViewCheckBoxCell() { Value = widgetsVisibleList[index] });
+                RowNew.Cells[0].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                RowNew.Cells[1].Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
+                RowNew.Cells[2].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridView_buttons.Rows.Add(RowNew);
+            }
+
+            if (textsList.Count > 0) button_del.Enabled = true;
+            else button_del.Enabled = false;
+            if (textsList.Count >= 30) button_add.Enabled = false;
+            else button_add.Enabled = true;
+
+            if (rowIndex >= 0 && rowIndex < dataGridView_buttons.Rows.Count)
+            {
+                dataGridView_buttons.Rows[rowIndex].Selected = true;
+                dataGridView_buttons.CurrentCell = dataGridView_buttons.Rows[rowIndex].Cells[0];
+                SelectTextWidget(rowIndex);
+            }
+            setValue = false;
+        }
 
         #region Standard events
 
         private void comboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ValueChanged != null && !setValue)
+            int rowIndex = -1;
+            try
             {
-                EventArgs eventArgs = new EventArgs();
-                ValueChanged(this, eventArgs);
+                int selectedRowCount = dataGridView_buttons.SelectedCells.Count;
+                if (selectedRowCount > 0)
+                {
+                    DataGridViewSelectedCellCollection selectedCells = dataGridView_buttons.SelectedCells;
+                    rowIndex = selectedCells[0].RowIndex;
+                }
+
+                if (ValueChanged != null && !setValue && rowIndex >= 0)
+                {
+                    EventArgs eventArgs = new EventArgs();
+                    ValueChanged(this, eventArgs, rowIndex);
+                }
+            }
+            catch (Exception)
+            {
             }
         }
 
-        private void radioButton_CheckedChanged(object sender, EventArgs e)
-        {
-            if (ValueChanged != null && !setValue)
-            {
-                EventArgs eventArgs = new EventArgs();
-                ValueChanged(this, eventArgs);
-            }
-        }
-
-        private void checkBox_CheckedChanged(object sender, EventArgs e)
-        {
-            if (ValueChanged != null && !setValue)
-            {
-                EventArgs eventArgs = new EventArgs();
-                ValueChanged(this, eventArgs);
-            }
-        }
         #endregion
 
         #region contextMenu
@@ -814,11 +551,26 @@ namespace ControlLibrary
 
         private void numericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            if (ValueChanged != null && !setValue)
+            int rowIndex = -1;
+            try
             {
-                EventArgs eventArgs = new EventArgs();
-                ValueChanged(this, eventArgs);
+                int selectedRowCount = dataGridView_buttons.SelectedCells.Count;
+                if (selectedRowCount > 0)
+                {
+                    DataGridViewSelectedCellCollection selectedCells = dataGridView_buttons.SelectedCells;
+                    rowIndex = selectedCells[0].RowIndex;
+                }
+
+                if (ValueChanged != null && !setValue && rowIndex >= 0)
+                {
+                    EventArgs eventArgs = new EventArgs();
+                    ValueChanged(this, eventArgs, rowIndex);
+                }
             }
+            catch (Exception)
+            {
+            }
+
             NumericUpDown numericUpDown = sender as NumericUpDown;
             if (numericUpDown.Name == "numericUpDown_start_angle" || numericUpDown.Name == "numericUpDown_end_angle")
             {
@@ -827,7 +579,7 @@ namespace ControlLibrary
                     toolTip_Hint360.ToolTipTitle = Properties.Strings.Hint_360_Title;
                     toolTip_Hint360.Show(Properties.Strings.Hint_360_Text_Circle, numericUpDown, numericUpDown.Width, 0, 2000);
                 }
-                
+
             }
         }
 
@@ -901,10 +653,24 @@ namespace ControlLibrary
                 File.WriteAllText(Application.StartupPath + @"\Settings.json", JSON_String, Encoding.UTF8);
             }
 
-            if (ValueChanged != null && !setValue)
+            int rowIndex = -1;
+            try
             {
-                EventArgs eventArgs = new EventArgs();
-                ValueChanged(this, eventArgs);
+                int selectedRowCount = dataGridView_buttons.SelectedCells.Count;
+                if (selectedRowCount > 0)
+                {
+                    DataGridViewSelectedCellCollection selectedCells = dataGridView_buttons.SelectedCells;
+                    rowIndex = selectedCells[0].RowIndex;
+                }
+
+                if (ValueChanged != null && !setValue && rowIndex >= 0)
+                {
+                    EventArgs eventArgs = new EventArgs();
+                    ValueChanged(this, eventArgs, rowIndex);
+                }
+            }
+            catch (Exception)
+            {
             }
         }
 
@@ -918,32 +684,10 @@ namespace ControlLibrary
             return comboBox_Color.BackColor;
         }
 
-        public void SetColor2Text(Color color)
-        {
-            comboBox_Color2.BackColor = color;
-        }
-
-        public Color GetColor2Text()
-        {
-            return comboBox_Color2.BackColor;
-        }
-
-        public void SetUnitText(string text)
-        {
-            if (!DOWMode && !MonthMode) textBox_unit_string.Text = text; 
-            else if (text.Length > 0) textBox_DOW.Text = text;
-        }
-
-        public string GetUnitText()
-        {
-            if (!DOWMode && !MonthMode) return textBox_unit_string.Text; 
-            else return textBox_DOW.Text;
-        }
-
         public void SetMode(int mode)
         {
             if (mode == 1) radioButton_counterclockwise.Checked = true;
-            else  radioButton_clockwise.Checked = true;
+            else radioButton_clockwise.Checked = true;
         }
 
         /// <summary>Направление вращения для тексты по окружности</summary>
@@ -955,7 +699,7 @@ namespace ControlLibrary
 
         #region Settings Set/Clear
 
-        /// <summary>Очищает выпадающие списки с картинками, сбрасывает данные на значения по умолчанию</summary>
+        /// <summary>Сбрасывает данные на значения по умолчанию</summary>
         public void SettingsClear()
         {
             setValue = true;
@@ -964,11 +708,7 @@ namespace ControlLibrary
             comboBox_alignmentVertical.SelectedIndex = 0;
             comboBox_textStyle.SelectedIndex = 0;
 
-            //comboBox_fonts.Items.Clear();
-            //comboBox_fonts.Items.Add(Properties.Strings.SystemFont);
             comboBox_fonts.SelectedIndex = 0;
-            textBox_unit_string.Text = "";
-            textBox_DOW.Text = Properties.Strings.DOW_StrArray;
 
             numericUpDown_X.Enabled = true;
             comboBox_alignmentHorizontal.Enabled = true;
@@ -977,31 +717,121 @@ namespace ControlLibrary
             comboBox_alignmentVertical.Enabled = true;
             checkBox_CentreVertically.Checked = false;
 
-            checkBox_unit.CheckState = CheckState.Unchecked;
-            checkBox_addZero.Checked = false;
-            checkBox_inEnd.Checked = false;
-            checkBox_Color2.Checked = false;
-
             UserFont = false;
-            UnitMode = true;
-            ZeroMode = true;
-            Year = false;
-            AmPm = false;
-            DayMonthYear = false;
-            UnitStrMode = false;
-            DOWMode = false;
-            MonthMode = false;
-            AlignmentsEnabled = true;
-            Use2color = false;
-            Alpha = false;
-            SityName = false;
 
             checkBox_use_text_circle.Checked = false;
             radioButton_clockwise.Checked = true;
 
+            dataGridView_buttons.Rows.Clear();
+            button_add.Enabled = true;
+            button_del.Enabled = false;
+
             setValue = false;
         }
+
         #endregion
+
+        private void button_add_Click(object sender, EventArgs e)
+        {
+            int rowIndex = -1;
+            try
+            {
+                int selectedRowCount = dataGridView_buttons.SelectedCells.Count;
+                if (selectedRowCount > 0)
+                {
+                    DataGridViewSelectedCellCollection selectedCells = dataGridView_buttons.SelectedCells;
+                    rowIndex = selectedCells[0].RowIndex;
+                }
+            }
+            catch (Exception)
+            {
+            }
+
+            if (AddText != null && !setValue)
+            {
+                AddText(rowIndex);
+            }
+        }
+
+        private void button_del_Click(object sender, EventArgs e)
+        {
+            int rowIndex = -1;
+            try
+            {
+                int selectedRowCount = dataGridView_buttons.SelectedCells.Count;
+                if (selectedRowCount > 0)
+                {
+                    DataGridViewSelectedCellCollection selectedCells = dataGridView_buttons.SelectedCells;
+                    rowIndex = selectedCells[0].RowIndex;
+
+                    if (DelText != null && !setValue)
+                    {
+                        DelText(rowIndex);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        private void dataGridView_bottons_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            int rowIndex = e.RowIndex;
+
+            if (SelectTextWidget != null && !setValue)
+            {
+                SelectTextWidget(rowIndex);
+            }
+        }
+
+        private void dataGridView_buttons_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.KeyCode == Keys.Delete) || (e.KeyCode == Keys.Back))
+            {
+                DataGridView dataGridView = sender as DataGridView;
+                if (dataGridView != null)
+                {
+                    try
+                    {
+                        int rowIndex = -1;
+                        int selectedRowCount = dataGridView.SelectedCells.Count;
+                        if (selectedRowCount > 0)
+                        {
+                            DataGridViewSelectedCellCollection selectedCells = dataGridView.SelectedCells;
+                            rowIndex = selectedCells[0].RowIndex;
+
+                            if (DelText != null && !setValue)
+                            {
+                                DelText(rowIndex);
+                            }
+                        }
+                    }
+                    catch (Exception)
+                    {
+                    }
+                }
+            }
+        }
+
+        private void dataGridView_buttons_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridView senderGrid = (DataGridView)sender;
+            senderGrid.EndEdit();
+            int rowIndex = e.RowIndex;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn && e.RowIndex >= 0)
+            {
+
+                DataGridViewCheckBoxCell cbxCell = (DataGridViewCheckBoxCell)senderGrid.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                bool value = !(bool)cbxCell.Value;
+                cbxCell.Value = value;
+
+                if (VisibleTextChanged != null && !setValue && rowIndex >= 0) VisibleTextChanged(rowIndex, value);
+            }
+        }
+
+        ///
 
         private void numericUpDown_Pos_KeyDown(object sender, KeyEventArgs e)
         {
@@ -1100,12 +930,26 @@ namespace ControlLibrary
 
         private void comboBox_fonts_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ValueChanged != null && !setValue)
+            int rowIndex = -1;
+            try
             {
-                EventArgs eventArgs = new EventArgs();
-                ValueChanged(this, eventArgs);
+                int selectedRowCount = dataGridView_buttons.SelectedCells.Count;
+                if (selectedRowCount > 0)
+                {
+                    DataGridViewSelectedCellCollection selectedCells = dataGridView_buttons.SelectedCells;
+                    rowIndex = selectedCells[0].RowIndex;
+                }
+
+                if (ValueChanged != null && !setValue && rowIndex >= 0)
+                {
+                    EventArgs eventArgs = new EventArgs();
+                    ValueChanged(this, eventArgs, rowIndex);
+                }
             }
-            if(comboBox_fonts.SelectedIndex < 1) button_DelFont.Visible = false;
+            catch (Exception)
+            {
+            }
+            if (comboBox_fonts.SelectedIndex < 1) button_DelFont.Visible = false;
             else button_DelFont.Visible = true;
         }
 
@@ -1113,10 +957,24 @@ namespace ControlLibrary
         {
             numericUpDown_X.Enabled = !checkBox_CentreHorizontally.Checked;
             comboBox_alignmentHorizontal.Enabled = !checkBox_CentreHorizontally.Checked;
-            if (ValueChanged != null && !setValue)
+            int rowIndex = -1;
+            try
             {
-                EventArgs eventArgs = new EventArgs();
-                ValueChanged(this, eventArgs);
+                int selectedRowCount = dataGridView_buttons.SelectedCells.Count;
+                if (selectedRowCount > 0)
+                {
+                    DataGridViewSelectedCellCollection selectedCells = dataGridView_buttons.SelectedCells;
+                    rowIndex = selectedCells[0].RowIndex;
+                }
+
+                if (ValueChanged != null && !setValue && rowIndex >= 0)
+                {
+                    EventArgs eventArgs = new EventArgs();
+                    ValueChanged(this, eventArgs, rowIndex);
+                }
+            }
+            catch (Exception)
+            {
             }
         }
 
@@ -1124,10 +982,24 @@ namespace ControlLibrary
         {
             numericUpDown_Y.Enabled = !checkBox_CentreVertically.Checked;
             comboBox_alignmentVertical.Enabled = !checkBox_CentreVertically.Checked;
-            if (ValueChanged != null && !setValue)
+            int rowIndex = -1;
+            try
             {
-                EventArgs eventArgs = new EventArgs();
-                ValueChanged(this, eventArgs);
+                int selectedRowCount = dataGridView_buttons.SelectedCells.Count;
+                if (selectedRowCount > 0)
+                {
+                    DataGridViewSelectedCellCollection selectedCells = dataGridView_buttons.SelectedCells;
+                    rowIndex = selectedCells[0].RowIndex;
+                }
+
+                if (ValueChanged != null && !setValue && rowIndex >= 0)
+                {
+                    EventArgs eventArgs = new EventArgs();
+                    ValueChanged(this, eventArgs, rowIndex);
+                }
+            }
+            catch (Exception)
+            {
             }
         }
 
@@ -1149,49 +1021,76 @@ namespace ControlLibrary
         private void вставитьСвойстваToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Focus();
-            if (WidgetProperty_Paste != null && !setValue)
+            int rowIndex = -1;
+            try
             {
-                EventArgs eventArgs = new EventArgs();
-                WidgetProperty_Paste(this, eventArgs);
+                int selectedRowCount = dataGridView_buttons.SelectedCells.Count;
+                if (selectedRowCount > 0)
+                {
+                    DataGridViewSelectedCellCollection selectedCells = dataGridView_buttons.SelectedCells;
+                    rowIndex = selectedCells[0].RowIndex;
+                }
+
+                if (WidgetProperty_Paste != null && !setValue)
+                {
+                    EventArgs eventArgs = new EventArgs();
+                    WidgetProperty_Paste(this, eventArgs, rowIndex);
+                }
+            }
+            catch (Exception)
+            {
             }
         }
 
         private void textBox_unit_string_TextChanged(object sender, EventArgs e)
         {
-            if (ValueChanged != null && !setValue)
+            int rowIndex = -1;
+            try
             {
-                EventArgs eventArgs = new EventArgs();
-                ValueChanged(this, eventArgs);
+                int selectedRowCount = dataGridView_buttons.SelectedCells.Count;
+                if (selectedRowCount > 0)
+                {
+                    DataGridViewSelectedCellCollection selectedCells = dataGridView_buttons.SelectedCells;
+                    rowIndex = selectedCells[0].RowIndex;
+                }
+
+                if (ValueChanged != null && !setValue && rowIndex >= 0)
+                {
+                    EventArgs eventArgs = new EventArgs();
+                    ValueChanged(this, eventArgs, rowIndex);
+                }
+            }
+            catch (Exception)
+            {
             }
         }
 
         private void numericUpDown_Size_ValueChanged(object sender, EventArgs e)
         {
-            if(numericUpDown_Size.Value > 150) 
+            if (numericUpDown_Size.Value > 150)
             {
                 string text = toolTip.GetToolTip(numericUpDown_Size);
-                Point p = new Point(MouseСoordinates.X, MouseСoordinates.Y); 
+                Point p = new Point(MouseСoordinates.X, MouseСoordinates.Y);
                 toolTip.Show(text, numericUpDown_Size, p, 1500);
             }
-            if (ValueChanged != null && !setValue)
+            int rowIndex = -1;
+            try
             {
-                EventArgs eventArgs = new EventArgs();
-                ValueChanged(this, eventArgs);
+                int selectedRowCount = dataGridView_buttons.SelectedCells.Count;
+                if (selectedRowCount > 0)
+                {
+                    DataGridViewSelectedCellCollection selectedCells = dataGridView_buttons.SelectedCells;
+                    rowIndex = selectedCells[0].RowIndex;
+                }
+
+                if (ValueChanged != null && !setValue && rowIndex >= 0)
+                {
+                    EventArgs eventArgs = new EventArgs();
+                    ValueChanged(this, eventArgs, rowIndex);
+                }
             }
-        }
-
-        private void checkBox_Color2_CheckedChanged(object sender, EventArgs e)
-        {
-            System.Windows.Forms.CheckBox checkBox = (System.Windows.Forms.CheckBox)sender;
-            bool use = checkBox.Checked;
-
-            label_Color2.Enabled = use;
-            comboBox_Color2.Enabled = use;
-
-            if (ValueChanged != null && !setValue)
+            catch (Exception)
             {
-                EventArgs eventArgs = new EventArgs();
-                ValueChanged(this, eventArgs);
             }
         }
 
@@ -1219,27 +1118,73 @@ namespace ControlLibrary
             numericUpDown_LineSpace.Enabled = !use_text_circle;
             comboBox_textStyle.Enabled = !use_text_circle;
 
-            if (ValueChanged != null && !setValue)
+            int rowIndex = -1;
+            try
             {
-                EventArgs eventArgs = new EventArgs();
-                ValueChanged(this, eventArgs);
+                int selectedRowCount = dataGridView_buttons.SelectedCells.Count;
+                if (selectedRowCount > 0)
+                {
+                    DataGridViewSelectedCellCollection selectedCells = dataGridView_buttons.SelectedCells;
+                    rowIndex = selectedCells[0].RowIndex;
+                }
+
+                if (ValueChanged != null && !setValue && rowIndex >= 0)
+                {
+                    EventArgs eventArgs = new EventArgs();
+                    ValueChanged(this, eventArgs, rowIndex);
+                }
+            }
+            catch (Exception)
+            {
             }
         }
 
         private void radioButton_clockwise_CheckedChanged(object sender, EventArgs e)
         {
-            if (ValueChanged != null && !setValue)
+            int rowIndex = -1;
+            try
             {
-                EventArgs eventArgs = new EventArgs();
-                ValueChanged(this, eventArgs);
+                int selectedRowCount = dataGridView_buttons.SelectedCells.Count;
+                if (selectedRowCount > 0)
+                {
+                    DataGridViewSelectedCellCollection selectedCells = dataGridView_buttons.SelectedCells;
+                    rowIndex = selectedCells[0].RowIndex;
+                }
+
+                if (ValueChanged != null && !setValue && rowIndex >= 0)
+                {
+                    EventArgs eventArgs = new EventArgs();
+                    ValueChanged(this, eventArgs, rowIndex);
+                }
+            }
+            catch (Exception)
+            {
             }
         }
 
+        private void textBox_TextStr_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                int rowIndex = -1;
+                try
+                {
+                    int selectedRowCount = dataGridView_buttons.SelectedCells.Count;
+                    if (selectedRowCount > 0)
+                    {
+                        DataGridViewSelectedCellCollection selectedCells = dataGridView_buttons.SelectedCells;
+                        rowIndex = selectedCells[0].RowIndex;
+                    }
+                    if (TextStrChanged != null && !setValue && rowIndex >= 0)
+                    {
+                        EventArgs eventArgs = new EventArgs();
+                        TextStrChanged(textBox_TextStr.Text, rowIndex);
+                    }
+                }
+                catch (Exception)
+                {
+                }
+            }
+        }
     }
 }
-
-//public class ScreenSize
-//{
-//    public static int Width = -1;
-//    public static int Height = -1;
-//}

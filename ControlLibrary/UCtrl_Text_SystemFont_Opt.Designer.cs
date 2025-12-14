@@ -693,7 +693,7 @@ namespace ControlLibrary
             0,
             0,
             0});
-            this.numericUpDown_Alpha.ValueChanged += new System.EventHandler(this.numericUpDown_Size_ValueChanged);
+            this.numericUpDown_Alpha.ValueChanged += new System.EventHandler(this.numericUpDown_ValueChanged);
             // 
             // label_alpha
             // 

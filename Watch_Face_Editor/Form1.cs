@@ -26,7 +26,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrayNotify;
+//using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrayNotify;
 
 namespace Watch_Face_Editor
 {
@@ -547,6 +547,7 @@ namespace Watch_Face_Editor
             uCtrl_Weather_FewDays_Opt.AutoSize = true;
             uCtrl_TemperatureGraph_Opt.AutoSize = true;
             uCtrl_SleepChart_Opt.AutoSize = true;
+            uCtrl_Text_Widgets_Opt.AutoSize = true;
             uCtrl_JS_script_Opt.AutoSize = true;
 
             button_CreatePreview.Location = button_RefreshPreview.Location;
@@ -1441,6 +1442,7 @@ namespace Watch_Face_Editor
             if (e.Data.GetDataPresent(typeof(UCtrl_HRV_Elm))) typeReturn = false;
             if (e.Data.GetDataPresent(typeof(UCtrl_BioCharge_Elm))) typeReturn = false;
             if (e.Data.GetDataPresent(typeof(UCtrl_Sleep_Elm))) typeReturn = false;
+            if (e.Data.GetDataPresent(typeof(UCtrl_TextWidgets_Elm))) typeReturn = false;
 
             if (e.Data.GetDataPresent(typeof(UCtrl_JSscript_Elm))) typeReturn = false;
             //if (typeReturn) return;
@@ -1845,6 +1847,14 @@ namespace Watch_Face_Editor
                         if (draggedUCtrl_Elm != null) draggedPanel = (Panel)draggedUCtrl_Elm.Parent;
                         break;
 
+                    case "ControlLibrary.UCtrl_TextWidgets_Elm":
+                        ElementTextWidgets textWidgets =
+                            (ElementTextWidgets)Elements.Find(e1 => e1.GetType().Name == "ElementTextWidgets");
+                        index = Elements.IndexOf(textWidgets);
+                        draggedUCtrl_Elm = (UCtrl_TextWidgets_Elm)e.Data.GetData(typeof(UCtrl_TextWidgets_Elm));
+                        if (draggedUCtrl_Elm != null) draggedPanel = (Panel)draggedUCtrl_Elm.Parent;
+                        break;
+
 
 
                     case "ControlLibrary.UCtrl_JSscript_Elm":
@@ -2059,6 +2069,9 @@ namespace Watch_Face_Editor
                 case "SleepChart":
                     uCtrl_SleepChart_Opt.Visible = true;
                     break;
+                case "TextWidgets":
+                    uCtrl_Text_Widgets_Opt.Visible = true;
+                    break;
                 case "Script":
                     uCtrl_JS_script_Opt.Visible = true;
                     break;
@@ -2102,6 +2115,7 @@ namespace Watch_Face_Editor
             uCtrl_Weather_FewDays_Opt.Visible = false;
             uCtrl_TemperatureGraph_Opt.Visible = false;
             uCtrl_SleepChart_Opt.Visible = false;
+            uCtrl_Text_Widgets_Opt.Visible = false;
             uCtrl_JS_script_Opt.Visible = false;
         }
 
@@ -2161,6 +2175,7 @@ namespace Watch_Face_Editor
             if (selectElementName != "HRV") uCtrl_HRV_Elm.ResetHighlightState();
             if (selectElementName != "BioCharge") uCtrl_BioCharge_Elm.ResetHighlightState();
             if (selectElementName != "Sleep") uCtrl_Sleep_Elm.ResetHighlightState();
+            if (selectElementName != "TextWidgets") uCtrl_TextWidgets_Elm.ResetHighlightState();
 
             if (selectElementName != "DisconnectAlert") uCtrl_DisconnectAlert_Elm.ResetHighlightState();
             if (selectElementName != "RepeatingAlert") uCtrl_RepeatingAlert_Elm.ResetHighlightState();
@@ -2247,6 +2262,7 @@ namespace Watch_Face_Editor
             uCtrl_HRV_Elm.SettingsClear();
             uCtrl_BioCharge_Elm.SettingsClear();
             uCtrl_Sleep_Elm.SettingsClear();
+            uCtrl_TextWidgets_Elm.SettingsClear();
 
             uCtrl_DisconnectAlert_Elm.SettingsClear();
             uCtrl_RepeatingAlert_Elm.SettingsClear();
@@ -3112,6 +3128,7 @@ namespace Watch_Face_Editor
 
             button_Add_Images.Enabled = true;
             button_Add_Anim_Images.Enabled = true;
+            LastColor.last_color = null;
             ShowElemetsWatchFace();
             if (Watch_Face != null && Watch_Face.WatchFace_Info != null && Watch_Face.WatchFace_Info.DeviceName != null)
             {
@@ -3410,6 +3427,7 @@ namespace Watch_Face_Editor
             }
 
             uCtrl_Text_SystemFont_Opt.AddFonts(FontsList);
+            uCtrl_Text_Widgets_Opt.AddFonts(FontsList);
 
             Logger.WriteLine("* LoadFonts End");
         }
@@ -4751,6 +4769,19 @@ namespace Watch_Face_Editor
             if (comboBox_AddSystem.SelectedIndex == 13)
             {
                 if (AddBodyTemp())
+                {
+                    ShowElemetsWatchFace();
+                    JSON_Modified = true;
+                    FormText();
+
+                    panel_WatchfaceElements.AutoScrollPosition = new Point(
+                        Math.Abs(panel_WatchfaceElements.AutoScrollPosition.X),
+                        panel_WatchfaceElements.VerticalScroll.Maximum);
+                }
+            }
+            if (comboBox_AddSystem.SelectedIndex == 14)
+            {
+                if (AddTextWidgets())
                 {
                     ShowElemetsWatchFace();
                     JSON_Modified = true;
@@ -6640,7 +6671,7 @@ namespace Watch_Face_Editor
             return false;
         }
 
-        /// <summary>Добавляем компас в циферблат</summary>
+        /// <summary>Добавляем температуру тела в циферблат</summary>
         private bool AddBodyTemp()
         {
             if (!PreviewView) return false;
@@ -6669,6 +6700,42 @@ namespace Watch_Face_Editor
                 bodyTemp.visible = true;
                 Elements.Insert(0, bodyTemp);
                 uCtrl_BodyTemp_Elm.SettingsClear();
+                return true;
+            }
+            else MessageBox.Show(Properties.FormStrings.Message_Widget_Exists, Properties.FormStrings.Message_Warning_Caption,
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return false;
+        }
+
+        /// <summary>Добавляем виджет текста в циферблат</summary>
+        private bool AddTextWidgets()
+        {
+            if (!PreviewView) return false;
+            List<object> Elements = new List<object>();
+            if (Watch_Face == null) Watch_Face = new WATCH_FACE();
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face.ScreenNormal == null) Watch_Face.ScreenNormal = new ScreenNormal();
+                if (Watch_Face.ScreenNormal.Elements == null) Watch_Face.ScreenNormal.Elements = new List<object>();
+                Elements = Watch_Face.ScreenNormal.Elements;
+            }
+            else
+            {
+                if (Watch_Face.ScreenAOD == null) Watch_Face.ScreenAOD = new ScreenAOD();
+                if (Watch_Face.ScreenAOD.Elements == null) Watch_Face.ScreenAOD.Elements = new List<object>();
+                Elements = Watch_Face.ScreenAOD.Elements;
+
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null) Elements = Watch_Face.ScreenAOD.Elements;
+            }
+
+            bool exists = Elements.Exists(e => e.GetType().Name == "ElementTextWidgets"); // проверяем что такого элемента нет
+            if (!exists)
+            {
+                ElementTextWidgets textWidgets = new ElementTextWidgets();
+                textWidgets.visible = true;
+                Elements.Insert(0, textWidgets);
+                uCtrl_TextWidgets_Elm.SettingsClear();
                 return true;
             }
             else MessageBox.Show(Properties.FormStrings.Message_Widget_Exists, Properties.FormStrings.Message_Warning_Caption,
@@ -6742,6 +6809,7 @@ namespace Watch_Face_Editor
             uCtrl_HRV_Elm.Visible = false;
             uCtrl_BioCharge_Elm.Visible = false;
             uCtrl_Sleep_Elm.Visible = false;
+            uCtrl_TextWidgets_Elm.Visible = false;
 
             uCtrl_DisconnectAlert_Elm.Visible = false;
             uCtrl_RepeatingAlert_Elm.Visible = false;
@@ -9120,7 +9188,18 @@ namespace Watch_Face_Editor
                             case "ElementHRV":
                                 ElementHRV HRV = (ElementHRV)element;
                                 uCtrl_HRV_Elm.SetVisibilityElementStatus(HRV.visible);
+                                uCtrl_HRV_Elm.Progress_available = SelectedModel.versionOS >= 5;
                                 elementOptions = new Dictionary<int, string>();
+                                if (HRV.Images != null)
+                                {
+                                    uCtrl_HRV_Elm.checkBox_Images.Checked = HRV.Images.visible;
+                                    elementOptions.Add(HRV.Images.position, "Images");
+                                }
+                                if (HRV.Segments != null)
+                                {
+                                    uCtrl_HRV_Elm.checkBox_Segments.Checked = HRV.Segments.visible;
+                                    elementOptions.Add(HRV.Segments.position, "Segments");
+                                }
                                 if (HRV.Number != null)
                                 {
                                     uCtrl_HRV_Elm.checkBox_Number.Checked = HRV.Number.visible;
@@ -9130,6 +9209,16 @@ namespace Watch_Face_Editor
                                 {
                                     uCtrl_HRV_Elm.checkBox_Number_Font.Checked = HRV.Number_Font.visible;
                                     elementOptions.Add(HRV.Number_Font.position, "Number_Font");
+                                }
+                                if (HRV.Pointer != null)
+                                {
+                                    uCtrl_HRV_Elm.checkBox_Pointer.Checked = HRV.Pointer.visible;
+                                    elementOptions.Add(HRV.Pointer.position, "Pointer");
+                                }
+                                if (HRV.Circle_Scale != null)
+                                {
+                                    uCtrl_HRV_Elm.checkBox_Circle_Scale.Checked = HRV.Circle_Scale.visible;
+                                    elementOptions.Add(HRV.Circle_Scale.position, "Circle_Scale");
                                 }
                                 if (HRV.Icon != null)
                                 {
@@ -9249,6 +9338,17 @@ namespace Watch_Face_Editor
                                 uCtrl_Sleep_Elm.SetOptionsPosition(elementOptions);
 
                                 uCtrl_Sleep_Elm.Visible = true;
+                                SetElementPositionInGUI(type, count - i - 2);
+                                //SetElementPositionInGUI(type, i + 1);
+                                break;
+                        #endregion
+
+                            #region ElementTextWidgets
+                            case "ElementTextWidgets":
+                                ElementTextWidgets TextWidgets = (ElementTextWidgets)element;
+                                uCtrl_TextWidgets_Elm.SetVisibilityElementStatus(TextWidgets.visible);
+
+                                uCtrl_TextWidgets_Elm.Visible = true;
                                 SetElementPositionInGUI(type, count - i - 2);
                                 //SetElementPositionInGUI(type, i + 1);
                                 break;
@@ -9904,6 +10004,9 @@ namespace Watch_Face_Editor
                     break;
                 case "ElementSleep":
                     panel = panel_UC_Sleep;
+                    break;
+                case "ElementTextWidgets":
+                    panel = panel_UC_TextWidgets;
                     break;
 
                 case "Buttons":
@@ -10689,9 +10792,12 @@ namespace Watch_Face_Editor
                 case "UCtrl_Sleep_Elm":
                     objectName = "ElementSleep";
                     break;
+                case "UCtrl_TextWidgets_Elm":
+                    objectName = "ElementTextWidgets";
+                    break;
 
                 case "UCtrl_JSscript_Elm":
-                    objectName = "ElementScript";
+                    objectName = "ElementTextWidgets";
                     break;
             }
 
@@ -12135,8 +12241,11 @@ namespace Watch_Face_Editor
             //    uCtrl_Animation_Elm.RotateAnimation = true;
             //}
 
-            if (SelectedModel.versionOS < 3) uCtrl_Weather_FewDay_Elm.GraphUse = false;
-            else uCtrl_Weather_FewDay_Elm.GraphUse = true;
+            //if (SelectedModel.versionOS < 3) uCtrl_Weather_FewDay_Elm.GraphUse = false;
+            //else uCtrl_Weather_FewDay_Elm.GraphUse = true;
+
+            uCtrl_Weather_FewDay_Elm.GraphUse = SelectedModel.versionOS >= 3;
+            uCtrl_HRV_Elm.Progress_available = SelectedModel.versionOS >= 5;
 
             PreviewImage();
             JSON_Modified = true;
@@ -13992,10 +14101,22 @@ namespace Watch_Face_Editor
 
             if (worldClock != null)
             {
-                if (worldClock.Time == null) worldClock.Time = new hmUI_widget_TEXT();
-                if (worldClock.TimeZone == null) worldClock.TimeZone = new hmUI_widget_TEXT();
-                if (worldClock.CityName == null) worldClock.CityName = new hmUI_widget_TEXT();
-                if (worldClock.TimeDifference == null) worldClock.TimeDifference = new hmUI_widget_TEXT();
+                if (worldClock.Time == null) { 
+                    worldClock.Time = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) worldClock.Time.color = ColorToString((Color)LastColor.last_color);
+                }
+                if (worldClock.TimeZone == null) { 
+                    worldClock.TimeZone = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) worldClock.TimeZone.color = ColorToString((Color)LastColor.last_color);
+                }
+                if (worldClock.CityName == null) { 
+                    worldClock.CityName = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) worldClock.CityName.color = ColorToString((Color)LastColor.last_color);
+                }
+                if (worldClock.TimeDifference == null) { 
+                    worldClock.TimeDifference = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) worldClock.TimeDifference.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (worldClock.ButtonPrev == null) worldClock.ButtonPrev = new Button();
                 if (worldClock.ButtonNext == null) worldClock.ButtonNext = new Button();
                 if (worldClock.Icon == null) worldClock.Icon = new hmUI_widget_IMG();
@@ -18566,12 +18687,34 @@ namespace Watch_Face_Editor
             }
             if (hrv != null)
             {
+                hmUI_widget_IMG_LEVEL img_level = null;
+                hmUI_widget_IMG_PROGRESS img_prorgess = null;
                 hmUI_widget_IMG_NUMBER img_number = null;
+                hmUI_widget_IMG_POINTER img_pointer = null;
+                Circle_Scale circle_scale = null;
                 hmUI_widget_IMG icon = null;
                 hmUI_widget_TEXT text = null;
 
                 switch (selectElement)
                 {
+                    case "Images":
+                        if (uCtrl_HRV_Elm.checkBox_Images.Checked)
+                        {
+                            img_level = hrv.Images;
+                            Read_ImgLevel_Options(img_level, 10, true);
+                            ShowElemenrOptions("Images");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Segments":
+                        if (uCtrl_HRV_Elm.checkBox_Segments.Checked)
+                        {
+                            img_prorgess = hrv.Segments;
+                            Read_ImgProrgess_Options(img_prorgess, 10, false);
+                            ShowElemenrOptions("Segments");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
                     case "Number":
                         if (uCtrl_HRV_Elm.checkBox_Number.Checked)
                         {
@@ -18587,6 +18730,24 @@ namespace Watch_Face_Editor
                             text = hrv.Number_Font;
                             Read_Text_Options(text, true, true);
                             ShowElemenrOptions("SystemFont");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Pointer":
+                        if (uCtrl_HRV_Elm.checkBox_Pointer.Checked)
+                        {
+                            img_pointer = hrv.Pointer;
+                            Read_ImgPointer_Options(img_pointer, false);
+                            ShowElemenrOptions("Pointer");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Circle_Scale":
+                        if (uCtrl_HRV_Elm.checkBox_Circle_Scale.Checked)
+                        {
+                            circle_scale = hrv.Circle_Scale;
+                            Read_CircleScale_Options(circle_scale, false);
+                            ShowElemenrOptions("Circle_Scale");
                         }
                         else HideAllElemenrOptions();
                         break;
@@ -18831,6 +18992,38 @@ namespace Watch_Face_Editor
             }
         }
 
+        private void uCtrl_TextWidgets_Elm_SelectChanged(object sender, EventArgs eventArgs)
+        {
+            ResetHighlightState("TextWidgets");
+
+            ElementTextWidgets textWidgets = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    textWidgets = (ElementTextWidgets)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementTextWidgets");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    textWidgets = (ElementTextWidgets)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementTextWidgets");
+                }
+            }
+            if (textWidgets != null)
+            {
+                //List<hmUI_widget_TEXT> textWidgetsList = null;
+
+                //textWidgetsList = textWidgets.Text;
+                Read_TextWidgets_Options(textWidgets);
+                ShowElemenrOptions("TextWidgets");
+
+            }
+        }
+
         private void uCtrl_Image_Elm_SelectChanged(object sender, EventArgs eventArgs)
         {
             ResetHighlightState("Image");
@@ -19020,9 +19213,18 @@ namespace Watch_Face_Editor
             if (dateDay != null)
             {
                 if (dateDay.Number == null) dateDay.Number = new hmUI_widget_IMG_NUMBER();
-                if (dateDay.Number_Font == null) dateDay.Number_Font = new hmUI_widget_TEXT();
-                if (dateDay.Day_Month_Font == null) dateDay.Day_Month_Font = new hmUI_widget_TEXT();
-                if (dateDay.Day_Month_Year_Font == null) dateDay.Day_Month_Year_Font = new hmUI_widget_TEXT();
+                if (dateDay.Number_Font == null) { 
+                    dateDay.Number_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) dateDay.Number_Font.color = ColorToString((Color)LastColor.last_color);
+                }
+                if (dateDay.Day_Month_Font == null) { 
+                    dateDay.Day_Month_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) dateDay.Day_Month_Font.color = ColorToString((Color)LastColor.last_color);
+                }
+                if (dateDay.Day_Month_Year_Font == null) { 
+                    dateDay.Day_Month_Year_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) dateDay.Day_Month_Year_Font.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (dateDay.Text_rotation == null) dateDay.Text_rotation = new hmUI_widget_IMG_NUMBER();
                 if (dateDay.Text_circle == null) dateDay.Text_circle = new Text_Circle();
                 if (dateDay.Pointer == null) dateDay.Pointer = new hmUI_widget_IMG_POINTER();
@@ -19104,7 +19306,10 @@ namespace Watch_Face_Editor
             if (dateMonth != null)
             {
                 if (dateMonth.Number == null) dateMonth.Number = new hmUI_widget_IMG_NUMBER();
-                if (dateMonth.Number_Font == null) dateMonth.Number_Font = new hmUI_widget_TEXT();
+                if (dateMonth.Number_Font == null) { 
+                    dateMonth.Number_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) dateMonth.Number_Font.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (dateMonth.Text_rotation == null) dateMonth.Text_rotation = new hmUI_widget_IMG_NUMBER();
                 if (dateMonth.Text_circle == null) dateMonth.Text_circle = new Text_Circle();
                 if (dateMonth.Pointer == null) dateMonth.Pointer = new hmUI_widget_IMG_POINTER();
@@ -19113,6 +19318,7 @@ namespace Watch_Face_Editor
                 {
                     dateMonth.Month_Font = new hmUI_widget_TEXT();
                     dateMonth.Month_Font.unit_string = Properties.FormStrings.Month_StrArray;
+                    if (LastColor.last_color != null) dateMonth.Month_Font.color = ColorToString((Color)LastColor.last_color);
                 }
 
                 Dictionary<string, int> elementOptions = uCtrl_DateMonth_Elm.GetOptionsPosition();
@@ -19190,7 +19396,10 @@ namespace Watch_Face_Editor
             if (dateYear != null)
             {
                 if (dateYear.Number == null) dateYear.Number = new hmUI_widget_IMG_NUMBER();
-                if (dateYear.Number_Font == null) dateYear.Number_Font = new hmUI_widget_TEXT();
+                if (dateYear.Number_Font == null) { 
+                    dateYear.Number_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) dateYear.Number_Font.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (dateYear.Text_rotation == null) dateYear.Text_rotation = new hmUI_widget_IMG_NUMBER();
                 if (dateYear.Text_circle == null) dateYear.Text_circle = new Text_Circle();
                 if (dateYear.Icon == null) dateYear.Icon = new hmUI_widget_IMG();
@@ -19265,7 +19474,10 @@ namespace Watch_Face_Editor
             {
                 if (dateWeek.Pointer == null) dateWeek.Pointer = new hmUI_widget_IMG_POINTER();
                 if (dateWeek.Images == null) dateWeek.Images = new hmUI_widget_IMG_LEVEL();
-                if (dateWeek.DayOfWeek_Font == null) dateWeek.DayOfWeek_Font = new hmUI_widget_TEXT();
+                if (dateWeek.DayOfWeek_Font == null) { 
+                    dateWeek.DayOfWeek_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) dateWeek.DayOfWeek_Font.color = ColorToString((Color)LastColor.last_color);
+                }
 
                 Dictionary<string, int> elementOptions = uCtrl_DateWeek_Elm.GetOptionsPosition();
                 if (elementOptions.ContainsKey("Pointer")) dateWeek.Pointer.position = elementOptions["Pointer"];
@@ -19841,6 +20053,20 @@ namespace Watch_Face_Editor
                             Watch_Face.ScreenAOD.Elements.Add((ElementSleep)sleepElement.Clone());
                             break;
                         #endregion
+
+                        #region ElementTextWidgets
+                        case "ElementTextWidgets":
+                            ElementTextWidgets textWidgetsElement = (ElementTextWidgets)element;
+                            ElementTextWidgets textWidgetsElementNew = new ElementTextWidgets();
+                            textWidgetsElementNew.visible = textWidgetsElement.visible;
+                            textWidgetsElementNew.Text = new List<hmUI_widget_TEXT>();
+                            foreach (hmUI_widget_TEXT textWidget in textWidgetsElement.Text)
+                            {
+                                textWidgetsElementNew.Text.Add(textWidget.Copy());
+                            }
+                            Watch_Face.ScreenAOD.Elements.Add(textWidgetsElementNew);
+                            break;
+                            #endregion
 
                     }
                 }
@@ -22848,6 +23074,35 @@ namespace Watch_Face_Editor
             FormText();
         }
 
+        private void uCtrl_TextWidgets_Elm_VisibleElementChanged(object sender, EventArgs eventArgs, bool visible)
+        {
+            ElementTextWidgets textWidgets = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null &&
+                    Watch_Face.ScreenNormal.Elements != null)
+                {
+                    textWidgets = (ElementTextWidgets)Watch_Face.ScreenNormal.Elements.Find(e => e.GetType().Name == "ElementTextWidgets");
+                }
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null &&
+                    Watch_Face.ScreenAOD.Elements != null)
+                {
+                    textWidgets = (ElementTextWidgets)Watch_Face.ScreenAOD.Elements.Find(e => e.GetType().Name == "ElementTextWidgets");
+                }
+            }
+            if (textWidgets != null)
+            {
+                textWidgets.visible = visible;
+            }
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
         private void uCtrl_Image_Elm_VisibleElementChanged(object sender, EventArgs eventArgs, bool visible)
         {
             ElementImage image = null;
@@ -23008,20 +23263,6 @@ namespace Watch_Face_Editor
                 if (statuses.RecoveryTime == null) statuses.RecoveryTime = new hmUI_widget_IMG_CLICK();
                 if (statuses.BreathTrain == null) statuses.BreathTrain = new hmUI_widget_IMG_CLICK();
                 if (statuses.FatBurning == null) statuses.FatBurning = new hmUI_widget_IMG_CLICK();
-
-                //Dictionary<string, int> elementOptions = uCtrl_Shortcuts_Elm.GetOptionsPosition();
-                //if (elementOptions.ContainsKey("Step")) statuses.Step.position = elementOptions["Step"];
-                //if (elementOptions.ContainsKey("Heart")) statuses.Heart.position = elementOptions["Heart"];
-                //if (elementOptions.ContainsKey("SPO2")) statuses.SPO2.position = elementOptions["SPO2"];
-                //if (elementOptions.ContainsKey("PAI")) statuses.PAI.position = elementOptions["PAI"];
-                //if (elementOptions.ContainsKey("Stress")) statuses.Stress.position = elementOptions["Stress"];
-                //if (elementOptions.ContainsKey("Weather")) statuses.Weather.position = elementOptions["Weather"];
-                //if (elementOptions.ContainsKey("Altimeter")) statuses.Altimeter.position = elementOptions["Altimeter"];
-                //if (elementOptions.ContainsKey("Sunrise")) statuses.Sunrise.position = elementOptions["Sunrise"];
-                //if (elementOptions.ContainsKey("Alarm")) statuses.Alarm.position = elementOptions["Alarm"];
-                //if (elementOptions.ContainsKey("Sleep")) statuses.Sleep.position = elementOptions["Sleep"];
-                //if (elementOptions.ContainsKey("Countdown")) statuses.Countdown.position = elementOptions["Countdown"];
-                //if (elementOptions.ContainsKey("Stopwatch")) statuses.Stopwatch.position = elementOptions["Stopwatch"];
 
                 CheckBox checkBox = (CheckBox)sender;
                 string name = checkBox.Name;
@@ -23343,7 +23584,10 @@ namespace Watch_Face_Editor
                 if (steps.Images == null) steps.Images = new hmUI_widget_IMG_LEVEL();
                 if (steps.Segments == null) steps.Segments = new hmUI_widget_IMG_PROGRESS();
                 if (steps.Number == null) steps.Number = new hmUI_widget_IMG_NUMBER();
-                if (steps.Number_Font == null) steps.Number_Font = new hmUI_widget_TEXT();
+                if (steps.Number_Font == null) { 
+                    steps.Number_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) steps.Number_Font.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (steps.Text_rotation == null) steps.Text_rotation = new hmUI_widget_IMG_NUMBER();
                 if (steps.Text_circle == null) steps.Text_circle = new Text_Circle();
                 if (steps.Number_Target == null) steps.Number_Target = new hmUI_widget_IMG_NUMBER();
@@ -23351,8 +23595,14 @@ namespace Watch_Face_Editor
                 if (steps.Text_rotation_Target == null) steps.Text_rotation_Target = new hmUI_widget_IMG_NUMBER();
                 if (steps.Text_circle_Target == null) steps.Text_circle_Target = new Text_Circle();
                 if (steps.Pointer == null) steps.Pointer = new hmUI_widget_IMG_POINTER();
-                if (steps.Circle_Scale == null) steps.Circle_Scale = new Circle_Scale();
-                if (steps.Linear_Scale == null) steps.Linear_Scale = new Linear_Scale();
+                if (steps.Circle_Scale == null) { 
+                    steps.Circle_Scale = new Circle_Scale();
+                    if (LastColor.last_color != null) steps.Circle_Scale.color = ColorToString((Color)LastColor.last_color);
+                }
+                if (steps.Linear_Scale == null) { 
+                    steps.Linear_Scale = new Linear_Scale();
+                    if (LastColor.last_color != null) steps.Linear_Scale.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (steps.Icon == null) steps.Icon = new hmUI_widget_IMG();
 
                 Dictionary<string, int> elementOptions = uCtrl_Steps_Elm.GetOptionsPosition();
@@ -23462,12 +23712,21 @@ namespace Watch_Face_Editor
                 if (battery.Images == null) battery.Images = new hmUI_widget_IMG_LEVEL();
                 if (battery.Segments == null) battery.Segments = new hmUI_widget_IMG_PROGRESS();
                 if (battery.Number == null) battery.Number = new hmUI_widget_IMG_NUMBER();
-                if (battery.Number_Font == null) battery.Number_Font = new hmUI_widget_TEXT();
+                if (battery.Number_Font == null) { 
+                    battery.Number_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) battery.Number_Font.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (battery.Text_rotation == null) battery.Text_rotation = new hmUI_widget_IMG_NUMBER();
                 if (battery.Text_circle == null) battery.Text_circle = new Text_Circle();
                 if (battery.Pointer == null) battery.Pointer = new hmUI_widget_IMG_POINTER();
-                if (battery.Circle_Scale == null) battery.Circle_Scale = new Circle_Scale();
-                if (battery.Linear_Scale == null) battery.Linear_Scale = new Linear_Scale();
+                if (battery.Circle_Scale == null) { 
+                    battery.Circle_Scale = new Circle_Scale();
+                    if (LastColor.last_color != null) battery.Circle_Scale.color = ColorToString((Color)LastColor.last_color);
+                }
+                if (battery.Linear_Scale == null) { 
+                    battery.Linear_Scale = new Linear_Scale();
+                    if (LastColor.last_color != null) battery.Linear_Scale.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (battery.Icon == null) battery.Icon = new hmUI_widget_IMG();
 
                 Dictionary<string, int> elementOptions = uCtrl_Battery_Elm.GetOptionsPosition();
@@ -23561,12 +23820,21 @@ namespace Watch_Face_Editor
                 if (heart.Images == null) heart.Images = new hmUI_widget_IMG_LEVEL();
                 if (heart.Segments == null) heart.Segments = new hmUI_widget_IMG_PROGRESS();
                 if (heart.Number == null) heart.Number = new hmUI_widget_IMG_NUMBER();
-                if (heart.Number_Font == null) heart.Number_Font = new hmUI_widget_TEXT();
+                if (heart.Number_Font == null) { 
+                    heart.Number_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) heart.Number_Font.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (heart.Text_rotation == null) heart.Text_rotation = new hmUI_widget_IMG_NUMBER();
                 if (heart.Text_circle == null) heart.Text_circle = new Text_Circle();
                 if (heart.Pointer == null) heart.Pointer = new hmUI_widget_IMG_POINTER();
-                if (heart.Circle_Scale == null) heart.Circle_Scale = new Circle_Scale();
-                if (heart.Linear_Scale == null) heart.Linear_Scale = new Linear_Scale();
+                if (heart.Circle_Scale == null) { 
+                    heart.Circle_Scale = new Circle_Scale();
+                    if (LastColor.last_color != null) heart.Circle_Scale.color = ColorToString((Color)LastColor.last_color);
+                }
+                if (heart.Linear_Scale == null) { 
+                    heart.Linear_Scale = new Linear_Scale();
+                    if (LastColor.last_color != null) heart.Linear_Scale.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (heart.Icon == null) heart.Icon = new hmUI_widget_IMG();
 
                 Dictionary<string, int> elementOptions = uCtrl_Heart_Elm.GetOptionsPosition();
@@ -23660,7 +23928,10 @@ namespace Watch_Face_Editor
                 if (calories.Images == null) calories.Images = new hmUI_widget_IMG_LEVEL();
                 if (calories.Segments == null) calories.Segments = new hmUI_widget_IMG_PROGRESS();
                 if (calories.Number == null) calories.Number = new hmUI_widget_IMG_NUMBER();
-                if (calories.Number_Font == null) calories.Number_Font = new hmUI_widget_TEXT();
+                if (calories.Number_Font == null) { 
+                    calories.Number_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) calories.Number_Font.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (calories.Text_rotation == null) calories.Text_rotation = new hmUI_widget_IMG_NUMBER();
                 if (calories.Text_circle == null) calories.Text_circle = new Text_Circle();
                 if (calories.Number_Target == null) calories.Number_Target = new hmUI_widget_IMG_NUMBER();
@@ -23668,8 +23939,14 @@ namespace Watch_Face_Editor
                 if (calories.Text_rotation_Target == null) calories.Text_rotation_Target = new hmUI_widget_IMG_NUMBER();
                 if (calories.Text_circle_Target == null) calories.Text_circle_Target = new Text_Circle();
                 if (calories.Pointer == null) calories.Pointer = new hmUI_widget_IMG_POINTER();
-                if (calories.Circle_Scale == null) calories.Circle_Scale = new Circle_Scale();
-                if (calories.Linear_Scale == null) calories.Linear_Scale = new Linear_Scale();
+                if (calories.Circle_Scale == null) { 
+                    calories.Circle_Scale = new Circle_Scale();
+                    if (LastColor.last_color != null) calories.Circle_Scale.color = ColorToString((Color)LastColor.last_color);
+                }
+                if (calories.Linear_Scale == null) { 
+                    calories.Linear_Scale = new Linear_Scale();
+                    if (LastColor.last_color != null) calories.Linear_Scale.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (calories.Icon == null) calories.Icon = new hmUI_widget_IMG();
 
                 Dictionary<string, int> elementOptions = uCtrl_Calories_Elm.GetOptionsPosition();
@@ -23781,12 +24058,21 @@ namespace Watch_Face_Editor
                 if (pai.Number == null) pai.Number = new hmUI_widget_IMG_NUMBER();
                 //if (pai.Number_Font == null) pai.Number_Font = new hmUI_widget_TEXT();
                 if (pai.Number_Target == null) pai.Number_Target = new hmUI_widget_IMG_NUMBER();
-                if (pai.Number_Target_Font == null) pai.Number_Target_Font = new hmUI_widget_TEXT();
+                if (pai.Number_Target_Font == null) { 
+                    pai.Number_Target_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) pai.Number_Target_Font.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (pai.Text_rotation_Target == null) pai.Text_rotation_Target = new hmUI_widget_IMG_NUMBER();
                 if (pai.Text_circle_Target == null) pai.Text_circle_Target = new Text_Circle();
                 if (pai.Pointer == null) pai.Pointer = new hmUI_widget_IMG_POINTER();
-                if (pai.Circle_Scale == null) pai.Circle_Scale = new Circle_Scale();
-                if (pai.Linear_Scale == null) pai.Linear_Scale = new Linear_Scale();
+                if (pai.Circle_Scale == null) { 
+                    pai.Circle_Scale = new Circle_Scale();
+                    if (LastColor.last_color != null) pai.Circle_Scale.color = ColorToString((Color)LastColor.last_color);
+                }
+                if (pai.Linear_Scale == null) { 
+                    pai.Linear_Scale = new Linear_Scale();
+                    if (LastColor.last_color != null) pai.Linear_Scale.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (pai.Icon == null) pai.Icon = new hmUI_widget_IMG();
 
                 Dictionary<string, int> elementOptions = uCtrl_PAI_Elm.GetOptionsPosition();
@@ -23884,7 +24170,10 @@ namespace Watch_Face_Editor
             if (distance != null)
             {
                 if (distance.Number == null) distance.Number = new hmUI_widget_IMG_NUMBER();
-                if (distance.Number_Font == null) distance.Number_Font = new hmUI_widget_TEXT();
+                if (distance.Number_Font == null) { 
+                    distance.Number_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) distance.Number_Font.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (distance.Text_rotation == null) distance.Text_rotation = new hmUI_widget_IMG_NUMBER();
                 if (distance.Text_circle == null) distance.Text_circle = new Text_Circle();
                 if (distance.Icon == null) distance.Icon = new hmUI_widget_IMG();
@@ -23960,16 +24249,28 @@ namespace Watch_Face_Editor
                 if (stand.Images == null) stand.Images = new hmUI_widget_IMG_LEVEL();
                 if (stand.Segments == null) stand.Segments = new hmUI_widget_IMG_PROGRESS();
                 if (stand.Number == null) stand.Number = new hmUI_widget_IMG_NUMBER();
-                if (stand.Number_Font == null) stand.Number_Font = new hmUI_widget_TEXT();
+                if (stand.Number_Font == null) { 
+                    stand.Number_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) stand.Number_Font.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (stand.Text_rotation == null) stand.Text_rotation = new hmUI_widget_IMG_NUMBER();
                 if (stand.Text_circle == null) stand.Text_circle = new Text_Circle();
                 if (stand.Number_Target == null) stand.Number_Target = new hmUI_widget_IMG_NUMBER();
-                if (stand.Number_Target_Font == null) stand.Number_Target_Font = new hmUI_widget_TEXT();
+                if (stand.Number_Target_Font == null) { 
+                    stand.Number_Target_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) stand.Number_Target_Font.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (stand.Text_rotation_Target == null) stand.Text_rotation_Target = new hmUI_widget_IMG_NUMBER();
                 if (stand.Text_circle_Target == null) stand.Text_circle_Target = new Text_Circle();
                 if (stand.Pointer == null) stand.Pointer = new hmUI_widget_IMG_POINTER();
-                if (stand.Circle_Scale == null) stand.Circle_Scale = new Circle_Scale();
-                if (stand.Linear_Scale == null) stand.Linear_Scale = new Linear_Scale();
+                if (stand.Circle_Scale == null) { 
+                    stand.Circle_Scale = new Circle_Scale();
+                    if (LastColor.last_color != null) stand.Circle_Scale.color = ColorToString((Color)LastColor.last_color);
+                }
+                if (stand.Linear_Scale == null) { 
+                    stand.Linear_Scale = new Linear_Scale();
+                    if (LastColor.last_color != null) stand.Linear_Scale.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (stand.Icon == null) stand.Icon = new hmUI_widget_IMG();
 
                 Dictionary<string, int> elementOptions = uCtrl_Stand_Elm.GetOptionsPosition();
@@ -24079,12 +24380,21 @@ namespace Watch_Face_Editor
                 if (activity.Images == null) activity.Images = new hmUI_widget_IMG_LEVEL();
                 if (activity.Segments == null) activity.Segments = new hmUI_widget_IMG_PROGRESS();
                 if (activity.Number == null) activity.Number = new hmUI_widget_IMG_NUMBER();
-                if (activity.Number_Font == null) activity.Number_Font = new hmUI_widget_TEXT();
+                if (activity.Number_Font == null) { 
+                    activity.Number_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) activity.Number_Font.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (activity.Number_Target == null) activity.Number_Target = new hmUI_widget_IMG_NUMBER();
                 if (activity.Number_Target_Font == null) activity.Number_Target_Font = new hmUI_widget_TEXT();
                 if (activity.Pointer == null) activity.Pointer = new hmUI_widget_IMG_POINTER();
-                if (activity.Circle_Scale == null) activity.Circle_Scale = new Circle_Scale();
-                if (activity.Linear_Scale == null) activity.Linear_Scale = new Linear_Scale();
+                if (activity.Circle_Scale == null) { 
+                    activity.Circle_Scale = new Circle_Scale();
+                    if (LastColor.last_color != null) activity.Circle_Scale.color = ColorToString((Color)LastColor.last_color);
+                }
+                if (activity.Linear_Scale == null) { 
+                    activity.Linear_Scale = new Linear_Scale();
+                    if (LastColor.last_color != null) activity.Linear_Scale.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (activity.Icon == null) activity.Icon = new hmUI_widget_IMG();
 
                 Dictionary<string, int> elementOptions = uCtrl_Activity_Elm.GetOptionsPosition();
@@ -24174,7 +24484,10 @@ namespace Watch_Face_Editor
             if (SpO2 != null)
             {
                 if (SpO2.Number == null) SpO2.Number = new hmUI_widget_IMG_NUMBER();
-                if (SpO2.Number_Font == null) SpO2.Number_Font = new hmUI_widget_TEXT();
+                if (SpO2.Number_Font == null) { 
+                    SpO2.Number_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) SpO2.Number_Font.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (SpO2.Text_rotation == null) SpO2.Text_rotation = new hmUI_widget_IMG_NUMBER();
                 if (SpO2.Text_circle == null) SpO2.Text_circle = new Text_Circle();
                 if (SpO2.Icon == null) SpO2.Icon = new hmUI_widget_IMG();
@@ -24250,7 +24563,10 @@ namespace Watch_Face_Editor
                 if (stress.Images == null) stress.Images = new hmUI_widget_IMG_LEVEL();
                 if (stress.Segments == null) stress.Segments = new hmUI_widget_IMG_PROGRESS();
                 if (stress.Number == null) stress.Number = new hmUI_widget_IMG_NUMBER();
-                if (stress.Number_Font == null) stress.Number_Font = new hmUI_widget_TEXT();
+                if (stress.Number_Font == null) { 
+                    stress.Number_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) stress.Number_Font.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (stress.Pointer == null) stress.Pointer = new hmUI_widget_IMG_POINTER();
                 if (stress.Icon == null) stress.Icon = new hmUI_widget_IMG();
 
@@ -24329,16 +24645,28 @@ namespace Watch_Face_Editor
                 if (fat_burning.Images == null) fat_burning.Images = new hmUI_widget_IMG_LEVEL();
                 if (fat_burning.Segments == null) fat_burning.Segments = new hmUI_widget_IMG_PROGRESS();
                 if (fat_burning.Number == null) fat_burning.Number = new hmUI_widget_IMG_NUMBER();
-                if (fat_burning.Number_Font == null) fat_burning.Number_Font = new hmUI_widget_TEXT();
+                if (fat_burning.Number_Font == null) { 
+                    fat_burning.Number_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) fat_burning.Number_Font.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (fat_burning.Text_rotation == null) fat_burning.Text_rotation = new hmUI_widget_IMG_NUMBER();
                 if (fat_burning.Text_circle == null) fat_burning.Text_circle = new Text_Circle();
                 if (fat_burning.Number_Target == null) fat_burning.Number_Target = new hmUI_widget_IMG_NUMBER();
-                if (fat_burning.Number_Target_Font == null) fat_burning.Number_Target_Font = new hmUI_widget_TEXT();
+                if (fat_burning.Number_Target_Font == null) { 
+                    fat_burning.Number_Target_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) fat_burning.Number_Target_Font.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (fat_burning.Text_rotation_Target == null) fat_burning.Text_rotation_Target = new hmUI_widget_IMG_NUMBER();
                 if (fat_burning.Text_circle_Target == null) fat_burning.Text_circle_Target = new Text_Circle();
                 if (fat_burning.Pointer == null) fat_burning.Pointer = new hmUI_widget_IMG_POINTER();
-                if (fat_burning.Circle_Scale == null) fat_burning.Circle_Scale = new Circle_Scale();
-                if (fat_burning.Linear_Scale == null) fat_burning.Linear_Scale = new Linear_Scale();
+                if (fat_burning.Circle_Scale == null) { 
+                    fat_burning.Circle_Scale = new Circle_Scale();
+                    if (LastColor.last_color != null) fat_burning.Circle_Scale.color = ColorToString((Color)LastColor.last_color);
+                }
+                if (fat_burning.Linear_Scale == null) { 
+                    fat_burning.Linear_Scale = new Linear_Scale();
+                    if (LastColor.last_color != null) fat_burning.Linear_Scale.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (fat_burning.Icon == null) fat_burning.Icon = new hmUI_widget_IMG();
 
                 Dictionary<string, int> elementOptions = uCtrl_FatBurning_Elm.GetOptionsPosition();
@@ -24449,17 +24777,32 @@ namespace Watch_Face_Editor
             {
                 if (weather.Images == null) weather.Images = new hmUI_widget_IMG_LEVEL();
                 if (weather.Number == null) weather.Number = new hmUI_widget_IMG_NUMBER();
-                if (weather.Number_Font == null) weather.Number_Font = new hmUI_widget_TEXT();
+                if (weather.Number_Font == null) { 
+                    weather.Number_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) weather.Number_Font.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (weather.Number_Min == null) weather.Number_Min = new hmUI_widget_IMG_NUMBER();
-                if (weather.Number_Min_Font == null) weather.Number_Min_Font = new hmUI_widget_TEXT();
+                if (weather.Number_Min_Font == null) { 
+                    weather.Number_Min_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) weather.Number_Min_Font.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (weather.Text_Min_rotation == null) weather.Text_Min_rotation = new hmUI_widget_IMG_NUMBER();
                 if (weather.Text_Min_circle == null) weather.Text_Min_circle = new Text_Circle();
                 if (weather.Number_Max == null) weather.Number_Max = new hmUI_widget_IMG_NUMBER();
-                if (weather.Number_Max_Font == null) weather.Number_Max_Font = new hmUI_widget_TEXT();
+                if (weather.Number_Max_Font == null) { 
+                    weather.Number_Max_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) weather.Number_Max_Font.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (weather.Text_Max_rotation == null) weather.Text_Max_rotation = new hmUI_widget_IMG_NUMBER();
                 if (weather.Text_Max_circle == null) weather.Text_Max_circle = new Text_Circle();
-                if (weather.Number_Min_Max_Font == null) weather.Number_Min_Max_Font = new hmUI_widget_TEXT();
-                if (weather.City_Name == null) weather.City_Name = new hmUI_widget_TEXT();
+                if (weather.Number_Min_Max_Font == null) { 
+                    weather.Number_Min_Max_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) weather.Number_Min_Max_Font.color = ColorToString((Color)LastColor.last_color);
+                }
+                if (weather.City_Name == null) { 
+                    weather.City_Name = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) weather.City_Name.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (weather.Icon == null) weather.Icon = new hmUI_widget_IMG();
 
                 Dictionary<string, int> elementOptions = uCtrl_Weather_Elm.GetOptionsPosition();
@@ -24573,6 +24916,8 @@ namespace Watch_Face_Editor
                         Text_rotation = new hmUI_widget_IMG_NUMBER(),
                         Text_circle = new Text_Circle()
                     };
+                    if (LastColor.last_color != null) 
+                        weather.Group_Current.Number_Font.color = ColorToString((Color)LastColor.last_color);
                 }
                 if (weather.Group_Min == null)
                 {
@@ -24583,6 +24928,8 @@ namespace Watch_Face_Editor
                         Text_rotation = new hmUI_widget_IMG_NUMBER(),
                         Text_circle = new Text_Circle()
                     };
+                    if (LastColor.last_color != null)
+                        weather.Group_Min.Number_Font.color = ColorToString((Color)LastColor.last_color);
                 }
                 if (weather.Group_Max == null)
                 {
@@ -24593,6 +24940,8 @@ namespace Watch_Face_Editor
                         Text_rotation = new hmUI_widget_IMG_NUMBER(),
                         Text_circle = new Text_Circle()
                     };
+                    if (LastColor.last_color != null)
+                        weather.Group_Max.Number_Font.color = ColorToString((Color)LastColor.last_color);
                 }
                 if (weather.Group_Max_Min == null)
                 {
@@ -24603,6 +24952,8 @@ namespace Watch_Face_Editor
                         Text_rotation = new hmUI_widget_IMG_NUMBER(),
                         Text_circle = new Text_Circle()
                     };
+                    if (LastColor.last_color != null)
+                        weather.Group_Max_Min.Number_Font.color = ColorToString((Color)LastColor.last_color);
                 }
 
                 if (weather.Group_Current.Number == null) weather.Group_Current.Number = new hmUI_widget_IMG_NUMBER();
@@ -24861,7 +25212,10 @@ namespace Watch_Face_Editor
                 if (uv_index.Images == null) uv_index.Images = new hmUI_widget_IMG_LEVEL();
                 if (uv_index.Segments == null) uv_index.Segments = new hmUI_widget_IMG_PROGRESS();
                 if (uv_index.Number == null) uv_index.Number = new hmUI_widget_IMG_NUMBER();
-                if (uv_index.Number_Font == null) uv_index.Number_Font = new hmUI_widget_TEXT();
+                if (uv_index.Number_Font == null) { 
+                    uv_index.Number_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) uv_index.Number_Font.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (uv_index.Pointer == null) uv_index.Pointer = new hmUI_widget_IMG_POINTER();
                 if (uv_index.Icon == null) uv_index.Icon = new hmUI_widget_IMG();
 
@@ -24940,7 +25294,10 @@ namespace Watch_Face_Editor
                 if (humidity.Images == null) humidity.Images = new hmUI_widget_IMG_LEVEL();
                 if (humidity.Segments == null) humidity.Segments = new hmUI_widget_IMG_PROGRESS();
                 if (humidity.Number == null) humidity.Number = new hmUI_widget_IMG_NUMBER();
-                if (humidity.Number_Font == null) humidity.Number_Font = new hmUI_widget_TEXT();
+                if (humidity.Number_Font == null) { 
+                    humidity.Number_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) humidity.Number_Font.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (humidity.Pointer == null) humidity.Pointer = new hmUI_widget_IMG_POINTER();
                 if (humidity.Icon == null) humidity.Icon = new hmUI_widget_IMG();
 
@@ -25017,7 +25374,10 @@ namespace Watch_Face_Editor
             if (altimeter != null)
             {
                 if (altimeter.Number == null) altimeter.Number = new hmUI_widget_IMG_NUMBER();
-                if (altimeter.Number_Font == null) altimeter.Number_Font = new hmUI_widget_TEXT();
+                if (altimeter.Number_Font == null) { 
+                    altimeter.Number_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) altimeter.Number_Font.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (altimeter.Number_Target == null) altimeter.Number_Target = new hmUI_widget_IMG_NUMBER();
                 if (altimeter.Number_Target_Font == null) altimeter.Number_Target_Font = new hmUI_widget_TEXT();
                 if (altimeter.Pointer == null) altimeter.Pointer = new hmUI_widget_IMG_POINTER();
@@ -25098,11 +25458,17 @@ namespace Watch_Face_Editor
                 if (sunrise.Images == null) sunrise.Images = new hmUI_widget_IMG_LEVEL();
                 if (sunrise.Segments == null) sunrise.Segments = new hmUI_widget_IMG_PROGRESS();
                 if (sunrise.Sunrise == null) sunrise.Sunrise = new hmUI_widget_IMG_NUMBER();
-                if (sunrise.Sunrise_Font == null) sunrise.Sunrise_Font = new hmUI_widget_TEXT();
+                if (sunrise.Sunrise_Font == null) { 
+                    sunrise.Sunrise_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) sunrise.Sunrise_Font.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (sunrise.Sunrise_rotation == null) sunrise.Sunrise_rotation = new hmUI_widget_IMG_NUMBER();
                 if (sunrise.Sunrise_circle == null) sunrise.Sunrise_circle = new Text_Circle();
                 if (sunrise.Sunset == null) sunrise.Sunset = new hmUI_widget_IMG_NUMBER();
-                if (sunrise.Sunset_Font == null) sunrise.Sunset_Font = new hmUI_widget_TEXT();
+                if (sunrise.Sunset_Font == null) { 
+                    sunrise.Sunset_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) sunrise.Sunset_Font.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (sunrise.Sunset_rotation == null) sunrise.Sunset_rotation = new hmUI_widget_IMG_NUMBER();
                 if (sunrise.Sunset_circle == null) sunrise.Sunset_circle = new Text_Circle();
                 if (sunrise.Sunset_Sunrise == null) sunrise.Sunset_Sunrise = new hmUI_widget_IMG_NUMBER();
@@ -25212,11 +25578,17 @@ namespace Watch_Face_Editor
                 if (moon.Images == null) moon.Images = new hmUI_widget_IMG_LEVEL();
                 //if (moon.Segments == null) moon.Segments = new hmUI_widget_IMG_PROGRESS();
                 if (moon.Sunrise == null) moon.Sunrise = new hmUI_widget_IMG_NUMBER();
-                if (moon.Sunrise_Font == null) moon.Sunrise_Font = new hmUI_widget_TEXT();
+                if (moon.Sunrise_Font == null) { 
+                    moon.Sunrise_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) moon.Sunrise_Font.color = ColorToString((Color)LastColor.last_color);
+                }
                 //if (moon.Sunrise_rotation == null) moon.Sunrise_rotation = new hmUI_widget_IMG_NUMBER();
                 //if (moon.Sunrise_circle == null) moon.Sunrise_circle = new Text_Circle();
                 if (moon.Sunset == null) moon.Sunset = new hmUI_widget_IMG_NUMBER();
-                if (moon.Sunset_Font == null) moon.Sunset_Font = new hmUI_widget_TEXT();
+                if (moon.Sunset_Font == null) { 
+                    moon.Sunset_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) moon.Sunset_Font.color = ColorToString((Color)LastColor.last_color);
+                }
                 //if (moon.Sunset_rotation == null) moon.Sunset_rotation = new hmUI_widget_IMG_NUMBER();
                 //if (moon.Sunset_circle == null) moon.Sunset_circle = new Text_Circle();
                 if (moon.Sunset_Sunrise == null) moon.Sunset_Sunrise = new hmUI_widget_IMG_NUMBER();
@@ -25326,7 +25698,10 @@ namespace Watch_Face_Editor
                 if (wind.Images == null) wind.Images = new hmUI_widget_IMG_LEVEL();
                 if (wind.Segments == null) wind.Segments = new hmUI_widget_IMG_PROGRESS();
                 if (wind.Number == null) wind.Number = new hmUI_widget_IMG_NUMBER();
-                if (wind.Number_Font == null) wind.Number_Font = new hmUI_widget_TEXT();
+                if (wind.Number_Font == null) { 
+                    wind.Number_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) wind.Number_Font.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (wind.Pointer == null) wind.Pointer = new hmUI_widget_IMG_POINTER();
                 if (wind.Direction == null) wind.Direction = new hmUI_widget_IMG_LEVEL();
                 if (wind.Icon == null) wind.Icon = new hmUI_widget_IMG();
@@ -25407,7 +25782,10 @@ namespace Watch_Face_Editor
             {
                 if (compass.Images == null) compass.Images = new hmUI_widget_IMG_LEVEL();
                 if (compass.Number == null) compass.Number = new hmUI_widget_IMG_NUMBER();
-                if (compass.Number_Font == null) compass.Number_Font = new hmUI_widget_TEXT();
+                if (compass.Number_Font == null) { 
+                    compass.Number_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) compass.Number_Font.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (compass.Text_rotation == null) compass.Text_rotation = new hmUI_widget_IMG_NUMBER();
                 if (compass.Text_circle == null) compass.Text_circle = new Text_Circle();
                 if (compass.Pointer == null) compass.Pointer = new hmUI_widget_IMG_POINTER();
@@ -25488,7 +25866,10 @@ namespace Watch_Face_Editor
             if (alarmClock != null)
             {
                 if (alarmClock.Number == null) alarmClock.Number = new hmUI_widget_IMG_NUMBER();
-                if (alarmClock.Number_Font == null) alarmClock.Number_Font = new hmUI_widget_TEXT();
+                if (alarmClock.Number_Font == null) { 
+                    alarmClock.Number_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) alarmClock.Number_Font.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (alarmClock.Icon == null) alarmClock.Icon = new hmUI_widget_IMG();
 
                 Dictionary<string, int> elementOptions = uCtrl_AlarmClock_Elm.GetOptionsPosition();
@@ -25554,9 +25935,15 @@ namespace Watch_Face_Editor
                 if (trainingLoad.Images == null) trainingLoad.Images = new hmUI_widget_IMG_LEVEL();
                 if (trainingLoad.Segments == null) trainingLoad.Segments = new hmUI_widget_IMG_PROGRESS();
                 if (trainingLoad.Number == null) trainingLoad.Number = new hmUI_widget_IMG_NUMBER();
-                if (trainingLoad.Number_Font == null) trainingLoad.Number_Font = new hmUI_widget_TEXT();
+                if (trainingLoad.Number_Font == null) { 
+                    trainingLoad.Number_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) trainingLoad.Number_Font.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (trainingLoad.Pointer == null) trainingLoad.Pointer = new hmUI_widget_IMG_POINTER();
-                if (trainingLoad.Circle_Scale == null) trainingLoad.Circle_Scale = new Circle_Scale();
+                if (trainingLoad.Circle_Scale == null) { 
+                    trainingLoad.Circle_Scale = new Circle_Scale();
+                    if (LastColor.last_color != null) trainingLoad.Circle_Scale.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (trainingLoad.Icon == null) trainingLoad.Icon = new hmUI_widget_IMG();
 
                 Dictionary<string, int> elementOptions = uCtrl_TrainingLoad_Elm.GetOptionsPosition();
@@ -25636,9 +26023,15 @@ namespace Watch_Face_Editor
                 if (vo2max.Images == null) vo2max.Images = new hmUI_widget_IMG_LEVEL();
                 if (vo2max.Segments == null) vo2max.Segments = new hmUI_widget_IMG_PROGRESS();
                 if (vo2max.Number == null) vo2max.Number = new hmUI_widget_IMG_NUMBER();
-                if (vo2max.Number_Font == null) vo2max.Number_Font = new hmUI_widget_TEXT();
+                if (vo2max.Number_Font == null) { 
+                    vo2max.Number_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) vo2max.Number_Font.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (vo2max.Pointer == null) vo2max.Pointer = new hmUI_widget_IMG_POINTER();
-                if (vo2max.Circle_Scale == null) vo2max.Circle_Scale = new Circle_Scale();
+                if (vo2max.Circle_Scale == null) { 
+                    vo2max.Circle_Scale = new Circle_Scale();
+                    if (LastColor.last_color != null) vo2max.Circle_Scale.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (vo2max.Icon == null) vo2max.Icon = new hmUI_widget_IMG();
 
                 Dictionary<string, int> elementOptions = uCtrl_VO2Max_Elm.GetOptionsPosition();
@@ -25718,9 +26111,15 @@ namespace Watch_Face_Editor
                 if (aqi.Images == null) aqi.Images = new hmUI_widget_IMG_LEVEL();
                 if (aqi.Segments == null) aqi.Segments = new hmUI_widget_IMG_PROGRESS();
                 if (aqi.Number == null) aqi.Number = new hmUI_widget_IMG_NUMBER();
-                if (aqi.Number_Font == null) aqi.Number_Font = new hmUI_widget_TEXT();
+                if (aqi.Number_Font == null) { 
+                    aqi.Number_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) aqi.Number_Font.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (aqi.Pointer == null) aqi.Pointer = new hmUI_widget_IMG_POINTER();
-                if (aqi.Circle_Scale == null) aqi.Circle_Scale = new Circle_Scale();
+                if (aqi.Circle_Scale == null) { 
+                    aqi.Circle_Scale = new Circle_Scale();
+                    if (LastColor.last_color != null) aqi.Circle_Scale.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (aqi.Icon == null) aqi.Icon = new hmUI_widget_IMG();
 
                 Dictionary<string, int> elementOptions = uCtrl_AQI_Elm.GetOptionsPosition();
@@ -25798,7 +26197,10 @@ namespace Watch_Face_Editor
             if (bodyTemp != null)
             {
                 if (bodyTemp.Number == null) bodyTemp.Number = new hmUI_widget_IMG_NUMBER();
-                if (bodyTemp.Number_Font == null) bodyTemp.Number_Font = new hmUI_widget_TEXT();
+                if (bodyTemp.Number_Font == null) { 
+                    bodyTemp.Number_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) bodyTemp.Number_Font.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (bodyTemp.Icon == null) bodyTemp.Icon = new hmUI_widget_IMG();
 
                 Dictionary<string, int> elementOptions = uCtrl_BodyTemp_Elm.GetOptionsPosition();
@@ -25860,7 +26262,10 @@ namespace Watch_Face_Editor
             if (floor != null)
             {
                 if (floor.Number == null) floor.Number = new hmUI_widget_IMG_NUMBER();
-                if (floor.Number_Font == null) floor.Number_Font = new hmUI_widget_TEXT();
+                if (floor.Number_Font == null) { 
+                    floor.Number_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) floor.Number_Font.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (floor.Icon == null) floor.Icon = new hmUI_widget_IMG();
 
                 Dictionary<string, int> elementOptions = uCtrl_Floor_Elm.GetOptionsPosition();
@@ -25924,9 +26329,15 @@ namespace Watch_Face_Editor
                 if (readiness.Images == null) readiness.Images = new hmUI_widget_IMG_LEVEL();
                 if (readiness.Segments == null) readiness.Segments = new hmUI_widget_IMG_PROGRESS();
                 if (readiness.Number == null) readiness.Number = new hmUI_widget_IMG_NUMBER();
-                if (readiness.Number_Font == null) readiness.Number_Font = new hmUI_widget_TEXT();
+                if (readiness.Number_Font == null) { 
+                    readiness.Number_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) readiness.Number_Font.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (readiness.Pointer == null) readiness.Pointer = new hmUI_widget_IMG_POINTER();
-                if (readiness.Circle_Scale == null) readiness.Circle_Scale = new Circle_Scale();
+                if (readiness.Circle_Scale == null) { 
+                    readiness.Circle_Scale = new Circle_Scale();
+                    if (LastColor.last_color != null) readiness.Circle_Scale.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (readiness.Icon == null) readiness.Icon = new hmUI_widget_IMG();
 
                 Dictionary<string, int> elementOptions = uCtrl_Readiness_Elm.GetOptionsPosition();
@@ -26003,24 +26414,47 @@ namespace Watch_Face_Editor
 
             if (hrv != null)
             {
+                if (hrv.Images == null) hrv.Images = new hmUI_widget_IMG_LEVEL();
+                if (hrv.Segments == null) hrv.Segments = new hmUI_widget_IMG_PROGRESS();
                 if (hrv.Number == null) hrv.Number = new hmUI_widget_IMG_NUMBER();
-                if (hrv.Number_Font == null) hrv.Number_Font = new hmUI_widget_TEXT();
+                if (hrv.Number_Font == null) { 
+                    hrv.Number_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) hrv.Number_Font.color = ColorToString((Color)LastColor.last_color);
+                }
+                if (hrv.Pointer == null) hrv.Pointer = new hmUI_widget_IMG_POINTER();
+                if (hrv.Circle_Scale == null) hrv.Circle_Scale = new Circle_Scale();
                 if (hrv.Icon == null) hrv.Icon = new hmUI_widget_IMG();
 
                 Dictionary<string, int> elementOptions = uCtrl_HRV_Elm.GetOptionsPosition();
+                if (elementOptions.ContainsKey("Images")) hrv.Images.position = elementOptions["Images"];
+                if (elementOptions.ContainsKey("Segments")) hrv.Segments.position = elementOptions["Segments"];
                 if (elementOptions.ContainsKey("Number")) hrv.Number.position = elementOptions["Number"];
                 if (elementOptions.ContainsKey("Number_Font")) hrv.Number_Font.position = elementOptions["Number_Font"];
+                if (elementOptions.ContainsKey("Pointer")) hrv.Pointer.position = elementOptions["Pointer"];
+                if (elementOptions.ContainsKey("Circle_Scale")) hrv.Circle_Scale.position = elementOptions["Circle_Scale"];
                 if (elementOptions.ContainsKey("Icon")) hrv.Icon.position = elementOptions["Icon"];
 
                 CheckBox checkBox = (CheckBox)sender;
                 string name = checkBox.Name;
                 switch (name)
                 {
+                    case "checkBox_Images":
+                        hrv.Images.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Segments":
+                        hrv.Segments.visible = checkBox.Checked;
+                        break;
                     case "checkBox_Number":
                         hrv.Number.visible = checkBox.Checked;
                         break;
                     case "checkBox_Number_Font":
                         hrv.Number_Font.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Pointer":
+                        hrv.Pointer.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Circle_Scale":
+                        hrv.Circle_Scale.visible = checkBox.Checked;
                         break;
                     case "checkBox_Icon":
                         hrv.Icon.visible = checkBox.Checked;
@@ -26068,9 +26502,15 @@ namespace Watch_Face_Editor
                 if (bioCharge.Images == null) bioCharge.Images = new hmUI_widget_IMG_LEVEL();
                 if (bioCharge.Segments == null) bioCharge.Segments = new hmUI_widget_IMG_PROGRESS();
                 if (bioCharge.Number == null) bioCharge.Number = new hmUI_widget_IMG_NUMBER();
-                if (bioCharge.Number_Font == null) bioCharge.Number_Font = new hmUI_widget_TEXT();
+                if (bioCharge.Number_Font == null) { 
+                    bioCharge.Number_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) bioCharge.Number_Font.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (bioCharge.Pointer == null) bioCharge.Pointer = new hmUI_widget_IMG_POINTER();
-                if (bioCharge.Circle_Scale == null) bioCharge.Circle_Scale = new Circle_Scale();
+                if (bioCharge.Circle_Scale == null) { 
+                    bioCharge.Circle_Scale = new Circle_Scale();
+                    if (LastColor.last_color != null) bioCharge.Circle_Scale.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (bioCharge.Icon == null) bioCharge.Icon = new hmUI_widget_IMG();
 
                 Dictionary<string, int> elementOptions = uCtrl_BioCharge_Elm.GetOptionsPosition();
@@ -26148,13 +26588,34 @@ namespace Watch_Face_Editor
             if (sleep != null)
             {
                 if (sleep.SleepChartSettings == null) sleep.SleepChartSettings = new SleepChartSettings();
-                if (sleep.StartSleep == null) sleep.StartSleep = new hmUI_widget_TEXT();
-                if (sleep.EndSleep == null) sleep.EndSleep = new hmUI_widget_TEXT();
-                if (sleep.DurationSleep_total == null) sleep.DurationSleep_total = new hmUI_widget_TEXT();
-                if (sleep.DurationSleep == null) sleep.DurationSleep = new hmUI_widget_TEXT();
-                if (sleep.WakeUp == null) sleep.WakeUp = new hmUI_widget_TEXT();
-                if (sleep.WakeUpCount == null) sleep.WakeUpCount = new hmUI_widget_TEXT();
-                if (sleep.Score == null) sleep.Score = new hmUI_widget_TEXT();
+                if (sleep.StartSleep == null) { 
+                    sleep.StartSleep = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) sleep.StartSleep.color = ColorToString((Color)LastColor.last_color);
+                }
+                if (sleep.EndSleep == null) { 
+                    sleep.EndSleep = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) sleep.EndSleep.color = ColorToString((Color)LastColor.last_color);
+                }
+                if (sleep.DurationSleep_total == null) { 
+                    sleep.DurationSleep_total = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) sleep.DurationSleep_total.color = ColorToString((Color)LastColor.last_color);
+                }
+                if (sleep.DurationSleep == null) { 
+                    sleep.DurationSleep = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) sleep.DurationSleep.color = ColorToString((Color)LastColor.last_color);
+                }
+                if (sleep.WakeUp == null) { 
+                    sleep.WakeUp = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) sleep.WakeUp.color = ColorToString((Color)LastColor.last_color);
+                }
+                if (sleep.WakeUpCount == null) { 
+                    sleep.WakeUpCount = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) sleep.WakeUpCount.color = ColorToString((Color)LastColor.last_color);
+                }
+                if (sleep.Score == null) { 
+                    sleep.Score = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) sleep.Score.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (sleep.Icon == null) sleep.Icon = new hmUI_widget_IMG();
 
                 Dictionary<string, int> elementOptions = uCtrl_Sleep_Elm.GetOptionsPosition();
@@ -27806,9 +28267,69 @@ namespace Watch_Face_Editor
 
         }
 
+        private void uCtrl_Text_Widgets_Opt_AddFont_Click(object sender, EventArgs eventArgs)
+        {
+            string fonts_path = Path.Combine(ProjectDir, "assets", "fonts");
+            if (!Directory.Exists(fonts_path)) Directory.CreateDirectory(fonts_path);
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Fonts files (*.ttf) | *.ttf";
+            openFileDialog.Filter = Properties.FormStrings.Dialog_FontFilter;
+            openFileDialog.RestoreDirectory = true;
+            openFileDialog.Multiselect = false;
+            openFileDialog.Title = Properties.FormStrings.Dialog_Title_Font_Add;
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string fileFullName = openFileDialog.FileName;
+                string fileName = Path.GetFileName(fileFullName);
+                try
+                {
+                    string newFileName = Path.Combine(fonts_path, fileName);
+                    if (File.Exists(newFileName))
+                    {
+                        DialogResult dialogResult = MessageBox.Show(Properties.FormStrings.Message_Warning_Font_Exist1
+                            + fileName + Environment.NewLine + Properties.FormStrings.Message_Warning_Font_Exist2,
+                            Properties.FormStrings.Message_Warning_Caption,
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            File.Copy(fileFullName, newFileName, true);
+                            PreviewImage();
+                        }
+                    }
+                    else
+                    {
+                        File.Copy(fileFullName, newFileName, true);
+                        LoadFonts(Path.Combine(ProjectDir, "assets"));
+                        string fontFileName = Path.GetFileName(newFileName);
+                        uCtrl_Text_Widgets_Opt.SetFont(fontFileName);
+                    }
+
+                }
+                catch
+                {
+                    MessageBox.Show(Properties.FormStrings.Message_Error_Font + fileName);
+                }
+            }
+        }
+
         private void uCtrl_Text_SystemFont_Opt_DelFont_Click(object sender, EventArgs eventArgs, string fontName)
         {
             if(File.Exists(Path.Combine(ProjectDir, "assets", "fonts", fontName)))
+            {
+                try
+                {
+                    File.Delete(Path.Combine(ProjectDir, "assets", "fonts", fontName));
+                    LoadFonts(Path.Combine(ProjectDir, "assets"));
+                }
+                catch (Exception)
+                {
+                }
+            }
+        }
+
+        private void uCtrl_Text_Widgets_Opt_DelFont_Click(object sender, EventArgs eventArgs, string fontName)
+        {
+            if (File.Exists(Path.Combine(ProjectDir, "assets", "fonts", fontName)))
             {
                 try
                 {

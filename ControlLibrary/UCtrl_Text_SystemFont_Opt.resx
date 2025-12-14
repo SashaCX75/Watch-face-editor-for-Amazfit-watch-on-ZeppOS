@@ -153,9 +153,6 @@
   <data name="checkBox_inEnd.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;numericUpDown_LineSpace.ZOrder" xml:space="preserve">
-    <value>30</value>
-  </data>
   <data name="comboBox_Color.TabIndex" type="System.Int32, mscorlib">
     <value>167</value>
   </data>
@@ -333,6 +330,9 @@
   <data name="label_DOW.ToolTip1" xml:space="preserve">
     <value />
   </data>
+  <data name="&gt;&gt;label01.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
   <data name="&gt;&gt;label01.ZOrder" xml:space="preserve">
     <value>45</value>
   </data>
@@ -350,16 +350,16 @@
   </data>
   <data name="вставитьКоординатуYToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAfxJREFUOE9j
-        8O+++t+i/Eg9AxYAkrPEI6ddeLyewbx4T/2sdcf/nzp/DYxPX7gOxmcuXv/fufHx/9UH7/4/e+kmGJ+7
-        fAuMz1+5/T+++8B+jcxd9mDTTpy9/P/lp/8k4c2bNyNcduLMxf+vP/+H4w3b9v8vraxHwcjyILx+/XqE
-        AcdPX/j/9ut/OJ4ycz6YLqmoReEj4zVr1kAMMC05XL9q/43/H779x8BllbVYxUE4onXPfmAg2oNDs2/L
-        4/+ffvzHwBVVdVjFQRgeCyBw9MSp/19//sfAVTV1WMVBePLspYgwOHr85P/vv/6j4Bu37/+3tbP/P2vO
-        fLjYrz8QDGLPmzcPYcCRY8fhkrjwn7///y+4Nvn/8tvT/v/+++//rFmzkAw4chSsABcGqv//D4hz9sT+
-        Lz+aBBT7+//KlStrJ85fzwYORO/KTfsbGxvrm5qa6pubm+tbWlrqq1sm1IPkJmy+9yd/W+5//xUe/3P3
-        x/8vBhqQuivkf+vJ4v9XHn2uZwAmx3p4kkQDILkVR56tdJvh+t9sotH/gLX2/yO2Ov43X6D1P367z/+f
-        v//mQ5XiBhMmTGD7+fNn7t+/f/dp9cj+t1mkBvTC7wO/f//OX7hoIQdUGWHw7v27LLcZxv8dZtkCw+Mf
-        YZvRQX9/PxvQkJx3797lIWxmYAAA7pt3k8xS7ogAAAAASUVORK5CYII=
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAftJREFUOE+V
+        kt1LFFEYxvdq6Z/oNkTvirIg27pIggK76MKbWBC6MNwWWUvX0sN+eBFGO2KETbGrQmS1ttWWwbI0RjvN
+        +pWak1qLBQlBRGMoVuPMmSfmyM5+TFv0wI8z8z7vec7wznE09L7F/vYMcfxBpnfgL15Nq0Qctb404R9I
+        mJxdZEzNLTGm55dw+dEq7r9Ywcybd4zXC+8Zs3IO7t5xoao55WJp2ZkFfFnHf5FMJgtflp2ex9cNWDwc
+        E3DeT0oo9k0SiUQhQJqaw7dNWFy7EWNrW0dXyXsx8Xh8O2Bv20tyT1jG9x+wccHfZavlaexJCzWtkotN
+        8+qTVaz/go2Ozm5bLY/1F0yJ2UlsqrDReanbVsvTf/N2YQaiNIGfWyhhOfcRdYdc4G/FrNqWvo35HI1G
+        CwGZV5JlVkKnwOBiP+7krkOjBnieLwrIiKyhEtQADANoSZ9Gu9gEnVLIsjzaF0s42RCP+x8LgUCABINB
+        EgqFSDgcJhfDHDE9LvlB94550DByDB7BDZ/YhDOpU+iZ8EH+tEEcVc0pYl3JMpneSObz3fqBo9jXtxsn
+        R11ofHoEtYPVcD87AVWj3vI9NnEc51RV1UMpfV59ZScODu+CTrVxTdO8Q8NDO8r7K0pZU87WD+zBYb4O
+        hmH8++RyRSIRp7KmtCiKcq745N/um3eT8k4mXQAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="button_DelFont.Size" type="System.Drawing.Size, System.Drawing">
@@ -389,6 +389,9 @@
   <data name="comboBox_Color.IntegralHeight" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
+  <data name="&gt;&gt;label01.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="checkBox_addZero.Text" xml:space="preserve">
     <value>Добавлять нули в начале</value>
   </data>
@@ -406,19 +409,19 @@
   </data>
   <data name="вставитьToolStripMenuItemY.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAArVJREFUOE9l
-        UktPE2EUnbY8WuQlPgq0iBoSdIHgo/ggmhgTX6hkCo2wUAqJRYpAjKk7f4A7XRhRaGuEEF1QAf0RbHSB
-        EbRFSgulpbQz04Lr471DDQUnOZmbc88997v3+wT+CvS5xqaTNT0NtSaH2HKrt7PT7rTb7c7u7m4VHDPX
-        Zr3Ta6mrdpyrr+kpLS4wqsX8FRl01sd3LXj35iWmJ32YmZmB3+9HKBRSwTFzX6Y/Ydz7Cn2tFlSVl1kz
-        5WSg14n9bRZ8nZ3DhG8KwyNuuD0eeDxeFW63R+UmfJP4NjsPR8tpVFXsE7eq6Ssx5Ij9trP4PufHj/lf
-        8C8s4ndwCYtLIRUcB4jjHGucdIJDlft3GgzaGhEIhrCwGEQwFEZoeQXhlYgKjpeI41wgGMZAx3kyyDpB
-        MRkM2CxYjsQQJnFkNYpobA2xtbgKjpnjHGsGO5pwqKIsy4B28Ih2EIsnsRqNYS2+jvVEEklJUsExc5xj
-        TR+NW2068L/BelJRhYmkBFlWoKTSKjhmTjUmjbOtcdcI+hyxVzwFSUmr3RKSDEVJIZVOq1BSKUjEcY41
-        D610jdkj0DsQH9xugJzaQIJF/wyoO4Nj5jjHmq7mepjLswwK6QRdN+oouYl45gTqCFTIkBUly2AT96+f
-        4Ie0bbAnXyfeu3ockryxtTyaV8rsgSHJtMzE1jLjSRntV47BbNy7bWDI04rtl2uRlNOI07VxpyR15K4M
-        jpmLRKKY/xlAs8UEk7F0p4HtUg2U9B/qQt1o01KmuyzT/DRGPJ6gF7mMz1OTuHnGtOsEudpW28WjGPUO
-        Y8zzGh/eD8M37sHH0RGMed9i1DOEoRfP8eyJA9caj0C8cBiVB0taM+WCoBEEM13l01yN4MrXCi5DjuAq
-        zqO/TnAxx2CuMF/jKtTrXEWk1Wk1ZkEQhL+gXkz+KXzH3gAAAABJRU5ErkJggg==
+        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
 </value>
   </data>
   <data name="&gt;&gt;label08.ZOrder" xml:space="preserve">
@@ -475,14 +478,33 @@
   <data name="label10.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomCenter</value>
   </data>
-  <data name="label_Month.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="checkBox_CentreHorizontally.TabIndex" type="System.Int32, mscorlib">
+    <value>178</value>
+  </data>
+  <data name="копироватьToolStripMenuItemY.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAoFJREFUOE+d
+        kc1PE1EUxZ/GCO47JVE27nBrKUt15Y7GBST4H7h0ry6MgokGDS3GD2Qg4kINKm0RURdGUZgiX22n0+m0
+        U2am0w/aTmdKYX3MezWlYtx4k5Pcd3Lvb857Qwgh5FR39zGXy9XBcVyn2+3u7OrqOuGmcrs7XRzXwXHu
+        43TunzUxOb0aEyWIkoxkKg1ZyUBWVEiyAurHJRnnzl+4dHivVROTvEAHE5IMOZWGlEwhJiYQjYnY2Iph
+        MxrHwMDgVY/H09Pb6+056/Gc8fb1nWwBns+8EFRVQ3Zbg26YiKyuYemHgMjPdaxtbDEITSdKKUTjCWzG
+        RNy9N7rYArx89Vow8gWY+QKKpRI2tqKtJVlJQ8moTCklw9JRf/T+g/ctwOybt0KxtIOdcgVVqwYxISGp
+        ZKBua9D0HPScCSNnQjdyyGo68/2B8QPAu7k5gS5SObaDlJKGphvImQUUiiWUdspMtM8Xiizpo8dPDgBz
+        wZBQs23Uajac3TrSGRVmoQjdMFCpWqhaFkuXlBV8+77CvKcTzw4AQQZwGMB26sio2dZX46KEbU2HU2+g
+        0WhgWVgFnZ3k+b8BFgXYDjKqinKlws5r65uQkjL29vfZ7ywUi2yGn5pqv0JQsKo2ewOagl6BxqRJqFex
+        auwBl1ci+PJ1iaXkp6bbEoTCEcu22xJkUS5Xm0C76dGlpppnnm9LMDJ8ZyYUmo8HQ+FYODwf//jps1mu
+        VFkKCqWpalaN9RRK3+b28MhsC0AIOUIIOfpbxOfzXdlt7DUTOXU49V0m2lOwmS9h6PLQrXbAH+X1ei8G
+        xh8ujo35F/z+wEIgMP6BivbXrt+Y7e/33SSEnD6891/1C4wyYm/4MYe4AAAAAElFTkSuQmCC
+</value>
   </data>
   <data name="&gt;&gt;вставитьСвойстваToolStripMenuItem.Name" xml:space="preserve">
     <value>вставитьСвойстваToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;textBox_DOW.Name" xml:space="preserve">
     <value>textBox_DOW</value>
+  </data>
+  <data name="&gt;&gt;label_alpha.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="label09.TabIndex" type="System.Int32, mscorlib">
     <value>162</value>
@@ -529,6 +551,12 @@
   <data name="label09.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
+  <data name="label03.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;вставитьToolStripMenuItemX.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="comboBox_alignmentVertical.Items1" xml:space="preserve">
     <value>По центру</value>
   </data>
@@ -562,8 +590,8 @@
   <data name="checkBox_inEnd.TabIndex" type="System.Int32, mscorlib">
     <value>185</value>
   </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>UCtrl_Text_SystemFont_Opt</value>
+  <data name="&gt;&gt;label9.Name" xml:space="preserve">
+    <value>label9</value>
   </data>
   <data name="numericUpDown_Spacing.ToolTip" xml:space="preserve">
     <value />
@@ -595,8 +623,8 @@
   <data name="label04.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="comboBox_Color2.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="label_DOW.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 371</value>
   </data>
   <data name="label07.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomCenter</value>
@@ -667,6 +695,12 @@
   <data name="numericUpDown_LineSpace.Location" type="System.Drawing.Point, System.Drawing">
     <value>179, 229</value>
   </data>
+  <data name="label04.Size" type="System.Drawing.Size, System.Drawing">
+    <value>17, 13</value>
+  </data>
+  <data name="label06.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label9.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -682,8 +716,8 @@
   <data name="label11.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="checkBox_CentreHorizontally.TabIndex" type="System.Int32, mscorlib">
-    <value>178</value>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>UCtrl_Text_SystemFont_Opt</value>
   </data>
   <data name="&gt;&gt;label04.ZOrder" xml:space="preserve">
     <value>46</value>
@@ -726,6 +760,9 @@
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Вертикальное выравнивание</value>
+  </data>
+  <data name="comboBox_textStyle.Items1" xml:space="preserve">
+    <value>Переносить текст</value>
   </data>
   <data name="label05.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>TopCenter</value>
@@ -786,16 +823,16 @@
   </data>
   <data name="вставитьКоординатуХToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAfxJREFUOE9j
-        8O+++t+i/Eg9AxYAkrPEI6ddeLyewbx4T/2sdcf/nzp/DYxPX7gOxmcuXv/fufHx/9UH7/4/e+kmGJ+7
-        fAuMz1+5/T+++8B+jcxd9mDTTpy9/P/lp/8k4c2bNyNcduLMxf+vP/+H4w3b9v8vraxHwcjyILx+/XqE
-        AcdPX/j/9ut/OJ4ycz6YLqmoReEj4zVr1kAMMC05XL9q/43/H779x8BllbVYxUE4onXPfmAg2oNDs2/L
-        4/+ffvzHwBVVdVjFQRgeCyBw9MSp/19//sfAVTV1WMVBePLspYgwOHr85P/vv/6j4Bu37/+3tbP/P2vO
-        fLjYrz8QDGLPmzcPYcCRY8fhkrjwn7///y+4Nvn/8tvT/v/+++//rFmzkAw4chSsABcGqv//D4hz9sT+
-        Lz+aBBT7+//KlStrJ85fzwYORO/KTfsbGxvrm5qa6pubm+tbWlrqq1sm1IPkJmy+9yd/W+5//xUe/3P3
-        x/8vBhqQuivkf+vJ4v9XHn2uZwAmx3p4kkQDILkVR56tdJvh+t9sotH/gLX2/yO2Ov43X6D1P367z/+f
-        v//mQ5XiBhMmTGD7+fNn7t+/f/dp9cj+t1mkBvTC7wO/f//OX7hoIQdUGWHw7v27LLcZxv8dZtkCw+Mf
-        YZvRQX9/PxvQkJx3797lIWxmYAAA7pt3k8xS7ogAAAAASUVORK5CYII=
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAftJREFUOE+V
+        kt1LFFEYxvdq6Z/oNkTvirIg27pIggK76MKbWBC6MNwWWUvX0sN+eBFGO2KETbGrQmS1ttWWwbI0RjvN
+        +pWak1qLBQlBRGMoVuPMmSfmyM5+TFv0wI8z8z7vec7wznE09L7F/vYMcfxBpnfgL15Nq0Qctb404R9I
+        mJxdZEzNLTGm55dw+dEq7r9Ywcybd4zXC+8Zs3IO7t5xoao55WJp2ZkFfFnHf5FMJgtflp2ex9cNWDwc
+        E3DeT0oo9k0SiUQhQJqaw7dNWFy7EWNrW0dXyXsx8Xh8O2Bv20tyT1jG9x+wccHfZavlaexJCzWtkotN
+        8+qTVaz/go2Ozm5bLY/1F0yJ2UlsqrDReanbVsvTf/N2YQaiNIGfWyhhOfcRdYdc4G/FrNqWvo35HI1G
+        CwGZV5JlVkKnwOBiP+7krkOjBnieLwrIiKyhEtQADANoSZ9Gu9gEnVLIsjzaF0s42RCP+x8LgUCABINB
+        EgqFSDgcJhfDHDE9LvlB94550DByDB7BDZ/YhDOpU+iZ8EH+tEEcVc0pYl3JMpneSObz3fqBo9jXtxsn
+        R11ofHoEtYPVcD87AVWj3vI9NnEc51RV1UMpfV59ZScODu+CTrVxTdO8Q8NDO8r7K0pZU87WD+zBYb4O
+        hmH8++RyRSIRp7KmtCiKcq745N/um3eT8k4mXQAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="&gt;&gt;label03.Type" xml:space="preserve">
@@ -809,9 +846,6 @@
   </data>
   <data name="&gt;&gt;numericUpDown_Alpha.Parent" xml:space="preserve">
     <value>$this</value>
-  </data>
-  <data name="checkBox_CentreVertically.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="label10.TabIndex" type="System.Int32, mscorlib">
     <value>198</value>
@@ -828,8 +862,8 @@
   <data name="radioButton_counterclockwise.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="contextMenuStrip_Y.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 82</value>
+  <data name="label3.TabIndex" type="System.Int32, mscorlib">
+    <value>169</value>
   </data>
   <data name="&gt;&gt;numericUpDown_Width.Parent" xml:space="preserve">
     <value>$this</value>
@@ -885,9 +919,6 @@
   <data name="checkBox_Color2.ToolTip1" xml:space="preserve">
     <value />
   </data>
-  <data name="&gt;&gt;radioButton_counterclockwise.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
   <data name="numericUpDown_Width.Location" type="System.Drawing.Point, System.Drawing">
     <value>20, 73</value>
   </data>
@@ -918,8 +949,8 @@
   <data name="&gt;&gt;comboBox_alignmentHorizontal.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="comboBox_Color2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>179, 286</value>
+  <data name="&gt;&gt;comboBox_fonts.ZOrder" xml:space="preserve">
+    <value>25</value>
   </data>
   <data name="numericUpDown_Height.TabIndex" type="System.Int32, mscorlib">
     <value>160</value>
@@ -945,8 +976,8 @@
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>127, 30</value>
   </data>
-  <data name="&gt;&gt;numericUpDown_radius.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;comboBox_Color2.ZOrder" xml:space="preserve">
+    <value>9</value>
   </data>
   <data name="label9.TabIndex" type="System.Int32, mscorlib">
     <value>196</value>
@@ -1005,9 +1036,6 @@
   <data name="label04.Text" xml:space="preserve">
     <value>Y:</value>
   </data>
-  <data name="&gt;&gt;label11.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
   <data name="&gt;&gt;numericUpDown_X.Type" xml:space="preserve">
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -1052,18 +1080,18 @@
   </data>
   <data name="копироватьToolStripMenuItemX.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        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
+        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
 </value>
   </data>
   <data name="checkBox_Color2.MaximumSize" type="System.Drawing.Size, System.Drawing">
@@ -1105,8 +1133,8 @@
   <data name="label_alpha.Location" type="System.Drawing.Point, System.Drawing">
     <value>144, 53</value>
   </data>
-  <data name="вставитьToolStripMenuItemY.Text" xml:space="preserve">
-    <value>Вставить</value>
+  <data name="label8.ToolTip1" xml:space="preserve">
+    <value />
   </data>
   <data name="label9.ToolTip1" xml:space="preserve">
     <value />
@@ -1186,9 +1214,6 @@
   <data name="numericUpDown_Alpha.Size" type="System.Drawing.Size, System.Drawing">
     <value>40, 20</value>
   </data>
-  <data name="label_unit_string.Text" xml:space="preserve">
-    <value>Разделитель</value>
-  </data>
   <data name="&gt;&gt;вставитьСвойстваToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -1237,8 +1262,8 @@
   <data name="&gt;&gt;checkBox_Color2.Name" xml:space="preserve">
     <value>checkBox_Color2</value>
   </data>
-  <data name="comboBox_textStyle.Items1" xml:space="preserve">
-    <value>Переносить текст</value>
+  <data name="&gt;&gt;numericUpDown_LineSpace.ZOrder" xml:space="preserve">
+    <value>30</value>
   </data>
   <data name="&gt;&gt;numericUpDown_Spacing.ZOrder" xml:space="preserve">
     <value>44</value>
@@ -1257,10 +1282,6 @@
   </data>
   <data name="radioButton_counterclockwise.ToolTip1" xml:space="preserve">
     <value />
-  </data>
-  <data name="checkBox_CentreHorizontally.Text" xml:space="preserve">
-    <value>Центрировать 
-по горизонтали</value>
   </data>
   <data name="comboBox_Color.Size" type="System.Drawing.Size, System.Drawing">
     <value>45, 21</value>
@@ -1343,6 +1364,9 @@
   <data name="comboBox_alignmentHorizontal.TabIndex" type="System.Int32, mscorlib">
     <value>163</value>
   </data>
+  <data name="&gt;&gt;checkBox_addZero.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
   <data name="label7.MaximumSize" type="System.Drawing.Size, System.Drawing">
     <value>240, 0</value>
   </data>
@@ -1363,9 +1387,6 @@
   </data>
   <data name="&gt;&gt;button_DelFont.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="label8.ToolTip1" xml:space="preserve">
-    <value />
   </data>
   <data name="label06.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
@@ -1408,9 +1429,6 @@
   </data>
   <data name="&gt;&gt;label_unit_string.ZOrder" xml:space="preserve">
     <value>15</value>
-  </data>
-  <data name="label10.ToolTip1" xml:space="preserve">
-    <value />
   </data>
   <data name="checkBox_Color2.Size" type="System.Drawing.Size, System.Drawing">
     <value>15, 14</value>
@@ -1463,8 +1481,8 @@
   <data name="&gt;&gt;копироватьСвойстваToolStripMenuItem.Name" xml:space="preserve">
     <value>копироватьСвойстваToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;label01.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;numericUpDown_radius.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="checkBox_unit.Text" xml:space="preserve">
     <value>Единицы измерения</value>
@@ -1484,8 +1502,8 @@
   <data name="&gt;&gt;numericUpDown_Alpha.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="&gt;&gt;label_alpha.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="вставитьToolStripMenuItemY.Text" xml:space="preserve">
+    <value>Вставить</value>
   </data>
   <data name="&gt;&gt;label08.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1495,19 +1513,19 @@
   </data>
   <data name="вставитьToolStripMenuItemX.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        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
+        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
 </value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
@@ -1548,6 +1566,9 @@
   </data>
   <data name="&gt;&gt;radioButton_clockwise.Type" xml:space="preserve">
     <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="comboBox_Color2.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="label11.Text" xml:space="preserve">
     <value>Конечный угол</value>
@@ -1603,14 +1624,12 @@
   <data name="&gt;&gt;textBox_unit_string.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;label9.Name" xml:space="preserve">
-    <value>label9</value>
-  </data>
   <data name="label_alpha.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomCenter</value>
   </data>
-  <data name="&gt;&gt;label4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="checkBox_CentreHorizontally.Text" xml:space="preserve">
+    <value>Центрировать 
+по горизонтали</value>
   </data>
   <data name="&gt;&gt;checkBox_addZero.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1618,8 +1637,8 @@
   <data name="label05.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="&gt;&gt;checkBox_addZero.ZOrder" xml:space="preserve">
-    <value>19</value>
+  <data name="&gt;&gt;comboBox_Color.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="checkBox_unit.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1672,14 +1691,11 @@
   <data name="radioButton_clockwise.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="label08.Location" type="System.Drawing.Point, System.Drawing">
-    <value>76, 53</value>
+  <data name="checkBox_CentreVertically.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="comboBox_fonts.ToolTip1" xml:space="preserve">
     <value />
-  </data>
-  <data name="comboBox_fonts.TabIndex" type="System.Int32, mscorlib">
-    <value>174</value>
   </data>
   <data name="&gt;&gt;label2.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1753,9 +1769,6 @@
   <data name="&gt;&gt;label06.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="label3.TabIndex" type="System.Int32, mscorlib">
-    <value>169</value>
-  </data>
   <data name="checkBox_inEnd.Text" xml:space="preserve">
     <value>В конце</value>
   </data>
@@ -1764,6 +1777,9 @@
   </data>
   <data name="label_alpha.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
+  </data>
+  <data name="numericUpDown_X.ToolTip1" xml:space="preserve">
+    <value />
   </data>
   <data name="numericUpDown_Size.ToolTip" xml:space="preserve">
     <value>Не рекомендуется устанавливать размер больше 150</value>
@@ -1804,11 +1820,8 @@
   <data name="вставитьКоординатуХToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>203, 26</value>
   </data>
-  <data name="&gt;&gt;comboBox_Color.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="label04.Size" type="System.Drawing.Size, System.Drawing">
-    <value>17, 13</value>
+  <data name="label08.Location" type="System.Drawing.Point, System.Drawing">
+    <value>76, 53</value>
   </data>
   <data name="&gt;&gt;numericUpDown_Alpha.Name" xml:space="preserve">
     <value>numericUpDown_Alpha</value>
@@ -1846,8 +1859,8 @@
   <data name="&gt;&gt;label_DOW.Name" xml:space="preserve">
     <value>label_DOW</value>
   </data>
-  <data name="label06.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="label_unit_string.Text" xml:space="preserve">
+    <value>Разделитель</value>
   </data>
   <data name="&gt;&gt;button_DelFont.Name" xml:space="preserve">
     <value>button_DelFont</value>
@@ -1866,6 +1879,9 @@
   </data>
   <data name="&gt;&gt;numericUpDown_LineSpace.Type" xml:space="preserve">
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="contextMenuStrip_Y.Size" type="System.Drawing.Size, System.Drawing">
+    <value>204, 82</value>
   </data>
   <data name="label8.MaximumSize" type="System.Drawing.Size, System.Drawing">
     <value>240, 0</value>
@@ -1894,14 +1910,11 @@
   <data name="numericUpDown_Alpha.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="label_DOW.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 371</value>
-  </data>
   <data name="label03.Size" type="System.Drawing.Size, System.Drawing">
     <value>17, 13</value>
   </data>
-  <data name="&gt;&gt;comboBox_Color2.ZOrder" xml:space="preserve">
-    <value>9</value>
+  <data name="&gt;&gt;label4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="label_unit_string.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -2030,21 +2043,8 @@
   <data name="label01.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
   </data>
-  <data name="копироватьToolStripMenuItemY.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAnJJREFUOE+l
-        UUtvEmEUHY3RuueRaDfu6lZKl+rKXYmLmtR/4NK9ujDammiqKWB8IENjXahB5VFr1YXRajsgLeX9HArD
-        AMN7gHZ9vfeDFJLqypuczJ2bc853vvtxVKfHx49pNJoTWq12TKfTjen1+pM6AvYarRbnuuOM+K+y2Zf8
-        4WgcovEkJFIZSKazCBHiyTTQPILz8xcuXh7QD5fNzgtEjCExiQbxRAqFMQiFo7C9E4ZgKAIzM1euGwyG
-        iclJ48Q5g+GscWrq1EDOcS+XXwmimIfcbh4Kkgw+fwDWfwng+70Fge0dZkLpovEUhCIxCKLx/QcLawM5
-        x71+81aQSmWQERVFQUHoQJRMZyCdFRlSeDVKR/OFh48+DuQc53z3XqgoVajW6tBotiAai0MCySImyheK
-        UCjKICEKUhFy+QKbmy3WocEHl0sgIUFtq3hSBoUSFOUylCsKKNUaA/WlcoUlffL02dDA5fYIrXYbWq02
-        qN0OZDCujMSCJEG90UTjJkuXwFf58XOTzZ7bXgwN3MxAZQZttQNZMXdwagRfZxdjq50e9Ho92BD8QFw7
-        zx82aJIBfrOiCLV6nf0HtoK4uCTs7e+z5yxXKozDOxyjV3ALzUab7YBS0BUoJiWhWR1BC9zY9MG37+ss
-        Je9YGkng8fqauINhghzUao2+Ic5pRqI++v88P5Jgfu7essezEkGjsNe7Evn85atcqzdYCjKlVC00o55M
-        aTd35+adAzmrI4ijA3Amk+lat7fXT4Snqp0uA/VkLJcUmL06e4e4fy2j0XjJYn28trhoXjWbLasWi/UT
-        gfobN285p6dNt5F2ps/+r+K4P4wyYm9nlNBiAAAAAElFTkSuQmCC
-</value>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>176, 146</value>
   </data>
   <data name="numericUpDown_Width.ToolTip1" xml:space="preserve">
     <value />
@@ -2055,8 +2055,8 @@
   <data name="button_AddFont.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="&gt;&gt;вставитьToolStripMenuItemX.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="label_Month.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="&gt;&gt;label7.Name" xml:space="preserve">
     <value>label7</value>
@@ -2081,9 +2081,6 @@
   </data>
   <data name="checkBox_inEnd.ToolTip1" xml:space="preserve">
     <value />
-  </data>
-  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>176, 146</value>
   </data>
   <data name="comboBox_alignmentVertical.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 228</value>
@@ -2175,14 +2172,14 @@
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
     <value>29</value>
   </data>
-  <data name="&gt;&gt;comboBox_fonts.ZOrder" xml:space="preserve">
-    <value>25</value>
+  <data name="&gt;&gt;label11.Parent" xml:space="preserve">
+    <value>panel1</value>
   </data>
   <data name="label3.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="numericUpDown_X.ToolTip1" xml:space="preserve">
-    <value />
+  <data name="&gt;&gt;radioButton_counterclockwise.Parent" xml:space="preserve">
+    <value>panel1</value>
   </data>
   <data name="&gt;&gt;checkBox_CentreVertically.Name" xml:space="preserve">
     <value>checkBox_CentreVertically</value>
@@ -2217,8 +2214,8 @@
   <data name="&gt;&gt;toolTip.Name" xml:space="preserve">
     <value>toolTip</value>
   </data>
-  <data name="&gt;&gt;label01.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="label10.ToolTip1" xml:space="preserve">
+    <value />
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
     <value>31</value>
@@ -2241,8 +2238,8 @@
   <data name="&gt;&gt;checkBox_use_text_circle.Parent" xml:space="preserve">
     <value>panel1</value>
   </data>
-  <data name="label03.ToolTip" xml:space="preserve">
-    <value />
+  <data name="comboBox_fonts.TabIndex" type="System.Int32, mscorlib">
+    <value>174</value>
   </data>
   <data name="label_Month.ToolTip1" xml:space="preserve">
     <value />
@@ -2301,6 +2298,9 @@
   <data name="label07.TabIndex" type="System.Int32, mscorlib">
     <value>159</value>
   </data>
+  <data name="comboBox_Color2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>179, 286</value>
+  </data>
   <data name="label_alpha.Size" type="System.Drawing.Size, System.Drawing">
     <value>90, 15</value>
   </data>
@@ -2319,6 +2319,9 @@
   <data name="&gt;&gt;label08.Name" xml:space="preserve">
     <value>label08</value>
   </data>
+  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>uk</value>
+  </metadata>
   <metadata name="toolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>498, 20</value>
   </metadata>

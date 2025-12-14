@@ -117,92 +117,116 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Index.HeaderText" xml:space="preserve">
-    <value>#</value>
-  </data>
   <data name="Button.HeaderText" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="button_add.Text" xml:space="preserve">
-    <value>Add</value>
+    <value>Ім'я</value>
   </data>
   <data name="button_del.Text" xml:space="preserve">
-    <value>Delete</value>
+    <value>Видалити</value>
   </data>
-  <data name="label06.Text" xml:space="preserve">
-    <value>Button height</value>
+  <data name="button_add.Text" xml:space="preserve">
+    <value>Додати</value>
   </data>
-  <data name="label07.Text" xml:space="preserve">
-    <value>Button width</value>
+  <data name="checkBox_use_text_circle.Text" xml:space="preserve">
+    <value>Відображати текст по колу</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="вставитьКоординатуХToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAftJREFUOE+V
-        kt1LFFEYxvdq6Z/oNkTvirIg27pIggK76MKbWBC6MNwWWUvX0sN+eBFGO2KETbGrQmS1ttWWwbI0RjvN
-        +pWak1qLBQlBRGMoVuPMmSfmyM5+TFv0wI8z8z7vec7wznE09L7F/vYMcfxBpnfgL15Nq0Qctb404R9I
-        mJxdZEzNLTGm55dw+dEq7r9Ywcybd4zXC+8Zs3IO7t5xoao55WJp2ZkFfFnHf5FMJgtflp2ex9cNWDwc
-        E3DeT0oo9k0SiUQhQJqaw7dNWFy7EWNrW0dXyXsx8Xh8O2Bv20tyT1jG9x+wccHfZavlaexJCzWtkotN
-        8+qTVaz/go2Ozm5bLY/1F0yJ2UlsqrDReanbVsvTf/N2YQaiNIGfWyhhOfcRdYdc4G/FrNqWvo35HI1G
-        CwGZV5JlVkKnwOBiP+7krkOjBnieLwrIiKyhEtQADANoSZ9Gu9gEnVLIsjzaF0s42RCP+x8LgUCABINB
-        EgqFSDgcJhfDHDE9LvlB94550DByDB7BDZ/YhDOpU+iZ8EH+tEEcVc0pYl3JMpneSObz3fqBo9jXtxsn
-        R11ofHoEtYPVcD87AVWj3vI9NnEc51RV1UMpfV59ZScODu+CTrVxTdO8Q8NDO8r7K0pZU87WD+zBYb4O
-        hmH8++RyRSIRp7KmtCiKcq745N/um3eT8k4mXQAAAABJRU5ErkJggg==
-</value>
+  <data name="radioButton_counterclockwise.Size" type="System.Drawing.Size, System.Drawing">
+    <value>127, 17</value>
   </data>
-  <data name="вставитьКоординатуХToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 26</value>
+  <data name="radioButton_counterclockwise.Text" xml:space="preserve">
+    <value>Проти годинникової</value>
   </data>
-  <data name="вставитьКоординатуХToolStripMenuItem.Text" xml:space="preserve">
-    <value>Paste coordinate X</value>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Радіус</value>
   </data>
-  <data name="копироватьToolStripMenuItemX.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAoFJREFUOE+d
-        kc1PE1EUxZ/GCO47JVE27nBrKUt15Y7GBST4H7h0ry6MgokGDS3GD2Qg4kINKm0RURdGUZgiX22n0+m0
-        U2am0w/aTmdKYX3MezWlYtx4k5Pcd3Lvb857Qwgh5FR39zGXy9XBcVyn2+3u7OrqOuGmcrs7XRzXwXHu
-        43TunzUxOb0aEyWIkoxkKg1ZyUBWVEiyAurHJRnnzl+4dHivVROTvEAHE5IMOZWGlEwhJiYQjYnY2Iph
-        MxrHwMDgVY/H09Pb6+056/Gc8fb1nWwBns+8EFRVQ3Zbg26YiKyuYemHgMjPdaxtbDEITSdKKUTjCWzG
-        RNy9N7rYArx89Vow8gWY+QKKpRI2tqKtJVlJQ8moTCklw9JRf/T+g/ctwOybt0KxtIOdcgVVqwYxISGp
-        ZKBua9D0HPScCSNnQjdyyGo68/2B8QPAu7k5gS5SObaDlJKGphvImQUUiiWUdspMtM8Xiizpo8dPDgBz
-        wZBQs23Uajac3TrSGRVmoQjdMFCpWqhaFkuXlBV8+77CvKcTzw4AQQZwGMB26sio2dZX46KEbU2HU2+g
-        0WhgWVgFnZ3k+b8BFgXYDjKqinKlws5r65uQkjL29vfZ7ywUi2yGn5pqv0JQsKo2ewOagl6BxqRJqFex
-        auwBl1ci+PJ1iaXkp6bbEoTCEcu22xJkUS5Xm0C76dGlpppnnm9LMDJ8ZyYUmo8HQ+FYODwf//jps1mu
-        VFkKCqWpalaN9RRK3+b28MhsC0AIOUIIOfpbxOfzXdlt7DUTOXU49V0m2lOwmS9h6PLQrXbAH+X1ei8G
-        xh8ujo35F/z+wEIgMP6BivbXrt+Y7e/33SSEnD6891/1C4wyYm/4MYe4AAAAAElFTkSuQmCC
-</value>
+  <data name="radioButton_clockwise.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 17</value>
   </data>
-  <data name="копироватьToolStripMenuItemX.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 26</value>
+  <data name="radioButton_clockwise.Text" xml:space="preserve">
+    <value>За годинниковою</value>
   </data>
-  <data name="копироватьToolStripMenuItemX.Text" xml:space="preserve">
-    <value>Copy</value>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Початковий кут</value>
   </data>
-  <data name="вставитьToolStripMenuItemX.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAArdJREFUOE9l
-        kktPU1EUhW8fQItQEB8FWkANCTpA8HFBJZoYE1+o5NI2wkB5JBYpAjGmzPwBznRgRIHWCCE6oAL6I5jo
-        ACNoCy1tKZRL76vgeJl9QCh4ky9ZWXuftfc5uRzHcVyuKcvacKayq7bK5haa7nS3tbV72tvbPZ2dnQzS
-        5Dmb73Xz1RXuCzWVXYWWXCudZV++2dD89D6P929fYXoygJmZGQSDQUSjUQZp8r5Of8a4/zV6HDzKioua
-        dwNMBqHXyePb7BwmAlMYGh7BiM8Hn8/PGBnxMW8iMInvs/NwN51DWckhYSegwGwUel31+DEXxM/53wgu
-        hLEYWUJ4KcogHVoIsxr1eBw8yksP7w3od9UhFIliIRxBJBpDNL6M2HKCQXopGmO1UCSGvtaLKC/N2MBi
-        Ngp9Lh7xRBKx+DISK6tYTa4huSYySJNHNerpb21AeUlRRoDJIDxx8kiKElZWk1gT17GekiDJMoM0eVSj
-        nh5XPSpsR/4PWJdU1piSZCiKClVLM0iTx4IlFR5n3b4rmIxCt3AWsppm01KyAlXVoKXTDFXTIMsKq1HP
-        42YeZZlXyDcbhEd3a6FoG0hR078ALc0gTR7VqKejsQb24oyAPJNR6LhVDUXbhLi9AbuCqjEUVc0I2MTD
-        m6fpR9oNOJBjEB5cPwVZ2dh6PEmGvP0OhKzIkFJbjylKClqunYTdenA3wJytF1quVkFS0hDXRDZJkhU2
-        lSBNXiKxivlfITTyNtishXsDXFcqoab/YD0lQ5Jo6tZ0RdEgqxpEMYXFSBxfpiZx+7xt3wZZeofr8gmM
-        +ocw5nuDjx+GEBj34dPoMMb87zDqG8Tgyxd4/syNG3XHIVw6htKjBY6dAB3H2S0m40CWjvPm6Dmv2ch5
-        Ldmc12zgvOQR5OXl6Lx5JoM332QcMOh1djr7F6BeTP78CcvAAAAAAElFTkSuQmCC
-</value>
+  <data name="label11.Text" xml:space="preserve">
+    <value>Кінцевий кут</value>
   </data>
-  <data name="вставитьToolStripMenuItemX.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 26</value>
+  <data name="label09.Text" xml:space="preserve">
+    <value>Горизонтальне вирівнювання</value>
   </data>
-  <data name="вставитьToolStripMenuItemX.Text" xml:space="preserve">
-    <value>Paste</value>
+  <data name="label_alpha.Text" xml:space="preserve">
+    <value>Прозорість</value>
   </data>
-  <data name="contextMenuStrip_X.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 82</value>
+  <data name="checkBox_CentreVertically.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 30</value>
+  </data>
+  <data name="checkBox_CentreVertically.Text" xml:space="preserve">
+    <value>Центрувати 
+по вертикалі</value>
+  </data>
+  <data name="checkBox_CentreHorizontally.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 30</value>
+  </data>
+  <data name="checkBox_CentreHorizontally.Text" xml:space="preserve">
+    <value>Центрувати 
+по горизонталі</value>
+  </data>
+  <data name="button_DelFont.Text" xml:space="preserve">
+    <value>Видалити</value>
+  </data>
+  <data name="button_AddFont.Text" xml:space="preserve">
+    <value>Додати</value>
+  </data>
+  <data name="comboBox_textStyle.Items" xml:space="preserve">
+    <value>Бігаючий рядок</value>
+  </data>
+  <data name="comboBox_textStyle.Items1" xml:space="preserve">
+    <value>Переносити текст</value>
+  </data>
+  <data name="comboBox_textStyle.Items2" xml:space="preserve">
+    <value>Не переносити</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Перенесення тексту</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Міжрядковий інтервал</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Колір</value>
+  </data>
+  <data name="comboBox_alignmentVertical.Items" xml:space="preserve">
+    <value>Зверху</value>
+  </data>
+  <data name="comboBox_alignmentVertical.Items2" xml:space="preserve">
+    <value>Знизу</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Вертикальне вирівнювання</value>
+  </data>
+  <data name="comboBox_alignmentHorizontal.Items" xml:space="preserve">
+    <value>По лівому краю</value>
+  </data>
+  <data name="label08.Text" xml:space="preserve">
+    <value>Висота</value>
+  </data>
+  <data name="label01.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 13</value>
+  </data>
+  <data name="label01.Text" xml:space="preserve">
+    <value>Координати</value>
+  </data>
+  <data name="label05.Text" xml:space="preserve">
+    <value>Розмір</value>
+  </data>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 39</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>** У разі використання стороннього шрифту після встановлення циферблата годинник бажано перезавантажити.</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>* Розмір і положення напису може відрізнятись від відображення на годиннику.Перевіряйте положення напису на реальному пристрої.</value>
   </data>
   <data name="вставитьКоординатуYToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -217,12 +241,6 @@
         R11ofHoEtYPVcD87AVWj3vI9NnEc51RV1UMpfV59ZScODu+CTrVxTdO8Q8NDO8r7K0pZU87WD+zBYb4O
         hmH8++RyRSIRp7KmtCiKcq745N/um3eT8k4mXQAAAABJRU5ErkJggg==
 </value>
-  </data>
-  <data name="вставитьКоординатуYToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 26</value>
-  </data>
-  <data name="вставитьКоординатуYToolStripMenuItem.Text" xml:space="preserve">
-    <value>Paste coordinate Y</value>
   </data>
   <data name="копироватьToolStripMenuItemY.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -239,12 +257,6 @@
         VFkKCqWpalaN9RRK3+b28MhsC0AIOUIIOfpbxOfzXdlt7DUTOXU49V0m2lOwmS9h6PLQrXbAH+X1ei8G
         xh8ujo35F/z+wEIgMP6BivbXrt+Y7e/33SSEnD6891/1C4wyYm/4MYe4AAAAAElFTkSuQmCC
 </value>
-  </data>
-  <data name="копироватьToolStripMenuItemY.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 26</value>
-  </data>
-  <data name="копироватьToolStripMenuItemY.Text" xml:space="preserve">
-    <value>Copy</value>
   </data>
   <data name="вставитьToolStripMenuItemY.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -263,55 +275,51 @@
         Ldmc12zgvOQR5OXl6Lx5JoM332QcMOh1djr7F6BeTP78CcvAAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="вставитьToolStripMenuItemY.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 26</value>
+  <data name="вставитьКоординатуХToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAftJREFUOE+V
+        kt1LFFEYxvdq6Z/oNkTvirIg27pIggK76MKbWBC6MNwWWUvX0sN+eBFGO2KETbGrQmS1ttWWwbI0RjvN
+        +pWak1qLBQlBRGMoVuPMmSfmyM5+TFv0wI8z8z7vec7wznE09L7F/vYMcfxBpnfgL15Nq0Qctb404R9I
+        mJxdZEzNLTGm55dw+dEq7r9Ywcybd4zXC+8Zs3IO7t5xoao55WJp2ZkFfFnHf5FMJgtflp2ex9cNWDwc
+        E3DeT0oo9k0SiUQhQJqaw7dNWFy7EWNrW0dXyXsx8Xh8O2Bv20tyT1jG9x+wccHfZavlaexJCzWtkotN
+        8+qTVaz/go2Ozm5bLY/1F0yJ2UlsqrDReanbVsvTf/N2YQaiNIGfWyhhOfcRdYdc4G/FrNqWvo35HI1G
+        CwGZV5JlVkKnwOBiP+7krkOjBnieLwrIiKyhEtQADANoSZ9Gu9gEnVLIsjzaF0s42RCP+x8LgUCABINB
+        EgqFSDgcJhfDHDE9LvlB94550DByDB7BDZ/YhDOpU+iZ8EH+tEEcVc0pYl3JMpneSObz3fqBo9jXtxsn
+        R11ofHoEtYPVcD87AVWj3vI9NnEc51RV1UMpfV59ZScODu+CTrVxTdO8Q8NDO8r7K0pZU87WD+zBYb4O
+        hmH8++RyRSIRp7KmtCiKcq745N/um3eT8k4mXQAAAABJRU5ErkJggg==
+</value>
   </data>
-  <data name="вставитьToolStripMenuItemY.Text" xml:space="preserve">
-    <value>Paste</value>
+  <data name="копироватьToolStripMenuItemX.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAoFJREFUOE+d
+        kc1PE1EUxZ/GCO47JVE27nBrKUt15Y7GBST4H7h0ry6MgokGDS3GD2Qg4kINKm0RURdGUZgiX22n0+m0
+        U2am0w/aTmdKYX3MezWlYtx4k5Pcd3Lvb857Qwgh5FR39zGXy9XBcVyn2+3u7OrqOuGmcrs7XRzXwXHu
+        43TunzUxOb0aEyWIkoxkKg1ZyUBWVEiyAurHJRnnzl+4dHivVROTvEAHE5IMOZWGlEwhJiYQjYnY2Iph
+        MxrHwMDgVY/H09Pb6+056/Gc8fb1nWwBns+8EFRVQ3Zbg26YiKyuYemHgMjPdaxtbDEITSdKKUTjCWzG
+        RNy9N7rYArx89Vow8gWY+QKKpRI2tqKtJVlJQ8moTCklw9JRf/T+g/ctwOybt0KxtIOdcgVVqwYxISGp
+        ZKBua9D0HPScCSNnQjdyyGo68/2B8QPAu7k5gS5SObaDlJKGphvImQUUiiWUdspMtM8Xiizpo8dPDgBz
+        wZBQs23Uajac3TrSGRVmoQjdMFCpWqhaFkuXlBV8+77CvKcTzw4AQQZwGMB26sio2dZX46KEbU2HU2+g
+        0WhgWVgFnZ3k+b8BFgXYDjKqinKlws5r65uQkjL29vfZ7ywUi2yGn5pqv0JQsKo2ewOagl6BxqRJqFex
+        auwBl1ci+PJ1iaXkp6bbEoTCEcu22xJkUS5Xm0C76dGlpppnnm9LMDJ8ZyYUmo8HQ+FYODwf//jps1mu
+        VFkKCqWpalaN9RRK3+b28MhsC0AIOUIIOfpbxOfzXdlt7DUTOXU49V0m2lOwmS9h6PLQrXbAH+X1ei8G
+        xh8ujo35F/z+wEIgMP6BivbXrt+Y7e/33SSEnD6891/1C4wyYm/4MYe4AAAAAElFTkSuQmCC
+</value>
   </data>
-  <data name="contextMenuStrip_Y.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 82</value>
-  </data>
-  <data name="label02.Size" type="System.Drawing.Size, System.Drawing">
-    <value>63, 13</value>
-  </data>
-  <data name="label02.Text" xml:space="preserve">
-    <value>Coordinates</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Pressed state</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Normal state</value>
-  </data>
-  <data name="groupBox_image.Text" xml:space="preserve">
-    <value>Image</value>
-  </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Pressed state</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Radius</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>Normal state</value>
-  </data>
-  <data name="groupBox_color.Text" xml:space="preserve">
-    <value>Colour</value>
-  </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>Text size</value>
-  </data>
-  <data name="label7.Text" xml:space="preserve">
-    <value>Text</value>
-  </data>
-  <data name="label8.Text" xml:space="preserve">
-    <value>Text colour</value>
-  </data>
-  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>213, 26</value>
-  </data>
-  <data name="label9.Text" xml:space="preserve">
-    <value>* To add functions when pressing a button, double-click on the line with the button</value>
+  <data name="вставитьToolStripMenuItemX.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAArdJREFUOE9l
+        kktPU1EUhW8fQItQEB8FWkANCTpA8HFBJZoYE1+o5NI2wkB5JBYpAjGmzPwBznRgRIHWCCE6oAL6I5jo
+        ACNoCy1tKZRL76vgeJl9QCh4ky9ZWXuftfc5uRzHcVyuKcvacKayq7bK5haa7nS3tbV72tvbPZ2dnQzS
+        5Dmb73Xz1RXuCzWVXYWWXCudZV++2dD89D6P929fYXoygJmZGQSDQUSjUQZp8r5Of8a4/zV6HDzKioua
+        dwNMBqHXyePb7BwmAlMYGh7BiM8Hn8/PGBnxMW8iMInvs/NwN51DWckhYSegwGwUel31+DEXxM/53wgu
+        hLEYWUJ4KcogHVoIsxr1eBw8yksP7w3od9UhFIliIRxBJBpDNL6M2HKCQXopGmO1UCSGvtaLKC/N2MBi
+        Ngp9Lh7xRBKx+DISK6tYTa4huSYySJNHNerpb21AeUlRRoDJIDxx8kiKElZWk1gT17GekiDJMoM0eVSj
+        nh5XPSpsR/4PWJdU1piSZCiKClVLM0iTx4IlFR5n3b4rmIxCt3AWsppm01KyAlXVoKXTDFXTIMsKq1HP
+        42YeZZlXyDcbhEd3a6FoG0hR078ALc0gTR7VqKejsQb24oyAPJNR6LhVDUXbhLi9AbuCqjEUVc0I2MTD
+        m6fpR9oNOJBjEB5cPwVZ2dh6PEmGvP0OhKzIkFJbjylKClqunYTdenA3wJytF1quVkFS0hDXRDZJkhU2
+        lSBNXiKxivlfITTyNtishXsDXFcqoab/YD0lQ5Jo6tZ0RdEgqxpEMYXFSBxfpiZx+7xt3wZZeofr8gmM
+        +ocw5nuDjx+GEBj34dPoMMb87zDqG8Tgyxd4/syNG3XHIVw6htKjBY6dAB3H2S0m40CWjvPm6Dmv2ch5
+        Ldmc12zgvOQR5OXl6Lx5JoM332QcMOh1djr7F6BeTP78CcvAAAAAAElFTkSuQmCC
+</value>
   </data>
 </root>

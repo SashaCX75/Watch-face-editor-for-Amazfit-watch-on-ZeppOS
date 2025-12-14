@@ -24,6 +24,8 @@ namespace ControlLibrary
         bool visibility_elements = false; // развернут список с элементами
         bool visibilityElement = true; // элемент оторажается на предпросмотре
 
+        bool progress_available = true; // доступность элементов с прогрессом
+
         public int position = -1; // позиция в наборе элеменетов
         public string selectedElement; // название выбраного элемента
 
@@ -102,6 +104,24 @@ namespace ControlLibrary
         [Description("Происходит при удалении элемента")]
         public event DelElementHandler DelElement;
         public delegate void DelElementHandler(object sender, EventArgs eventArgs);
+
+        /// <summary>Доступность элементов с прогрессом</summary>
+        [Description("Доступность элементов с прогрессом")]
+        public virtual bool Progress_available
+        {
+            get
+            {
+                return progress_available;
+            }
+            set
+            {
+                progress_available = value;
+                panel_Images.Enabled = progress_available;
+                panel_Segments.Enabled = progress_available;
+                panel_Pointer.Enabled = progress_available;
+                panel_Circle_Scale.Enabled = progress_available;
+            }
+        }
 
         private void button_ElementName_Click(object sender, EventArgs e)
         {
@@ -757,6 +777,8 @@ namespace ControlLibrary
             pictureBox_Show.Visible = visibilityElement;
             pictureBox_NotShow.Visible = !visibilityElement;
             SetColorActive();
+
+            Progress_available = true;
 
             setValue = false;
         }

@@ -715,6 +715,9 @@ namespace Watch_Face_Editor
         /// <summary>Высота</summary>
         public int h { get; set; } = 30;
 
+        /// <summary>Текст в текстовом виджете</summary>
+        public string textStr { get; set; } = "";
+
         /// <summary>Цвет</summary>
         public string color { get; set; } = "0xFFFF8C00";
 
@@ -791,6 +794,12 @@ namespace Watch_Face_Editor
 
         /// <summary>Тип активности</summary>
         public string type { get; set; }
+
+        /// <summary>Копирование класса для АОД</summary>
+        public hmUI_widget_TEXT Copy()
+        {
+            return (hmUI_widget_TEXT)this.MemberwiseClone();
+        }
     }
 
     public class BoolToIntConverter : JsonConverter<int>

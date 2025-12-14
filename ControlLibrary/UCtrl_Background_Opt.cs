@@ -433,3 +433,8 @@ public class Program_Settings
     public string CacheFonts_full = "0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz " +
             "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя  ҐЄІЇґєії " + "_-.,:;`'%°\\\\/";
 }
+
+public class LastColor
+{
+    public static Color? last_color { get; set; }
+}

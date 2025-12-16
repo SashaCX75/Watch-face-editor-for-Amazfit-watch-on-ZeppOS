@@ -125,8 +125,14 @@
   <data name="numericUpDown_posY.Size" type="System.Drawing.Size, System.Drawing">
     <value>40, 20</value>
   </data>
+  <data name="panel_settings.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 5</value>
+  </data>
   <data name="comboBox_hr_colour.IntegralHeight" type="System.Boolean, mscorlib">
     <value>False</value>
+  </data>
+  <data name="вставитьКоординатуХToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>203, 26</value>
   </data>
   <data name="&gt;&gt;label02.Name" xml:space="preserve">
     <value>label02</value>
@@ -146,9 +152,6 @@
   <data name="&gt;&gt;label16.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
-  <data name="&gt;&gt;вставитьToolStripMenuItemX.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 77</value>
   </data>
@@ -159,14 +162,17 @@
   <data name="&gt;&gt;checkBox_use_chartSleep.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;numericUpDown_width.Parent" xml:space="preserve">
+    <value>panel_settings</value>
+  </data>
   <data name="&gt;&gt;groupBox_chartHR.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>255, 571</value>
+  <data name="&gt;&gt;checkBox_use_chartHR.Parent" xml:space="preserve">
+    <value>groupBox_chartHR</value>
   </data>
-  <data name="contextMenuStrip_Y.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 82</value>
+  <data name="&gt;&gt;comboBox_deepSleep_colour.Parent" xml:space="preserve">
+    <value>groupBox_chartSleep</value>
   </data>
   <data name="&gt;&gt;comboBox_REM_colour.Name" xml:space="preserve">
     <value>comboBox_REM_colour</value>
@@ -189,6 +195,9 @@
   <data name="label5.TabIndex" type="System.Int32, mscorlib">
     <value>191</value>
   </data>
+  <data name="вставитьToolStripMenuItemX.Text" xml:space="preserve">
+    <value>Вставить</value>
+  </data>
   <data name="label06.TabIndex" type="System.Int32, mscorlib">
     <value>214</value>
   </data>
@@ -198,8 +207,8 @@
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="comboBox_wakeup_colour.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 21</value>
+  <data name="label06.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>BottomCenter</value>
   </data>
   <data name="&gt;&gt;numericUpDown_hr_lineWidth.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -218,6 +227,9 @@
   </data>
   <data name="&gt;&gt;comboBox_deepSleep_colour.ZOrder" xml:space="preserve">
     <value>8</value>
+  </data>
+  <data name="label2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
   </data>
   <data name="&gt;&gt;panel_settings.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -362,9 +374,6 @@
   <data name="&gt;&gt;numericUpDown_hr_lineWidth.Type" xml:space="preserve">
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="groupBox_chartSleep.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 122</value>
-  </data>
   <data name="label16.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -374,8 +383,8 @@
   <data name="comboBox_image.Size" type="System.Drawing.Size, System.Drawing">
     <value>76, 21</value>
   </data>
-  <data name="вставитьКоординатуХToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>203, 26</value>
+  <data name="&gt;&gt;numericUpDown_posX.Name" xml:space="preserve">
+    <value>numericUpDown_posX</value>
   </data>
   <data name="groupBox_chartSleep.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -385,6 +394,9 @@
   </data>
   <data name="label5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 13</value>
   </data>
   <data name="comboBox_image.Location" type="System.Drawing.Point, System.Drawing">
     <value>154, 17</value>
@@ -424,9 +436,6 @@
   <data name="label05.Location" type="System.Drawing.Point, System.Drawing">
     <value>74, 20</value>
   </data>
-  <data name="label06.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>BottomCenter</value>
-  </data>
   <data name="label04.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -451,8 +460,8 @@
   <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 13</value>
   </data>
-  <data name="checkBox_use_chartHR.Size" type="System.Drawing.Size, System.Drawing">
-    <value>15, 14</value>
+  <data name="&gt;&gt;label05.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;panel_settings.Name" xml:space="preserve">
     <value>panel_settings</value>
@@ -481,11 +490,11 @@
   <data name="label06.Size" type="System.Drawing.Size, System.Drawing">
     <value>78, 30</value>
   </data>
-  <data name="&gt;&gt;label05.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;checkBox_use_chartHR.Name" xml:space="preserve">
+    <value>checkBox_use_chartHR</value>
   </data>
-  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
-    <value>groupBox_chartSleep</value>
+  <data name="&gt;&gt;contextMenuStrip_Y.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="вставитьToolStripMenuItemX.Size" type="System.Drawing.Size, System.Drawing">
     <value>203, 26</value>
@@ -499,11 +508,14 @@
   <data name="&gt;&gt;label07.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
+    <value>groupBox_chartSleep</value>
+  </data>
   <data name="groupBox_chartHR.Text" xml:space="preserve">
     <value>        График пульса</value>
   </data>
-  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 13</value>
+  <data name="&gt;&gt;comboBox_image.Parent" xml:space="preserve">
+    <value>panel_settings</value>
   </data>
   <data name="вставитьКоординатуХToolStripMenuItem.Text" xml:space="preserve">
     <value>Вставить координату Х</value>
@@ -532,8 +544,8 @@
   <data name="&gt;&gt;numericUpDown_width.Name" xml:space="preserve">
     <value>numericUpDown_width</value>
   </data>
-  <data name="&gt;&gt;contextMenuStrip_Y.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;вставитьToolStripMenuItemX.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="label01.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomLeft</value>
@@ -559,17 +571,11 @@
   <data name="label5.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="&gt;&gt;checkBox_use_chartHR.Name" xml:space="preserve">
-    <value>checkBox_use_chartHR</value>
-  </data>
   <data name="копироватьToolStripMenuItemX.Size" type="System.Drawing.Size, System.Drawing">
     <value>203, 26</value>
   </data>
   <data name="comboBox_deepSleep_colour.IntegralHeight" type="System.Boolean, mscorlib">
     <value>False</value>
-  </data>
-  <data name="&gt;&gt;label02.Parent" xml:space="preserve">
-    <value>panel_settings</value>
   </data>
   <data name="&gt;&gt;groupBox_chartSleep.ZOrder" xml:space="preserve">
     <value>3</value>
@@ -613,8 +619,8 @@
   <data name="&gt;&gt;label05.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;numericUpDown_width.Parent" xml:space="preserve">
-    <value>panel_settings</value>
+  <data name="label07.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 30</value>
   </data>
   <data name="label06.Location" type="System.Drawing.Point, System.Drawing">
     <value>1, 51</value>
@@ -627,9 +633,6 @@
   </data>
   <data name="&gt;&gt;label6.Name" xml:space="preserve">
     <value>label6</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>UCtrl_SleepChart_Opt</value>
   </data>
   <data name="&gt;&gt;numericUpDown_radius.Type" xml:space="preserve">
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -681,6 +684,9 @@
   <data name="label06.Text" xml:space="preserve">
     <value>Ширина графика</value>
   </data>
+  <data name="checkBox_use_chartHR.Size" type="System.Drawing.Size, System.Drawing">
+    <value>15, 14</value>
+  </data>
   <data name="&gt;&gt;label16.Parent" xml:space="preserve">
     <value>groupBox_chartSleep</value>
   </data>
@@ -696,8 +702,8 @@
   <data name="&gt;&gt;comboBox_hr_colour.Name" xml:space="preserve">
     <value>comboBox_hr_colour</value>
   </data>
-  <data name="label2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
+  <data name="label07.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>BottomCenter</value>
   </data>
   <data name="&gt;&gt;numericUpDown_height.Type" xml:space="preserve">
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -737,8 +743,8 @@
   <data name="label6.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;numericUpDown_posX.Name" xml:space="preserve">
-    <value>numericUpDown_posX</value>
+  <data name="&gt;&gt;contextMenuStrip_X.Name" xml:space="preserve">
+    <value>contextMenuStrip_X</value>
   </data>
   <data name="label6.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
@@ -773,8 +779,8 @@
   <data name="&gt;&gt;comboBox_REM_colour.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="вставитьToolStripMenuItemX.Text" xml:space="preserve">
-    <value>Вставить</value>
+  <data name="label07.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
   </data>
   <data name="label05.Text" xml:space="preserve">
     <value>Y:</value>
@@ -785,8 +791,8 @@
   <data name="numericUpDown_radius.Size" type="System.Drawing.Size, System.Drawing">
     <value>40, 20</value>
   </data>
-  <data name="&gt;&gt;numericUpDown_height.ZOrder" xml:space="preserve">
-    <value>5</value>
+  <data name="contextMenuStrip_Y.Size" type="System.Drawing.Size, System.Drawing">
+    <value>204, 82</value>
   </data>
   <data name="numericUpDown_radius.TabIndex" type="System.Int32, mscorlib">
     <value>217</value>
@@ -821,11 +827,11 @@
   <data name="comboBox_deepSleep_colour.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 21</value>
   </data>
-  <data name="&gt;&gt;label2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>UCtrl_SleepChart_Opt</value>
   </data>
-  <data name="&gt;&gt;checkBox_use_chartHR.Parent" xml:space="preserve">
-    <value>groupBox_chartHR</value>
+  <data name="&gt;&gt;label02.Parent" xml:space="preserve">
+    <value>panel_settings</value>
   </data>
   <data name="&gt;&gt;comboBox_wakeup_colour.Name" xml:space="preserve">
     <value>comboBox_wakeup_colour</value>
@@ -836,14 +842,11 @@
   <data name="numericUpDown_width.Size" type="System.Drawing.Size, System.Drawing">
     <value>40, 20</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="label07.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
+  <data name="comboBox_hr_colour.TabIndex" type="System.Int32, mscorlib">
+    <value>190</value>
   </data>
   <data name="&gt;&gt;label4.Parent" xml:space="preserve">
     <value>groupBox_chartSleep</value>
@@ -938,10 +941,13 @@
   <data name="&gt;&gt;numericUpDown_hr_lineWidth.Parent" xml:space="preserve">
     <value>groupBox_chartHR</value>
   </data>
-  <data name="panel_settings.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 5</value>
+  <data name="groupBox_chartSleep.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 122</value>
   </data>
   <data name="&gt;&gt;label5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label2.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label07.Parent" xml:space="preserve">
@@ -976,6 +982,9 @@
   </data>
   <data name="&gt;&gt;label4.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="comboBox_wakeup_colour.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 21</value>
   </data>
   <data name="numericUpDown_posY.Location" type="System.Drawing.Point, System.Drawing">
     <value>91, 18</value>
@@ -1034,8 +1043,8 @@
   <data name="&gt;&gt;label2.Name" xml:space="preserve">
     <value>label2</value>
   </data>
-  <data name="&gt;&gt;contextMenuStrip_X.Name" xml:space="preserve">
-    <value>contextMenuStrip_X</value>
+  <data name="label6.TabIndex" type="System.Int32, mscorlib">
+    <value>191</value>
   </data>
   <data name="label01.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 13</value>
@@ -1046,9 +1055,6 @@
   <data name="label6.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="label6.TabIndex" type="System.Int32, mscorlib">
-    <value>191</value>
-  </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
     <value>65, 13</value>
   </data>
@@ -1058,20 +1064,17 @@
   <data name="label2.TabIndex" type="System.Int32, mscorlib">
     <value>218</value>
   </data>
-  <data name="label07.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>BottomCenter</value>
+  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
+    <value>255, 571</value>
   </data>
   <data name="panel_settings.TabIndex" type="System.Int32, mscorlib">
     <value>219</value>
   </data>
-  <data name="&gt;&gt;comboBox_image.Parent" xml:space="preserve">
-    <value>panel_settings</value>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="comboBox_REM_colour.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 93</value>
-  </data>
-  <data name="label07.Size" type="System.Drawing.Size, System.Drawing">
-    <value>68, 30</value>
   </data>
   <data name="comboBox_lightSleep_colour.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 21</value>
@@ -1084,9 +1087,6 @@
   </data>
   <data name="comboBox_hr_colour.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 43</value>
-  </data>
-  <data name="&gt;&gt;comboBox_deepSleep_colour.Parent" xml:space="preserve">
-    <value>groupBox_chartSleep</value>
   </data>
   <data name="&gt;&gt;comboBox_REM_colour.Parent" xml:space="preserve">
     <value>groupBox_chartSleep</value>
@@ -1125,8 +1125,8 @@
   <data name="label01.TabIndex" type="System.Int32, mscorlib">
     <value>204</value>
   </data>
-  <data name="comboBox_hr_colour.TabIndex" type="System.Int32, mscorlib">
-    <value>190</value>
+  <data name="&gt;&gt;numericUpDown_height.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
   <data name="копироватьToolStripMenuItemX.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

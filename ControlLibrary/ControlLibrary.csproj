@@ -1642,7 +1642,22 @@
     <EmbeddedResource Include="Elements\UCtrl_Shortcuts_Elm.zh.resx">
       <DependentUpon>UCtrl_Shortcuts_Elm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Sleep_Elm.cs.resx">
+      <DependentUpon>UCtrl_Sleep_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Sleep_Elm.de.resx">
+      <DependentUpon>UCtrl_Sleep_Elm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_Sleep_Elm.en.resx">
+      <DependentUpon>UCtrl_Sleep_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Sleep_Elm.es.resx">
+      <DependentUpon>UCtrl_Sleep_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Sleep_Elm.fr.resx">
+      <DependentUpon>UCtrl_Sleep_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Sleep_Elm.it.resx">
       <DependentUpon>UCtrl_Sleep_Elm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_Sleep_Elm.resx">
@@ -1845,7 +1860,22 @@
     <EmbeddedResource Include="Elements\UCtrl_Switch_BG_Color_Elm.zh.resx">
       <DependentUpon>UCtrl_Switch_BG_Color_Elm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_TextWidgets_Elm.cs.resx">
+      <DependentUpon>UCtrl_TextWidgets_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_TextWidgets_Elm.de.resx">
+      <DependentUpon>UCtrl_TextWidgets_Elm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_TextWidgets_Elm.en.resx">
+      <DependentUpon>UCtrl_TextWidgets_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_TextWidgets_Elm.es.resx">
+      <DependentUpon>UCtrl_TextWidgets_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_TextWidgets_Elm.fr.resx">
+      <DependentUpon>UCtrl_TextWidgets_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_TextWidgets_Elm.it.resx">
       <DependentUpon>UCtrl_TextWidgets_Elm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_TopImage_Elm.cs.resx">
@@ -2871,7 +2901,22 @@
     <EmbeddedResource Include="Elements\UCtrl_Stress_Elm.resx">
       <DependentUpon>UCtrl_Stress_Elm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_SleepChart_Opt.cs.resx">
+      <DependentUpon>UCtrl_SleepChart_Opt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_SleepChart_Opt.de.resx">
+      <DependentUpon>UCtrl_SleepChart_Opt.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UCtrl_SleepChart_Opt.en.resx">
+      <DependentUpon>UCtrl_SleepChart_Opt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_SleepChart_Opt.es.resx">
+      <DependentUpon>UCtrl_SleepChart_Opt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_SleepChart_Opt.fr.resx">
+      <DependentUpon>UCtrl_SleepChart_Opt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_SleepChart_Opt.it.resx">
       <DependentUpon>UCtrl_SleepChart_Opt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UCtrl_SleepChart_Opt.resx">
@@ -3154,7 +3199,22 @@
     <EmbeddedResource Include="Elements\UCtrl_TimeCircle_Elm.resx">
       <DependentUpon>UCtrl_TimeCircle_Elm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_Text_Widgets_Opt.cs.resx">
+      <DependentUpon>UCtrl_Text_Widgets_Opt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_Text_Widgets_Opt.de.resx">
+      <DependentUpon>UCtrl_Text_Widgets_Opt.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UCtrl_Text_Widgets_Opt.en.resx">
+      <DependentUpon>UCtrl_Text_Widgets_Opt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_Text_Widgets_Opt.es.resx">
+      <DependentUpon>UCtrl_Text_Widgets_Opt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_Text_Widgets_Opt.fr.resx">
+      <DependentUpon>UCtrl_Text_Widgets_Opt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_Text_Widgets_Opt.it.resx">
       <DependentUpon>UCtrl_Text_Widgets_Opt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UCtrl_Text_Widgets_Opt.resx">

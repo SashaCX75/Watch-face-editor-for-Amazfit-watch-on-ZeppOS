@@ -10326,26 +10326,41 @@ namespace Watch_Face_Editor
             {
                 if (digitalTime.Group_Hour == null) digitalTime.Group_Hour = new DigitalTimeGroup();
                 if (digitalTime.Group_Hour.Number == null) digitalTime.Group_Hour.Number = new hmUI_widget_IMG_NUMBER();
-                if (digitalTime.Group_Hour.Number_Font == null) digitalTime.Group_Hour.Number_Font = new hmUI_widget_TEXT();
+                if (digitalTime.Group_Hour.Number_Font == null) { 
+                    digitalTime.Group_Hour.Number_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) digitalTime.Group_Hour.Number_Font.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (digitalTime.Group_Hour.Text_rotation == null) digitalTime.Group_Hour.Text_rotation = new hmUI_widget_IMG_NUMBER();
                 if (digitalTime.Group_Hour.Text_circle == null) digitalTime.Group_Hour.Text_circle = new Text_Circle();
 
                 if (digitalTime.Group_Minute == null) digitalTime.Group_Minute = new DigitalTimeGroup();
                 if (digitalTime.Group_Minute.Number == null) digitalTime.Group_Minute.Number = new hmUI_widget_IMG_NUMBER();
-                if (digitalTime.Group_Minute.Number_Font == null) digitalTime.Group_Minute.Number_Font = new hmUI_widget_TEXT();
+                if (digitalTime.Group_Minute.Number_Font == null) { 
+                    digitalTime.Group_Minute.Number_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) digitalTime.Group_Minute.Number_Font.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (digitalTime.Group_Minute.Text_rotation == null) digitalTime.Group_Minute.Text_rotation = new hmUI_widget_IMG_NUMBER();
                 if (digitalTime.Group_Minute.Text_circle == null) digitalTime.Group_Minute.Text_circle = new Text_Circle();
 
                 if (digitalTime.Group_Second == null) digitalTime.Group_Second = new DigitalTimeGroup();
                 if (digitalTime.Group_Second.Number == null) digitalTime.Group_Second.Number = new hmUI_widget_IMG_NUMBER();
-                if (digitalTime.Group_Second.Number_Font == null) digitalTime.Group_Second.Number_Font = new hmUI_widget_TEXT();
+                if (digitalTime.Group_Second.Number_Font == null) { 
+                    digitalTime.Group_Second.Number_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) digitalTime.Group_Second.Number_Font.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (digitalTime.Group_Second.Text_rotation == null) digitalTime.Group_Second.Text_rotation = new hmUI_widget_IMG_NUMBER();
                 if (digitalTime.Group_Second.Text_circle == null) digitalTime.Group_Second.Text_circle = new Text_Circle();
 
                 if (digitalTime.AmPm == null) digitalTime.AmPm = new hmUI_widget_IMG_TIME_am_pm();
 
-                if (digitalTime.Hour_Min_Font == null) digitalTime.Hour_Min_Font = new hmUI_widget_TEXT();
-                if (digitalTime.Hour_Min_Sec_Font == null) digitalTime.Hour_Min_Sec_Font = new hmUI_widget_TEXT();
+                if (digitalTime.Hour_Min_Font == null) { 
+                    digitalTime.Hour_Min_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) digitalTime.Hour_Min_Font.color = ColorToString((Color)LastColor.last_color);
+                }
+                if (digitalTime.Hour_Min_Sec_Font == null) { 
+                    digitalTime.Hour_Min_Sec_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) digitalTime.Hour_Min_Sec_Font.color = ColorToString((Color)LastColor.last_color);
+                }
 
                 Dictionary<string, int> elementOptions = uCtrl_DigitalTime_Elm_v2.GetOptionsPosition();
                 if (elementOptions.ContainsKey("Hour")) digitalTime.Group_Hour.position = elementOptions["Hour"];
@@ -25098,15 +25113,30 @@ namespace Watch_Face_Editor
                 if (weather.Diagram == null) weather.Diagram = new Weather_Diagram();
                 if (weather.Images == null) weather.Images = new hmUI_widget_IMG_LEVEL();
                 if (weather.Number_Max == null) weather.Number_Max = new hmUI_widget_IMG_NUMBER();
-                if (weather.Number_Font_Max == null) weather.Number_Font_Max = new hmUI_widget_TEXT();
+                if (weather.Number_Font_Max == null) { 
+                    weather.Number_Font_Max = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) weather.Number_Font_Max.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (weather.Number_Min == null) weather.Number_Min = new hmUI_widget_IMG_NUMBER();
-                if (weather.Number_Font_Min == null) weather.Number_Font_Min = new hmUI_widget_TEXT();
+                if (weather.Number_Font_Min == null) { 
+                    weather.Number_Font_Min = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) weather.Number_Font_Min.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (weather.Number_MaxMin == null) weather.Number_MaxMin = new hmUI_widget_IMG_NUMBER();
-                if (weather.Number_Font_MaxMin == null) weather.Number_Font_MaxMin = new hmUI_widget_TEXT();
+                if (weather.Number_Font_MaxMin == null) { 
+                    weather.Number_Font_MaxMin = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) weather.Number_Font_MaxMin.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (weather.Number_Average == null) weather.Number_Average = new hmUI_widget_IMG_NUMBER();
-                if (weather.Number_Font_Average == null) weather.Number_Font_Average = new hmUI_widget_TEXT();
+                if (weather.Number_Font_Average == null) { 
+                    weather.Number_Font_Average = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) weather.Number_Font_Average.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (weather.DayOfWeek_Images == null) weather.DayOfWeek_Images = new hmUI_widget_IMG_LEVEL();
-                if (weather.DayOfWeek_Font == null) weather.DayOfWeek_Font = new hmUI_widget_TEXT();
+                if (weather.DayOfWeek_Font == null) { 
+                    weather.DayOfWeek_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) weather.DayOfWeek_Font.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (weather.Icon == null) weather.Icon = new hmUI_widget_IMG();
 
                 Dictionary<string, int> elementOptions = uCtrl_Weather_FewDay_Elm.GetOptionsPosition();
@@ -27744,12 +27774,14 @@ namespace Watch_Face_Editor
 
         private void linkLabel_ES_site_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("https://relojinteligente.org/recursos/editor-esfera-gtr3-gts3-gtr4-gts4-t-rex2-ultra-band7-falcon-cheetah-bip5-bip6-balance-active-activ2.1600/");
+            //Process.Start("https://relojinteligente.org/recursos/editor-esfera-gtr3-gts3-gtr4-gts4-t-rex2-ultra-band7-falcon-cheetah-bip5-bip6-balance-active-activ2.1600/");
+            Process.Start("https://www.mediafire.com/file/fbdw4sfx2wp51gp/Tutorial_Herramienta_WatchFace_Editor_GTR3.GTS3.GTR4.GTS4.T-REX2.ULTRA.3PRO.BAND7.FALCON.BIP5.BIP6.BALANCE_1-2.ACTIVE_1-2_para_Windows_10_y_11_64_Bits.pdf/file");
         }
 
         private void pictureBox_ES_site_Click(object sender, EventArgs e)
         {
-            Process.Start("https://relojinteligente.org/recursos/editor-esfera-gtr3-gts3-gtr4-gts4-t-rex2-ultra-band7-falcon-cheetah-bip5-bip6-balance-active-activ2.1600/");
+            //Process.Start("https://relojinteligente.org/recursos/editor-esfera-gtr3-gts3-gtr4-gts4-t-rex2-ultra-band7-falcon-cheetah-bip5-bip6-balance-active-activ2.1600/");
+            Process.Start("https://www.mediafire.com/file/fbdw4sfx2wp51gp/Tutorial_Herramienta_WatchFace_Editor_GTR3.GTS3.GTR4.GTS4.T-REX2.ULTRA.3PRO.BAND7.FALCON.BIP5.BIP6.BALANCE_1-2.ACTIVE_1-2_para_Windows_10_y_11_64_Bits.pdf/file");
         }
 
         private void удалитьИзображениеToolStripMenuItem_Click(object sender, EventArgs e)

@@ -249,6 +249,9 @@ horizontally</value>
   <data name="label5.Text" xml:space="preserve">
     <value>* The size and position of the text may differ from the image on the watch. Check the position of the text on the real device.</value>
   </data>
+  <data name="contextMenuStrip_Y.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 82</value>
+  </data>
   <data name="вставитьКоординатуYToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAftJREFUOE+V
@@ -262,6 +265,12 @@ horizontally</value>
         R11ofHoEtYPVcD87AVWj3vI9NnEc51RV1UMpfV59ZScODu+CTrVxTdO8Q8NDO8r7K0pZU87WD+zBYb4O
         hmH8++RyRSIRp7KmtCiKcq745N/um3eT8k4mXQAAAABJRU5ErkJggg==
 </value>
+  </data>
+  <data name="вставитьКоординатуYToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>184, 26</value>
+  </data>
+  <data name="вставитьКоординатуYToolStripMenuItem.Text" xml:space="preserve">
+    <value>Paste coordinate Y</value>
   </data>
   <data name="копироватьToolStripMenuItemY.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -278,6 +287,12 @@ horizontally</value>
         VFkKCqWpalaN9RRK3+b28MhsC0AIOUIIOfpbxOfzXdlt7DUTOXU49V0m2lOwmS9h6PLQrXbAH+X1ei8G
         xh8ujo35F/z+wEIgMP6BivbXrt+Y7e/33SSEnD6891/1C4wyYm/4MYe4AAAAAElFTkSuQmCC
 </value>
+  </data>
+  <data name="копироватьToolStripMenuItemY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 26</value>
+  </data>
+  <data name="копироватьToolStripMenuItemY.Text" xml:space="preserve">
+    <value>Copy</value>
   </data>
   <data name="вставитьToolStripMenuItemY.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -296,6 +311,15 @@ horizontally</value>
         Ldmc12zgvOQR5OXl6Lx5JoM332QcMOh1djr7F6BeTP78CcvAAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="вставитьToolStripMenuItemY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>184, 26</value>
+  </data>
+  <data name="вставитьToolStripMenuItemY.Text" xml:space="preserve">
+    <value>Paste</value>
+  </data>
+  <data name="contextMenuStrip_X.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 82</value>
+  </data>
   <data name="вставитьКоординатуХToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAftJREFUOE+V
@@ -309,6 +333,12 @@ horizontally</value>
         R11ofHoEtYPVcD87AVWj3vI9NnEc51RV1UMpfV59ZScODu+CTrVxTdO8Q8NDO8r7K0pZU87WD+zBYb4O
         hmH8++RyRSIRp7KmtCiKcq745N/um3eT8k4mXQAAAABJRU5ErkJggg==
 </value>
+  </data>
+  <data name="вставитьКоординатуХToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 26</value>
+  </data>
+  <data name="вставитьКоординатуХToolStripMenuItem.Text" xml:space="preserve">
+    <value>Paste coordinate Х</value>
   </data>
   <data name="копироватьToolStripMenuItemX.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -326,6 +356,12 @@ horizontally</value>
         xh8ujo35F/z+wEIgMP6BivbXrt+Y7e/33SSEnD6891/1C4wyYm/4MYe4AAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="копироватьToolStripMenuItemX.Size" type="System.Drawing.Size, System.Drawing">
+    <value>184, 26</value>
+  </data>
+  <data name="копироватьToolStripMenuItemX.Text" xml:space="preserve">
+    <value>Copy</value>
+  </data>
   <data name="вставитьToolStripMenuItemX.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAArdJREFUOE9l
@@ -342,6 +378,27 @@ horizontally</value>
         +ocw5nuDjx+GEBj34dPoMMb87zDqG8Tgyxd4/syNG3XHIVw6htKjBY6dAB3H2S0m40CWjvPm6Dmv2ch5
         Ldmc12zgvOQR5OXl6Lx5JoM332QcMOh1djr7F6BeTP78CcvAAAAAAElFTkSuQmCC
 </value>
+  </data>
+  <data name="вставитьToolStripMenuItemX.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 26</value>
+  </data>
+  <data name="вставитьToolStripMenuItemX.Text" xml:space="preserve">
+    <value>Paste</value>
+  </data>
+  <data name="копироватьСвойстваToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
+  </data>
+  <data name="копироватьСвойстваToolStripMenuItem.Text" xml:space="preserve">
+    <value>Copy properties</value>
+  </data>
+  <data name="вставитьСвойстваToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 22</value>
+  </data>
+  <data name="вставитьСвойстваToolStripMenuItem.Text" xml:space="preserve">
+    <value>Insert properties</value>
+  </data>
+  <data name="context_WidgetProperty.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 48</value>
   </data>
   <data name="textBox_TextStr.ToolTip" xml:space="preserve">
     <value />

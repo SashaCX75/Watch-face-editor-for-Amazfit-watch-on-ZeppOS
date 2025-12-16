@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCtrl_Text_Widgets_Opt));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView_buttons = new System.Windows.Forms.DataGridView();
             this.Index = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Button = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -141,8 +141,8 @@
             // Index
             // 
             this.Index.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Index.DefaultCellStyle = dataGridViewCellStyle33;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Index.DefaultCellStyle = dataGridViewCellStyle1;
             this.Index.FillWeight = 13F;
             resources.ApplyResources(this.Index, "Index");
             this.Index.Name = "Index";
@@ -152,8 +152,8 @@
             // Button
             // 
             this.Button.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
-            this.Button.DefaultCellStyle = dataGridViewCellStyle34;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
+            this.Button.DefaultCellStyle = dataGridViewCellStyle2;
             this.Button.FillWeight = 120F;
             resources.ApplyResources(this.Button, "Button");
             this.Button.Name = "Button";
@@ -470,6 +470,7 @@
             this.toolTip.SetToolTip(this.comboBox_Color, resources.GetString("comboBox_Color.ToolTip"));
             this.toolTip_Hint360.SetToolTip(this.comboBox_Color, resources.GetString("comboBox_Color.ToolTip1"));
             this.comboBox_Color.Click += new System.EventHandler(this.comboBox_Color_Click);
+            this.comboBox_Color.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox_KeyPress);
             // 
             // label2
             // 

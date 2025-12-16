@@ -266,6 +266,7 @@ namespace ControlLibrary
             resources.ApplyResources(this.comboBox_scaleLinear_color, "comboBox_scaleLinear_color");
             this.comboBox_scaleLinear_color.Name = "comboBox_scaleLinear_color";
             this.comboBox_scaleLinear_color.Click += new System.EventHandler(this.comboBox_scaleLinear_color_Click);
+            this.comboBox_scaleLinear_color.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox_KeyPress);
             // 
             // label07
             // 

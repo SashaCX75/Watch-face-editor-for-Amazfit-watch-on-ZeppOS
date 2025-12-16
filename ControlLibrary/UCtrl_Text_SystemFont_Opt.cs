@@ -908,6 +908,11 @@ namespace ControlLibrary
             }
         }
 
+        private void comboBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+
         public void SetColorText(Color color)
         {
             comboBox_Color.BackColor = color;

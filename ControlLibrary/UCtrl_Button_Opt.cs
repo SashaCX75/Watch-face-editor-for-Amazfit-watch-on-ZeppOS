@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
+//using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace ControlLibrary
 {
@@ -28,6 +28,7 @@ namespace ControlLibrary
         public UCtrl_Button_Opt()
         {
             InitializeComponent();
+            setValue = false;
 
             dataGridView_buttons.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             ListUserScriptClick = new List<string>();
@@ -708,6 +709,7 @@ namespace ControlLibrary
             numericUpDown_textSize.Value = 25;
 
             dataGridView_buttons.Rows.Clear();
+            button_add.Enabled = true;
             button_del.Enabled = false;
 
             apiLevel = api_level;

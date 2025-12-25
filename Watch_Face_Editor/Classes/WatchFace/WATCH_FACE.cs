@@ -11112,12 +11112,53 @@ namespace Watch_Face_Editor
         /// <summary>Видимость элемента</summary>
         public bool visible = true;
 
+        public hmUI_widget_IMG_LEVEL Images { get; set; }
+        public hmUI_widget_IMG_PROGRESS Segments { get; set; }
         public hmUI_widget_IMG_NUMBER Number { get; set; }
         public hmUI_widget_TEXT Number_Font { get; set; }
+        public hmUI_widget_IMG_POINTER Pointer { get; set; }
+        public Circle_Scale Circle_Scale { get; set; }
         public hmUI_widget_IMG Icon { get; set; }
 
         public object Clone()
         {
+
+            hmUI_widget_IMG_LEVEL Images = null;
+            if (this.Images != null)
+            {
+                Images = new hmUI_widget_IMG_LEVEL
+                {
+                    X = this.Images.X,
+                    Y = this.Images.Y,
+                    img_First = this.Images.img_First,
+                    image_length = this.Images.image_length,
+                    shortcut = this.Images.shortcut,
+                    alpha = this.Images.alpha,
+
+                    position = this.Images.position,
+                    visible = this.Images.visible,
+                    show_level = this.Images.show_level,
+                    type = this.Images.type,
+                };
+            }
+
+            hmUI_widget_IMG_PROGRESS Segments = null;
+            if (this.Segments != null)
+            {
+                Segments = new hmUI_widget_IMG_PROGRESS
+                {
+                    X = this.Segments.X,
+                    Y = this.Segments.Y,
+                    img_First = this.Segments.img_First,
+                    image_length = this.Segments.image_length,
+
+                    position = this.Segments.position,
+                    visible = this.Segments.visible,
+                    show_level = this.Segments.show_level,
+                    type = this.Segments.type,
+                };
+            }
+
             hmUI_widget_IMG_NUMBER Number = null;
             if (this.Number != null)
             {
@@ -11189,6 +11230,56 @@ namespace Watch_Face_Editor
                 };
             }
 
+            hmUI_widget_IMG_POINTER Pointer = null;
+            if (this.Pointer != null)
+            {
+                Pointer = new hmUI_widget_IMG_POINTER
+                {
+                    src = this.Pointer.src,
+                    center_x = this.Pointer.center_x,
+                    center_y = this.Pointer.center_y,
+                    pos_x = this.Pointer.pos_x,
+                    pos_y = this.Pointer.pos_y,
+                    start_angle = this.Pointer.start_angle,
+                    end_angle = this.Pointer.end_angle,
+                    cover_path = this.Pointer.cover_path,
+                    cover_x = this.Pointer.cover_x,
+                    cover_y = this.Pointer.cover_y,
+                    scale = this.Pointer.scale,
+                    scale_x = this.Pointer.scale_x,
+                    scale_y = this.Pointer.scale_y,
+
+                    position = this.Pointer.position,
+                    visible = this.Pointer.visible,
+                    show_level = this.Pointer.show_level,
+                    type = this.Pointer.type,
+                };
+            }
+
+            Circle_Scale Circle_Scale = null;
+            if (this.Circle_Scale != null)
+            {
+                Circle_Scale = new Circle_Scale
+                {
+                    center_x = this.Circle_Scale.center_x,
+                    center_y = this.Circle_Scale.center_y,
+                    start_angle = this.Circle_Scale.start_angle,
+                    end_angle = this.Circle_Scale.end_angle,
+                    color = this.Circle_Scale.color,
+                    radius = this.Circle_Scale.radius,
+                    line_width = this.Circle_Scale.line_width,
+                    line_cap = this.Circle_Scale.line_cap,
+                    mirror = this.Circle_Scale.mirror,
+                    inversion = this.Circle_Scale.inversion,
+                    alpha = this.Circle_Scale.alpha,
+
+                    position = this.Circle_Scale.position,
+                    visible = this.Circle_Scale.visible,
+                    show_level = this.Circle_Scale.show_level,
+                    type = this.Circle_Scale.type,
+                };
+            }
+
             hmUI_widget_IMG Icon = null;
             if (this.Icon != null)
             {
@@ -11212,12 +11303,133 @@ namespace Watch_Face_Editor
                 elementName = this.elementName,
                 visible = this.visible,
 
+                Images = Images,
+                Segments = Segments,
                 Number = Number,
                 Number_Font = Number_Font,
+                Pointer = Pointer,
+                Circle_Scale = Circle_Scale,
                 Icon = Icon,
             };
         }
     }
+
+    //public class ElementHRV : ICloneable
+    //{
+    //    public string elementName = "ElementHRV";
+
+    //    ///// <summary>Позиция в наборе элементов</summary>
+    //    //public int position = -1;
+
+    //    /// <summary>Видимость элемента</summary>
+    //    public bool visible = true;
+
+    //    public hmUI_widget_IMG_NUMBER Number { get; set; }
+    //    public hmUI_widget_TEXT Number_Font { get; set; }
+    //    public hmUI_widget_IMG Icon { get; set; }
+
+    //    public object Clone()
+    //    {
+    //        hmUI_widget_IMG_NUMBER Number = null;
+    //        if (this.Number != null)
+    //        {
+    //            Number = new hmUI_widget_IMG_NUMBER
+    //            {
+    //                imageX = this.Number.imageX,
+    //                imageY = this.Number.imageY,
+    //                space = this.Number.space,
+    //                angle = this.Number.angle,
+    //                zero = this.Number.zero,
+    //                align = this.Number.align,
+    //                img_First = this.Number.img_First,
+    //                unit = this.Number.unit,
+    //                imperial_unit = this.Number.imperial_unit,
+    //                icon = this.Number.icon,
+    //                iconPosX = this.Number.iconPosX,
+    //                iconPosY = this.Number.iconPosY,
+    //                negative_image = this.Number.negative_image,
+    //                invalid_image = this.Number.invalid_image,
+    //                dot_image = this.Number.dot_image,
+    //                follow = this.Number.follow,
+    //                alpha = this.Number.alpha,
+    //                icon_alpha = this.Number.icon_alpha,
+
+    //                position = this.Number.position,
+    //                visible = this.Number.visible,
+    //                show_level = this.Number.show_level,
+    //                type = this.Number.type,
+    //            };
+    //        }
+
+    //        hmUI_widget_TEXT Number_Font = null;
+    //        if (this.Number_Font != null)
+    //        {
+    //            Number_Font = new hmUI_widget_TEXT
+    //            {
+    //                x = this.Number_Font.x,
+    //                y = this.Number_Font.y,
+    //                w = this.Number_Font.w,
+    //                h = this.Number_Font.h,
+    //                color = this.Number_Font.color,
+    //                color_2 = this.Number_Font.color_2,
+    //                use_color_2 = this.Number_Font.use_color_2,
+    //                align_h = this.Number_Font.align_h,
+    //                align_v = this.Number_Font.align_v,
+    //                text_size = this.Number_Font.text_size,
+    //                text_style = this.Number_Font.text_style,
+    //                line_space = this.Number_Font.line_space,
+    //                char_space = this.Number_Font.char_space,
+    //                font = this.Number_Font.font,
+    //                padding = this.Number_Font.padding,
+    //                unit_type = this.Number_Font.unit_type,
+    //                unit_string = this.Number_Font.unit_string,
+    //                unit_end = this.Number_Font.unit_end,
+    //                centreHorizontally = this.Number_Font.centreHorizontally,
+    //                centreVertically = this.Number_Font.centreVertically,
+    //                alpha = this.Number_Font.alpha,
+
+    //                use_text_circle = this.Number_Font.use_text_circle,
+    //                radius = this.Number_Font.radius,
+    //                start_angle = this.Number_Font.start_angle,
+    //                end_angle = this.Number_Font.end_angle,
+    //                mode = this.Number_Font.mode,
+
+    //                position = this.Number_Font.position,
+    //                visible = this.Number_Font.visible,
+    //                show_level = this.Number_Font.show_level,
+    //                type = this.Number_Font.type,
+    //            };
+    //        }
+
+    //        hmUI_widget_IMG Icon = null;
+    //        if (this.Icon != null)
+    //        {
+    //            Icon = new hmUI_widget_IMG
+    //            {
+    //                x = this.Icon.x,
+    //                y = this.Icon.y,
+    //                w = this.Icon.w,
+    //                h = this.Icon.h,
+    //                src = this.Icon.src,
+    //                alpha = this.Icon.alpha,
+
+    //                position = this.Icon.position,
+    //                visible = this.Icon.visible,
+    //                show_level = this.Icon.show_level,
+    //            };
+    //        }
+
+    //        return new ElementHRV
+    //        {
+    //            elementName = this.elementName,
+    //            visible = this.visible,
+
+    //            Number = Number,
+    //            Number_Font = Number_Font,
+    //            Icon = Icon,
+    //        };
+    //    }
+    //}
 
     public class ElementBioCharge : ICloneable
     {
@@ -11429,6 +11641,436 @@ namespace Watch_Face_Editor
                 Icon = Icon,
             };
         }
+    }
+
+    public class ElementSleep : ICloneable
+    {
+        public string elementName = "ElementSleep";
+
+        ///// <summary>Позиция в наборе элементов</summary>
+        //public int position = -1;
+
+        /// <summary>Видимость элемента</summary>
+        public bool visible = true;
+
+        /// <summary>Общие настройки виджета</summary>
+        public SleepChartSettings SleepChartSettings { get; set; }
+
+        ///// <summary>График сна</summary>
+        //public ChartSleep ChartSleep { get; set; }
+
+        ///// <summary>График пульса</summary>
+        //public ChartHR ChartHR { get; set; }
+
+        /// <summary>Время начала сна</summary>
+        public hmUI_widget_TEXT StartSleep { get; set; }
+
+        /// <summary>Время окончания сна</summary>
+        public hmUI_widget_TEXT EndSleep { get; set; }
+
+        /// <summary>Длительность сна (общая)</summary>
+        public hmUI_widget_TEXT DurationSleep_total { get; set; }
+
+        /// <summary>Длительность сна</summary>
+        public hmUI_widget_TEXT DurationSleep { get; set; }
+
+        /// <summary>Длительность пробуждений</summary>
+        public hmUI_widget_TEXT WakeUp { get; set; }
+
+        /// <summary>Число пробуждений</summary>
+        public hmUI_widget_TEXT WakeUpCount { get; set; }
+
+        /// <summary>Оценка сна</summary>
+        public hmUI_widget_TEXT Score { get; set; }
+
+        /// <summary>Иконка</summary>
+        public hmUI_widget_IMG Icon { get; set; }
+
+        public object Clone()
+        {
+            SleepChartSettings SleepChartSettings = null;
+            if (this.SleepChartSettings != null)
+            {
+                SleepChartSettings = new SleepChartSettings
+                {
+                    X = this.SleepChartSettings.X,
+                    Y = this.SleepChartSettings.Y,
+                    Width = this.SleepChartSettings.Width,
+                    Height = this.SleepChartSettings.Height,
+                    Background = this.SleepChartSettings.Background,
+                    //GraphFullScreen = this.SleepChartSettings.GraphFullScreen,
+                    position = this.SleepChartSettings.position,
+                    visible = this.SleepChartSettings.visible,
+
+                    // SleepChart
+                    useSleepChart = this.SleepChartSettings.useSleepChart,
+                    DEEP_STAGE_color = this.SleepChartSettings.DEEP_STAGE_color,
+                    LIGHT_STAGE_color = this.SleepChartSettings.LIGHT_STAGE_color,
+                    REM_STAGE_color = this.SleepChartSettings.REM_STAGE_color,
+                    WAKE_STAGE_color = this.SleepChartSettings.WAKE_STAGE_color,
+                    Radius = this.SleepChartSettings.Radius,
+
+                    // HRChart
+                    useHRChart = this.SleepChartSettings.useHRChart,
+                    HR_color = this.SleepChartSettings.HR_color,
+                    HR_lineWidth = this.SleepChartSettings.HR_lineWidth,
+                };
+            }
+
+            //ChartSleep ChartSleep = null;
+            //if (this.ChartSleep != null)
+            //{
+            //    ChartSleep = new ChartSleep
+            //    {
+            //        DEEP_STAGE_color = this.ChartSleep.DEEP_STAGE_color,
+            //        LIGHT_STAGE_color = this.ChartSleep.LIGHT_STAGE_color,
+            //        REM_STAGE_color = this.ChartSleep.REM_STAGE_color,
+            //        WAKE_STAGE_color = this.ChartSleep.WAKE_STAGE_color,
+
+            //        position = this.ChartSleep.position,
+            //        visible = this.ChartSleep.visible,
+            //    };
+            //}
+
+            //ChartHR ChartHR = null;
+            //if (this.ChartHR != null)
+            //{
+            //    ChartHR = new ChartHR
+            //    {
+            //        color = this.ChartHR.color,
+            //        lineWidth = this.ChartHR.lineWidth,
+
+            //        position = this.ChartHR.position,
+            //        visible = this.ChartHR.visible,
+            //    };
+            //}
+
+            hmUI_widget_TEXT StartSleep = null;
+            if (this.StartSleep != null)
+            {
+                StartSleep = new hmUI_widget_TEXT
+                {
+                    x = this.StartSleep.x,
+                    y = this.StartSleep.y,
+                    w = this.StartSleep.w,
+                    h = this.StartSleep.h,
+                    color = this.StartSleep.color,
+                    color_2 = this.StartSleep.color_2,
+                    use_color_2 = this.StartSleep.use_color_2,
+                    align_h = this.StartSleep.align_h,
+                    align_v = this.StartSleep.align_v,
+                    text_size = this.StartSleep.text_size,
+                    text_style = this.StartSleep.text_style,
+                    line_space = this.StartSleep.line_space,
+                    char_space = this.StartSleep.char_space,
+                    font = this.StartSleep.font,
+                    padding = this.StartSleep.padding,
+                    unit_type = this.StartSleep.unit_type,
+                    unit_string = this.StartSleep.unit_string,
+                    unit_end = this.StartSleep.unit_end,
+                    centreHorizontally = this.StartSleep.centreHorizontally,
+                    centreVertically = this.StartSleep.centreVertically,
+                    alpha = this.StartSleep.alpha,
+
+                    use_text_circle = this.StartSleep.use_text_circle,
+                    radius = this.StartSleep.radius,
+                    start_angle = this.StartSleep.start_angle,
+                    end_angle = this.StartSleep.end_angle,
+                    mode = this.StartSleep.mode,
+
+                    position = this.StartSleep.position,
+                    visible = this.StartSleep.visible,
+                    show_level = this.StartSleep.show_level,
+                    type = this.StartSleep.type,
+                };
+            }
+
+            hmUI_widget_TEXT EndSleep = null;
+            if (this.EndSleep != null)
+            {
+                EndSleep = new hmUI_widget_TEXT
+                {
+                    x = this.EndSleep.x,
+                    y = this.EndSleep.y,
+                    w = this.EndSleep.w,
+                    h = this.EndSleep.h,
+                    color = this.EndSleep.color,
+                    color_2 = this.EndSleep.color_2,
+                    use_color_2 = this.EndSleep.use_color_2,
+                    align_h = this.EndSleep.align_h,
+                    align_v = this.EndSleep.align_v,
+                    text_size = this.EndSleep.text_size,
+                    text_style = this.EndSleep.text_style,
+                    line_space = this.EndSleep.line_space,
+                    char_space = this.EndSleep.char_space,
+                    font = this.EndSleep.font,
+                    padding = this.EndSleep.padding,
+                    unit_type = this.EndSleep.unit_type,
+                    unit_string = this.EndSleep.unit_string,
+                    unit_end = this.EndSleep.unit_end,
+                    centreHorizontally = this.EndSleep.centreHorizontally,
+                    centreVertically = this.EndSleep.centreVertically,
+                    alpha = this.EndSleep.alpha,
+
+                    use_text_circle = this.EndSleep.use_text_circle,
+                    radius = this.EndSleep.radius,
+                    start_angle = this.EndSleep.start_angle,
+                    end_angle = this.EndSleep.end_angle,
+                    mode = this.EndSleep.mode,
+
+                    position = this.EndSleep.position,
+                    visible = this.EndSleep.visible,
+                    show_level = this.EndSleep.show_level,
+                    type = this.EndSleep.type,
+                };
+            }
+
+            hmUI_widget_TEXT DurationSleep_total = null;
+            if (this.DurationSleep_total != null)
+            {
+                DurationSleep_total = new hmUI_widget_TEXT
+                {
+                    x = this.DurationSleep_total.x,
+                    y = this.DurationSleep_total.y,
+                    w = this.DurationSleep_total.w,
+                    h = this.DurationSleep_total.h,
+                    color = this.DurationSleep_total.color,
+                    color_2 = this.DurationSleep_total.color_2,
+                    use_color_2 = this.DurationSleep_total.use_color_2,
+                    align_h = this.DurationSleep_total.align_h,
+                    align_v = this.DurationSleep_total.align_v,
+                    text_size = this.DurationSleep_total.text_size,
+                    text_style = this.DurationSleep_total.text_style,
+                    line_space = this.DurationSleep_total.line_space,
+                    char_space = this.DurationSleep_total.char_space,
+                    font = this.DurationSleep_total.font,
+                    padding = this.DurationSleep_total.padding,
+                    unit_type = this.DurationSleep_total.unit_type,
+                    unit_string = this.DurationSleep_total.unit_string,
+                    unit_end = this.DurationSleep_total.unit_end,
+                    centreHorizontally = this.DurationSleep_total.centreHorizontally,
+                    centreVertically = this.DurationSleep_total.centreVertically,
+                    alpha = this.DurationSleep_total.alpha,
+
+                    use_text_circle = this.DurationSleep_total.use_text_circle,
+                    radius = this.DurationSleep_total.radius,
+                    start_angle = this.DurationSleep_total.start_angle,
+                    end_angle = this.DurationSleep_total.end_angle,
+                    mode = this.DurationSleep_total.mode,
+
+                    position = this.DurationSleep_total.position,
+                    visible = this.DurationSleep_total.visible,
+                    show_level = this.DurationSleep_total.show_level,
+                    type = this.DurationSleep_total.type,
+                };
+            }
+
+            hmUI_widget_TEXT DurationSleep = null;
+            if (this.DurationSleep != null)
+            {
+                DurationSleep = new hmUI_widget_TEXT
+                {
+                    x = this.DurationSleep.x,
+                    y = this.DurationSleep.y,
+                    w = this.DurationSleep.w,
+                    h = this.DurationSleep.h,
+                    color = this.DurationSleep.color,
+                    color_2 = this.DurationSleep.color_2,
+                    use_color_2 = this.DurationSleep.use_color_2,
+                    align_h = this.DurationSleep.align_h,
+                    align_v = this.DurationSleep.align_v,
+                    text_size = this.DurationSleep.text_size,
+                    text_style = this.DurationSleep.text_style,
+                    line_space = this.DurationSleep.line_space,
+                    char_space = this.DurationSleep.char_space,
+                    font = this.DurationSleep.font,
+                    padding = this.DurationSleep.padding,
+                    unit_type = this.DurationSleep.unit_type,
+                    unit_string = this.DurationSleep.unit_string,
+                    unit_end = this.DurationSleep.unit_end,
+                    centreHorizontally = this.DurationSleep.centreHorizontally,
+                    centreVertically = this.DurationSleep.centreVertically,
+                    alpha = this.DurationSleep.alpha,
+
+                    use_text_circle = this.DurationSleep.use_text_circle,
+                    radius = this.DurationSleep.radius,
+                    start_angle = this.DurationSleep.start_angle,
+                    end_angle = this.DurationSleep.end_angle,
+                    mode = this.DurationSleep.mode,
+
+                    position = this.DurationSleep.position,
+                    visible = this.DurationSleep.visible,
+                    show_level = this.DurationSleep.show_level,
+                    type = this.DurationSleep.type,
+                };
+            }
+
+            hmUI_widget_TEXT WakeUp = null;
+            if (this.WakeUp != null)
+            {
+                WakeUp = new hmUI_widget_TEXT
+                {
+                    x = this.WakeUp.x,
+                    y = this.WakeUp.y,
+                    w = this.WakeUp.w,
+                    h = this.WakeUp.h,
+                    color = this.WakeUp.color,
+                    color_2 = this.WakeUp.color_2,
+                    use_color_2 = this.WakeUp.use_color_2,
+                    align_h = this.WakeUp.align_h,
+                    align_v = this.WakeUp.align_v,
+                    text_size = this.WakeUp.text_size,
+                    text_style = this.WakeUp.text_style,
+                    line_space = this.WakeUp.line_space,
+                    char_space = this.WakeUp.char_space,
+                    font = this.WakeUp.font,
+                    padding = this.WakeUp.padding,
+                    unit_type = this.WakeUp.unit_type,
+                    unit_string = this.WakeUp.unit_string,
+                    unit_end = this.WakeUp.unit_end,
+                    centreHorizontally = this.WakeUp.centreHorizontally,
+                    centreVertically = this.WakeUp.centreVertically,
+                    alpha = this.WakeUp.alpha,
+
+                    use_text_circle = this.WakeUp.use_text_circle,
+                    radius = this.WakeUp.radius,
+                    start_angle = this.WakeUp.start_angle,
+                    end_angle = this.WakeUp.end_angle,
+                    mode = this.WakeUp.mode,
+
+                    position = this.WakeUp.position,
+                    visible = this.WakeUp.visible,
+                    show_level = this.WakeUp.show_level,
+                    type = this.WakeUp.type,
+                };
+            }
+
+            hmUI_widget_TEXT WakeUpCount = null;
+            if (this.WakeUpCount != null)
+            {
+                WakeUpCount = new hmUI_widget_TEXT
+                {
+                    x = this.WakeUpCount.x,
+                    y = this.WakeUpCount.y,
+                    w = this.WakeUpCount.w,
+                    h = this.WakeUpCount.h,
+                    color = this.WakeUpCount.color,
+                    color_2 = this.WakeUpCount.color_2,
+                    use_color_2 = this.WakeUpCount.use_color_2,
+                    align_h = this.WakeUpCount.align_h,
+                    align_v = this.WakeUpCount.align_v,
+                    text_size = this.WakeUpCount.text_size,
+                    text_style = this.WakeUpCount.text_style,
+                    line_space = this.WakeUpCount.line_space,
+                    char_space = this.WakeUpCount.char_space,
+                    font = this.WakeUpCount.font,
+                    padding = this.WakeUpCount.padding,
+                    unit_type = this.WakeUpCount.unit_type,
+                    unit_string = this.WakeUpCount.unit_string,
+                    unit_end = this.WakeUpCount.unit_end,
+                    centreHorizontally = this.WakeUpCount.centreHorizontally,
+                    centreVertically = this.WakeUpCount.centreVertically,
+                    alpha = this.WakeUpCount.alpha,
+
+                    use_text_circle = this.WakeUpCount.use_text_circle,
+                    radius = this.WakeUpCount.radius,
+                    start_angle = this.WakeUpCount.start_angle,
+                    end_angle = this.WakeUpCount.end_angle,
+                    mode = this.WakeUpCount.mode,
+
+                    position = this.WakeUpCount.position,
+                    visible = this.WakeUpCount.visible,
+                    show_level = this.WakeUpCount.show_level,
+                    type = this.WakeUpCount.type,
+                };
+            }
+
+            hmUI_widget_TEXT Score = null;
+            if (this.Score != null)
+            {
+                Score = new hmUI_widget_TEXT
+                {
+                    x = this.Score.x,
+                    y = this.Score.y,
+                    w = this.Score.w,
+                    h = this.Score.h,
+                    color = this.Score.color,
+                    color_2 = this.Score.color_2,
+                    use_color_2 = this.Score.use_color_2,
+                    align_h = this.Score.align_h,
+                    align_v = this.Score.align_v,
+                    text_size = this.Score.text_size,
+                    text_style = this.Score.text_style,
+                    line_space = this.Score.line_space,
+                    char_space = this.Score.char_space,
+                    font = this.Score.font,
+                    padding = this.Score.padding,
+                    unit_type = this.Score.unit_type,
+                    unit_string = this.Score.unit_string,
+                    unit_end = this.Score.unit_end,
+                    centreHorizontally = this.Score.centreHorizontally,
+                    centreVertically = this.Score.centreVertically,
+                    alpha = this.Score.alpha,
+
+                    use_text_circle = this.Score.use_text_circle,
+                    radius = this.Score.radius,
+                    start_angle = this.Score.start_angle,
+                    end_angle = this.Score.end_angle,
+                    mode = this.Score.mode,
+
+                    position = this.Score.position,
+                    visible = this.Score.visible,
+                    show_level = this.Score.show_level,
+                    type = this.Score.type,
+                };
+            }
+
+            hmUI_widget_IMG Icon = null;
+            if (this.Icon != null)
+            {
+                Icon = new hmUI_widget_IMG
+                {
+                    x = this.Icon.x,
+                    y = this.Icon.y,
+                    w = this.Icon.w,
+                    h = this.Icon.h,
+                    src = this.Icon.src,
+                    alpha = this.Icon.alpha,
+
+                    position = this.Icon.position,
+                    visible = this.Icon.visible,
+                    show_level = this.Icon.show_level,
+                };
+            }
+
+            return new ElementSleep
+            {
+                elementName = this.elementName,
+                visible = this.visible,
+
+                SleepChartSettings = SleepChartSettings,
+                //ChartSleep = ChartSleep,
+                //ChartHR = ChartHR,
+                StartSleep = StartSleep,
+                EndSleep = EndSleep,
+                DurationSleep_total = DurationSleep_total,
+                DurationSleep = DurationSleep,
+                WakeUp = WakeUp,
+                WakeUpCount = WakeUpCount,
+                Score = Score,
+                Icon = Icon,
+            };
+        }
+    }
+
+    public class ElementTextWidgets
+    {
+        public string elementName = "ElementTextWidgets";
+
+        public List<hmUI_widget_TEXT> Text { get; set; }
+
+        /// <summary>Использование элемента</summary>
+        public bool visible = true;
     }
 
     public class ElementImage : ICloneable
@@ -11659,6 +12301,7 @@ namespace Watch_Face_Editor
         /// <summary>Использование элемента</summary>
         public bool enable = true;
     }
+
 }
 
 

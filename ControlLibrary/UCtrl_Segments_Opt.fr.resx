@@ -131,7 +131,7 @@
     <value>202, 26</value>
   </data>
   <data name="копироватьToolStripMenuItem.Text" xml:space="preserve">
-    <value>Copie</value>
+    <value>Copier</value>
   </data>
   <data name="вставитьToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>202, 26</value>

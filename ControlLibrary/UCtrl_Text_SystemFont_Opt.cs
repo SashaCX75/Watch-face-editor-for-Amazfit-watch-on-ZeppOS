@@ -11,7 +11,7 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
+//using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace ControlLibrary
 {
@@ -888,6 +888,7 @@ namespace ControlLibrary
                 return;
             // установка цвета формы
             comboBox_color.BackColor = colorDialog.Color;
+            LastColor.last_color = colorDialog.Color;
             if (ProgramSettings.CustomColors != colorDialog.CustomColors)
             {
                 ProgramSettings.CustomColors = colorDialog.CustomColors;
@@ -905,6 +906,11 @@ namespace ControlLibrary
                 EventArgs eventArgs = new EventArgs();
                 ValueChanged(this, eventArgs);
             }
+        }
+
+        private void comboBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
         }
 
         public void SetColorText(Color color)
@@ -945,6 +951,7 @@ namespace ControlLibrary
             else  radioButton_clockwise.Checked = true;
         }
 
+        /// <summary>Направление вращения для тексты по окружности</summary>
         public int GetMode()
         {
             if (radioButton_counterclockwise.Checked) return 1;
@@ -1107,12 +1114,6 @@ namespace ControlLibrary
             else button_DelFont.Visible = true;
         }
 
-        //public void SetScreenSize(int width, int height)
-        //{
-        //    ScreenSize.Width = width;
-        //    ScreenSize.Height = height;
-        //}
-
         private void checkBox_CentreHorizontally_CheckedChanged(object sender, EventArgs e)
         {
             numericUpDown_X.Enabled = !checkBox_CentreHorizontally.Checked;
@@ -1238,6 +1239,7 @@ namespace ControlLibrary
                 ValueChanged(this, eventArgs);
             }
         }
+
     }
 }
 

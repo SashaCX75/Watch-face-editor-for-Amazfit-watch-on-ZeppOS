@@ -22,6 +22,7 @@ namespace ControlLibrary
         public UCtrl_ButtonOne_Opt()
         {
             InitializeComponent();
+            setValue = false;
         }
 
         private void groupBox_Paint(object sender, PaintEventArgs e)
@@ -266,8 +267,8 @@ namespace ControlLibrary
             colorDialog.CustomColors = ProgramSettings.CustomColors;
 
 
-            if (colorDialog.ShowDialog() == DialogResult.Cancel)
-                return;
+            if (colorDialog.ShowDialog() == DialogResult.Cancel) return;
+
             // установка цвета формы
             comboBox_color.BackColor = colorDialog.Color;
             if (ProgramSettings.CustomColors != colorDialog.CustomColors)

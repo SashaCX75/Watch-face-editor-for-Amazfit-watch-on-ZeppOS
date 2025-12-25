@@ -94,6 +94,7 @@ namespace ControlLibrary
                 return;
             // установка цвета формы
             comboBox_color.BackColor = colorDialog.Color;
+            LastColor.last_color = colorDialog.Color;
             if (ProgramSettings.CustomColors != colorDialog.CustomColors)
             {
                 ProgramSettings.CustomColors = colorDialog.CustomColors;

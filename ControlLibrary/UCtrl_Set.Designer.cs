@@ -978,8 +978,8 @@
             // 
             // dateTimePicker_SleepEnd_Set
             // 
-            resources.ApplyResources(this.dateTimePicker_SleepEnd_Set, "dateTimePicker_SleepEnd_Set");
             this.dateTimePicker_SleepEnd_Set.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            resources.ApplyResources(this.dateTimePicker_SleepEnd_Set, "dateTimePicker_SleepEnd_Set");
             this.dateTimePicker_SleepEnd_Set.Name = "dateTimePicker_SleepEnd_Set";
             this.dateTimePicker_SleepEnd_Set.ShowUpDown = true;
             this.dateTimePicker_SleepEnd_Set.Value = new System.DateTime(2021, 3, 22, 7, 3, 0, 0);
@@ -992,8 +992,8 @@
             // 
             // dateTimePicker_SleepStart_Set
             // 
-            resources.ApplyResources(this.dateTimePicker_SleepStart_Set, "dateTimePicker_SleepStart_Set");
             this.dateTimePicker_SleepStart_Set.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            resources.ApplyResources(this.dateTimePicker_SleepStart_Set, "dateTimePicker_SleepStart_Set");
             this.dateTimePicker_SleepStart_Set.Name = "dateTimePicker_SleepStart_Set";
             this.dateTimePicker_SleepStart_Set.ShowUpDown = true;
             this.dateTimePicker_SleepStart_Set.Value = new System.DateTime(2021, 3, 22, 21, 7, 0, 0);

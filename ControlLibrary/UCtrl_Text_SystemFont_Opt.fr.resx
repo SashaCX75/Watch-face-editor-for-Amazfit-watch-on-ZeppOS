@@ -117,49 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="numericUpDown_Width.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="numericUpDown_Width.ToolTip1" xml:space="preserve">
-    <value />
-  </data>
-  <data name="numericUpDown_Height.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="numericUpDown_Height.ToolTip1" xml:space="preserve">
-    <value />
-  </data>
   <data name="label08.Text" xml:space="preserve">
     <value>Hauteur</value>
-  </data>
-  <data name="label08.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label08.ToolTip1" xml:space="preserve">
-    <value />
   </data>
   <data name="label07.Text" xml:space="preserve">
     <value>Largeur</value>
   </data>
-  <data name="label07.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label07.ToolTip1" xml:space="preserve">
-    <value />
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="вставитьКоординатуХToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAfxJREFUOE9j
-        8O+++t+i/Eg9AxYAkrPEI6ddeLyewbx4T/2sdcf/nzp/DYxPX7gOxmcuXv/fufHx/9UH7/4/e+kmGJ+7
-        fAuMz1+5/T+++8B+jcxd9mDTTpy9/P/lp/8k4c2bNyNcduLMxf+vP/+H4w3b9v8vraxHwcjyILx+/XqE
-        AcdPX/j/9ut/OJ4ycz6YLqmoReEj4zVr1kAMMC05XL9q/43/H779x8BllbVYxUE4onXPfmAg2oNDs2/L
-        4/+ffvzHwBVVdVjFQRgeCyBw9MSp/19//sfAVTV1WMVBePLspYgwOHr85P/vv/6j4Bu37/+3tbP/P2vO
-        fLjYrz8QDGLPmzcPYcCRY8fhkrjwn7///y+4Nvn/8tvT/v/+++//rFmzkAw4chSsABcGqv//D4hz9sT+
-        Lz+aBBT7+//KlStrJ85fzwYORO/KTfsbGxvrm5qa6pubm+tbWlrqq1sm1IPkJmy+9yd/W+5//xUe/3P3
-        x/8vBhqQuivkf+vJ4v9XHn2uZwAmx3p4kkQDILkVR56tdJvh+t9sotH/gLX2/yO2Ov43X6D1P367z/+f
-        v//mQ5XiBhMmTGD7+fNn7t+/f/dp9cj+t1mkBvTC7wO/f//OX7hoIQdUGWHw7v27LLcZxv8dZtkCw+Mf
-        YZvRQX9/PxvQkJx3797lIWxmYAAA7pt3k8xS7ogAAAAASUVORK5CYII=
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAftJREFUOE+V
+        kt1LFFEYxvdq6Z/oNkTvirIg27pIggK76MKbWBC6MNwWWUvX0sN+eBFGO2KETbGrQmS1ttWWwbI0RjvN
+        +pWak1qLBQlBRGMoVuPMmSfmyM5+TFv0wI8z8z7vec7wznE09L7F/vYMcfxBpnfgL15Nq0Qctb404R9I
+        mJxdZEzNLTGm55dw+dEq7r9Ywcybd4zXC+8Zs3IO7t5xoao55WJp2ZkFfFnHf5FMJgtflp2ex9cNWDwc
+        E3DeT0oo9k0SiUQhQJqaw7dNWFy7EWNrW0dXyXsx8Xh8O2Bv20tyT1jG9x+wccHfZavlaexJCzWtkotN
+        8+qTVaz/go2Ozm5bLY/1F0yJ2UlsqrDReanbVsvTf/N2YQaiNIGfWyhhOfcRdYdc4G/FrNqWvo35HI1G
+        CwGZV5JlVkKnwOBiP+7krkOjBnieLwrIiKyhEtQADANoSZ9Gu9gEnVLIsjzaF0s42RCP+x8LgUCABINB
+        EgqFSDgcJhfDHDE9LvlB94550DByDB7BDZ/YhDOpU+iZ8EH+tEEcVc0pYl3JMpneSObz3fqBo9jXtxsn
+        R11ofHoEtYPVcD87AVWj3vI9NnEc51RV1UMpfV59ZScODu+CTrVxTdO8Q8NDO8r7K0pZU87WD+zBYb4O
+        hmH8++RyRSIRp7KmtCiKcq745N/um3eT8k4mXQAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="вставитьКоординатуХToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
@@ -170,41 +146,41 @@
   </data>
   <data name="копироватьToolStripMenuItemX.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        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
+        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
 </value>
   </data>
   <data name="копироватьToolStripMenuItemX.Size" type="System.Drawing.Size, System.Drawing">
     <value>202, 26</value>
   </data>
   <data name="копироватьToolStripMenuItemX.Text" xml:space="preserve">
-    <value>Copie</value>
+    <value>Copier</value>
   </data>
   <data name="вставитьToolStripMenuItemX.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        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
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAArdJREFUOE9l
+        kktPU1EUhW8fQItQEB8FWkANCTpA8HFBJZoYE1+o5NI2wkB5JBYpAjGmzPwBznRgRIHWCCE6oAL6I5jo
+        ACNoCy1tKZRL76vgeJl9QCh4ky9ZWXuftfc5uRzHcVyuKcvacKayq7bK5haa7nS3tbV72tvbPZ2dnQzS
+        5Dmb73Xz1RXuCzWVXYWWXCudZV++2dD89D6P929fYXoygJmZGQSDQUSjUQZp8r5Of8a4/zV6HDzKioua
+        dwNMBqHXyePb7BwmAlMYGh7BiM8Hn8/PGBnxMW8iMInvs/NwN51DWckhYSegwGwUel31+DEXxM/53wgu
+        hLEYWUJ4KcogHVoIsxr1eBw8yksP7w3od9UhFIliIRxBJBpDNL6M2HKCQXopGmO1UCSGvtaLKC/N2MBi
+        Ngp9Lh7xRBKx+DISK6tYTa4huSYySJNHNerpb21AeUlRRoDJIDxx8kiKElZWk1gT17GekiDJMoM0eVSj
+        nh5XPSpsR/4PWJdU1piSZCiKClVLM0iTx4IlFR5n3b4rmIxCt3AWsppm01KyAlXVoKXTDFXTIMsKq1HP
+        42YeZZlXyDcbhEd3a6FoG0hR078ALc0gTR7VqKejsQb24oyAPJNR6LhVDUXbhLi9AbuCqjEUVc0I2MTD
+        m6fpR9oNOJBjEB5cPwVZ2dh6PEmGvP0OhKzIkFJbjylKClqunYTdenA3wJytF1quVkFS0hDXRDZJkhU2
+        lSBNXiKxivlfITTyNtishXsDXFcqoab/YD0lQ5Jo6tZ0RdEgqxpEMYXFSBxfpiZx+7xt3wZZeofr8gmM
+        +ocw5nuDjx+GEBj34dPoMMb87zDqG8Tgyxd4/syNG3XHIVw6htKjBY6dAB3H2S0m40CWjvPm6Dmv2ch5
+        Ldmc12zgvOQR5OXl6Lx5JoM332QcMOh1djr7F6BeTP78CcvAAAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="вставитьToolStripMenuItemX.Size" type="System.Drawing.Size, System.Drawing">
@@ -216,30 +192,18 @@
   <data name="contextMenuStrip_X.Size" type="System.Drawing.Size, System.Drawing">
     <value>203, 82</value>
   </data>
-  <data name="contextMenuStrip_X.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="contextMenuStrip_X.ToolTip1" xml:space="preserve">
-    <value />
-  </data>
-  <data name="numericUpDown_X.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="numericUpDown_X.ToolTip1" xml:space="preserve">
-    <value />
-  </data>
   <data name="вставитьКоординатуYToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAfxJREFUOE9j
-        8O+++t+i/Eg9AxYAkrPEI6ddeLyewbx4T/2sdcf/nzp/DYxPX7gOxmcuXv/fufHx/9UH7/4/e+kmGJ+7
-        fAuMz1+5/T+++8B+jcxd9mDTTpy9/P/lp/8k4c2bNyNcduLMxf+vP/+H4w3b9v8vraxHwcjyILx+/XqE
-        AcdPX/j/9ut/OJ4ycz6YLqmoReEj4zVr1kAMMC05XL9q/43/H779x8BllbVYxUE4onXPfmAg2oNDs2/L
-        4/+ffvzHwBVVdVjFQRgeCyBw9MSp/19//sfAVTV1WMVBePLspYgwOHr85P/vv/6j4Bu37/+3tbP/P2vO
-        fLjYrz8QDGLPmzcPYcCRY8fhkrjwn7///y+4Nvn/8tvT/v/+++//rFmzkAw4chSsABcGqv//D4hz9sT+
-        Lz+aBBT7+//KlStrJ85fzwYORO/KTfsbGxvrm5qa6pubm+tbWlrqq1sm1IPkJmy+9yd/W+5//xUe/3P3
-        x/8vBhqQuivkf+vJ4v9XHn2uZwAmx3p4kkQDILkVR56tdJvh+t9sotH/gLX2/yO2Ov43X6D1P367z/+f
-        v//mQ5XiBhMmTGD7+fNn7t+/f/dp9cj+t1mkBvTC7wO/f//OX7hoIQdUGWHw7v27LLcZxv8dZtkCw+Mf
-        YZvRQX9/PxvQkJx3797lIWxmYAAA7pt3k8xS7ogAAAAASUVORK5CYII=
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAftJREFUOE+V
+        kt1LFFEYxvdq6Z/oNkTvirIg27pIggK76MKbWBC6MNwWWUvX0sN+eBFGO2KETbGrQmS1ttWWwbI0RjvN
+        +pWak1qLBQlBRGMoVuPMmSfmyM5+TFv0wI8z8z7vec7wznE09L7F/vYMcfxBpnfgL15Nq0Qctb404R9I
+        mJxdZEzNLTGm55dw+dEq7r9Ywcybd4zXC+8Zs3IO7t5xoao55WJp2ZkFfFnHf5FMJgtflp2ex9cNWDwc
+        E3DeT0oo9k0SiUQhQJqaw7dNWFy7EWNrW0dXyXsx8Xh8O2Bv20tyT1jG9x+wccHfZavlaexJCzWtkotN
+        8+qTVaz/go2Ozm5bLY/1F0yJ2UlsqrDReanbVsvTf/N2YQaiNIGfWyhhOfcRdYdc4G/FrNqWvo35HI1G
+        CwGZV5JlVkKnwOBiP+7krkOjBnieLwrIiKyhEtQADANoSZ9Gu9gEnVLIsjzaF0s42RCP+x8LgUCABINB
+        EgqFSDgcJhfDHDE9LvlB94550DByDB7BDZ/YhDOpU+iZ8EH+tEEcVc0pYl3JMpneSObz3fqBo9jXtxsn
+        R11ofHoEtYPVcD87AVWj3vI9NnEc51RV1UMpfV59ZScODu+CTrVxTdO8Q8NDO8r7K0pZU87WD+zBYb4O
+        hmH8++RyRSIRp7KmtCiKcq745N/um3eT8k4mXQAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="вставитьКоординатуYToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
@@ -250,41 +214,41 @@
   </data>
   <data name="копироватьToolStripMenuItemY.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        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
+        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
 </value>
   </data>
   <data name="копироватьToolStripMenuItemY.Size" type="System.Drawing.Size, System.Drawing">
     <value>202, 26</value>
   </data>
   <data name="копироватьToolStripMenuItemY.Text" xml:space="preserve">
-    <value>Copie</value>
+    <value>Copier</value>
   </data>
   <data name="вставитьToolStripMenuItemY.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        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
+        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
 </value>
   </data>
   <data name="вставитьToolStripMenuItemY.Size" type="System.Drawing.Size, System.Drawing">
@@ -296,29 +260,8 @@
   <data name="contextMenuStrip_Y.Size" type="System.Drawing.Size, System.Drawing">
     <value>203, 82</value>
   </data>
-  <data name="contextMenuStrip_Y.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="contextMenuStrip_Y.ToolTip1" xml:space="preserve">
-    <value />
-  </data>
-  <data name="numericUpDown_Y.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="numericUpDown_Y.ToolTip1" xml:space="preserve">
-    <value />
-  </data>
   <data name="numericUpDown_Size.ToolTip" xml:space="preserve">
     <value>Ne pas définir une taille supérieure à 150.</value>
-  </data>
-  <data name="numericUpDown_Size.ToolTip1" xml:space="preserve">
-    <value />
-  </data>
-  <data name="numericUpDown_Spacing.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="numericUpDown_Spacing.ToolTip1" xml:space="preserve">
-    <value />
   </data>
   <data name="label01.Size" type="System.Drawing.Size, System.Drawing">
     <value>70, 13</value>
@@ -326,119 +269,41 @@
   <data name="label01.Text" xml:space="preserve">
     <value>Coordonnées</value>
   </data>
-  <data name="label01.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label01.ToolTip1" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label04.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label04.ToolTip1" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label03.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label03.ToolTip1" xml:space="preserve">
-    <value />
-  </data>
   <data name="label06.Text" xml:space="preserve">
     <value>Espace</value>
   </data>
-  <data name="label06.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label06.ToolTip1" xml:space="preserve">
-    <value />
-  </data>
   <data name="label05.Text" xml:space="preserve">
     <value>Taille</value>
-  </data>
-  <data name="label05.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label05.ToolTip1" xml:space="preserve">
-    <value />
   </data>
   <data name="comboBox_alignmentHorizontal.Items" xml:space="preserve">
     <value>Gauche</value>
   </data>
   <data name="comboBox_alignmentHorizontal.Items1" xml:space="preserve">
-    <value>centré</value>
+    <value>Centrer</value>
   </data>
   <data name="comboBox_alignmentHorizontal.Items2" xml:space="preserve">
     <value>Droite</value>
   </data>
-  <data name="comboBox_alignmentHorizontal.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="comboBox_alignmentHorizontal.ToolTip1" xml:space="preserve">
-    <value />
-  </data>
   <data name="label09.Text" xml:space="preserve">
     <value>Alignement horizontal</value>
-  </data>
-  <data name="label09.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label09.ToolTip1" xml:space="preserve">
-    <value />
   </data>
   <data name="comboBox_alignmentVertical.Items" xml:space="preserve">
     <value>Au dessus</value>
   </data>
   <data name="comboBox_alignmentVertical.Items1" xml:space="preserve">
-    <value>centré</value>
+    <value>Centrer</value>
   </data>
   <data name="comboBox_alignmentVertical.Items2" xml:space="preserve">
     <value>Bas</value>
   </data>
-  <data name="comboBox_alignmentVertical.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="comboBox_alignmentVertical.ToolTip1" xml:space="preserve">
-    <value />
-  </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Alignement vertical</value>
-  </data>
-  <data name="label1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label1.ToolTip1" xml:space="preserve">
-    <value />
-  </data>
-  <data name="comboBox_Color.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="comboBox_Color.ToolTip1" xml:space="preserve">
-    <value />
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>Couleur</value>
   </data>
-  <data name="label2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label2.ToolTip1" xml:space="preserve">
-    <value />
-  </data>
-  <data name="numericUpDown_LineSpace.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="numericUpDown_LineSpace.ToolTip1" xml:space="preserve">
-    <value />
-  </data>
   <data name="label3.Text" xml:space="preserve">
     <value>Interligne</value>
-  </data>
-  <data name="label3.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label3.ToolTip1" xml:space="preserve">
-    <value />
   </data>
   <data name="comboBox_textStyle.Items" xml:space="preserve">
     <value>Texte déroulant</value>
@@ -449,20 +314,8 @@
   <data name="comboBox_textStyle.Items2" xml:space="preserve">
     <value>Sur une ligne</value>
   </data>
-  <data name="comboBox_textStyle.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="comboBox_textStyle.ToolTip1" xml:space="preserve">
-    <value />
-  </data>
   <data name="label4.Text" xml:space="preserve">
     <value>Format du texte</value>
-  </data>
-  <data name="label4.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label4.ToolTip1" xml:space="preserve">
-    <value />
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
     <value>233, 39</value>
@@ -470,35 +323,11 @@
   <data name="label5.Text" xml:space="preserve">
     <value>* La taille et la position du texte peuvent différer de l'image sur la montre. Vérifiez la position du texte sur l'appareil réel.</value>
   </data>
-  <data name="label5.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label5.ToolTip1" xml:space="preserve">
-    <value />
-  </data>
-  <data name="comboBox_fonts.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="comboBox_fonts.ToolTip1" xml:space="preserve">
-    <value />
-  </data>
   <data name="label6.Text" xml:space="preserve">
     <value>Police</value>
   </data>
-  <data name="label6.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label6.ToolTip1" xml:space="preserve">
-    <value />
-  </data>
   <data name="button_AddFont.Text" xml:space="preserve">
     <value>Ajouter</value>
-  </data>
-  <data name="button_AddFont.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="button_AddFont.ToolTip1" xml:space="preserve">
-    <value />
   </data>
   <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
     <value>222, 39</value>
@@ -506,20 +335,8 @@
   <data name="label7.Text" xml:space="preserve">
     <value>** Lors de l'utilisation d'une police tierce, il est conseillé de redémarrer la montre après avoir installé le cadran de la montre.</value>
   </data>
-  <data name="label7.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label7.ToolTip1" xml:space="preserve">
-    <value />
-  </data>
   <data name="button_DelFont.Text" xml:space="preserve">
     <value>Supprimer</value>
-  </data>
-  <data name="button_DelFont.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="button_DelFont.ToolTip1" xml:space="preserve">
-    <value />
   </data>
   <data name="checkBox_CentreHorizontally.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 30</value>
@@ -528,12 +345,6 @@
     <value>Centre
 horizontalement</value>
   </data>
-  <data name="checkBox_CentreHorizontally.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="checkBox_CentreHorizontally.ToolTip1" xml:space="preserve">
-    <value />
-  </data>
   <data name="checkBox_CentreVertically.Size" type="System.Drawing.Size, System.Drawing">
     <value>89, 30</value>
   </data>
@@ -541,23 +352,11 @@ horizontalement</value>
     <value>Centre
 verticalement</value>
   </data>
-  <data name="checkBox_CentreVertically.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="checkBox_CentreVertically.ToolTip1" xml:space="preserve">
-    <value />
-  </data>
   <data name="checkBox_addZero.Size" type="System.Drawing.Size, System.Drawing">
     <value>182, 17</value>
   </data>
   <data name="checkBox_addZero.Text" xml:space="preserve">
     <value>Ajouter des zéros non significatifs</value>
-  </data>
-  <data name="checkBox_addZero.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="checkBox_addZero.ToolTip1" xml:space="preserve">
-    <value />
   </data>
   <data name="checkBox_unit.Size" type="System.Drawing.Size, System.Drawing">
     <value>56, 17</value>
@@ -565,23 +364,11 @@ verticalement</value>
   <data name="checkBox_unit.Text" xml:space="preserve">
     <value>Unités</value>
   </data>
-  <data name="checkBox_unit.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="checkBox_unit.ToolTip1" xml:space="preserve">
-    <value />
-  </data>
   <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
     <value>236, 52</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
     <value>!!! Certaines données peuvent ne pas être affichées (selon le modèle de montre). Vérifiez la possibilité d'afficher les données sur un appareil réel.</value>
-  </data>
-  <data name="label8.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label8.ToolTip1" xml:space="preserve">
-    <value />
   </data>
   <data name="копироватьСвойстваToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>182, 22</value>
@@ -598,26 +385,8 @@ verticalement</value>
   <data name="context_WidgetProperty.Size" type="System.Drawing.Size, System.Drawing">
     <value>183, 48</value>
   </data>
-  <data name="context_WidgetProperty.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="context_WidgetProperty.ToolTip1" xml:space="preserve">
-    <value />
-  </data>
-  <data name="textBox_unit_string.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="textBox_unit_string.ToolTip1" xml:space="preserve">
-    <value />
-  </data>
   <data name="label_unit_string.Text" xml:space="preserve">
     <value>Séparateur</value>
-  </data>
-  <data name="label_unit_string.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label_unit_string.ToolTip1" xml:space="preserve">
-    <value />
   </data>
   <data name="checkBox_inEnd.Size" type="System.Drawing.Size, System.Drawing">
     <value>58, 17</value>
@@ -625,125 +394,32 @@ verticalement</value>
   <data name="checkBox_inEnd.Text" xml:space="preserve">
     <value>À la fin</value>
   </data>
-  <data name="checkBox_inEnd.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="checkBox_inEnd.ToolTip1" xml:space="preserve">
-    <value />
-  </data>
-  <data name="textBox_DOW.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="textBox_DOW.ToolTip1" xml:space="preserve">
     <value>Noms des jours de la semaine, commençant par lundi, séparés par des virgules.</value>
-  </data>
-  <data name="numericUpDown_radius.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="numericUpDown_radius.ToolTip1" xml:space="preserve">
-    <value />
   </data>
   <data name="label_DOW.Text" xml:space="preserve">
     <value>Nom des jours de semaine</value>
   </data>
-  <data name="label_DOW.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label_DOW.ToolTip1" xml:space="preserve">
-    <value />
-  </data>
   <data name="label_Month.Text" xml:space="preserve">
     <value>Noms des mois en police</value>
-  </data>
-  <data name="label_Month.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label_Month.ToolTip1" xml:space="preserve">
-    <value />
-  </data>
-  <data name="comboBox_Color2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="comboBox_Color2.ToolTip1" xml:space="preserve">
-    <value />
   </data>
   <data name="label_Color2.Text" xml:space="preserve">
     <value>Couleur du week-end</value>
   </data>
-  <data name="label_Color2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label_Color2.ToolTip1" xml:space="preserve">
-    <value />
-  </data>
-  <data name="checkBox_Color2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="checkBox_Color2.ToolTip1" xml:space="preserve">
-    <value />
-  </data>
-  <data name="numericUpDown_Alpha.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="numericUpDown_Alpha.ToolTip1" xml:space="preserve">
-    <value />
-  </data>
   <data name="label_alpha.Text" xml:space="preserve">
     <value>Transparence</value>
-  </data>
-  <data name="label_alpha.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label_alpha.ToolTip1" xml:space="preserve">
-    <value />
   </data>
   <data name="checkBox_use_text_circle.Text" xml:space="preserve">
     <value>Afficher le texte dans un cercle</value>
   </data>
-  <data name="checkBox_use_text_circle.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="checkBox_use_text_circle.ToolTip1" xml:space="preserve">
-    <value />
-  </data>
   <data name="label9.Text" xml:space="preserve">
     <value>Rayon</value>
-  </data>
-  <data name="label9.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label9.ToolTip1" xml:space="preserve">
-    <value />
-  </data>
-  <data name="numericUpDown_start_angle.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="numericUpDown_start_angle.ToolTip1" xml:space="preserve">
-    <value />
   </data>
   <data name="label10.Text" xml:space="preserve">
     <value>Angle de départ</value>
   </data>
-  <data name="label10.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label10.ToolTip1" xml:space="preserve">
-    <value />
-  </data>
-  <data name="numericUpDown_end_angle.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="numericUpDown_end_angle.ToolTip1" xml:space="preserve">
-    <value />
-  </data>
   <data name="label11.Text" xml:space="preserve">
     <value>Angle de fin</value>
-  </data>
-  <data name="label11.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label11.ToolTip1" xml:space="preserve">
-    <value />
   </data>
   <data name="radioButton_clockwise.Size" type="System.Drawing.Size, System.Drawing">
     <value>84, 17</value>
@@ -751,34 +427,10 @@ verticalement</value>
   <data name="radioButton_clockwise.Text" xml:space="preserve">
     <value>Sens horaire</value>
   </data>
-  <data name="radioButton_clockwise.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="radioButton_clockwise.ToolTip1" xml:space="preserve">
-    <value />
-  </data>
   <data name="radioButton_counterclockwise.Size" type="System.Drawing.Size, System.Drawing">
     <value>104, 17</value>
   </data>
   <data name="radioButton_counterclockwise.Text" xml:space="preserve">
     <value>Sens anti-horaire</value>
-  </data>
-  <data name="radioButton_counterclockwise.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="radioButton_counterclockwise.ToolTip1" xml:space="preserve">
-    <value />
-  </data>
-  <data name="panel1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="panel1.ToolTip1" xml:space="preserve">
-    <value />
-  </data>
-  <data name="$this.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="$this.ToolTip1" xml:space="preserve">
-    <value />
   </data>
 </root>

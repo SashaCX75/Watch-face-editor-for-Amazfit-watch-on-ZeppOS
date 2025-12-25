@@ -83,7 +83,7 @@
     "previewHeight": 314,
     "colorScheme": 1,
     "fixSize": true,
-    "versionOS": 4.0
+    "versionOS": 5.0
   },
   "Active 2 (Square)": {
     "name": "Amazfit Active 2 (Square)",
@@ -409,7 +409,7 @@
     "previewHeight": 306,
     "colorScheme": 1,
     "fixSize": true,
-    "versionOS": 4.0
+    "versionOS": 5.0
   },
   "Cheetah": {
     "name": "Amazfit Cheetah",
@@ -974,7 +974,7 @@
     "previewHeight": 314,
     "colorScheme": 1,
     "fixSize": true,
-    "versionOS": 3.5
+    "versionOS": 5.0
   },
   "T-Rex 3 Pro (48mm)": {
     "name": "Amazfit T-Rex 3 Pro (48mm)",
@@ -1015,7 +1015,7 @@
     "previewHeight": 324,
     "colorScheme": 1,
     "fixSize": true,
-    "versionOS": 4.0
+    "versionOS": 5.0
   },
   "T-Rex Ultra": {
     "name": "Amazfit T-Rex Ultra",

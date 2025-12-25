@@ -412,6 +412,7 @@ namespace ControlLibrary
             this.toolTip_Hint360.SetToolTip(this.comboBox_Color, resources.GetString("comboBox_Color.ToolTip"));
             this.toolTip.SetToolTip(this.comboBox_Color, resources.GetString("comboBox_Color.ToolTip1"));
             this.comboBox_Color.Click += new System.EventHandler(this.comboBox_Color_Click);
+            this.comboBox_Color.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox_KeyPress);
             // 
             // label2
             // 
@@ -660,6 +661,7 @@ namespace ControlLibrary
             this.toolTip_Hint360.SetToolTip(this.comboBox_Color2, resources.GetString("comboBox_Color2.ToolTip"));
             this.toolTip.SetToolTip(this.comboBox_Color2, resources.GetString("comboBox_Color2.ToolTip1"));
             this.comboBox_Color2.Click += new System.EventHandler(this.comboBox_Color_Click);
+            this.comboBox_Color2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox_KeyPress);
             // 
             // label_Color2
             // 
@@ -693,7 +695,7 @@ namespace ControlLibrary
             0,
             0,
             0});
-            this.numericUpDown_Alpha.ValueChanged += new System.EventHandler(this.numericUpDown_Size_ValueChanged);
+            this.numericUpDown_Alpha.ValueChanged += new System.EventHandler(this.numericUpDown_ValueChanged);
             // 
             // label_alpha
             // 

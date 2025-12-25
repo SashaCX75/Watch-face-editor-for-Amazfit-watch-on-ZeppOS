@@ -385,6 +385,12 @@
     <Compile Include="UCtrl_Button_Opt.Designer.cs">
       <DependentUpon>UCtrl_Button_Opt.cs</DependentUpon>
     </Compile>
+    <Compile Include="UCtrl_ChartSleep_Opt.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCtrl_ChartSleep_Opt.Designer.cs">
+      <DependentUpon>UCtrl_ChartSleep_Opt.cs</DependentUpon>
+    </Compile>
     <Compile Include="UCtrl_Circle_Scale_Opt.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -614,6 +620,18 @@
     <Compile Include="Elements\UCtrl_Stress_Elm.Designer.cs">
       <DependentUpon>UCtrl_Stress_Elm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Elements\UCtrl_Sleep_Elm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Elements\UCtrl_Sleep_Elm.Designer.cs">
+      <DependentUpon>UCtrl_Sleep_Elm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCtrl_SleepChart_Opt.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCtrl_SleepChart_Opt.Designer.cs">
+      <DependentUpon>UCtrl_SleepChart_Opt.cs</DependentUpon>
+    </Compile>
     <Compile Include="UCtrl_SmoothSeconds_Opt.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -649,6 +667,12 @@
     </Compile>
     <Compile Include="UCtrl_TemperatureGraph_Opt.Designer.cs">
       <DependentUpon>UCtrl_TemperatureGraph_Opt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Elements\UCtrl_TextWidgets_Elm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Elements\UCtrl_TextWidgets_Elm.Designer.cs">
+      <DependentUpon>UCtrl_TextWidgets_Elm.cs</DependentUpon>
     </Compile>
     <Compile Include="UCtrl_Text_Circle_Opt.cs">
       <SubType>UserControl</SubType>
@@ -733,6 +757,12 @@
     </Compile>
     <Compile Include="Elements\UCtrl_TimeCircle_Elm.Designer.cs">
       <DependentUpon>UCtrl_TimeCircle_Elm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCtrl_Text_Widgets_Opt.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCtrl_Text_Widgets_Opt.Designer.cs">
+      <DependentUpon>UCtrl_Text_Widgets_Opt.cs</DependentUpon>
     </Compile>
     <Compile Include="UCtrl_Weather_FewDays_Opt.cs">
       <SubType>UserControl</SubType>
@@ -1612,6 +1642,30 @@
     <EmbeddedResource Include="Elements\UCtrl_Shortcuts_Elm.zh.resx">
       <DependentUpon>UCtrl_Shortcuts_Elm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Sleep_Elm.cs.resx">
+      <DependentUpon>UCtrl_Sleep_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Sleep_Elm.de.resx">
+      <DependentUpon>UCtrl_Sleep_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Sleep_Elm.en.resx">
+      <DependentUpon>UCtrl_Sleep_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Sleep_Elm.es.resx">
+      <DependentUpon>UCtrl_Sleep_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Sleep_Elm.fr.resx">
+      <DependentUpon>UCtrl_Sleep_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Sleep_Elm.it.resx">
+      <DependentUpon>UCtrl_Sleep_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Sleep_Elm.resx">
+      <DependentUpon>UCtrl_Sleep_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Sleep_Elm.uk.resx">
+      <DependentUpon>UCtrl_Sleep_Elm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_SpO2_Elm.cs.resx">
       <DependentUpon>UCtrl_SpO2_Elm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1805,6 +1859,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_Switch_BG_Color_Elm.zh.resx">
       <DependentUpon>UCtrl_Switch_BG_Color_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_TextWidgets_Elm.cs.resx">
+      <DependentUpon>UCtrl_TextWidgets_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_TextWidgets_Elm.de.resx">
+      <DependentUpon>UCtrl_TextWidgets_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_TextWidgets_Elm.en.resx">
+      <DependentUpon>UCtrl_TextWidgets_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_TextWidgets_Elm.es.resx">
+      <DependentUpon>UCtrl_TextWidgets_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_TextWidgets_Elm.fr.resx">
+      <DependentUpon>UCtrl_TextWidgets_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_TextWidgets_Elm.it.resx">
+      <DependentUpon>UCtrl_TextWidgets_Elm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_TopImage_Elm.cs.resx">
       <DependentUpon>UCtrl_TopImage_Elm.cs</DependentUpon>
@@ -2374,6 +2446,9 @@
     <EmbeddedResource Include="UCtrl_Button_Opt.uk.resx">
       <DependentUpon>UCtrl_Button_Opt.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_ChartSleep_Opt.resx">
+      <DependentUpon>UCtrl_ChartSleep_Opt.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UCtrl_Circle_Scale_Opt.cs.resx">
       <DependentUpon>UCtrl_Circle_Scale_Opt.cs</DependentUpon>
     </EmbeddedResource>
@@ -2826,6 +2901,30 @@
     <EmbeddedResource Include="Elements\UCtrl_Stress_Elm.resx">
       <DependentUpon>UCtrl_Stress_Elm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_SleepChart_Opt.cs.resx">
+      <DependentUpon>UCtrl_SleepChart_Opt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_SleepChart_Opt.de.resx">
+      <DependentUpon>UCtrl_SleepChart_Opt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_SleepChart_Opt.en.resx">
+      <DependentUpon>UCtrl_SleepChart_Opt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_SleepChart_Opt.es.resx">
+      <DependentUpon>UCtrl_SleepChart_Opt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_SleepChart_Opt.fr.resx">
+      <DependentUpon>UCtrl_SleepChart_Opt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_SleepChart_Opt.it.resx">
+      <DependentUpon>UCtrl_SleepChart_Opt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_SleepChart_Opt.resx">
+      <DependentUpon>UCtrl_SleepChart_Opt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_SleepChart_Opt.uk.resx">
+      <DependentUpon>UCtrl_SleepChart_Opt.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UCtrl_SmoothSeconds_Opt.cs.resx">
       <DependentUpon>UCtrl_SmoothSeconds_Opt.cs</DependentUpon>
     </EmbeddedResource>
@@ -2936,6 +3035,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UCtrl_TemperatureGraph_Opt.zh.resx">
       <DependentUpon>UCtrl_TemperatureGraph_Opt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_TextWidgets_Elm.resx">
+      <DependentUpon>UCtrl_TextWidgets_Elm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UCtrl_Text_Circle_Opt.cs.resx">
       <DependentUpon>UCtrl_Text_Circle_Opt.cs</DependentUpon>
@@ -3096,6 +3198,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_TimeCircle_Elm.resx">
       <DependentUpon>UCtrl_TimeCircle_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_Text_Widgets_Opt.cs.resx">
+      <DependentUpon>UCtrl_Text_Widgets_Opt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_Text_Widgets_Opt.de.resx">
+      <DependentUpon>UCtrl_Text_Widgets_Opt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_Text_Widgets_Opt.en.resx">
+      <DependentUpon>UCtrl_Text_Widgets_Opt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_Text_Widgets_Opt.es.resx">
+      <DependentUpon>UCtrl_Text_Widgets_Opt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_Text_Widgets_Opt.fr.resx">
+      <DependentUpon>UCtrl_Text_Widgets_Opt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_Text_Widgets_Opt.it.resx">
+      <DependentUpon>UCtrl_Text_Widgets_Opt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_Text_Widgets_Opt.resx">
+      <DependentUpon>UCtrl_Text_Widgets_Opt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_Text_Widgets_Opt.uk.resx">
+      <DependentUpon>UCtrl_Text_Widgets_Opt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UCtrl_Weather_FewDays_Opt.cs.resx">
       <DependentUpon>UCtrl_Weather_FewDays_Opt.cs</DependentUpon>
@@ -3440,6 +3566,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\bio_charge.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\text_widget.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -10812,7 +10812,7 @@ namespace Watch_Face_Editor
                     break;
 
                 case "UCtrl_JSscript_Elm":
-                    objectName = "ElementTextWidgets";
+                    objectName = "ElementScript";
                     break;
             }
 

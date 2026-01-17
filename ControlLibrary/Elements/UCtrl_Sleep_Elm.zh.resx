@@ -117,22 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="button_Second.Text" xml:space="preserve">
-    <value>秒钟</value>
+  <data name="button_WakeUp.Text" xml:space="preserve">
+    <value>清醒时长</value>
   </data>
-  <data name="button_SmoothSeconds.Text" xml:space="preserve">
-    <value>平滑动效</value>
+  <data name="button_StartSleep.Text" xml:space="preserve">
+    <value>睡眠开始时间</value>
   </data>
-  <data name="button_Format_24hour.Text" xml:space="preserve">
-    <value>24小时格式</value>
+  <data name="button_DurationSleep_total.Text" xml:space="preserve">
+    <value>睡眠时长(总计)</value>
   </data>
-  <data name="button_Minute.Text" xml:space="preserve">
-    <value>分钟</value>
+  <data name="button_Score.Text" xml:space="preserve">
+    <value>得分</value>
+  </data>
+  <data name="button_DurationSleep.Text" xml:space="preserve">
+    <value>睡眠时长</value>
+  </data>
+  <data name="button_EndSleep.Text" xml:space="preserve">
+    <value>睡眠结束时间</value>
+  </data>
+  <data name="button_Icon.Text" xml:space="preserve">
+    <value>图标</value>
   </data>
   <data name="button_ElementName.Text" xml:space="preserve">
-    <value>时区环</value>
+    <value>睡眠</value>
   </data>
-  <data name="button_Hour.Text" xml:space="preserve">
-    <value>小时</value>
+  <data name="button_WakeUpCount.Text" xml:space="preserve">
+    <value>睡醒次数</value>
+  </data>
+  <data name="button_Chart.Text" xml:space="preserve">
+    <value>睡眠图表</value>
   </data>
 </root>

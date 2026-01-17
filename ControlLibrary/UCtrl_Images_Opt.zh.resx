@@ -255,7 +255,7 @@
     <value>177, 82</value>
   </data>
   <data name="label01.Text" xml:space="preserve">
-    <value>初始图象</value>
+    <value>起始图像</value>
   </data>
   <data name="label02.Size" type="System.Drawing.Size, System.Drawing">
     <value>63, 13</value>

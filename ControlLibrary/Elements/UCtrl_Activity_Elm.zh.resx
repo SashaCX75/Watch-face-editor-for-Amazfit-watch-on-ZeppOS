@@ -130,7 +130,7 @@
     <value>图像</value>
   </data>
   <data name="button_Linear_Scale.Text" xml:space="preserve">
-    <value>线形进度</value>
+    <value>线形进度条</value>
   </data>
   <data name="button_Number.Text" xml:space="preserve">
     <value>数值</value>

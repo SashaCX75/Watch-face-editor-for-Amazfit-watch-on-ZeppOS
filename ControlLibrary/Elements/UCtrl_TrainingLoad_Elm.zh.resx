@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="button_Number_Font.Text" xml:space="preserve">
+    <value>数值字体</value>
+  </data>
+  <data name="button_Number.Text" xml:space="preserve">
+    <value>数值</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="button_Pointer.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -131,5 +137,23 @@
         R1dDuxpO/nyDR4gB4b2rYVJC4w3w3tVwwsK2GLSrYfIKfbrw3tUwn8pCBoQv2tXwBxvA0icMlg5xD43f
         iPeuhskzxIDw3tUw4faNM7i5iXU7AR+D/8oPVDlNAAAAAElFTkSuQmCC
 </value>
+  </data>
+  <data name="button_ElementName.Text" xml:space="preserve">
+    <value>训练负荷</value>
+  </data>
+  <data name="button_Pointer.Text" xml:space="preserve">
+    <value>指针</value>
+  </data>
+  <data name="button_Images.Text" xml:space="preserve">
+    <value>图像</value>
+  </data>
+  <data name="button_Icon.Text" xml:space="preserve">
+    <value>图标</value>
+  </data>
+  <data name="button_Segments.Text" xml:space="preserve">
+    <value>独立图像</value>
+  </data>
+  <data name="button_Circle_Scale.Text" xml:space="preserve">
+    <value>环形进度条</value>
   </data>
 </root>

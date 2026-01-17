@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="button_Linear_Scale.Text" xml:space="preserve">
-    <value>线形进度</value>
+    <value>线形进度条</value>
   </data>
   <data name="button_Images.Text" xml:space="preserve">
     <value>图像</value>
@@ -148,7 +148,7 @@
     <value>指针</value>
   </data>
   <data name="button_Circle_Scale.Text" xml:space="preserve">
-    <value>圆形进度</value>
+    <value>环形进度条</value>
   </data>
   <data name="button_Icon.Text" xml:space="preserve">
     <value>图标</value>

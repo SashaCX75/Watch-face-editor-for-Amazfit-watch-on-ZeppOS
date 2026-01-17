@@ -117,22 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="button_Second.Text" xml:space="preserve">
-    <value>秒钟</value>
-  </data>
-  <data name="button_SmoothSeconds.Text" xml:space="preserve">
-    <value>平滑动效</value>
-  </data>
-  <data name="button_Format_24hour.Text" xml:space="preserve">
-    <value>24小时格式</value>
-  </data>
-  <data name="button_Minute.Text" xml:space="preserve">
-    <value>分钟</value>
-  </data>
   <data name="button_ElementName.Text" xml:space="preserve">
-    <value>时区环</value>
-  </data>
-  <data name="button_Hour.Text" xml:space="preserve">
-    <value>小时</value>
+    <value>Text</value>
   </data>
 </root>

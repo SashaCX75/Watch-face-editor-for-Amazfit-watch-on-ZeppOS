@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
+	<!-- 
     Microsoft ResX Schema 
     
     Version 2.0
@@ -59,263 +59,305 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <data name="label1.Text" xml:space="preserve">
-    <value>风向</value>
-  </data>
-  <data name="label22.Text" xml:space="preserve">
-    <value>最高温度</value>
-  </data>
-  <data name="label16.Text" xml:space="preserve">
-    <value>空气质量</value>
-  </data>
-  <data name="comboBox_WindDirection.Items" xml:space="preserve">
-    <value>N-北</value>
-  </data>
-  <data name="comboBox_WindDirection.Items1" xml:space="preserve">
-    <value>NE-东北</value>
-  </data>
-  <data name="comboBox_WindDirection.Items2" xml:space="preserve">
-    <value>E-东</value>
-  </data>
-  <data name="comboBox_WindDirection.Items3" xml:space="preserve">
-    <value>SE-东南</value>
-  </data>
-  <data name="comboBox_WindDirection.Items4" xml:space="preserve">
-    <value>S-南</value>
-  </data>
-  <data name="comboBox_WindDirection.Items5" xml:space="preserve">
-    <value>SW-西南</value>
-  </data>
-  <data name="comboBox_WindDirection.Items6" xml:space="preserve">
-    <value>W-西</value>
-  </data>
-  <data name="comboBox_WindDirection.Items7" xml:space="preserve">
-    <value>NW-西北</value>
-  </data>
-  <data name="comboBox_WeatherSet_Icon.Items" xml:space="preserve">
-    <value>多云</value>
-  </data>
-  <data name="comboBox_WeatherSet_Icon.Items1" xml:space="preserve">
-    <value>阵雨</value>
-  </data>
-  <data name="comboBox_WeatherSet_Icon.Items2" xml:space="preserve">
-    <value>阵雪</value>
-  </data>
-  <data name="comboBox_WeatherSet_Icon.Items3" xml:space="preserve">
-    <value>晴</value>
-  </data>
-  <data name="comboBox_WeatherSet_Icon.Items4" xml:space="preserve">
-    <value>阴</value>
-  </data>
-  <data name="comboBox_WeatherSet_Icon.Items5" xml:space="preserve">
-    <value>小雨</value>
-  </data>
-  <data name="comboBox_WeatherSet_Icon.Items6" xml:space="preserve">
-    <value>小雪</value>
-  </data>
-  <data name="comboBox_WeatherSet_Icon.Items7" xml:space="preserve">
-    <value>中雨</value>
-  </data>
-  <data name="comboBox_WeatherSet_Icon.Items8" xml:space="preserve">
-    <value>中雪</value>
-  </data>
-  <data name="comboBox_WeatherSet_Icon.Items9" xml:space="preserve">
-    <value>大雪</value>
-  </data>
-  <data name="comboBox_WeatherSet_Icon.Items10" xml:space="preserve">
-    <value>大雨</value>
-  </data>
-  <data name="comboBox_WeatherSet_Icon.Items11" xml:space="preserve">
-    <value>沙尘暴</value>
-  </data>
-  <data name="comboBox_WeatherSet_Icon.Items12" xml:space="preserve">
-    <value>雨夹雪</value>
-  </data>
-  <data name="comboBox_WeatherSet_Icon.Items13" xml:space="preserve">
-    <value>雾</value>
-  </data>
-  <data name="comboBox_WeatherSet_Icon.Items14" xml:space="preserve">
-    <value>霾</value>
-  </data>
-  <data name="comboBox_WeatherSet_Icon.Items15" xml:space="preserve">
-    <value>雷阵雨</value>
-  </data>
-  <data name="comboBox_WeatherSet_Icon.Items16" xml:space="preserve">
-    <value>暴雪</value>
-  </data>
-  <data name="comboBox_WeatherSet_Icon.Items17" xml:space="preserve">
-    <value>浮尘</value>
-  </data>
-  <data name="comboBox_WeatherSet_Icon.Items18" xml:space="preserve">
-    <value>特大暴雨</value>
-  </data>
-  <data name="comboBox_WeatherSet_Icon.Items19" xml:space="preserve">
-    <value>雨加冰雹</value>
-  </data>
-  <data name="comboBox_WeatherSet_Icon.Items20" xml:space="preserve">
-    <value>雷阵雨伴有冰雹</value>
-  </data>
-  <data name="comboBox_WeatherSet_Icon.Items21" xml:space="preserve">
-    <value>大暴雨</value>
-  </data>
-  <data name="comboBox_WeatherSet_Icon.Items22" xml:space="preserve">
-    <value>扬沙</value>
-  </data>
-  <data name="comboBox_WeatherSet_Icon.Items23" xml:space="preserve">
-    <value>强沙尘暴</value>
-  </data>
-  <data name="comboBox_WeatherSet_Icon.Items24" xml:space="preserve">
-    <value>暴雨</value>
-  </data>
-  <data name="comboBox_WeatherSet_Icon.Items25" xml:space="preserve">
-    <value>未知天气</value>
-  </data>
-  <data name="comboBox_WeatherSet_Icon.Items26" xml:space="preserve">
-    <value>夜间多云</value>
-  </data>
-  <data name="comboBox_WeatherSet_Icon.Items27" xml:space="preserve">
-    <value>夜间阵雨</value>
-  </data>
-  <data name="comboBox_WeatherSet_Icon.Items28" xml:space="preserve">
-    <value>夜间晴</value>
-  </data>
-  <data name="label15.Text" xml:space="preserve">
-    <value>紫外线指数</value>
-  </data>
-  <data name="label18.Text" xml:space="preserve">
-    <value>风力</value>
-  </data>
-  <data name="checkBox_WeatherSet_Temp.Text" xml:space="preserve">
-    <value>当前温度</value>
-  </data>
-  <data name="label19.Text" xml:space="preserve">
-    <value>高度</value>
-  </data>
-  <data name="label17.Text" xml:space="preserve">
-    <value>湿度</value>
-  </data>
-  <data name="label21.Text" xml:space="preserve">
-    <value>最低温度</value>
-  </data>
-  <data name="label14.Text" xml:space="preserve">
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="metadata">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" />
+							</xsd:sequence>
+							<xsd:attribute name="name" use="required" type="xsd:string" />
+							<xsd:attribute name="type" type="xsd:string" />
+							<xsd:attribute name="mimetype" type="xsd:string" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="assembly">
+						<xsd:complexType>
+							<xsd:attribute name="alias" type="xsd:string" />
+							<xsd:attribute name="name" type="xsd:string" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="label14.Text" xml:space="preserve">
     <value>天气图标</value>
   </data>
-  <data name="label20.Text" xml:space="preserve">
-    <value>空气压力</value>
+	<data name="label21.Text" xml:space="preserve">
+    <value>最低温度</value>
   </data>
-  <data name="groupBox_Air.Text" xml:space="preserve">
-    <value>天气预览</value>
+	<data name="label16.Text" xml:space="preserve">
+    <value>空气质量</value>
   </data>
-  <data name="checkBox_DND_Set.Text" xml:space="preserve">
-    <value>勿扰</value>
+	<data name="label1.Text" xml:space="preserve">
+    <value>风向</value>
   </data>
-  <data name="checkBox_Lock_Set.Text" xml:space="preserve">
-    <value>锁屏</value>
+	<data name="label17.Text" xml:space="preserve">
+    <value>湿度</value>
   </data>
-  <data name="checkBox_Alarm_Set.Text" xml:space="preserve">
-    <value>闹铃</value>
-  </data>
-  <data name="checkBox_Bluetooth_Set.Text" xml:space="preserve">
-    <value>蓝牙</value>
-  </data>
-  <data name="label13.Text" xml:space="preserve">
-    <value>燃烧脂肪</value>
-  </data>
-  <data name="label11.Text" xml:space="preserve">
-    <value>压力</value>
-  </data>
-  <data name="label10.Text" xml:space="preserve">
-    <value>站立</value>
-  </data>
-  <data name="label08.Text" xml:space="preserve">
-    <value>步数目标</value>
-  </data>
-  <data name="label07.Text" xml:space="preserve">
-    <value>步数</value>
-  </data>
-  <data name="label06.Text" xml:space="preserve">
-    <value>距离</value>
-  </data>
-  <data name="label05.Text" xml:space="preserve">
-    <value>心率</value>
-  </data>
-  <data name="label04.Text" xml:space="preserve">
-    <value>卡路里</value>
-  </data>
-  <data name="label03.Text" xml:space="preserve">
-    <value>电池</value>
-  </data>
-  <data name="label02.Text" xml:space="preserve">
-    <value>时间</value>
-  </data>
-  <data name="label01.Text" xml:space="preserve">
-    <value>日期</value>
-  </data>
-  <data name="groupBox_Activity.Text" xml:space="preserve">
-    <value>活动</value>
-  </data>
-  <data name="button_Set.Text" xml:space="preserve">
-    <value>值</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
+	<data name="label2.Text" xml:space="preserve">
     <value>指南针</value>
   </data>
+	<data name="label22.Text" xml:space="preserve">
+    <value>最高温度</value>
+  </data>
+	<data name="label20.Text" xml:space="preserve">
+    <value>空气压力</value>
+  </data>
+	<data name="checkBox_WeatherSet_Temp.Text" xml:space="preserve">
+    <value>当前温度</value>
+  </data>
+	<data name="comboBox_WindDirection.Items" xml:space="preserve">
+    <value>N-北</value>
+  </data>
+	<data name="comboBox_WindDirection.Items1" xml:space="preserve">
+    <value>NE-东北</value>
+  </data>
+	<data name="comboBox_WindDirection.Items2" xml:space="preserve">
+    <value>E-东</value>
+  </data>
+	<data name="comboBox_WindDirection.Items3" xml:space="preserve">
+    <value>SE-东南</value>
+  </data>
+	<data name="comboBox_WindDirection.Items4" xml:space="preserve">
+    <value>S-南</value>
+  </data>
+	<data name="comboBox_WindDirection.Items5" xml:space="preserve">
+    <value>SW-西南</value>
+  </data>
+	<data name="comboBox_WindDirection.Items6" xml:space="preserve">
+    <value>W-西</value>
+  </data>
+	<data name="comboBox_WindDirection.Items7" xml:space="preserve">
+    <value>NW-西北</value>
+  </data>
+	<data name="label15.Text" xml:space="preserve">
+    <value>紫外线指数</value>
+  </data>
+	<data name="comboBox_WeatherSet_Icon.Items" xml:space="preserve">
+    <value>多云</value>
+  </data>
+	<data name="comboBox_WeatherSet_Icon.Items1" xml:space="preserve">
+    <value>阵雨</value>
+  </data>
+	<data name="comboBox_WeatherSet_Icon.Items2" xml:space="preserve">
+    <value>阵雪</value>
+  </data>
+	<data name="comboBox_WeatherSet_Icon.Items3" xml:space="preserve">
+    <value>晴</value>
+  </data>
+	<data name="comboBox_WeatherSet_Icon.Items4" xml:space="preserve">
+    <value>阴</value>
+  </data>
+	<data name="comboBox_WeatherSet_Icon.Items5" xml:space="preserve">
+    <value>小雨</value>
+  </data>
+	<data name="comboBox_WeatherSet_Icon.Items6" xml:space="preserve">
+    <value>小雪</value>
+  </data>
+	<data name="comboBox_WeatherSet_Icon.Items7" xml:space="preserve">
+    <value>中雨</value>
+  </data>
+	<data name="comboBox_WeatherSet_Icon.Items8" xml:space="preserve">
+    <value>中雪</value>
+  </data>
+	<data name="comboBox_WeatherSet_Icon.Items9" xml:space="preserve">
+    <value>大雪</value>
+  </data>
+	<data name="comboBox_WeatherSet_Icon.Items10" xml:space="preserve">
+    <value>大雨</value>
+  </data>
+	<data name="comboBox_WeatherSet_Icon.Items11" xml:space="preserve">
+    <value>沙尘暴</value>
+  </data>
+	<data name="comboBox_WeatherSet_Icon.Items12" xml:space="preserve">
+    <value>雨夹雪</value>
+  </data>
+	<data name="comboBox_WeatherSet_Icon.Items13" xml:space="preserve">
+    <value>雾</value>
+  </data>
+	<data name="comboBox_WeatherSet_Icon.Items14" xml:space="preserve">
+    <value>霾</value>
+  </data>
+	<data name="comboBox_WeatherSet_Icon.Items15" xml:space="preserve">
+    <value>雷阵雨</value>
+  </data>
+	<data name="comboBox_WeatherSet_Icon.Items16" xml:space="preserve">
+    <value>暴雪</value>
+  </data>
+	<data name="comboBox_WeatherSet_Icon.Items17" xml:space="preserve">
+    <value>浮尘</value>
+  </data>
+	<data name="comboBox_WeatherSet_Icon.Items18" xml:space="preserve">
+    <value>特大暴雨</value>
+  </data>
+	<data name="comboBox_WeatherSet_Icon.Items19" xml:space="preserve">
+    <value>雨加冰雹</value>
+  </data>
+	<data name="comboBox_WeatherSet_Icon.Items20" xml:space="preserve">
+    <value>雷阵雨伴有冰雹</value>
+  </data>
+	<data name="comboBox_WeatherSet_Icon.Items21" xml:space="preserve">
+    <value>大暴雨</value>
+  </data>
+	<data name="comboBox_WeatherSet_Icon.Items22" xml:space="preserve">
+    <value>扬沙</value>
+  </data>
+	<data name="comboBox_WeatherSet_Icon.Items23" xml:space="preserve">
+    <value>强沙尘暴</value>
+  </data>
+	<data name="comboBox_WeatherSet_Icon.Items24" xml:space="preserve">
+    <value>暴雨</value>
+  </data>
+	<data name="comboBox_WeatherSet_Icon.Items25" xml:space="preserve">
+    <value>未知天气</value>
+  </data>
+	<data name="comboBox_WeatherSet_Icon.Items26" xml:space="preserve">
+    <value>夜间多云</value>
+  </data>
+	<data name="comboBox_WeatherSet_Icon.Items27" xml:space="preserve">
+    <value>夜间阵雨</value>
+  </data>
+	<data name="comboBox_WeatherSet_Icon.Items28" xml:space="preserve">
+    <value>夜间晴</value>
+  </data>
+	<data name="label19.Text" xml:space="preserve">
+    <value>高度</value>
+  </data>
+	<data name="label18.Text" xml:space="preserve">
+    <value>风力</value>
+  </data>
+	<data name="groupBox_Air.Text" xml:space="preserve">
+    <value>天气预览</value>
+  </data>
+	<data name="label26.Text" xml:space="preserve">
+    <value>爬楼</value>
+  </data>
+	<data name="label24.Text" xml:space="preserve">
+    <value>训练负荷</value>
+  </data>
+	<data name="label23.Text" xml:space="preserve">
+    <value>身体状态</value>
+  </data>
+	<data name="label04.Text" xml:space="preserve">
+    <value>卡路里</value>
+  </data>
+	<data name="label11.Text" xml:space="preserve">
+    <value>压力</value>
+  </data>
+	<data name="label05.Text" xml:space="preserve">
+    <value>心率</value>
+  </data>
+	<data name="label13.Text" xml:space="preserve">
+    <value>燃脂</value>
+  </data>
+	<data name="label06.Text" xml:space="preserve">
+    <value>距离</value>
+  </data>
+	<data name="label10.Text" xml:space="preserve">
+    <value>站立</value>
+  </data>
+	<data name="label07.Text" xml:space="preserve">
+    <value>步数</value>
+  </data>
+	<data name="label08.Text" xml:space="preserve">
+    <value>步数目标</value>
+  </data>
+	<data name="groupBox_Activity.Text" xml:space="preserve">
+    <value>活动</value>
+  </data>
+	<data name="label03.Text" xml:space="preserve">
+    <value>电池</value>
+  </data>
+	<data name="checkBox_DND_Set.Text" xml:space="preserve">
+    <value>勿扰</value>
+  </data>
+	<data name="checkBox_Lock_Set.Text" xml:space="preserve">
+    <value>锁屏</value>
+  </data>
+	<data name="checkBox_Alarm_Set.Text" xml:space="preserve">
+    <value>闹铃</value>
+  </data>
+	<data name="checkBox_Bluetooth_Set.Text" xml:space="preserve">
+    <value>蓝牙</value>
+  </data>
+	<data name="label02.Text" xml:space="preserve">
+    <value>时间</value>
+  </data>
+	<data name="label01.Text" xml:space="preserve">
+    <value>日期</value>
+  </data>
+	<data name="button_Set.Text" xml:space="preserve">
+    <value>值</value>
+  </data>
+	<data name="label8.Text" xml:space="preserve">
+    <value>睡眠结束</value>
+  </data>
+	<data name="label9.Text" xml:space="preserve">
+    <value>睡眠开始</value>
+  </data>
+	<data name="label7.Text" xml:space="preserve">
+    <value>闹铃</value>
+  </data>
+	<data name="label5.Text" xml:space="preserve">
+    <value>月落</value>
+  </data>
+	<data name="label6.Text" xml:space="preserve">
+    <value>月出</value>
+  </data>
+	<data name="label4.Text" xml:space="preserve">
+    <value>日落</value>
+  </data>
+	<data name="label3.Text" xml:space="preserve">
+    <value>日出</value>
+  </data>
+	<data name="groupBox_Time.Text" xml:space="preserve">
+    <value>时间</value>
+  </data>
+	<data name="label12.Text" xml:space="preserve">
+    <value>体温</value>
+  </data>
+	<data name="groupBox_System.Text" xml:space="preserve">
+    <value>系统</value>
+  </data>
+	<data name="label28.Text" xml:space="preserve">
+		<value>血氧 (SpO2)</value>
+	</data>
 </root>

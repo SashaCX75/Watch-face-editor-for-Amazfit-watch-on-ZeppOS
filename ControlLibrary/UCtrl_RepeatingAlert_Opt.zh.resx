@@ -121,7 +121,7 @@
     <value>要使此功能工作，必须在手表上启用AOD。</value>
   </data>
   <data name="groupBox_repeat_period.Text" xml:space="preserve">
-    <value>定期警报</value>
+    <value>定时提醒</value>
   </data>
   <data name="comboBox_repeat_period_time.Items" xml:space="preserve">
     <value>每30分钟</value>

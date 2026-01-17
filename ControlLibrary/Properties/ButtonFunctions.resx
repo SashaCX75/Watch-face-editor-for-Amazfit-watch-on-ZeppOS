@@ -352,6 +352,13 @@
     <value>hmApp.startApp({url: 'oneKeyNightMonitorScreen', native: true });</value>
     <comment>Do not translate</comment>
   </data>
+  <data name="NightMonitor" xml:space="preserve">
+    <value>Мониторинг здоровья во сне *</value>
+  </data>
+  <data name="NightMonitor_function" xml:space="preserve">
+    <value>hmApp.startApp({url: 'oneKeyNightMonitorScreen', native: true });</value>
+    <comment>Do not translate</comment>
+  </data>
   <data name="OneKey" xml:space="preserve">
     <value>Измерение одним касанием</value>
   </data>

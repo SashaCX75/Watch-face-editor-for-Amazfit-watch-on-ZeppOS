@@ -121,10 +121,16 @@
     <value>添加一个 js 文件</value>
   </data>
   <data name="DOW_StrArray" xml:space="preserve">
-    <value>Mo, Tu, We, Th, Fr, Sa, Su</value>
+    <value>周一,周二,周三,周四,周五,周六,周日</value>
   </data>
   <data name="FilterJS" xml:space="preserve">
     <value>JS 文件 (*.js) | *.js</value>
+  </data>
+  <data name="Hint_360_Text_Circle" xml:space="preserve">
+    <value>结束角度和开始角度之间的差值不得超过360°。</value>
+  </data>
+  <data name="Hint_360_Title" xml:space="preserve">
+    <value>警告</value>
   </data>
   <data name="Hint_DOW" xml:space="preserve">
     <value>一周中的几天的名称，从星期一开始，用逗号分隔。</value>
@@ -158,6 +164,9 @@
   </data>
   <data name="UCtrl_Text_Opt_AmPm_true" xml:space="preserve">
     <value>Am / Pm</value>
+  </data>
+  <data name="UCtrl_Text_Opt_SityName_true" xml:space="preserve">
+    <value>大写字母</value>
   </data>
   <data name="UCtrl_Text_Opt_Sunrise_false" xml:space="preserve">
     <value>小数分隔符</value>

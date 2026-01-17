@@ -138,8 +138,14 @@
   <data name="BatteryManager" xml:space="preserve">
     <value>使用情况统计*</value>
   </data>
+  <data name="BioCharge" xml:space="preserve">
+    <value>生物充电 *</value>
+  </data>
   <data name="BodyComposition" xml:space="preserve">
     <value>身体组成*</value>
+  </data>
+  <data name="CalendarPlus" xml:space="preserve">
+    <value>日历增强版 *</value>
   </data>
   <data name="Camera" xml:space="preserve">
     <value>相机控制</value>
@@ -188,6 +194,9 @@
   </data>
   <data name="LowBattery" xml:space="preserve">
     <value>省电</value>
+  </data>
+  <data name="Map" xml:space="preserve">
+    <value>地图</value>
   </data>
   <data name="Menstrual" xml:space="preserve">
     <value>女性健康</value>
@@ -279,6 +288,9 @@
   <data name="System" xml:space="preserve">
     <value>“系统”部分</value>
   </data>
+  <data name="TalkingWatch" xml:space="preserve">
+    <value>语音手表 *</value>
+  </data>
   <data name="Test1" xml:space="preserve">
     <value>测试</value>
   </data>
@@ -302,6 +314,12 @@
   </data>
   <data name="WeatherInformer" xml:space="preserve">
     <value>天气预报*</value>
+  </data>
+  <data name="WeatherRu" xml:space="preserve">
+    <value>天气组件</value>
+  </data>
+  <data name="WeatherService" xml:space="preserve">
+    <value>天气服务 *</value>
   </data>
   <data name="WeekActivity" xml:space="preserve">
     <value>本周活动*</value>

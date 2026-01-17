@@ -213,6 +213,9 @@
   <data name="Message_AnimationAOD_Text" xml:space="preserve">
     <value>无法将动画添加到AOD屏幕。</value>
   </data>
+  <data name="Message_AQI_Image_Count_Error" xml:space="preserve">
+    <value>空气质量指数（AQI）的图像数量应为6张。</value>
+  </data>
   <data name="Message_ARGB_Line1" xml:space="preserve">
     <value>将图像转换为ARGB格式需要更长的时间。</value>
   </data>
@@ -263,6 +266,9 @@
   </data>
   <data name="Message_ElementAOD_Text" xml:space="preserve">
     <value>您无法将此元素添加到AOD屏幕。</value>
+  </data>
+  <data name="Message_ErrorReadBin" xml:space="preserve">
+    <value>该代码已被加密，无法识别。</value>
   </data>
   <data name="Message_ErrorReadJS" xml:space="preserve">
     <value>无法识别表盘的结构</value>
@@ -347,6 +353,12 @@
   </data>
   <data name="Message_ShortcutsAOD_Text" xml:space="preserve">
     <value>不能向AOD屏幕添加快捷方式。</value>
+  </data>
+  <data name="Message_TrainingLoad_Image_Count_Error" xml:space="preserve">
+    <value>训练负载的图像数量应为3。</value>
+  </data>
+  <data name="Message_VO2Max_Image_Count_Error" xml:space="preserve">
+    <value>VO2Max的图像数量应为7。</value>
   </data>
   <data name="Message_WarningConverting_Text1" xml:space="preserve">
     <value>目录</value>

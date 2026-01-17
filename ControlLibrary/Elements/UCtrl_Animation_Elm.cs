@@ -612,6 +612,9 @@ namespace ControlLibrary
             MotionAnimation = true;
             RotateAnimation = true;
 
+            MotionAnimation = true;
+            RotateAnimation = true;
+
             setValue = false;
         }
 

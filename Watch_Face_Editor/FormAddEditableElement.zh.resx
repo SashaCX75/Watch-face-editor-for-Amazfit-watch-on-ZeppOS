@@ -118,149 +118,110 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>309, 13</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>*手表上的日期、月份和年份将被选为一项</value>
-  </data>
-  <data name="radioButton_week.Size" type="System.Drawing.Size, System.Drawing">
-    <value>85, 17</value>
-  </data>
-  <data name="radioButton_week.Text" xml:space="preserve">
-    <value>星期</value>
-  </data>
-  <data name="radioButton_year.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 17</value>
-  </data>
-  <data name="radioButton_year.Text" xml:space="preserve">
-    <value>年份</value>
-  </data>
-  <data name="radioButton_month.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 17</value>
-  </data>
-  <data name="radioButton_month.Text" xml:space="preserve">
-    <value>月份</value>
-  </data>
-  <data name="radioButton_date.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 17</value>
-  </data>
-  <data name="radioButton_date.Text" xml:space="preserve">
-    <value>天</value>
-  </data>
-  <data name="groupBox_date.Text" xml:space="preserve">
-    <value>日期</value>
-  </data>
-  <data name="groupBox_activity.Text" xml:space="preserve">
-    <value>激活</value>
-  </data>
-  <data name="radioButton_stress.Size" type="System.Drawing.Size, System.Drawing">
-    <value>54, 17</value>
-  </data>
-  <data name="radioButton_stress.Text" xml:space="preserve">
-    <value>压力</value>
-  </data>
-  <data name="radioButton_fat_burning.Size" type="System.Drawing.Size, System.Drawing">
-    <value>78, 17</value>
-  </data>
-  <data name="radioButton_fat_burning.Text" xml:space="preserve">
-    <value>脂肪燃烧</value>
-  </data>
-  <data name="radioButton_SpO2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 17</value>
-  </data>
-  <data name="radioButton_SpO2.Text" xml:space="preserve">
-    <value>血氧</value>
-  </data>
-  <data name="radioButton_stand.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 17</value>
-  </data>
-  <data name="radioButton_stand.Text" xml:space="preserve">
-    <value>站立</value>
-  </data>
-  <data name="radioButton_distance.Size" type="System.Drawing.Size, System.Drawing">
-    <value>67, 17</value>
-  </data>
-  <data name="radioButton_distance.Text" xml:space="preserve">
-    <value>距离</value>
-  </data>
-  <data name="radioButton_heart.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 17</value>
-  </data>
-  <data name="radioButton_heart.Text" xml:space="preserve">
-    <value>脉搏</value>
-  </data>
-  <data name="radioButton_calories.Size" type="System.Drawing.Size, System.Drawing">
-    <value>62, 17</value>
-  </data>
-  <data name="radioButton_calories.Text" xml:space="preserve">
-    <value>卡路里</value>
-  </data>
-  <data name="radioButton_steps.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 17</value>
-  </data>
-  <data name="radioButton_steps.Text" xml:space="preserve">
-    <value>步数</value>
-  </data>
-  <data name="groupBox_air.Text" xml:space="preserve">
-    <value>空气</value>
-  </data>
-  <data name="radioButton_moon.Size" type="System.Drawing.Size, System.Drawing">
-    <value>89, 17</value>
-  </data>
-  <data name="radioButton_moon.Text" xml:space="preserve">
-    <value>月相</value>
-  </data>
-  <data name="radioButton_altimeter.Size" type="System.Drawing.Size, System.Drawing">
-    <value>73, 17</value>
-  </data>
-  <data name="radioButton_altimeter.Text" xml:space="preserve">
-    <value>气压</value>
-  </data>
-  <data name="radioButton_wind.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 17</value>
-  </data>
-  <data name="radioButton_wind.Text" xml:space="preserve">
-    <value>风力</value>
-  </data>
-  <data name="radioButton_sunrise.Size" type="System.Drawing.Size, System.Drawing">
-    <value>104, 17</value>
-  </data>
-  <data name="radioButton_sunrise.Text" xml:space="preserve">
-    <value>日出/日落</value>
-  </data>
-  <data name="radioButton_humidity.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 17</value>
+  <data name="radioButton_battery.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 17</value>
   </data>
   <data name="radioButton_humidity.Text" xml:space="preserve">
     <value>湿度</value>
   </data>
-  <data name="radioButton_UVI.Size" type="System.Drawing.Size, System.Drawing">
-    <value>68, 17</value>
+  <data name="radioButton_date.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 17</value>
   </data>
-  <data name="radioButton_UVI.Text" xml:space="preserve">
-    <value>紫外线指数</value>
+  <data name="radioButton_stress.Text" xml:space="preserve">
+    <value>压力</value>
   </data>
-  <data name="radioButton_weather.Size" type="System.Drawing.Size, System.Drawing">
-    <value>66, 17</value>
+  <data name="radioButton_sunrise.Text" xml:space="preserve">
+    <value>日出/日落</value>
+  </data>
+  <data name="radioButton_steps.Text" xml:space="preserve">
+    <value>步数</value>
+  </data>
+  <data name="radioButton_moon.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 17</value>
+  </data>
+  <data name="radioButton_wind.Text" xml:space="preserve">
+    <value>风力</value>
+  </data>
+  <data name="radioButton_moon.Text" xml:space="preserve">
+    <value>月相</value>
+  </data>
+  <data name="radioButton_altimeter.Text" xml:space="preserve">
+    <value>气压</value>
+  </data>
+  <data name="radioButton_stress.Size" type="System.Drawing.Size, System.Drawing">
+    <value>54, 17</value>
   </data>
   <data name="radioButton_weather.Text" xml:space="preserve">
     <value>天气</value>
   </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>*手表上的日期、月份和年份将被选为一项</value>
+  </data>
+  <data name="radioButton_heart.Text" xml:space="preserve">
+    <value>脉搏</value>
+  </data>
+  <data name="radioButton_distance.Text" xml:space="preserve">
+    <value>距离</value>
+  </data>
+  <data name="radioButton_UVI.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 17</value>
+  </data>
   <data name="button_cancel.Text" xml:space="preserve">
     <value>取消</value>
   </data>
-  <data name="radioButton_battery.Size" type="System.Drawing.Size, System.Drawing">
-    <value>58, 17</value>
+  <data name="radioButton_stand.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 17</value>
   </data>
-  <data name="radioButton_battery.Text" xml:space="preserve">
-    <value>电池</value>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>309, 13</value>
+  </data>
+  <data name="radioButton_distance.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 17</value>
+  </data>
+  <data name="groupBox_activity.Text" xml:space="preserve">
+    <value>激活</value>
+  </data>
+  <data name="radioButton_sunrise.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 17</value>
+  </data>
+  <data name="radioButton_week.Size" type="System.Drawing.Size, System.Drawing">
+    <value>85, 17</value>
+  </data>
+  <data name="radioButton_fat_burning.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 17</value>
+  </data>
+  <data name="radioButton_year.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 17</value>
+  </data>
+  <data name="radioButton_month.Text" xml:space="preserve">
+    <value>月份</value>
+  </data>
+  <data name="radioButton_fat_burning.Text" xml:space="preserve">
+    <value>燃脂</value>
+  </data>
+  <data name="radioButton_heart.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 17</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>添加元素</value>
+  </data>
+  <data name="groupBox_air.Text" xml:space="preserve">
+    <value>空气</value>
+  </data>
+  <data name="button_add.Text" xml:space="preserve">
+    <value>添加</value>
+  </data>
+  <data name="radioButton_month.Size" type="System.Drawing.Size, System.Drawing">
+    <value>55, 17</value>
   </data>
   <data name="groupBox_system.Text" xml:space="preserve">
     <value>系统</value>
   </data>
-  <data name="button_add.Text" xml:space="preserve">
-    <value>添加</value>
+  <data name="groupBox_date.Text" xml:space="preserve">
+    <value>日期</value>
+  </data>
+  <data name="radioButton_date.Text" xml:space="preserve">
+    <value>天</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1513,17 +1474,56 @@
         AACYGAAAmBgAAICAAACAgQAA/+MAAOAHAADwDwAA8A8AAPgfAAD4HwAA/D8AAP5/AAD+fwAA
 </value>
   </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>添加元素</value>
+  <data name="radioButton_calories.Size" type="System.Drawing.Size, System.Drawing">
+    <value>62, 17</value>
   </data>
   <data name="groupBox_shortcuts.Text" xml:space="preserve">
     <value>快捷方式</value>
   </data>
+  <data name="radioButton_stand.Text" xml:space="preserve">
+    <value>站立</value>
+  </data>
+  <data name="radioButton_altimeter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>73, 17</value>
+  </data>
+  <data name="radioButton_year.Text" xml:space="preserve">
+    <value>年份</value>
+  </data>
+  <data name="radioButton_UVI.Text" xml:space="preserve">
+    <value>紫外线指数</value>
+  </data>
+  <data name="radioButton_steps.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 17</value>
+  </data>
   <data name="label2.Text" xml:space="preserve">
     <value>* 你无法向快捷方式区域添加其他元素</value>
   </data>
+  <data name="radioButton_SpO2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 17</value>
+  </data>
   <data name="radioButton_appsList.Text" xml:space="preserve">
     <value>应用快捷方式</value>
+  </data>
+  <data name="radioButton_SpO2.Text" xml:space="preserve">
+    <value>血氧</value>
+  </data>
+  <data name="radioButton_humidity.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 17</value>
+  </data>
+  <data name="radioButton_battery.Text" xml:space="preserve">
+    <value>电池</value>
+  </data>
+  <data name="radioButton_week.Text" xml:space="preserve">
+    <value>星期</value>
+  </data>
+  <data name="radioButton_wind.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 17</value>
+  </data>
+  <data name="radioButton_weather.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 17</value>
+  </data>
+  <data name="radioButton_calories.Text" xml:space="preserve">
+    <value>卡路里</value>
   </data>
   <data name="radioButton_sportList.Text" xml:space="preserve">
     <value>训练快捷方式</value>

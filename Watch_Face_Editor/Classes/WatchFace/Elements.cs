@@ -590,6 +590,32 @@ namespace Watch_Face_Editor
         /// <summary>Основной экран или AOD</summary>
         public string show_level = "";
 
+        // 🔽 КОНСТРУКТОР КОПИРОВАНИЯ
+        public Circle_Scale(Circle_Scale source)
+        {
+            position = source.position;
+            visible = source.visible;
+
+            center_x = source.center_x;
+            center_y = source.center_y;
+            start_angle = source.start_angle;
+            end_angle = source.end_angle;
+
+            color = source.color;
+            radius = source.radius;
+            line_width = source.line_width;
+            line_cap = source.line_cap;
+
+            type = source.type;
+            mirror = source.mirror;
+            inversion = source.inversion;
+
+            alpha = source.alpha;
+            show_level = source.show_level;
+        }
+
+        public Circle_Scale() { }
+
     }
 
     /// <summary>Линейная шкала</summary>

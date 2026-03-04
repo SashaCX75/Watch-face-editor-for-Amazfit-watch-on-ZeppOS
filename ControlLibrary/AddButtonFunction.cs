@@ -114,6 +114,7 @@ namespace ControlLibrary
             comboBox_App.Items.Add(Properties.ButtonFunctions.BodyComposition);
             comboBox_App.Items.Add(Properties.ButtonFunctions.Readiness);
             comboBox_App.Items.Add(Properties.ButtonFunctions.BioCharge);
+            comboBox_App.Items.Add(Properties.ButtonFunctions.ZeppPay);
             comboBox_App.Items.Add(Properties.ButtonFunctions.WeatherInformer);
             comboBox_App.Items.Add(Properties.ButtonFunctions.WeatherService);
             comboBox_App.Items.Add(Properties.ButtonFunctions.WeatherRu);
@@ -305,6 +306,7 @@ namespace ControlLibrary
             if (comboBox_App.SelectedIndex == index++) script = Properties.ButtonFunctions.BodyComposition_function;
             if (comboBox_App.SelectedIndex == index++) script = Properties.ButtonFunctions.Readiness_function;
             if (comboBox_App.SelectedIndex == index++) script = Properties.ButtonFunctions.BioCharge_function;
+            if (comboBox_App.SelectedIndex == index++) script = Properties.ButtonFunctions.ZeppPay_function;
             if (comboBox_App.SelectedIndex == index++) script = Properties.ButtonFunctions.WeatherInformer_function;
             if (comboBox_App.SelectedIndex == index++) script = Properties.ButtonFunctions.WeatherService_function;
             if (comboBox_App.SelectedIndex == index++) script = Properties.ButtonFunctions.WeatherRu_function;

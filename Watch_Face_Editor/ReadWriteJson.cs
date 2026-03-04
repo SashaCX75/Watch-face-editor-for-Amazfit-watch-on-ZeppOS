@@ -3923,28 +3923,37 @@ namespace Watch_Face_Editor
 
                     if (TimeCircle.Hour != null && TimeCircle.Hour.visible)
                     {
-                        circle_scale = TimeCircle.Hour;
+                        circle_scale = new Circle_Scale(TimeCircle.Hour);
+                        //circle_scale = TimeCircle.Hour;
                         hourCirclePosition = circle_scale.position;
 
                         circleHourOptions = Circle_Scale_Options(circle_scale, optionNameStart, "HOUR", show_level);
+                        //if (circle_scale.inversion)
+                        //    (circle_scale.start_angle, circle_scale.end_angle) = (circle_scale.end_angle, circle_scale.start_angle);
                         optionsCircleHour = Circle_Scale_Progress_Options(circle_scale, false, show_level);
                         mirrorOptionsCircleHour = Circle_Scale_Progress_Options(circle_scale, true, show_level);
                     }
                     if (TimeCircle.Minute != null && TimeCircle.Minute.visible)
                     {
-                        circle_scale = TimeCircle.Minute;
+                        circle_scale = new Circle_Scale(TimeCircle.Minute);
+                        //circle_scale = TimeCircle.Minute;
                         minuteCirclePosition = circle_scale.position;
 
                         circleMinuteOptions = Circle_Scale_Options(circle_scale, optionNameStart, "MINUTE", show_level);
+                        //if (circle_scale.inversion)
+                        //    (circle_scale.start_angle, circle_scale.end_angle) = (circle_scale.end_angle, circle_scale.start_angle);
                         optionsCircleMinute = Circle_Scale_Progress_Options(circle_scale, false, show_level);
                         mirrorOptionsCircleMinute = Circle_Scale_Progress_Options(circle_scale, true, show_level);
                     }
                     if (TimeCircle.Second != null && TimeCircle.Second.visible)
                     {
-                        circle_scale = TimeCircle.Second;
+                        circle_scale = new Circle_Scale(TimeCircle.Second);
+                        //circle_scale = TimeCircle.Second;
                         secondCirclePosition = circle_scale.position;
 
                         circleSecondOptions = Circle_Scale_Options(circle_scale, optionNameStart, "SECOND", show_level);
+                        //if (circle_scale.inversion) 
+                        //    (circle_scale.start_angle, circle_scale.end_angle) = (circle_scale.end_angle, circle_scale.start_angle);
                         optionsCircleSecond = Circle_Scale_Progress_Options(circle_scale, false, show_level);
                         mirrorOptionsCircleSecond = Circle_Scale_Progress_Options(circle_scale, true, show_level);
                     }
@@ -4004,22 +4013,9 @@ namespace Watch_Face_Editor
                                 time_update += Environment.NewLine + TabInString(8) +
                                     "let " + tempProgressName + " = " + optionNameStart + "circle_scale_hour/24 + (minute/60)/24;";
                             }
-                            time_update += Environment.NewLine + TabInString(8) + tempProgressName + " = " + tempProgressName + " * 100;";
+                            if (!TimeCircle.Hour.inversion) time_update += Environment.NewLine + TabInString(8) + tempProgressName + " = " + tempProgressName + " * 100;";
+                            else time_update += Environment.NewLine + TabInString(8) + tempProgressName + " = 100 - " + tempProgressName + " * 100;";
 
-                            //optionsCircleHour = Circle_Scale_Progress_Options(TimeCircle.Hour, false, show_level, "", 2);
-                            //optionsCircleHour += TabInString(9) + "level: " + tempProgressName + "," + Environment.NewLine;
-                            //time_update += Environment.NewLine + TabInString(8) + "if (" + variablesName + ") " +
-                            //    variablesName + ".setProperty(hmUI.prop.MORE, {" + optionsCircleHour;
-                            //time_update += TabInString(8) + "} );" + Environment.NewLine;
-
-                            //if (TimeCircle.Hour.mirror)
-                            //{
-                            //    mirrorOptionsCircleHour = Circle_Scale_Progress_Options(TimeCircle.Hour, true, show_level, "", 2);
-                            //    mirrorOptionsCircleHour += TabInString(9) + "level: " + tempProgressName + "," + Environment.NewLine;
-                            //    time_update += Environment.NewLine + TabInString(8) + "if (" + variablesName + "_mirror) " +
-                            //    variablesName + "_mirror.setProperty(hmUI.prop.MORE, {" + mirrorOptionsCircleHour;
-                            //    time_update += TabInString(8) + "} );" + Environment.NewLine;
-                            //}
 
                             time_update += Environment.NewLine + TabInString(8) + "if (" + variablesName + ") " +
                                     variablesName + ".setProperty(hmUI.prop.LEVEL, " + tempProgressName + " );";
@@ -4072,31 +4068,13 @@ namespace Watch_Face_Editor
 
                                 // обновляем прогресс шкалы внутри функции
                                 time_update += Environment.NewLine + TabInString(7) + "if (updateMinute) { // Minute Circle";
-                                //time_update += Environment.NewLine + TabInString(8) + "let " + optionNameStart + "circle_scale_minute = minute;";
                                 string tempProgressName = optionNameStart + "minuteCircleProgress";
-                                //time_update += Environment.NewLine + TabInString(8) +
-                                //        "let " + tempProgressName + " = " + optionNameStart + "circle_scale_minute/60 + (second/60)/60;";
-                                //time_update += Environment.NewLine + TabInString(8) + "let " + tempProgressName + " = minute/60 + (second/60)/60;";
                                 time_update += Environment.NewLine + TabInString(8) + "let " + tempProgressName + " = minute/60;";
-                                time_update += Environment.NewLine + TabInString(8) + tempProgressName + " = " + tempProgressName + " * 100;";
+                                if (!TimeCircle.Minute.inversion) time_update += Environment.NewLine + TabInString(8) + tempProgressName + " = " + tempProgressName + " * 100;";
+                                else time_update += Environment.NewLine + TabInString(8) + tempProgressName + " = 100 - " + tempProgressName + " * 100;";
 
-                                //optionsCircleMinute = Circle_Scale_Progress_Options(TimeCircle.Minute, false, show_level, "", 2);
-                                //optionsCircleMinute += TabInString(9) + "level: " + tempProgressName + "," + Environment.NewLine;
-                                //time_update += Environment.NewLine + TabInString(8) + "if (" + variablesName + ") " +
-                                //    variablesName + ".setProperty(hmUI.prop.MORE, {" + optionsCircleMinute;
-                                //time_update += TabInString(8) + "} );" + Environment.NewLine;
-
-                                //if (TimeCircle.Minute.mirror)
-                                //{
-                                //    mirrorOptionsCircleMinute = Circle_Scale_Progress_Options(TimeCircle.Minute, true, show_level, "", 2);
-                                //    mirrorOptionsCircleMinute += TabInString(9) + "level: " + tempProgressName + "," + Environment.NewLine;
-                                //    time_update += Environment.NewLine + TabInString(8) + "if (" + variablesName + "_mirror) " +
-                                //    variablesName + "_mirror.setProperty(hmUI.prop.MORE, {" + mirrorOptionsCircleMinute;
-                                //    time_update += TabInString(8) + "} );" + Environment.NewLine;
-                                //}
-
-                                time_update += Environment.NewLine + TabInString(8) + "if (" + variablesName + ") " +
-                                    variablesName + ".setProperty(hmUI.prop.LEVEL, " + tempProgressName + " );";
+                                    time_update += Environment.NewLine + TabInString(8) + "if (" + variablesName + ") " +
+                                        variablesName + ".setProperty(hmUI.prop.LEVEL, " + tempProgressName + " );";
 
                                 if (TimeCircle.Minute.mirror)
                                 {
@@ -4146,15 +4124,13 @@ namespace Watch_Face_Editor
 
                                 // обновляем прогресс шкалы внутри функции
                                 time_update += Environment.NewLine + TabInString(7) + "if (updateMinute) { // Minute Circle";
-                                //time_update += Environment.NewLine + TabInString(8) + "let " + optionNameStart + "circle_scale_minute = minute;";
                                 string tempProgressName = optionNameStart + "minuteCircleProgress";
-                                //time_update += Environment.NewLine + TabInString(8) +
-                                //        "let " + tempProgressName + " = " + optionNameStart + "circle_scale_minute/60 + (second/60)/60;";
                                 time_update += Environment.NewLine + TabInString(8) + "let " + tempProgressName + " = minute/60 +(second / 60) / 60;";
-                                time_update += Environment.NewLine + TabInString(8) + tempProgressName + " = " + tempProgressName + " * 100;";
-                                
-                                time_update += Environment.NewLine + TabInString(8) + "if (" + variablesName + ") " +
-                                    variablesName + ".setProperty(hmUI.prop.LEVEL, " + tempProgressName + " );";
+                                if (!TimeCircle.Minute.inversion) time_update += Environment.NewLine + TabInString(8) + tempProgressName + " = " + tempProgressName + " * 100;";
+                                else time_update += Environment.NewLine + TabInString(8) + tempProgressName + " = 100 - " + tempProgressName + " * 100;";
+
+                                    time_update += Environment.NewLine + TabInString(8) + "if (" + variablesName + ") " +
+                                        variablesName + ".setProperty(hmUI.prop.LEVEL, " + tempProgressName + " );";
 
                                 if (TimeCircle.Minute.mirror)
                                 {
@@ -4234,12 +4210,9 @@ namespace Watch_Face_Editor
 
                                 // обновляем прогресс шкалы внутри функции
                                 time_update += Environment.NewLine + TabInString(7) + "// Second Circle";
-                                //time_update += Environment.NewLine + TabInString(7) + "let " + optionNameStart + "circle_scale_second = second;";
                                 string tempProgressName = optionNameStart + "secondCircleProgress";
-                                //time_update += Environment.NewLine + TabInString(7) +
-                                //        "let " + tempProgressName + " = " + optionNameStart + "circle_scale_second/60;";
-                                time_update += Environment.NewLine + TabInString(7) + "let " + tempProgressName + " = 100 * second/60;";
-                                //time_update += Environment.NewLine + TabInString(7) + tempProgressName + " = " + tempProgressName + " * 100;";
+                                if (!TimeCircle.Second.inversion) time_update += Environment.NewLine + TabInString(7) + "let " + tempProgressName + " = 100 * second/60;";
+                                else time_update += Environment.NewLine + TabInString(7) + "let " + tempProgressName + " = 100 - 100 * second/60;";
 
                                 time_update += Environment.NewLine + TabInString(7) + "if (" + variablesName + ") " +
                                     variablesName + ".setProperty(hmUI.prop.LEVEL, " + tempProgressName + " );";
@@ -4281,14 +4254,20 @@ namespace Watch_Face_Editor
 
                                 // обновляем прогресс шкалы внутри функции
                                 time_update += Environment.NewLine + TabInString(7) + "// Second Circle";
-                                //time_update += Environment.NewLine + TabInString(7) + "let " + optionNameStart + "circle_scale_second = second;";
                                 string tempProgressName = optionNameStart + "secondCircleProgress";
-                                time_update += Environment.NewLine + TabInString(7) +
+                                if (!TimeCircle.Second.inversion)
+                                {
+                                    time_update += Environment.NewLine + TabInString(7) +
                                         "let " + tempProgressName + " = 100 * (second + (timeSensor.utc % 1000)/1000)/60;";
-                                //time_update += Environment.NewLine + TabInString(7) + tempProgressName + " = " + tempProgressName + " * 100;";
+                                }
+                                else
+                                {
+                                    time_update += Environment.NewLine + TabInString(7) +
+                                        "let " + tempProgressName + " = 100 - 100 * (second + (timeSensor.utc % 1000)/1000)/60;";
 
+                                }
                                 time_update += Environment.NewLine + TabInString(7) + "if (" + variablesName + ") " +
-                                    variablesName + ".setProperty(hmUI.prop.LEVEL, " + tempProgressName + " );";
+                                        variablesName + ".setProperty(hmUI.prop.LEVEL, " + tempProgressName + " );";
 
                                 if (TimeCircle.Second.mirror)
                                 {
@@ -4509,11 +4488,9 @@ namespace Watch_Face_Editor
                                      variablesName + ".setProperty(hmUI.prop.TEXT, " + timeStr + ");");
                                 }
                             }
-                            //if (resume_call.IndexOf("updateWorldTime();") < 0)
-                            //    resume_call += TabInString(8) + "updateWorldTime();" + Environment.NewLine;
-                            if (resume_call.IndexOf("updateWorldTime();") < 0)
+                            if (resume_call.IndexOf("updateWorldTime(") < 0)
                             {
-                                resume_call += TabInString(8) + "updateWorldTime();" + Environment.NewLine;
+                                resume_call += TabInString(8) + "updateWorldTime(true);" + Environment.NewLine;
                                 resume_call += TabInString(8) + "setTimeout(() => {" + Environment.NewLine;
                                 resume_call += TabInString(9) + "if (worldClock) {" + Environment.NewLine;
                                 resume_call += TabInString(10) + "worldClock.uninit();" + Environment.NewLine;
@@ -4628,11 +4605,9 @@ namespace Watch_Face_Editor
                                      variablesName + ".setProperty(hmUI.prop.TEXT, " + timeZoneStr + ");");
                                 }
                             }
-                            //if (resume_call.IndexOf("updateWorldTime();") < 0)
-                            //    resume_call += TabInString(8) + "updateWorldTime();" + Environment.NewLine;
-                            if (resume_call.IndexOf("updateWorldTime();") < 0)
+                            if (resume_call.IndexOf("updateWorldTime(") < 0)
                             {
-                                resume_call += TabInString(8) + "updateWorldTime();" + Environment.NewLine;
+                                resume_call += TabInString(8) + "updateWorldTime(true);" + Environment.NewLine;
                                 resume_call += TabInString(8) + "setTimeout(() => {" + Environment.NewLine;
                                 resume_call += TabInString(9) + "if (worldClock) {" + Environment.NewLine;
                                 resume_call += TabInString(10) + "worldClock.uninit();" + Environment.NewLine;
@@ -4702,16 +4677,10 @@ namespace Watch_Face_Editor
                                     items += Environment.NewLine + TabInString(8) + cityNameStr + " = " + cityNameStr + ".toLowerCase();";
                                 }
                                 items += Environment.NewLine + TabInString(7) + "} // count";
-#if !DEBUG
-                                items += Environment.NewLine + TabInString(7) + "if (" + variablesName + ") " + 
+                                items += Environment.NewLine + TabInString(7) + "if (" + variablesName + ") " +
                                     variablesName + ".setProperty(hmUI.prop.TEXT, " + cityNameStr + ");";
-#endif
-#if DEBUG
-                                items += Environment.NewLine + TabInString(7) + "if (" + variablesName + ") " + 
-                                    variablesName + ".setProperty(hmUI.prop.TEXT, 'City Name GMT');";
-#endif
                                 items += Environment.NewLine + TabInString(6) + "};";
-                                items += Environment.NewLine + TabInString(6) + "updateSityNameGMT();";
+                                //items += Environment.NewLine + TabInString(6) + "updateSityNameGMT();";
                                 items += Environment.NewLine + TabInString(6) + "//#endregion" + Environment.NewLine;
                             }
                             else
@@ -4750,11 +4719,9 @@ namespace Watch_Face_Editor
                                      variablesName + ".setProperty(hmUI.prop.TEXT, " + cityNameStr + ");");
                                 }
                             }
-                            //if (resume_call.IndexOf("updateWorldTime();") < 0)
-                            //    resume_call += TabInString(8) + "updateWorldTime();" + Environment.NewLine;
-                            if (resume_call.IndexOf("updateWorldTime();") < 0)
+                            if (resume_call.IndexOf("updateWorldTime(") < 0)
                             {
-                                resume_call += TabInString(8) + "updateWorldTime();" + Environment.NewLine;
+                                resume_call += TabInString(8) + "updateWorldTime(true);" + Environment.NewLine;
                                 resume_call += TabInString(8) + "setTimeout(() => {" + Environment.NewLine;
                                 resume_call += TabInString(9) + "if (worldClock) {" + Environment.NewLine;
                                 resume_call += TabInString(10) + "worldClock.uninit();" + Environment.NewLine;
@@ -4865,11 +4832,9 @@ namespace Watch_Face_Editor
                                      variablesName + ".setProperty(hmUI.prop.TEXT, " + timeDifferenceStr + ");");
                                 }
                             }
-                            //if (resume_call.IndexOf("updateWorldTime();") < 0)
-                            //    resume_call += TabInString(8) + "updateWorldTime();" + Environment.NewLine;
-                            if (resume_call.IndexOf("updateWorldTime();") < 0)
+                            if (resume_call.IndexOf("updateWorldTime(") < 0)
                             {
-                                resume_call += TabInString(8) + "updateWorldTime();" + Environment.NewLine;
+                                resume_call += TabInString(8) + "updateWorldTime(true);" + Environment.NewLine;
                                 resume_call += TabInString(8) + "setTimeout(() => {" + Environment.NewLine;
                                 resume_call += TabInString(9) + "if (worldClock) {" + Environment.NewLine;
                                 resume_call += TabInString(10) + "worldClock.uninit();" + Environment.NewLine;
@@ -25115,7 +25080,10 @@ namespace Watch_Face_Editor
                 options += TabInString(7) + "tips_y: " + offset_y.ToString() + "," + Environment.NewLine;
                 options += TabInString(7) + "tips_width: " + editable_elements.tips_width.ToString() + "," + Environment.NewLine;
                 options += TabInString(7) + "tips_margin: " + editable_elements.tips_margin.ToString() + "," + Environment.NewLine;
-                //options += TabInString(7) + "show_level: hmUI.show_level.ONLY_NORMAL | hmUI.show_level.ONLY_EDIT," + Environment.NewLine;
+                if (editable_elements.optional_types_list[0].type == "APPLIST" || editable_elements.optional_types_list[0].type == "SPORTSLIST") 
+                    options += TabInString(7) + "show_level: hmUI.show_level.ONLY_EDIT | hmUI.show_level.ONLY_NORMAL," + Environment.NewLine;
+                //else options += TabInString(7) + "show_level: hmUI.show_level.ONLY_EDIT" + Environment.NewLine;
+                //options += TabInString(7) + "show_level: hmUI.show_level.ONLY_EDIT | hmUI.show_level.ONLY_NORMAL," + Environment.NewLine;
 
 
             }

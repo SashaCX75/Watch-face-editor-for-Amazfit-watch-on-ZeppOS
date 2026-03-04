@@ -511,6 +511,15 @@ namespace Watch_Face_Editor.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Имя файла не может быть пустым..
+        /// </summary>
+        internal static string Message_EmptyFileName {
+            get {
+                return ResourceManager.GetString("Message_EmptyFileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Ошибка.
         /// </summary>
         internal static string Message_Error_Caption {
@@ -624,6 +633,33 @@ namespace Watch_Face_Editor.Properties {
         internal static string Message_ImageFix_Error {
             get {
                 return ResourceManager.GetString("Message_ImageFix_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Недопустимое имя файла.
+        /// </summary>
+        internal static string Message_InvalidFileName_Caption {
+            get {
+                return ResourceManager.GetString("Message_InvalidFileName_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Имя файла содержит подозрительные символы..
+        /// </summary>
+        internal static string Message_InvalidFileName_Text1 {
+            get {
+                return ResourceManager.GetString("Message_InvalidFileName_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Циферблат может не работать..
+        /// </summary>
+        internal static string Message_InvalidFileName_Text2 {
+            get {
+                return ResourceManager.GetString("Message_InvalidFileName_Text2", resourceCulture);
             }
         }
         

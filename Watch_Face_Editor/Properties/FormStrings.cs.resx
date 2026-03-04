@@ -267,6 +267,9 @@
   <data name="Message_ElementAOD_Text" xml:space="preserve">
     <value>Tento prvek nemůžete přidat na obrazovku AOD.</value>
   </data>
+  <data name="Message_EmptyFileName" xml:space="preserve">
+    <value>Název souboru nemůže být prázdný.</value>
+  </data>
   <data name="Message_ErrorReadBin" xml:space="preserve">
     <value>Kód je zašifrovaný a nelze jej rozpoznat.</value>
   </data>
@@ -305,6 +308,15 @@
   </data>
   <data name="Message_ImageFix_Error" xml:space="preserve">
     <value>Chyba převodu obrázku</value>
+  </data>
+  <data name="Message_InvalidFileName_Caption" xml:space="preserve">
+    <value>Neplatný název souboru</value>
+  </data>
+  <data name="Message_InvalidFileName_Text1" xml:space="preserve">
+    <value>Název souboru obsahuje neplatné znaky.</value>
+  </data>
+  <data name="Message_InvalidFileName_Text2" xml:space="preserve">
+    <value>Ciferník hodinek nemusí fungovat.</value>
   </data>
   <data name="Message_JsonError_Text" xml:space="preserve">
     <value>Neplatný soubor JSON.</value>

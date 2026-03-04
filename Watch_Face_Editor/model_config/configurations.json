@@ -126,6 +126,46 @@
     "fixSize": true,
     "versionOS": 5.0
   },
+  "Active Max": {
+    "name": "Amazfit Active Max",
+    "designWidth": 480,
+    "deviceSource_ids": [
+      10813697,
+      10813699
+    ],
+    "background": {
+      "w": 480,
+      "h": 480
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 230,
+        "h": 230
+      },
+      "scaling_1_0": {
+        "w": 482,
+        "h": 482
+      },
+      "scaling_1_5": {
+        "w": 722,
+        "h": 722
+      },
+      "scaling_2_0": {
+        "w": 961,
+        "h": 961
+      },
+      "scaling_2_5": {
+        "w": 1201,
+        "h": 1201
+      }
+    },
+    "maskImage": "mask_gtr_3_pro.png",
+    "watchSkin": "WatchSkin_Active_Max.json",
+    "previewHeight": 324,
+    "colorScheme": 1,
+    "fixSize": true,
+    "versionOS": 5.0
+  },
   "Active Edge": {
     "name": "Amazfit Active Edge",
     "designWidth": 360,

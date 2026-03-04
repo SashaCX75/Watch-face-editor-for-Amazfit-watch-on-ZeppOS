@@ -391,6 +391,9 @@ namespace ControlLibrary
                 case "hmApp.startApp({url: 'BioChargeHomeScreen', native: true });":
                     functinName = Properties.ButtonFunctions.BioCharge;
                     break;
+                case "hmApp.startApp({url: 'ZeppPayScreen', native: true });":
+                    functinName = Properties.ButtonFunctions.ZeppPay;
+                    break;
                 case "hmApp.startApp({ appid: 1051195, url: 'page/index', params: { from_wf: true} });":
                     functinName = Properties.ButtonFunctions.WeatherInformer;
                     break;

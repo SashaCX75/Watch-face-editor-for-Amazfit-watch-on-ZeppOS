@@ -268,6 +268,9 @@
   <data name="Message_ElementAOD_Text" xml:space="preserve">
     <value>Вы не можете добавить этот элемент на экран AOD.</value>
   </data>
+  <data name="Message_EmptyFileName" xml:space="preserve">
+    <value>Имя файла не может быть пустым.</value>
+  </data>
   <data name="Message_ErrorReadBin" xml:space="preserve">
     <value>Код зашифрован и не может быть распознан.</value>
   </data>
@@ -306,6 +309,15 @@
   </data>
   <data name="Message_ImageFix_Error" xml:space="preserve">
     <value>Ошибка конвертации изображения</value>
+  </data>
+  <data name="Message_InvalidFileName_Caption" xml:space="preserve">
+    <value>Недопустимое имя файла</value>
+  </data>
+  <data name="Message_InvalidFileName_Text1" xml:space="preserve">
+    <value>Имя файла содержит подозрительные символы.</value>
+  </data>
+  <data name="Message_InvalidFileName_Text2" xml:space="preserve">
+    <value>Циферблат может не работать.</value>
   </data>
   <data name="Message_JsonError_Text" xml:space="preserve">
     <value>Неправильный JSON файл.</value>

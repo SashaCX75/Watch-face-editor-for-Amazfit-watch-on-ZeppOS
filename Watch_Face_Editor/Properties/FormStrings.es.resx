@@ -267,6 +267,9 @@
   <data name="Message_ElementAOD_Text" xml:space="preserve">
     <value>No puede agregar este elemento a una pantalla AOD.</value>
   </data>
+  <data name="Message_EmptyFileName" xml:space="preserve">
+    <value>El nombre del archivo no puede estar vacío.</value>
+  </data>
   <data name="Message_ErrorReadBin" xml:space="preserve">
     <value>El código está encriptado y no se puede reconocer.</value>
   </data>
@@ -305,6 +308,15 @@
   </data>
   <data name="Message_ImageFix_Error" xml:space="preserve">
     <value>Error de conversión de imagen</value>
+  </data>
+  <data name="Message_InvalidFileName_Caption" xml:space="preserve">
+    <value>Nombre de archivo no válido</value>
+  </data>
+  <data name="Message_InvalidFileName_Text1" xml:space="preserve">
+    <value>El nombre del archivo contiene caracteres no válidos.</value>
+  </data>
+  <data name="Message_InvalidFileName_Text2" xml:space="preserve">
+    <value>Es posible que la esfera del reloj no funcione.</value>
   </data>
   <data name="Message_JsonError_Text" xml:space="preserve">
     <value>Archivo JSON no válido.</value>

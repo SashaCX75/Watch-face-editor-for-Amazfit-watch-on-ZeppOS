@@ -267,6 +267,9 @@
   <data name="Message_ElementAOD_Text" xml:space="preserve">
     <value>Ви не можете додати цей елемент на екран AOD.</value>
   </data>
+  <data name="Message_EmptyFileName" xml:space="preserve">
+    <value>Ім'я файлу не може бути порожнім.</value>
+  </data>
   <data name="Message_ErrorReadBin" xml:space="preserve">
     <value>Код зашифрований і не може бути розпізнаний.</value>
   </data>
@@ -305,6 +308,15 @@
   </data>
   <data name="Message_ImageFix_Error" xml:space="preserve">
     <value>Помилка конвертації зображення</value>
+  </data>
+  <data name="Message_InvalidFileName_Caption" xml:space="preserve">
+    <value>Неприпустиме ім'я файлу</value>
+  </data>
+  <data name="Message_InvalidFileName_Text1" xml:space="preserve">
+    <value>Ім'я файлу містить підозрілі символи.</value>
+  </data>
+  <data name="Message_InvalidFileName_Text2" xml:space="preserve">
+    <value>Циферблат може не працювати.</value>
   </data>
   <data name="Message_JsonError_Text" xml:space="preserve">
     <value>Неправильний файл JSON.</value>

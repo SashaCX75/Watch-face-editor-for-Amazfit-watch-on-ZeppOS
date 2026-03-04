@@ -268,6 +268,9 @@ L'immagine non deve essere monocromatica e deve essere in formato 32bit</value>
   <data name="Message_ElementAOD_Text" xml:space="preserve">
     <value>Non è possibile aggiungere questi elementi alla schermata di AOD</value>
   </data>
+  <data name="Message_EmptyFileName" xml:space="preserve">
+    <value>Il nome del file non può essere vuoto</value>
+  </data>
   <data name="Message_ErrorReadBin" xml:space="preserve">
     <value>Il codice è criptato e non può essere riconosciuto.</value>
   </data>
@@ -307,6 +310,15 @@ Il numero di immagini per la frequenza cardiaca dovrebbe essere 6.</value>
   </data>
   <data name="Message_ImageFix_Error" xml:space="preserve">
     <value>Errore di conversione dell'immagine</value>
+  </data>
+  <data name="Message_InvalidFileName_Caption" xml:space="preserve">
+    <value>Nome file invalido</value>
+  </data>
+  <data name="Message_InvalidFileName_Text1" xml:space="preserve">
+    <value>Il nome del file contiene caratteri invalidi</value>
+  </data>
+  <data name="Message_InvalidFileName_Text2" xml:space="preserve">
+    <value>La watch face può non funzionare</value>
   </data>
   <data name="Message_JsonError_Text" xml:space="preserve">
     <value>File JSON non valido</value>

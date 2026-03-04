@@ -267,6 +267,9 @@
   <data name="Message_ElementAOD_Text" xml:space="preserve">
     <value>You cannot add this element to an AOD screen.</value>
   </data>
+  <data name="Message_EmptyFileName" xml:space="preserve">
+    <value>The file name cannot be empty.</value>
+  </data>
   <data name="Message_ErrorReadBin" xml:space="preserve">
     <value>The code is encrypted and cannot be recognised.</value>
   </data>
@@ -305,6 +308,15 @@
   </data>
   <data name="Message_ImageFix_Error" xml:space="preserve">
     <value>Image conversion error</value>
+  </data>
+  <data name="Message_InvalidFileName_Caption" xml:space="preserve">
+    <value>Invalid file name</value>
+  </data>
+  <data name="Message_InvalidFileName_Text1" xml:space="preserve">
+    <value>The file name contains invalid characters.</value>
+  </data>
+  <data name="Message_InvalidFileName_Text2" xml:space="preserve">
+    <value>The watch face may not work.</value>
   </data>
   <data name="Message_JsonError_Text" xml:space="preserve">
     <value>Invalid JSON file.</value>

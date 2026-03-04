@@ -267,6 +267,9 @@
   <data name="Message_ElementAOD_Text" xml:space="preserve">
     <value>Sie können dieses Element nicht zum AOD hinzufügen.</value>
   </data>
+  <data name="Message_EmptyFileName" xml:space="preserve">
+    <value>Der Dateiname darf nicht leer sein.</value>
+  </data>
   <data name="Message_ErrorReadBin" xml:space="preserve">
     <value>Der Code ist verschlüsselt und kann nicht erkannt werden.</value>
   </data>
@@ -305,6 +308,15 @@
   </data>
   <data name="Message_ImageFix_Error" xml:space="preserve">
     <value>Fehler bei der Bildkonvertierung</value>
+  </data>
+  <data name="Message_InvalidFileName_Caption" xml:space="preserve">
+    <value>Ungültiger Dateiname</value>
+  </data>
+  <data name="Message_InvalidFileName_Text1" xml:space="preserve">
+    <value>Der Dateiname enthält ungültige Zeichen.</value>
+  </data>
+  <data name="Message_InvalidFileName_Text2" xml:space="preserve">
+    <value>Das Zifferblatt funktioniert möglicherweise nicht.</value>
   </data>
   <data name="Message_JsonError_Text" xml:space="preserve">
     <value>Ungültige JSON-Datei.</value>

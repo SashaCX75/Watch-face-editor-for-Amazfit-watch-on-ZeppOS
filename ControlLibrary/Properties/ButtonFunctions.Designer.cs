@@ -1400,5 +1400,23 @@ namespace ControlLibrary.Properties {
                 return ResourceManager.GetString("WorldClockNew_function", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Zepp Pay *.
+        /// </summary>
+        internal static string ZeppPay {
+            get {
+                return ResourceManager.GetString("ZeppPay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на hmApp.startApp({url: &apos;ZeppPayScreen&apos;, native: true });.
+        /// </summary>
+        internal static string ZeppPay_function {
+            get {
+                return ResourceManager.GetString("ZeppPay_function", resourceCulture);
+            }
+        }
     }
 }

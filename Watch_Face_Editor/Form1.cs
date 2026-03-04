@@ -2847,7 +2847,7 @@ namespace Watch_Face_Editor
                         if (uCtrl_AnalogTimeCircle_Elm.checkBox_Hour.Checked)
                         {
                             circle_scale = timeCircle.Hour;
-                            Read_CircleScale_Options(circle_scale, false);
+                            Read_CircleScale_Options(circle_scale/*, false*/);
                             ShowElemenrOptions("Circle_Scale");
                         }
                         else HideAllElemenrOptions();
@@ -2856,7 +2856,7 @@ namespace Watch_Face_Editor
                         if (uCtrl_AnalogTimeCircle_Elm.checkBox_Minute.Checked)
                         {
                             circle_scale = timeCircle.Minute;
-                            Read_CircleScale_Options(circle_scale, false);
+                            Read_CircleScale_Options(circle_scale/*, false*/);
                             ShowElemenrOptions("Circle_Scale");
                         }
                         else HideAllElemenrOptions();
@@ -2865,7 +2865,7 @@ namespace Watch_Face_Editor
                         if (uCtrl_AnalogTimeCircle_Elm.checkBox_Second.Checked)
                         {
                             circle_scale = timeCircle.Second;
-                            Read_CircleScale_Options(circle_scale, false);
+                            Read_CircleScale_Options(circle_scale/*, false*/);
                             ShowElemenrOptions("Circle_Scale");
                         }
                         else HideAllElemenrOptions();
@@ -12353,6 +12353,7 @@ namespace Watch_Face_Editor
                 progressBar1.Value++;
                 string newDir = Path.GetDirectoryName(tempDir + @"\assets" + imgFileName);
                 ImageAutoDetectWriteFormat(ProjectDir + @"\assets" + imgFileName, newDir, fix_size, fix_color);
+                ValidateFileName(imgFileName);
             }
 
             App_WatchFace app = new App_WatchFace();
@@ -12430,6 +12431,11 @@ namespace Watch_Face_Editor
             File.Copy(templatesFileDir + @"\app.js", tempDir + @"\app.js");
             if (Directory.Exists(ProjectDir + @"\assets\fonts"))
             {
+                List<string> allFontsFiles = GetRecursFiles(ProjectDir + @"\assets\fonts", "*", 5, ProjectDir + @"\assets");
+                foreach (string fontFileName in allFontsFiles)
+                {
+                    ValidateFileName(fontFileName);
+                }
                 CopyDirectory(ProjectDir + @"\assets\fonts", tempDir + @"\assets\fonts", false);
             }
 
@@ -12475,7 +12481,14 @@ namespace Watch_Face_Editor
             indexText = indexText.Replace("\r", "");
 
             File.WriteAllText(tempDir + @"\watchface\index.js", indexText, Encoding.UTF8);
-            //link:
+            
+            // проверяем имена файлов
+            //List<string> allFiles = GetRecursFiles(ProjectDir + @"\assets", "*", 5, ProjectDir + @"\assets");
+            //foreach (string fileName in allFiles)
+            //{
+            //    ValidateFileName(fileName);
+            //}
+
             // объединяем все в архив
             string startPath = tempDir;
             using (Ionic.Zip.ZipFile zip = new Ionic.Zip.ZipFile())
@@ -12514,6 +12527,39 @@ namespace Watch_Face_Editor
             if (Directory.Exists(tempDir)) DeleteDirectory(tempDir);
 #endif
             progressBar1.Visible = false;
+        }
+
+        private void ValidateFileName(string fileName)
+        {
+            if (string.IsNullOrEmpty(fileName))
+            {
+                MessageBox.Show(
+                    Properties.FormStrings.Message_EmptyFileName,
+                    Properties.FormStrings.Message_Error_Caption,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+                return;
+            }
+
+            // Удаляем все '\' в начале имени файла
+            //fileName = fileName.TrimStart('\\');
+
+            // Разрешённые символы:
+            // латиница, цифры, пробел и: - _ . , : ; +
+            var regex = new Regex(@"^[A-Za-z0-9 \-_.,:;+\\]+$");
+
+            if (!regex.IsMatch(fileName))
+            {
+                MessageBox.Show(
+                    fileName + Environment.NewLine +
+                    Properties.FormStrings.Message_InvalidFileName_Text1 + Environment.NewLine +
+                    Properties.FormStrings.Message_InvalidFileName_Text2,
+                    Properties.FormStrings.Message_InvalidFileName_Caption,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+            }
         }
 
         // Создаем ZPK файл
@@ -12563,19 +12609,6 @@ namespace Watch_Face_Editor
                 if (zip.ContainsEntry("assets/")) assets = true;
                 if (appJs && appJson && assets) return true;
             }
-
-            //ZipArchive zip = System.IO.Compression.ZipFile.OpenRead(fullFileName);
-            //List<ZipArchiveEntry> fileList = zip.Entries.ToList();
-
-            //foreach (ZipArchiveEntry item in fileList)
-            //{
-            //    if (item.FullName == "app.js") appJs = true;
-            //    if (item.FullName == "app.bin") appJs = true;
-            //    if (item.FullName == "app.json") appJson = true;
-            //    if (item.FullName == "assets/") assets = true;
-            //    if (appJs && appJson && assets) return true;
-            //}
-            //zip.Dispose();
             return false;
         }
 
@@ -12700,45 +12733,6 @@ namespace Watch_Face_Editor
             if (FileName != null && ProjectDir != null) // проект уже сохранен
             {
                 // формируем картинку для предпросмотра
-                //Bitmap bitmap = new Bitmap(Convert.ToInt32(454), Convert.ToInt32(454), PixelFormat.Format32bppArgb);
-                //Bitmap mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gtr_3.png");
-                //int PreviewHeight = 306;
-                //switch (ProgramSettings.Watch_Model)
-                //{
-                //    case "GTR 3 Pro":
-                //        bitmap = new Bitmap(Convert.ToInt32(480), Convert.ToInt32(480), PixelFormat.Format32bppArgb);
-                //        mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gtr_3_pro.png");
-                //        PreviewHeight = 324;
-                //        break;
-                //    case "GTS 3":
-                //    case "GTS 4":
-                //        bitmap = new Bitmap(Convert.ToInt32(390), Convert.ToInt32(450), PixelFormat.Format32bppArgb);
-                //        mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gts_3.png");
-                //        PreviewHeight = 306;
-                //        break;
-                //    case "GTR 4":
-                //        bitmap = new Bitmap(Convert.ToInt32(466), Convert.ToInt32(466), PixelFormat.Format32bppArgb);
-                //        mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gtr_4.png");
-                //        PreviewHeight = 314;
-                //        break;
-                //    case "Amazfit Band 7":
-                //        bitmap = new Bitmap(Convert.ToInt32(194), Convert.ToInt32(368), PixelFormat.Format32bppArgb);
-                //        mask = new Bitmap(Application.StartupPath + @"\Mask\mask_band_7.png");
-                //        PreviewHeight = 288;
-                //        break;
-                //    case "GTS 4 mini":
-                //        bitmap = new Bitmap(Convert.ToInt32(336), Convert.ToInt32(384), PixelFormat.Format32bppArgb);
-                //        mask = new Bitmap(Application.StartupPath + @"\Mask\mask_gts_4_mini.png");
-                //        PreviewHeight = 256;
-                //        break;
-                //    case "Falcon":
-                //    case "GTR mini":
-                //        bitmap = new Bitmap(Convert.ToInt32(416), Convert.ToInt32(416), PixelFormat.Format32bppArgb);
-                //        mask = new Bitmap(Application.StartupPath + @"\Mask\mask_falcon.png");
-                //        PreviewHeight = 280;
-                //        break;
-                //}
-
                 /*// StartBlock :: Kartun
                 Logger.WriteLine($"* button_CreatePreview_Click for {ProgramSettings.Watch_Model}");
                 Classes.AmazfitPlatform currPlatform = AvailableConfigurations[ProgramSettings.Watch_Model];
@@ -12805,7 +12799,6 @@ namespace Watch_Face_Editor
             if (SaveRequest() == DialogResult.Cancel) return;
 
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            //openFileDialog.Filter = "Binary File (*.bin)|*.bin";
             openFileDialog.Filter = Properties.FormStrings.FilterZip;
             openFileDialog.RestoreDirectory = true;
             openFileDialog.Multiselect = false;
@@ -12822,7 +12815,6 @@ namespace Watch_Face_Editor
         {
             if (!File.Exists(fullFileName)) return;
             string tempDir = Application.StartupPath + @"\Temp";
-            //if (Directory.Exists(tempDir)) Directory.Delete(tempDir, true);
             if (Directory.Exists(tempDir)) DeleteDirectory(tempDir);
             Directory.CreateDirectory(tempDir);
             string watchFacePath = Application.StartupPath + @"\Watch_face\";
@@ -12882,13 +12874,10 @@ namespace Watch_Face_Editor
                 {
                     Logger.WriteLine("File.Copy");
                     newFullPath = Path.Combine(path, folderName);
-                    //if (Directory.Exists(newFullPath)) Directory.Delete(newFullPath, true);
                     if (Directory.Exists(newFullPath)) DeleteDirectory(newFullPath);
                 }
                 projectPath = newFullPath;
             }
-            //ZipFile.OpenRead(fullFileName);
-            //ZipFile.ExtractToDirectory(fullFileName, tempDir);
             using (Ionic.Zip.ZipFile zip = Ionic.Zip.ZipFile.Read(fullFileName))
             {
                 zip.ExtractAll(tempDir);
@@ -12915,8 +12904,6 @@ namespace Watch_Face_Editor
                         {
                             if (appJson.module != null)
                             {
-                                //if (appJson.module.watchface != null && appJson.module.watchface.path != null &&
-                                //                        appJson.module.watchface.path.Length > 2) index_js = @"\" + appJson.module.watchface.path + ".js";
                                 if (appJson.module.watchface != null && appJson.module.watchface.path != null &&
                                                         appJson.module.watchface.path.Length > 2) index_js = @"\" + appJson.module.watchface.path;
                                 index_js = index_js.Replace("/", @"\");
@@ -13562,7 +13549,6 @@ namespace Watch_Face_Editor
                             if (AvailableConfigurations.ContainsKey(ProgramSettings.Watch_Model))
                             {
                                 comboBox_watch_model.Text = ProgramSettings.Watch_Model;
-                                //Watch_Face.WatchFace_Info.DeviceName = ProgramSettings.Watch_Model;
                                 return true;
                             }
                         }
@@ -13622,12 +13608,6 @@ namespace Watch_Face_Editor
                     else listFiles.Add(folder);
                     listFiles.AddRange(GetRecursDirectories(folder, depth, relative_path));
                 }
-                //string[] files = Directory.GetFiles(start_path);
-                //foreach (string fileName in files)
-                //{
-                //    if (relative_path) listFiles.Add(fileName.Replace(start_path, ""));
-                //    else listFiles.Add(fileName);
-                //}
             }
             catch (System.Exception e)
             {
@@ -21945,12 +21925,20 @@ namespace Watch_Face_Editor
 
             if (hrv != null)
             {
+                if (hrv.Images == null) hrv.Images = new hmUI_widget_IMG_LEVEL();
+                if (hrv.Segments == null) hrv.Segments = new hmUI_widget_IMG_PROGRESS();
                 if (hrv.Number == null) hrv.Number = new hmUI_widget_IMG_NUMBER();
                 if (hrv.Number_Font == null) hrv.Number_Font = new hmUI_widget_TEXT();
+                if (hrv.Pointer == null) hrv.Pointer = new hmUI_widget_IMG_POINTER();
+                if (hrv.Circle_Scale == null) hrv.Circle_Scale = new Circle_Scale();
                 if (hrv.Icon == null) hrv.Icon = new hmUI_widget_IMG();
 
+                if (elementOptions.ContainsKey("Images")) hrv.Images.position = elementOptions["Images"];
+                if (elementOptions.ContainsKey("Segments")) hrv.Segments.position = elementOptions["Segments"];
                 if (elementOptions.ContainsKey("Number")) hrv.Number.position = elementOptions["Number"];
                 if (elementOptions.ContainsKey("Number_Font")) hrv.Number_Font.position = elementOptions["Number_Font"];
+                if (elementOptions.ContainsKey("Pointer")) hrv.Pointer.position = elementOptions["Pointer"];
+                if (elementOptions.ContainsKey("Circle_Scale")) hrv.Circle_Scale.position = elementOptions["Circle_Scale"];
                 if (elementOptions.ContainsKey("Icon")) hrv.Icon.position = elementOptions["Icon"];
 
             }

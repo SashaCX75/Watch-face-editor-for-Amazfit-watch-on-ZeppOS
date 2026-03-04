@@ -302,8 +302,8 @@ namespace Watch_Face_Editor
                             {
                                 src = null;
                                 string type_shortcut = edit_group.optional_types_list[selected_element].type;
-                                if (type_shortcut == "APPLIST") src = Properties.Resources.apps_icon;
-                                if (type_shortcut == "SPORTSLIST") src = Properties.Resources.sport_icon;
+                                if (type_shortcut == "APPLIST" && link == 0) src = Properties.Resources.apps_icon;
+                                if (type_shortcut == "SPORTSLIST" && link == 0) src = Properties.Resources.sport_icon;
                                 if (src != null)
                                 {
                                     int x = edit_group.x;

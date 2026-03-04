@@ -267,6 +267,9 @@
   <data name="Message_ElementAOD_Text" xml:space="preserve">
     <value>Vous ne pouvez pas ajouter cet élément à un écran AOD.</value>
   </data>
+  <data name="Message_EmptyFileName" xml:space="preserve">
+    <value>Le nom du fichier ne peut pas être vide.</value>
+  </data>
   <data name="Message_ErrorReadBin" xml:space="preserve">
     <value>Le code est chiffré et ne peut pas être reconnu.</value>
   </data>
@@ -305,6 +308,15 @@
   </data>
   <data name="Message_ImageFix_Error" xml:space="preserve">
     <value>Erreur de conversion d'image</value>
+  </data>
+  <data name="Message_InvalidFileName_Caption" xml:space="preserve">
+    <value>Nom de fichier invalide</value>
+  </data>
+  <data name="Message_InvalidFileName_Text1" xml:space="preserve">
+    <value>Le nom du fichier contient des caractères invalides.</value>
+  </data>
+  <data name="Message_InvalidFileName_Text2" xml:space="preserve">
+    <value>Le cadran peut ne pas fonctionner.</value>
   </data>
   <data name="Message_JsonError_Text" xml:space="preserve">
     <value>Fichier JSON non valide.</value>

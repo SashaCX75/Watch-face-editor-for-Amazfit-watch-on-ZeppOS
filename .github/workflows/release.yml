@@ -5,7 +5,7 @@ on:
   push:
     # branches: [ master, test ]    # При пуше в master
     tags:
-      - 'v*.*'              # При пуше тега вида v10.4
+      - 'v *.*'              # При пуше тега вида v10.4
 
 jobs:
   build:

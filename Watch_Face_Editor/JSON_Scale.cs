@@ -560,6 +560,8 @@ namespace Watch_Face_Editor
                     ElementAltimeter elementAltimeter = (ElementAltimeter)elements;
                     Scale_IMG_NUMBER(elementAltimeter.Number, scale);
                     Scale_TEXT(elementAltimeter.Number_Font, scale);
+                    Scale_IMG_NUMBER(elementAltimeter.Pressure, scale);
+                    Scale_TEXT(elementAltimeter.Pressure_Font, scale);
                     Scale_IMG_NUMBER(elementAltimeter.Number_Target, scale);
                     Scale_TEXT(elementAltimeter.Number_Target_Font, scale);
                     Scale_IMG_POINTER(elementAltimeter.Pointer, scale);
@@ -591,6 +593,8 @@ namespace Watch_Face_Editor
                     Scale_IMG_PROGRESS(elementWind.Segments, scale);
                     Scale_IMG_NUMBER(elementWind.Number, scale);
                     Scale_TEXT(elementWind.Number_Font, scale);
+                    Scale_IMG_NUMBER(elementWind.Wind_Speed, scale);
+                    Scale_TEXT(elementWind.Wind_Speed_Font, scale);
                     Scale_IMG_POINTER(elementWind.Pointer, scale);
                     Scale_IMG_LEVEL(elementWind.Direction, scale);
                     Scale_IMG(elementWind.Icon, scale);

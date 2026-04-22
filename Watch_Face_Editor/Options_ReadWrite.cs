@@ -1346,7 +1346,7 @@ namespace Watch_Face_Editor
 
         /// <summary>Читаем настройки для фона</summary>
         private void Read_Background_Options(Background background, bool Editable_background, bool Editable_background_ShowOnAOD, 
-            string preview = "", int id = 0)
+            string preview = "", long id = 0)
         {
             PreviewView = false;
             userCtrl_Background_Options.SettingsClear();
@@ -2298,7 +2298,7 @@ namespace Watch_Face_Editor
             PreviewView = true;
         }
 
-        private void Read_Text_Options(hmUI_widget_TEXT system_font, bool unitMode, bool zeroMode, bool unitStrMode = false, bool AmPmMode = false, bool DOWMode = false, bool MonthMode = false)
+        private void Read_Text_Options(hmUI_widget_TEXT system_font, bool unitMode, bool zeroMode, bool unitStrMode = false, bool AmPmMode = false, bool DOWMode = false, bool MonthMode = false, int unitStrType = 0)
         {
             PreviewView = false;
 
@@ -2307,6 +2307,7 @@ namespace Watch_Face_Editor
             if (SelectedModel.versionOS >= 2) uCtrl_Text_SystemFont_Opt.UserFont = true;
             //uCtrl_Text_SystemFont_Opt.NumberValue = numberValue;
             uCtrl_Text_SystemFont_Opt.UnitMode = unitMode;
+            uCtrl_Text_SystemFont_Opt.UnitIndex = unitStrType;
             uCtrl_Text_SystemFont_Opt.ZeroMode = zeroMode;
             uCtrl_Text_SystemFont_Opt.UnitStrMode = unitStrMode;
             uCtrl_Text_SystemFont_Opt.AmPm = AmPmMode;

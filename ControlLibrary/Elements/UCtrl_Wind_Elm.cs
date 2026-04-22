@@ -17,9 +17,13 @@ namespace ControlLibrary
         bool highlight_segments = false;
         bool highlight_number = false;
         bool highlight_number_font = false;
+        bool highlight_speed = false;
+        bool highlight_speed_font = false;
         bool highlight_pointer = false;
         bool highlight_direction = false;
         bool highlight_icon = false;
+
+        private bool WindSpeed_mode = true;
 
         bool visibility_elements = false; // развернут список с элементами
         bool visibilityElement = true; // элемент оторажается на предпросмотре
@@ -103,6 +107,22 @@ namespace ControlLibrary
         public event DelElementHandler DelElement;
         public delegate void DelElementHandler(object sender, EventArgs eventArgs);
 
+        /// <summary>Доступность скорости ветра в км/ч</summary>
+        [Description("Доступность скорости ветра в км/ч")]
+        public virtual bool WindSpeed_available
+        {
+            get
+            {
+                return WindSpeed_mode;
+            }
+            set
+            {
+                WindSpeed_mode = value;
+                panel_WindSpeed.Enabled = WindSpeed_mode;
+                panel_WindSpeed_Font.Enabled = WindSpeed_mode;
+            }
+        }
+
         private void button_ElementName_Click(object sender, EventArgs e)
         {
             visibility_elements = !visibility_elements;
@@ -119,6 +139,8 @@ namespace ControlLibrary
             highlight_segments = false;
             highlight_number = false;
             highlight_number_font = false;
+            highlight_speed = false;
+            highlight_speed_font = false;
             highlight_pointer = false;
             highlight_direction = false;
             highlight_icon = false;
@@ -180,6 +202,32 @@ namespace ControlLibrary
                 button_Number_Font.FlatAppearance.MouseDownBackColor = SystemColors.Control;
             }
 
+            if (highlight_speed)
+            {
+                panel_WindSpeed.BackColor = SystemColors.ActiveCaption;
+                button_WindSpeed.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption;
+                button_WindSpeed.FlatAppearance.MouseDownBackColor = SystemColors.ActiveCaption;
+            }
+            else
+            {
+                panel_WindSpeed.BackColor = SystemColors.Control;
+                button_WindSpeed.FlatAppearance.MouseOverBackColor = SystemColors.Control;
+                button_WindSpeed.FlatAppearance.MouseDownBackColor = SystemColors.Control;
+            }
+
+            if (highlight_speed_font)
+            {
+                panel_WindSpeed_Font.BackColor = SystemColors.ActiveCaption;
+                button_WindSpeed_Font.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption;
+                button_WindSpeed_Font.FlatAppearance.MouseDownBackColor = SystemColors.ActiveCaption;
+            }
+            else
+            {
+                panel_WindSpeed_Font.BackColor = SystemColors.Control;
+                button_WindSpeed_Font.FlatAppearance.MouseOverBackColor = SystemColors.Control;
+                button_WindSpeed_Font.FlatAppearance.MouseDownBackColor = SystemColors.Control;
+            }
+
             if (highlight_pointer)
             {
                 panel_Pointer.BackColor = SystemColors.ActiveCaption;
@@ -228,6 +276,8 @@ namespace ControlLibrary
             highlight_segments = false;
             highlight_number = false;
             highlight_number_font = false;
+            highlight_speed = false;
+            highlight_speed_font = false;
             highlight_pointer = false;
             highlight_direction = false;
             highlight_icon = false;
@@ -249,6 +299,8 @@ namespace ControlLibrary
             highlight_segments = true;
             highlight_number = false;
             highlight_number_font = false;
+            highlight_speed = false;
+            highlight_speed_font = false;
             highlight_pointer = false;
             highlight_direction = false;
             highlight_icon = false;
@@ -270,6 +322,8 @@ namespace ControlLibrary
             highlight_segments = false;
             highlight_number = true;
             highlight_number_font = false;
+            highlight_speed = false;
+            highlight_speed_font = false;
             highlight_pointer = false;
             highlight_direction = false;
             highlight_icon = false;
@@ -291,6 +345,54 @@ namespace ControlLibrary
             highlight_segments = false;
             highlight_number = false;
             highlight_number_font = true;
+            highlight_speed = false;
+            highlight_speed_font = false;
+            highlight_pointer = false;
+            highlight_direction = false;
+            highlight_icon = false;
+
+            SelectElement();
+
+            if (SelectChanged != null)
+            {
+                EventArgs eventArgs = new EventArgs();
+                SelectChanged(this, eventArgs);
+            }
+        }
+
+        private void panel_WindSpeed_Click(object sender, EventArgs e)
+        {
+            selectedElement = "WindSpeed";
+
+            highlight_images = false;
+            highlight_segments = false;
+            highlight_number = false;
+            highlight_number_font = false;
+            highlight_speed = true;
+            highlight_speed_font = false;
+            highlight_pointer = false;
+            highlight_direction = false;
+            highlight_icon = false;
+
+            SelectElement();
+
+            if (SelectChanged != null)
+            {
+                EventArgs eventArgs = new EventArgs();
+                SelectChanged(this, eventArgs);
+            }
+        }
+
+        private void panel_WindSpeed_Font_Click(object sender, EventArgs e)
+        {
+            selectedElement = "WindSpeed_Font";
+
+            highlight_images = false;
+            highlight_segments = false;
+            highlight_number = false;
+            highlight_number_font = false;
+            highlight_speed = false;
+            highlight_speed_font = true;
             highlight_pointer = false;
             highlight_direction = false;
             highlight_icon = false;
@@ -312,6 +414,8 @@ namespace ControlLibrary
             highlight_segments = false;
             highlight_number = false;
             highlight_number_font = false;
+            highlight_speed = false;
+            highlight_speed_font = false;
             highlight_pointer = true;
             highlight_direction = false;
             highlight_icon = false;
@@ -333,6 +437,8 @@ namespace ControlLibrary
             highlight_segments = false;
             highlight_number = false;
             highlight_number_font = false;
+            highlight_speed = false;
+            highlight_speed_font = false;
             highlight_pointer = false;
             highlight_direction = true;
             highlight_icon = false;
@@ -354,6 +460,8 @@ namespace ControlLibrary
             highlight_segments = false;
             highlight_number = false;
             highlight_number_font = false;
+            highlight_speed = false;
+            highlight_speed_font = false;
             highlight_pointer = false;
             highlight_direction = false;
             highlight_icon = true;
@@ -497,9 +605,9 @@ namespace ControlLibrary
 
             pictureBox_Del.Location = new Point(button_ElementName.Width - pictureBox_Del.Width - 4, 2);
 
-            if (tableLayoutPanel1.Height > 215)
+            if (tableLayoutPanel1.Height > 280)
             {
-                float currentDPI = tableLayoutPanel1.Height / 176f;
+                float currentDPI = tableLayoutPanel1.Height / 226f;
                 button_ElementName.Image = (Image)(new Bitmap(button_ElementName.Image,
                     new Size((int)(16 * currentDPI), (int)(16 * currentDPI))));
 
@@ -611,6 +719,12 @@ namespace ControlLibrary
                 case "Number_Font":
                     checkBox_Number_Font.Checked = status;
                     break;
+                case "WindSpeed":
+                    checkBox_WindSpeed.Checked = status;
+                    break;
+                case "WindSpeed_Font":
+                    checkBox_WindSpeed_Font.Checked = status;
+                    break;
                 case "Pointer":
                     checkBox_Pointer.Checked = status;
                     break;
@@ -647,6 +761,12 @@ namespace ControlLibrary
                             break;
                         case "Number_Font":
                             panel = panel_Number_Font;
+                            break;
+                        case "WindSpeed":
+                            panel = panel_WindSpeed;
+                            break;
+                        case "WindSpeed_Font":
+                            panel = panel_WindSpeed_Font;
                             break;
                         case "Pointer":
                             panel = panel_Pointer;
@@ -711,6 +831,12 @@ namespace ControlLibrary
                     case "panel_Number_Font":
                         elementOptions.Add("Number_Font", count - i);
                         break;
+                    case "panel_WindSpeed":
+                        elementOptions.Add("WindSpeed", count - i);
+                        break;
+                    case "panel_WindSpeed_Font":
+                        elementOptions.Add("WindSpeed_Font", count - i);
+                        break;
                     case "panel_Pointer":
                         elementOptions.Add("Pointer", count - i);
                         break;
@@ -734,6 +860,8 @@ namespace ControlLibrary
             elementOptions.Add(index++, "Icon");
             elementOptions.Add(index++, "Direction");
             elementOptions.Add(index++, "Pointer");
+            elementOptions.Add(index++, "WindSpeed_Font");
+            elementOptions.Add(index++, "WindSpeed");
             elementOptions.Add(index++, "Number_Font");
             elementOptions.Add(index++, "Number");
             elementOptions.Add(index++, "Segments");
@@ -744,6 +872,8 @@ namespace ControlLibrary
             checkBox_Segments.Checked = false;
             checkBox_Number.Checked = false;
             checkBox_Number_Font.Checked = false;
+            checkBox_WindSpeed.Checked = false;
+            checkBox_WindSpeed_Font.Checked = false;
             checkBox_Pointer.Checked = false;
             checkBox_Direction.Checked = false;
             checkBox_Icon.Checked = false;
@@ -757,6 +887,8 @@ namespace ControlLibrary
             pictureBox_Show.Visible = visibilityElement;
             pictureBox_NotShow.Visible = !visibilityElement;
             SetColorActive();
+
+            WindSpeed_available = true;
 
             setValue = false;
         }

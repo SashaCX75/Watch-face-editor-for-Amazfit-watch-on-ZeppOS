@@ -39,13 +39,19 @@ namespace Watch_Face_Editor.Classes
 
     }
 
-    public struct AmazfitPlatform
+    public class AmazfitPlatform
     {
         // Название
-        public String name;
+        public string name;
         // Нужное
         public int designWidth;
         public int[] deviceSource_ids;
+
+        // тип процесора
+        public string cpuPlatform = "MHS";
+        // формат экрана
+        public string screenType = "round";
+
         // Размеры фона
         public PlatformBackground background;
 
@@ -72,36 +78,12 @@ namespace Watch_Face_Editor.Classes
         public override string ToString() =>
         $"Name: {name}; designWidth: {designWidth}; Background: w: {background.w}, h: {background.h}; versionOS: {versionOS};";
 
-        //public AmazfitPlatform(string iName, string iIintId, int iDesignWidth, int[] iIds, PlatformBackground iBackground, 
-        //                       PlatformBackground iScaling_0_5, PlatformBackground iScaling_1_0, PlatformBackground iScaling_1_5, PlatformBackground iScaling_2_0,
-        //                       PlatformBackground iScaling_2_5, string iMaskImage, int iPreviewHeight, string iWatchSkin, int iColorScheme, bool iFixSize, int iVersionOS)
-        //{
-        //    name = iName;
-        //    //int_id = iIintId;
-        //    designWidth = iDesignWidth;
-        //    deviceSource_ids = iIds;
-        //    background = iBackground;
-        //    scaling_0_5 = iScaling_0_5;
-        //    scaling_1_0 = iScaling_1_0;
-        //    scaling_1_5 = iScaling_1_5;
-        //    scaling_2_0 = iScaling_2_0;
-        //    scaling_2_5 = iScaling_2_5;
-        //    maskImage = iMaskImage;
-        //    previewHeight = iPreviewHeight;
-        //    watchSkin = iWatchSkin;
-        //    colorScheme = iColorScheme;
-        //    fixSize = iFixSize;
-        //    versionOS = iVersionOS;
-        //}
     }
 
 
     public class Configurations
     {
-        //private l_platform[] AvaialblePlatforms { get; set; }
-        //public l_platform[] AvaialblePlatforms { get; set; }
-        public Dictionary<string, AmazfitPlatform> AvaialblePlatforms { get; set; }
-
+        //public Dictionary<string, AmazfitPlatform> AvaialblePlatforms { get; set; }
 
         public static Dictionary<string, AmazfitPlatform> LoadFromFile(string Filename = @"\model_config\configurations.json")
         {

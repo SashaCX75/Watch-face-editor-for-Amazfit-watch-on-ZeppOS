@@ -32,6 +32,12 @@ namespace ControlLibrary
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCtrl_Wind_Elm));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel_WindSpeed_Font = new System.Windows.Forms.Panel();
+            this.button_WindSpeed_Font = new System.Windows.Forms.Button();
+            this.checkBox_WindSpeed_Font = new System.Windows.Forms.CheckBox();
+            this.panel_WindSpeed = new System.Windows.Forms.Panel();
+            this.button_WindSpeed = new System.Windows.Forms.Button();
+            this.checkBox_WindSpeed = new System.Windows.Forms.CheckBox();
             this.panel_Number_Font = new System.Windows.Forms.Panel();
             this.button_Number_Font = new System.Windows.Forms.Button();
             this.checkBox_Number_Font = new System.Windows.Forms.CheckBox();
@@ -61,6 +67,8 @@ namespace ControlLibrary
             this.button_ElementName = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.tableLayoutPanel1.SuspendLayout();
+            this.panel_WindSpeed_Font.SuspendLayout();
+            this.panel_WindSpeed.SuspendLayout();
             this.panel_Number_Font.SuspendLayout();
             this.panel_Direction.SuspendLayout();
             this.panel_Images.SuspendLayout();
@@ -79,17 +87,91 @@ namespace ControlLibrary
             // 
             resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
             this.tableLayoutPanel1.AllowDrop = true;
+            this.tableLayoutPanel1.Controls.Add(this.panel_WindSpeed_Font, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.panel_WindSpeed, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.panel_Number_Font, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.panel_Direction, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.panel_Direction, 0, 7);
             this.tableLayoutPanel1.Controls.Add(this.panel_Images, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel_Segments, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.panel_Number, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.panel_Pointer, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.panel_Icon, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.panel_Pointer, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.panel_Icon, 0, 8);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.toolTip1.SetToolTip(this.tableLayoutPanel1, resources.GetString("tableLayoutPanel1.ToolTip"));
             this.tableLayoutPanel1.DragDrop += new System.Windows.Forms.DragEventHandler(this.tableLayoutPanel1_DragDrop);
             this.tableLayoutPanel1.DragOver += new System.Windows.Forms.DragEventHandler(this.tableLayoutPanel1_DragOver);
+            // 
+            // panel_WindSpeed_Font
+            // 
+            resources.ApplyResources(this.panel_WindSpeed_Font, "panel_WindSpeed_Font");
+            this.panel_WindSpeed_Font.BackColor = System.Drawing.SystemColors.Control;
+            this.panel_WindSpeed_Font.Controls.Add(this.button_WindSpeed_Font);
+            this.panel_WindSpeed_Font.Controls.Add(this.checkBox_WindSpeed_Font);
+            this.panel_WindSpeed_Font.Name = "panel_WindSpeed_Font";
+            this.toolTip1.SetToolTip(this.panel_WindSpeed_Font, resources.GetString("panel_WindSpeed_Font.ToolTip"));
+            this.panel_WindSpeed_Font.Click += new System.EventHandler(this.panel_WindSpeed_Font_Click);
+            this.panel_WindSpeed_Font.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Control_MouseDown);
+            this.panel_WindSpeed_Font.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Control_MouseMove);
+            this.panel_WindSpeed_Font.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Control_MouseUp);
+            // 
+            // button_WindSpeed_Font
+            // 
+            resources.ApplyResources(this.button_WindSpeed_Font, "button_WindSpeed_Font");
+            this.button_WindSpeed_Font.FlatAppearance.BorderSize = 0;
+            this.button_WindSpeed_Font.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.button_WindSpeed_Font.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.button_WindSpeed_Font.Image = global::ControlLibrary.Properties.Resources.text_fields;
+            this.button_WindSpeed_Font.Name = "button_WindSpeed_Font";
+            this.toolTip1.SetToolTip(this.button_WindSpeed_Font, resources.GetString("button_WindSpeed_Font.ToolTip"));
+            this.button_WindSpeed_Font.UseVisualStyleBackColor = true;
+            this.button_WindSpeed_Font.Click += new System.EventHandler(this.panel_WindSpeed_Font_Click);
+            this.button_WindSpeed_Font.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Control_MouseDown);
+            this.button_WindSpeed_Font.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Control_MouseMove);
+            this.button_WindSpeed_Font.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Control_MouseUp);
+            // 
+            // checkBox_WindSpeed_Font
+            // 
+            resources.ApplyResources(this.checkBox_WindSpeed_Font, "checkBox_WindSpeed_Font");
+            this.checkBox_WindSpeed_Font.Name = "checkBox_WindSpeed_Font";
+            this.toolTip1.SetToolTip(this.checkBox_WindSpeed_Font, resources.GetString("checkBox_WindSpeed_Font.ToolTip"));
+            this.checkBox_WindSpeed_Font.UseVisualStyleBackColor = true;
+            this.checkBox_WindSpeed_Font.CheckedChanged += new System.EventHandler(this.checkBox_Elements_CheckedChanged);
+            // 
+            // panel_WindSpeed
+            // 
+            resources.ApplyResources(this.panel_WindSpeed, "panel_WindSpeed");
+            this.panel_WindSpeed.BackColor = System.Drawing.SystemColors.Control;
+            this.panel_WindSpeed.Controls.Add(this.button_WindSpeed);
+            this.panel_WindSpeed.Controls.Add(this.checkBox_WindSpeed);
+            this.panel_WindSpeed.Name = "panel_WindSpeed";
+            this.toolTip1.SetToolTip(this.panel_WindSpeed, resources.GetString("panel_WindSpeed.ToolTip"));
+            this.panel_WindSpeed.Click += new System.EventHandler(this.panel_WindSpeed_Click);
+            this.panel_WindSpeed.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Control_MouseDown);
+            this.panel_WindSpeed.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Control_MouseMove);
+            this.panel_WindSpeed.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Control_MouseUp);
+            // 
+            // button_WindSpeed
+            // 
+            resources.ApplyResources(this.button_WindSpeed, "button_WindSpeed");
+            this.button_WindSpeed.FlatAppearance.BorderSize = 0;
+            this.button_WindSpeed.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.button_WindSpeed.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.button_WindSpeed.Image = global::ControlLibrary.Properties.Resources.text_icon;
+            this.button_WindSpeed.Name = "button_WindSpeed";
+            this.toolTip1.SetToolTip(this.button_WindSpeed, resources.GetString("button_WindSpeed.ToolTip"));
+            this.button_WindSpeed.UseVisualStyleBackColor = true;
+            this.button_WindSpeed.Click += new System.EventHandler(this.panel_WindSpeed_Click);
+            this.button_WindSpeed.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Control_MouseDown);
+            this.button_WindSpeed.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Control_MouseMove);
+            this.button_WindSpeed.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Control_MouseUp);
+            // 
+            // checkBox_WindSpeed
+            // 
+            resources.ApplyResources(this.checkBox_WindSpeed, "checkBox_WindSpeed");
+            this.checkBox_WindSpeed.Name = "checkBox_WindSpeed";
+            this.toolTip1.SetToolTip(this.checkBox_WindSpeed, resources.GetString("checkBox_WindSpeed.ToolTip"));
+            this.checkBox_WindSpeed.UseVisualStyleBackColor = true;
+            this.checkBox_WindSpeed.CheckedChanged += new System.EventHandler(this.checkBox_Elements_CheckedChanged);
             // 
             // panel_Number_Font
             // 
@@ -421,6 +503,10 @@ namespace ControlLibrary
             this.Name = "UCtrl_Wind_Elm";
             this.toolTip1.SetToolTip(this, resources.GetString("$this.ToolTip"));
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.panel_WindSpeed_Font.ResumeLayout(false);
+            this.panel_WindSpeed_Font.PerformLayout();
+            this.panel_WindSpeed.ResumeLayout(false);
+            this.panel_WindSpeed.PerformLayout();
             this.panel_Number_Font.ResumeLayout(false);
             this.panel_Number_Font.PerformLayout();
             this.panel_Direction.ResumeLayout(false);
@@ -476,5 +562,11 @@ namespace ControlLibrary
         private System.Windows.Forms.Panel panel_Number_Font;
         private System.Windows.Forms.Button button_Number_Font;
         public System.Windows.Forms.CheckBox checkBox_Number_Font;
+        private System.Windows.Forms.Panel panel_WindSpeed_Font;
+        private System.Windows.Forms.Button button_WindSpeed_Font;
+        public System.Windows.Forms.CheckBox checkBox_WindSpeed_Font;
+        private System.Windows.Forms.Panel panel_WindSpeed;
+        private System.Windows.Forms.Button button_WindSpeed;
+        public System.Windows.Forms.CheckBox checkBox_WindSpeed;
     }
 }

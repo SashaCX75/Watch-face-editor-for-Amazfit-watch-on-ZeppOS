@@ -416,6 +416,9 @@ Il numero di immagini per la frequenza cardiaca dovrebbe essere 6.</value>
   <data name="Message_Warning_JS_Exist1" xml:space="preserve">
     <value>Nella cartella esiste già una cartella con un file JS.</value>
   </data>
+  <data name="Message_Warning_Version_Lower" xml:space="preserve">
+    <value>Non ridurre il numero di versione del quadrante dell'orologio.</value>
+  </data>
   <data name="Message_Widget_Exists" xml:space="preserve">
     <value>Un widget di questo tipo esiste già nel quadrante dell'orologio.</value>
   </data>

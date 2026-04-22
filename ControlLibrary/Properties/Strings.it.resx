@@ -121,7 +121,7 @@
     <value>Aggiungi un file JS</value>
   </data>
   <data name="DOW_StrArray" xml:space="preserve">
-    <value>Lu,Ma,Me,Gi;Ve,Sa,Do</value>
+    <value>Lu, Ma, Me, Gi, Ve, Sa, Do</value>
   </data>
   <data name="FilterJS" xml:space="preserve">
     <value>File JS (*.js)| *.json</value>

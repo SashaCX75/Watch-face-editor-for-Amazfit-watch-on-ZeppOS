@@ -414,6 +414,9 @@
   <data name="Message_Warning_JS_Exist1" xml:space="preserve">
     <value>Ya existe una carpeta con archivos JS en esta carpeta.</value>
   </data>
+  <data name="Message_Warning_Version_Lower" xml:space="preserve">
+    <value>No reduzca el número de versión de la esfera del reloj.</value>
+  </data>
   <data name="Message_Widget_Exists" xml:space="preserve">
     <value>Un widget de este tipo ya existe en la esfera del reloj.</value>
   </data>

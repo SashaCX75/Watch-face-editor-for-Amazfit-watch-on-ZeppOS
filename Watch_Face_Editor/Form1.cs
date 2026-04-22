@@ -20,19 +20,19 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
-//using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrayNotify;
 
 namespace Watch_Face_Editor
 {
     public partial class Form1 : Form
     {
-        WATCH_FACE Watch_Face;
+        public WATCH_FACE Watch_Face;
         public Watch_Face_Preview_Set WatchFacePreviewSet;
         List<string> ListImages = new List<string>(); // перечень имен файлов с картинками без раширений
         List<string> ListImagesFullName = new List<string>(); // перечень путей к файлам с картинками
@@ -42,7 +42,7 @@ namespace Watch_Face_Editor
         bool Settings_Load; // включать при обновлении настроек для выключения перерисовки
         bool JSON_Modified = false; // JSON файл был изменен
         string FileName; // Запоминает имя для диалогов
-        string ProjectDir; // Запоминает папку проекта
+        public string ProjectDir; // Запоминает папку проекта
         public static Program_Settings ProgramSettings;
         string StartFileNameJson; // имя файла из параметров запуска
         string StartFileNameZip; // имя файла из параметров запуска
@@ -108,6 +108,7 @@ namespace Watch_Face_Editor
                         //DefaultValueHandling = DefaultValueHandling.Ignore,
                         NullValueHandling = NullValueHandling.Ignore
                     });
+                    //File.WriteAllText(Application.StartupPath + @"\Settings.json", JSON_String, new UTF8Encoding(false));
                     File.WriteAllText(Application.StartupPath + @"\Settings.json", JSON_String, Encoding.UTF8);
                 }
                 Logger.WriteLine("FormLocation = " + Properties.Settings.Default.FormLocation.ToString());
@@ -798,47 +799,8 @@ namespace Watch_Face_Editor
             {
                 FormNameSufix = Path.GetFileNameWithoutExtension(FileName);
             }
-            //switch (ProgramSettings.Watch_Model)
-            //{
-            //    case "GTR 3":
-            //        FormName = "GTR 3 watch face editor";
-            //        break;
-            //    case "GTR 3 Pro":
-            //        FormName = "GTR 3 Pro watch face editor";
-            //        break;
-            //    case "GTS 3":
-            //        FormName = "GTS 3 watch face editor";
-            //        break;
-            //    case "T-Rex 2":
-            //        FormName = "T-Rex 2 watch face editor";
-            //        break;
-            //    case "T-Rex Ultra":
-            //        FormName = "T-Rex Ultra watch face editor";
-            //        break;
-            //    case "GTR 4":
-            //        FormName = "GTR 4 watch face editor";
-            //        break;
-            //    case "Amazfit Band 7":
-            //        FormName = "Amazfit Band 7 watch face editor";
-            //        break;
-            //    case "GTS 4 mini":
-            //        FormName = "GTS 4 mini watch face editor";
-            //        break;
-            //    case "Falcon":
-            //        FormName = "Falcon watch face editor";
-            //        break;
-            //    case "GTR mini":
-            //        FormName = "GTR mini watch face editor";
-            //        break;
-            //    case "GTS 4":
-            //        FormName = "GTS 4 watch face editor";
-            //        break;
-            //    default:
-            //        FormName = "GTR 3 watch face editor";
-            //        break;
-            //}
-            // TODO :: Check
-            // FIXME :: Это должно быть в ресурсах
+            if (Watch_Face?.WatchFace_Info?.WatchFaceName != null && Watch_Face.WatchFace_Info.WatchFaceName != "")
+                FormNameSufix = Watch_Face.WatchFace_Info.WatchFaceName;
             FormName = $"{ProgramSettings.Watch_Model} watch face editor";
 
             if (FormNameSufix.Length == 0)
@@ -860,14 +822,11 @@ namespace Watch_Face_Editor
         {
             bool b = checkBox_WatchSkin_Use.Checked;
             textBox_WatchSkin_Path.Enabled = b;
-            //button_WatchSkin_PathGet.Enabled = b;  // не нужно если путь к маске переносим в конфигурацию модели
         }
 
         private void groupBox_Paint(object sender, PaintEventArgs e)
         {
             GroupBox groupBox = sender as GroupBox;
-            //if (groupBox.Enabled) DrawGroupBox(groupBox, e.Graphics, Color.Black, Color.DarkGray);
-            //else DrawGroupBox(groupBox, e.Graphics, Color.DarkGray, Color.DarkGray);
             if (groupBox.Enabled) DrawGroupBox(groupBox, e.Graphics, this.ForeColor, Color.DarkGray);
             else DrawGroupBox(groupBox, e.Graphics, SystemColors.GrayText, Color.DarkGray);
         }
@@ -2277,7 +2236,7 @@ namespace Watch_Face_Editor
             ResetHighlightState("Background");
 
             string preview = "";
-            int id = 0;
+            long id = 0;
             if (Watch_Face != null && Watch_Face.WatchFace_Info != null) 
             {
                 preview = Watch_Face.WatchFace_Info.Preview;
@@ -3792,6 +3751,15 @@ namespace Watch_Face_Editor
                     case 2.5f:
                         formPreview.radioButton_xxlarge.Checked = true;
                         break;
+                    case 3.0f:
+                        formPreview.radioButton_x3.Checked = true;
+                        break;
+                    case 4.0f:
+                        formPreview.radioButton_x4.Checked = true;
+                        break;
+                    case 5.0f:
+                        formPreview.radioButton_x5.Checked = true;
+                        break;
                     default:
                         formPreview.radioButton_normal.Checked = true;
                         break;
@@ -3800,16 +3768,19 @@ namespace Watch_Face_Editor
 
                 formPreview.pictureBox_Preview.Resize += (object senderResize, EventArgs eResize) =>
                 {
-                    if (Form_Preview.Watch_Model != comboBox_watch_model.Text)
-                    {
-                        if (comboBox_watch_model.SelectedIndex == -1) Form_Preview.Watch_Model = "GTR 3";
-                        else Form_Preview.Watch_Model = comboBox_watch_model.Text;
-                    }
+                    //if (Form_Preview.Watch_Model != comboBox_watch_model.Text)
+                    //{
+                    //    if (comboBox_watch_model.SelectedIndex == -1) Form_Preview.Watch_Model = "GTR 3";
+                    //    else Form_Preview.Watch_Model = comboBox_watch_model.Text;
+                    //}
                     float scalePreviewResize = 1.0f;
                     if (formPreview.radioButton_small.Checked) scalePreviewResize = 0.5f;
                     if (formPreview.radioButton_large.Checked) scalePreviewResize = 1.5f;
                     if (formPreview.radioButton_xlarge.Checked) scalePreviewResize = 2.0f;
                     if (formPreview.radioButton_xxlarge.Checked) scalePreviewResize = 2.5f;
+                    if (formPreview.radioButton_x3.Checked) scalePreviewResize = 3.0f;
+                    if (formPreview.radioButton_x4.Checked) scalePreviewResize = 4.0f;
+                    if (formPreview.radioButton_x5.Checked) scalePreviewResize = 5.0f;
 
                     ProgramSettings.Scale = scalePreviewResize;
                     string JSON_String = JsonConvert.SerializeObject(ProgramSettings, Formatting.Indented, new JsonSerializerSettings
@@ -3899,46 +3870,16 @@ namespace Watch_Face_Editor
                 };
             }
 
-            if (Form_Preview.Watch_Model != comboBox_watch_model.Text)
-            {
-                if (comboBox_watch_model.SelectedIndex == -1) Form_Preview.Watch_Model = "GTR 3";
-                else Form_Preview.Watch_Model = comboBox_watch_model.Text;
-            }
+            //if (Form_Preview.Watch_Model != comboBox_watch_model.Text)
+            //{
+            //    if (comboBox_watch_model.SelectedIndex == -1) Form_Preview.Watch_Model = "GTR 3";
+            //    else Form_Preview.Watch_Model = comboBox_watch_model.Text;
+            //}
             formPreview.radioButton_CheckedChanged(sender, e);
             float scale = 1.0f;
 
             #region BackgroundImage 
             Bitmap bitmap = new Bitmap(Convert.ToInt32(454), Convert.ToInt32(454), PixelFormat.Format32bppArgb);
-            //switch (ProgramSettings.Watch_Model)
-            //{
-            //    case "GTR 3 Pro":
-            //        bitmap = new Bitmap(Convert.ToInt32(480), Convert.ToInt32(480), PixelFormat.Format32bppArgb);
-            //        break;
-            //    case "GTS 3":
-            //    case "GTS 4":
-            //        bitmap = new Bitmap(Convert.ToInt32(390), Convert.ToInt32(450), PixelFormat.Format32bppArgb);
-            //        break;
-            //    case "GTR 4":
-            //        bitmap = new Bitmap(Convert.ToInt32(466), Convert.ToInt32(466), PixelFormat.Format32bppArgb);
-            //        break;
-            //    case "Amazfit Band 7":
-            //        bitmap = new Bitmap(Convert.ToInt32(194), Convert.ToInt32(368), PixelFormat.Format32bppArgb);
-            //        break;
-            //    case "GTS 4 mini":
-            //        bitmap = new Bitmap(Convert.ToInt32(336), Convert.ToInt32(384), PixelFormat.Format32bppArgb);
-            //        break;
-            //    case "Falcon":
-            //    case "GTR mini":
-            //        bitmap = new Bitmap(Convert.ToInt32(416), Convert.ToInt32(416), PixelFormat.Format32bppArgb);
-            //        break;
-            //}
-
-            /* // StartBlock :: Kartun
-             Logger.WriteLine($"BackgroundImage for {ProgramSettings.Watch_Model}");
-             //Classes.AmazfitPlatform currPlatform = AvailableConfigurations[ProgramSettings.Watch_Model];
-             Logger.WriteLine($"Loaded configuration: {currPlatform}");
-             bitmap = new Bitmap(Convert.ToInt32(currPlatform.background.w), Convert.ToInt32(currPlatform.background.h), PixelFormat.Format32bppArgb);
-             // EndBlock :: Kartun*/
             bitmap = new Bitmap(Convert.ToInt32(SelectedModel.background.w), Convert.ToInt32(SelectedModel.background.h), PixelFormat.Format32bppArgb);
 
 
@@ -8589,6 +8530,16 @@ namespace Watch_Face_Editor
                                     uCtrl_Altimeter_Elm.checkBox_Number_Font.Checked = Altimeter.Number_Font.visible;
                                     elementOptions.Add(Altimeter.Number_Font.position, "Number_Font");
                                 }
+                                if (Altimeter.Pressure != null)
+                                {
+                                    uCtrl_Altimeter_Elm.checkBox_Pressure.Checked = Altimeter.Pressure.visible;
+                                    elementOptions.Add(Altimeter.Pressure.position, "Pressure");
+                                }
+                                if (Altimeter.Pressure_Font != null)
+                                {
+                                    uCtrl_Altimeter_Elm.checkBox_Pressure_Font.Checked = Altimeter.Pressure_Font.visible;
+                                    elementOptions.Add(Altimeter.Pressure_Font.position, "Pressure_Font");
+                                }
                                 if (Altimeter.Number_Target != null)
                                 {
                                     uCtrl_Altimeter_Elm.checkBox_Number_Target.Checked = Altimeter.Number_Target.visible;
@@ -8722,6 +8673,16 @@ namespace Watch_Face_Editor
                                     uCtrl_Wind_Elm.checkBox_Number_Font.Checked = Wind.Number_Font.visible;
                                     elementOptions.Add(Wind.Number_Font.position, "Number_Font");
                                 }
+                                if (Wind.Wind_Speed != null)
+                                {
+                                    uCtrl_Wind_Elm.checkBox_WindSpeed.Checked = Wind.Wind_Speed.visible;
+                                    elementOptions.Add(Wind.Wind_Speed.position, "WindSpeed");
+                                }
+                                if (Wind.Wind_Speed_Font != null)
+                                {
+                                    uCtrl_Wind_Elm.checkBox_WindSpeed_Font.Checked = Wind.Wind_Speed_Font.visible;
+                                    elementOptions.Add(Wind.Wind_Speed_Font.position, "WindSpeed_Font");
+                                }
                                 if (Wind.Pointer != null)
                                 {
                                     uCtrl_Wind_Elm.checkBox_Pointer.Checked = Wind.Pointer.visible;
@@ -8737,6 +8698,8 @@ namespace Watch_Face_Editor
                                     uCtrl_Wind_Elm.checkBox_Icon.Checked = Wind.Icon.visible;
                                     elementOptions.Add(Wind.Icon.position, "Icon");
                                 }
+                            
+                                uCtrl_Wind_Elm.WindSpeed_available = SelectedModel.versionOS > 4;
 
                                 uCtrl_Wind_Elm.SetOptionsPosition(elementOptions);
 
@@ -12181,11 +12144,11 @@ namespace Watch_Face_Editor
 
             if ((formPreview != null) && (formPreview.Visible))
             {
-                if (Form_Preview.Watch_Model != comboBox_watch_model.Text)
-                {
-                    if (comboBox_watch_model.SelectedIndex == -1) Form_Preview.Watch_Model = "GTR 3";
-                    else Form_Preview.Watch_Model = comboBox_watch_model.Text;
-                }
+                //if (Form_Preview.Watch_Model != comboBox_watch_model.Text)
+                //{
+                //    if (comboBox_watch_model.SelectedIndex == -1) Form_Preview.Watch_Model = "GTR 3";
+                //    else Form_Preview.Watch_Model = comboBox_watch_model.Text;
+                //}
                 formPreview.radioButton_CheckedChanged(sender, e);
             }
 
@@ -12261,6 +12224,7 @@ namespace Watch_Face_Editor
 
             uCtrl_Weather_FewDay_Elm.GraphUse = SelectedModel.versionOS >= 3;
             uCtrl_HRV_Elm.Progress_available = SelectedModel.versionOS >= 5;
+            uCtrl_Wind_Elm.WindSpeed_available = SelectedModel.versionOS > 4;
 
             PreviewImage();
             JSON_Modified = true;
@@ -12291,20 +12255,66 @@ namespace Watch_Face_Editor
             if (SaveRequest() == DialogResult.Cancel) return;
 
             if (ProjectDir == null) return;
-            string tempDir = Application.StartupPath + @"\Temp";
-            string templatesFileDir = Application.StartupPath + @"\File_templates";
 
-            string zipPath = ProjectDir + @"\" + Path.GetFileNameWithoutExtension(FileName) + ".zip";
+            string SaveFileName = Path.GetFileNameWithoutExtension(FileName);
+            if (Watch_Face.WatchFace_Info.WatchFaceName != null && Watch_Face.WatchFace_Info.WatchFaceName != "")
+                SaveFileName = Watch_Face.WatchFace_Info.WatchFaceName;
+            string zipName = ProjectDir + @"\" + SaveFileName + ".zip";
+
+            zipName = CreateWatchFace(zipName);
+
+            if (ProgramSettings.CreateZPK && File.Exists(zipName))
+            {
+                string zpkPath = CreateZPK(zipName);
+                if (zpkPath.Length > 0 && File.Exists(zpkPath)) zipName = zpkPath;
+            }
+
+            //if (ProgramSettings.CreateZPK && File.Exists(zipName))
+            //{
+            //    string zabPath = CreateZAB(zipName);
+            //    if (zabPath.Length > 0 && File.Exists(zabPath)) zipName = zabPath;
+            //}
+
+            // открываем файл если создали его
+            if (File.Exists(zipName))
+            {
+                if (ProgramSettings.Settings_Pack_Dialog)
+                {
+                    if (MessageBox.Show(Properties.FormStrings.Message_GoToFile_Text,
+                    Properties.FormStrings.Message_GoToFile_Caption,
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        Process.Start(new ProcessStartInfo("explorer.exe", " /select, " + zipName));
+                    }
+                }
+                else if (ProgramSettings.Settings_Pack_GoToFile)
+                {
+                    Process.Start(new ProcessStartInfo("explorer.exe", " /select, " + zipName));
+                } 
+            }
+
+#if !DEBUG
+            string tempDir = Application.StartupPath + @"\Temp";
+            if (Directory.Exists(tempDir)) DeleteDirectory(tempDir);
+#endif
+            progressBar1.Visible = false;
+        }
+
+        // Создаем WatchFace
+        private string CreateWatchFace(string zipPath)
+        {
             try
             {
                 if (File.Exists(zipPath)) File.Delete(zipPath);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(Properties.FormStrings.Message_DontDelZip + Environment.NewLine + Environment.NewLine + ex.Message, 
+                MessageBox.Show(Properties.FormStrings.Message_DontDelZip + Environment.NewLine + Environment.NewLine + ex.Message,
                     Properties.FormStrings.Message_Error_Caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                return "";
             }
+            string tempDir = Application.StartupPath + @"\Temp";
+            string templatesFileDir = Application.StartupPath + @"\File_templates";
 
             //if (Directory.Exists(tempDir)) Directory.Delete(tempDir, true);
             if (Directory.Exists(tempDir)) DeleteDirectory(tempDir);
@@ -12321,10 +12331,10 @@ namespace Watch_Face_Editor
             foreach (string dirNames in allDirs)
             {
                 //Console.WriteLine(dirNames);
-                if(!Directory.Exists(tempDir + @"\assets" + dirNames)) Directory.CreateDirectory(tempDir + @"\assets" + dirNames);
+                if (!Directory.Exists(tempDir + @"\assets" + dirNames)) Directory.CreateDirectory(tempDir + @"\assets" + dirNames);
             }
             List<string> allImagesFiles = GetRecursFiles(ProjectDir + @"\assets", "*.png", 5, ProjectDir + @"\assets");
-      
+
             progressBar1.Value = 0;
             progressBar1.Maximum = allImagesFiles.Count;
             progressBar1.Visible = true;
@@ -12340,7 +12350,7 @@ namespace Watch_Face_Editor
             {
                 DialogResult result = MessageBox.Show(Properties.FormStrings.Message_ARGB_Line1 + Environment.NewLine + Properties.FormStrings.Message_ARGB_Line2,
                     Properties.FormStrings.Message_Warning_Caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-                if (result != DialogResult.Yes) 
+                if (result != DialogResult.Yes)
                 {
                     ProgramSettings.Use_ARGB_encoding = false;
                     checkBox_Use_ARGB.Checked = false;
@@ -12359,6 +12369,11 @@ namespace Watch_Face_Editor
             App_WatchFace app = new App_WatchFace();
             app.app.appName = Path.GetFileNameWithoutExtension(FileName);
             app.i18n.enUS.appName = Path.GetFileNameWithoutExtension(FileName);
+            if (Watch_Face.WatchFace_Info.WatchFaceName != null && Watch_Face.WatchFace_Info.WatchFaceName != "")
+            {
+                app.app.appName = Watch_Face.WatchFace_Info.WatchFaceName;
+                app.i18n.enUS.appName = Watch_Face.WatchFace_Info.WatchFaceName;
+            }
             if (Watch_Face != null && Watch_Face.WatchFace_Info != null)
             {
                 if (Watch_Face.WatchFace_Info.WatchFaceId > 999 && Watch_Face.WatchFace_Info.WatchFaceId < 10000000)
@@ -12371,6 +12386,8 @@ namespace Watch_Face_Editor
                     app.app.cover.Add(Watch_Face.WatchFace_Info.Preview + ".png");
                     app.i18n.enUS.icon = Watch_Face.WatchFace_Info.Preview + ".png";
                 }
+                app.app.version.code = Watch_Face.WatchFace_Info.WatchFaceVersion;
+                app.app.version.name = Watch_Face.WatchFace_Info.WatchFaceVersion.ToString() + ".0.0";
             }
             if (Watch_Face.ScreenNormal != null && Watch_Face.ScreenNormal.Elements != null)
             {
@@ -12388,12 +12405,13 @@ namespace Watch_Face_Editor
                     }
                 }
             }
-            if (Watch_Face.ScreenAOD != null) {
+            if (Watch_Face.ScreenAOD != null)
+            {
                 if (Watch_Face.ScreenAOD.Elements != null && Watch_Face.ScreenAOD.Elements.Count > 0) app.module.watchface.lockscreen = 1;
                 if (Watch_Face.ScreenAOD.Background != null && Watch_Face.ScreenAOD.Background.visible)
                 {
-                    if (Watch_Face.ScreenAOD.Background.BackgroundImage != null && 
-                        Watch_Face.ScreenAOD.Background.BackgroundImage.src != null && 
+                    if (Watch_Face.ScreenAOD.Background.BackgroundImage != null &&
+                        Watch_Face.ScreenAOD.Background.BackgroundImage.src != null &&
                         Watch_Face.ScreenAOD.Background.BackgroundImage.src.Length > 0) app.module.watchface.lockscreen = 1;
                     if (Watch_Face.ScreenAOD.Background.BackgroundColor != null) app.module.watchface.lockscreen = 1;
                 }
@@ -12406,7 +12424,7 @@ namespace Watch_Face_Editor
                     Watch_Face.ScreenNormal.Background.Editable_Background.BackgroundList.Count > 0) app.module.watchface.editable = 1;
             }
             if (Watch_Face.Editable_Elements != null && Watch_Face.Editable_Elements.visible) app.module.watchface.editable = 1;
-            if (Watch_Face.ElementEditablePointers != null && Watch_Face.ElementEditablePointers.visible && 
+            if (Watch_Face.ElementEditablePointers != null && Watch_Face.ElementEditablePointers.visible &&
                 Watch_Face.ElementEditablePointers.config != null && Watch_Face.ElementEditablePointers.config.Count > 0) app.module.watchface.editable = 1;
 
             app.designWidth = SelectedModel.designWidth;
@@ -12420,14 +12438,24 @@ namespace Watch_Face_Editor
 #if DEBUG
             app.packageInfo.mode = "development";
 #endif
-
+            int timeStamp = (int)DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
+            app.packageInfo.timeStamp = timeStamp;
             string appText = JsonConvert.SerializeObject(app, Formatting.Indented, new JsonSerializerSettings
             {
                 //DefaultValueHandling = DefaultValueHandling.Ignore,
                 NullValueHandling = NullValueHandling.Ignore
             });
+            appText = appText.Replace("enUS", "en-US");
 
-            File.WriteAllText(tempDir + @"\app.json", appText, Encoding.UTF8);
+            //File.WriteAllText(tempDir + @"\app.json", appText, Encoding.UTF8);
+            File.WriteAllText(tempDir + @"\app.json", appText, new UTF8Encoding(false));
+            //using (var writer = new StreamWriter(
+            //    tempDir + @"\app.json",
+            //    false,
+            //    new UTF8Encoding(false)))
+            //{
+            //    writer.Write(appText);
+            //}
             File.Copy(templatesFileDir + @"\app.js", tempDir + @"\app.js");
             if (Directory.Exists(ProjectDir + @"\assets\fonts"))
             {
@@ -12444,15 +12472,15 @@ namespace Watch_Face_Editor
             string items = "";
 
             JsonToJS(out variables, out items);
-            
+
 
             string indexText = File.ReadAllText(templatesFileDir + @"\index.js");
             string versionText = "v " +
                 System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Major.ToString() + "." +
                 System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Minor.ToString();
-            indexText = indexText.Replace("* Watch_Face_Editor tool v1.x", "* Watch_Face_Editor tool " + versionText);
+            indexText = indexText.Replace("* Watch_Face_Editor tool v1.x", "* Watch_Face_Editor tool v" + versionText);
 
-            if (variables.Length>0) indexText = indexText.Replace("//Variable declaration section", variables);
+            if (variables.Length > 0) indexText = indexText.Replace("//Variable declaration section", variables);
             if (items.Length > 0) indexText = indexText.Replace("//Item description section", items);
 
             // удаляем слушателя для пульса
@@ -12463,7 +12491,7 @@ namespace Watch_Face_Editor
                 if (pos_destory > 0)
                 {
                     indexText = indexText.Insert(pos_destory, "heart_rate.removeEventListener(heart.event.CURRENT, hrCurrListener);"
-                                + Environment.NewLine + TabInString(8)); 
+                                + Environment.NewLine + TabInString(8));
                 }
             }
 
@@ -12481,13 +12509,6 @@ namespace Watch_Face_Editor
             indexText = indexText.Replace("\r", "");
 
             File.WriteAllText(tempDir + @"\watchface\index.js", indexText, Encoding.UTF8);
-            
-            // проверяем имена файлов
-            //List<string> allFiles = GetRecursFiles(ProjectDir + @"\assets", "*", 5, ProjectDir + @"\assets");
-            //foreach (string fileName in allFiles)
-            //{
-            //    ValidateFileName(fileName);
-            //}
 
             // объединяем все в архив
             string startPath = tempDir;
@@ -12497,36 +12518,7 @@ namespace Watch_Face_Editor
                 zip.CompressionLevel = Ionic.Zlib.CompressionLevel.BestCompression;
                 zip.Save(zipPath);
             }
-
-            if (ProgramSettings.CreateZPK && File.Exists(zipPath))
-            {
-                string zpkPath = CreateZPK(zipPath);
-                if (zpkPath.Length > 0 && File.Exists(zpkPath)) zipPath = zpkPath;
-            }
-
-            // открываем файл если создали его
-            if (File.Exists(zipPath))
-            {
-                if (ProgramSettings.Settings_Pack_Dialog)
-                {
-                    if (MessageBox.Show(Properties.FormStrings.Message_GoToFile_Text,
-                    Properties.FormStrings.Message_GoToFile_Caption,
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        Process.Start(new ProcessStartInfo("explorer.exe", " /select, " + zipPath));
-                    }
-                }
-                else if (ProgramSettings.Settings_Pack_GoToFile)
-                {
-                    Process.Start(new ProcessStartInfo("explorer.exe", " /select, " + zipPath));
-                } 
-            }
-
-            //if (Directory.Exists(tempDir)) Directory.Delete(tempDir, true);
-#if !DEBUG
-            if (Directory.Exists(tempDir)) DeleteDirectory(tempDir);
-#endif
-            progressBar1.Visible = false;
+            return zipPath;
         }
 
         private void ValidateFileName(string fileName)
@@ -12563,12 +12555,12 @@ namespace Watch_Face_Editor
         }
 
         // Создаем ZPK файл
-        private string CreateZPK(string fullFileName)
+        private string CreateZPK(string fullFileName, string zpkFileName = null)
         {
             if (!File.Exists(fullFileName)) return null;
             string tempDir = Path.Combine(Application.StartupPath, "Temp");
             string tempZip = Path.Combine(tempDir, "device.zip");
-            string zpkFileName = Path.Combine(Path.GetDirectoryName(fullFileName), Path.GetFileNameWithoutExtension(fullFileName) + ".zpk");
+            if (zpkFileName == null) zpkFileName = Path.Combine(Path.GetDirectoryName(fullFileName), Path.GetFileNameWithoutExtension(fullFileName) + ".zpk");
             //ZipArchive zip = System.IO.Compression.ZipFile.OpenRead(fullFileName);
             //List<ZipArchiveEntry> fileList = zip.Entries.ToList();
             if (!IsWatchFace(fullFileName))
@@ -12591,6 +12583,125 @@ namespace Watch_Face_Editor
             }
             //zip.Dispose();
             return zpkFileName;
+        }
+
+        // Создаем ZAB файл
+        private string CreateZAB(string fullFileName)
+        {
+            if (!File.Exists(fullFileName)) return null;
+            string tempDir = Path.Combine(Application.StartupPath, "Temp");
+            string tempManifest = Path.Combine(tempDir, "manifest.json");
+            string zabFileName = Path.Combine(Path.GetDirectoryName(fullFileName), Path.GetFileNameWithoutExtension(fullFileName) + ".zab");
+
+            string cpuPlatform = SelectedModel.cpuPlatform;
+            string screenType = SelectedModel.screenType;
+            int screenWidth = SelectedModel.background.w;
+            int screenHeight = SelectedModel.background.h;
+            string deviceName = SelectedModel.name;
+            string zpkName = deviceName.ToLower().Replace(" ", "-") + "-" + cpuPlatform + "-" +
+                screenWidth.ToString() + "x" + screenHeight.ToString() + ".zpk";
+
+            string tempZpk = Path.Combine(tempDir, zpkName);
+            string extension = Path.GetExtension(fullFileName);
+            if (extension == ".zpk")
+            {
+                File.Copy(fullFileName, tempZpk, true);
+            }
+            else if (extension == ".zip")
+            {
+                tempZpk = CreateZPK(fullFileName, tempZpk);
+            }
+
+            try
+            {
+                if (File.Exists(zabFileName)) File.Delete(zabFileName);
+                if (File.Exists(tempManifest)) File.Delete(tempManifest);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Properties.FormStrings.Message_DontDelZip + Environment.NewLine + Environment.NewLine + ex.Message,
+                    Properties.FormStrings.Message_Error_Caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return "";
+            }
+
+            int timeStamp = (int)DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
+            string md5 = GetFileMD5(tempZpk);
+            int version = Watch_Face.WatchFace_Info.WatchFaceVersion;
+            string versionName = Watch_Face.WatchFace_Info.WatchFaceVersion.ToString() + ".0.0";
+            JObject manifest_json = new JObject(
+                new JProperty("configVersion", "v2"),
+
+                new JProperty("zpks",
+                    new JArray(
+
+                        new JObject(
+                            new JProperty("name", zpkName),
+                            new JProperty("version",
+                                new JObject(
+                                    new JProperty("code", version),
+                                    new JProperty("name", versionName)
+                                )
+                            ),
+                            new JProperty("appType", "watchface"),
+                            new JProperty("platforms",
+                                new JArray(
+                                    new JObject(
+                                        new JProperty("screenType", screenType.ToLower()),
+                                        new JProperty("screenResolution", screenWidth.ToString() + "x" + screenHeight.ToString()),
+                                        new JProperty("cpuPlatform", cpuPlatform)
+                                    )
+                                )
+                            ),
+                            new JProperty("md5", md5.ToLower())
+                        )
+
+                    )
+                ),
+
+                new JProperty("bundleInfo",
+                    new JObject(
+                        new JProperty("zpm", "3.3.0"),
+                        new JProperty("timeStamp", timeStamp)
+                    )
+                )
+            );
+            //string manifest_json_str = manifest_json.ToString(Formatting.None);
+            string manifest_json_str = manifest_json.ToString(Formatting.Indented);
+            //File.WriteAllText(tempManifest, manifest_json_str, Encoding.UTF8);
+            File.WriteAllText(tempManifest, manifest_json_str, new UTF8Encoding(false));
+
+            //Directory.CreateDirectory(tempDir);
+            string templatesFileDir = Application.StartupPath + @"\File_templates";
+            string WatchFaceZab = templatesFileDir + @"\WatchFace_package.zab";
+            if (File.Exists(tempZpk))
+            {
+                using (Ionic.Zip.ZipFile zpk = new Ionic.Zip.ZipFile(WatchFaceZab))
+                {
+                    zpk.AddFile(tempZpk, "");
+                    if (zpk["manifest.json"] != null) zpk.RemoveEntry("manifest.json");
+                    zpk.AddFile(tempManifest, "");
+                    zpk.Save(zabFileName);
+                }
+            }
+            //zip.Dispose();
+            return zabFileName;
+        }
+
+        // Расчет контрольной суммы MD5 для файла
+        public static string GetFileMD5(string filePath)
+        {
+            if (!File.Exists(filePath)) return "";
+            using (var md5 = MD5.Create())
+            using (var stream = File.OpenRead(filePath))
+            {
+                byte[] hash = md5.ComputeHash(stream);
+
+                StringBuilder sb = new StringBuilder();
+                foreach (byte b in hash)
+                    sb.Append(b.ToString("x2")); // шестнадцатеричный вид
+
+                return sb.ToString();
+            }
         }
 
         // Проверяем что есть необходимые файлы для циферблата
@@ -17485,6 +17596,24 @@ namespace Watch_Face_Editor
                         }
                         else HideAllElemenrOptions();
                         break;
+                    case "Pressure":
+                        if (uCtrl_Altimeter_Elm.checkBox_Pressure.Checked)
+                        {
+                            img_number = altimeter.Pressure;
+                            Read_ImgNumber_Options(img_number, false, false, "", true, false, false, true, false, false, true);
+                            ShowElemenrOptions("Text");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Pressure_Font":
+                        if (uCtrl_Altimeter_Elm.checkBox_Pressure_Font.Checked)
+                        {
+                            text = altimeter.Pressure_Font;
+                            Read_Text_Options(text, true, false, true, false, false, false, 1);
+                            ShowElemenrOptions("SystemFont");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
                     case "Number_Target":
                         if (uCtrl_Altimeter_Elm.checkBox_Number_Target.Checked)
                         {
@@ -17752,6 +17881,24 @@ namespace Watch_Face_Editor
                         {
                             text = wind.Number_Font;
                             Read_Text_Options(text, false, false);
+                            ShowElemenrOptions("SystemFont");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "WindSpeed":
+                        if (uCtrl_Wind_Elm.checkBox_WindSpeed.Checked)
+                        {
+                            img_number = wind.Wind_Speed;
+                            Read_ImgNumber_Options(img_number, false, false, "", false, false, false, true);
+                            ShowElemenrOptions("Text");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "WindSpeed_Font":
+                        if (uCtrl_Wind_Elm.checkBox_WindSpeed_Font.Checked)
+                        {
+                            text = wind.Wind_Speed_Font;
+                            Read_Text_Options(text, true, false);
                             ShowElemenrOptions("SystemFont");
                         }
                         else HideAllElemenrOptions();
@@ -21283,6 +21430,8 @@ namespace Watch_Face_Editor
             {
                 if (altimeter.Number == null) altimeter.Number = new hmUI_widget_IMG_NUMBER();
                 if (altimeter.Number_Font == null) altimeter.Number_Font = new hmUI_widget_TEXT();
+                if (altimeter.Pressure == null) altimeter.Pressure = new hmUI_widget_IMG_NUMBER();
+                if (altimeter.Pressure_Font == null) altimeter.Pressure_Font = new hmUI_widget_TEXT();
                 if (altimeter.Number_Target == null) altimeter.Number_Target = new hmUI_widget_IMG_NUMBER();
                 if (altimeter.Number_Target_Font == null) altimeter.Number_Target_Font = new hmUI_widget_TEXT();
                 if (altimeter.Pointer == null) altimeter.Pointer = new hmUI_widget_IMG_POINTER();
@@ -21290,6 +21439,8 @@ namespace Watch_Face_Editor
 
                 if (elementOptions.ContainsKey("Number")) altimeter.Number.position = elementOptions["Number"];
                 if (elementOptions.ContainsKey("Number_Font")) altimeter.Number_Font.position = elementOptions["Number_Font"];
+                if (elementOptions.ContainsKey("Pressure")) altimeter.Pressure.position = elementOptions["Pressure"];
+                if (elementOptions.ContainsKey("Pressure_Font")) altimeter.Pressure_Font.position = elementOptions["Pressure_Font"];
                 if (elementOptions.ContainsKey("Number_Target")) altimeter.Number_Target.position = elementOptions["Number_Target"];
                 if (elementOptions.ContainsKey("Number_Target_Font")) altimeter.Number_Target_Font.position = elementOptions["Number_Target_Font"];
                 if (elementOptions.ContainsKey("Pointer")) altimeter.Pointer.position = elementOptions["Pointer"];
@@ -21469,6 +21620,8 @@ namespace Watch_Face_Editor
                 if (wind.Segments == null) wind.Segments = new hmUI_widget_IMG_PROGRESS();
                 if (wind.Number == null) wind.Number = new hmUI_widget_IMG_NUMBER();
                 if (wind.Number_Font == null) wind.Number_Font = new hmUI_widget_TEXT();
+                if (wind.Wind_Speed == null) wind.Wind_Speed = new hmUI_widget_IMG_NUMBER();
+                if (wind.Wind_Speed_Font == null) wind.Wind_Speed_Font = new hmUI_widget_TEXT();
                 if (wind.Pointer == null) wind.Pointer = new hmUI_widget_IMG_POINTER();
                 if (wind.Direction == null) wind.Direction = new hmUI_widget_IMG_LEVEL();
                 if (wind.Icon == null) wind.Icon = new hmUI_widget_IMG();
@@ -21477,6 +21630,8 @@ namespace Watch_Face_Editor
                 if (elementOptions.ContainsKey("Segments")) wind.Segments.position = elementOptions["Segments"];
                 if (elementOptions.ContainsKey("Number")) wind.Number.position = elementOptions["Number"];
                 if (elementOptions.ContainsKey("Number_Font")) wind.Number_Font.position = elementOptions["Number_Font"];
+                if (elementOptions.ContainsKey("WindSpeed")) wind.Wind_Speed.position = elementOptions["WindSpeed"];
+                if (elementOptions.ContainsKey("WindSpeed_Font")) wind.Wind_Speed_Font.position = elementOptions["WindSpeed_Font"];
                 if (elementOptions.ContainsKey("Pointer")) wind.Pointer.position = elementOptions["Pointer"];
                 if (elementOptions.ContainsKey("Direction")) wind.Direction.position = elementOptions["Direction"];
                 if (elementOptions.ContainsKey("Icon")) wind.Icon.position = elementOptions["Icon"];
@@ -25396,14 +25551,25 @@ namespace Watch_Face_Editor
                     altimeter.Number_Font = new hmUI_widget_TEXT();
                     if (LastColor.last_color != null) altimeter.Number_Font.color = ColorToString((Color)LastColor.last_color);
                 }
+                if (altimeter.Pressure == null) altimeter.Pressure = new hmUI_widget_IMG_NUMBER();
+                if (altimeter.Pressure_Font == null)
+                {
+                    altimeter.Pressure_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) altimeter.Pressure_Font.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (altimeter.Number_Target == null) altimeter.Number_Target = new hmUI_widget_IMG_NUMBER();
-                if (altimeter.Number_Target_Font == null) altimeter.Number_Target_Font = new hmUI_widget_TEXT();
+                if (altimeter.Number_Target_Font == null) { 
+                    altimeter.Number_Target_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) altimeter.Number_Target_Font.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (altimeter.Pointer == null) altimeter.Pointer = new hmUI_widget_IMG_POINTER();
                 if (altimeter.Icon == null) altimeter.Icon = new hmUI_widget_IMG();
 
                 Dictionary<string, int> elementOptions = uCtrl_Altimeter_Elm.GetOptionsPosition();
                 if (elementOptions.ContainsKey("Number")) altimeter.Number.position = elementOptions["Number"];
                 if (elementOptions.ContainsKey("Number_Font")) altimeter.Number_Font.position = elementOptions["Number_Font"];
+                if (elementOptions.ContainsKey("Pressure")) altimeter.Pressure.position = elementOptions["Pressure"];
+                if (elementOptions.ContainsKey("Pressure_Font")) altimeter.Pressure_Font.position = elementOptions["Pressure_Font"];
                 if (elementOptions.ContainsKey("Number_Target")) altimeter.Number_Target.position = elementOptions["Number_Target"];
                 if (elementOptions.ContainsKey("Number_Target_Font")) altimeter.Number_Target_Font.position = elementOptions["Number_Target_Font"];
                 if (elementOptions.ContainsKey("Pointer")) altimeter.Pointer.position = elementOptions["Pointer"];
@@ -25418,6 +25584,12 @@ namespace Watch_Face_Editor
                         break;
                     case "checkBox_Number_Font":
                         altimeter.Number_Font.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Pressure":
+                        altimeter.Pressure.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Pressure_Font":
+                        altimeter.Pressure_Font.visible = checkBox.Checked;
                         break;
                     case "checkBox_Number_Target":
                         altimeter.Number_Target.visible = checkBox.Checked;
@@ -25720,6 +25892,12 @@ namespace Watch_Face_Editor
                     wind.Number_Font = new hmUI_widget_TEXT();
                     if (LastColor.last_color != null) wind.Number_Font.color = ColorToString((Color)LastColor.last_color);
                 }
+                if (wind.Wind_Speed == null) wind.Wind_Speed = new hmUI_widget_IMG_NUMBER();
+                if (wind.Wind_Speed_Font == null)
+                {
+                    wind.Wind_Speed_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) wind.Wind_Speed_Font.color = ColorToString((Color)LastColor.last_color);
+                }
                 if (wind.Pointer == null) wind.Pointer = new hmUI_widget_IMG_POINTER();
                 if (wind.Direction == null) wind.Direction = new hmUI_widget_IMG_LEVEL();
                 if (wind.Icon == null) wind.Icon = new hmUI_widget_IMG();
@@ -25729,6 +25907,8 @@ namespace Watch_Face_Editor
                 if (elementOptions.ContainsKey("Segments")) wind.Segments.position = elementOptions["Segments"];
                 if (elementOptions.ContainsKey("Number")) wind.Number.position = elementOptions["Number"];
                 if (elementOptions.ContainsKey("Number_Font")) wind.Number_Font.position = elementOptions["Number_Font"];
+                if (elementOptions.ContainsKey("WindSpeed")) wind.Wind_Speed.position = elementOptions["WindSpeed"];
+                if (elementOptions.ContainsKey("WindSpeed_Font")) wind.Wind_Speed_Font.position = elementOptions["WindSpeed_Font"];
                 if (elementOptions.ContainsKey("Pointer")) wind.Pointer.position = elementOptions["Pointer"];
                 if (elementOptions.ContainsKey("Direction")) wind.Direction.position = elementOptions["Direction"];
                 if (elementOptions.ContainsKey("Icon")) wind.Icon.position = elementOptions["Icon"];
@@ -25748,6 +25928,12 @@ namespace Watch_Face_Editor
                         break;
                     case "checkBox_Number_Font":
                         wind.Number_Font.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_WindSpeed":
+                        wind.Wind_Speed.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_WindSpeed_Font":
+                        wind.Wind_Speed_Font.visible = checkBox.Checked;
                         break;
                     case "checkBox_Pointer":
                         wind.Pointer.visible = checkBox.Checked;
@@ -26703,13 +26889,6 @@ namespace Watch_Face_Editor
             saveFileDialog.Title = Properties.FormStrings.Dialog_Title_SavePNG;
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                /*// StartBlock :: Kartun
-                Logger.WriteLine($"* button_SavePNG_Click for {ProgramSettings.Watch_Model}");
-                Classes.AmazfitPlatform currPlatform = AvailableConfigurations[ProgramSettings.Watch_Model];
-                Logger.WriteLine($"Loaded configuration: {currPlatform}");
-                bitmap = new Bitmap(Convert.ToInt32(currPlatform.background.w), Convert.ToInt32(currPlatform.background.h), PixelFormat.Format32bppArgb);
-                mask = new Bitmap(Application.StartupPath + @"\Mask\" + currPlatform.maskImage);
-                // EndBlock :: Kartun*/
                 Bitmap bitmap = new Bitmap(SelectedModel.background.w, SelectedModel.background.h, PixelFormat.Format32bppArgb);
                 Bitmap mask = new Bitmap(Application.StartupPath + @"\Mask\" + SelectedModel.maskImage);
 
@@ -26736,6 +26915,9 @@ namespace Watch_Face_Editor
             saveFileDialog.Title = Properties.FormStrings.Dialog_Title_SaveGIF;
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
+                progressBar1.Maximum = 13;
+                progressBar1.Value = 0;
+                progressBar1.Visible = true;
                 Bitmap bitmap = new Bitmap(SelectedModel.background.w, SelectedModel.background.h, PixelFormat.Format32bppArgb);
                 Bitmap mask = new Bitmap(Application.StartupPath + @"\Mask\" + SelectedModel.maskImage);
 
@@ -27188,6 +27370,8 @@ namespace Watch_Face_Editor
                 mask.Dispose();
                 bitmapTemp.Dispose();
                 bitmap.Dispose();
+
+                progressBar1.Visible = false;
             }
             Logger.WriteLine("* SaveGIF (end)");
         }
@@ -27336,6 +27520,10 @@ namespace Watch_Face_Editor
                         comboBox_ConvertingInput_Model.Text = "466 (Active 2)";
                         comboBox_ConvertingOutput_Model.Text = "480 (Balance)";
                         break;
+                    case "Active 3 Premium":
+                        comboBox_ConvertingInput_Model.Text = "466 (Active 3 Premium)";
+                        comboBox_ConvertingOutput_Model.Text = "480 (Balance)";
+                        break;
                     case "GTR 4":
                         comboBox_ConvertingInput_Model.Text = "466 (GTR 4)";
                         comboBox_ConvertingOutput_Model.Text = "454 (GTR 3)";
@@ -27345,6 +27533,10 @@ namespace Watch_Face_Editor
                         comboBox_ConvertingOutput_Model.Text = "480 (Balance 2)";
                         break;
 
+                    case "Active Max":
+                        comboBox_ConvertingInput_Model.Text = "480 (Active Max)";
+                        comboBox_ConvertingOutput_Model.Text = "454 (GTR 3)";
+                        break;
                     case "Balance":
                         comboBox_ConvertingInput_Model.Text = "480 (Balance)";
                         comboBox_ConvertingOutput_Model.Text = "454 (GTR 3)";
@@ -27367,6 +27559,10 @@ namespace Watch_Face_Editor
                         break;
                     case "T-Rex 3 Pro (48mm)":
                         comboBox_ConvertingInput_Model.Text = "480 (T-Rex 3 Pro 48mm)";
+                        comboBox_ConvertingOutput_Model.Text = "454 (T-Rex 2)";
+                        break;
+                    case "T-Rex Ultra 2":
+                        comboBox_ConvertingInput_Model.Text = "480 (T-Rex Ultra 2)";
                         comboBox_ConvertingOutput_Model.Text = "454 (T-Rex 2)";
                         break;
 
@@ -27421,17 +27617,20 @@ namespace Watch_Face_Editor
                 case "454 (Cheetah)":
                     numericUpDown_ConvertingInput_Custom.Value = 454;
                     break;
-                case "466 (GTR 4)":
                 case "466 (Active 2)":
+                case "466 (Active 3 Premium)":
+                case "466 (GTR 4)":
                 case "466 (T-Rex 3 Pro 44mm)":
                     numericUpDown_ConvertingInput_Custom.Value = 466;
                     break;
+                case "480 (Active Max)":
                 case "480 (GTR 3 Pro)":
                 case "480 (Cheetah Pro)":
                 case "480 (Balance)":
                 case "480 (Balance 2)":
                 case "480 (T-Rex 3)":
                 case "480 (T-Rex 3 Pro 48mm)":
+                case "480 (T-Rex Ultra 2)":
                     numericUpDown_ConvertingInput_Custom.Value = 480;
                     break;
             }
@@ -27470,17 +27669,20 @@ namespace Watch_Face_Editor
                 case "454 (Cheetah)":
                     numericUpDown_ConvertingOutput_Custom.Value = 454;
                     break;
-                case "466 (GTR 4)":
                 case "466 (Active 2)":
+                case "466 (Active 3 Premium)":
+                case "466 (GTR 4)":
                 case "466 (T-Rex 3 Pro 44mm)":
                     numericUpDown_ConvertingOutput_Custom.Value = 466;
                     break;
+                case "480 (Active Max)":
                 case "480 (GTR 3 Pro)":
                 case "480 (Cheetah Pro)":
                 case "480 (Balance)":
                 case "480 (Balance 2)":
                 case "480 (T-Rex 3)":
                 case "480 (T-Rex 3 Pro 48mm)":
+                case "480 (T-Rex Ultra 2)":
                     numericUpDown_ConvertingOutput_Custom.Value = 480;
                     break;
             }
@@ -27562,6 +27764,10 @@ namespace Watch_Face_Editor
                         suffix = "_Active_2";
                         DeviceName = "Active 2";
                         break;
+                    case "466 (Active 3 Premium)":
+                        suffix = "_Active_3_Premium";
+                        DeviceName = "Active 3 Premium";
+                        break;
                     case "466 (GTR 4)":
                         suffix = "_GTR_4";
                         DeviceName = "GTR 4";
@@ -27569,6 +27775,10 @@ namespace Watch_Face_Editor
                     case "466 (T-Rex 3 Pro 44mm)":
                         suffix = "_T_Rex_3_Pro_44mm";
                         DeviceName = "T-Rex 3 Pro (44mm)";
+                        break;
+                    case "480 (Active Max)":
+                        suffix = "_Active_Max";
+                        DeviceName = "Active Max";
                         break;
                     case "480 (Balance)":
                         suffix = "_Balance";
@@ -27593,6 +27803,10 @@ namespace Watch_Face_Editor
                     case "480 (T-Rex 3 Pro 48mm)":
                         suffix = "_T_Rex_3_Pro_48mm";
                         DeviceName = "T-Rex 3 Pro (48mm)";
+                        break;
+                    case "480 (T-Rex Ultra 2)":
+                        suffix = "_T_Rex_Ultra_2";
+                        DeviceName = "T-Rex Ultra 2";
                         break;
                     default:
                         suffix = "_Custom_" + numericUpDown_ConvertingOutput_Custom.Value.ToString();
@@ -28376,6 +28590,66 @@ namespace Watch_Face_Editor
             }
         }
 
+        private void button_createZAB_Click(object sender, EventArgs e)
+        {
+            // сохранение если файл не сохранен
+            //if (SaveRequest() == DialogResult.Cancel) return;
+
+            string name = Path.GetFileNameWithoutExtension(FileName);
+            if (Watch_Face.WatchFace_Info.WatchFaceName != null && Watch_Face.WatchFace_Info.WatchFaceName != "") 
+                name = Watch_Face.WatchFace_Info.WatchFaceName;
+            long id = Watch_Face.WatchFace_Info.WatchFaceId;
+            int version = Watch_Face.WatchFace_Info.WatchFaceVersion;
+            CreateZAB_dialog zab_dialog = new CreateZAB_dialog(name, id, version);
+            zab_dialog.ShowDialog(this);
+            bool dialogResult = zab_dialog.Result;
+            if (dialogResult)
+            {
+                string newName = zab_dialog.WatchFaceName;
+                long newID = zab_dialog.WatchFaceId;
+                int newVersion = zab_dialog.Version;
+
+                Watch_Face.WatchFace_Info.WatchFaceName = newName;
+                if (newID > 999 && newID < 10000000) Watch_Face.WatchFace_Info.WatchFaceId = newID;
+                if (newVersion < version) { 
+                    MessageBox.Show(Properties.FormStrings.Message_Warning_Version_Lower,
+                        Properties.FormStrings.Message_Warning_Caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else Watch_Face.WatchFace_Info.WatchFaceVersion = newVersion;
+
+                if(!newName.Equals(name) || newID != id || newVersion != version) JSON_Modified = true;
+                if (JSON_Modified) FormText();
+
+                //bool fileModified = JSON_Modified;
+                // сохранение если файл не сохранен
+                if (SaveRequest() == DialogResult.Cancel) return;
+
+                string zipName = ProjectDir + @"\" + newName + ".zip";
+                //if(fileModified || !File.Exists(zipName)) zipName = CreateWatchFace(zipName);
+                zipName = CreateWatchFace(zipName);
+                string zabPath = "";
+                if (ProgramSettings.CreateZPK && File.Exists(zipName)) zabPath = CreateZAB(zipName);
+
+                // открываем файл если создали его
+                if (File.Exists(zabPath))
+                {
+                    if (ProgramSettings.Settings_Pack_Dialog)
+                    {
+                        if (MessageBox.Show(Properties.FormStrings.Message_GoToFile_Text,
+                        Properties.FormStrings.Message_GoToFile_Caption,
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            Process.Start(new ProcessStartInfo("explorer.exe", " /select, " + zabPath));
+                        }
+                    }
+                    else if (ProgramSettings.Settings_Pack_GoToFile)
+                    {
+                        Process.Start(new ProcessStartInfo("explorer.exe", " /select, " + zabPath));
+                    }
+                }
+                progressBar1.Visible = false;
+            }
+        }
     }
 }
 

@@ -15,6 +15,8 @@ namespace ControlLibrary
         private bool setValue; // режим задания параметров
         bool highlight_number = false;
         bool highlight_number_font = false;
+        bool highlight_pressure = false;
+        bool highlight_pressure_font = false;
         bool highlight_number_target = false;
         bool highlight_number_target_font = false;
         bool highlight_pointer = false;
@@ -116,6 +118,8 @@ namespace ControlLibrary
 
             highlight_number = false;
             highlight_number_font = false;
+            highlight_pressure = false;
+            highlight_pressure_font = false;
             highlight_number_target = false;
             highlight_number_target_font = false;
             highlight_pointer = false;
@@ -150,6 +154,32 @@ namespace ControlLibrary
                 panel_Number_Font.BackColor = SystemColors.Control;
                 button_Number_Font.FlatAppearance.MouseOverBackColor = SystemColors.Control;
                 button_Number_Font.FlatAppearance.MouseDownBackColor = SystemColors.Control;
+            }
+
+            if (highlight_pressure)
+            {
+                panel_Pressure.BackColor = SystemColors.ActiveCaption;
+                button_Pressure.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption;
+                button_Pressure.FlatAppearance.MouseDownBackColor = SystemColors.ActiveCaption;
+            }
+            else
+            {
+                panel_Pressure.BackColor = SystemColors.Control;
+                button_Pressure.FlatAppearance.MouseOverBackColor = SystemColors.Control;
+                button_Pressure.FlatAppearance.MouseDownBackColor = SystemColors.Control;
+            }
+
+            if (highlight_pressure_font)
+            {
+                panel_Pressure_Font.BackColor = SystemColors.ActiveCaption;
+                button_Pressure_Font.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption;
+                button_Pressure_Font.FlatAppearance.MouseDownBackColor = SystemColors.ActiveCaption;
+            }
+            else
+            {
+                panel_Pressure_Font.BackColor = SystemColors.Control;
+                button_Pressure_Font.FlatAppearance.MouseOverBackColor = SystemColors.Control;
+                button_Pressure_Font.FlatAppearance.MouseDownBackColor = SystemColors.Control;
             }
 
             if (highlight_number_target)
@@ -211,6 +241,8 @@ namespace ControlLibrary
 
             highlight_number = true;
             highlight_number_font = false;
+            highlight_pressure = false;
+            highlight_pressure_font = false;
             highlight_number_target = false;
             highlight_number_target_font = false;
             highlight_pointer = false;
@@ -231,6 +263,52 @@ namespace ControlLibrary
 
             highlight_number = false;
             highlight_number_font = true;
+            highlight_pressure = false;
+            highlight_pressure_font = false;
+            highlight_number_target = false;
+            highlight_number_target_font = false;
+            highlight_pointer = false;
+            highlight_icon = false;
+
+            SelectElement();
+
+            if (SelectChanged != null)
+            {
+                EventArgs eventArgs = new EventArgs();
+                SelectChanged(this, eventArgs);
+            }
+        }
+
+        private void panel_Pressure_Click(object sender, EventArgs e)
+        {
+            selectedElement = "Pressure";
+
+            highlight_number = false;
+            highlight_number_font = false;
+            highlight_pressure = true;
+            highlight_pressure_font = false;
+            highlight_number_target = false;
+            highlight_number_target_font = false;
+            highlight_pointer = false;
+            highlight_icon = false;
+
+            SelectElement();
+
+            if (SelectChanged != null)
+            {
+                EventArgs eventArgs = new EventArgs();
+                SelectChanged(this, eventArgs);
+            }
+        }
+
+        private void panel_Pressure_Font_Click(object sender, EventArgs e)
+        {
+            selectedElement = "Pressure_Font";
+
+            highlight_number = false;
+            highlight_number_font = false;
+            highlight_pressure = false;
+            highlight_pressure_font = true;
             highlight_number_target = false;
             highlight_number_target_font = false;
             highlight_pointer = false;
@@ -251,6 +329,8 @@ namespace ControlLibrary
 
             highlight_number = false;
             highlight_number_font = false;
+            highlight_pressure = false;
+            highlight_pressure_font = false;
             highlight_number_target = true;
             highlight_number_target_font = false;
             highlight_pointer = false;
@@ -271,6 +351,8 @@ namespace ControlLibrary
 
             highlight_number = false;
             highlight_number_font = false;
+            highlight_pressure = false;
+            highlight_pressure_font = false;
             highlight_number_target = false;
             highlight_number_target_font = true;
             highlight_pointer = false;
@@ -291,6 +373,8 @@ namespace ControlLibrary
 
             highlight_number = false;
             highlight_number_font = false;
+            highlight_pressure = false;
+            highlight_pressure_font = false;
             highlight_number_target = false;
             highlight_number_target_font = false;
             highlight_pointer = true;
@@ -311,6 +395,8 @@ namespace ControlLibrary
 
             highlight_number = false;
             highlight_number_font = false;
+            highlight_pressure = false;
+            highlight_pressure_font = false;
             highlight_number_target = false;
             highlight_number_target_font = false;
             highlight_pointer = false;
@@ -455,9 +541,9 @@ namespace ControlLibrary
 
             pictureBox_Del.Location = new Point(button_ElementName.Width - pictureBox_Del.Width - 4, 2);
 
-            if (tableLayoutPanel1.Height > 190)
+            if (tableLayoutPanel1.Height > 250)
             {
-                float currentDPI = tableLayoutPanel1.Height / 151f;
+                float currentDPI = tableLayoutPanel1.Height / 201f;
                 button_ElementName.Image = (Image)(new Bitmap(button_ElementName.Image,
                     new Size((int)(16 * currentDPI), (int)(16 * currentDPI))));
 
@@ -563,6 +649,12 @@ namespace ControlLibrary
                 case "Number_Font":
                     checkBox_Number_Font.Checked = status;
                     break;
+                case "Pressure":
+                    checkBox_Pressure.Checked = status;
+                    break;
+                case "Pressure_Font":
+                    checkBox_Pressure_Font.Checked = status;
+                    break;
                 case "Number_Target":
                     checkBox_Number_Target.Checked = status;
                     break;
@@ -596,6 +688,12 @@ namespace ControlLibrary
                             break;
                         case "Number_Font":
                             panel = panel_Number_Font;
+                            break;
+                        case "Pressure":
+                            panel = panel_Pressure;
+                            break;
+                        case "Pressure_Font":
+                            panel = panel_Pressure_Font;
                             break;
                         case "Number_Target":
                             panel = panel_Number_Target;
@@ -657,6 +755,12 @@ namespace ControlLibrary
                     case "panel_Number_Font":
                         elementOptions.Add("Number_Font", count - i);
                         break;
+                    case "panel_Pressure":
+                        elementOptions.Add("Pressure", count - i);
+                        break;
+                    case "panel_Pressure_Font":
+                        elementOptions.Add("Pressure_Font", count - i);
+                        break;
                     case "panel_Number_Target":
                         elementOptions.Add("Number_Target", count - i);
                         break;
@@ -684,12 +788,16 @@ namespace ControlLibrary
             elementOptions.Add(index++, "Pointer");
             elementOptions.Add(index++, "Number_Target_Font");
             elementOptions.Add(index++, "Number_Target");
+            elementOptions.Add(index++, "Pressure_Font");
+            elementOptions.Add(index++, "Pressure");
             elementOptions.Add(index++, "Number_Font");
             elementOptions.Add(index++, "Number");
             SetOptionsPosition(elementOptions);
 
             checkBox_Number.Checked = false;
             checkBox_Number_Font.Checked = false;
+            checkBox_Pressure.Checked = false;
+            checkBox_Pressure_Font.Checked = false;
             checkBox_Number_Target.Checked = false;
             checkBox_Number_Target_Font.Checked = false;
             checkBox_Pointer.Checked = false;

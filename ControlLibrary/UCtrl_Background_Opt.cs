@@ -20,7 +20,7 @@ namespace ControlLibrary
         private bool AODmode;
         private bool Editable_background_mode;
         public Object _Background;
-        private int ID;
+        private long ID;
 
         [Description("Отображается на экране AOD")]
         public bool AOD
@@ -85,13 +85,13 @@ namespace ControlLibrary
         }
 
         /// <summary>Получаем ID</summary>
-        public int GetID()
+        public long GetID()
         {
             return ID;
         }
 
         /// <summary>Устанавливаем ID</summary>
-        public void SetID(int id)
+        public void SetID(long id)
         {
             if (id > 999 && id < 10000000)
             {

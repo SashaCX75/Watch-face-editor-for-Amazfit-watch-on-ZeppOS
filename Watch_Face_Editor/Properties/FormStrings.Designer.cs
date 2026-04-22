@@ -925,6 +925,15 @@ namespace Watch_Face_Editor.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Нельзя уменьшать номер версии циферблата..
+        /// </summary>
+        internal static string Message_Warning_Version_Lower {
+            get {
+                return ResourceManager.GetString("Message_Warning_Version_Lower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Каталог .
         /// </summary>
         internal static string Message_WarningConverting_Text1 {

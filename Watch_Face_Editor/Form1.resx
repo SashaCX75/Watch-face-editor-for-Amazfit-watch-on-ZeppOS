@@ -1615,7 +1615,7 @@
     <value>Fill</value>
   </data>
   <data name="panel_UC_Background.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 1876</value>
+    <value>0, 1870</value>
   </data>
   <data name="panel_UC_Background.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -3133,7 +3133,7 @@
     <value>Fill</value>
   </data>
   <data name="panel_UC_Animation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 1842</value>
+    <value>0, 1836</value>
   </data>
   <data name="panel_UC_Animation.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -3529,7 +3529,7 @@
     <value>Fill</value>
   </data>
   <data name="panel_UC_JS.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 1808</value>
+    <value>0, 1802</value>
   </data>
   <data name="panel_UC_JS.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -4741,7 +4741,7 @@
     <value>3, 3, 3, 3</value>
   </data>
   <data name="uCtrl_TextWidgets_Elm.Size" type="System.Drawing.Size, System.Drawing">
-    <value>225, 34</value>
+    <value>231, 34</value>
   </data>
   <data name="uCtrl_TextWidgets_Elm.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -4765,10 +4765,13 @@
     <value>Top</value>
   </data>
   <data name="panel_UC_TextWidgets.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 1771</value>
+    <value>0, 1768</value>
+  </data>
+  <data name="panel_UC_TextWidgets.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
   </data>
   <data name="panel_UC_TextWidgets.Size" type="System.Drawing.Size, System.Drawing">
-    <value>225, 34</value>
+    <value>231, 34</value>
   </data>
   <data name="panel_UC_TextWidgets.TabIndex" type="System.Int32, mscorlib">
     <value>138</value>
@@ -4795,7 +4798,7 @@
     <value>56</value>
   </data>
   <data name="tableLayoutPanel_ElemetsWatchFace.Size" type="System.Drawing.Size, System.Drawing">
-    <value>231, 1910</value>
+    <value>231, 1904</value>
   </data>
   <data name="tableLayoutPanel_ElemetsWatchFace.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -6820,10 +6823,10 @@
     <value>390 (Active)</value>
   </data>
   <data name="comboBox_ConvertingOutput_Model.Items6" xml:space="preserve">
-    <value>390 (Cheetah (Square))</value>
+    <value>390 (Bip 6)</value>
   </data>
   <data name="comboBox_ConvertingOutput_Model.Items7" xml:space="preserve">
-    <value>390 (Bip 6)</value>
+    <value>390 (Cheetah (Square))</value>
   </data>
   <data name="comboBox_ConvertingOutput_Model.Items8" xml:space="preserve">
     <value>390 (GTS 3)</value>
@@ -6853,28 +6856,37 @@
     <value>466 (Active 2)</value>
   </data>
   <data name="comboBox_ConvertingOutput_Model.Items17" xml:space="preserve">
-    <value>466 (GTR 4)</value>
+    <value>466 (Active 3 Premium)</value>
   </data>
   <data name="comboBox_ConvertingOutput_Model.Items18" xml:space="preserve">
-    <value>466 (T-Rex 3 Pro 44mm)</value>
+    <value>466 (GTR 4)</value>
   </data>
   <data name="comboBox_ConvertingOutput_Model.Items19" xml:space="preserve">
-    <value>480 (Balance)</value>
+    <value>466 (T-Rex 3 Pro 44mm)</value>
   </data>
   <data name="comboBox_ConvertingOutput_Model.Items20" xml:space="preserve">
-    <value>480 (Balance 2)</value>
+    <value>480 (Active Max)</value>
   </data>
   <data name="comboBox_ConvertingOutput_Model.Items21" xml:space="preserve">
-    <value>480 (Cheetah Pro)</value>
+    <value>480 (Balance)</value>
   </data>
   <data name="comboBox_ConvertingOutput_Model.Items22" xml:space="preserve">
-    <value>480 (GTR 3 Pro)</value>
+    <value>480 (Balance 2)</value>
   </data>
   <data name="comboBox_ConvertingOutput_Model.Items23" xml:space="preserve">
-    <value>480 (T-Rex 3)</value>
+    <value>480 (Cheetah Pro)</value>
   </data>
   <data name="comboBox_ConvertingOutput_Model.Items24" xml:space="preserve">
+    <value>480 (GTR 3 Pro)</value>
+  </data>
+  <data name="comboBox_ConvertingOutput_Model.Items25" xml:space="preserve">
+    <value>480 (T-Rex 3)</value>
+  </data>
+  <data name="comboBox_ConvertingOutput_Model.Items26" xml:space="preserve">
     <value>480 (T-Rex 3 Pro 48mm)</value>
+  </data>
+  <data name="comboBox_ConvertingOutput_Model.Items27" xml:space="preserve">
+    <value>480 (T-Rex Ultra 2)</value>
   </data>
   <data name="comboBox_ConvertingOutput_Model.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 18</value>
@@ -6997,28 +7009,37 @@
     <value>466 (Active 2)</value>
   </data>
   <data name="comboBox_ConvertingInput_Model.Items17" xml:space="preserve">
-    <value>466 (GTR 4)</value>
+    <value>466 (Active 3 Premium)</value>
   </data>
   <data name="comboBox_ConvertingInput_Model.Items18" xml:space="preserve">
-    <value>466 (T-Rex 3 Pro 44mm)</value>
+    <value>466 (GTR 4)</value>
   </data>
   <data name="comboBox_ConvertingInput_Model.Items19" xml:space="preserve">
-    <value>480 (Balance)</value>
+    <value>466 (T-Rex 3 Pro 44mm)</value>
   </data>
   <data name="comboBox_ConvertingInput_Model.Items20" xml:space="preserve">
-    <value>480 (Balance 2)</value>
+    <value>480 (Active Max)</value>
   </data>
   <data name="comboBox_ConvertingInput_Model.Items21" xml:space="preserve">
-    <value>480 (Cheetah Pro)</value>
+    <value>480 (Balance)</value>
   </data>
   <data name="comboBox_ConvertingInput_Model.Items22" xml:space="preserve">
-    <value>480 (GTR 3 Pro)</value>
+    <value>480 (Balance 2)</value>
   </data>
   <data name="comboBox_ConvertingInput_Model.Items23" xml:space="preserve">
-    <value>480 (T-Rex 3)</value>
+    <value>480 (Cheetah Pro)</value>
   </data>
   <data name="comboBox_ConvertingInput_Model.Items24" xml:space="preserve">
+    <value>480 (GTR 3 Pro)</value>
+  </data>
+  <data name="comboBox_ConvertingInput_Model.Items25" xml:space="preserve">
+    <value>480 (T-Rex 3)</value>
+  </data>
+  <data name="comboBox_ConvertingInput_Model.Items26" xml:space="preserve">
     <value>480 (T-Rex 3 Pro 48mm)</value>
+  </data>
+  <data name="comboBox_ConvertingInput_Model.Items27" xml:space="preserve">
+    <value>480 (T-Rex Ultra 2)</value>
   </data>
   <data name="comboBox_ConvertingInput_Model.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 18</value>
@@ -7116,6 +7137,36 @@
   <data name="&gt;&gt;tabPageConverting.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="button_createZAB.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="button_createZAB.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="button_createZAB.Location" type="System.Drawing.Point, System.Drawing">
+    <value>253, 577</value>
+  </data>
+  <data name="button_createZAB.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 23</value>
+  </data>
+  <data name="button_createZAB.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="button_createZAB.Text" xml:space="preserve">
+    <value>Создать *.zab файл</value>
+  </data>
+  <data name="&gt;&gt;button_createZAB.Name" xml:space="preserve">
+    <value>button_createZAB</value>
+  </data>
+  <data name="&gt;&gt;button_createZAB.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button_createZAB.Parent" xml:space="preserve">
+    <value>tabPage_Settings</value>
+  </data>
+  <data name="&gt;&gt;button_createZAB.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="checkBox_DevelopmentMode.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -7141,7 +7192,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;checkBox_DevelopmentMode.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="label_AutoSave.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -7171,7 +7222,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;label_AutoSave.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="numericUpDown_AutoSave_Time.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -7195,7 +7246,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;numericUpDown_AutoSave_Time.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="checkBox_AutoSave.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -7225,7 +7276,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;checkBox_AutoSave.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="checkBox_Del_Confirm.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -7255,7 +7306,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;checkBox_Del_Confirm.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="checkBox_CreateZPK.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -7285,7 +7336,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;checkBox_CreateZPK.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="numericUpDown_ARGB_color_count.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -7432,7 +7483,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;groupBox4.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="button_SavePNG_button.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -7576,7 +7627,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="comboBox_Animation_Preview_Speed.Items" xml:space="preserve">
     <value>10</value>
@@ -7615,7 +7666,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;comboBox_Animation_Preview_Speed.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="button_Reset.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -7645,7 +7696,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;button_Reset.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="numericUpDown_Gif_Speed.Location" type="System.Drawing.Point, System.Drawing">
     <value>595, 363</value>
@@ -7666,7 +7717,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;numericUpDown_Gif_Speed.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="checkBox_AllWidgetsInGif.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -7699,7 +7750,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;checkBox_AllWidgetsInGif.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="button_WatchSkin_PathGet.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -7810,7 +7861,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="label355.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -7840,7 +7891,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;label355.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="checkBox_ShowIn12hourFormat.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -7870,7 +7921,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;checkBox_ShowIn12hourFormat.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>15</value>
   </data>
   <data name="button_SavePNG_shortcut.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -8047,7 +8098,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;groupBox8.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>16</value>
   </data>
   <data name="checkBox_JsonWarnings.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8080,7 +8131,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;checkBox_JsonWarnings.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>17</value>
   </data>
   <data name="comboBox_Language.Items" xml:space="preserve">
     <value>Čeština</value>
@@ -8128,7 +8179,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;comboBox_Language.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>18</value>
   </data>
   <data name="label356.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8158,7 +8209,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;label356.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>19</value>
   </data>
   <data name="radioButton_Settings_Pack_DoNotning.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8272,7 +8323,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;groupBox7.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>20</value>
   </data>
   <data name="button_PreviewStates_PathGet.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -8473,7 +8524,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;groupBox6.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>21</value>
   </data>
   <data name="radioButton_Settings_AfterUnpack_DoNothing.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8587,7 +8638,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;groupBox5.ZOrder" xml:space="preserve">
-    <value>21</value>
+    <value>22</value>
   </data>
   <data name="radioButton_Settings_Unpack_Replace.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8701,7 +8752,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>22</value>
+    <value>23</value>
   </data>
   <data name="label483.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8733,7 +8784,7 @@
     <value>tabPage_Settings</value>
   </data>
   <data name="&gt;&gt;label483.ZOrder" xml:space="preserve">
-    <value>23</value>
+    <value>24</value>
   </data>
   <data name="tabPage_Settings.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -10181,7 +10232,7 @@ Ukrainian - kartoris82</value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACk
-        DQAAAk1TRnQBSQFMAgEBBgEAAWwBRAFsAUQBEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        DQAAAk1TRnQBSQFMAgEBBgEAAdgBRAHYAUQBEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAASADAAEBAQABCAYAAQgYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA

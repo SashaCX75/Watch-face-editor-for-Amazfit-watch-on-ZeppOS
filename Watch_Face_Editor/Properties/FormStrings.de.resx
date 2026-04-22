@@ -414,6 +414,9 @@
   <data name="Message_Warning_JS_Exist1" xml:space="preserve">
     <value>Ein Ordner mit JS-Dateien ist bereits in diesem Ordner vorhanden.</value>
   </data>
+  <data name="Message_Warning_Version_Lower" xml:space="preserve">
+    <value>Nicht die Versionsnummer des Ziffernblattes reduzieren.</value>
+  </data>
   <data name="Message_Widget_Exists" xml:space="preserve">
     <value>Ein solches Element gibt es bereits auf dem Zifferblatt der Uhr.</value>
   </data>

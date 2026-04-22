@@ -414,6 +414,9 @@
   <data name="Message_Warning_JS_Exist1" xml:space="preserve">
     <value>A folder with JS files already exists in this folder.</value>
   </data>
+  <data name="Message_Warning_Version_Lower" xml:space="preserve">
+    <value>Do not reduce the version number of the watch face.</value>
+  </data>
   <data name="Message_Widget_Exists" xml:space="preserve">
     <value>Such a widget already exists in the watch face.</value>
   </data>

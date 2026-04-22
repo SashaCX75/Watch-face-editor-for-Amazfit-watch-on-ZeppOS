@@ -414,6 +414,9 @@
   <data name="Message_Warning_JS_Exist1" xml:space="preserve">
     <value>У цій папці вже існує папка з JS файлами.</value>
   </data>
+  <data name="Message_Warning_Version_Lower" xml:space="preserve">
+    <value>Не можна зменшувати номер версії циферблата.</value>
+  </data>
   <data name="Message_Widget_Exists" xml:space="preserve">
     <value>Такий віджет вже є в циферблаті.</value>
   </data>

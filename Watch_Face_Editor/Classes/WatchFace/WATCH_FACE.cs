@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Watch_Face_Editor
 {
-    class WATCH_FACE
+    public class WATCH_FACE
     {
         /// <summary>Модель часов и ID циферблата</summary>
         public WatchFace_Info WatchFace_Info { get; set; }
@@ -45,10 +45,16 @@ namespace Watch_Face_Editor
         public string DeviceName { get; set; }
 
         /// <summary>Id циферблата</summary>
-        public int WatchFaceId { get; set; } = 1234567;
+        public long WatchFaceId { get; set; } = 1234567;
 
         /// <summary>Изображение предпросмотра</summary>
         public string Preview { get; set; }
+
+        /// <summary>Имя циферблата</summary>
+        public string WatchFaceName { get; set; }
+
+        /// <summary>Версия циферблата</summary>
+        public int WatchFaceVersion { get; set; } = 1;
     }
 
     public class ScreenNormal
@@ -8525,6 +8531,8 @@ namespace Watch_Face_Editor
 
         public hmUI_widget_IMG_NUMBER Number { get; set; }
         public hmUI_widget_TEXT Number_Font { get; set; }
+        public hmUI_widget_IMG_NUMBER Pressure { get; set; }
+        public hmUI_widget_TEXT Pressure_Font { get; set; }
         public hmUI_widget_IMG_NUMBER Number_Target { get; set; }
         public hmUI_widget_TEXT Number_Target_Font { get; set; }
         public hmUI_widget_IMG_POINTER Pointer { get; set; }
@@ -8600,6 +8608,77 @@ namespace Watch_Face_Editor
                     visible = this.Number_Font.visible,
                     show_level = this.Number_Font.show_level,
                     type = this.Number_Font.type,
+                };
+            }
+
+            hmUI_widget_IMG_NUMBER Pressure = null;
+            if (this.Pressure != null)
+            {
+                Pressure = new hmUI_widget_IMG_NUMBER
+                {
+                    imageX = this.Pressure.imageX,
+                    imageY = this.Pressure.imageY,
+                    space = this.Pressure.space,
+                    angle = this.Pressure.angle,
+                    zero = this.Pressure.zero,
+                    align = this.Pressure.align,
+                    img_First = this.Pressure.img_First,
+                    unit = this.Pressure.unit,
+                    imperial_unit = this.Pressure.imperial_unit,
+                    icon = this.Pressure.icon,
+                    iconPosX = this.Pressure.iconPosX,
+                    iconPosY = this.Pressure.iconPosY,
+                    negative_image = this.Pressure.negative_image,
+                    invalid_image = this.Pressure.invalid_image,
+                    dot_image = this.Pressure.dot_image,
+                    follow = this.Pressure.follow,
+                    alpha = this.Pressure.alpha,
+                    icon_alpha = this.Pressure.icon_alpha,
+
+                    position = this.Pressure.position,
+                    visible = this.Pressure.visible,
+                    show_level = this.Pressure.show_level,
+                    type = this.Pressure.type,
+                };
+            }
+
+            hmUI_widget_TEXT Pressure_Font = null;
+            if (this.Pressure_Font != null)
+            {
+                Pressure_Font = new hmUI_widget_TEXT
+                {
+                    x = this.Pressure_Font.x,
+                    y = this.Pressure_Font.y,
+                    w = this.Pressure_Font.w,
+                    h = this.Pressure_Font.h,
+                    color = this.Pressure_Font.color,
+                    color_2 = this.Pressure_Font.color_2,
+                    use_color_2 = this.Pressure_Font.use_color_2,
+                    align_h = this.Pressure_Font.align_h,
+                    align_v = this.Pressure_Font.align_v,
+                    text_size = this.Pressure_Font.text_size,
+                    text_style = this.Pressure_Font.text_style,
+                    line_space = this.Pressure_Font.line_space,
+                    char_space = this.Pressure_Font.char_space,
+                    font = this.Pressure_Font.font,
+                    padding = this.Pressure_Font.padding,
+                    unit_type = this.Pressure_Font.unit_type,
+                    unit_string = this.Pressure_Font.unit_string,
+                    unit_end = this.Pressure_Font.unit_end,
+                    centreHorizontally = this.Pressure_Font.centreHorizontally,
+                    centreVertically = this.Pressure_Font.centreVertically,
+                    alpha = this.Pressure_Font.alpha,
+
+                    use_text_circle = this.Pressure_Font.use_text_circle,
+                    radius = this.Pressure_Font.radius,
+                    start_angle = this.Pressure_Font.start_angle,
+                    end_angle = this.Pressure_Font.end_angle,
+                    mode = this.Pressure_Font.mode,
+
+                    position = this.Pressure_Font.position,
+                    visible = this.Pressure_Font.visible,
+                    show_level = this.Pressure_Font.show_level,
+                    type = this.Pressure_Font.type,
                 };
             }
 
@@ -8725,6 +8804,8 @@ namespace Watch_Face_Editor
 
                 Number = Number,
                 Number_Font = Number_Font,
+                Pressure = Pressure,
+                Pressure_Font = Pressure_Font,
                 Number_Target = Number_Target,
                 Number_Target_Font = Number_Target_Font,
                 Pointer = Pointer,
@@ -9177,6 +9258,8 @@ namespace Watch_Face_Editor
         public hmUI_widget_IMG_PROGRESS Segments { get; set; }
         public hmUI_widget_IMG_NUMBER Number { get; set; }
         public hmUI_widget_TEXT Number_Font { get; set; }
+        public hmUI_widget_IMG_NUMBER Wind_Speed { get; set; }
+        public hmUI_widget_TEXT Wind_Speed_Font { get; set; }
         public hmUI_widget_IMG_POINTER Pointer { get; set; }
         public hmUI_widget_IMG_LEVEL Direction { get; set; }
         public hmUI_widget_IMG Icon { get; set; }
@@ -9291,6 +9374,77 @@ namespace Watch_Face_Editor
                 };
             }
 
+            hmUI_widget_IMG_NUMBER Wind_Speed = null;
+            if (this.Wind_Speed != null)
+            {
+                Wind_Speed = new hmUI_widget_IMG_NUMBER
+                {
+                    imageX = this.Wind_Speed.imageX,
+                    imageY = this.Wind_Speed.imageY,
+                    space = this.Wind_Speed.space,
+                    angle = this.Wind_Speed.angle,
+                    zero = this.Wind_Speed.zero,
+                    align = this.Wind_Speed.align,
+                    img_First = this.Wind_Speed.img_First,
+                    unit = this.Wind_Speed.unit,
+                    imperial_unit = this.Wind_Speed.imperial_unit,
+                    icon = this.Wind_Speed.icon,
+                    iconPosX = this.Wind_Speed.iconPosX,
+                    iconPosY = this.Wind_Speed.iconPosY,
+                    negative_image = this.Wind_Speed.negative_image,
+                    invalid_image = this.Wind_Speed.invalid_image,
+                    dot_image = this.Wind_Speed.dot_image,
+                    follow = this.Wind_Speed.follow,
+                    alpha = this.Wind_Speed.alpha,
+                    icon_alpha = this.Wind_Speed.icon_alpha,
+
+                    position = this.Wind_Speed.position,
+                    visible = this.Wind_Speed.visible,
+                    show_level = this.Wind_Speed.show_level,
+                    type = this.Wind_Speed.type,
+                };
+            }
+
+            hmUI_widget_TEXT Wind_Speed_Font = null;
+            if (this.Wind_Speed_Font != null)
+            {
+                Wind_Speed_Font = new hmUI_widget_TEXT
+                {
+                    x = this.Wind_Speed_Font.x,
+                    y = this.Wind_Speed_Font.y,
+                    w = this.Wind_Speed_Font.w,
+                    h = this.Wind_Speed_Font.h,
+                    color = this.Wind_Speed_Font.color,
+                    color_2 = this.Wind_Speed_Font.color_2,
+                    use_color_2 = this.Wind_Speed_Font.use_color_2,
+                    align_h = this.Wind_Speed_Font.align_h,
+                    align_v = this.Wind_Speed_Font.align_v,
+                    text_size = this.Wind_Speed_Font.text_size,
+                    text_style = this.Wind_Speed_Font.text_style,
+                    line_space = this.Wind_Speed_Font.line_space,
+                    char_space = this.Wind_Speed_Font.char_space,
+                    font = this.Wind_Speed_Font.font,
+                    padding = this.Wind_Speed_Font.padding,
+                    unit_type = this.Wind_Speed_Font.unit_type,
+                    unit_string = this.Wind_Speed_Font.unit_string,
+                    unit_end = this.Wind_Speed_Font.unit_end,
+                    centreHorizontally = this.Wind_Speed_Font.centreHorizontally,
+                    centreVertically = this.Wind_Speed_Font.centreVertically,
+                    alpha = this.Wind_Speed_Font.alpha,
+
+                    use_text_circle = this.Wind_Speed_Font.use_text_circle,
+                    radius = this.Wind_Speed_Font.radius,
+                    start_angle = this.Wind_Speed_Font.start_angle,
+                    end_angle = this.Wind_Speed_Font.end_angle,
+                    mode = this.Wind_Speed_Font.mode,
+
+                    position = this.Wind_Speed_Font.position,
+                    visible = this.Wind_Speed_Font.visible,
+                    show_level = this.Wind_Speed_Font.show_level,
+                    type = this.Wind_Speed_Font.type,
+                };
+            }
+
             hmUI_widget_IMG_POINTER Pointer = null;
             if (this.Pointer != null)
             {
@@ -9363,6 +9517,8 @@ namespace Watch_Face_Editor
                 Segments = Segments,
                 Number = Number,
                 Number_Font = Number_Font,
+                Wind_Speed = Wind_Speed,
+                Wind_Speed_Font = Wind_Speed_Font,
                 Pointer = Pointer,
                 Direction = Direction,
                 Icon = Icon,

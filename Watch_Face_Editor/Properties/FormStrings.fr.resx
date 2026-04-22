@@ -414,6 +414,9 @@
   <data name="Message_Warning_JS_Exist1" xml:space="preserve">
     <value>Il existe déjà un dossier contenant des fichiers JS dans ce dossier.</value>
   </data>
+  <data name="Message_Warning_Version_Lower" xml:space="preserve">
+    <value>Ne réduisez pas le numéro de version du cadran.</value>
+  </data>
   <data name="Message_Widget_Exists" xml:space="preserve">
     <value>Widget déjà présent dans le cadran de la montre.</value>
   </data>

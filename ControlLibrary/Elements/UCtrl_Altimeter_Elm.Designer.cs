@@ -31,6 +31,12 @@ namespace ControlLibrary
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCtrl_Altimeter_Elm));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel_Pressure_Font = new System.Windows.Forms.Panel();
+            this.button_Pressure_Font = new System.Windows.Forms.Button();
+            this.checkBox_Pressure_Font = new System.Windows.Forms.CheckBox();
+            this.panel_Pressure = new System.Windows.Forms.Panel();
+            this.button_Pressure = new System.Windows.Forms.Button();
+            this.checkBox_Pressure = new System.Windows.Forms.CheckBox();
             this.panel_Number_Target_Font = new System.Windows.Forms.Panel();
             this.button_Number_Target_Font = new System.Windows.Forms.Button();
             this.checkBox_Number_Target_Font = new System.Windows.Forms.CheckBox();
@@ -56,6 +62,8 @@ namespace ControlLibrary
             this.pictureBox_Del = new System.Windows.Forms.PictureBox();
             this.button_ElementName = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
+            this.panel_Pressure_Font.SuspendLayout();
+            this.panel_Pressure.SuspendLayout();
             this.panel_Number_Target_Font.SuspendLayout();
             this.panel_Number_Target.SuspendLayout();
             this.panel_Number_Font.SuspendLayout();
@@ -73,15 +81,83 @@ namespace ControlLibrary
             // 
             resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
             this.tableLayoutPanel1.AllowDrop = true;
-            this.tableLayoutPanel1.Controls.Add(this.panel_Number_Target_Font, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.panel_Number_Target, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.panel_Pressure_Font, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.panel_Pressure, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.panel_Number_Target_Font, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.panel_Number_Target, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.panel_Number_Font, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.panel_Number, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.panel_Pointer, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.panel_Icon, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.panel_Pointer, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.panel_Icon, 0, 7);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.DragDrop += new System.Windows.Forms.DragEventHandler(this.tableLayoutPanel1_DragDrop);
             this.tableLayoutPanel1.DragOver += new System.Windows.Forms.DragEventHandler(this.tableLayoutPanel1_DragOver);
+            // 
+            // panel_Pressure_Font
+            // 
+            resources.ApplyResources(this.panel_Pressure_Font, "panel_Pressure_Font");
+            this.panel_Pressure_Font.BackColor = System.Drawing.SystemColors.Control;
+            this.panel_Pressure_Font.Controls.Add(this.button_Pressure_Font);
+            this.panel_Pressure_Font.Controls.Add(this.checkBox_Pressure_Font);
+            this.panel_Pressure_Font.Name = "panel_Pressure_Font";
+            this.panel_Pressure_Font.Click += new System.EventHandler(this.panel_Pressure_Font_Click);
+            this.panel_Pressure_Font.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Control_MouseDown);
+            this.panel_Pressure_Font.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Control_MouseMove);
+            this.panel_Pressure_Font.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Control_MouseUp);
+            // 
+            // button_Pressure_Font
+            // 
+            resources.ApplyResources(this.button_Pressure_Font, "button_Pressure_Font");
+            this.button_Pressure_Font.FlatAppearance.BorderSize = 0;
+            this.button_Pressure_Font.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.button_Pressure_Font.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.button_Pressure_Font.Image = global::ControlLibrary.Properties.Resources.text_fields;
+            this.button_Pressure_Font.Name = "button_Pressure_Font";
+            this.button_Pressure_Font.UseVisualStyleBackColor = true;
+            this.button_Pressure_Font.Click += new System.EventHandler(this.panel_Pressure_Font_Click);
+            this.button_Pressure_Font.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Control_MouseDown);
+            this.button_Pressure_Font.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Control_MouseMove);
+            this.button_Pressure_Font.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Control_MouseUp);
+            // 
+            // checkBox_Pressure_Font
+            // 
+            resources.ApplyResources(this.checkBox_Pressure_Font, "checkBox_Pressure_Font");
+            this.checkBox_Pressure_Font.Name = "checkBox_Pressure_Font";
+            this.checkBox_Pressure_Font.UseVisualStyleBackColor = true;
+            this.checkBox_Pressure_Font.CheckedChanged += new System.EventHandler(this.checkBox_Elements_CheckedChanged);
+            // 
+            // panel_Pressure
+            // 
+            resources.ApplyResources(this.panel_Pressure, "panel_Pressure");
+            this.panel_Pressure.BackColor = System.Drawing.SystemColors.Control;
+            this.panel_Pressure.Controls.Add(this.button_Pressure);
+            this.panel_Pressure.Controls.Add(this.checkBox_Pressure);
+            this.panel_Pressure.Name = "panel_Pressure";
+            this.panel_Pressure.Click += new System.EventHandler(this.panel_Pressure_Click);
+            this.panel_Pressure.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Control_MouseDown);
+            this.panel_Pressure.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Control_MouseMove);
+            this.panel_Pressure.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Control_MouseUp);
+            // 
+            // button_Pressure
+            // 
+            resources.ApplyResources(this.button_Pressure, "button_Pressure");
+            this.button_Pressure.FlatAppearance.BorderSize = 0;
+            this.button_Pressure.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.button_Pressure.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.button_Pressure.Image = global::ControlLibrary.Properties.Resources.text_icon;
+            this.button_Pressure.Name = "button_Pressure";
+            this.button_Pressure.UseVisualStyleBackColor = true;
+            this.button_Pressure.Click += new System.EventHandler(this.panel_Pressure_Click);
+            this.button_Pressure.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Control_MouseDown);
+            this.button_Pressure.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Control_MouseMove);
+            this.button_Pressure.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Control_MouseUp);
+            // 
+            // checkBox_Pressure
+            // 
+            resources.ApplyResources(this.checkBox_Pressure, "checkBox_Pressure");
+            this.checkBox_Pressure.Name = "checkBox_Pressure";
+            this.checkBox_Pressure.UseVisualStyleBackColor = true;
+            this.checkBox_Pressure.CheckedChanged += new System.EventHandler(this.checkBox_Elements_CheckedChanged);
             // 
             // panel_Number_Target_Font
             // 
@@ -345,6 +421,10 @@ namespace ControlLibrary
             this.Controls.Add(this.button_ElementName);
             this.Name = "UCtrl_Altimeter_Elm";
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.panel_Pressure_Font.ResumeLayout(false);
+            this.panel_Pressure_Font.PerformLayout();
+            this.panel_Pressure.ResumeLayout(false);
+            this.panel_Pressure.PerformLayout();
             this.panel_Number_Target_Font.ResumeLayout(false);
             this.panel_Number_Target_Font.PerformLayout();
             this.panel_Number_Target.ResumeLayout(false);
@@ -394,5 +474,11 @@ namespace ControlLibrary
         private System.Windows.Forms.Panel panel_Number_Target_Font;
         private System.Windows.Forms.Button button_Number_Target_Font;
         public System.Windows.Forms.CheckBox checkBox_Number_Target_Font;
+        private System.Windows.Forms.Panel panel_Pressure_Font;
+        private System.Windows.Forms.Button button_Pressure_Font;
+        public System.Windows.Forms.CheckBox checkBox_Pressure_Font;
+        private System.Windows.Forms.Panel panel_Pressure;
+        private System.Windows.Forms.Button button_Pressure;
+        public System.Windows.Forms.CheckBox checkBox_Pressure;
     }
 }

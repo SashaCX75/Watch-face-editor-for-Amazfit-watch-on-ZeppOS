@@ -133,6 +133,12 @@
     <Compile Include="Classes\WatchFace\WATCH_FACE.cs" />
     <Compile Include="Classes\ConvertingImages\ColorMap.cs" />
     <Compile Include="Classes\ConvertingImages\Footer.cs" />
+    <Compile Include="CreateZAB_dialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateZAB_dialog.Designer.cs">
+      <DependentUpon>CreateZAB_dialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditableElemets.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -265,6 +271,30 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Classes\WatchSkin.cs" />
+    <EmbeddedResource Include="CreateZAB_dialog.cs.resx">
+      <DependentUpon>CreateZAB_dialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateZAB_dialog.de.resx">
+      <DependentUpon>CreateZAB_dialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateZAB_dialog.en.resx">
+      <DependentUpon>CreateZAB_dialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateZAB_dialog.es.resx">
+      <DependentUpon>CreateZAB_dialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateZAB_dialog.fr.resx">
+      <DependentUpon>CreateZAB_dialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateZAB_dialog.it.resx">
+      <DependentUpon>CreateZAB_dialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateZAB_dialog.resx">
+      <DependentUpon>CreateZAB_dialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateZAB_dialog.uk.resx">
+      <DependentUpon>CreateZAB_dialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.cs.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -478,6 +508,9 @@
     <None Include="File_templates\WatchFace.zpk">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="File_templates\WatchFace_package.zab">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -504,6 +537,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Skin\WatchSkin_Active_2_Square.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Skin\WatchSkin_Active_3_Premium.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Skin\WatchSkin_Active_Max.json">
@@ -562,6 +598,9 @@
     <None Include="Skin\WatchSkin_T_Rex_3_Pro_48.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Skin\WatchSkin_T_Rex_3_Ultra_2.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -604,6 +643,9 @@
     <Content Include="Mask\mask_gts_4_mini.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Skin\Skin_Active_3_Premium.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Skin\Skin_Active_Max.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -611,6 +653,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Skin\Skin_T-Rex_3_Pro_48.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skin\Skin_T-Rex_Ultra_2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\apps_icon.png" />

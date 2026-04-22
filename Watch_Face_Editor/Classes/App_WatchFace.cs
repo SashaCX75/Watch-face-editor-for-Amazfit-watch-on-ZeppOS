@@ -9,8 +9,9 @@ namespace Watch_Face_Editor
     public class App_WatchFace
     {
         public string configVersion { get; set; } = "v2";
-        public App app { get; set; }=new App();
-        public List<string> permissions { get; set; } =new List<string> { "gps" };
+        public App app { get; set; } = new App();
+        public List<string> permissions { get; set; } = new List<string>();
+        //public List<string> permissions { get; set; } = new List<string> { "gps" };
         public Runtime runtime { get; set; }= new Runtime();
         public I18n i18n { get; set; } = new I18n();
         public string defaultLanguage { get; set; } = "en-US";
@@ -25,7 +26,7 @@ namespace Watch_Face_Editor
     public class App
     {
         public int appIdType { get; set; } = 0;
-        public int appId { get; set; } = 1234567;
+        public long appId { get; set; } = 1234567;
         public string appName { get; set; } = "AppName";
         public string appType { get; set; } = "watchface";
         public Version version { get; set; } = new Version();

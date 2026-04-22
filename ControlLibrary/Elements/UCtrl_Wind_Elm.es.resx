@@ -117,38 +117,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="button_Pointer.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGeYUxB9wAAACBjSFJNAACH
-        EAAAjBIAAP1NAACBPgAAWesAARIPAAA85gAAGc66ySIyAAABJmlDQ1BBZG9iZSBSR0IgKDE5OTgpAAAo
-        z2NgYDJwdHFyZRJgYMjNKykKcndSiIiMUmA/z8DGwMwABonJxQWOAQE+IHZefl4qAwb4do2BEURf1gWZ
-        xUAa4EouKCoB0n+A2CgltTiZgYHRAMjOLi8pAIozzgGyRZKywewNIHZRSJAzkH0EyOZLh7CvgNhJEPYT
-        ELsI6Akg+wtIfTqYzcQBNgfClgGxS1IrQPYyOOcXVBZlpmeUKBhaWloqOKbkJ6UqBFcWl6TmFit45iXn
-        FxXkFyWWpKYA1ULcBwaCEIWgENMAarTQZKAyAMUDhPU5EBy+jGJnEGIIkFxaVAZlMjIZE+YjzJgjwcDg
-        v5SBgeUPQsykl4FhgQ4DA/9UhJiaIQODgD4Dw745AMDGT/0ZOjZcAAAACXBIWXMAAAsMAAALDAE/QCLI
-        AAAAiklEQVQ4T9WSwQ3DIBAE3QItpCe3kBZSXGpxC2kB33AgInn8Ip+MtNLeasE2Zqu1XvTFu6uhXQ0n
-        R1dDuxpO/nyDR4gB4b2rYVJC4w3w3tVwwsK2GLSrYfIKfbrw3tUwn8pCBoQv2tXwBxvA0icMlg5xD43f
-        iPeuhskzxIDw3tUw4faNM7i5iXU7AR+D/8oPVDlNAAAAAElFTkSuQmCC
-</value>
+  <data name="panel_Direction.ToolTip" xml:space="preserve">
+    <value>N - norte
+NE - noreste
+E - este
+SE - sureste
+S - sur
+SO - suroeste
+W - oeste
+NW - noroeste</value>
   </data>
-  <data name="button_ElementName.Text" xml:space="preserve">
-    <value>Fuerza del viento</value>
+  <data name="button_WindSpeed_Font.Text" xml:space="preserve">
+    <value>Veloc. viento en fuente (km/h)</value>
   </data>
-  <data name="button_Icon.Text" xml:space="preserve">
-    <value>Icono</value>
+  <data name="button_WindSpeed.Text" xml:space="preserve">
+    <value>Velocidad del viento (km/h)</value>
   </data>
-  <data name="button_Images.Text" xml:space="preserve">
-    <value>Imágenes</value>
-  </data>
-  <data name="button_Number.Text" xml:space="preserve">
-    <value>Valores numéricos</value>
-  </data>
-  <data name="button_Pointer.Text" xml:space="preserve">
-    <value>Puntero</value>
-  </data>
-  <data name="button_Segments.Text" xml:space="preserve">
-    <value>Imágenes independientes</value>
+  <data name="button_Number_Font.Text" xml:space="preserve">
+    <value>Valor por fuente</value>
   </data>
   <data name="button_Direction.Text" xml:space="preserve">
     <value>Dirección del viento</value>
@@ -163,17 +149,37 @@ SO - suroeste
 W - oeste
 NW - noroeste</value>
   </data>
-  <data name="panel_Direction.ToolTip" xml:space="preserve">
-    <value>N - norte
-NE - noreste
-E - este
-SE - sureste
-S - sur
-SO - suroeste
-W - oeste
-NW - noroeste</value>
+  <data name="button_Images.Text" xml:space="preserve">
+    <value>Imágenes</value>
   </data>
-  <data name="button_Number_Font.Text" xml:space="preserve">
-    <value>Valor por fuente</value>
+  <data name="button_Segments.Text" xml:space="preserve">
+    <value>Imágenes independientes</value>
+  </data>
+  <data name="button_Number.Text" xml:space="preserve">
+    <value>Valores numéricos</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="button_Pointer.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGeYUxB9wAAACBjSFJNAACH
+        EAAAjBIAAP1NAACBPgAAWesAARIPAAA85gAAGc66ySIyAAABJmlDQ1BBZG9iZSBSR0IgKDE5OTgpAAAo
+        z2NgYDJwdHFyZRJgYMjNKykKcndSiIiMUmA/z8DGwMwABonJxQWOAQE+IHZefl4qAwb4do2BEURf1gWZ
+        xUAa4EouKCoB0n+A2CgltTiZgYHRAMjOLi8pAIozzgGyRZKywewNIHZRSJAzkH0EyOZLh7CvgNhJEPYT
+        ELsI6Akg+wtIfTqYzcQBNgfClgGxS1IrQPYyOOcXVBZlpmeUKBhaWloqOKbkJ6UqBFcWl6TmFit45iXn
+        FxXkFyWWpKYA1ULcBwaCEIWgENMAarTQZKAyAMUDhPU5EBy+jGJnEGIIkFxaVAZlMjIZE+YjzJgjwcDg
+        v5SBgeUPQsykl4FhgQ4DA/9UhJiaIQODgD4Dw745AMDGT/0ZOjZcAAAACXBIWXMAAAsMAAALDAE/QCLI
+        AAAAeklEQVQ4T2P4//8/AzpGAruhGAzQ1YHVogugGXAXikeqAUogPVAMYmOoI2SAIJILQGwMdYQMgBkC
+        1kyOAeUMDAzvoBjExlCHzwCQrSCNsDAAsQXR1dHUAIq9AAMUBWIoUjSC2BjqCBmQhhQGIDaGOkIGgFIf
+        LAxwpkQAH4P/ylVwI1UAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="button_Pointer.Text" xml:space="preserve">
+    <value>Puntero</value>
+  </data>
+  <data name="button_Icon.Text" xml:space="preserve">
+    <value>Icono</value>
+  </data>
+  <data name="button_ElementName.Text" xml:space="preserve">
+    <value>Viento</value>
   </data>
 </root>

@@ -806,7 +806,7 @@ namespace Watch_Face_Editor
                         items += Environment.NewLine + TabInString(6) + "image_top_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                 iconOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                        if (img_icon.alpha != 255) items += Environment.NewLine + TabInString(6) +
+                        if (img_icon.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) +
                                 "image_top_img.setAlpha(" + img_icon.alpha.ToString() + ");" + Environment.NewLine;
                     }
                 }
@@ -2950,9 +2950,6 @@ namespace Watch_Face_Editor
                                     optionNameStart + "digital_clock_img_time = hmUI.createWidget(hmUI.widget.IMG_TIME, {" +
                                         options + TabInString(6) + "});" + Environment.NewLine;
 
-                                //if (DigitalTime_v2.Group_Hour.Number.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
-                                //        "digital_clock_img_time.setAlpha(" + DigitalTime_v2.Group_Hour.Number.alpha.ToString() + ");" + Environment.NewLine;
-
                                 if (optionsHour_separator_v2.Length > 5)
                                 {
                                     variables += TabInString(4) + "let " + optionNameStart +
@@ -2961,7 +2958,7 @@ namespace Watch_Face_Editor
                                         optionNameStart + "digital_clock_hour_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                             optionsHour_separator_v2 + TabInString(6) + "});" + Environment.NewLine;
 
-                                    if (DigitalTime_v2.Group_Hour.Number.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                    if (DigitalTime_v2.Group_Hour.Number.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                             "digital_clock_hour_separator_img.setAlpha(" + DigitalTime_v2.Group_Hour.Number.icon_alpha.ToString() + ");" + Environment.NewLine;
                                 }
 
@@ -2973,7 +2970,7 @@ namespace Watch_Face_Editor
                                         optionNameStart + "digital_clock_minute_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                             optionsMinute_separator_v2 + TabInString(6) + "});" + Environment.NewLine;
 
-                                    if (DigitalTime_v2.Group_Minute.Number.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                    if (DigitalTime_v2.Group_Minute.Number.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                             "digital_clock_minute_separator_img.setAlpha(" + DigitalTime_v2.Group_Minute.Number.icon_alpha.ToString() + ");" + Environment.NewLine;
                                 }
 
@@ -2985,7 +2982,7 @@ namespace Watch_Face_Editor
                                         optionNameStart + "digital_clock_second_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                             optionsSecond_separator_v2 + TabInString(6) + "});" + Environment.NewLine;
 
-                                    if (DigitalTime_v2.Group_Second.Number.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                    if (DigitalTime_v2.Group_Second.Number.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                             "digital_clock_second_separator_img.setAlpha(" + DigitalTime_v2.Group_Second.Number.icon_alpha.ToString() + ");" + Environment.NewLine;
                                 }
 
@@ -3010,9 +3007,6 @@ namespace Watch_Face_Editor
                                         optionNameStart + "digital_clock_img_time_hour = hmUI.createWidget(hmUI.widget.IMG_TIME, {" +
                                             optionsHour_v2 + TabInString(6) + "});" + Environment.NewLine;
 
-                                    //if (DigitalTime_v2.Group_Hour.Number.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
-                                    //        "digital_clock_img_time_hour.setAlpha(" + DigitalTime_v2.Group_Hour.Number.alpha.ToString() + ");" + Environment.NewLine;
-
                                     if (optionsHour_separator_v2.Length > 5)
                                     {
                                         variables += TabInString(4) + "let " + optionNameStart +
@@ -3021,7 +3015,7 @@ namespace Watch_Face_Editor
                                             optionNameStart + "digital_clock_hour_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                                 optionsHour_separator_v2 + TabInString(6) + "});" + Environment.NewLine;
 
-                                        if (DigitalTime_v2.Group_Hour.Number.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                        if (DigitalTime_v2.Group_Hour.Number.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                                 "digital_clock_hour_separator_img.setAlpha(" + DigitalTime_v2.Group_Hour.Number.icon_alpha.ToString() + ");" + Environment.NewLine;
                                     } 
                                 }
@@ -3042,9 +3036,6 @@ namespace Watch_Face_Editor
                                         optionNameStart + "digital_clock_img_time_minute = hmUI.createWidget(hmUI.widget.IMG_TIME, {" +
                                             optionsMinute_v2 + TabInString(6) + "});" + Environment.NewLine;
 
-                                    //if (DigitalTime_v2.Group_Minute.Number.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
-                                    //        "digital_clock_img_time_minute.setAlpha(" + DigitalTime_v2.Group_Minute.Number.alpha.ToString() + ");" + Environment.NewLine;
-
                                     if (optionsMinute_separator_v2.Length > 5)
                                     {
                                         variables += TabInString(4) + "let " + optionNameStart +
@@ -3053,7 +3044,7 @@ namespace Watch_Face_Editor
                                             optionNameStart + "digital_clock_minute_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                                 optionsMinute_separator_v2 + TabInString(6) + "});" + Environment.NewLine;
 
-                                        if (DigitalTime_v2.Group_Minute.Number.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                        if (DigitalTime_v2.Group_Minute.Number.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                                 "digital_clock_minute_separator_img.setAlpha(" + DigitalTime_v2.Group_Minute.Number.icon_alpha.ToString() + ");" + Environment.NewLine;
                                     } 
                                 }
@@ -3074,9 +3065,6 @@ namespace Watch_Face_Editor
                                         optionNameStart + "digital_clock_img_time_second = hmUI.createWidget(hmUI.widget.IMG_TIME, {" +
                                             optionsSecond_v2 + TabInString(6) + "});" + Environment.NewLine;
 
-                                    //if (DigitalTime_v2.Group_Second.Number.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
-                                    //        "digital_clock_img_time_second.setAlpha(" + DigitalTime_v2.Group_Second.Number.alpha.ToString() + ");" + Environment.NewLine;
-
                                     if (optionsSecond_separator_v2.Length > 5)
                                     {
                                         variables += TabInString(4) + "let " + optionNameStart +
@@ -3085,7 +3073,7 @@ namespace Watch_Face_Editor
                                             optionNameStart + "digital_clock_second_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                                 optionsSecond_separator_v2 + TabInString(6) + "});" + Environment.NewLine;
 
-                                        if (DigitalTime_v2.Group_Second.Number.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                        if (DigitalTime_v2.Group_Second.Number.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                                 "digital_clock_second_separator_img.setAlpha(" + DigitalTime_v2.Group_Second.Number.icon_alpha.ToString() + ");" + Environment.NewLine;
                                     } 
                                 }
@@ -3983,7 +3971,7 @@ namespace Watch_Face_Editor
                                 variablesName + " = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
                                     optionsCircleHour + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (TimeCircle.Hour.alpha != 255) items += Environment.NewLine + TabInString(6) + variablesName +
+                            if (TimeCircle.Hour.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + variablesName +
                                     ".setAlpha(" + TimeCircle.Hour.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (TimeCircle.Hour.mirror)
@@ -3994,7 +3982,7 @@ namespace Watch_Face_Editor
                                     variablesName + "_mirror = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
                                         mirrorOptionsCircleHour + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (TimeCircle.Hour.alpha != 255) items += Environment.NewLine + TabInString(6) + variablesName +
+                                if (TimeCircle.Hour.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + variablesName +
                                         "_mirror.setAlpha(" + TimeCircle.Hour.alpha.ToString() + ");" + Environment.NewLine;
                             }
 
@@ -4040,7 +4028,7 @@ namespace Watch_Face_Editor
                                 variablesName + " = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
                                     optionsCircleMinute + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (TimeCircle.Minute.alpha != 255) items += Environment.NewLine + TabInString(6) + variablesName +
+                            if (TimeCircle.Minute.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + variablesName +
                                     ".setAlpha(" + TimeCircle.Minute.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (TimeCircle.Minute.mirror)
@@ -4051,7 +4039,7 @@ namespace Watch_Face_Editor
                                     variablesName + "_mirror = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
                                         mirrorOptionsCircleMinute + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (TimeCircle.Minute.alpha != 255) items += Environment.NewLine + TabInString(6) + variablesName +
+                                if (TimeCircle.Minute.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + variablesName +
                                         "_mirror.setAlpha(" + TimeCircle.Minute.alpha.ToString() + ");" + Environment.NewLine;
                             }
 
@@ -4154,7 +4142,7 @@ namespace Watch_Face_Editor
                                 variablesName + " = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
                                     optionsCircleSecond + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (TimeCircle.Second.alpha != 255) items += Environment.NewLine + TabInString(6) + variablesName +
+                            if (TimeCircle.Second.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + variablesName +
                                     ".setAlpha(" + TimeCircle.Second.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (TimeCircle.Second.mirror)
@@ -4165,7 +4153,7 @@ namespace Watch_Face_Editor
                                     variablesName + "_mirror = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
                                         mirrorOptionsCircleSecond + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (TimeCircle.Second.alpha != 255) items += Environment.NewLine + TabInString(6) + variablesName +
+                                if (TimeCircle.Second.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + variablesName +
                                         "_mirror.setAlpha(" + TimeCircle.Second.alpha.ToString() + ");" + Environment.NewLine;
                             }
 
@@ -4490,13 +4478,14 @@ namespace Watch_Face_Editor
                             }
                             if (resume_call.IndexOf("updateWorldTime(") < 0)
                             {
-                                resume_call += TabInString(8) + "updateWorldTime(true);" + Environment.NewLine;
+                                //resume_call += TabInString(8) + "updateWorldTime(true);" + Environment.NewLine;
                                 resume_call += TabInString(8) + "setTimeout(() => {" + Environment.NewLine;
                                 resume_call += TabInString(9) + "if (worldClock) {" + Environment.NewLine;
                                 resume_call += TabInString(10) + "worldClock.uninit();" + Environment.NewLine;
                                 resume_call += TabInString(10) + "worldClock.init();" + Environment.NewLine;
+                                resume_call += TabInString(10) + "updateWorldTime(true);" + Environment.NewLine;
                                 resume_call += TabInString(9) + "};" + Environment.NewLine;
-                                resume_call += TabInString(8) + "}, 500);" + Environment.NewLine;
+                                resume_call += TabInString(8) + "}, 300);" + Environment.NewLine;
                             }
                         }
 
@@ -4607,13 +4596,14 @@ namespace Watch_Face_Editor
                             }
                             if (resume_call.IndexOf("updateWorldTime(") < 0)
                             {
-                                resume_call += TabInString(8) + "updateWorldTime(true);" + Environment.NewLine;
+                                //resume_call += TabInString(8) + "updateWorldTime(true);" + Environment.NewLine;
                                 resume_call += TabInString(8) + "setTimeout(() => {" + Environment.NewLine;
                                 resume_call += TabInString(9) + "if (worldClock) {" + Environment.NewLine;
                                 resume_call += TabInString(10) + "worldClock.uninit();" + Environment.NewLine;
                                 resume_call += TabInString(10) + "worldClock.init();" + Environment.NewLine;
+                                resume_call += TabInString(10) + "updateWorldTime(true);" + Environment.NewLine;
                                 resume_call += TabInString(9) + "};" + Environment.NewLine;
-                                resume_call += TabInString(8) + "}, 500);" + Environment.NewLine;
+                                resume_call += TabInString(8) + "}, 300);" + Environment.NewLine;
                             }
                         }
 
@@ -4721,13 +4711,14 @@ namespace Watch_Face_Editor
                             }
                             if (resume_call.IndexOf("updateWorldTime(") < 0)
                             {
-                                resume_call += TabInString(8) + "updateWorldTime(true);" + Environment.NewLine;
+                                //resume_call += TabInString(8) + "updateWorldTime(true);" + Environment.NewLine;
                                 resume_call += TabInString(8) + "setTimeout(() => {" + Environment.NewLine;
                                 resume_call += TabInString(9) + "if (worldClock) {" + Environment.NewLine;
                                 resume_call += TabInString(10) + "worldClock.uninit();" + Environment.NewLine;
                                 resume_call += TabInString(10) + "worldClock.init();" + Environment.NewLine;
+                                resume_call += TabInString(10) + "updateWorldTime(true);" + Environment.NewLine;
                                 resume_call += TabInString(9) + "};" + Environment.NewLine;
-                                resume_call += TabInString(8) + "}, 500);" + Environment.NewLine;
+                                resume_call += TabInString(8) + "}, 300);" + Environment.NewLine;
                             }
                         }
 
@@ -4834,13 +4825,14 @@ namespace Watch_Face_Editor
                             }
                             if (resume_call.IndexOf("updateWorldTime(") < 0)
                             {
-                                resume_call += TabInString(8) + "updateWorldTime(true);" + Environment.NewLine;
+                                //resume_call += TabInString(8) + "updateWorldTime(true);" + Environment.NewLine;
                                 resume_call += TabInString(8) + "setTimeout(() => {" + Environment.NewLine;
                                 resume_call += TabInString(9) + "if (worldClock) {" + Environment.NewLine;
                                 resume_call += TabInString(10) + "worldClock.uninit();" + Environment.NewLine;
                                 resume_call += TabInString(10) + "worldClock.init();" + Environment.NewLine;
+                                resume_call += TabInString(10) + "updateWorldTime(true);" + Environment.NewLine;
                                 resume_call += TabInString(9) + "};" + Environment.NewLine;
-                                resume_call += TabInString(8) + "}, 500);" + Environment.NewLine;
+                                resume_call += TabInString(8) + "}, 300);" + Environment.NewLine;
                             }
                         }
 
@@ -4853,7 +4845,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "gmt_icon_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                     iconOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (WorldClock.Icon.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (WorldClock.Icon.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "gmt_icon_img.setAlpha(" + WorldClock.Icon.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -4946,7 +4938,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "date_img_date_day = hmUI.createWidget(hmUI.widget.IMG_DATE, {" +
                                     optionsNumberDay + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (DateDay.Number.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (DateDay.Number.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "date_img_date_day.setAlpha(" + DateDay.Number.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (optionsNumberDay_separator.Length > 5)
@@ -4957,7 +4949,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "date_day_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         optionsNumberDay_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (DateDay.Number.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (DateDay.Number.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "date_day_separator_img.setAlpha(" + DateDay.Number.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -5335,7 +5327,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "date_img_date_month = hmUI.createWidget(hmUI.widget.IMG_DATE, {" +
                                     optionsNumberMonth + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (DateMonth.Number.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (DateMonth.Number.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "date_img_date_month.setAlpha(" + DateMonth.Number.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (optionsNumberMonth_separator.Length > 5)
@@ -5346,7 +5338,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "date_month_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         optionsNumberMonth_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (DateMonth.Number.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (DateMonth.Number.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "date_month_separator_img.setAlpha(" + DateMonth.Number.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -5481,7 +5473,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "date_img_date_month_img = hmUI.createWidget(hmUI.widget.IMG_DATE, {" +
                                     optionsImagesMonth + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (DateMonth.Images.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (DateMonth.Images.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "date_img_date_month_img.setAlpha(" + DateMonth.Images.alpha.ToString() + ");" + Environment.NewLine;
                         }
                     }
@@ -5543,7 +5535,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "date_img_date_year = hmUI.createWidget(hmUI.widget.IMG_DATE, {" +
                                     optionsNumberYear + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (DateYear.Number.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (DateYear.Number.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "date_img_date_year.setAlpha(" + DateYear.Number.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (optionsNumberYear_separator.Length > 5)
@@ -5554,7 +5546,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "date_year_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         optionsNumberYear_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (DateYear.Number.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (DateYear.Number.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "date_year_separator_img.setAlpha(" + DateYear.Number.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -5650,7 +5642,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "year_icon_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                     iconOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (DateYear.Icon.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart + 
+                            if (DateYear.Icon.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart + 
                                     "year_icon_img.setAlpha(" + DateYear.Icon.alpha.ToString() + ");" + Environment.NewLine;
                         }
                     }
@@ -5709,7 +5701,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "date_img_date_week_img = hmUI.createWidget(hmUI.widget.IMG_WEEK, {" +
                                     optionsImagesWeek + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (DateWeek.Images.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (DateWeek.Images.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "date_img_date_week_img.setAlpha(" + DateWeek.Images.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -5824,7 +5816,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "system_clock_img = hmUI.createWidget(hmUI.widget.IMG_STATUS, {" +
                                     optionsStatusAlarm + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Statuses.Alarm.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Statuses.Alarm.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "system_clock_img.setAlpha(" + Statuses.Alarm.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -5837,7 +5829,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "system_disconnect_img = hmUI.createWidget(hmUI.widget.IMG_STATUS, {" +
                                     optionsStatusBluetooth + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Statuses.Bluetooth.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Statuses.Bluetooth.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "system_disconnect_img.setAlpha(" + Statuses.Bluetooth.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -5850,7 +5842,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "system_dnd_img = hmUI.createWidget(hmUI.widget.IMG_STATUS, {" +
                                     optionsStatusDND + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Statuses.DND.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Statuses.DND.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "system_dnd_img.setAlpha(" + Statuses.DND.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -5863,7 +5855,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "system_lock_img = hmUI.createWidget(hmUI.widget.IMG_STATUS, {" +
                                     optionsStatusLock + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Statuses.Lock.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Statuses.Lock.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "system_lock_img.setAlpha(" + Statuses.Lock.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -6547,7 +6539,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "step_image_progress_img_level = hmUI.createWidget(hmUI.widget.IMG_LEVEL, {" +
                                     imagesOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Steps.Images.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Steps.Images.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "step_image_progress_img_level.setAlpha(" + Steps.Images.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -6570,7 +6562,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "step_current_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
                                     numberOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Steps.Number.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Steps.Number.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "step_current_text_img.setAlpha(" + Steps.Number.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (numberOptions_separator.Length > 5)
@@ -6581,7 +6573,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "step_current_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         numberOptions_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (Steps.Number.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (Steps.Number.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "step_current_separator_img.setAlpha(" + Steps.Number.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -6639,7 +6631,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "step_target_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
                                     numberTargetOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Steps.Number_Target.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Steps.Number_Target.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "step_target_text_img.setAlpha(" + Steps.Number_Target.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (numberTargetOptions_separator.Length > 5)
@@ -6650,7 +6642,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "step_target_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         numberTargetOptions_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (Steps.Number_Target.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (Steps.Number_Target.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "step_target_separator_img.setAlpha(" + Steps.Number_Target.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -6724,7 +6716,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "step_circle_scale = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
                                     circleScaleProgressOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Steps.Circle_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Steps.Circle_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "step_circle_scale.setAlpha(" + Steps.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (circle_scale.mirror)
@@ -6736,7 +6728,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "step_circle_scale_mirror = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
                                         circleScaleProgressMirrorOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (Steps.Circle_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (Steps.Circle_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "step_circle_scale_mirror.setAlpha(" + Steps.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
 
                                 //items += TabInString(7) + optionNameStart +
@@ -6815,7 +6807,7 @@ namespace Watch_Face_Editor
                             items += Environment.NewLine + TabInString(7) +
                                 optionNameStart + "step_linear_scale = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
 
-                            if (Steps.Linear_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Steps.Linear_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "step_linear_scale.setAlpha(" + Steps.Linear_Scale.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (linear_scale.mirror)
@@ -6829,7 +6821,7 @@ namespace Watch_Face_Editor
                                 items += TabInString(7) + optionNameStart +
                                     "step_linear_scale_mirror = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
 
-                                if (Steps.Linear_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (Steps.Linear_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "step_linear_scale_mirror.setAlpha(" + Steps.Linear_Scale.alpha.ToString() + ");" + Environment.NewLine;
                             }
 
@@ -6893,7 +6885,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "step_icon_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                     iconOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Steps.Icon.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Steps.Icon.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "step_icon_img.setAlpha(" + Steps.Icon.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -6991,7 +6983,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "battery_image_progress_img_level = hmUI.createWidget(hmUI.widget.IMG_LEVEL, {" +
                                     imagesOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Battery.Images.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Battery.Images.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "battery_image_progress_img_level.setAlpha(" + Battery.Images.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -7014,7 +7006,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "battery_text_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
                                     numberOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Battery.Number.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Battery.Number.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "battery_text_text_img.setAlpha(" + Battery.Number.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (numberOptions_separator.Length > 5)
@@ -7025,7 +7017,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "battery_text_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         numberOptions_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (Battery.Number.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (Battery.Number.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "battery_text_separator_img.setAlpha(" + Battery.Number.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -7098,7 +7090,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "battery_circle_scale = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
                                     circleScaleProgressOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Battery.Circle_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Battery.Circle_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "battery_circle_scale.setAlpha(" + Battery.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (circle_scale.mirror)
@@ -7110,7 +7102,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "battery_circle_scale_mirror = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
                                         circleScaleProgressMirrorOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (Battery.Circle_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (Battery.Circle_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "battery_circle_scale_mirror.setAlpha(" + Battery.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
                             }
 
@@ -7202,7 +7194,7 @@ namespace Watch_Face_Editor
                             items += Environment.NewLine + TabInString(7) +
                                 optionNameStart + "battery_linear_scale = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
 
-                            if (Battery.Linear_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Battery.Linear_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "battery_linear_scale.setAlpha(" + Battery.Linear_Scale.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (linear_scale.mirror)
@@ -7216,7 +7208,7 @@ namespace Watch_Face_Editor
                                 items += TabInString(7) + optionNameStart +
                                     "battery_linear_scale_mirror = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
 
-                                if (Battery.Linear_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (Battery.Linear_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "battery_linear_scale_mirror.setAlpha(" + Battery.Linear_Scale.alpha.ToString() + ");" + Environment.NewLine;
                             }
 
@@ -7287,7 +7279,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "battery_icon_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                     iconOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Battery.Icon.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Battery.Icon.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "battery_icon_img.setAlpha(" + Battery.Icon.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -7414,7 +7406,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "calorie_image_progress_img_level = hmUI.createWidget(hmUI.widget.IMG_LEVEL, {" +
                                     imagesOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Calories.Images.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Calories.Images.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "calorie_image_progress_img_level.setAlpha(" + Calories.Images.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -7437,7 +7429,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "calorie_current_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
                                     numberOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Calories.Number.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Calories.Number.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "calorie_current_text_img.setAlpha(" + Calories.Number.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (numberOptions_separator.Length > 5)
@@ -7448,7 +7440,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "calorie_current_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         numberOptions_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (Calories.Number.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (Calories.Number.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "calorie_current_separator_img.setAlpha(" + Calories.Number.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -7504,7 +7496,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "calorie_target_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
                                     numberTargetOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Calories.Number_Target.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Calories.Number_Target.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "calorie_target_text_img.setAlpha(" + Calories.Number_Target.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (numberTargetOptions_separator.Length > 5)
@@ -7515,7 +7507,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "calorie_target_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         numberTargetOptions_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (Calories.Number_Target.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (Calories.Number_Target.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "calorie_target_separator_img.setAlpha(" + Calories.Number_Target.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -7587,7 +7579,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "calorie_circle_scale = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
                                     circleScaleProgressOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Calories.Circle_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Calories.Circle_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "calorie_circle_scale.setAlpha(" + Calories.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (circle_scale.mirror)
@@ -7599,7 +7591,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "calorie_circle_scale_mirror = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
                                         circleScaleProgressMirrorOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (Calories.Circle_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (Calories.Circle_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "calorie_circle_scale_mirror.setAlpha(" + Calories.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
                             }
 
@@ -7690,7 +7682,7 @@ namespace Watch_Face_Editor
                             items += Environment.NewLine + TabInString(7) +
                                 optionNameStart + "calorie_linear_scale = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
 
-                            if (Calories.Linear_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Calories.Linear_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "calorie_linear_scale.setAlpha(" + Calories.Linear_Scale.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (linear_scale.mirror)
@@ -7704,7 +7696,7 @@ namespace Watch_Face_Editor
                                 items += TabInString(7) + optionNameStart +
                                     "calorie_linear_scale_mirror = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
 
-                                if (Calories.Linear_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (Calories.Linear_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "calorie_linear_scale_mirror.setAlpha(" + Calories.Linear_Scale.alpha.ToString() + ");" + Environment.NewLine;
                             }
 
@@ -7774,7 +7766,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "calorie_icon_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                     iconOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Calories.Icon.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Calories.Icon.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "calorie_icon_img.setAlpha(" + Calories.Icon.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -7885,7 +7877,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "heart_rate_image_progress_img_level = hmUI.createWidget(hmUI.widget.IMG_LEVEL, {" +
                                     imagesOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Heart.Images.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Heart.Images.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "heart_rate_image_progress_img_level.setAlpha(" + Heart.Images.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -7908,7 +7900,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "heart_rate_text_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
                                     numberOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Heart.Number.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Heart.Number.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "heart_rate_text_text_img.setAlpha(" + Heart.Number.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (numberOptions_separator.Length > 5)
@@ -7919,7 +7911,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "heart_rate_text_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         numberOptions_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (Heart.Number.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (Heart.Number.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "heart_rate_text_separator_img.setAlpha(" + Heart.Number.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -7992,7 +7984,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "heart_rate_circle_scale = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
                                         circleScaleProgressOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (Heart.Circle_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (Heart.Circle_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "heart_rate_circle_scale.setAlpha(" + Heart.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
 
                                 if (circle_scale.mirror)
@@ -8004,7 +7996,7 @@ namespace Watch_Face_Editor
                                         optionNameStart + "heart_rate_circle_scale_mirror = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
                                             circleScaleProgressMirrorOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                                    if (Heart.Circle_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                    if (Heart.Circle_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                             "heart_rate_circle_scale_mirror.setAlpha(" + Heart.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
                                 }
 
@@ -8071,7 +8063,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "heart_rate_circle_scale_2 = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
                                     circleScaleProgressOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (Heart.Circle_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (Heart.Circle_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "heart_rate_circle_scale_2.setAlpha(" + Heart.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
 
                                 if (circle_scale.mirror)
@@ -8082,7 +8074,7 @@ namespace Watch_Face_Editor
                                         optionNameStart + "heart_rate_circle_scale_mirror_2 = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
                                             circleScaleProgressMirrorOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                                    if (Heart.Circle_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                    if (Heart.Circle_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                             "heart_rate_circle_scale_mirror_2.setAlpha(" + Heart.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
                                 }
                             }
@@ -8106,7 +8098,7 @@ namespace Watch_Face_Editor
                             items += Environment.NewLine + TabInString(7) +
                                 optionNameStart + "heart_rate_linear_scale = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
 
-                            if (Heart.Linear_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Heart.Linear_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "heart_rate_linear_scale.setAlpha(" + Heart.Linear_Scale.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (linear_scale.mirror)
@@ -8120,7 +8112,7 @@ namespace Watch_Face_Editor
                                 items += TabInString(7) + optionNameStart +
                                     "heart_rate_linear_scale_mirror = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
 
-                                if (Heart.Linear_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (Heart.Linear_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "heart_rate_linear_scale_mirror.setAlpha(" + Heart.Linear_Scale.alpha.ToString() + ");" + Environment.NewLine;
                             }
 
@@ -8194,7 +8186,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "heart_rate_icon_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                     iconOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Heart.Icon.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart + 
+                            if (Heart.Icon.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart + 
                                     "heart_rate_icon_img.setAlpha(" + Heart.Icon.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -8301,7 +8293,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "pai_image_progress_img_level = hmUI.createWidget(hmUI.widget.IMG_LEVEL, {" +
                                     imagesOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (PAI.Images.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (PAI.Images.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "pai_image_progress_img_level.setAlpha(" + PAI.Images.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -8324,7 +8316,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "pai_day_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
                                     numberOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (PAI.Number.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (PAI.Number.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "pai_day_text_img.setAlpha(" + PAI.Number.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (numberOptions_separator.Length > 5)
@@ -8335,7 +8327,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "pai_day_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         numberOptions_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (PAI.Number.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (PAI.Number.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "pai_day_separator_img.setAlpha(" + PAI.Number.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -8374,7 +8366,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "pai_weekly_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
                                     numberTargetOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (PAI.Number_Target.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (PAI.Number_Target.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "pai_weekly_text_img.setAlpha(" + PAI.Number_Target.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (numberTargetOptions_separator.Length > 5)
@@ -8385,7 +8377,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "pai_weekly_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         numberTargetOptions_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (PAI.Number_Target.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (PAI.Number_Target.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "pai_weekly_separator_img.setAlpha(" + PAI.Number_Target.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -8457,7 +8449,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "pai_circle_scale = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
                                     circleScaleProgressOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (PAI.Circle_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (PAI.Circle_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "pai_circle_scale.setAlpha(" + PAI.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (circle_scale.mirror)
@@ -8469,7 +8461,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "pai_circle_scale_mirror = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
                                         circleScaleProgressMirrorOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (PAI.Circle_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (PAI.Circle_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "pai_circle_scale_mirror.setAlpha(" + PAI.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
                             }
 
@@ -8546,7 +8538,7 @@ namespace Watch_Face_Editor
                             items += Environment.NewLine + TabInString(7) +
                                 optionNameStart + "pai_linear_scale = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
 
-                            if (PAI.Linear_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (PAI.Linear_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "pai_linear_scale.setAlpha(" + PAI.Linear_Scale.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (linear_scale.mirror)
@@ -8560,7 +8552,7 @@ namespace Watch_Face_Editor
                                 items += TabInString(7) + optionNameStart +
                                     "pai_linear_scale_mirror = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
 
-                                if (PAI.Linear_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (PAI.Linear_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "pai_linear_scale_mirror.setAlpha(" + PAI.Linear_Scale.alpha.ToString() + ");" + Environment.NewLine;
                             }
 
@@ -8631,7 +8623,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "pai_icon_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                     iconOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (PAI.Icon.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (PAI.Icon.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "pai_icon_img.setAlpha(" + PAI.Icon.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -8694,7 +8686,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "distance_text_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
                                     numberOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Distance.Number.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Distance.Number.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "distance_text_text_img.setAlpha(" + Distance.Number.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (numberOptions_separator.Length > 5)
@@ -8705,7 +8697,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "distance_text_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         numberOptions_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (Distance.Number.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (Distance.Number.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "distance_text_separator_img.setAlpha(" + Distance.Number.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -9099,7 +9091,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "distance_icon_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                     iconOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Distance.Icon.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Distance.Icon.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "distance_icon_img.setAlpha(" + Distance.Icon.alpha.ToString() + ");" + Environment.NewLine;
                         }
                     }
@@ -9224,7 +9216,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "stand_image_progress_img_level = hmUI.createWidget(hmUI.widget.IMG_LEVEL, {" +
                                     imagesOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Stand.Images.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Stand.Images.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "stand_image_progress_img_level.setAlpha(" + Stand.Images.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -9247,7 +9239,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "stand_current_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
                                     numberOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Stand.Number.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Stand.Number.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "stand_current_text_img.setAlpha(" + Stand.Number.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (numberOptions_separator.Length > 5)
@@ -9258,7 +9250,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "stand_current_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         numberOptions_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (Stand.Number.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (Stand.Number.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "stand_current_text_img.setAlpha(" + Stand.Number.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -9317,7 +9309,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "stand_target_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
                                     numberTargetOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Stand.Number_Target.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Stand.Number_Target.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "stand_target_text_img.setAlpha(" + Stand.Number_Target.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (numberTargetOptions_separator.Length > 5)
@@ -9328,7 +9320,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "stand_target_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         numberTargetOptions_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (Stand.Number_Target.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (Stand.Number_Target.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "stand_target_separator_img.setAlpha(" + Stand.Number_Target.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -9403,7 +9395,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "stand_circle_scale = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
                                     circleScaleProgressOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Stand.Circle_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Stand.Circle_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "stand_circle_scale.setAlpha(" + Stand.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (circle_scale.mirror)
@@ -9415,7 +9407,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "stand_circle_scale_mirror = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
                                         circleScaleProgressMirrorOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (Stand.Circle_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (Stand.Circle_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "stand_circle_scale_mirror.setAlpha(" + Stand.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
                             }
 
@@ -9486,7 +9478,7 @@ namespace Watch_Face_Editor
                             items += Environment.NewLine + TabInString(7) +
                                 optionNameStart + "stand_linear_scale = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
 
-                            if (Stand.Linear_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Stand.Linear_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "stand_linear_scale.setAlpha(" + Stand.Linear_Scale.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (linear_scale.mirror)
@@ -9500,7 +9492,7 @@ namespace Watch_Face_Editor
                                 items += TabInString(7) + optionNameStart +
                                     "stand_linear_scale_mirror = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
 
-                                if (Stand.Linear_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (Stand.Linear_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "stand_linear_scale_mirror.setAlpha(" + Stand.Linear_Scale.alpha.ToString() + ");" + Environment.NewLine;
                             }
 
@@ -9561,7 +9553,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "stand_icon_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                     iconOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Stand.Icon.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Stand.Icon.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "stand_icon_img.setAlpha(" + Stand.Icon.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -9658,7 +9650,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "activity_image_progress_img_level = hmUI.createWidget(hmUI.widget.IMG_LEVEL, {" +
                                     imagesOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Activity.Images.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Activity.Images.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "activity_image_progress_img_level.setAlpha(" + Activity.Images.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -9681,7 +9673,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "activity_current_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
                                     numberOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Activity.Number.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Activity.Number.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "activity_current_text_img.setAlpha(" + Activity.Number.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (numberOptions_separator.Length > 5)
@@ -9692,7 +9684,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "activity_current_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         numberOptions_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (Activity.Number.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (Activity.Number.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "activity_current_separator_img.setAlpha(" + Activity.Number.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -9734,7 +9726,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "activity_target_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
                                     numberTargetOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Activity.Number_Target.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Activity.Number_Target.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "activity_target_text_img.setAlpha(" + Activity.Number_Target.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (numberTargetOptions_separator.Length > 5)
@@ -9745,7 +9737,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "activity_target_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         numberTargetOptions_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (Activity.Number_Target.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (Activity.Number_Target.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "activity_target_separator_img.setAlpha(" + Activity.Number_Target.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -9803,7 +9795,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "activity_circle_scale = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
                                     circleScaleProgressOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Activity.Circle_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Activity.Circle_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "activity_circle_scale.setAlpha(" + Activity.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (circle_scale.mirror)
@@ -9815,7 +9807,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "activity_circle_scale_mirror = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
                                         circleScaleProgressMirrorOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (Activity.Circle_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (Activity.Circle_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "activity_circle_scale_mirror.setAlpha(" + Activity.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
                             }
 
@@ -9891,7 +9883,7 @@ namespace Watch_Face_Editor
                             items += Environment.NewLine + TabInString(7) +
                                 optionNameStart + "activity_linear_scale = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
 
-                            if (Activity.Linear_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Activity.Linear_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "activity_linear_scale.setAlpha(" + Activity.Linear_Scale.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (linear_scale.mirror)
@@ -9905,7 +9897,7 @@ namespace Watch_Face_Editor
                                 items += TabInString(7) + optionNameStart +
                                     "activity_linear_scale_mirror = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
 
-                                if (Activity.Linear_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (Activity.Linear_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "activity_linear_scale_mirror.setAlpha(" + Activity.Linear_Scale.alpha.ToString() + ");" + Environment.NewLine;
                             }
 
@@ -9974,7 +9966,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "activity_icon_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                     iconOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Activity.Icon.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Activity.Icon.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "activity_icon_img.setAlpha(" + Activity.Icon.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -10036,7 +10028,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "spo2_text_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
                                     numberOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (SpO2.Number.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (SpO2.Number.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "spo2_text_text_img.setAlpha(" + SpO2.Number.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (numberOptions_separator.Length > 5)
@@ -10047,7 +10039,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "spo2_text_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         numberOptions_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (SpO2.Number.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (SpO2.Number.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "spo2_text_separator_img.setAlpha(" + SpO2.Number.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -10105,7 +10097,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "spo2_icon_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                     iconOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (SpO2.Icon.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (SpO2.Icon.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "spo2_icon_img.setAlpha(" + SpO2.Icon.alpha.ToString() + ");" + Environment.NewLine;
                         }
                     }
@@ -10171,7 +10163,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "stress_image_progress_img_level = hmUI.createWidget(hmUI.widget.IMG_LEVEL, {" +
                                     imagesOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Stress.Images.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Stress.Images.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "stress_image_progress_img_level.setAlpha(" + Stress.Images.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -10194,7 +10186,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "stress_text_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
                                     numberOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Stress.Number.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Stress.Number.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "stress_text_text_img.setAlpha(" + Stress.Number.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (numberOptions_separator.Length > 5)
@@ -10205,7 +10197,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "stress_text_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         numberOptions_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (Stress.Number.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (Stress.Number.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "stress_text_separator_img.setAlpha(" + Stress.Number.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -10258,7 +10250,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "stress_icon_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                     iconOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Stress.Icon.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Stress.Icon.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "stress_icon_img.setAlpha(" + Stress.Icon.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -10385,7 +10377,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "fat_burning_image_progress_img_level = hmUI.createWidget(hmUI.widget.IMG_LEVEL, {" +
                                     imagesOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (FatBurning.Images.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (FatBurning.Images.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "fat_burning_image_progress_img_level.setAlpha(" + FatBurning.Images.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -10408,7 +10400,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "fat_burning_current_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
                                     numberOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (FatBurning.Number.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (FatBurning.Number.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "fat_burning_current_text_img.setAlpha(" + FatBurning.Number.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (numberOptions_separator.Length > 5)
@@ -10419,7 +10411,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "fat_burning_current_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         numberOptions_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (FatBurning.Number.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (FatBurning.Number.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "fat_burning_current_separator_img.setAlpha(" + FatBurning.Number.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -10477,7 +10469,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "fat_burning_target_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
                                     numberTargetOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (FatBurning.Number_Target.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (FatBurning.Number_Target.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "fat_burning_target_text_img.setAlpha(" + FatBurning.Number_Target.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (numberTargetOptions_separator.Length > 5)
@@ -10488,7 +10480,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "fat_burning_target_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         numberTargetOptions_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (FatBurning.Number_Target.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (FatBurning.Number_Target.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "fat_burning_target_separator_img.setAlpha(" + FatBurning.Number_Target.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -10562,7 +10554,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "fat_burning_circle_scale = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
                                     circleScaleProgressOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (FatBurning.Circle_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (FatBurning.Circle_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "fat_burning_circle_scale.setAlpha(" + FatBurning.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (circle_scale.mirror)
@@ -10574,7 +10566,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "fat_burning_circle_scale_mirror = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
                                         circleScaleProgressMirrorOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (FatBurning.Circle_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (FatBurning.Circle_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "fat_burning_circle_scale_mirror.setAlpha(" + FatBurning.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
                             }
 
@@ -10645,7 +10637,7 @@ namespace Watch_Face_Editor
                             items += Environment.NewLine + TabInString(7) +
                                 optionNameStart + "fat_burning_linear_scale = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
 
-                            if (FatBurning.Linear_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (FatBurning.Linear_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "fat_burning_linear_scale.setAlpha(" + FatBurning.Linear_Scale.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (linear_scale.mirror)
@@ -10659,7 +10651,7 @@ namespace Watch_Face_Editor
                                 items += TabInString(7) + optionNameStart +
                                     "fat_burning_linear_scale_mirror = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
 
-                                if (FatBurning.Linear_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (FatBurning.Linear_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "fat_burning_linear_scale_mirror.setAlpha(" + FatBurning.Linear_Scale.alpha.ToString() + ");" + Environment.NewLine;
                             }
 
@@ -10723,7 +10715,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "fat_burning_icon_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                     iconOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (FatBurning.Icon.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (FatBurning.Icon.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "fat_burning_icon_img.setAlpha(" + FatBurning.Icon.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -11406,7 +11398,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "weather_image_progress_img_level = hmUI.createWidget(hmUI.widget.IMG_LEVEL, {" +
                                     imagesOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Weather.Images.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Weather.Images.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "weather_image_progress_img_level.setAlpha(" + Weather.Images.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -11419,7 +11411,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "temperature_current_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
                                     numberOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Weather.Group_Current.Number.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Weather.Group_Current.Number.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "temperature_current_text_img.setAlpha(" + Weather.Group_Current.Number.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (numberOptions_separator.Length > 5)
@@ -11430,7 +11422,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "temperature_current_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         numberOptions_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (Weather.Group_Current.Number.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (Weather.Group_Current.Number.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "temperature_current_separator_img.setAlpha(" + Weather.Group_Current.Number.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
 
@@ -11512,7 +11504,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "temperature_low_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
                                     numberMinOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Weather.Group_Min.Number.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Weather.Group_Min.Number.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "temperature_low_text_img.setAlpha(" + Weather.Group_Min.Number.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (numberMinOptions_separator.Length > 5)
@@ -11523,7 +11515,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "temperature_low_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         numberMinOptions_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (Weather.Group_Min.Number.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (Weather.Group_Min.Number.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "temperature_low_separator_img.setAlpha(" + Weather.Group_Min.Number.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
 
@@ -11605,7 +11597,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "temperature_high_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
                                     numberMaxOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Weather.Group_Max.Number.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Weather.Group_Max.Number.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "temperature_high_text_img.setAlpha(" + Weather.Group_Max.Number.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (numberMaxOptions_separator.Length > 5)
@@ -11616,7 +11608,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "temperature_high_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         numberMaxOptions_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (Weather.Group_Max.Number.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (Weather.Group_Max.Number.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "temperature_high_separator_img.setAlpha(" + Weather.Group_Max.Number.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
 
@@ -11698,7 +11690,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "temperature_max_min_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
                                     numberMaxMinOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Weather.Group_Max_Min.Number.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Weather.Group_Max_Min.Number.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "temperature_max_min_text_img.setAlpha(" + Weather.Group_Max_Min.Number.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (numberMaxMinOptions_separator.Length > 5)
@@ -11709,7 +11701,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "temperature_max_min_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         numberOptions_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (Weather.Group_Max_Min.Number.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (Weather.Group_Max_Min.Number.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "temperature_max_min_separator_img.setAlpha(" + Weather.Group_Max_Min.Number.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
 
@@ -11854,7 +11846,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "temperature_icon_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                     iconOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Weather.Icon.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Weather.Icon.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "temperature_icon_img.setAlpha(" + Weather.Icon.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -11926,7 +11918,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "uvi_image_progress_img_level = hmUI.createWidget(hmUI.widget.IMG_LEVEL, {" +
                                     imagesOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (UVIndex.Images.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (UVIndex.Images.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "uvi_image_progress_img_level.setAlpha(" + UVIndex.Images.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -11949,7 +11941,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "uvi_text_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
                                     numberOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (UVIndex.Number.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (UVIndex.Number.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "uvi_text_text_img.setAlpha(" + UVIndex.Number.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (numberOptions_separator.Length > 5)
@@ -11960,7 +11952,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "uvi_text_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         numberOptions_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (UVIndex.Number.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (UVIndex.Number.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "uvi_text_separator_img.setAlpha(" + UVIndex.Number.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -12013,7 +12005,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "uvi_icon_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                     iconOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (UVIndex.Icon.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (UVIndex.Icon.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "uvi_icon_img.setAlpha(" + UVIndex.Icon.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -12078,7 +12070,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "humidity_image_progress_img_level = hmUI.createWidget(hmUI.widget.IMG_LEVEL, {" +
                                     imagesOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Humidity.Images.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Humidity.Images.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "humidity_image_progress_img_level.setAlpha(" + Humidity.Images.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -12101,7 +12093,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "humidity_text_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
                                     numberOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Humidity.Number.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Humidity.Number.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "humidity_text_text_img.setAlpha(" + Humidity.Number.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (numberOptions_separator.Length > 5)
@@ -12112,7 +12104,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "humidity_text_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         numberOptions_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (Humidity.Number.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (Humidity.Number.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "humidity_text_separator_img.setAlpha(" + Humidity.Number.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -12165,7 +12157,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "humidity_icon_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                     iconOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Humidity.Icon.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Humidity.Icon.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "humidity_icon_img.setAlpha(" + Humidity.Icon.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -12177,6 +12169,11 @@ namespace Watch_Face_Editor
                 #region ElementAltimeter
                 case "ElementAltimeter":
                     ElementAltimeter Altimeter = (ElementAltimeter)element;
+                    int pressurePosition = 99;
+                    string pressureOptions = "";
+                    string pressureOptions_separator = "";
+                    int pressureFontPosition = 99;
+                    string pressureFontOptions = "";
 
                     if (!Altimeter.visible) return;
                     if (Altimeter.Number != null && Altimeter.Number.visible)
@@ -12192,6 +12189,22 @@ namespace Watch_Face_Editor
                         numberFontPosition = Altimeter.Number_Font.position;
                         hmUI_widget_TEXT text = Altimeter.Number_Font;
                         numberFontOptions = TEXT_FONT_Options(text, "ALTIMETER", show_level);
+                    }
+
+                    if (Altimeter.Pressure != null && Altimeter.Pressure.visible)
+                    {
+                        pressurePosition = Altimeter.Pressure.position;
+                        hmUI_widget_IMG_NUMBER img_number = Altimeter.Pressure;
+                        pressureOptions = IMG_NUMBER_Options(img_number, "BARO", show_level);
+
+                        pressureOptions_separator = IMG_Separator_Options(img_number, show_level);
+                    }
+                    if (Altimeter.Pressure_Font != null && Altimeter.Pressure_Font.visible)
+                    {
+                        pressureFontPosition = Altimeter.Pressure_Font.position;
+                        hmUI_widget_TEXT text = Altimeter.Pressure_Font;
+                        //pressureFontOptions = TEXT_FONT_Options(text, "BARO", show_level);
+                        pressureFontOptions = TEXT_Options(text, show_level);
                     }
 
                     if (Altimeter.Number_Target != null && Altimeter.Number_Target.visible)
@@ -12234,7 +12247,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "altimeter_text_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
                                     numberOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Altimeter.Number.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Altimeter.Number.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "altimeter_text_text_img.setAlpha(" + Altimeter.Number.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (numberOptions_separator.Length > 5)
@@ -12245,7 +12258,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "altimeter_text_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         numberOptions_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (Altimeter.Number.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (Altimeter.Number.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "altimeter_text_separator_img.setAlpha(" + Altimeter.Number.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -12278,6 +12291,90 @@ namespace Watch_Face_Editor
                                     numberFontOptions + TabInString(6) + "});" + Environment.NewLine;
                         }
 
+                        // Pressure
+                        if (index == pressurePosition && pressureOptions.Length > 5)
+                        {
+                            variables += TabInString(4) + "let " + optionNameStart +
+                                "pressure_text_text_img = ''" + Environment.NewLine;
+                            pressureOptions = pressureOptions.Replace("type: hmUI.data_type.BARO,", "// type: hmUI.data_type.BARO,");
+                            items += Environment.NewLine + TabInString(6) +
+                                optionNameStart + "pressure_text_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
+                                    pressureOptions + TabInString(6) + "});" + Environment.NewLine;
+
+                            if (Altimeter.Pressure.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                    "pressure_text_text_img.setAlpha(" + Altimeter.Pressure.alpha.ToString() + ");" + Environment.NewLine;
+
+                            if (!items.Contains("const baroSensor = hmSensor.createSensor(hmSensor.id.BARO);"))
+                            {
+                                items += TabInString(6) + "const baroSensor = hmSensor.createSensor(hmSensor.id.BARO);" + Environment.NewLine;
+                            }
+                            text_update += TabInString(7) + "// Pressure Number" + Environment.NewLine;
+                            if (!text_update.Contains("pressureValue = baroSensor.pressure;"))
+                                text_update += TabInString(7) + "let pressureValue = baroSensor.pressure;" + Environment.NewLine;
+
+                            //if (Altimeter.Pressure.zero)
+                            //    text_update += TabInString(7) + "let " + optionNameStart + "pressure_text = pressureValue.toString().padStart(3, '0');" + Environment.NewLine;
+                            //else text_update += TabInString(7) + "let " + optionNameStart + "pressure_text = pressureValue.toString();" + Environment.NewLine;
+                            text_update += TabInString(7) + "let " + optionNameStart + "pressure_text = '-';" + Environment.NewLine;
+                            text_update += TabInString(7) + "if (pressureValue) " + optionNameStart + "pressure_text = Math.round(pressureValue * 0.75006375541921).toString();" + Environment.NewLine;
+                            text_update += TabInString(7) + optionNameStart + "pressure_text_text_img.setProperty(hmUI.prop.TEXT, " + optionNameStart + "pressure_text);" + Environment.NewLine;
+
+                            if (pressureOptions_separator.Length > 5)
+                            {
+                                variables += TabInString(4) + "let " + optionNameStart +
+                                    "pressure_text_separator_img = ''" + Environment.NewLine;
+                                items += Environment.NewLine + TabInString(6) +
+                                    optionNameStart + "pressure_text_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
+                                        pressureOptions_separator + TabInString(6) + "});" + Environment.NewLine;
+
+                                if (Altimeter.Pressure.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                        "pressure_text_separator_img.setAlpha(" + Altimeter.Pressure.icon_alpha.ToString() + ");" + Environment.NewLine;
+                            }
+                        }
+
+                        // Pressure_Font
+                        if (index == pressureFontPosition && pressureFontOptions.Length > 5)
+                        {
+                            if (SelectedModel.versionOS >= 2 && Altimeter.Pressure_Font.font != null && Altimeter.Pressure_Font.font.Length > 3)
+                            {
+                                string cacheName = "// FontName: " + Altimeter.Pressure_Font.font + "; FontSize: " + Altimeter.Pressure_Font.text_size.ToString();
+                                if (Altimeter.Pressure_Font.unit_type > 0)
+                                    cacheName = "// FontName: " + Altimeter.Pressure_Font.font + "; FontSize: " + Altimeter.Pressure_Font.text_size.ToString() + "; Cache: full";
+                                if (fonts_cache.IndexOf(cacheName) < 0)
+                                {
+                                    bool fullCache = Altimeter.Pressure_Font.unit_type > 0;
+                                    string fontCacheOptions = TEXT_Cache_Options(Altimeter.Pressure_Font, fullCache);
+                                    if (fontCacheOptions.Length > 5)
+                                    {
+                                        fonts_cache += Environment.NewLine + TabInString(6) + cacheName + Environment.NewLine;
+                                        fonts_cache += TabInString(6) + "hmUI.createWidget(hmUI.widget.TEXT, {" + fontCacheOptions +
+                                            TabInString(6) + "});" + Environment.NewLine;
+                                    }
+                                }
+                            }
+
+                            variables += TabInString(4) + "let " + optionNameStart +
+                                "pressure_text_font = ''" + Environment.NewLine;
+                            items += Environment.NewLine + TabInString(6) +
+                                optionNameStart + "pressure_text_font = hmUI.createWidget(hmUI.widget.TEXT, {" +
+                                    pressureFontOptions + TabInString(6) + "});" + Environment.NewLine;
+
+                            if (!items.Contains("const baroSensor = hmSensor.createSensor(hmSensor.id.BARO);"))
+                            {
+                                items += TabInString(6) + "const baroSensor = hmSensor.createSensor(hmSensor.id.BARO);" + Environment.NewLine;
+                            }
+                            text_update += TabInString(7) + "// Pressure Font" + Environment.NewLine;
+                            if (!text_update.Contains("pressureValue = baroSensor.pressure;"))
+                                text_update += TabInString(7) + "let pressureValue = baroSensor.pressure;" + Environment.NewLine;
+
+                            text_update += TabInString(7) + "let " + optionNameStart + "pressure_font = '-';" + Environment.NewLine;
+                            text_update += TabInString(7) + "if (pressureValue) " + optionNameStart + "pressure_font = Math.round(pressureValue * 0.75006375541921).toString();" + Environment.NewLine;
+                            if (Altimeter.Pressure_Font.unit_string != null && Altimeter.Pressure_Font.unit_string.Length > 0)
+                                text_update += TabInString(7) + optionNameStart + "pressure_font = " + 
+                                    optionNameStart + "pressure_font + `" + Altimeter.Pressure_Font.unit_string + "`;" + Environment.NewLine;
+                            text_update += TabInString(7) + optionNameStart + "pressure_text_font.setProperty(hmUI.prop.TEXT, " + optionNameStart + "pressure_font);" + Environment.NewLine;
+                        }
+
                         // Number_Target
                         if (index == numberTargetPosition && numberTargetOptions.Length > 5)
                         {
@@ -12287,7 +12384,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "altitude_target_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
                                     numberTargetOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Altimeter.Number_Target.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Altimeter.Number_Target.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "altitude_target_text_img.setAlpha(" + Altimeter.Number_Target.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (numberTargetOptions_separator.Length > 5)
@@ -12298,7 +12395,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "altitude_target_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         numberTargetOptions_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (Altimeter.Number_Target.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (Altimeter.Number_Target.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "altitude_target_separator_img.setAlpha(" + Altimeter.Number_Target.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -12350,7 +12447,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "altimeter_icon_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                     iconOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Altimeter.Icon.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Altimeter.Icon.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "altimeter_icon_img.setAlpha(" + Altimeter.Icon.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -12481,7 +12578,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "sun_image_progress_img_level = hmUI.createWidget(hmUI.widget.IMG_LEVEL, {" +
                                     imagesOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Sunrise.Images.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Sunrise.Images.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "sun_image_progress_img_level.setAlpha(" + Sunrise.Images.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -12504,7 +12601,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "sun_high_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
                                     numberOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Sunrise.Sunrise.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Sunrise.Sunrise.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "sun_high_text_img.setAlpha(" + Sunrise.Sunrise.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (numberOptions_separator.Length > 5)
@@ -12515,7 +12612,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "sun_high_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         numberOptions_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (Sunrise.Sunrise.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (Sunrise.Sunrise.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "sun_high_separator_img.setAlpha(" + Sunrise.Sunrise.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -12558,7 +12655,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "sun_low_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
                                     numberTargetOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Sunrise.Sunset.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Sunrise.Sunset.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "sun_low_text_img.setAlpha(" + Sunrise.Sunset.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (numberTargetOptions_separator.Length > 5)
@@ -12569,7 +12666,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "sun_low_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         numberTargetOptions_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (Sunrise.Sunset.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (Sunrise.Sunset.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "sun_low_separator_img.setAlpha(" + Sunrise.Sunset.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -12612,7 +12709,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "sun_current_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
                                     numberSunCurrentOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Sunrise.Sunset_Sunrise.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Sunrise.Sunset_Sunrise.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "sun_current_text_img.setAlpha(" + Sunrise.Sunset_Sunrise.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (numberSunCurrentOptions_separator.Length > 5)
@@ -12623,7 +12720,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "sun_current_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         numberSunCurrentOptions_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (Sunrise.Sunset_Sunrise.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (Sunrise.Sunset_Sunrise.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "sun_current_separator_img.setAlpha(" + Sunrise.Sunset_Sunrise.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -12675,7 +12772,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "sun_icon_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                     iconOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Sunrise.Icon.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Sunrise.Icon.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "sun_icon_img.setAlpha(" + Sunrise.Icon.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -12689,6 +12786,11 @@ namespace Watch_Face_Editor
                     ElementWind Wind = (ElementWind)element;
                     int directionPosition = 99;
                     string directionOptions = "";
+                    int windSpeedPosition = 99;
+                    string windSpeedOptions = "";
+                    string windSpeedOptions_separator = "";
+                    int windSpeedFontPosition = 99;
+                    string windSpeedFontOptions = "";
 
                     if (!Wind.visible) return;
                     if (Wind.Images != null && Wind.Images.visible)
@@ -12716,6 +12818,20 @@ namespace Watch_Face_Editor
                         numberFontPosition = Wind.Number_Font.position;
                         hmUI_widget_TEXT text = Wind.Number_Font;
                         numberFontOptions = TEXT_FONT_Options(text, "WIND", show_level);
+                    }
+                    if (Wind.Wind_Speed != null && Wind.Wind_Speed.visible && SelectedModel.versionOS > 4)
+                    {
+                        windSpeedPosition = Wind.Wind_Speed.position;
+                        hmUI_widget_IMG_NUMBER img_number = Wind.Wind_Speed;
+                        windSpeedOptions = IMG_NUMBER_Options(img_number, "WIND_SPEED", show_level);
+
+                        windSpeedOptions_separator = IMG_Separator_Options(img_number, show_level);
+                    }
+                    if (Wind.Wind_Speed_Font != null && Wind.Wind_Speed_Font.visible && SelectedModel.versionOS > 4)
+                    {
+                        windSpeedFontPosition = Wind.Wind_Speed_Font.position;
+                        hmUI_widget_TEXT text = Wind.Wind_Speed_Font;
+                        windSpeedFontOptions = TEXT_FONT_Options(text, "WIND_SPEED", show_level);
                     }
                     if (Wind.Pointer != null && Wind.Pointer.visible)
                     {
@@ -12749,7 +12865,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "wind_image_progress_img_level = hmUI.createWidget(hmUI.widget.IMG_LEVEL, {" +
                                     imagesOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Wind.Images.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Wind.Images.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "wind_image_progress_img_level.setAlpha(" + Wind.Images.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -12772,7 +12888,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "wind_text_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
                                     numberOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Wind.Number.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Wind.Number.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "wind_text_text_img.setAlpha(" + Wind.Number.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (numberOptions_separator.Length > 5)
@@ -12783,7 +12899,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "wind_text_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         numberOptions_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (Wind.Number.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (Wind.Number.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "wind_text_separator_img.setAlpha(" + Wind.Number.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -12817,6 +12933,60 @@ namespace Watch_Face_Editor
                                     numberFontOptions + TabInString(6) + "});" + Environment.NewLine;
                         }
 
+                        // Wind_Speed
+                        if (index == windSpeedPosition && windSpeedOptions.Length > 5)
+                        {
+                            variables += TabInString(4) + "let " + optionNameStart +
+                                "wind_speed_text_img = ''" + Environment.NewLine;
+                            items += Environment.NewLine + TabInString(6) +
+                                optionNameStart + "wind_speed_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
+                                    windSpeedOptions + TabInString(6) + "});" + Environment.NewLine;
+
+                            if (Wind.Wind_Speed.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                    "wind_speed_text_img.setAlpha(" + Wind.Wind_Speed.alpha.ToString() + ");" + Environment.NewLine;
+
+                            if (windSpeedOptions_separator.Length > 5)
+                            {
+                                variables += TabInString(4) + "let " + optionNameStart +
+                                    "wind_speed_separator_img = ''" + Environment.NewLine;
+                                items += Environment.NewLine + TabInString(6) +
+                                    optionNameStart + "wind_speed_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
+                                        windSpeedOptions_separator + TabInString(6) + "});" + Environment.NewLine;
+
+                                if (Wind.Wind_Speed.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                        "wind_speed_separator_img.setAlpha(" + Wind.Wind_Speed.icon_alpha.ToString() + ");" + Environment.NewLine;
+                            }
+                        }
+
+                        // Wind_Speed_Font
+                        if (index == windSpeedFontPosition && windSpeedFontOptions.Length > 5)
+                        {
+                            if (SelectedModel.versionOS >= 2 && Wind.Wind_Speed_Font.font != null && Wind.Wind_Speed_Font.font.Length > 3)
+                            {
+                                string cacheName = "// FontName: " + Wind.Wind_Speed_Font.font + "; FontSize: " + Wind.Wind_Speed_Font.text_size.ToString();
+                                //if (Wind.Wind_Speed_Font.unit_type > 0)
+                                //    cacheName = "// FontName: " + Wind.Wind_Speed_Font.font + "; FontSize: " + Wind.Wind_Speed_Font.text_size.ToString() + "; Cache: full";
+                                if (fonts_cache.IndexOf(cacheName) < 0)
+                                {
+                                    //bool fullCache = Wind.Wind_Speed_Font.unit_type > 0;
+                                    bool fullCache = false;
+                                    string fontCacheOptions = TEXT_Cache_Options(Wind.Wind_Speed_Font, fullCache);
+                                    if (fontCacheOptions.Length > 5)
+                                    {
+                                        fonts_cache += Environment.NewLine + TabInString(6) + cacheName + Environment.NewLine;
+                                        fonts_cache += TabInString(6) + "hmUI.createWidget(hmUI.widget.TEXT, {" + fontCacheOptions +
+                                            TabInString(6) + "});" + Environment.NewLine;
+                                    }
+                                }
+                            }
+
+                            variables += TabInString(4) + "let " + optionNameStart +
+                                "wind_speed_text_font = ''" + Environment.NewLine;
+                            items += Environment.NewLine + TabInString(6) +
+                                optionNameStart + "wind_speed_text_font = hmUI.createWidget(hmUI.widget.TEXT_FONT, {" +
+                                    windSpeedFontOptions + TabInString(6) + "});" + Environment.NewLine;
+                        }
+
                         // Pointer
                         if (index == pointerPosition && pointerOptions.Length > 5)
                         {
@@ -12836,7 +13006,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "wind_direction_image_progress_img_level = hmUI.createWidget(hmUI.widget.IMG_LEVEL, {" +
                                     directionOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Wind.Direction.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Wind.Direction.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "wind_direction_image_progress_img_level.setAlpha(" + Wind.Direction.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -12849,7 +13019,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "wind_icon_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                     iconOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Wind.Icon.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Wind.Icon.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "wind_icon_img.setAlpha(" + Wind.Icon.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -12952,7 +13122,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "moon_image_progress_img_level = hmUI.createWidget(hmUI.widget.IMG_LEVEL, {" +
                                     imagesOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Moon.Images.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Moon.Images.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "moon_image_progress_img_level.setAlpha(" + Moon.Images.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -12975,7 +13145,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "moon_high_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
                                     numberOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Moon.Sunrise.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Moon.Sunrise.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "moon_high_text_img.setAlpha(" + Moon.Sunrise.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (numberOptions_separator.Length > 5)
@@ -12986,7 +13156,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "moon_high_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         numberOptions_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (Moon.Sunrise.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (Moon.Sunrise.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "moon_high_separator_img.setAlpha(" + Moon.Sunrise.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -13029,7 +13199,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "moon_low_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
                                     numberTargetOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Moon.Sunset.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Moon.Sunset.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "moon_low_text_img.setAlpha(" + Moon.Sunset.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (numberTargetOptions_separator.Length > 5)
@@ -13040,7 +13210,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "moon_low_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         numberTargetOptions_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (Moon.Sunset.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (Moon.Sunset.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "moon_low_separator_img.setAlpha(" + Moon.Sunset.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -13083,7 +13253,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "moon_current_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
                                     numberMoonCurrentOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Moon.Sunset_Sunrise.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Moon.Sunset_Sunrise.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "moon_current_text_img.setAlpha(" + Moon.Sunset_Sunrise.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (numberMoonCurrentOptions_separator.Length > 5)
@@ -13094,7 +13264,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "moon_current_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         numberMoonCurrentOptions_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (Moon.Sunset_Sunrise.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (Moon.Sunset_Sunrise.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "moon_current_separator_img.setAlpha(" + Moon.Sunset_Sunrise.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -13118,7 +13288,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "moon_icon_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                     iconOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Moon.Icon.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Moon.Icon.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "moon_icon_img.setAlpha(" + Moon.Icon.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -13148,7 +13318,7 @@ namespace Watch_Face_Editor
                             optionNameStart + "image_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                 iconOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                        if (Image.Icon.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                        if (Image.Icon.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                 "image_img.setAlpha(" + Image.Icon.alpha.ToString() + ");" + Environment.NewLine;
                     }
                     break;
@@ -13248,7 +13418,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "compass_direction_img_level = hmUI.createWidget(hmUI.widget.IMG, {" +
                                     imagesOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Compass.Images.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Compass.Images.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "compass_direction_img_level.setAlpha(" + Compass.Images.alpha.ToString() + ");" + Environment.NewLine;
 
                             compass_update += TabInString(8) + "// Compass Images" + Environment.NewLine;
@@ -13289,7 +13459,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "compass_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
                                     numberOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Compass.Number.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Compass.Number.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "compass_text_img.setAlpha(" + Compass.Number.alpha.ToString() + ");" + Environment.NewLine;
 
                             compass_update += TabInString(8) + "// Compass Number" + Environment.NewLine;
@@ -13315,7 +13485,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "compass_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         numberOptions_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (Compass.Number.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (Compass.Number.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "compass_separator_img.setAlpha(" + Compass.Number.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -13826,7 +13996,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "compass_icon_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                     iconOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Compass.Icon.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Compass.Icon.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "compass_icon_img.setAlpha(" + Compass.Icon.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -14272,7 +14442,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "alarm_clock_text_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
                                     numberOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (AlarmClock.Number.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (AlarmClock.Number.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "alarm_clock_text_text_img.setAlpha(" + AlarmClock.Number.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (numberOptions_separator.Length > 5)
@@ -14283,7 +14453,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "alarm_clock_text_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         numberOptions_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (AlarmClock.Number.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (AlarmClock.Number.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "alarm_clock_text_separator_img.setAlpha(" + AlarmClock.Number.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -14326,7 +14496,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "alarm_clock_icon_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                     iconOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (AlarmClock.Icon.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (AlarmClock.Icon.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "alarm_clock_icon_img.setAlpha(" + AlarmClock.Icon.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -14401,7 +14571,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "training_load_image_progress_img_level = hmUI.createWidget(hmUI.widget.IMG_LEVEL, {" +
                                     imagesOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (TrainingLoad.Images.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (TrainingLoad.Images.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "training_load_image_progress_img_level.setAlpha(" + TrainingLoad.Images.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -14424,7 +14594,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "training_load_text_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
                                     numberOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (TrainingLoad.Number.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (TrainingLoad.Number.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "training_load_text_text_img.setAlpha(" + TrainingLoad.Number.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (numberOptions_separator.Length > 5)
@@ -14435,7 +14605,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "training_load_text_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         numberOptions_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (TrainingLoad.Number.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (TrainingLoad.Number.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "training_load_text_separator_img.setAlpha(" + TrainingLoad.Number.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -14488,7 +14658,7 @@ namespace Watch_Face_Editor
                             optionNameStart + "training_load_circle_scale = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
                                 circleScaleProgressOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (TrainingLoad.Circle_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (TrainingLoad.Circle_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "training_load_circle_scale.setAlpha(" + TrainingLoad.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (circle_scale.mirror)
@@ -14499,7 +14669,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "training_load_circle_scale_mirror = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
                                         circleScaleProgressMirrorOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (TrainingLoad.Circle_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (TrainingLoad.Circle_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "training_load_circle_scale_mirror.setAlpha(" + TrainingLoad.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -14513,7 +14683,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "training_load_icon_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                     iconOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (TrainingLoad.Icon.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (TrainingLoad.Icon.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "training_load_icon_img.setAlpha(" + TrainingLoad.Icon.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -14588,7 +14758,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "vo2max_image_progress_img_level = hmUI.createWidget(hmUI.widget.IMG_LEVEL, {" +
                                     imagesOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (VO2Max.Images.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (VO2Max.Images.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "vo2max_image_progress_img_level.setAlpha(" + VO2Max.Images.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -14611,7 +14781,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "vo2max_text_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
                                     numberOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (VO2Max.Number.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (VO2Max.Number.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "vo2max_text_text_img.setAlpha(" + VO2Max.Number.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (numberOptions_separator.Length > 5)
@@ -14622,7 +14792,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "vo2max_text_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         numberOptions_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (VO2Max.Number.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (VO2Max.Number.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "vo2max_text_separator_img.setAlpha(" + VO2Max.Number.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -14675,7 +14845,7 @@ namespace Watch_Face_Editor
                             optionNameStart + "vo2max_circle_scale = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
                                 circleScaleProgressOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (VO2Max.Circle_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (VO2Max.Circle_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "vo2max_circle_scale.setAlpha(" + VO2Max.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (circle_scale.mirror)
@@ -14686,7 +14856,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "vo2max_circle_scale_mirror = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
                                         circleScaleProgressMirrorOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (VO2Max.Circle_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (VO2Max.Circle_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "vo2max_circle_scale_mirror.setAlpha(" + VO2Max.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -14700,7 +14870,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "vo2max_icon_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                     iconOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (VO2Max.Icon.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (VO2Max.Icon.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "vo2max_icon_img.setAlpha(" + VO2Max.Icon.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -14775,7 +14945,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "aqi_image_progress_img_level = hmUI.createWidget(hmUI.widget.IMG_LEVEL, {" +
                                     imagesOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (AQI.Images.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (AQI.Images.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "aqi_image_progress_img_level.setAlpha(" + AQI.Images.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -14798,7 +14968,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "aqi_text_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
                                     numberOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (AQI.Number.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (AQI.Number.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "aqi_text_text_img.setAlpha(" + AQI.Number.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (numberOptions_separator.Length > 5)
@@ -14809,7 +14979,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "aqi_text_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         numberOptions_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (AQI.Number.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (AQI.Number.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "aqi_text_separator_img.setAlpha(" + AQI.Number.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -14862,7 +15032,7 @@ namespace Watch_Face_Editor
                             optionNameStart + "aqi_circle_scale = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
                                 circleScaleProgressOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (AQI.Circle_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (AQI.Circle_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "aqi_circle_scale.setAlpha(" + AQI.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (circle_scale.mirror)
@@ -14873,7 +15043,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "aqi_circle_scale_mirror = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
                                         circleScaleProgressMirrorOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (AQI.Circle_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (AQI.Circle_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "aqi_circle_scale_mirror.setAlpha(" + AQI.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -14887,7 +15057,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "aqi_icon_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                     iconOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (AQI.Icon.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (AQI.Icon.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "aqi_icon_img.setAlpha(" + AQI.Icon.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -14934,7 +15104,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "body_temp_text_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
                                     numberOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (BodyTemp.Number.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (BodyTemp.Number.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "body_temp_text_text_img.setAlpha(" + BodyTemp.Number.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (numberOptions_separator.Length > 5)
@@ -14945,7 +15115,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "body_temp_text_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         numberOptions_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (BodyTemp.Number.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (BodyTemp.Number.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "body_temp_text_separator_img.setAlpha(" + BodyTemp.Number.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -14988,7 +15158,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "body_temp_icon_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                     iconOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (BodyTemp.Icon.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (BodyTemp.Icon.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "body_temp_icon_img.setAlpha(" + BodyTemp.Icon.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -15035,7 +15205,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "floor_text_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
                                     numberOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Floor.Number.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Floor.Number.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "floor_text_text_img.setAlpha(" + Floor.Number.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (numberOptions_separator.Length > 5)
@@ -15046,7 +15216,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "floor_text_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         numberOptions_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (Floor.Number.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (Floor.Number.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "floor_text_separator_img.setAlpha(" + Floor.Number.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -15089,7 +15259,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "floor_icon_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                     iconOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Floor.Icon.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Floor.Icon.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "floor_icon_img.setAlpha(" + Floor.Icon.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -15164,7 +15334,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "readiness_image_progress_img_level = hmUI.createWidget(hmUI.widget.IMG_LEVEL, {" +
                                     imagesOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Readiness.Images.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Readiness.Images.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "readiness_image_progress_img_level.setAlpha(" + Readiness.Images.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -15187,7 +15357,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "readiness_text_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
                                     numberOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Readiness.Number.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Readiness.Number.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "readiness_text_text_img.setAlpha(" + Readiness.Number.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (numberOptions_separator.Length > 5)
@@ -15198,7 +15368,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "readiness_text_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         numberOptions_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (Readiness.Number.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (Readiness.Number.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "readiness_text_separator_img.setAlpha(" + Readiness.Number.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -15251,7 +15421,7 @@ namespace Watch_Face_Editor
                             optionNameStart + "readiness_circle_scale = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
                                 circleScaleProgressOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Readiness.Circle_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Readiness.Circle_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "readiness_circle_scale.setAlpha(" + Readiness.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (circle_scale.mirror)
@@ -15262,7 +15432,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "readiness_circle_scale_mirror = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
                                         circleScaleProgressMirrorOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (Readiness.Circle_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (Readiness.Circle_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "readiness_circle_scale_mirror.setAlpha(" + Readiness.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -15276,7 +15446,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "readiness_icon_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                     iconOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (Readiness.Icon.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (Readiness.Icon.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "readiness_icon_img.setAlpha(" + Readiness.Icon.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -15351,7 +15521,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "hrv_image_progress_img_level = hmUI.createWidget(hmUI.widget.IMG_LEVEL, {" +
                                     imagesOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (HRV.Images.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (HRV.Images.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "hrv_image_progress_img_level.setAlpha(" + HRV.Images.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -15374,7 +15544,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "hrv_text_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
                                     numberOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (HRV.Number.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (HRV.Number.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "hrv_text_text_img.setAlpha(" + HRV.Number.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (numberOptions_separator.Length > 5)
@@ -15385,7 +15555,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "hrv_text_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         numberOptions_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (HRV.Number.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (HRV.Number.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "hrv_text_separator_img.setAlpha(" + HRV.Number.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -15438,7 +15608,7 @@ namespace Watch_Face_Editor
                             optionNameStart + "hrv_circle_scale = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
                                 circleScaleProgressOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (HRV.Circle_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (HRV.Circle_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "hrv_circle_scale.setAlpha(" + HRV.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (circle_scale.mirror)
@@ -15449,7 +15619,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "hrv_circle_scale_mirror = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
                                         circleScaleProgressMirrorOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (HRV.Circle_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (HRV.Circle_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "hrv_circle_scale_mirror.setAlpha(" + HRV.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -15463,7 +15633,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "hrv_icon_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                     iconOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (HRV.Icon.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (HRV.Icon.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "hrv_icon_img.setAlpha(" + HRV.Icon.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -15538,7 +15708,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "bio_charge_image_progress_img_level = hmUI.createWidget(hmUI.widget.IMG_LEVEL, {" +
                                     imagesOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (BioCharge.Images.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (BioCharge.Images.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "bio_charge_image_progress_img_level.setAlpha(" + BioCharge.Images.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -15561,7 +15731,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "bio_charge_text_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
                                     numberOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (BioCharge.Number.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (BioCharge.Number.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "bio_charge_text_text_img.setAlpha(" + BioCharge.Number.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (numberOptions_separator.Length > 5)
@@ -15572,7 +15742,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "bio_charge_text_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         numberOptions_separator + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (BioCharge.Number.icon_alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (BioCharge.Number.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "bio_charge_text_separator_img.setAlpha(" + BioCharge.Number.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -15625,7 +15795,7 @@ namespace Watch_Face_Editor
                             optionNameStart + "bio_charge_circle_scale = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
                                 circleScaleProgressOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (BioCharge.Circle_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (BioCharge.Circle_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "bio_charge_circle_scale.setAlpha(" + BioCharge.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (circle_scale.mirror)
@@ -15636,7 +15806,7 @@ namespace Watch_Face_Editor
                                     optionNameStart + "bio_charge_circle_scale_mirror = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, {" +
                                         circleScaleProgressMirrorOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                                if (BioCharge.Circle_Scale.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                                if (BioCharge.Circle_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "bio_charge_circle_scale_mirror.setAlpha(" + BioCharge.Circle_Scale.alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
@@ -15650,7 +15820,7 @@ namespace Watch_Face_Editor
                                 optionNameStart + "bio_charge_icon_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                     iconOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                            if (BioCharge.Icon.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                            if (BioCharge.Icon.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "bio_charge_icon_img.setAlpha(" + BioCharge.Icon.alpha.ToString() + ");" + Environment.NewLine;
                         }
 
@@ -15924,14 +16094,11 @@ namespace Watch_Face_Editor
                         items += Environment.NewLine + TabInString(9) + "show_level: hmUI.show_level." + show_level + ",";
                     }
                     items += Environment.NewLine + TabInString(8) + "});";
-                    if (images.alpha != 255) items += Environment.NewLine + TabInString(8) + variableName + "[i]" +
+                    if (images.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(8) + variableName + "[i]" +
                             ".setAlpha(" + images.alpha.ToString() + ");" + Environment.NewLine;
                     //items += Environment.NewLine + TabInString(8) + variableName + "[i].setProperty(hmUI.prop.VISIBLE, false);";
                     items += Environment.NewLine + TabInString(7) + "};";
                     items += Environment.NewLine + TabInString(6) + "};";
-
-                    //if (images.alpha != 255) items += Environment.NewLine + TabInString(6) + variableName + "[i]" +
-                    //        ".setAlpha(" + images.alpha.ToString() + ");" + Environment.NewLine;
 
                     items += Environment.NewLine + TabInString(6) + "//#endregion" + Environment.NewLine;
                     //items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
@@ -15996,14 +16163,11 @@ namespace Watch_Face_Editor
                         items += Environment.NewLine + TabInString(9) + "show_level: hmUI.show_level." + show_level + ",";
                     }
                     items += Environment.NewLine + TabInString(8) + "});";
-                    if (dow_images.alpha != 255) items += Environment.NewLine + TabInString(8) + variableName + "[i]" +
+                    if (dow_images.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(8) + variableName + "[i]" +
                             ".setAlpha(" + dow_images.alpha.ToString() + ");" + Environment.NewLine;
                     //items += Environment.NewLine + TabInString(8) + variableName + "[i].setProperty(hmUI.prop.VISIBLE, false);";
                     items += Environment.NewLine + TabInString(7) + "};";
                     items += Environment.NewLine + TabInString(6) + "};";
-
-                    //if (dow_images.alpha != 255) items += Environment.NewLine + TabInString(6) + variableName + "[i]" +
-                    //        ".setAlpha(" + dow_images.alpha.ToString() + ");" + Environment.NewLine;
 
                     items += Environment.NewLine + TabInString(6) + "//#endregion" + Environment.NewLine;
                     //items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
@@ -16429,7 +16593,7 @@ namespace Watch_Face_Editor
                     }
                     items += Environment.NewLine + TabInString(8) + "});";
 
-                    if (img_number.alpha != 255) items += Environment.NewLine + TabInString(8) + variableName + "[i]" +
+                    if (img_number.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(8) + variableName + "[i]" +
                             ".setAlpha(" + img_number.alpha.ToString() + ");" + Environment.NewLine;
 
                     //items += Environment.NewLine + TabInString(8) + variableName + "[i].setProperty(hmUI.prop.VISIBLE, false);";
@@ -16699,7 +16863,7 @@ namespace Watch_Face_Editor
                     }
                     items += Environment.NewLine + TabInString(8) + "});";
 
-                    if (img_number.alpha != 255) items += Environment.NewLine + TabInString(8) + variableName + "[i]" +
+                    if (img_number.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(8) + variableName + "[i]" +
                             ".setAlpha(" + img_number.alpha.ToString() + ");" + Environment.NewLine;
 
                     //items += Environment.NewLine + TabInString(8) + variableName + "[i].setProperty(hmUI.prop.VISIBLE, false);";
@@ -16969,7 +17133,7 @@ namespace Watch_Face_Editor
                     }
                     items += Environment.NewLine + TabInString(8) + "});";
 
-                    if (img_number.alpha != 255) items += Environment.NewLine + TabInString(8) + variableName + "[i]" +
+                    if (img_number.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(8) + variableName + "[i]" +
                             ".setAlpha(" + img_number.alpha.ToString() + ");" + Environment.NewLine;
 
                     //items += Environment.NewLine + TabInString(8) + variableName + "[i].setProperty(hmUI.prop.VISIBLE, false);";
@@ -17244,7 +17408,7 @@ namespace Watch_Face_Editor
                     }
                     items += Environment.NewLine + TabInString(8) + "});";
 
-                    if (img_number.alpha != 255) items += Environment.NewLine + TabInString(8) + variableName + "[i]" +
+                    if (img_number.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(8) + variableName + "[i]" +
                             ".setAlpha(" + img_number.alpha.ToString() + ");" + Environment.NewLine;
 
                     //items += Environment.NewLine + TabInString(8) + variableName + "[i].setProperty(hmUI.prop.VISIBLE, false);";
@@ -17445,7 +17609,7 @@ namespace Watch_Face_Editor
                         "forecast_icon_img = " + groupName + ".createWidget(hmUI.widget.IMG, {" + iconOptions + TabInString(7) + "});";
                     items += Environment.NewLine + TabInString(6) + "};" + Environment.NewLine;
 
-                    if (weatherFewDays.Icon.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                    if (weatherFewDays.Icon.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                             "forecast_icon_img.setAlpha(" + weatherFewDays.Icon.alpha.ToString() + ");" + Environment.NewLine;
                 }
             }
@@ -18423,7 +18587,7 @@ namespace Watch_Face_Editor
                         optionNameStart + "sleep_icon_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                             iconOptions + TabInString(6) + "});" + Environment.NewLine;
 
-                    if (elementSleep.Icon.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart +
+                    if (elementSleep.Icon.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                             "sleep_icon_img.setAlpha(" + elementSleep.Icon.alpha.ToString() + ");" + Environment.NewLine;
                 }
 
@@ -21577,7 +21741,7 @@ namespace Watch_Face_Editor
                 if (img.h != null) options += TabInString(7 + tabOffset) + "h: " + img.h.ToString() + "," + Environment.NewLine;
                 options += TabInString(7 + tabOffset) + "src: '" + img.src + ".png'," + Environment.NewLine;
 
-                if (SelectedModel.versionOS >= 2.1 && img.alpha != 255)
+                if (img.alpha != 255 && SelectedModel.versionOS >= 2.1)
                 {
                     options += TabInString(7 + tabOffset) + "// alpha: " + img.alpha.ToString() + "," + Environment.NewLine;
                 }
@@ -21604,7 +21768,7 @@ namespace Watch_Face_Editor
                 if (img.h != null) options += TabInString(7 + tabOffset) + "// h: " + img.h.ToString() + "," + Environment.NewLine;
                 options += TabInString(7 + tabOffset) + "// src: '" + img.src + ".png'," + Environment.NewLine;
 
-                if (SelectedModel.versionOS >= 2.1 && img.alpha != 255)
+                if (img.alpha != 255 && SelectedModel.versionOS >= 2.1)
                 {
                     options += TabInString(7 + tabOffset) + "// alpha: " + img.alpha.ToString() + "," + Environment.NewLine;
                 }
@@ -21647,15 +21811,10 @@ namespace Watch_Face_Editor
                 options += TabInString(7 + tabOffset) + "// image_array: " + img_array + "," + Environment.NewLine;
                 options += TabInString(7 + tabOffset) + "// image_length: " + img_level.image_length.ToString() + "," + Environment.NewLine;
 
-                if (SelectedModel.versionOS >= 2.1 && img_level.alpha != 255)
+                if (img_level.alpha != 255 && SelectedModel.versionOS >= 2.1)
                 {
                     options += TabInString(7 + tabOffset) + "// alpha: " + img_level.alpha.ToString() + "," + Environment.NewLine;
                 }
-
-                //if (img_level.shortcut)
-                //{
-                //    options += TabInString(7 + tabOffset) + "// shortcut: true," + Environment.NewLine;
-                //}
 
                 if (type.Length > 0)
                 {
@@ -21695,7 +21854,7 @@ namespace Watch_Face_Editor
                 options += TabInString(7 + tabOffset) + "x: " + img_number.iconPosX.ToString() + "," + Environment.NewLine;
                 options += TabInString(7 + tabOffset) + "y: " + img_number.iconPosY.ToString() + "," + Environment.NewLine;
                 options += TabInString(7 + tabOffset) + "src: '" + img_number.icon + ".png'," + Environment.NewLine;
-                if (SelectedModel.versionOS >= 2.1 && img_number.icon_alpha != 255)
+                if (img_number.icon_alpha != 255 && SelectedModel.versionOS >= 2.1)
                 {
                     options += TabInString(7 + tabOffset) + "// alpha: " + img_number.icon_alpha.ToString() + "," + Environment.NewLine;
                 }
@@ -21802,7 +21961,7 @@ namespace Watch_Face_Editor
                     options += TabInString(7 + tabOffset) + "dot_image: " + dot_path + "," + Environment.NewLine;
                 }
 
-                if (SelectedModel.versionOS >= 2.1 && img_number.alpha != 255)
+                if (img_number.alpha != 255 && SelectedModel.versionOS >= 2.1)
                 {
                     options += TabInString(7 + tabOffset) + "// alpha: " + img_number.alpha.ToString() + "," + Environment.NewLine;
                 }
@@ -21892,7 +22051,7 @@ namespace Watch_Face_Editor
                     options += TabInString(7 + tabOffset) + "// separator_image: " + separator_image + "," + Environment.NewLine;
                 }
 
-                if (SelectedModel.versionOS >= 2.1 && img_number.alpha != 255)
+                if (img_number.alpha != 255 && SelectedModel.versionOS >= 2.1)
                 {
                     options += TabInString(7 + tabOffset) + "// alpha: " + img_number.alpha.ToString() + "," + Environment.NewLine;
                 }
@@ -21952,7 +22111,7 @@ namespace Watch_Face_Editor
                     options += TabInString(7) + "hour_unit_en: " + hour_unit + "," + Environment.NewLine;
                 }
 
-                if (SelectedModel.versionOS >= 2.1 && img_number_hour.alpha != 255)
+                if (img_number_hour.alpha != 255 && SelectedModel.versionOS >= 2.1)
                 {
                     options += TabInString(7) + "// alpha: " + img_number_hour.alpha.ToString() + "," + Environment.NewLine;
                 }
@@ -22009,7 +22168,7 @@ namespace Watch_Face_Editor
                     options += TabInString(7) + "minute_unit_en: " + minute_unit + "," + Environment.NewLine;
                 }
 
-                if (SelectedModel.versionOS >= 2.1 && img_number_minute.alpha != 255)
+                if (img_number_minute.alpha != 255 && SelectedModel.versionOS >= 2.1)
                 {
                     options += TabInString(7) + "// alpha: " + img_number_minute.alpha.ToString() + "," + Environment.NewLine;
                 }
@@ -22065,7 +22224,7 @@ namespace Watch_Face_Editor
                     options += TabInString(7) + "second_unit_en: " + second_unit + "," + Environment.NewLine;
                 }
 
-                if (SelectedModel.versionOS >= 2.1 && img_number_second.alpha != 255)
+                if (img_number_second.alpha != 255 && SelectedModel.versionOS >= 2.1)
                 {
                     options += TabInString(7) + "// alpha: " + img_number_second.alpha.ToString() + "," + Environment.NewLine;
                 }
@@ -22509,7 +22668,7 @@ namespace Watch_Face_Editor
                 options += TabInString(7 + tabOffset) + "day_align: hmUI.align." + img_number_day.align.ToUpper() + "," + Environment.NewLine;
                 options += TabInString(7 + tabOffset) + "day_is_character: false," + Environment.NewLine;
 
-                if (SelectedModel.versionOS >= 2.1 && img_number_day.alpha != 255)
+                if (img_number_day.alpha != 255 && SelectedModel.versionOS >= 2.1)
                 {
                     options += TabInString(7 + tabOffset) + "// alpha: " + img_number_day.alpha.ToString() + "," + Environment.NewLine;
                 }
@@ -22566,7 +22725,7 @@ namespace Watch_Face_Editor
                 options += TabInString(7 + tabOffset) + "month_align: hmUI.align." + img_number_month.align.ToUpper() + "," + Environment.NewLine;
                 options += TabInString(7 + tabOffset) + "month_is_character: false," + Environment.NewLine;
 
-                if (SelectedModel.versionOS >= 2.1 && img_number_month.alpha != 255)
+                if (img_number_month.alpha != 255 && SelectedModel.versionOS >= 2.1)
                 {
                     options += TabInString(7 + tabOffset) + "// alpha: " + img_number_month.alpha.ToString() + "," + Environment.NewLine;
                 }
@@ -22623,7 +22782,7 @@ namespace Watch_Face_Editor
                 options += TabInString(7 + tabOffset) + "year_align: hmUI.align." + img_number_year.align.ToUpper() + "," + Environment.NewLine;
                 options += TabInString(7 + tabOffset) + "year_is_character: false," + Environment.NewLine;
 
-                if (SelectedModel.versionOS >= 2.1 && img_number_year.alpha != 255)
+                if (img_number_year.alpha != 255 && SelectedModel.versionOS >= 2.1)
                 {
                     options += TabInString(7 + tabOffset) + "// alpha: " + img_number_year.alpha.ToString() + "," + Environment.NewLine;
                 }
@@ -22667,7 +22826,7 @@ namespace Watch_Face_Editor
                 options += TabInString(7 + tabOffset) + "month_tc_array: " + month_array + "," + Environment.NewLine;
                 options += TabInString(7 + tabOffset) + "month_en_array: " + month_array + "," + Environment.NewLine;
 
-                if (SelectedModel.versionOS >= 2.1 && img_month.alpha != 255)
+                if (img_month.alpha != 255 && SelectedModel.versionOS >= 2.1)
                 {
                     options += TabInString(7 + tabOffset) + "// alpha: " + img_month.alpha.ToString() + "," + Environment.NewLine;
                 }
@@ -22713,7 +22872,7 @@ namespace Watch_Face_Editor
                 options += TabInString(7 + tabOffset) + "week_tc: " + week_array + "," + Environment.NewLine;
                 options += TabInString(7 + tabOffset) + "week_sc: " + week_array + "," + Environment.NewLine;
 
-                if (SelectedModel.versionOS >= 2.1 && img_week.alpha != 255)
+                if (img_week.alpha != 255 && SelectedModel.versionOS >= 2.1)
                 {
                     options += TabInString(7 + tabOffset) + "// alpha: " + img_week.alpha.ToString() + "," + Environment.NewLine;
                 }
@@ -22756,7 +22915,7 @@ namespace Watch_Face_Editor
                 options += TabInString(7 + tabOffset) + "image_array: " + img_array + "," + Environment.NewLine;
                 options += TabInString(7 + tabOffset) + "image_length: " + img_level.image_length.ToString() + "," + Environment.NewLine;
 
-                if (SelectedModel.versionOS >= 2.1 && img_level.alpha != 255)
+                if (img_level.alpha != 255 && SelectedModel.versionOS >= 2.1)
                 {
                     options += TabInString(7 + tabOffset) + "// alpha: " + img_level.alpha.ToString() + "," + Environment.NewLine;
                 }
@@ -24079,11 +24238,6 @@ namespace Watch_Face_Editor
                 options += TabInString(7) + "src: '" + img_status.src + ".png'," + Environment.NewLine;
                 options += TabInString(7) + "type: hmUI.system_status." + type + "," + Environment.NewLine;
                 options += TabInString(7) + "show_level: hmUI.show_level." + show_level + "," + Environment.NewLine;
-
-                //if (SelectedModel.versionOS >= 2.1 && img_status.alpha != 255)
-                //{
-                //    options += TabInString(7) + "// alpha: " + img_status.alpha.ToString() + "," + Environment.NewLine;
-                //}
             }
             return options;
         }
@@ -24278,7 +24432,7 @@ namespace Watch_Face_Editor
             {
                 options += TabInString(7 + tabOffset) + "font: 'fonts/" + text.font + "'," + Environment.NewLine;
             }
-            if (SelectedModel.versionOS >= 3.5 && text.alpha != 255)
+            if (text.alpha != 255 && SelectedModel.versionOS >= 3.5)
             {
                 options += TabInString(7 + tabOffset) + "alpha: " + text.alpha.ToString() + "," + Environment.NewLine;
             }
@@ -24312,10 +24466,9 @@ namespace Watch_Face_Editor
 
 #if DEBUG
             options += TabInString(7 + tabOffset) + "text: 'Test String'," + Environment.NewLine;
-#endif
-
+#else
             if (text.textStr.Length > 0) options += TabInString(7 + tabOffset) + "text: '" + text.textStr + "'," + Environment.NewLine;
-
+#endif
             if (show_level.Length > 0)
             {
                 options += TabInString(7 + tabOffset) + "show_level: hmUI.show_level." + show_level + "," + Environment.NewLine;
@@ -24422,7 +24575,7 @@ namespace Watch_Face_Editor
             {
                 options += TabInString(7 + tabOffset) + "font: 'fonts/" + text.font + "'," + Environment.NewLine;
             }
-            if (SelectedModel.versionOS >= 3.5 && text.alpha != 255)
+            if (text.alpha != 255 && SelectedModel.versionOS >= 3.5)
             {
                 options += TabInString(7 + tabOffset) + "alpha: " + text.alpha.ToString() + "," + Environment.NewLine;
             }
@@ -26523,9 +26676,12 @@ namespace Watch_Face_Editor
                                         int offset = 1;
                                         if (altimeter.Number != null) offset++;
                                         if (altimeter.Number_Font != null) offset++;
+                                        if (altimeter.Pressure != null) offset++;
+                                        if (altimeter.Pressure_Font != null) offset++;
                                         if (altimeter.Number_Target != null) offset++;
                                         if (altimeter.Number_Target_Font != null) offset++;
                                         if (altimeter.Pointer != null) offset++;
+                                        //if (altimeter.Icon != null) offset++;
 
                                         altimeter.Icon = new hmUI_widget_IMG();
                                         altimeter.Icon.src = img.src;
@@ -26615,6 +26771,8 @@ namespace Watch_Face_Editor
                                         if (wind.Segments != null) offset++;
                                         if (wind.Number != null) offset++;
                                         if (wind.Number_Font != null) offset++;
+                                        if (wind.Wind_Speed != null) offset++;
+                                        if (wind.Wind_Speed_Font != null) offset++;
                                         if (wind.Pointer != null) offset++;
                                         if (wind.Direction != null) offset++;
 
@@ -31334,6 +31492,8 @@ namespace Watch_Face_Editor
                                 if (wind.Segments != null) offset++;
                                 if (wind.Number != null) offset++;
                                 if (wind.Number_Font != null) offset++;
+                                if (wind.Wind_Speed != null) offset++;
+                                if (wind.Wind_Speed_Font != null) offset++;
                                 if (wind.Pointer != null) offset++;
                                 if (wind.Direction != null) offset++;
                                 if (wind.Icon != null) offset++;
@@ -31365,6 +31525,8 @@ namespace Watch_Face_Editor
                                 if (wind.Segments != null) offset++;
                                 if (wind.Number != null) offset++;
                                 if (wind.Number_Font != null) offset++;
+                                if (wind.Wind_Speed != null) offset++;
+                                if (wind.Wind_Speed_Font != null) offset++;
                                 if (wind.Pointer != null) offset++;
                                 //if (wind.Direction != null) offset++;
                                 if (wind.Icon != null) offset++;
@@ -32148,6 +32310,8 @@ namespace Watch_Face_Editor
                                 //if (wind.Segments != null) offset++;
                                 if (wind.Number != null) offset++;
                                 if (wind.Number_Font != null) offset++;
+                                if (wind.Wind_Speed != null) offset++;
+                                if (wind.Wind_Speed_Font != null) offset++;
                                 if (wind.Pointer != null) offset++;
                                 if (wind.Direction != null) offset++;
                                 if (wind.Icon != null) offset++;
@@ -33461,6 +33625,8 @@ namespace Watch_Face_Editor
                                 int offset = 1;
                                 //if (altimeter.Number != null) offset++;
                                 if (altimeter.Number_Font != null) offset++;
+                                if (altimeter.Pressure != null) offset++;
+                                if (altimeter.Pressure_Font != null) offset++;
                                 if (altimeter.Number_Target != null) offset++;
                                 if (altimeter.Number_Target_Font != null) offset++;
                                 if (altimeter.Pointer != null) offset++;
@@ -33498,6 +33664,8 @@ namespace Watch_Face_Editor
                                 int offset = 1;
                                 if (altimeter.Number != null) offset++;
                                 if (altimeter.Number_Font != null) offset++;
+                                if (altimeter.Pressure != null) offset++;
+                                if (altimeter.Pressure_Font != null) offset++;
                                 //if (altimeter.Number_Target != null) offset++;
                                 if (altimeter.Number_Target_Font != null) offset++;
                                 if (altimeter.Pointer != null) offset++;
@@ -33786,6 +33954,8 @@ namespace Watch_Face_Editor
                                 if (wind.Segments != null) offset++;
                                 //if (wind.Number != null) offset++;
                                 if (wind.Number_Font != null) offset++;
+                                if (wind.Wind_Speed != null) offset++;
+                                if (wind.Wind_Speed_Font != null) offset++;
                                 if (wind.Pointer != null) offset++;
                                 if (wind.Direction != null) offset++;
                                 if (wind.Icon != null) offset++;
@@ -33806,6 +33976,46 @@ namespace Watch_Face_Editor
                                 wind.Number.alpha = imgNumber.alpha;
                                 wind.Number.visible = true;
                                 wind.Number.position = offset;
+                            }
+                        }
+
+                        if (imgNumber.type == "WIND_SPEED")
+                        {
+                            ElementWind wind = (ElementWind)elementsList.Find(e => e.GetType().Name == "ElementWind");
+                            if (wind == null)
+                            {
+                                elementsList.Add(new ElementWind());
+                                wind = (ElementWind)elementsList.Find(e => e.GetType().Name == "ElementWind");
+                            }
+                            if (wind != null)
+                            {
+                                int offset = 1;
+                                if (wind.Images != null) offset++;
+                                if (wind.Segments != null) offset++;
+                                if (wind.Number != null) offset++;
+                                if (wind.Number_Font != null) offset++;
+                                //if (wind.Wind_Speed != null) offset++;
+                                if (wind.Wind_Speed_Font != null) offset++;
+                                if (wind.Pointer != null) offset++;
+                                if (wind.Direction != null) offset++;
+                                if (wind.Icon != null) offset++;
+
+                                wind.Wind_Speed = new hmUI_widget_IMG_NUMBER();
+                                wind.Wind_Speed.img_First = imgNumber.img_First;
+                                wind.Wind_Speed.imageX = imgNumber.imageX;
+                                wind.Wind_Speed.imageY = imgNumber.imageY;
+                                wind.Wind_Speed.space = imgNumber.space;
+                                wind.Wind_Speed.angle = imgNumber.angle;
+                                wind.Wind_Speed.zero = imgNumber.zero;
+                                wind.Wind_Speed.unit = imgNumber.unit;
+                                wind.Wind_Speed.imperial_unit = imgNumber.imperial_unit;
+                                wind.Wind_Speed.negative_image = imgNumber.negative_image;
+                                wind.Wind_Speed.invalid_image = imgNumber.invalid_image;
+                                wind.Wind_Speed.dot_image = imgNumber.dot_image;
+                                wind.Wind_Speed.align = imgNumber.align;
+                                wind.Wind_Speed.alpha = imgNumber.alpha;
+                                wind.Wind_Speed.visible = true;
+                                wind.Wind_Speed.position = offset;
                             }
                         }
 
@@ -37311,6 +37521,11 @@ namespace Watch_Face_Editor
                             {
                                 int offset = 1;
                                 if (altimeter.Number != null) offset++;
+                                if (altimeter.Number_Font != null) offset++;
+                                if (altimeter.Pressure != null) offset++;
+                                if (altimeter.Pressure_Font != null) offset++;
+                                if (altimeter.Number_Target != null) offset++;
+                                if (altimeter.Number_Target_Font != null) offset++;
                                 //if (altimeter.Pointer != null) offset++;
                                 if (altimeter.Icon != null) offset++;
 
@@ -37431,6 +37646,8 @@ namespace Watch_Face_Editor
                                 if (wind.Segments != null) offset++;
                                 if (wind.Number != null) offset++;
                                 if (wind.Number_Font != null) offset++;
+                                if (wind.Wind_Speed != null) offset++;
+                                if (wind.Wind_Speed_Font != null) offset++;
                                 //if (wind.Pointer != null) offset++;
                                 if (wind.Direction != null) offset++;
                                 if (wind.Icon != null) offset++;
@@ -40000,6 +40217,65 @@ namespace Watch_Face_Editor
                             }
                         }
 
+                        if (objectName.EndsWith("pressure_text_font"))
+                        {
+                            ElementAltimeter altimeter = (ElementAltimeter)elementsList.Find(e => e.GetType().Name == "ElementAltimeter");
+                            if (altimeter == null)
+                            {
+                                elementsList.Add(new ElementAltimeter());
+                                altimeter = (ElementAltimeter)elementsList.Find(e => e.GetType().Name == "ElementAltimeter");
+                            }
+                            if (altimeter != null)
+                            {
+                                int offset = 1;
+                                if (altimeter.Number != null) offset++;
+                                if (altimeter.Number_Font != null) offset++;
+                                if (altimeter.Pressure != null) offset++;
+                                //if (altimeter.Pressure_Font != null) offset++;
+                                if (altimeter.Number_Target != null) offset++;
+                                if (altimeter.Number_Target_Font != null) offset++;
+                                if (altimeter.Pointer != null) offset++;
+                                if (altimeter.Icon != null) offset++;
+
+                                altimeter.Pressure_Font = new hmUI_widget_TEXT();
+                                altimeter.Pressure_Font.x = text.x;
+                                altimeter.Pressure_Font.y = text.y;
+                                altimeter.Pressure_Font.w = text.w;
+                                altimeter.Pressure_Font.h = text.h;
+
+                                altimeter.Pressure_Font.text_size = text.text_size;
+                                altimeter.Pressure_Font.char_space = text.char_space;
+                                altimeter.Pressure_Font.line_space = text.line_space;
+                                altimeter.Pressure_Font.alpha = text.alpha;
+
+                                altimeter.Pressure_Font.font = text.font;
+                                altimeter.Pressure_Font.color = text.color;
+                                altimeter.Pressure_Font.color_2 = text.color_2;
+                                altimeter.Pressure_Font.use_color_2 = text.use_color_2;
+
+                                altimeter.Pressure_Font.align_h = text.align_h;
+                                altimeter.Pressure_Font.align_v = text.align_v;
+                                altimeter.Pressure_Font.text_style = text.text_style;
+
+                                altimeter.Pressure_Font.padding = text.padding;
+                                altimeter.Pressure_Font.unit_type = text.unit_type;
+                                altimeter.Pressure_Font.unit_string = text.unit_string;
+                                altimeter.Pressure_Font.unit_end = text.unit_end;
+
+                                if (text.use_text_circle)
+                                {
+                                    altimeter.Pressure_Font.use_text_circle = text.use_text_circle;
+                                    altimeter.Pressure_Font.radius = text.radius;
+                                    altimeter.Pressure_Font.start_angle = text.start_angle;
+                                    altimeter.Pressure_Font.end_angle = text.end_angle;
+                                    altimeter.Pressure_Font.mode = text.mode;
+                                }
+
+                                altimeter.Pressure_Font.visible = true;
+                                altimeter.Pressure_Font.position = offset;
+                            }
+                        }
+
                         /////
                         if (objectName.EndsWith("sleep_start_font"))
                         {
@@ -40421,6 +40697,82 @@ namespace Watch_Face_Editor
                             }
                         }
 
+                        ////
+                        if (objectName.Contains("widget_text_"))
+                        {
+                            ElementTextWidgets textWidgets = (ElementTextWidgets)elementsList.Find(e => e.GetType().Name == "ElementTextWidgets");
+                            if (textWidgets == null)
+                            {
+                                elementsList.Add(new ElementTextWidgets());
+                                textWidgets = (ElementTextWidgets)elementsList.Find(e => e.GetType().Name == "ElementTextWidgets");
+                            }
+                            if (textWidgets != null)
+                            {
+                                if (textWidgets.Text == null) textWidgets.Text = new List<hmUI_widget_TEXT>();
+
+                                int index = objectName.LastIndexOf('_');
+                                int position = -1;
+
+                                if (index >= 0 && index < objectName.Length - 1)
+                                {
+                                    string numberPart = objectName.Substring(index + 1);
+                                    int.TryParse(numberPart, out position);
+                                }
+
+                                hmUI_widget_TEXT text_widget = new hmUI_widget_TEXT();
+                                text_widget.x = text.x;
+                                text_widget.y = text.y;
+                                text_widget.w = text.w;
+                                text_widget.h = text.h;
+
+                                text_widget.text_size = text.text_size;
+                                text_widget.char_space = text.char_space;
+                                text_widget.line_space = text.line_space;
+                                text_widget.alpha = text.alpha;
+
+                                text_widget.font = text.font;
+                                text_widget.color = text.color;
+                                text_widget.color_2 = text.color_2;
+                                text_widget.use_color_2 = text.use_color_2;
+
+                                text_widget.align_h = text.align_h;
+                                text_widget.align_v = text.align_v;
+                                text_widget.text_style = text.text_style;
+
+                                text_widget.padding = text.padding;
+                                text_widget.unit_type = text.unit_type;
+                                text_widget.unit_string = text.unit_string;
+                                text_widget.unit_end = text.unit_end;
+
+                                if (text.use_text_circle)
+                                {
+                                    text_widget.use_text_circle = text.use_text_circle;
+                                    text_widget.radius = text.radius;
+                                    text_widget.start_angle = text.start_angle;
+                                    text_widget.end_angle = text.end_angle;
+                                    text_widget.mode = text.mode;
+                                }
+                                text_widget.textStr = text.textStr;
+                                text_widget.visible = true;
+
+                                if (position > 0 || position <= textWidgets.Text.Count)
+                                {
+                                    if (position == textWidgets.Text.Count + 1) textWidgets.Text.Add(text_widget);
+                                    else
+                                    {
+                                        while (position > textWidgets.Text.Count + 1)
+                                        {
+                                            hmUI_widget_TEXT temp_text_widget = new hmUI_widget_TEXT();
+                                            temp_text_widget.visible = false;
+                                            temp_text_widget.textStr = "Text Widget " + (textWidgets.Text.Count + 1);
+                                            textWidgets.Text.Add(temp_text_widget);
+                                        }
+                                        textWidgets.Text.Add(text_widget);
+                                    }
+                                }
+                                else textWidgets.Text.Add(text_widget);
+                            }
+                        }
                         break;
                     #endregion
 
@@ -42263,6 +42615,8 @@ namespace Watch_Face_Editor
                                 int offset = 1;
                                 if (altimeter.Number != null) offset++;
                                 //if (altimeter.Number_Font != null) offset++;
+                                if (altimeter.Pressure != null) offset++;
+                                if (altimeter.Pressure_Font != null) offset++;
                                 if (altimeter.Number_Target != null) offset++;
                                 if (altimeter.Number_Target_Font != null) offset++;
                                 if (altimeter.Pointer != null) offset++;
@@ -42318,6 +42672,8 @@ namespace Watch_Face_Editor
                                 int offset = 1;
                                 if (altimeter.Number != null) offset++;
                                 if (altimeter.Number_Font != null) offset++;
+                                if (altimeter.Pressure != null) offset++;
+                                if (altimeter.Pressure_Font != null) offset++;
                                 if (altimeter.Number_Target != null) offset++;
                                 //if (altimeter.Number_Target_Font != null) offset++;
                                 if (altimeter.Pointer != null) offset++;
@@ -42613,6 +42969,8 @@ namespace Watch_Face_Editor
                                 if (wind.Segments != null) offset++;
                                 if (wind.Number != null) offset++;
                                 //if (wind.Number_Font != null) offset++;
+                                if (wind.Wind_Speed != null) offset++;
+                                if (wind.Wind_Speed_Font != null) offset++;
                                 if (wind.Pointer != null) offset++;
                                 if (wind.Direction != null) offset++;
                                 if (wind.Icon != null) offset++;
@@ -42651,6 +43009,64 @@ namespace Watch_Face_Editor
 
                                 wind.Number_Font.visible = true;
                                 wind.Number_Font.position = offset;
+                            }
+                        }
+
+                        if (text_font.type == "WIND_SPEED")
+                        {
+                            ElementWind wind = (ElementWind)elementsList.Find(e => e.GetType().Name == "ElementWind");
+                            if (wind == null)
+                            {
+                                elementsList.Add(new ElementWind());
+                                wind = (ElementWind)elementsList.Find(e => e.GetType().Name == "ElementWind");
+                            }
+                            if (wind != null)
+                            {
+                                int offset = 1;
+                                if (wind.Images != null) offset++;
+                                if (wind.Segments != null) offset++;
+                                if (wind.Number != null) offset++;
+                                if (wind.Number_Font != null) offset++;
+                                if (wind.Wind_Speed != null) offset++;
+                                //if (wind.Wind_Speed_Font != null) offset++;
+                                if (wind.Pointer != null) offset++;
+                                if (wind.Direction != null) offset++;
+                                if (wind.Icon != null) offset++;
+
+                                wind.Wind_Speed_Font = new hmUI_widget_TEXT();
+                                wind.Wind_Speed_Font.x = text_font.x;
+                                wind.Wind_Speed_Font.y = text_font.y;
+                                wind.Wind_Speed_Font.w = text_font.w;
+                                wind.Wind_Speed_Font.h = text_font.h;
+
+                                wind.Wind_Speed_Font.color = text_font.color;
+                                wind.Wind_Speed_Font.font = text_font.font;
+                                wind.Wind_Speed_Font.text_size = text_font.text_size;
+
+                                wind.Wind_Speed_Font.char_space = text_font.char_space;
+                                wind.Wind_Speed_Font.line_space = text_font.line_space;
+                                wind.Wind_Speed_Font.alpha = text_font.alpha;
+
+                                wind.Wind_Speed_Font.align_h = text_font.align_h;
+                                wind.Wind_Speed_Font.align_v = text_font.align_v;
+                                wind.Wind_Speed_Font.text_style = text_font.text_style;
+
+                                wind.Wind_Speed_Font.padding = text_font.padding;
+                                wind.Wind_Speed_Font.unit_type = text_font.unit_type;
+
+                                if (text_font.use_text_circle)
+                                {
+                                    wind.Wind_Speed_Font.use_text_circle = text_font.use_text_circle;
+                                    wind.Wind_Speed_Font.radius = text_font.radius;
+                                    wind.Wind_Speed_Font.start_angle = text_font.start_angle;
+                                    wind.Wind_Speed_Font.end_angle = text_font.end_angle;
+                                    wind.Wind_Speed_Font.mode = text_font.mode;
+                                }
+
+                                wind.Wind_Speed_Font.type = text_font.type;
+
+                                wind.Wind_Speed_Font.visible = true;
+                                wind.Wind_Speed_Font.position = offset;
                             }
                         }
 
@@ -45999,6 +46415,11 @@ namespace Watch_Face_Editor
             {
                 paramName = parametrs["text_style"].Replace("hmUI.text_style.", "");
                 text.text_style = paramName;
+            }
+            if (parametrs.ContainsKey("text"))
+            {
+                paramName = parametrs["text"].Replace("'", "");
+                text.textStr = paramName;
             }
 
             if (parametrs.ContainsKey("// padding")) text.padding = StringToBool(parametrs["// padding"]);

@@ -39,6 +39,9 @@ namespace Watch_Face_Editor
             this.radioButton_normal = new System.Windows.Forms.RadioButton();
             this.radioButton_small = new System.Windows.Forms.RadioButton();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.radioButton_x3 = new System.Windows.Forms.RadioButton();
+            this.radioButton_x4 = new System.Windows.Forms.RadioButton();
+            this.radioButton_x5 = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Preview)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -59,6 +62,9 @@ namespace Watch_Face_Editor
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.radioButton_x5);
+            this.panel1.Controls.Add(this.radioButton_x4);
+            this.panel1.Controls.Add(this.radioButton_x3);
             this.panel1.Controls.Add(this.radioButton_xxlarge);
             this.panel1.Controls.Add(this.radioButton_xlarge);
             this.panel1.Controls.Add(this.radioButton_large);
@@ -73,7 +79,7 @@ namespace Watch_Face_Editor
             // radioButton_xxlarge
             // 
             this.radioButton_xxlarge.AutoSize = true;
-            this.radioButton_xxlarge.Location = new System.Drawing.Point(228, 3);
+            this.radioButton_xxlarge.Location = new System.Drawing.Point(211, 3);
             this.radioButton_xxlarge.Name = "radioButton_xxlarge";
             this.radioButton_xxlarge.Size = new System.Drawing.Size(45, 17);
             this.radioButton_xxlarge.TabIndex = 4;
@@ -84,7 +90,7 @@ namespace Watch_Face_Editor
             // radioButton_xlarge
             // 
             this.radioButton_xlarge.AutoSize = true;
-            this.radioButton_xlarge.Location = new System.Drawing.Point(177, 3);
+            this.radioButton_xlarge.Location = new System.Drawing.Point(164, 3);
             this.radioButton_xlarge.Name = "radioButton_xlarge";
             this.radioButton_xlarge.Size = new System.Drawing.Size(36, 17);
             this.radioButton_xlarge.TabIndex = 3;
@@ -95,7 +101,7 @@ namespace Watch_Face_Editor
             // radioButton_large
             // 
             this.radioButton_large.AutoSize = true;
-            this.radioButton_large.Location = new System.Drawing.Point(116, 3);
+            this.radioButton_large.Location = new System.Drawing.Point(108, 3);
             this.radioButton_large.Name = "radioButton_large";
             this.radioButton_large.Size = new System.Drawing.Size(45, 17);
             this.radioButton_large.TabIndex = 2;
@@ -107,7 +113,7 @@ namespace Watch_Face_Editor
             // 
             this.radioButton_normal.AutoSize = true;
             this.radioButton_normal.Checked = true;
-            this.radioButton_normal.Location = new System.Drawing.Point(64, 3);
+            this.radioButton_normal.Location = new System.Drawing.Point(61, 3);
             this.radioButton_normal.Name = "radioButton_normal";
             this.radioButton_normal.Size = new System.Drawing.Size(36, 17);
             this.radioButton_normal.TabIndex = 1;
@@ -119,7 +125,7 @@ namespace Watch_Face_Editor
             // radioButton_small
             // 
             this.radioButton_small.AutoSize = true;
-            this.radioButton_small.Location = new System.Drawing.Point(3, 3);
+            this.radioButton_small.Location = new System.Drawing.Point(5, 3);
             this.radioButton_small.Name = "radioButton_small";
             this.radioButton_small.Size = new System.Drawing.Size(45, 17);
             this.radioButton_small.TabIndex = 0;
@@ -133,6 +139,39 @@ namespace Watch_Face_Editor
             this.toolTip1.InitialDelay = 500;
             this.toolTip1.IsBalloon = true;
             this.toolTip1.ReshowDelay = 100;
+            // 
+            // radioButton_x3
+            // 
+            this.radioButton_x3.AutoSize = true;
+            this.radioButton_x3.Location = new System.Drawing.Point(267, 3);
+            this.radioButton_x3.Name = "radioButton_x3";
+            this.radioButton_x3.Size = new System.Drawing.Size(36, 17);
+            this.radioButton_x3.TabIndex = 5;
+            this.radioButton_x3.Text = "x3";
+            this.radioButton_x3.UseVisualStyleBackColor = true;
+            this.radioButton_x3.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
+            // 
+            // radioButton_x4
+            // 
+            this.radioButton_x4.AutoSize = true;
+            this.radioButton_x4.Location = new System.Drawing.Point(314, 3);
+            this.radioButton_x4.Name = "radioButton_x4";
+            this.radioButton_x4.Size = new System.Drawing.Size(36, 17);
+            this.radioButton_x4.TabIndex = 6;
+            this.radioButton_x4.Text = "x4";
+            this.radioButton_x4.UseVisualStyleBackColor = true;
+            this.radioButton_x4.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
+            // 
+            // radioButton_x5
+            // 
+            this.radioButton_x5.AutoSize = true;
+            this.radioButton_x5.Location = new System.Drawing.Point(361, 3);
+            this.radioButton_x5.Name = "radioButton_x5";
+            this.radioButton_x5.Size = new System.Drawing.Size(36, 17);
+            this.radioButton_x5.TabIndex = 7;
+            this.radioButton_x5.Text = "x5";
+            this.radioButton_x5.UseVisualStyleBackColor = true;
+            this.radioButton_x5.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
             // 
             // Form_Preview
             // 
@@ -168,5 +207,8 @@ namespace Watch_Face_Editor
         public System.Windows.Forms.RadioButton radioButton_normal;
         public System.Windows.Forms.RadioButton radioButton_small;
         private System.Windows.Forms.ToolTip toolTip1;
+        public System.Windows.Forms.RadioButton radioButton_x3;
+        public System.Windows.Forms.RadioButton radioButton_x5;
+        public System.Windows.Forms.RadioButton radioButton_x4;
     }
 }

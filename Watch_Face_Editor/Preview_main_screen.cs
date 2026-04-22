@@ -4859,6 +4859,8 @@ namespace Watch_Face_Editor
 
                     img_number = activityElementAltimeter.Number;
                     font_number = activityElementAltimeter.Number_Font;
+                    hmUI_widget_IMG_NUMBER pressure = activityElementAltimeter.Pressure;
+                    hmUI_widget_TEXT pressure_font = activityElementAltimeter.Pressure_Font;
                     img_number_target = activityElementAltimeter.Number_Target;
                     font_number_target = activityElementAltimeter.Number_Target_Font;
                     img_pointer = activityElementAltimeter.Pointer;
@@ -4874,12 +4876,7 @@ namespace Watch_Face_Editor
                     progress = progress / 100f;
                     int value_altitude = WatchFacePreviewSet.Air.Altitude;
 
-                    //DrawActivity(gPanel, img_level, img_prorgess, img_number, font_number, text_rotation, text_circle, img_number_target, font_number_target,
-                    //    text_rotation_target, text_circle_target, img_pointer, circle_scale, linear_scale, icon, elementValue, value_lenght, goal,
-                    //    progress, valueImgIndex, valueSegmentIndex, BBorder, showProgressArea,
-                    //    showCentrHend, "ElementAltimeter");
-
-                    DrawAltimeter(gPanel, img_number, font_number, img_number_target, font_number_target,
+                    DrawAltimeter(gPanel, img_number, font_number, pressure, pressure_font, img_number_target, font_number_target, 
                         img_pointer, icon, elementValue, value_altitude, progress, BBorder, showProgressArea, showCentrHend);
 
 
@@ -4928,6 +4925,8 @@ namespace Watch_Face_Editor
                     img_prorgess = activityElementWind.Segments;
                     img_number = activityElementWind.Number;
                     font_number = activityElementWind.Number_Font;
+                    hmUI_widget_IMG_NUMBER wind_speed = activityElementWind.Wind_Speed;
+                    hmUI_widget_TEXT font_wind_speed = activityElementWind.Wind_Speed_Font;
                     img_pointer = activityElementWind.Pointer;
                     hmUI_widget_IMG_LEVEL img_direction = activityElementWind.Direction;
                     icon = activityElementWind.Icon;
@@ -4958,16 +4957,17 @@ namespace Watch_Face_Editor
                     if (img_level != null && img_level.image_length > 0)
                     {
                         imgCount = img_level.image_length;
-                        valueImgIndex = IMG_progress_index(elementValue, goal, imgCount, "ElementBattery");
+                        valueImgIndex = IMG_progress_index(elementValue, goal, imgCount, "ElementWind");
                     }
                     if (img_prorgess != null && img_prorgess.image_length > 0)
                     {
                         segmentCount = img_prorgess.image_length;
-                        valueSegmentIndex = IMG_progress_index(elementValue, goal, segmentCount, "ElementBattery");
+                        valueSegmentIndex = IMG_progress_index(elementValue, goal, segmentCount, "ElementWind");
                     }
 
-                    DrawWind(gPanel, img_level, img_prorgess, img_number, font_number, img_pointer, img_direction, icon, elementValue, value_lenght, goal,
-                        progress, valueImgIndex, valueSegmentIndex, valueImgDirectionIndex, BBorder, showProgressArea, showCentrHend);
+                    DrawWind(gPanel, img_level, img_prorgess, img_number, font_number, wind_speed, font_wind_speed,
+                        img_pointer, img_direction, icon, elementValue, value_lenght, goal, progress, 
+                        valueImgIndex, valueSegmentIndex, valueImgDirectionIndex, BBorder, showProgressArea, showCentrHend);
 
 
                     break;
@@ -12000,7 +12000,8 @@ namespace Watch_Face_Editor
         /// <param name="showProgressArea">Подсвечивать круговую шкалу при наличии фонового изображения</param>
         /// <param name="showCentrHend">Подсвечивать центр стрелки</param>
         /// <param name="elementName">Имя отображаемого элемента</param>
-        private void DrawAltimeter(Graphics gPanel, hmUI_widget_IMG_NUMBER number, hmUI_widget_TEXT number_font, hmUI_widget_IMG_NUMBER numberAltitude,
+        private void DrawAltimeter(Graphics gPanel, hmUI_widget_IMG_NUMBER number, hmUI_widget_TEXT number_font,
+            hmUI_widget_IMG_NUMBER pressure, hmUI_widget_TEXT pressure_font, hmUI_widget_IMG_NUMBER numberAltitude,
             hmUI_widget_TEXT numberAltitude_font, hmUI_widget_IMG_POINTER pointer, hmUI_widget_IMG icon, float value, int value_altitude, float progress,
             bool BBorder, bool showProgressArea, bool showCentrHend)
         {
@@ -12087,6 +12088,111 @@ namespace Watch_Face_Editor
                     {
                         string font_fileName = FontsList[number_font.font];
                         //string font_fileName = ProjectDir + @"\assets\fonts\" + number_font.font;
+                        if (SelectedModel.versionOS >= 2 && File.Exists(font_fileName))
+                        {
+                            Font drawFont = null;
+                            using (System.Drawing.Text.PrivateFontCollection fonts = new System.Drawing.Text.PrivateFontCollection())
+                            {
+                                fonts.AddFontFile(font_fileName);
+                                drawFont = new Font(fonts.Families[0], size, GraphicsUnit.World);
+                            }
+
+                            Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                        }
+                        else
+                        {
+                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                        }
+
+                    }
+                    else
+                    {
+                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                    }
+                }
+
+                if (pressure != null && pressure.img_First != null && pressure.img_First.Length > 0 &&
+                    index == pressure.position && pressure.visible)
+                {
+                    int imageIndex = ListImages.IndexOf(pressure.img_First);
+                    int x = pressure.imageX;
+                    int y = pressure.imageY;
+                    int spasing = pressure.space;
+                    int angle = pressure.angle;
+                    int alignment = AlignmentToInt(pressure.align);
+                    bool addZero = pressure.zero;
+                    int alpha = pressure.alpha;
+                    int separator_index = -1;
+                    if (pressure.unit != null && pressure.unit.Length > 0)
+                        separator_index = ListImages.IndexOf(pressure.unit);
+                    int valuePressure = (int)Math.Round(value * 0.75006375541921);
+
+                    Draw_dagital_text(gPanel, imageIndex, x, y,
+                        spasing, alignment, (int)valuePressure, alpha, addZero, 5, separator_index, angle, BBorder, "ElementAltimeter");
+
+                    if (pressure.icon != null && pressure.icon.Length > 0)
+                    {
+                        imageIndex = ListImages.IndexOf(pressure.icon);
+                        x = pressure.iconPosX;
+                        y = pressure.iconPosY;
+
+                        src = OpenFileStream(ListImagesFullName[imageIndex]);
+                        gPanel.DrawImage(src, x, y);
+                        //gPanel.DrawImage(src, new Rectangle(x, y, src.Width, src.Height));
+                    }
+                }
+
+                if (pressure_font != null && index == pressure_font.position && pressure_font.visible)
+                {
+                    int x = pressure_font.x;
+                    int y = pressure_font.y;
+                    int h = pressure_font.h;
+                    int w = pressure_font.w;
+
+                    int size = pressure_font.text_size;
+                    int space_h = pressure_font.char_space;
+                    int space_v = pressure_font.line_space;
+
+                    Color color = StringToColor(pressure_font.color);
+                    int alpha = pressure_font.alpha;
+                    string align_h = pressure_font.align_h;
+                    string align_v = pressure_font.align_v;
+                    string text_style = pressure_font.text_style;
+                    int valuePressure = (int)Math.Round(value * 0.75006375541921);
+                    string valueStr = valuePressure.ToString();
+                    string unitStr = pressure_font.unit_string;
+                    if (pressure_font.padding) valueStr = valueStr.PadLeft(3, '0');
+                    if (pressure_font.unit_type > 0)
+                    {
+                        if (pressure_font.unit_type == 2) unitStr = unitStr.ToUpper();
+                        valueStr += unitStr;
+                    }
+
+                    if (pressure_font.centreHorizontally)
+                    {
+                        x = (SelectedModel.background.w - w) / 2;
+                        align_h = "CENTER_H";
+                    }
+                    if (pressure_font.centreVertically)
+                    {
+                        y = (SelectedModel.background.h - h) / 2;
+                        align_v = "CENTER_V";
+                    }
+
+                    bool use_text_circle = pressure_font.use_text_circle;
+                    int radius = pressure_font.radius;
+                    int start_angle = pressure_font.start_angle;
+                    int end_angle = pressure_font.end_angle;
+                    int mode = pressure_font.mode;
+
+                    if (pressure_font.font != null && pressure_font.font.Length > 3 && FontsList.ContainsKey(pressure_font.font))
+                    {
+                        string font_fileName = FontsList[pressure_font.font];
+                        //string font_fileName = ProjectDir + @"\assets\fonts\" + pressure_font.font;
                         if (SelectedModel.versionOS >= 2 && File.Exists(font_fileName))
                         {
                             Font drawFont = null;
@@ -12320,7 +12426,8 @@ namespace Watch_Face_Editor
         /// <param name="showProgressArea">Подсвечивать круговую шкалу при наличии фонового изображения</param>
         /// <param name="showCentrHend">Подсвечивать центр стрелки</param>
         private void DrawWind(Graphics gPanel, hmUI_widget_IMG_LEVEL images, hmUI_widget_IMG_PROGRESS segments,
-            hmUI_widget_IMG_NUMBER number, hmUI_widget_TEXT number_font, hmUI_widget_IMG_POINTER pointer, hmUI_widget_IMG_LEVEL img_direction,
+            hmUI_widget_IMG_NUMBER number, hmUI_widget_TEXT number_font, hmUI_widget_IMG_NUMBER windSpeed, 
+            hmUI_widget_TEXT windSpeed_font, hmUI_widget_IMG_POINTER pointer, hmUI_widget_IMG_LEVEL img_direction,
             hmUI_widget_IMG icon, float value, int value_lenght, int goal, float progress, int valueImgIndex, 
             int valueSegmentIndex, int valueImgDirectionIndex, bool BBorder, bool showProgressArea, bool showCentrHend)
         {
@@ -12462,6 +12569,146 @@ namespace Watch_Face_Editor
                     {
                         string font_fileName = FontsList[number_font.font];
                         //string font_fileName = ProjectDir + @"\assets\fonts\" + number_font.font;
+                        if (SelectedModel.versionOS >= 2 && File.Exists(font_fileName))
+                        {
+                            Font drawFont = null;
+                            using (System.Drawing.Text.PrivateFontCollection fonts = new System.Drawing.Text.PrivateFontCollection())
+                            {
+                                fonts.AddFontFile(font_fileName);
+                                drawFont = new Font(fonts.Families[0], size, GraphicsUnit.World);
+                            }
+
+                            Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                        }
+                        else
+                        {
+                            Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                        }
+
+                    }
+                    else
+                    {
+                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                    }
+                }
+
+                if (windSpeed != null && windSpeed.img_First != null && windSpeed.img_First.Length > 0 &&
+                    index == windSpeed.position && windSpeed.visible)
+                {
+                    int imageIndex = ListImages.IndexOf(windSpeed.img_First);
+                    int x = windSpeed.imageX;
+                    int y = windSpeed.imageY;
+                    int spasing = windSpeed.space;
+                    int angle = windSpeed.angle;
+                    int alignment = AlignmentToInt(windSpeed.align);
+                    bool addZero = windSpeed.zero;
+                    int alpha = windSpeed.alpha;
+                    int separator_index = -1;
+                    if (windSpeed.unit != null && windSpeed.unit.Length > 0)
+                        separator_index = ListImages.IndexOf(windSpeed.unit);
+
+                    int valueSpeed = 0;
+                    switch (value)
+                    {
+                        case 0: valueSpeed = 0; break;
+                        case 1: valueSpeed = 3; break;
+                        case 2: valueSpeed = 9; break;
+                        case 3: valueSpeed = 15; break;
+                        case 4: valueSpeed = 24; break;
+                        case 5: valueSpeed = 34; break;
+                        case 6: valueSpeed = 45; break;
+                        case 7: valueSpeed = 55; break;
+                        case 8: valueSpeed = 68; break;
+                        case 9: valueSpeed = 82; break;
+                        case 10: valueSpeed = 95; break;
+                        case 11: valueSpeed = 109; break;
+                        case 12: valueSpeed = 125; break;
+                    }
+
+                     Draw_dagital_text(gPanel, imageIndex, x, y,
+                        spasing, alignment, valueSpeed, alpha, addZero, value_lenght, separator_index, angle, BBorder, "ElementWind");
+
+                    if (windSpeed.icon != null && windSpeed.icon.Length > 0)
+                    {
+                        imageIndex = ListImages.IndexOf(windSpeed.icon);
+                        x = windSpeed.iconPosX;
+                        y = windSpeed.iconPosY;
+
+                        src = OpenFileStream(ListImagesFullName[imageIndex]);
+                        gPanel.DrawImage(src, x, y);
+                        //gPanel.DrawImage(src, new Rectangle(x, y, src.Width, src.Height));
+                    }
+                }
+
+                if (windSpeed_font != null && index == windSpeed_font.position && windSpeed_font.visible)
+                {
+                    int x = windSpeed_font.x;
+                    int y = windSpeed_font.y;
+                    int h = windSpeed_font.h;
+                    int w = windSpeed_font.w;
+
+                    int size = windSpeed_font.text_size;
+                    int space_h = windSpeed_font.char_space;
+                    int space_v = windSpeed_font.line_space;
+
+                    Color color = StringToColor(windSpeed_font.color);
+                    int alpha = windSpeed_font.alpha;
+                    string align_h = windSpeed_font.align_h;
+                    string align_v = windSpeed_font.align_v;
+                    string text_style = windSpeed_font.text_style;
+                    //string valueStr = value.ToString();
+
+                    if (windSpeed_font.centreHorizontally)
+                    {
+                        x = (SelectedModel.background.w - w) / 2;
+                        align_h = "CENTER_H";
+                    }
+                    if (windSpeed_font.centreVertically)
+                    {
+                        y = (SelectedModel.background.h - h) / 2;
+                        align_v = "CENTER_V";
+                    }
+
+                    bool use_text_circle = windSpeed_font.use_text_circle;
+                    int radius = windSpeed_font.radius;
+                    int start_angle = windSpeed_font.start_angle;
+                    int end_angle = windSpeed_font.end_angle;
+                    int mode = windSpeed_font.mode;
+
+                    int valueSpeed = 0;
+                    switch (value)
+                    {
+                        case 0: valueSpeed = 0; break;
+                        case 1: valueSpeed = 3; break;
+                        case 2: valueSpeed = 9; break;
+                        case 3: valueSpeed = 15; break;
+                        case 4: valueSpeed = 24; break;
+                        case 5: valueSpeed = 34; break;
+                        case 6: valueSpeed = 45; break;
+                        case 7: valueSpeed = 55; break;
+                        case 8: valueSpeed = 68; break;
+                        case 9: valueSpeed = 82; break;
+                        case 10: valueSpeed = 95; break;
+                        case 11: valueSpeed = 109; break;
+                        case 12: valueSpeed = 125; break;
+                    }
+
+                    string unitStr = "km/h";
+                    string valueStr = valueSpeed.ToString();
+                    if (windSpeed_font.unit_type > 0)
+                    {
+                        if (windSpeed_font.unit_type == 2) unitStr = unitStr.ToUpper();
+                        valueStr += unitStr;
+                    }
+
+                    if (windSpeed_font.font != null && windSpeed_font.font.Length > 3 && FontsList.ContainsKey(windSpeed_font.font))
+                    {
+                        string font_fileName = FontsList[windSpeed_font.font];
+                        //string font_fileName = ProjectDir + @"\assets\fonts\" + windSpeed_font.font;
                         if (SelectedModel.versionOS >= 2 && File.Exists(font_fileName))
                         {
                             Font drawFont = null;

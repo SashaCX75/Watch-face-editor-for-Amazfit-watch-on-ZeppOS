@@ -266,6 +266,7 @@ namespace Watch_Face_Editor
             this.comboBox_ConvertingInput_Model = new System.Windows.Forms.ComboBox();
             this.numericUpDown_ConvertingInput_Custom = new System.Windows.Forms.NumericUpDown();
             this.tabPage_Settings = new System.Windows.Forms.TabPage();
+            this.button_createZAB = new System.Windows.Forms.Button();
             this.checkBox_DevelopmentMode = new System.Windows.Forms.CheckBox();
             this.label_AutoSave = new System.Windows.Forms.Label();
             this.numericUpDown_AutoSave_Time = new System.Windows.Forms.NumericUpDown();
@@ -1574,6 +1575,7 @@ namespace Watch_Face_Editor
             // 
             resources.ApplyResources(this.uCtrl_Wind_Elm, "uCtrl_Wind_Elm");
             this.uCtrl_Wind_Elm.Name = "uCtrl_Wind_Elm";
+            this.uCtrl_Wind_Elm.WindSpeed_available = true;
             this.uCtrl_Wind_Elm.VisibleElementChanged += new ControlLibrary.UCtrl_Wind_Elm.VisibleElementChangedHandler(this.uCtrl_Wind_Elm_VisibleElementChanged);
             this.uCtrl_Wind_Elm.VisibleOptionsChanged += new ControlLibrary.UCtrl_Wind_Elm.VisibleOptionsChangedHandler(this.uCtrl_Wind_Elm_VisibleOptionsChanged);
             this.uCtrl_Wind_Elm.OptionsMoved += new ControlLibrary.UCtrl_Wind_Elm.OptionsMovedHandler(this.uCtrl_Wind_Elm_OptionsMoved);
@@ -2316,6 +2318,7 @@ namespace Watch_Face_Editor
             this.uCtrl_Text_SystemFont_Opt.MonthMode = false;
             this.uCtrl_Text_SystemFont_Opt.Name = "uCtrl_Text_SystemFont_Opt";
             this.uCtrl_Text_SystemFont_Opt.SityName = false;
+            this.uCtrl_Text_SystemFont_Opt.UnitIndex = 0;
             this.uCtrl_Text_SystemFont_Opt.UnitMode = true;
             this.uCtrl_Text_SystemFont_Opt.UnitStrMode = false;
             this.uCtrl_Text_SystemFont_Opt.Use2color = false;
@@ -2756,7 +2759,10 @@ namespace Watch_Face_Editor
             resources.GetString("comboBox_ConvertingOutput_Model.Items21"),
             resources.GetString("comboBox_ConvertingOutput_Model.Items22"),
             resources.GetString("comboBox_ConvertingOutput_Model.Items23"),
-            resources.GetString("comboBox_ConvertingOutput_Model.Items24")});
+            resources.GetString("comboBox_ConvertingOutput_Model.Items24"),
+            resources.GetString("comboBox_ConvertingOutput_Model.Items25"),
+            resources.GetString("comboBox_ConvertingOutput_Model.Items26"),
+            resources.GetString("comboBox_ConvertingOutput_Model.Items27")});
             resources.ApplyResources(this.comboBox_ConvertingOutput_Model, "comboBox_ConvertingOutput_Model");
             this.comboBox_ConvertingOutput_Model.Name = "comboBox_ConvertingOutput_Model";
             this.comboBox_ConvertingOutput_Model.SelectedIndexChanged += new System.EventHandler(this.comboBox_ConvertingOutput_Model_SelectedIndexChanged);
@@ -2819,7 +2825,10 @@ namespace Watch_Face_Editor
             resources.GetString("comboBox_ConvertingInput_Model.Items21"),
             resources.GetString("comboBox_ConvertingInput_Model.Items22"),
             resources.GetString("comboBox_ConvertingInput_Model.Items23"),
-            resources.GetString("comboBox_ConvertingInput_Model.Items24")});
+            resources.GetString("comboBox_ConvertingInput_Model.Items24"),
+            resources.GetString("comboBox_ConvertingInput_Model.Items25"),
+            resources.GetString("comboBox_ConvertingInput_Model.Items26"),
+            resources.GetString("comboBox_ConvertingInput_Model.Items27")});
             resources.ApplyResources(this.comboBox_ConvertingInput_Model, "comboBox_ConvertingInput_Model");
             this.comboBox_ConvertingInput_Model.Name = "comboBox_ConvertingInput_Model";
             this.comboBox_ConvertingInput_Model.SelectedIndexChanged += new System.EventHandler(this.comboBox_ConvertingInput_Model_SelectedIndexChanged);
@@ -2846,6 +2855,7 @@ namespace Watch_Face_Editor
             // 
             // tabPage_Settings
             // 
+            this.tabPage_Settings.Controls.Add(this.button_createZAB);
             this.tabPage_Settings.Controls.Add(this.checkBox_DevelopmentMode);
             this.tabPage_Settings.Controls.Add(this.label_AutoSave);
             this.tabPage_Settings.Controls.Add(this.numericUpDown_AutoSave_Time);
@@ -2872,6 +2882,13 @@ namespace Watch_Face_Editor
             this.tabPage_Settings.Controls.Add(this.label483);
             resources.ApplyResources(this.tabPage_Settings, "tabPage_Settings");
             this.tabPage_Settings.Name = "tabPage_Settings";
+            // 
+            // button_createZAB
+            // 
+            resources.ApplyResources(this.button_createZAB, "button_createZAB");
+            this.button_createZAB.Name = "button_createZAB";
+            this.button_createZAB.UseVisualStyleBackColor = true;
+            this.button_createZAB.Click += new System.EventHandler(this.button_createZAB_Click);
             // 
             // checkBox_DevelopmentMode
             // 
@@ -4072,7 +4089,6 @@ namespace Watch_Face_Editor
         private System.Windows.Forms.Button button_OpenDir;
         private System.Windows.Forms.PictureBox pictureBox_IconBackground;
         private System.Windows.Forms.ComboBox comboBox_AddBackground;
-        private System.Windows.Forms.ProgressBar progressBar1;
         private ControlLibrary.UCtrl_AmPm_Opt uCtrl_AmPm_Opt;
         private System.Windows.Forms.Panel panel_UC_AnalogTime;
         private ControlLibrary.UCtrl_AnalogTime_Elm uCtrl_AnalogTime_Elm;
@@ -4137,7 +4153,6 @@ namespace Watch_Face_Editor
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip_RemoveImage;
         private System.Windows.Forms.ToolStripMenuItem удалитьИзображениеToolStripMenuItem;
         private ControlLibrary.UCtrl_Text_SystemFont_Opt uCtrl_Text_SystemFont_Opt;
-        private System.Windows.Forms.CheckBox checkBox_Shortcuts_In_Gif;
         private System.Windows.Forms.Panel panel_UC_Stand;
         private System.Windows.Forms.Panel panel_UC_Activity;
         private System.Windows.Forms.Panel panel_UC_SpO2;
@@ -4238,7 +4253,6 @@ namespace Watch_Face_Editor
         private System.Windows.Forms.CheckBox checkBox_Show_Buttons;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button button_SavePNG_button;
-        private System.Windows.Forms.CheckBox checkBox_Buttons_In_Gif;
         private System.Windows.Forms.CheckBox checkBox_Buttons_Border;
         private System.Windows.Forms.CheckBox checkBox_Buttons_Area;
         private System.Windows.Forms.GroupBox groupBox4;
@@ -4312,6 +4326,10 @@ namespace Watch_Face_Editor
         private System.Windows.Forms.Panel panel_UC_TextWidgets;
         private ControlLibrary.UCtrl_TextWidgets_Elm uCtrl_TextWidgets_Elm;
         private ControlLibrary.UCtrl_Text_Widgets_Opt uCtrl_Text_Widgets_Opt;
+        private System.Windows.Forms.Button button_createZAB;
+        internal System.Windows.Forms.CheckBox checkBox_Shortcuts_In_Gif;
+        internal System.Windows.Forms.CheckBox checkBox_Buttons_In_Gif;
+        internal System.Windows.Forms.ProgressBar progressBar1;
     }
 }
 

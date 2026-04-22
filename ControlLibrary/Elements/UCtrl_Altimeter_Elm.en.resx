@@ -117,17 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="button_Pressure_Font.Text" xml:space="preserve">
+    <value>Pressure in font (mmHg)</value>
+  </data>
+  <data name="button_Pressure.Text" xml:space="preserve">
+    <value>Pressure (mmHg)</value>
+  </data>
   <data name="button_Number_Target_Font.Text" xml:space="preserve">
-    <value>Value in font (altitude)</value>
+    <value>Altitude in font</value>
   </data>
   <data name="button_Number_Target.Text" xml:space="preserve">
-    <value>Numerical values (altitude)</value>
+    <value>Altitude</value>
   </data>
   <data name="button_Number_Font.Text" xml:space="preserve">
-    <value>Value in font (pressure)</value>
+    <value>Pressure in font (hPa)</value>
   </data>
   <data name="button_Number.Text" xml:space="preserve">
-    <value>Numerical values (pressure)</value>
+    <value>Pressure (hPa)</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="button_Pointer.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -139,9 +145,9 @@
         ELsI6Akg+wtIfTqYzcQBNgfClgGxS1IrQPYyOOcXVBZlpmeUKBhaWloqOKbkJ6UqBFcWl6TmFit45iXn
         FxXkFyWWpKYA1ULcBwaCEIWgENMAarTQZKAyAMUDhPU5EBy+jGJnEGIIkFxaVAZlMjIZE+YjzJgjwcDg
         v5SBgeUPQsykl4FhgQ4DA/9UhJiaIQODgD4Dw745AMDGT/0ZOjZcAAAACXBIWXMAAAsMAAALDAE/QCLI
-        AAAAiklEQVQ4T9WSwQ3DIBAE3QItpCe3kBZSXGpxC2kB33AgInn8Ip+MtNLeasE2Zqu1XvTFu6uhXQ0n
-        R1dDuxpO/nyDR4gB4b2rYVJC4w3w3tVwwsK2GLSrYfIKfbrw3tUwn8pCBoQv2tXwBxvA0icMlg5xD43f
-        iPeuhskzxIDw3tUw4faNM7i5iXU7AR+D/8oPVDlNAAAAAElFTkSuQmCC
+        AAAAeklEQVQ4T2P4//8/AzpGAruhGAzQ1YHVogugGXAXikeqAUogPVAMYmOoI2SAIJILQGwMdYQMgBkC
+        1kyOAeUMDAzvoBjExlCHzwCQrSCNsDAAsQXR1dHUAIq9AAMUBWIoUjSC2BjqCBmQhhQGIDaGOkIGgFIf
+        LAxwpkQAH4P/ylVwI1UAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="button_Pointer.Text" xml:space="preserve">
@@ -159,12 +165,11 @@
         ELsI6Akg+wtIfTqYzcQBNgfClgGxS1IrQPYyOOcXVBZlpmeUKBhaWloqOKbkJ6UqBFcWl6TmFit45iXn
         FxXkFyWWpKYA1ULcBwaCEIWgENMAarTQZKAyAMUDhPU5EBy+jGJnEGIIkFxaVAZlMjIZE+YjzJgjwcDg
         v5SBgeUPQsykl4FhgQ4DA/9UhJiaIQODgD4Dw745AMDGT/0ZOjZcAAAACXBIWXMAAA68AAAOvAGVvHJJ
-        AAABG0lEQVQ4T6XSTSsFYRjG8clCedvZU/KyoaSQKLKTyFdgw44VKRsJCyGFFQtigZ18DT7S+P/Pc4/m
-        nM7oxFW/6Zr7zJk553km+yVt6A32ljOLQ1ziONidzaEyXTjDKbxJJ6YwjY6YneAc3aiLgwfsYNxBZBNb
-        qdbiZ9t4RI+DIv7EtVSzJ/g0MxHMDJ5TzVZwlWq6wJ9dpA/zqdbFWX+qtbg2k5ZdLGPIk4YMhsYMYBV7
-        ntxgDC5g+f+a9VCO5xfw6dcO3jxEXO1yvPltqj8pX/PioXyDxnziK9WmefVwj1EcYMNBxHfgA++oLVbE
-        rd3HMNyxbAlu2wJ8mYocwa3zy/Yi7v8inLudlRnBXbD/Ke2hOnme/0vTYevy7Bvrc4YB1SFAjwAAAABJ
-        RU5ErkJggg==
+        AAABEUlEQVQ4T6XSyypGYRTG8V8GymlmTslhQkkhUWQmkVtgwowRKRMJAyGFEQNigJncBpf0aWntetv6
+        yuFfz26t5z3utV6a04LuVMQ/Zhr7OMdhKuLwZuqTSzpwguPcpB0TmERbekc4RWd9cRh32MJo4a9jo8hj
+        bBP36Cr8ryuuZPyQpwVjqWAKjxkv4SLjrwlx7YoezBZ5RXi9RR61GY9gG4sYKAYr+lN1+rCMnUiuMJIF
+        LP83WE3VvbM8/TKMl2Iwql0Sm1/XvHLOU3zKDeq846NuFjzH5xbD2MNaMRhv4A2vVbGSaO0uBrNjFrJt
+        c/mYKg6ydbE44oro/3z60c6mDOEmFfGfaE01p9Fo/EvfjN/qE+tzhgGaBZj0AAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="button_ElementName.Text" xml:space="preserve">

@@ -25,6 +25,7 @@ namespace ControlLibrary
         private bool Font_mode;
         //private bool Number_mode = true;
         private bool Unit_mode = true;
+        private int Unit_index = 0;
         private bool Zero_mode = true;
         private bool Year_mode = false;
         private bool DayMonthYear_mode = false;
@@ -374,7 +375,7 @@ namespace ControlLibrary
         }
 
         /// <summary>Отображение настроек единиц измерения</summary>
-        [Description("Отображение настроек единиц измерения")]
+        [Description("Отображение настроек единиц измерения (разделитель)")]
         public virtual bool UnitMode
         {
             get
@@ -385,6 +386,28 @@ namespace ControlLibrary
             {
                 Unit_mode = value;
                 checkBox_unit.Enabled = Unit_mode;
+            }
+        }
+
+        /// <summary>Отображение настроек единиц измерения</summary>
+        [Description("Отображение настроек единиц измерения (заголовок поля)")]
+        public virtual int UnitIndex
+        {
+            get
+            {
+                return Unit_index;
+            }
+            set
+            {
+                Unit_index = value;
+                if (Unit_index == 0)
+                {
+                    label_unit_string.Text = Properties.Strings.UCtrl_Text_Opt_Sunrise_true;
+                }
+                else if (Unit_index == 1)
+                {
+                    label_unit_string.Text = Properties.Strings.UCtrl_Text_Opt_AmPm_false;
+                }
             }
         }
 
@@ -989,6 +1012,7 @@ namespace ControlLibrary
 
             UserFont = false;
             UnitMode = true;
+            UnitIndex = 0;
             ZeroMode = true;
             Year = false;
             AmPm = false;

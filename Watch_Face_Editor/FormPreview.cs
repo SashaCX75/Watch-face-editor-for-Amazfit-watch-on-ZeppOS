@@ -64,9 +64,30 @@ namespace Watch_Face_Editor
                 this.Size = new Size(selectedModel.scaling.scaling_2_5.w + (int)(22 * currentDPI), selectedModel.scaling.scaling_2_5.h + (int)(66 * currentDPI));
                 scale = 2.5f;
             }
+
+            if (radioButton_x3.Checked)
+            {
+                pictureBox_Preview.Size = new Size(selectedModel.scaling.scaling_1_0.w * 3 + 1, selectedModel.scaling.scaling_1_0.h * 3 + 1);
+                this.Size = new Size(selectedModel.scaling.scaling_1_0.w * 3 + 2 + (int)(22 * currentDPI), selectedModel.scaling.scaling_1_0.h * 3 + 2 + (int)(66 * currentDPI));
+                scale = 3f;
+            }
+
+            if (radioButton_x4.Checked)
+            {
+                pictureBox_Preview.Size = new Size(selectedModel.scaling.scaling_1_0.w * 4 + 1, selectedModel.scaling.scaling_1_0.h * 4 + 1);
+                this.Size = new Size(selectedModel.scaling.scaling_1_0.w * 4 + 2 + (int)(22 * currentDPI), selectedModel.scaling.scaling_1_0.h * 4 + 2 + (int)(66 * currentDPI));
+                scale = 4f;
+            }
+
+            if (radioButton_x5.Checked)
+            {
+                pictureBox_Preview.Size = new Size(selectedModel.scaling.scaling_1_0.w * 5 + 1, selectedModel.scaling.scaling_1_0.h * 5 + 1);
+                this.Size = new Size(selectedModel.scaling.scaling_1_0.w * 5 + 2 + (int)(22 * currentDPI), selectedModel.scaling.scaling_1_0.h * 5 + 2 + (int)(66 * currentDPI));
+                scale = 5f;
+            }
         }
 
-        public static string Watch_Model { get; set; } = "GTR 3";
+        //public static string Watch_Model { get; set; } = "GTR 3";
         
 
         private void pictureBox_Preview_MouseMove(object sender, MouseEventArgs e)

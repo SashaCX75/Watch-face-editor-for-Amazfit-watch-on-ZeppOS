@@ -414,6 +414,9 @@
   <data name="Message_Warning_JS_Exist1" xml:space="preserve">
     <value>V této složce již existuje složka se soubory JS.</value>
   </data>
+  <data name="Message_Warning_Version_Lower" xml:space="preserve">
+    <value>Nesnižujte číslo verze ciferníku.</value>
+  </data>
   <data name="Message_Widget_Exists" xml:space="preserve">
     <value>Tento widget je již na ciferníku.</value>
   </data>

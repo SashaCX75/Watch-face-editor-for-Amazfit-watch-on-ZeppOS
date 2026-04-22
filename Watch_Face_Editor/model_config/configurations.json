@@ -6,6 +6,8 @@
       8323328,
       8323329
     ],
+    "cpuPlatform": "Apollo",
+    "screenType": "square",
     "background": {
       "w": 390,
       "h": 450
@@ -52,6 +54,8 @@
       10092803,
       10092807
     ],
+    "cpuPlatform": "NXP",
+    "screenType": "round",
     "background": {
       "w": 466,
       "h": 466
@@ -93,6 +97,8 @@
       9830657,
       9830659
     ],
+    "cpuPlatform": "MHS",
+    "screenType": "square",
     "background": {
       "w": 390,
       "h": 450
@@ -126,6 +132,50 @@
     "fixSize": true,
     "versionOS": 5.0
   },
+  "Active 3 Premium": {
+    "name": "Amazfit Active 3 Premium",
+    "designWidth": 466,
+    "deviceSource_ids": [
+      10944768,
+      10944769,
+      10944771,
+      10948867
+    ],
+    "cpuPlatform": "MHS",
+    "screenType": "round",
+    "background": {
+      "w": 466,
+      "h": 466
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 230,
+        "h": 230
+      },
+      "scaling_1_0": {
+        "w": 468,
+        "h": 468
+      },
+      "scaling_1_5": {
+        "w": 701,
+        "h": 701
+      },
+      "scaling_2_0": {
+        "w": 933,
+        "h": 933
+      },
+      "scaling_2_5": {
+        "w": 1166,
+        "h": 1166
+      }
+    },
+    "maskImage": "mask_gtr_4.png",
+    "watchSkin": "WatchSkin_Active_3_Premium.json",
+    "previewHeight": 314,
+    "colorScheme": 1,
+    "fixSize": true,
+    "versionOS": 5.0
+  },
   "Active Max": {
     "name": "Amazfit Active Max",
     "designWidth": 480,
@@ -133,6 +183,8 @@
       10813697,
       10813699
     ],
+    "cpuPlatform": "MHS",
+    "screenType": "round",
     "background": {
       "w": 480,
       "h": 480
@@ -173,6 +225,8 @@
       8388864,
       8388865
     ],
+    "cpuPlatform": "Apollo",
+    "screenType": "round",
     "background": {
       "w": 360,
       "h": 360
@@ -214,6 +268,8 @@
       253,
       254
     ],
+    "cpuPlatform": "DIALOG",
+    "screenType": "bar",
     "background": {
       "w": 194,
       "h": 368
@@ -255,6 +311,8 @@
       8519937,
       8519939
     ],
+    "cpuPlatform": "NXP",
+    "screenType": "round",
     "background": {
       "w": 480,
       "h": 480
@@ -296,6 +354,8 @@
       9568513,
       9568515
     ],
+    "cpuPlatform": "MHS",
+    "screenType": "round",
     "background": {
       "w": 480,
       "h": 480
@@ -336,6 +396,8 @@
       8454400,
       8454401
     ],
+    "cpuPlatform": "Apollo",
+    "screenType": "square",
     "background": {
       "w": 320,
       "h": 380
@@ -377,6 +439,8 @@
       8782088,
       8782089
     ],
+    "cpuPlatform": "Apollo",
+    "screenType": "square",
     "background": {
       "w": 320,
       "h": 380
@@ -418,6 +482,8 @@
       9765121,
       10158337
     ],
+    "cpuPlatform": "MHS",
+    "screenType": "square",
     "background": {
       "w": 390,
       "h": 450
@@ -458,6 +524,8 @@
       8192256,
       8192257
     ],
+    "cpuPlatform": "NXP",
+    "screenType": "round",
     "background": {
       "w": 454,
       "h": 454
@@ -498,6 +566,8 @@
       8126720,
       8126721
     ],
+    "cpuPlatform": "NXP",
+    "screenType": "round",
     "background": {
       "w": 480,
       "h": 480
@@ -537,6 +607,8 @@
     "deviceSource_ids": [
       8257793
     ],
+    "cpuPlatform": "NXP",
+    "screenType": "square",
     "background": {
       "w": 390,
       "h": 450
@@ -577,6 +649,8 @@
       414,
       415
     ],
+    "cpuPlatform": "NXP",
+    "screenType": "round",
     "background": {
       "w": 416,
       "h": 416
@@ -617,6 +691,8 @@
       226,
       227
     ],
+    "cpuPlatform": "NXP",
+    "screenType": "round",
     "background": {
       "w": 454,
       "h": 454
@@ -659,6 +735,8 @@
       242,
       6095106
     ],
+    "cpuPlatform": "NXP",
+    "screenType": "round",
     "background": {
       "w": 480,
       "h": 480
@@ -701,6 +779,8 @@
       7864576,
       7864577
     ],
+    "cpuPlatform": "NXP",
+    "screenType": "round",
     "background": {
       "w": 466,
       "h": 466
@@ -741,6 +821,8 @@
       250,
       251
     ],
+    "cpuPlatform": "MHS",
+    "screenType": "round",
     "background": {
       "w": 416,
       "h": 416
@@ -781,6 +863,8 @@
       224,
       225
     ],
+    "cpuPlatform": "NXP",
+    "screenType": "square",
     "background": {
       "w": 390,
       "h": 450
@@ -821,6 +905,8 @@
       7995648,
       7995649
     ],
+    "cpuPlatform": "NXP",
+    "screenType": "square",
     "background": {
       "w": 390,
       "h": 450
@@ -861,6 +947,8 @@
       246,
       247
     ],
+    "cpuPlatform": "DIALOG",
+    "screenType": "square",
     "background": {
       "w": 336,
       "h": 384
@@ -901,6 +989,8 @@
       418,
       419
     ],
+    "cpuPlatform": "NXP",
+    "screenType": "round",
     "background": {
       "w": 454,
       "h": 454
@@ -942,6 +1032,8 @@
       8716545,
       8716547
     ],
+    "cpuPlatform": "NXP",
+    "screenType": "round",
     "background": {
       "w": 480,
       "h": 480
@@ -983,6 +1075,8 @@
       10682625,
       10682627
     ],
+    "cpuPlatform": "MHS",
+    "screenType": "round",
     "background": {
       "w": 466,
       "h": 466
@@ -1024,6 +1118,8 @@
       10551553,
       10551555
     ],
+    "cpuPlatform": "MHS",
+    "screenType": "round",
     "background": {
       "w": 480,
       "h": 480
@@ -1064,6 +1160,8 @@
       6553856,
       6553857
     ],
+    "cpuPlatform": "NXP",
+    "screenType": "round",
     "background": {
       "w": 454,
       "h": 454
@@ -1096,5 +1194,48 @@
     "colorScheme": 1,
     "fixSize": true,
     "versionOS": 3.5
+  },
+  "T-Rex Ultra 2": {
+    "name": "Amazfit T-Rex Ultra 2",
+    "designWidth": 480,
+    "deviceSource_ids": [
+      10879233,
+      10879232,
+      10879235
+    ],
+    "cpuPlatform": "NXP",
+    "screenType": "round",
+    "background": {
+      "w": 480,
+      "h": 480
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 230,
+        "h": 230
+      },
+      "scaling_1_0": {
+        "w": 482,
+        "h": 482
+      },
+      "scaling_1_5": {
+        "w": 722,
+        "h": 722
+      },
+      "scaling_2_0": {
+        "w": 961,
+        "h": 961
+      },
+      "scaling_2_5": {
+        "w": 1201,
+        "h": 1201
+      }
+    },
+    "maskImage": "mask_gtr_3_pro.png",
+    "watchSkin": "WatchSkin_T_Rex_3_Ultra_2.json",
+    "previewHeight": 324,
+    "colorScheme": 1,
+    "fixSize": true,
+    "versionOS": 5.0
   }
 }

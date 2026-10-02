@@ -1286,6 +1286,133 @@ namespace Watch_Face_Editor
         }
         #endregion
 
+        #region ZeppOsPlyer
+
+        private void button_ZeppOsPlayerBrowse_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "ZeppOS-Player.exe|ZeppOS-Player.exe";
+            openFileDialog.RestoreDirectory = true;
+            openFileDialog.Multiselect = false;
+            openFileDialog.Title = "ZeppOS-Player";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                textBox_ZeppOsPlayerPath.Text = openFileDialog.FileName;
+                ProgramSettings.ZeppOsPlayerPath = openFileDialog.FileName;
+                Save_Settings();
+            }
+        }
+
+        private async void button_ZeppOsPlayerSend_Click(object sender, EventArgs e)
+        {
+            if (!File.Exists(textBox_ZeppOsPlayerPath.Text))
+            {
+                MessageBox.Show(Properties.FormStrings.Message_ZeppOsPlayerNotFound,
+                    Properties.FormStrings.Message_Error_Caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (ProjectDir == null || Watch_Face == null) return;
+
+            string SaveFileName = Path.GetFileNameWithoutExtension(FileName);
+            if (Watch_Face.WatchFace_Info.WatchFaceName != null && Watch_Face.WatchFace_Info.WatchFaceName != "")
+                SaveFileName = Watch_Face.WatchFace_Info.WatchFaceName;
+            //string zipName = ProjectDir + @"\" + SaveFileName + "_test.zip";
+
+            string tempDir = Path.Combine(Application.StartupPath, " Temp");
+            //tempDir = Path.Combine(Application.StartupPath, " Temp", "ZeppOsPlayer");
+            if (Directory.Exists(tempDir)) DeleteDirectory(tempDir);
+            Directory.CreateDirectory(tempDir);
+            Directory.CreateDirectory(tempDir + @"\ZeppOsPlayer");
+
+            string projectPath = Path.Combine(tempDir, "ZeppOsPlayer", SaveFileName);
+
+            //zipName = await CreateWatchFace(zipName);
+            await CreateWatchFace_ZeppPlayer(projectPath, true);
+
+            progressBar1.Visible = false;
+
+            if (Directory.Exists(projectPath))
+            {
+                //string appPath = textBox_ZeppOsPlayerPath.Text;
+                //string watchfacePath = zipName;
+
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = textBox_ZeppOsPlayerPath.Text,
+                    Arguments = $"--temp-project \"{projectPath}\"",
+                    UseShellExecute = false
+                });
+
+                // Ждём 5 секунд
+                await Task.Delay(5000);
+
+                //// Удаляем временный файл
+                //if (File.Exists(zipName))
+                //{
+                //    File.Delete(zipName);
+                //}
+
+                // Удаляем временную папку
+                if (Directory.Exists(projectPath)) DeleteDirectory(projectPath);
+            }
+        }
+
+        private void textBox_ZeppOsPlayerPath_TextChanged(object sender, EventArgs e)
+        {
+            button_ZeppOsPlayerSend.Enabled = File.Exists(textBox_ZeppOsPlayerPath.Text);
+        }
+
+        private void checkBox_ZeppOsPlayerCapture_CheckedChanged(object sender, EventArgs e)
+        {
+            if (button_CaptureStop.Enabled) button_CaptureStop_Click(null, null);
+            CheckBox checkBox = sender as CheckBox;
+
+            if (checkBox.Checked) updateWindowsPos();
+
+            panel_SimulatorCapture.Visible = checkBox.Checked;
+            groupBox_simulator.Visible = !checkBox.Checked;
+
+            //if (checkBox.Checked) radioButton_Litterbox.Checked = true;
+            if (checkBox.Checked) label_GitHub_Instructions.Visible = false;
+        }
+
+        private void button_ZeppOsPlayer_UpdateScreenPos_Click(object sender, EventArgs e)
+        {
+            updateWindowsPos();
+        }
+
+        private void UpdateZeppOsPlayerPos()
+        {
+            var rect = UIAHelper.FindChromeElementRect(
+                "ZeppOS-Player",
+                "display",
+                true);
+
+            if (rect != null)
+            {
+                //Console.WriteLine($"X={rect.Value.X}");
+                //Console.WriteLine($"Y={rect.Value.Y}");
+                //Console.WriteLine($"W={rect.Value.Width}");
+                //Console.WriteLine($"H={rect.Value.Height}");
+
+                numericUpDown_CapturePosX.Value = rect.Value.X;
+                numericUpDown_CapturePosY.Value = rect.Value.Y;
+                numericUpDown_CaptureHeight.Value = rect.Value.Height;
+
+                numericUpDown_CaptureOffsetX.Value = 0;
+                numericUpDown_CaptureOffsetY.Value = 0;
+            }
+            else
+            {
+                MessageBox.Show(Properties.FormStrings.Message_ZeppOsPlayerAppNotFound1 + Environment.NewLine +
+                    Properties.FormStrings.Message_ZeppOsPlayerAppNotFound2,
+                    Properties.FormStrings.Message_Warning_Caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        #endregion
+
         #region ZeppPlyer
 
         private void button_ZeppPlayerBrowse_Click(object sender, EventArgs e)
@@ -1336,6 +1463,8 @@ namespace Watch_Face_Editor
         {
             if (button_CaptureStop.Enabled) button_CaptureStop_Click(null, null);
             CheckBox checkBox = sender as CheckBox;
+
+            if (checkBox.Checked) updateWindowsPos();
 
             panel_SimulatorCapture.Visible = checkBox.Checked;
             groupBox_simulator.Visible = !checkBox.Checked;
@@ -1771,6 +1900,7 @@ namespace Watch_Face_Editor
         private void updateWindowsPos()
         {
             if (checkBox_SimulatorCapture.Checked) updateSimulatorPos();
+            else if (checkBox_ZeppOsPlayerCapture.Checked) UpdateZeppOsPlayerPos();
             else if (checkBox_ZeppPlayerCapture.Checked) UpdateZeppPlayerPos();
         }
 
@@ -2535,18 +2665,48 @@ namespace Watch_Face_Editor
     {
         public static Rectangle? FindChromeElementRect(
             string windowName,
-            string automationId)
+            string automationId,
+            bool partialWindowName = false)
         {
             try
             {
                 // 1. Ищем окно Chrome
                 var root = AutomationElement.RootElement;
 
-                var windowCondition = new PropertyCondition(
-                    AutomationElement.NameProperty,
-                    windowName);
+                AutomationElement window;
 
-                var window = root.FindFirst(TreeScope.Children, windowCondition);
+                if (partialWindowName)
+                {
+                    // Ищем все верхнеуровневые окна
+                    var windows = root.FindAll(
+                        TreeScope.Children,
+                        Condition.TrueCondition);
+
+                    window = null;
+
+                    foreach (AutomationElement candidateWindow in windows)
+                    {
+                        string name = candidateWindow.Current.Name;
+
+                        if (!string.IsNullOrEmpty(name) &&
+                            name.IndexOf(windowName, StringComparison.OrdinalIgnoreCase) >= 0)
+                        {
+                            window = candidateWindow;
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    // Точное совпадение названия окна
+                    var windowCondition = new PropertyCondition(
+                        AutomationElement.NameProperty,
+                        windowName);
+
+                    window = root.FindFirst(
+                        TreeScope.Children,
+                        windowCondition);
+                }
 
                 if (window == null)
                     return null;
@@ -2556,7 +2716,9 @@ namespace Watch_Face_Editor
                     AutomationElement.AutomationIdProperty,
                     automationId);
 
-                var element = window.FindFirst(TreeScope.Descendants, elementCondition);
+                var element = window.FindFirst(
+                    TreeScope.Descendants,
+                    elementCondition);
 
                 if (element == null)
                     return null;

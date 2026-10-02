@@ -20,6 +20,7 @@ using static Microsoft.WindowsAPICodePack.Shell.PropertySystem.SystemProperties.
 using static System.Net.Mime.MediaTypeNames;
 using static System.Windows.Forms.LinkLabel;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using static ZXing.QrCode.Internal.Mode;
 
 namespace Watch_Face_Editor
 {
@@ -11475,7 +11476,7 @@ namespace Watch_Face_Editor
                         if (Weather.Group_Max_Min != null && Weather.Group_Current.position < Weather.City_Name.position) cityNamePosition += 4;
 
                         hmUI_widget_TEXT text = Weather.City_Name;
-                        cityNameOptions = TEXT_Options(text, show_level);
+                        cityNameOptions = TEXT_Options(text, show_level, false);
                     }
 
                     if (Weather.Icon != null && Weather.Icon.visible)
@@ -11909,6 +11910,9 @@ namespace Watch_Face_Editor
                             items += Environment.NewLine + TabInString(6) +
                                 optionNameStart + "city_name_text = hmUI.createWidget(hmUI.widget.TEXT, {" +
                                     cityNameOptions + TabInString(6) + "});" + Environment.NewLine;
+
+                            if (Weather.City_Name.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart + "city_name_text.setAlpha(" +
+                                Weather.City_Name.alpha.ToString() + ");" + Environment.NewLine;
 
                             scale_update_function += Environment.NewLine + TabInString(7) + "console.log('Weather city name');" + Environment.NewLine;
 
@@ -12483,24 +12487,24 @@ namespace Watch_Face_Editor
                         if (index == numberTargetPosition && numberTargetOptions.Length > 5)
                         {
                             variables += TabInString(4) + "let " + optionNameStart +
-                                "altitude_target_text_img = ''" + Environment.NewLine;
+                                "altitude_text_text_img = ''" + Environment.NewLine;
                             items += Environment.NewLine + TabInString(6) +
-                                optionNameStart + "altitude_target_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
+                                optionNameStart + "altitude_text_text_img = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" +
                                     numberTargetOptions + TabInString(6) + "});" + Environment.NewLine;
 
                             if (Altimeter.Number_Target.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
-                                    "altitude_target_text_img.setAlpha(" + Altimeter.Number_Target.alpha.ToString() + ");" + Environment.NewLine;
+                                    "altitude_text_text_img.setAlpha(" + Altimeter.Number_Target.alpha.ToString() + ");" + Environment.NewLine;
 
                             if (numberTargetOptions_separator.Length > 5)
                             {
                                 variables += TabInString(4) + "let " + optionNameStart +
-                                    "altitude_target_separator_img = ''" + Environment.NewLine;
+                                    "altitude_text_separator_img = ''" + Environment.NewLine;
                                 items += Environment.NewLine + TabInString(6) +
-                                    optionNameStart + "altitude_target_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
+                                    optionNameStart + "altitude_text_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
                                         numberTargetOptions_separator + TabInString(6) + "});" + Environment.NewLine;
 
                                 if (Altimeter.Number_Target.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
-                                        "altitude_target_separator_img.setAlpha(" + Altimeter.Number_Target.icon_alpha.ToString() + ");" + Environment.NewLine;
+                                        "altitude_text_separator_img.setAlpha(" + Altimeter.Number_Target.icon_alpha.ToString() + ");" + Environment.NewLine;
                             }
                         }
 
@@ -12526,9 +12530,9 @@ namespace Watch_Face_Editor
                             }
 
                             variables += TabInString(4) + "let " + optionNameStart +
-                                "altitude_target_text_font = ''" + Environment.NewLine;
+                                "altitude_text_text_font = ''" + Environment.NewLine;
                             items += Environment.NewLine + TabInString(6) +
-                                optionNameStart + "altitude_target_text_font = hmUI.createWidget(hmUI.widget.TEXT_FONT, {" +
+                                optionNameStart + "altitude_text_text_font = hmUI.createWidget(hmUI.widget.TEXT_FONT, {" +
                                     numberTargetFontOptions + TabInString(6) + "});" + Environment.NewLine;
                         }
 
@@ -16086,7 +16090,14 @@ namespace Watch_Face_Editor
             bool useMinGraphOffset = (weatherFewDays.Diagram != null && weatherFewDays.Diagram.visible && weatherFewDays.Diagram.Use_min_diagram && weatherFewDays.Diagram.PositionOnGraph);
             bool useAverageGraphOffset = (weatherFewDays.Diagram != null && weatherFewDays.Diagram.visible && weatherFewDays.Diagram.Use_average_diagram && weatherFewDays.Diagram.PositionOnGraph);
 
-            if (optionNameStart != "normal_" || SelectedModel.versionOS < 3)
+            //if (optionNameStart != "normal_" || SelectedModel.versionOS < 3)
+            //{
+            //    useMaxGraphOffset = false;
+            //    useMinGraphOffset = false;
+            //    useAverageGraphOffset = false;
+            //}
+
+            if (SelectedModel.versionOS < 3)
             {
                 useMaxGraphOffset = false;
                 useMinGraphOffset = false;
@@ -16540,7 +16551,7 @@ namespace Watch_Face_Editor
                         //weather_few_days += Environment.NewLine + TabInString(10) + "};";
 
                         weather_few_days_end += Environment.NewLine + TabInString(7) + "if (screenType == hmSetting.screen_type." + screenType + " && endPointMax) {";
-                        weather_few_days_end += Environment.NewLine + TabInString(8) + "drawGraphPoint(normal_canvas1, normal_canvas2, maxOldX, maxOldY, " +
+                        weather_few_days_end += Environment.NewLine + TabInString(8) + "drawGraphPoint(" + optionNameStart + "canvas1, " + optionNameStart + "canvas2, maxOldX, maxOldY, " +
                             weatherFewDays.Diagram.Max_color + ", " + weatherFewDays.Diagram.Max_pointSize.ToString() + ", " +
                             weatherFewDays.Diagram.Max_pointType.ToString() + ")";
                         weather_few_days_end += Environment.NewLine + TabInString(7) + "};";
@@ -16568,8 +16579,9 @@ namespace Watch_Face_Editor
                             weatherFewDays.Diagram.Average_pointType.ToString() + ")";
                         //weather_few_days += Environment.NewLine + TabInString(10) + "};";
 
-                        weather_few_days_end += Environment.NewLine + TabInString(7) + "if (screenType == hmSetting.screen_type.WATCHFACE && endPointAverage) {";
-                        weather_few_days_end += Environment.NewLine + TabInString(8) + "drawGraphPoint(normal_canvas1, normal_canvas2, averageOldX, averageOldY, " +
+
+                        weather_few_days_end += Environment.NewLine + TabInString(7) + "if (screenType == hmSetting.screen_type." + screenType + " && endPointAverage) {";
+                        weather_few_days_end += Environment.NewLine + TabInString(8) + "drawGraphPoint(" + optionNameStart + "canvas1, " + optionNameStart + "canvas2, averageOldX, averageOldY, " +
                             weatherFewDays.Diagram.Average_color + ", " + weatherFewDays.Diagram.Average_pointSize.ToString() + ", " +
                             weatherFewDays.Diagram.Average_pointType.ToString() + ")";
                         weather_few_days_end += Environment.NewLine + TabInString(7) + "};";
@@ -16597,8 +16609,8 @@ namespace Watch_Face_Editor
                             weatherFewDays.Diagram.Min_pointType.ToString() + ")";
                         //weather_few_days += Environment.NewLine + TabInString(10) + "};";
 
-                        weather_few_days_end += Environment.NewLine + TabInString(7) + "if (screenType == hmSetting.screen_type.WATCHFACE && endPointMin) {";
-                        weather_few_days_end += Environment.NewLine + TabInString(8) + "drawGraphPoint(normal_canvas1, normal_canvas2, minOldX, minOldY, " +
+                        weather_few_days_end += Environment.NewLine + TabInString(7) + "if (screenType == hmSetting.screen_type." + screenType + " && endPointMin) {";
+                        weather_few_days_end += Environment.NewLine + TabInString(8) + "drawGraphPoint(" + optionNameStart + "canvas1, " + optionNameStart + "canvas2, minOldX, minOldY, " +
                             weatherFewDays.Diagram.Min_color + ", " + weatherFewDays.Diagram.Min_pointSize.ToString() + ", " +
                             weatherFewDays.Diagram.Min_pointType.ToString() + ")";
                         weather_few_days_end += Environment.NewLine + TabInString(7) + "};";
@@ -18710,7 +18722,7 @@ namespace Watch_Face_Editor
             {
                 if (textWidget != null && textWidget.visible)
                 {
-                    string optionsTextWidget = TEXT_Options(textWidget, show_level);
+                    string optionsTextWidget = TEXT_Options(textWidget, show_level, false);
 
                     if (optionsTextWidget.Length > 5)
                     {
@@ -18733,6 +18745,7 @@ namespace Watch_Face_Editor
                         variables += TabInString(4) + "let " + name + " = ''" + Environment.NewLine;
                         items += Environment.NewLine + TabInString(6) + name +
                             " = hmUI.createWidget(hmUI.widget.TEXT, {" + optionsTextWidget + TabInString(6) + "});" + Environment.NewLine;
+                        if (textWidget.alpha != 255) items += Environment.NewLine + TabInString(6) + name + ".setAlpha(" + textWidget.alpha.ToString() + ");" + Environment.NewLine;
                     }
                 }
                 number++;
@@ -21184,7 +21197,7 @@ namespace Watch_Face_Editor
                     {
                         cityNamePosition = Weather.City_Name.position;
                         hmUI_widget_TEXT text = Weather.City_Name;
-                        cityNameOptions = TEXT_Options(text, show_level, 2);
+                        cityNameOptions = TEXT_Options(text, show_level, false, 2);
                     }
 
                     if (Weather.Icon != null && Weather.Icon.visible)
@@ -21257,6 +21270,8 @@ namespace Watch_Face_Editor
                             outItems += Environment.NewLine + TabInString(8) +
                                 optionNameStart + "city_name_text = hmUI.createWidget(hmUI.widget.TEXT, {" +
                                     cityNameOptions + TabInString(8) + "});" + Environment.NewLine;
+                            if (Weather.City_Name.alpha != 255) items += Environment.NewLine + TabInString(6) + optionNameStart + "city_name_text.setAlpha(" + 
+                                Weather.City_Name.alpha.ToString() + ");" + Environment.NewLine;
 
                             scale_update_function += Environment.NewLine + TabInString(7) + "console.log('Edit element Wearther city name');" + Environment.NewLine;
                             scale_update_function += Environment.NewLine + TabInString(7) + "if(" + optionNameStart + "city_name_text){" + Environment.NewLine;
@@ -24495,7 +24510,7 @@ namespace Watch_Face_Editor
             return options;
         }
 
-        private string TEXT_Options(hmUI_widget_TEXT text, string show_level, int tabOffset = 0)
+        private string TEXT_Options(hmUI_widget_TEXT text, string show_level,bool alphaEnabled = true, int tabOffset = 0)
         {
             string options = Environment.NewLine;
             if (text == null) return options;
@@ -24538,7 +24553,8 @@ namespace Watch_Face_Editor
             }
             if (text.alpha != 255 && SelectedModel.versionOS >= 3.5)
             {
-                options += TabInString(7 + tabOffset) + "alpha: " + text.alpha.ToString() + "," + Environment.NewLine;
+                if (alphaEnabled) options += TabInString(7 + tabOffset) + "alpha: " + text.alpha.ToString() + "," + Environment.NewLine;
+                else options += TabInString(7 + tabOffset) + "// alpha: " + text.alpha.ToString() + "," + Environment.NewLine;
             }
 
             options += TabInString(7 + tabOffset) + "color: " + text.color + "," + Environment.NewLine;
@@ -26129,6 +26145,32 @@ namespace Watch_Face_Editor
                                         altimeter.Number.iconPosX = img.x;
                                         altimeter.Number.iconPosY = img.y;
                                         altimeter.Number.icon_alpha = img.alpha;
+                                    }
+                                }
+
+                                if (objectName.EndsWith("altitude_text_separator_img") || objectName.EndsWith("altitude_target_separator_img"))
+                                {
+                                    ElementAltimeter altimeter = null;
+                                    altimeter = (ElementAltimeter)elementsList.Find(e => e.GetType().Name == "ElementAltimeter");
+                                    if (altimeter != null && altimeter.Number_Target != null)
+                                    {
+                                        altimeter.Number_Target.icon = img.src;
+                                        altimeter.Number_Target.iconPosX = img.x;
+                                        altimeter.Number_Target.iconPosY = img.y;
+                                        altimeter.Number_Target.icon_alpha = img.alpha;
+                                    }
+                                }
+
+                                if (objectName.EndsWith("pressure_text_separator_img"))
+                                {
+                                    ElementAltimeter altimeter = null;
+                                    altimeter = (ElementAltimeter)elementsList.Find(e => e.GetType().Name == "ElementAltimeter");
+                                    if (altimeter != null && altimeter.Pressure != null)
+                                    {
+                                        altimeter.Pressure.icon = img.src;
+                                        altimeter.Pressure.iconPosX = img.x;
+                                        altimeter.Pressure.iconPosY = img.y;
+                                        altimeter.Pressure.icon_alpha = img.alpha;
                                     }
                                 }
 
@@ -33796,6 +33838,45 @@ namespace Watch_Face_Editor
                                 altimeter.Number_Target.alpha = imgNumber.alpha;
                                 altimeter.Number_Target.visible = true;
                                 altimeter.Number_Target.position = offset;
+                            }
+                        }
+
+                        if (imgNumber.type == "BARO")
+                        {
+                            ElementAltimeter altimeter = (ElementAltimeter)elementsList.Find(e => e.GetType().Name == "ElementAltimeter");
+                            if (altimeter == null)
+                            {
+                                elementsList.Add(new ElementAltimeter());
+                                altimeter = (ElementAltimeter)elementsList.Find(e => e.GetType().Name == "ElementAltimeter");
+                            }
+                            if (altimeter != null)
+                            {
+                                int offset = 1;
+                                if (altimeter.Number != null) offset++;
+                                if (altimeter.Number_Font != null) offset++;
+                                //if (altimeter.Pressure != null) offset++;
+                                if (altimeter.Pressure_Font != null) offset++;
+                                if (altimeter.Number_Target != null) offset++;
+                                if (altimeter.Number_Target_Font != null) offset++;
+                                if (altimeter.Pointer != null) offset++;
+                                if (altimeter.Icon != null) offset++;
+
+                                altimeter.Pressure = new hmUI_widget_IMG_NUMBER();
+                                altimeter.Pressure.img_First = imgNumber.img_First;
+                                altimeter.Pressure.imageX = imgNumber.imageX;
+                                altimeter.Pressure.imageY = imgNumber.imageY;
+                                altimeter.Pressure.space = imgNumber.space;
+                                altimeter.Pressure.angle = imgNumber.angle;
+                                altimeter.Pressure.zero = imgNumber.zero;
+                                altimeter.Pressure.unit = imgNumber.unit;
+                                altimeter.Pressure.imperial_unit = imgNumber.imperial_unit;
+                                altimeter.Pressure.negative_image = imgNumber.negative_image;
+                                altimeter.Pressure.invalid_image = imgNumber.invalid_image;
+                                altimeter.Pressure.dot_image = imgNumber.dot_image;
+                                altimeter.Pressure.align = imgNumber.align;
+                                altimeter.Pressure.alpha = imgNumber.alpha;
+                                altimeter.Pressure.visible = true;
+                                altimeter.Pressure.position = offset;
                             }
                         }
 
@@ -46505,6 +46586,7 @@ namespace Watch_Face_Editor
             if (parametrs.ContainsKey("text_size") && Int32.TryParse(parametrs["text_size"], out value)) text.text_size = value;
             if (parametrs.ContainsKey("char_space") && Int32.TryParse(parametrs["char_space"], out value)) text.char_space = value;
             if (parametrs.ContainsKey("line_space") && Int32.TryParse(parametrs["line_space"], out value)) text.line_space = value;
+            if (parametrs.ContainsKey("// alpha") && Int32.TryParse(parametrs["// alpha"], out value)) text.alpha = value;
             if (parametrs.ContainsKey("alpha") && Int32.TryParse(parametrs["alpha"], out value)) text.alpha = value;
 
             if (parametrs.ContainsKey("font"))

@@ -1447,6 +1447,33 @@ namespace Watch_Face_Editor.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Не удалось найти запущенный ZeppOS-Player..
+        /// </summary>
+        internal static string Message_ZeppOsPlayerAppNotFound1 {
+            get {
+                return ResourceManager.GetString("Message_ZeppOsPlayerAppNotFound1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Запустите приложение ZeppOS-Player или укажите координаты вручную..
+        /// </summary>
+        internal static string Message_ZeppOsPlayerAppNotFound2 {
+            get {
+                return ResourceManager.GetString("Message_ZeppOsPlayerAppNotFound2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на ZeppOS-Player не найден по указанному пути..
+        /// </summary>
+        internal static string Message_ZeppOsPlayerNotFound {
+            get {
+                return ResourceManager.GetString("Message_ZeppOsPlayerNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на ZeppPlayer не найден по указанному пути..
         /// </summary>
         internal static string Message_ZeppPlayerNotFound {

@@ -80,8 +80,6 @@ namespace Watch_Face_Editor
             offSet_X = src.Width / 2;
             offSet_Y = src.Height / 2;
             gPanel.DrawImage(src, 0, 0);
-            //gPanel.DrawImage(src, new Rectangle(0, 0, src.Width, src.Height));
-            //src.Dispose();
             #endregion
 
             #region Background
@@ -2060,7 +2058,8 @@ namespace Watch_Face_Editor
                                 }
                             }
 
-                            if (DigitalTime_v2.Group_Second.Number != null && DigitalTime_v2.Group_Second.Number.img_First != null && 
+                            if ((SelectedModel.versionOS < 4.4 || link == 0) && 
+                                DigitalTime_v2.Group_Second.Number != null && DigitalTime_v2.Group_Second.Number.img_First != null && 
                                 DigitalTime_v2.Group_Second.Number.img_First.Length > 0 && DigitalTime_v2.Group_Second.Number.visible)
                             {
                                 int imageIndex = ListImages.IndexOf(DigitalTime_v2.Group_Second.Number.img_First);
@@ -2404,7 +2403,8 @@ namespace Watch_Face_Editor
                             }
                         }
 
-                        if (AnalogTime.Second != null && AnalogTime.Second.src != null
+                        if ((SelectedModel.versionOS < 4.4 || link == 0) &&
+                            AnalogTime.Second != null && AnalogTime.Second.src != null
                             && AnalogTime.Second.src.Length > 0 &&
                             index == AnalogTime.Second.position && AnalogTime.Second.visible)
                         {
@@ -4021,20 +4021,6 @@ namespace Watch_Face_Editor
                     progress = (float)WatchFacePreviewSet.Activity.Steps / WatchFacePreviewSet.Activity.StepsGoal;
                     if (WatchFacePreviewSet.Activity.Steps == 0 && WatchFacePreviewSet.Activity.StepsGoal == 0) progress = 0;
 
-                    //if (img_level != null && img_level.image_length > 0)
-                    //{
-                    //    imgCount = img_level.image_length;
-                    //    valueImgIndex = (int)((imgCount - 1) * progress);
-                    //    if (progress < 0.01) valueImgIndex = -1;
-                    //    if (valueImgIndex >= imgCount) valueImgIndex = (int)(imgCount - 1);
-                    //}
-                    //if (img_prorgess != null && img_prorgess.image_length > 0)
-                    //{
-                    //    segmentCount = img_prorgess.image_length;
-                    //    valueSegmentIndex = (int)((segmentCount - 1) * progress);
-                    //    if (progress < 0.01) valueSegmentIndex = -1;
-                    //    if (valueSegmentIndex >= segmentCount) valueSegmentIndex = (int)(segmentCount - 1);
-                    //}
                     if (img_level != null && img_level.image_length > 0)
                     {
                         imgCount = img_level.image_length;
@@ -9056,7 +9042,14 @@ namespace Watch_Face_Editor
             bool useMinGraphOffset = (weather_FewDays.Diagram != null && weather_FewDays.Diagram.visible && weather_FewDays.Diagram.Use_min_diagram && weather_FewDays.Diagram.PositionOnGraph);
             bool useAverageGraphOffset = (weather_FewDays.Diagram != null && weather_FewDays.Diagram.visible && weather_FewDays.Diagram.Use_average_diagram && weather_FewDays.Diagram.PositionOnGraph);
 
-            if (link != 0 || SelectedModel.versionOS < 3)
+            //if (link != 0 || SelectedModel.versionOS < 3)
+            //{
+            //    useMaxGraphOffset = false;
+            //    useMinGraphOffset = false;
+            //    useAverageGraphOffset = false;
+            //}
+
+            if (SelectedModel.versionOS < 3)
             {
                 useMaxGraphOffset = false;
                 useMinGraphOffset = false;
@@ -14803,7 +14796,7 @@ namespace Watch_Face_Editor
             if (use_text_circle && radius > size)
             {
                 DrawTextOnCircle(graphics, x, y, radius, null, size, color, start_angle, end_angle, 
-                    align_h, value, mode, spacing_h, BBorder, showCentrHend);
+                    align_h, value, mode, spacing_h, alpha, BBorder, showCentrHend);
                 return;
             }
             size = size * 0.99f;
@@ -14913,12 +14906,6 @@ namespace Watch_Face_Editor
             }
 
             Logger.WriteLine("Draw value");
-            //if (SelectedModel.versionOS > 3.5 && alpha != 255) {
-            //    color = Color.FromArgb(alpha, color);
-            //    // Устанавливаем параметры сглаживания для текста
-            //    gPanel.TextRenderingHint = TextRenderingHint.AntiAlias;
-            //    gPanel.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-            //}
 
             SolidBrush drawBrush = new SolidBrush(color);
 
@@ -15034,29 +15021,22 @@ namespace Watch_Face_Editor
             if (use_text_circle && radius > size)
             {
                 DrawTextOnCircle(graphics, x, y, radius, drawFont, size, color, start_angle, end_angle,
-                    align_h, value, mode, spacing_h, BBorder, showCentrHend);
+                    align_h, value, mode, spacing_h, alpha, BBorder, showCentrHend);
                 return;
             }
             if (w < 5 || h < 5) return;
             Bitmap bitmap = new Bitmap(Convert.ToInt32(w), Convert.ToInt32(h), PixelFormat.Format32bppArgb);
             Graphics gPanel = Graphics.FromImage(bitmap);
-            //Font drawFont = new Font("Times New Roman", size, GraphicsUnit.World);
-            //Font drawFont = new Font(fonts.Families[0], size, GraphicsUnit.World);
             StringFormat strFormat = new StringFormat();
             strFormat.FormatFlags = StringFormatFlags.FitBlackBox;
             strFormat.Alignment = StringAlignment.Near;
             strFormat.LineAlignment = StringAlignment.Near;
-            //Size strSize1 = TextRenderer.MeasureText(graphics, "0", drawFont);
-            //Size strSize2 = TextRenderer.MeasureText(graphics, "00" + Environment.NewLine + "0", drawFont);
             SizeF strSize1 = graphics.MeasureString("0", drawFont);
             SizeF strSize2 = graphics.MeasureString("00" + Environment.NewLine + "0", drawFont);
             
             float chWidth = strSize2.Width - strSize1.Width;
             float offsetX = strSize1.Width - chWidth;
             float chHeight = strSize2.Height - strSize1.Height;
-            //float offsetY = strSize2.Height - strSize1.Height;
-            //float offsetY = strSize1.Height - size;
-            //offsetY = 0;
             List<string> text = new List<string>();
             switch (text_style)
             {
@@ -15148,7 +15128,7 @@ namespace Watch_Face_Editor
             }
 
             Logger.WriteLine("Draw value");
-            color = Color.FromArgb(alpha, color);
+            //color = Color.FromArgb(alpha, color);
             SolidBrush drawBrush = new SolidBrush(color);
 
             try
@@ -15218,7 +15198,22 @@ namespace Watch_Face_Editor
                     }
                     PointY += (float)(chHeight + 0.46 * spacing_v);
                 }
-                graphics.DrawImage(bitmap, x, y);
+                //graphics.DrawImage(bitmap, x, y);
+                if (SelectedModel.versionOS >= 3.5 && alpha != 255)
+                {
+                    // Создаем матрицу цветов для изменения прозрачности (альфа-канал)
+                    ColorMatrix colorMatrix = new ColorMatrix();
+                    colorMatrix.Matrix33 = alpha / 255f; // значение от 0 до 1
+
+                    // Создаем объект ImageAttributes и применяем к нему матрицу цветов
+                    ImageAttributes imgAttributes = new ImageAttributes();
+                    imgAttributes.SetColorMatrix(colorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+
+                    // Указываем прямоугольник, куда будет помещено изображение
+                    Rectangle rect_alpha = new Rectangle(x, y, w, h);
+                    graphics.DrawImage(bitmap, rect_alpha, 0, 0, w, h, GraphicsUnit.Pixel, imgAttributes);
+                }
+                else graphics.DrawImage(bitmap, x, y);
 
                 if (BBorder)
                 {
@@ -16089,11 +16084,16 @@ namespace Watch_Face_Editor
             string text,
             int mode,
             float spacing, // расстояние между символами (в пикселях вдоль дуги)
+            int alpha, // прозрачность
             bool BBorder, 
             bool showCentrHend
         )
         {
             if (string.IsNullOrEmpty(text)) return;
+            int w = SelectedModel.background.w;
+            int h = SelectedModel.background.h;
+            Bitmap bitmap = new Bitmap(Convert.ToInt32(w), Convert.ToInt32(h), PixelFormat.Format32bppArgb);
+            Graphics gPanel = Graphics.FromImage(bitmap);
 
             //if (radius <= 0) radius = 1; // чтобы не делить на ноль
             if (startAngle == endAngle) return;
@@ -16140,10 +16140,6 @@ namespace Watch_Face_Editor
 
             // Рассчитываем общую длину текста
             float totalLength = TextRenderer.MeasureText(text.ToString(), font).Width - offsetX;
-            //foreach (char c in text)
-            //{
-            //    totalLength += graphics.MeasureString(c.ToString(), font).Width - 0.53f * offsetX;
-            //}
             if (clockwise) totalLength += (text.Length - 1) * spacing /** (1 + font.Size * 1.5f / radius)*/;
             else
             {
@@ -16235,14 +16231,14 @@ namespace Watch_Face_Editor
                 transform.RotateAt(rotationAngle, new PointF(centerX, centerY));
 
                 // Применяем преобразование
-                graphics.Transform = transform;
+                gPanel.Transform = transform;
 
                 // Рисуем символ
                 if (clockwise)
                 {
                     if (charAngle >= startAngle && charAngle <= endAngle) // Пропускаем символы, которые выходят за пределы углов
                     {
-                        if (clockwise) graphics.DrawString(charStr, font, new SolidBrush(color), centerX - offsetX / 4, centerY - (int)(radius - font.Size + offsetY),
+                        if (clockwise) gPanel.DrawString(charStr, font, new SolidBrush(color), centerX - offsetX / 4, centerY - (int)(radius - font.Size + offsetY),
                             new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
                     }
                 }
@@ -16250,15 +16246,31 @@ namespace Watch_Face_Editor
                 {
                     if (charAngle >= startAngle && charAngle <= endAngle) // Пропускаем символы, которые выходят за пределы углов
                     {
-                        graphics.DrawString(charStr, font, new SolidBrush(color), centerX /*+ offsetX / 2*/, centerY + (int)(radius - font.Size + 1.75f * offsetY),
+                        gPanel.DrawString(charStr, font, new SolidBrush(color), centerX /*+ offsetX / 2*/, centerY + (int)(radius - font.Size + 1.75f * offsetY),
                             new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
                     }
                 }
 
 
                 // Сбрасываем преобразование
-                graphics.ResetTransform();
+                gPanel.ResetTransform();
             }
+
+            if (SelectedModel.versionOS >= 3.5 && alpha != 255)
+            {
+                // Создаем матрицу цветов для изменения прозрачности (альфа-канал)
+                ColorMatrix colorMatrix = new ColorMatrix();
+                colorMatrix.Matrix33 = alpha / 255f; // значение от 0 до 1
+
+                // Создаем объект ImageAttributes и применяем к нему матрицу цветов
+                ImageAttributes imgAttributes = new ImageAttributes();
+                imgAttributes.SetColorMatrix(colorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+
+                // Указываем прямоугольник, куда будет помещено изображение
+                Rectangle rect_alpha = new Rectangle(0, 0, w, h);
+                graphics.DrawImage(bitmap, rect_alpha, 0, 0, w, h, GraphicsUnit.Pixel, imgAttributes);
+            }
+            else graphics.DrawImage(bitmap, 0, 0);
 
             radius -= (int)size;
             radius += (int)(1.5f*offsetY);

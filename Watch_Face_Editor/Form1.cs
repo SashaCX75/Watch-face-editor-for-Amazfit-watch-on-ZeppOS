@@ -467,6 +467,7 @@ namespace Watch_Face_Editor
             else timer_AutoSave.Enabled = false;
             checkBox_DevelopmentMode.Checked = ProgramSettings.DevelopmentMode;
 
+            textBox_ZeppOsPlayerPath.Text = ProgramSettings.ZeppOsPlayerPath;
             textBox_ZeppPlayerPath.Text = ProgramSettings.ZeppPlayerPath;
             //textBox_FilePost_API_key.Text = ProgramSettings.FilePost_API_key;
             textBox_FilePost_API_key.Text = SecretStorage.Decrypt(ProgramSettings.FilePost_API_key);
@@ -10065,6 +10066,10 @@ namespace Watch_Face_Editor
             //comboBox_AddBackground.Visible = !radioButton_ScreenNormal.Checked;
             //pictureBox_IconBackground.Visible = !radioButton_ScreenNormal.Checked;
             button_CopyAOD.Visible = !radioButton_ScreenNormal.Checked;
+
+            uCtrl_AnalogTime_Elm.SecondsOnAOD((SelectedModel.versionOS < 4.4 || radioButton_ScreenNormal.Checked));
+            uCtrl_DigitalTime_Elm_v2.SecondsOnAOD((SelectedModel.versionOS < 4.4 || radioButton_ScreenNormal.Checked));
+
             ShowElemetsWatchFace(); 
             PreviewView = true;
             PreviewImage();
@@ -12232,6 +12237,9 @@ namespace Watch_Face_Editor
             uCtrl_Weather_FewDay_Elm.GraphUse = SelectedModel.versionOS >= 3;
             uCtrl_HRV_Elm.Progress_available = SelectedModel.versionOS >= 5;
             uCtrl_Wind_Elm.WindSpeed_available = SelectedModel.versionOS > 4;
+
+            uCtrl_AnalogTime_Elm.SecondsOnAOD((SelectedModel.versionOS < 4.4 || radioButton_ScreenNormal.Checked));
+            uCtrl_DigitalTime_Elm_v2.SecondsOnAOD((SelectedModel.versionOS < 4.4 || radioButton_ScreenNormal.Checked));
 
             resetCaptureArea(); // сбрасываем область захвата для предпросмотра, так как размеры могли измениться
 
@@ -28376,6 +28384,11 @@ namespace Watch_Face_Editor
         private void linkLabel_FilePost_API_key_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("https://filepost.dev/");
+        }
+
+        private void linkLabel_ZeppOsPlayer_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://amazfitwatchfaces.com/forum/viewtopic.php?t=5145");
         }
 
         private void linkLabel_ZeppPlayer_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

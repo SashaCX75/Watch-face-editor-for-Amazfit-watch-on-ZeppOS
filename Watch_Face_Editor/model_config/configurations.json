@@ -1198,6 +1198,47 @@
     "fixSize": false,
     "versionOS": 1.0
   },
+  "T-Rex Dual Solar": {
+    "name": "Amazfit T-Rex Dual Solar",
+    "designWidth": 466,
+    "deviceSource_ids": [
+      11403520
+    ],
+    "cpuPlatform": "ZPS",
+    "screenType": "round",
+    "background": {
+      "w": 466,
+      "h": 466
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 230,
+        "h": 230
+      },
+      "scaling_1_0": {
+        "w": 468,
+        "h": 468
+      },
+      "scaling_1_5": {
+        "w": 701,
+        "h": 701
+      },
+      "scaling_2_0": {
+        "w": 933,
+        "h": 933
+      },
+      "scaling_2_5": {
+        "w": 1166,
+        "h": 1166
+      }
+    },
+    "maskImage": "mask_gtr_4.png",
+    "watchSkin": "WatchSkin_T-Rex_Dual_Solar.json",
+    "previewHeight": 314,
+    "colorScheme": 1,
+    "fixSize": true,
+    "versionOS": 6.0
+  },
   "T-Rex 2": {
     "name": "Amazfit T-Rex 2",
     "designWidth": 454,

@@ -6669,6 +6669,10 @@ namespace Watch_Face_Editor
                         if (tempProgressPercent > 100) tempProgressPercent = 100;
                         angle = startAngle + (tempProgressPercent / 100f) * (endAngle - startAngle);
                     }
+                    if (elementName == "ElementCompass")
+                    {
+                        angle = startAngle + (-progressPercent / 100f) * (endAngle - startAngle);
+                    }
 
                     if (pointer.scale != null && pointer.scale.Length > 0)
                     {

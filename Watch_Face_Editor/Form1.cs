@@ -661,6 +661,9 @@ namespace Watch_Face_Editor
                 string fullfilename = Path.Combine(ProjectDir, FileName) + ".temp";
                 if (File.Exists(fullfilename)) File.Delete(fullfilename); 
             }
+
+            string tempDir = Path.Combine(Application.StartupPath, "Temp");
+            if (Directory.Exists(tempDir)) DeleteDirectory(tempDir);
 #endif
             Logger.WriteLine("* FormClosing(end)");
         }

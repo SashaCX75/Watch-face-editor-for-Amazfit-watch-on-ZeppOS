@@ -1319,7 +1319,7 @@ namespace Watch_Face_Editor
                 SaveFileName = Watch_Face.WatchFace_Info.WatchFaceName;
             //string zipName = ProjectDir + @"\" + SaveFileName + "_test.zip";
 
-            string tempDir = Path.Combine(Application.StartupPath, " Temp");
+            string tempDir = Path.Combine(Application.StartupPath, "Temp");
             //tempDir = Path.Combine(Application.StartupPath, " Temp", "ZeppOsPlayer");
             if (Directory.Exists(tempDir)) DeleteDirectory(tempDir);
             Directory.CreateDirectory(tempDir);
@@ -1354,7 +1354,7 @@ namespace Watch_Face_Editor
                 //}
 
                 // Удаляем временную папку
-                if (Directory.Exists(projectPath)) DeleteDirectory(projectPath);
+                if (Directory.Exists(tempDir)) DeleteDirectory(tempDir);
             }
         }
 

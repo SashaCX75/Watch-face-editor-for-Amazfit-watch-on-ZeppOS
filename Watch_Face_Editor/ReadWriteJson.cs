@@ -1517,7 +1517,7 @@ namespace Watch_Face_Editor
 
                 items += Environment.NewLine + TabInString(7) + "compass = hmSensor.createSensor(hmSensor.id.COMPASS);";
                 items += Environment.NewLine + TabInString(7) + "compass.start();" + Environment.NewLine;
-                items += Environment.NewLine + TabInString(7) + "if (compass.direction_angle && compass.direction  && compass.direction_angle != 'INVALID') { // initial data";
+                items += Environment.NewLine + TabInString(7) + "if (compass.direction_angle != undefined && compass.direction != undefined && compass.direction_angle != 'INVALID') { // initial data";
                 items += Environment.NewLine + compass_update;
                 items += Environment.NewLine + TabInString(7) + "} else { // error data";
                 items += Environment.NewLine + compass_error;

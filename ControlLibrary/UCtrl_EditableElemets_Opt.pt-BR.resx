@@ -484,7 +484,7 @@
 </value>
   </data>
   <data name="button_Sunset.Text" xml:space="preserve">
-    <value>Valores numéricos (pôr do sol)</value>
+    <value>Valores numéricos (pôr)</value>
   </data>
   <data name="button_Sunrise.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -497,7 +497,7 @@
 </value>
   </data>
   <data name="button_Sunrise.Text" xml:space="preserve">
-    <value>Valores numéricos (nascer do sol)</value>
+    <value>Valores numéricos (nascer)</value>
   </data>
   <data name="button_Sunset_Sunrise.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -510,7 +510,7 @@
 </value>
   </data>
   <data name="button_Sunset_Sunrise.Text" xml:space="preserve">
-    <value>Valores numéricos (nascer / pôr do sol)</value>
+    <value>Valores numéricos (nascer/pôr)</value>
   </data>
   <data name="label_shortcuts_hint.Text" xml:space="preserve">
     <value>A imagem de prévia será substituída pelo ícone do app no mesmo tamanho.</value>

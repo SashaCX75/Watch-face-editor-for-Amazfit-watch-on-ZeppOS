@@ -125,7 +125,7 @@
     <value>214, 48</value>
   </data>
   <data name="checkBox_user_functions.Text" xml:space="preserve">
-    <value>Funções definidas pelo usuário (inseridas antes 
+    <value>Funções do usuário (inseridas antes 
 da declaração das variáveis)</value>
   </data>
   <data name="toolStripMenuItem_Edit_JS.Size" type="System.Drawing.Size, System.Drawing">

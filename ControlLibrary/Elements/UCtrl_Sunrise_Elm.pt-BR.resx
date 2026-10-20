@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="button_Sunrise_Font.Text" xml:space="preserve">
-    <value>Valor em fonte (nascer do sol)</value>
+    <value>Valor em fonte (nascer)</value>
   </data>
   <data name="button_Sunset_Font.Text" xml:space="preserve">
-    <value>Valor em fonte (pôr do sol)</value>
+    <value>Valor em fonte (pôr)</value>
   </data>
   <data name="button_Images.Text" xml:space="preserve">
     <value>Imagens</value>
@@ -133,17 +133,17 @@
     <value>Ponteiro</value>
   </data>
   <data name="button_Sunset.Text" xml:space="preserve">
-    <value>Valores numéricos (pôr do sol)</value>
+    <value>Valores numéricos (pôr)</value>
   </data>
   <data name="button_Sunrise.Text" xml:space="preserve">
-    <value>Valores numéricos (nascer do sol)</value>
+    <value>Valores numéricos (nascer)</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="button_Sunset_Sunrise.Font" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
   <data name="button_Sunset_Sunrise.Text" xml:space="preserve">
-    <value>Valores numéricos (nascer / pôr do sol)</value>
+    <value>Valores numéricos (nascer/pôr)</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="button_Sunset_rotation.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -163,7 +163,7 @@
 </value>
   </data>
   <data name="button_Sunset_rotation.Text" xml:space="preserve">
-    <value>Valor em ângulo (pôr do sol)</value>
+    <value>Valor em ângulo (pôr)</value>
   </data>
   <data name="button_Sunset_circle.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -182,7 +182,7 @@
 </value>
   </data>
   <data name="button_Sunset_circle.Text" xml:space="preserve">
-    <value>Valor em círculo (pôr do sol)</value>
+    <value>Valor em círculo (pôr)</value>
   </data>
   <data name="button_Sunrise_rotation.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -201,7 +201,7 @@
 </value>
   </data>
   <data name="button_Sunrise_rotation.Text" xml:space="preserve">
-    <value>Valor em ângulo (nascer do sol)</value>
+    <value>Valor em ângulo (nascer)</value>
   </data>
   <data name="button_Sunrise_circle.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -220,7 +220,7 @@
 </value>
   </data>
   <data name="button_Sunrise_circle.Text" xml:space="preserve">
-    <value>Valor em círculo (nascer do sol)</value>
+    <value>Valor em círculo (nascer)</value>
   </data>
   <data name="button_Icon.Text" xml:space="preserve">
     <value>Ícone</value>

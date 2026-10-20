@@ -199,6 +199,7 @@ namespace Watch_Face_Editor
                         case "de": ProgramSettings.language = "Deutsch"; break;
                         case "cs": ProgramSettings.language = "Čeština"; break;
                         case "fr": ProgramSettings.language = "French"; break;
+                        case "pt": ProgramSettings.language = "Português (Brasil)"; break;
                     }
                   
                 }
@@ -685,9 +686,10 @@ namespace Watch_Face_Editor
                     Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("es");
                     Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("es");
                     break;
+                case "Português (Brasil)":
                 case "Português":
-                    Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("pt");
-                    Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("pt");
+                    Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("pt-BR");
+                    Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("pt-BR");
                     break;
                 case "Čeština":
                     Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("cs");

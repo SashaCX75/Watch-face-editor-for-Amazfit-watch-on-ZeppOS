@@ -11172,9 +11172,12 @@
     <value>Italiano</value>
   </data>
   <data name="comboBox_Language.Items7" xml:space="preserve">
-    <value>Русский</value>
+    <value>Português (Brasil)</value>
   </data>
   <data name="comboBox_Language.Items8" xml:space="preserve">
+    <value>Русский</value>
+  </data>
+  <data name="comboBox_Language.Items9" xml:space="preserve">
     <value>Українська</value>
   </data>
   <data name="comboBox_Language.Location" type="System.Drawing.Point, System.Drawing">

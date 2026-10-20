@@ -11172,9 +11172,12 @@
     <value>Italiano</value>
   </data>
   <data name="comboBox_Language.Items7" xml:space="preserve">
-    <value>Русский</value>
+    <value>Português (Brasil)</value>
   </data>
   <data name="comboBox_Language.Items8" xml:space="preserve">
+    <value>Русский</value>
+  </data>
+  <data name="comboBox_Language.Items9" xml:space="preserve">
     <value>Українська</value>
   </data>
   <data name="comboBox_Language.Location" type="System.Drawing.Point, System.Drawing">
@@ -13246,6 +13249,7 @@ Deutsch - Lattenknaller
 Español - @Mr_Pacojones
 French - Guydu91
 Italiano - babigiov, Mixmaxmux 
+Português (BR) - Victor @ArtBombs
 Ukrainian - kartoris82</value>
   </data>
   <data name="&gt;&gt;label_TranslateHelp.Name" xml:space="preserve">

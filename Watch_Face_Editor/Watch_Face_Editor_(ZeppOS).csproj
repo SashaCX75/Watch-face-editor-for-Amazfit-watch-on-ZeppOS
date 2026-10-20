@@ -300,6 +300,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Properties\ElementsString.pt-BR.Designer.cs">
+      <DependentUpon>ElementsString.pt-BR.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Properties\ElementsString.es.Designer.cs">
       <DependentUpon>ElementsString.es.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -332,6 +337,11 @@
     </Compile>
     <Compile Include="Properties\FormStrings.fr.Designer.cs">
       <DependentUpon>FormStrings.fr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Properties\FormStrings.pt-BR.Designer.cs">
+      <DependentUpon>FormStrings.pt-BR.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -377,6 +387,9 @@
     <EmbeddedResource Include="CreateZAB_dialog.fr.resx">
       <DependentUpon>CreateZAB_dialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CreateZAB_dialog.pt-BR.resx">
+      <DependentUpon>CreateZAB_dialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CreateZAB_dialog.it.resx">
       <DependentUpon>CreateZAB_dialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -401,6 +414,9 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.fr.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.pt-BR.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.it.resx">
@@ -434,6 +450,9 @@
     <EmbeddedResource Include="FormAddEditableElement.fr.resx">
       <DependentUpon>FormAddEditableElement.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormAddEditableElement.pt-BR.resx">
+      <DependentUpon>FormAddEditableElement.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormAddEditableElement.it.resx">
       <DependentUpon>FormAddEditableElement.cs</DependentUpon>
     </EmbeddedResource>
@@ -461,6 +480,9 @@
     <EmbeddedResource Include="FormAnimation.fr.resx">
       <DependentUpon>FormAnimation.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormAnimation.pt-BR.resx">
+      <DependentUpon>FormAnimation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormAnimation.it.resx">
       <DependentUpon>FormAnimation.cs</DependentUpon>
     </EmbeddedResource>
@@ -486,6 +508,9 @@
       <DependentUpon>FormFileExists.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFileExists.fr.resx">
+      <DependentUpon>FormFileExists.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFileExists.pt-BR.resx">
       <DependentUpon>FormFileExists.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFileExists.it.resx">
@@ -519,6 +544,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ElementsString.fr.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\ElementsString.pt-BR.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ElementsString.pt-BR.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\ElementsString.es.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ElementsString.es.Designer.cs</LastGenOutput>
@@ -547,6 +576,10 @@
     <EmbeddedResource Include="Properties\FormStrings.fr.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>FormStrings.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\FormStrings.pt-BR.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>FormStrings.pt-BR.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\FormStrings.uk.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -621,6 +654,7 @@
     <None Include="Resources\tips_es.rtf" />
     <None Include="Resources\tips_fr.rtf" />
     <None Include="Resources\tips_it.rtf" />
+    <None Include="Resources\tips_pt.rtf" />
     <None Include="Resources\tips_ru.rtf" />
     <None Include="Resources\tips_uk.rtf" />
     <None Include="Resources\tips_zh.rtf" />
@@ -898,6 +932,7 @@ rmdir /s /q "$(TargetDir)\Language\zh"
 rmdir /s /q "$(TargetDir)\Language\uk"
 rmdir /s /q "$(TargetDir)\Language\cs"
 rmdir /s /q "$(TargetDir)\Language\fr"
+rmdir /s /q "$(TargetDir)\Language\pt-BR"
 mkdir "$(TargetDir)\Libs"
 mkdir "$(TargetDir)\Language"
 move /y "$(TargetDir)\de" "$(TargetDir)\Language"
@@ -908,6 +943,7 @@ move /y "$(TargetDir)\zh" "$(TargetDir)\Language"
 move /y "$(TargetDir)\uk" "$(TargetDir)\Language"
 move /y "$(TargetDir)\cs" "$(TargetDir)\Language"
 move /y "$(TargetDir)\fr" "$(TargetDir)\Language"
+move /y "$(TargetDir)\pt-BR" "$(TargetDir)\Language"
 move "$(TargetDir)*.dll" "$(TargetDir)\Libs"
 move "$(TargetDir)SplashScreen.*" "$(TargetDir)\Libs"
 move "$(TargetDir)*.xml" "$(TargetDir)\Libs"</PostBuildEvent>

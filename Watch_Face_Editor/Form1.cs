@@ -518,6 +518,9 @@ namespace Watch_Face_Editor
                 case "Italiano":
                     richTextBox_Tips.Rtf = Properties.Resources.tips_it;
                     break;
+                case "Português (Brasil)":
+                    richTextBox_Tips.Rtf = Properties.Resources.tips_pt;
+                    break;
                 default:
                     richTextBox_Tips.Rtf = Properties.Resources.tips_en;
                     break;

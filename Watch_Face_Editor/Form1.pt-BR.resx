@@ -853,7 +853,7 @@
     <value>100, 17</value>
   </data>
   <data name="checkBox_AutoSave.Text" xml:space="preserve">
-    <value>Salvar automaticamente a cada</value>
+    <value>Salvar a cada</value>
   </data>
   <data name="checkBox_Del_Confirm.Size" type="System.Drawing.Size, System.Drawing">
     <value>238, 17</value>
@@ -949,7 +949,7 @@
     <value>104, 13</value>
   </data>
   <data name="label355.Text" xml:space="preserve">
-    <value>Velocidade da animação GIF</value>
+    <value>Velocidade do GIF</value>
   </data>
   <data name="checkBox_ShowIn12hourFormat.Size" type="System.Drawing.Size, System.Drawing">
     <value>215, 17</value>
@@ -1105,8 +1105,8 @@
     <value>185, 39</value>
   </data>
   <data name="label483.Text" xml:space="preserve">
-    <value>Velocidade da prévia da animação
-(velocidade alta - animação mais suave,
+    <value>Velocidade da prévia
+(alta: animação mais suave,
 mais carga no sistema)</value>
   </data>
   <data name="linkLabel_ES_site.Size" type="System.Drawing.Size, System.Drawing">

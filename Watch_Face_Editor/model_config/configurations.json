@@ -176,48 +176,6 @@
     "fixSize": true,
     "versionOS": 5.0
   },
-  "Active Max": {
-    "name": "Amazfit Active Max",
-    "designWidth": 480,
-    "deviceSource_ids": [
-      10813697,
-      10813699
-    ],
-    "cpuPlatform": "ZPS",
-    "screenType": "round",
-    "background": {
-      "w": 480,
-      "h": 480
-    },
-    "scaling": {
-      "scaling_0_5": {
-        "w": 230,
-        "h": 230
-      },
-      "scaling_1_0": {
-        "w": 482,
-        "h": 482
-      },
-      "scaling_1_5": {
-        "w": 722,
-        "h": 722
-      },
-      "scaling_2_0": {
-        "w": 961,
-        "h": 961
-      },
-      "scaling_2_5": {
-        "w": 1201,
-        "h": 1201
-      }
-    },
-    "maskImage": "mask_gtr_3_pro.png",
-    "watchSkin": "WatchSkin_Active_Max.json",
-    "previewHeight": 324,
-    "colorScheme": 1,
-    "fixSize": true,
-    "versionOS": 5.0
-  },
   "Active Edge": {
     "name": "Amazfit Active Edge",
     "designWidth": 360,
@@ -259,6 +217,48 @@
     "colorScheme": 3,
     "fixSize": false,
     "versionOS": 3.5
+  },
+  "Active Max": {
+    "name": "Amazfit Active Max",
+    "designWidth": 480,
+    "deviceSource_ids": [
+      10813697,
+      10813699
+    ],
+    "cpuPlatform": "ZPS",
+    "screenType": "round",
+    "background": {
+      "w": 480,
+      "h": 480
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 230,
+        "h": 230
+      },
+      "scaling_1_0": {
+        "w": 482,
+        "h": 482
+      },
+      "scaling_1_5": {
+        "w": 722,
+        "h": 722
+      },
+      "scaling_2_0": {
+        "w": 961,
+        "h": 961
+      },
+      "scaling_2_5": {
+        "w": 1201,
+        "h": 1201
+      }
+    },
+    "maskImage": "mask_gtr_3_pro.png",
+    "watchSkin": "WatchSkin_Active_Max.json",
+    "previewHeight": 324,
+    "colorScheme": 1,
+    "fixSize": true,
+    "versionOS": 5.0
   },
   "Amazfit Band 7": {
     "name": "Amazfit Band 7",
@@ -1198,47 +1198,6 @@
     "fixSize": false,
     "versionOS": 1.0
   },
-  "T-Rex Dual Solar": {
-    "name": "Amazfit T-Rex Dual Solar",
-    "designWidth": 466,
-    "deviceSource_ids": [
-      11403520
-    ],
-    "cpuPlatform": "ZPS",
-    "screenType": "round",
-    "background": {
-      "w": 466,
-      "h": 466
-    },
-    "scaling": {
-      "scaling_0_5": {
-        "w": 230,
-        "h": 230
-      },
-      "scaling_1_0": {
-        "w": 468,
-        "h": 468
-      },
-      "scaling_1_5": {
-        "w": 701,
-        "h": 701
-      },
-      "scaling_2_0": {
-        "w": 933,
-        "h": 933
-      },
-      "scaling_2_5": {
-        "w": 1166,
-        "h": 1166
-      }
-    },
-    "maskImage": "mask_gtr_4.png",
-    "watchSkin": "WatchSkin_T-Rex_Dual_Solar.json",
-    "previewHeight": 314,
-    "colorScheme": 1,
-    "fixSize": true,
-    "versionOS": 6.0
-  },
   "T-Rex 2": {
     "name": "Amazfit T-Rex 2",
     "designWidth": 454,
@@ -1409,6 +1368,48 @@
     "colorScheme": 1,
     "fixSize": true,
     "versionOS": 5.0
+  },
+  "T-Rex Dual Solar": {
+    "name": "Amazfit T-Rex Dual Solar",
+    "designWidth": 466,
+    "deviceSource_ids": [
+      11403520,
+      11403521
+    ],
+    "cpuPlatform": "ZPS",
+    "screenType": "round",
+    "background": {
+      "w": 466,
+      "h": 466
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 230,
+        "h": 230
+      },
+      "scaling_1_0": {
+        "w": 468,
+        "h": 468
+      },
+      "scaling_1_5": {
+        "w": 701,
+        "h": 701
+      },
+      "scaling_2_0": {
+        "w": 933,
+        "h": 933
+      },
+      "scaling_2_5": {
+        "w": 1166,
+        "h": 1166
+      }
+    },
+    "maskImage": "mask_gtr_4.png",
+    "watchSkin": "WatchSkin_T-Rex_Dual_Solar.json",
+    "previewHeight": 314,
+    "colorScheme": 1,
+    "fixSize": true,
+    "versionOS": 6.0
   },
   "T-Rex Ultra": {
     "name": "Amazfit T-Rex Ultra",

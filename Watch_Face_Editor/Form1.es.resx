@@ -5591,7 +5591,7 @@ Paypal: sashacx75@gmail.com</value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACm
-        DQAAAk1TRnQBSQFMAgEBBgEAAXQBLgF4AS4BEAEAARABAAT/AQkBEAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        DQAAAk1TRnQBSQFMAgEBBgEAAXQBLgF8AS4BEAEAARABAAT/AQkBEAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAASADAAEBAQABCAYAAQgYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -6953,5 +6953,38 @@ Paypal: sashacx75@gmail.com</value>
   </data>
   <data name="checkBox_SendSystemInfo.Text" xml:space="preserve">
     <value>Enviar información sobre el sistema</value>
+  </data>
+  <data name="button_ZeppOsPlayerSend.Text" xml:space="preserve">
+    <value>Enviar</value>
+  </data>
+  <data name="button_ZeppOsPlayer_UpdateScreenPos.Text" xml:space="preserve">
+    <value>Actualizar coordenadas</value>
+  </data>
+  <data name="checkBox_ZeppOsPlayerCapture.Text" xml:space="preserve">
+    <value>Habilitar captura de pantalla</value>
+  </data>
+  <data name="groupBox_ZeppOsPlayer.Text" xml:space="preserve">
+    <value>Pruebas en ZeppOS-Player</value>
+  </data>
+  <data name="label22.Text" xml:space="preserve">
+    <value>ZeppOS-Player: un simulador sencillo y rápido basado en ZeppPlayer. Debes descomprimir el archivo de ZeppOS-Player e indicar la ruta al archivo ZeppOS-Player.exe.</value>
+  </data>
+  <data name="linkLabel_ZeppOsPlayer.Text" xml:space="preserve">
+    <value>Descargar ZeppOS-Player</value>
+  </data>
+  <data name="radioButton_12hours_fp.Text" xml:space="preserve">
+    <value>12 horas</value>
+  </data>
+  <data name="radioButton_1day_fp.Text" xml:space="preserve">
+    <value>1 día</value>
+  </data>
+  <data name="radioButton_1hour_fp.Text" xml:space="preserve">
+    <value>1 hora</value>
+  </data>
+  <data name="radioButton_3days_fp.Text" xml:space="preserve">
+    <value>3 días</value>
+  </data>
+  <data name="radioButton_unlimited_fp.Text" xml:space="preserve">
+    <value>Ilimitado</value>
   </data>
 </root>

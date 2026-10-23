@@ -354,6 +354,11 @@ namespace Watch_Face_Editor
             this.textBox_GitHub_token = new System.Windows.Forms.TextBox();
             this.label_repoName = new System.Windows.Forms.Label();
             this.panel_FilePost = new System.Windows.Forms.Panel();
+            this.radioButton_unlimited_fp = new System.Windows.Forms.RadioButton();
+            this.radioButton_1hour_fp = new System.Windows.Forms.RadioButton();
+            this.radioButton_12hours_fp = new System.Windows.Forms.RadioButton();
+            this.radioButton_3days_fp = new System.Windows.Forms.RadioButton();
+            this.radioButton_1day_fp = new System.Windows.Forms.RadioButton();
             this.linkLabel_FilePost_API_key = new System.Windows.Forms.LinkLabel();
             this.textBox_FilePost_API_key = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -3715,12 +3720,49 @@ namespace Watch_Face_Editor
             // panel_FilePost
             // 
             resources.ApplyResources(this.panel_FilePost, "panel_FilePost");
+            this.panel_FilePost.Controls.Add(this.radioButton_unlimited_fp);
+            this.panel_FilePost.Controls.Add(this.radioButton_1hour_fp);
+            this.panel_FilePost.Controls.Add(this.radioButton_12hours_fp);
+            this.panel_FilePost.Controls.Add(this.radioButton_3days_fp);
+            this.panel_FilePost.Controls.Add(this.radioButton_1day_fp);
             this.panel_FilePost.Controls.Add(this.linkLabel_FilePost_API_key);
             this.panel_FilePost.Controls.Add(this.textBox_FilePost_API_key);
             this.panel_FilePost.Controls.Add(this.label8);
             this.panel_FilePost.Controls.Add(this.label7);
             this.panel_FilePost.Controls.Add(this.btnUploadToFilePost);
             this.panel_FilePost.Name = "panel_FilePost";
+            // 
+            // radioButton_unlimited_fp
+            // 
+            resources.ApplyResources(this.radioButton_unlimited_fp, "radioButton_unlimited_fp");
+            this.radioButton_unlimited_fp.Checked = true;
+            this.radioButton_unlimited_fp.Name = "radioButton_unlimited_fp";
+            this.radioButton_unlimited_fp.TabStop = true;
+            this.radioButton_unlimited_fp.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_1hour_fp
+            // 
+            resources.ApplyResources(this.radioButton_1hour_fp, "radioButton_1hour_fp");
+            this.radioButton_1hour_fp.Name = "radioButton_1hour_fp";
+            this.radioButton_1hour_fp.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_12hours_fp
+            // 
+            resources.ApplyResources(this.radioButton_12hours_fp, "radioButton_12hours_fp");
+            this.radioButton_12hours_fp.Name = "radioButton_12hours_fp";
+            this.radioButton_12hours_fp.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_3days_fp
+            // 
+            resources.ApplyResources(this.radioButton_3days_fp, "radioButton_3days_fp");
+            this.radioButton_3days_fp.Name = "radioButton_3days_fp";
+            this.radioButton_3days_fp.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_1day_fp
+            // 
+            resources.ApplyResources(this.radioButton_1day_fp, "radioButton_1day_fp");
+            this.radioButton_1day_fp.Name = "radioButton_1day_fp";
+            this.radioButton_1day_fp.UseVisualStyleBackColor = true;
             // 
             // linkLabel_FilePost_API_key
             // 
@@ -5429,6 +5471,11 @@ namespace Watch_Face_Editor
         private System.Windows.Forms.TextBox textBox_ZeppOsPlayerPath;
         private System.Windows.Forms.LinkLabel linkLabel_ZeppOsPlayer;
         private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.RadioButton radioButton_unlimited_fp;
+        private System.Windows.Forms.RadioButton radioButton_1hour_fp;
+        private System.Windows.Forms.RadioButton radioButton_12hours_fp;
+        private System.Windows.Forms.RadioButton radioButton_3days_fp;
+        private System.Windows.Forms.RadioButton radioButton_1day_fp;
     }
 }
 

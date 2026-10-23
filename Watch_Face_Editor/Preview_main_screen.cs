@@ -15053,7 +15053,8 @@ namespace Watch_Face_Editor
                     for (int i = 0; i < words.Length; i++)
                     {
                         string draw_string = words[i];
-                        Size strSize = TextRenderer.MeasureText(graphics, draw_string, drawFont);
+                        //SizeF strSize = TextRenderer.MeasureText(graphics, draw_string, drawFont);
+                        SizeF strSize = graphics.MeasureString(draw_string, drawFont);
                         float strLenght = strSize.Width + (draw_string.Length - 1) * spacing_h - offsetX;
                         //strLenght += (draw_string.Length - 1) * spacing_h;
                         if (strLenght <= w) // слово помещается в рамку
@@ -15063,7 +15064,8 @@ namespace Watch_Face_Editor
                                 while (i + 1 < words.Length && strLenght < w)
                                 {
                                     string new_draw_string = draw_string + " " + words[i + 1];
-                                    strSize = TextRenderer.MeasureText(graphics, new_draw_string, drawFont);
+                                    //strSize = TextRenderer.MeasureText(graphics, new_draw_string, drawFont);
+                                    strSize = graphics.MeasureString(new_draw_string, drawFont);
                                     strLenght = strSize.Width + (draw_string.Length - 1) * spacing_h - offsetX;
                                     strLenght += (new_draw_string.Length - 1) * spacing_h;
                                     if (strLenght <= w)
@@ -15086,14 +15088,16 @@ namespace Watch_Face_Editor
                             {
                                 index--;
                                 string subStr = draw_string.Substring(0, index);
-                                strSize = TextRenderer.MeasureText(graphics, subStr, drawFont);
+                                //strSize = TextRenderer.MeasureText(graphics, subStr, drawFont);
+                                strSize = graphics.MeasureString(subStr, drawFont);
                                 strLenght = strSize.Width + (draw_string.Length - 1) * spacing_h - offsetX;
                                 if (strLenght <= w)
                                 {
                                     text.Add(subStr);
                                     draw_string = draw_string.Remove(0, index);
                                     index = draw_string.Length;
-                                    strSize = TextRenderer.MeasureText(graphics, draw_string, drawFont);
+                                    //strSize = TextRenderer.MeasureText(graphics, draw_string, drawFont);
+                                    strSize = graphics.MeasureString(draw_string, drawFont);
                                     strLenght = strSize.Width + (draw_string.Length - 1) * spacing_h - offsetX;
                                 }
                             }

@@ -512,12 +512,19 @@ namespace Watch_Face_Editor
 
             headers["X-API-Key"] = apiKey;
 
+            NameValueCollection values = new NameValueCollection();
+            values["filename_mode"] = "public";
+            if (radioButton_1hour_fp.Checked) values["expires_in"] = "1h";
+            if (radioButton_12hours_fp.Checked) values["expires_in"] = "12h";
+            if (radioButton_1day_fp.Checked) values["expires_in"] = "1d";
+            if (radioButton_3days_fp.Checked) values["expires_in"] = "3d";
+
             byte[] responseBytes =
                 await UploadMultipartAsync(
                     "https://filepost.dev/v1/upload",
                     filePath,
                     "file",
-                    null,
+                    values,
                     headers);
 
             string response =
@@ -1372,6 +1379,7 @@ namespace Watch_Face_Editor
 
             panel_SimulatorCapture.Visible = checkBox.Checked;
             groupBox_simulator.Visible = !checkBox.Checked;
+            groupBox_ZeppPlayer.Visible = !checkBox.Checked;
 
             //if (checkBox.Checked) radioButton_Litterbox.Checked = true;
             if (checkBox.Checked) label_GitHub_Instructions.Visible = false;
@@ -1468,6 +1476,7 @@ namespace Watch_Face_Editor
 
             panel_SimulatorCapture.Visible = checkBox.Checked;
             groupBox_simulator.Visible = !checkBox.Checked;
+            groupBox_ZeppOsPlayer.Visible = !checkBox.Checked;
 
             //if (checkBox.Checked) radioButton_Litterbox.Checked = true;
             if (checkBox.Checked) label_GitHub_Instructions.Visible = false;
@@ -1887,6 +1896,7 @@ namespace Watch_Face_Editor
             CheckBox checkBox = sender as CheckBox;
 
             panel_SimulatorCapture.Visible = checkBox.Checked;
+            groupBox_ZeppOsPlayer.Visible = !checkBox.Checked;
             groupBox_ZeppPlayer.Visible = !checkBox.Checked;
 
             if (checkBox.Checked) label_GitHub_Instructions.Visible = false;

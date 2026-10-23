@@ -685,7 +685,7 @@
     <value>Povolit snímání obrazovky</value>
   </data>
   <data name="button_ZeppPlayerSend.Text" xml:space="preserve">
-    <value>Poslat</value>
+    <value>Odeslat</value>
   </data>
   <data name="linkLabel_ZeppPlayer.Size" type="System.Drawing.Size, System.Drawing">
     <value>110, 13</value>
@@ -5581,7 +5581,7 @@ PayPal: sashacx75@gmail.com</value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACm
-        DQAAAk1TRnQBSQFMAgEBBgEAAXgBNgGEATYBEAEAARABAAT/AQkBEAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        DQAAAk1TRnQBSQFMAgEBBgEAAXgBNgGIATYBEAEAARABAAT/AQkBEAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAASADAAEBAQABCAYAAQgYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -6946,5 +6946,38 @@ PayPal: sashacx75@gmail.com</value>
   </data>
   <data name="label_FilePost_info_uploads_month.Text" xml:space="preserve">
     <value>Stažení za měsíc: -</value>
+  </data>
+  <data name="button_ZeppOsPlayerSend.Text" xml:space="preserve">
+    <value>Odeslat</value>
+  </data>
+  <data name="button_ZeppOsPlayer_UpdateScreenPos.Text" xml:space="preserve">
+    <value>Aktualizovat souřadnice</value>
+  </data>
+  <data name="checkBox_ZeppOsPlayerCapture.Text" xml:space="preserve">
+    <value>Povolit snímání obrazovky</value>
+  </data>
+  <data name="groupBox_ZeppOsPlayer.Text" xml:space="preserve">
+    <value>Testování v ZeppOS-Playeru</value>
+  </data>
+  <data name="label22.Text" xml:space="preserve">
+    <value>ZeppOS-Player – jednoduchý a rychlý simulátor založený na ZeppPlayeru. Je třeba rozbalit archiv ZeppOS-Player a zadat cestu k souboru ZeppOS-Player.exe.</value>
+  </data>
+  <data name="linkLabel_ZeppOsPlayer.Text" xml:space="preserve">
+    <value>Stáhnout ZeppOS-Player</value>
+  </data>
+  <data name="radioButton_12hours_fp.Text" xml:space="preserve">
+    <value>12 hodin</value>
+  </data>
+  <data name="radioButton_1day_fp.Text" xml:space="preserve">
+    <value>1 den</value>
+  </data>
+  <data name="radioButton_1hour_fp.Text" xml:space="preserve">
+    <value>1 hodina</value>
+  </data>
+  <data name="radioButton_3days_fp.Text" xml:space="preserve">
+    <value>3 dny</value>
+  </data>
+  <data name="radioButton_unlimited_fp.Text" xml:space="preserve">
+    <value>Neomezený</value>
   </data>
 </root>

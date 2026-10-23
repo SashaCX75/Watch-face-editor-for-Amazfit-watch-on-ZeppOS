@@ -8097,7 +8097,7 @@
     <value>Top</value>
   </data>
   <data name="panel_SimulatorCapture.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 444</value>
+    <value>0, 474</value>
   </data>
   <data name="panel_SimulatorCapture.Size" type="System.Drawing.Size, System.Drawing">
     <value>833, 337</value>
@@ -8391,7 +8391,7 @@
     <value>Top</value>
   </data>
   <data name="groupBox_simulator.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 307</value>
+    <value>0, 337</value>
   </data>
   <data name="groupBox_simulator.Size" type="System.Drawing.Size, System.Drawing">
     <value>833, 137</value>
@@ -8613,7 +8613,7 @@
     <value>Top</value>
   </data>
   <data name="groupBox_ZeppPlayer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 215</value>
+    <value>0, 245</value>
   </data>
   <data name="groupBox_ZeppPlayer.Size" type="System.Drawing.Size, System.Drawing">
     <value>833, 92</value>
@@ -8835,7 +8835,7 @@
     <value>Top</value>
   </data>
   <data name="groupBox_ZeppOsPlayer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 123</value>
+    <value>0, 153</value>
   </data>
   <data name="groupBox_ZeppOsPlayer.Size" type="System.Drawing.Size, System.Drawing">
     <value>833, 92</value>
@@ -9015,7 +9015,7 @@
     <value>2</value>
   </data>
   <data name="panel_FilePost_info.Location" type="System.Drawing.Point, System.Drawing">
-    <value>315, 101</value>
+    <value>315, 131</value>
   </data>
   <data name="panel_FilePost_info.Size" type="System.Drawing.Size, System.Drawing">
     <value>515, 40</value>
@@ -9651,7 +9651,7 @@
     <value>Top</value>
   </data>
   <data name="panel_GitHub.Location" type="System.Drawing.Point, System.Drawing">
-    <value>312, 158</value>
+    <value>312, 183</value>
   </data>
   <data name="panel_GitHub.Size" type="System.Drawing.Size, System.Drawing">
     <value>515, 433</value>
@@ -9677,6 +9677,156 @@
   <data name="panel_FilePost.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="radioButton_unlimited_fp.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="radioButton_unlimited_fp.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="radioButton_unlimited_fp.Location" type="System.Drawing.Point, System.Drawing">
+    <value>405, 6</value>
+  </data>
+  <data name="radioButton_unlimited_fp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>103, 17</value>
+  </data>
+  <data name="radioButton_unlimited_fp.TabIndex" type="System.Int32, mscorlib">
+    <value>34</value>
+  </data>
+  <data name="radioButton_unlimited_fp.Text" xml:space="preserve">
+    <value>Неограниченно</value>
+  </data>
+  <data name="&gt;&gt;radioButton_unlimited_fp.Name" xml:space="preserve">
+    <value>radioButton_unlimited_fp</value>
+  </data>
+  <data name="&gt;&gt;radioButton_unlimited_fp.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;radioButton_unlimited_fp.Parent" xml:space="preserve">
+    <value>panel_FilePost</value>
+  </data>
+  <data name="&gt;&gt;radioButton_unlimited_fp.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="radioButton_1hour_fp.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="radioButton_1hour_fp.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="radioButton_1hour_fp.Location" type="System.Drawing.Point, System.Drawing">
+    <value>114, 6</value>
+  </data>
+  <data name="radioButton_1hour_fp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 17</value>
+  </data>
+  <data name="radioButton_1hour_fp.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="radioButton_1hour_fp.Text" xml:space="preserve">
+    <value>1 час</value>
+  </data>
+  <data name="&gt;&gt;radioButton_1hour_fp.Name" xml:space="preserve">
+    <value>radioButton_1hour_fp</value>
+  </data>
+  <data name="&gt;&gt;radioButton_1hour_fp.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;radioButton_1hour_fp.Parent" xml:space="preserve">
+    <value>panel_FilePost</value>
+  </data>
+  <data name="&gt;&gt;radioButton_1hour_fp.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="radioButton_12hours_fp.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="radioButton_12hours_fp.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="radioButton_12hours_fp.Location" type="System.Drawing.Point, System.Drawing">
+    <value>186, 6</value>
+  </data>
+  <data name="radioButton_12hours_fp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 17</value>
+  </data>
+  <data name="radioButton_12hours_fp.TabIndex" type="System.Int32, mscorlib">
+    <value>31</value>
+  </data>
+  <data name="radioButton_12hours_fp.Text" xml:space="preserve">
+    <value>12 часов</value>
+  </data>
+  <data name="&gt;&gt;radioButton_12hours_fp.Name" xml:space="preserve">
+    <value>radioButton_12hours_fp</value>
+  </data>
+  <data name="&gt;&gt;radioButton_12hours_fp.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;radioButton_12hours_fp.Parent" xml:space="preserve">
+    <value>panel_FilePost</value>
+  </data>
+  <data name="&gt;&gt;radioButton_12hours_fp.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="radioButton_3days_fp.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="radioButton_3days_fp.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="radioButton_3days_fp.Location" type="System.Drawing.Point, System.Drawing">
+    <value>335, 6</value>
+  </data>
+  <data name="radioButton_3days_fp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 17</value>
+  </data>
+  <data name="radioButton_3days_fp.TabIndex" type="System.Int32, mscorlib">
+    <value>33</value>
+  </data>
+  <data name="radioButton_3days_fp.Text" xml:space="preserve">
+    <value>3 дня</value>
+  </data>
+  <data name="&gt;&gt;radioButton_3days_fp.Name" xml:space="preserve">
+    <value>radioButton_3days_fp</value>
+  </data>
+  <data name="&gt;&gt;radioButton_3days_fp.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;radioButton_3days_fp.Parent" xml:space="preserve">
+    <value>panel_FilePost</value>
+  </data>
+  <data name="&gt;&gt;radioButton_3days_fp.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="radioButton_1day_fp.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="radioButton_1day_fp.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="radioButton_1day_fp.Location" type="System.Drawing.Point, System.Drawing">
+    <value>266, 6</value>
+  </data>
+  <data name="radioButton_1day_fp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 17</value>
+  </data>
+  <data name="radioButton_1day_fp.TabIndex" type="System.Int32, mscorlib">
+    <value>32</value>
+  </data>
+  <data name="radioButton_1day_fp.Text" xml:space="preserve">
+    <value>1 день</value>
+  </data>
+  <data name="&gt;&gt;radioButton_1day_fp.Name" xml:space="preserve">
+    <value>radioButton_1day_fp</value>
+  </data>
+  <data name="&gt;&gt;radioButton_1day_fp.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;radioButton_1day_fp.Parent" xml:space="preserve">
+    <value>panel_FilePost</value>
+  </data>
+  <data name="&gt;&gt;radioButton_1day_fp.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
   <data name="linkLabel_FilePost_API_key.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -9684,7 +9834,7 @@
     <value>NoControl</value>
   </data>
   <data name="linkLabel_FilePost_API_key.Location" type="System.Drawing.Point, System.Drawing">
-    <value>413, 8</value>
+    <value>396, 34</value>
   </data>
   <data name="linkLabel_FilePost_API_key.Size" type="System.Drawing.Size, System.Drawing">
     <value>94, 13</value>
@@ -9705,13 +9855,13 @@
     <value>panel_FilePost</value>
   </data>
   <data name="&gt;&gt;linkLabel_FilePost_API_key.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>5</value>
   </data>
   <data name="textBox_FilePost_API_key.Location" type="System.Drawing.Point, System.Drawing">
-    <value>155, 5</value>
+    <value>54, 31</value>
   </data>
   <data name="textBox_FilePost_API_key.Size" type="System.Drawing.Size, System.Drawing">
-    <value>252, 20</value>
+    <value>336, 20</value>
   </data>
   <data name="textBox_FilePost_API_key.TabIndex" type="System.Int32, mscorlib">
     <value>28</value>
@@ -9726,7 +9876,7 @@
     <value>panel_FilePost</value>
   </data>
   <data name="&gt;&gt;textBox_FilePost_API_key.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>6</value>
   </data>
   <data name="label8.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -9735,7 +9885,7 @@
     <value>NoControl</value>
   </data>
   <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>111, 8</value>
+    <value>10, 34</value>
   </data>
   <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
     <value>45, 13</value>
@@ -9756,13 +9906,13 @@
     <value>panel_FilePost</value>
   </data>
   <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>7</value>
   </data>
   <data name="label7.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 35</value>
+    <value>3, 60</value>
   </data>
   <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
     <value>498, 47</value>
@@ -9783,7 +9933,7 @@
     <value>panel_FilePost</value>
   </data>
   <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>8</value>
   </data>
   <data name="btnUploadToFilePost.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -9813,7 +9963,7 @@
     <value>panel_FilePost</value>
   </data>
   <data name="&gt;&gt;btnUploadToFilePost.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>9</value>
   </data>
   <data name="panel_FilePost.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -9822,7 +9972,7 @@
     <value>312, 76</value>
   </data>
   <data name="panel_FilePost.Size" type="System.Drawing.Size, System.Drawing">
-    <value>515, 82</value>
+    <value>515, 107</value>
   </data>
   <data name="panel_FilePost.TabIndex" type="System.Int32, mscorlib">
     <value>26</value>
@@ -9906,7 +10056,7 @@
     <value>NoControl</value>
   </data>
   <data name="radioButton_1hour.Location" type="System.Drawing.Point, System.Drawing">
-    <value>114, 9</value>
+    <value>114, 6</value>
   </data>
   <data name="radioButton_1hour.Size" type="System.Drawing.Size, System.Drawing">
     <value>51, 17</value>
@@ -9936,7 +10086,7 @@
     <value>NoControl</value>
   </data>
   <data name="radioButton_12hours.Location" type="System.Drawing.Point, System.Drawing">
-    <value>186, 9</value>
+    <value>186, 6</value>
   </data>
   <data name="radioButton_12hours.Size" type="System.Drawing.Size, System.Drawing">
     <value>69, 17</value>
@@ -9966,7 +10116,7 @@
     <value>NoControl</value>
   </data>
   <data name="radioButton_3days.Location" type="System.Drawing.Point, System.Drawing">
-    <value>355, 9</value>
+    <value>355, 6</value>
   </data>
   <data name="radioButton_3days.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 17</value>
@@ -9996,7 +10146,7 @@
     <value>NoControl</value>
   </data>
   <data name="radioButton_1day.Location" type="System.Drawing.Point, System.Drawing">
-    <value>276, 9</value>
+    <value>276, 6</value>
   </data>
   <data name="radioButton_1day.Size" type="System.Drawing.Size, System.Drawing">
     <value>58, 17</value>
@@ -10080,7 +10230,7 @@
     <value>3, 3, 3, 8</value>
   </data>
   <data name="groupBox_UploadToLitterbox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>833, 123</value>
+    <value>833, 153</value>
   </data>
   <data name="groupBox_UploadToLitterbox.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -13237,7 +13387,7 @@ PayPal: sashacx75@gmail.com</value>
     <value>3, 302</value>
   </data>
   <data name="label_TranslateHelp.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 91</value>
+    <value>207, 104</value>
   </data>
   <data name="label_TranslateHelp.TabIndex" type="System.Int32, mscorlib">
     <value>28</value>
@@ -17660,7 +17810,7 @@ Ukrainian - kartoris82</value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACk
-        DQAAAk1TRnQBSQFMAgEBBgEAAfQBSgH0AUoBEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        DQAAAk1TRnQBSQFMAgEBBgEAASgBSwEoAUsBEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAASADAAEBAQABCAYAAQgYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA

@@ -24,6 +24,14 @@ namespace Watch_Face_Editor
             catch (Exception ex) { Logger.WriteLine("DarkMode_CreateThemeChoice error: " + ex); }
             DarkMode_AboutImage();
             DarkTheme.ThemeManager.Apply(this);
+
+            // The version label and the toggle sit on the form, over the tab strip: in dark mode give them
+            // the tab strip color, otherwise they show the (darker) form background behind them.
+            if (DarkTheme.ThemeManager.Enabled)
+            {
+                if (label_version != null) label_version.BackColor = DarkTheme.ThemeManager.TabStrip;
+                if (button_ThemeToggle != null) button_ThemeToggle.BackColor = DarkTheme.ThemeManager.TabStrip;
+            }
         }
 
         // "Sobre" tab: dark QR icon, set in code so Form1.resx (translations) stays untouched.

@@ -57,14 +57,13 @@ namespace Watch_Face_Editor
 
             button_ThemeToggle = new ThemeToggle(DarkTheme.ThemeManager.Enabled);
             button_ThemeToggle.Name = "button_ThemeToggle";
-            int size = (int)Math.Round(16 * currentDPI);
-            button_ThemeToggle.Size = new Size(size, size);
+            button_ThemeToggle.Size = new Size((int)Math.Round(34 * currentDPI), (int)Math.Round(16 * currentDPI));
             button_ThemeToggle.Anchor = anchor.Anchor;
             PlaceToggle();
             anchor.LocationChanged += (s, e) => PlaceToggle();
 
             new ToolTip().SetToolTip(button_ThemeToggle, DarkMode_Caption());
-            button_ThemeToggle.Click += button_ThemeToggle_Click;
+            button_ThemeToggle.Toggled += button_ThemeToggle_Click; // after the slide animation
             anchor.Parent.Controls.Add(button_ThemeToggle);
             button_ThemeToggle.BringToFront();
         }
@@ -207,64 +206,127 @@ namespace Watch_Face_Editor
 
         // ---------------------------------------------------------------- toggle button
 
-        /// <summary>Sun (in dark mode: switch to light) or moon (in light mode: switch to dark).</summary>
+        /// <summary>
+        /// Pill switch: sun on the left (light), moon on the right (dark). The knob slides to the active
+        /// side; in dark mode it takes the accent color. Toggled fires after the short slide animation.
+        /// </summary>
         private class ThemeToggle : Control
         {
-            private readonly bool dark;
+            public event EventHandler Toggled;
+            private bool on;          // true = dark
+            private float pos;        // 0 = left (light) .. 1 = right (dark)
             private bool hot;
+            private readonly Timer anim = new Timer { Interval = 15 };
 
             public ThemeToggle(bool darkNow)
             {
-                dark = darkNow;
+                on = darkNow; pos = darkNow ? 1f : 0f;
                 Tag = "no-theme"; // the theme must not recolor it
                 Cursor = Cursors.Hand;
                 SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer |
                          ControlStyles.UserPaint | ControlStyles.ResizeRedraw | ControlStyles.SupportsTransparentBackColor, true);
                 BackColor = Color.Transparent;
+                anim.Tick += (s, e) =>
+                {
+                    float target = on ? 1f : 0f;
+                    pos += (target - pos) * 0.45f;
+                    if (Math.Abs(target - pos) < 0.02f)
+                    {
+                        pos = target; anim.Stop(); Invalidate(); Update();
+                        if (Toggled != null) Toggled(this, EventArgs.Empty);
+                        return;
+                    }
+                    Invalidate();
+                };
             }
 
+            protected override void Dispose(bool disposing) { if (disposing) anim.Dispose(); base.Dispose(disposing); }
             protected override void OnMouseEnter(EventArgs e) { hot = true; Invalidate(); base.OnMouseEnter(e); }
             protected override void OnMouseLeave(EventArgs e) { hot = false; Invalidate(); base.OnMouseLeave(e); }
+
+            protected override void OnClick(EventArgs e)
+            {
+                base.OnClick(e);
+                if (anim.Enabled) return;
+                on = !on;
+                anim.Start();
+            }
 
             protected override void OnPaint(PaintEventArgs e)
             {
                 Graphics g = e.Graphics;
                 g.SmoothingMode = SmoothingMode.AntiAlias;
-                float w = Width, h = Height, cx = w / 2f, cy = h / 2f;
-                Color ink = dark ? (hot ? Color.White : Color.FromArgb(0xC8, 0xC8, 0xC8))
-                                 : (hot ? Color.Black : Color.FromArgb(0x50, 0x50, 0x50));
-                using (SolidBrush b = new SolidBrush(ink))
-                using (Pen p = new Pen(ink, Math.Max(1f, w / 12f)))
+                bool dark = DarkTheme.ThemeManager.Enabled; // colors follow the theme that is running now
+                float h = Height - 1f, w = Width - 1f, r = h / 2f;
+
+                Color track = dark ? Color.FromArgb(0x25, 0x25, 0x25) : Color.FromArgb(0xD6, 0xD6, 0xD6);
+                Color border = dark ? (hot ? Color.FromArgb(0x8A, 0x8A, 0x8A) : Color.FromArgb(0x5E, 0x5E, 0x5E))
+                                    : (hot ? Color.FromArgb(0x70, 0x70, 0x70) : Color.FromArgb(0xA0, 0xA0, 0xA0));
+                Color faint = dark ? Color.FromArgb(0x80, 0x80, 0x80) : Color.FromArgb(0x90, 0x90, 0x90);
+                Color knob = on ? (dark ? DarkTheme.ThemeManager.Accent : Color.FromArgb(0x40, 0x40, 0x40))
+                                : Color.White;
+                Color glyph = on ? Color.White : Color.FromArgb(0xF0, 0x9A, 0x00);
+
+                using (GraphicsPath pill = Pill(0.5f, 0.5f, w, h))
                 {
-                    if (dark)
+                    using (SolidBrush b = new SolidBrush(track)) g.FillPath(b, pill);
+                    using (Pen p = new Pen(border)) g.DrawPath(p, pill);
+                }
+
+                // the two small marks on the track (the side the knob is not covering)
+                float m = h * 0.5f;
+                DrawSun(g, r + 0.5f, r + 0.5f, m * 0.62f, faint);
+                DrawMoon(g, w - r + 0.5f, r + 0.5f, m * 0.62f, faint);
+
+                // knob
+                float kd = h - 3f, kx = 2f + pos * (w - kd - 3f), ky = 2f;
+                using (SolidBrush kb = new SolidBrush(knob)) g.FillEllipse(kb, kx, ky, kd, kd);
+                float kcx = kx + kd / 2f, kcy = ky + kd / 2f;
+                if (pos >= 0.5f) DrawMoon(g, kcx, kcy, kd * 0.33f, glyph);
+                else DrawSun(g, kcx, kcy, kd * 0.33f, glyph);
+            }
+
+            private static GraphicsPath Pill(float x, float y, float w, float h)
+            {
+                GraphicsPath p = new GraphicsPath();
+                float d = h;
+                p.AddArc(x, y, d, d, 90, 180);
+                p.AddArc(x + w - d, y, d, d, 270, 180);
+                p.CloseFigure();
+                return p;
+            }
+
+            private static void DrawSun(Graphics g, float cx, float cy, float size, Color c)
+            {
+                using (SolidBrush b = new SolidBrush(c))
+                using (Pen p = new Pen(c, Math.Max(1f, size / 4f)))
+                {
+                    float r = size * 0.45f;
+                    g.FillEllipse(b, cx - r, cy - r, 2 * r, 2 * r);
+                    p.StartCap = p.EndCap = LineCap.Round;
+                    for (int i = 0; i < 8; i++)
                     {
-                        // sun: disc + 8 rays
-                        float r = w * 0.2f;
-                        g.FillEllipse(b, cx - r, cy - r, 2 * r, 2 * r);
-                        p.StartCap = p.EndCap = LineCap.Round;
-                        for (int i = 0; i < 8; i++)
-                        {
-                            double a = i * Math.PI / 4;
-                            float r1 = w * 0.32f, r2 = w * 0.45f;
-                            g.DrawLine(p, cx + (float)Math.Cos(a) * r1, cy + (float)Math.Sin(a) * r1,
-                                          cx + (float)Math.Cos(a) * r2, cy + (float)Math.Sin(a) * r2);
-                        }
+                        double a = i * Math.PI / 4;
+                        float r1 = size * 0.75f, r2 = size * 1.05f;
+                        g.DrawLine(p, cx + (float)Math.Cos(a) * r1, cy + (float)Math.Sin(a) * r1,
+                                      cx + (float)Math.Cos(a) * r2, cy + (float)Math.Sin(a) * r2);
                     }
-                    else
+                }
+            }
+
+            private static void DrawMoon(Graphics g, float cx, float cy, float size, Color c)
+            {
+                float r = size;
+                using (SolidBrush b = new SolidBrush(c))
+                using (GraphicsPath full = new GraphicsPath())
+                using (GraphicsPath cut = new GraphicsPath())
+                {
+                    full.AddEllipse(cx - r, cy - r, 2 * r, 2 * r);
+                    cut.AddEllipse(cx - r * 0.35f, cy - r * 1.2f, 2 * r, 2 * r);
+                    using (Region moon = new Region(full))
                     {
-                        // moon: crescent = disc minus a shifted disc
-                        float r = w * 0.38f;
-                        using (GraphicsPath full = new GraphicsPath())
-                        using (GraphicsPath cut = new GraphicsPath())
-                        {
-                            full.AddEllipse(cx - r, cy - r, 2 * r, 2 * r);
-                            cut.AddEllipse(cx - r * 0.35f, cy - r * 1.15f, 2 * r, 2 * r);
-                            using (Region moon = new Region(full))
-                            {
-                                moon.Exclude(cut);
-                                g.FillRegion(b, moon);
-                            }
-                        }
+                        moon.Exclude(cut);
+                        g.FillRegion(b, moon);
                     }
                 }
             }

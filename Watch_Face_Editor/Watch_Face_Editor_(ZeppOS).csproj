@@ -278,6 +278,10 @@
     <Compile Include="Classes\Prewiev_States_Json.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Classes\Program_Settings.cs" />
+    <Compile Include="DarkTheme\ThemeManager.cs" />
+    <Compile Include="DarkTheme\Form1.DarkMode.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Classes\Watch_Face_Preview_Set.cs" />
     <Compile Include="Properties\ElementsString.cs.Designer.cs">
@@ -906,6 +910,11 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DarkTheme\Icons\**\*.png">
+      <LogicalName>DarkIcons/%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ControlLibrary\ControlLibrary.csproj">

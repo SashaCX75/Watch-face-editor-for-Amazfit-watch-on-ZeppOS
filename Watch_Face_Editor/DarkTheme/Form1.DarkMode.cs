@@ -136,7 +136,7 @@ namespace Watch_Face_Editor
             // Sizes are known only once the label has measured its text.
             int left = Math.Max(langCombo.Left, label_DarkTheme.Right + (int)Math.Round(4 * currentDPI));
             comboBox_DarkTheme.Bounds = new Rectangle(left, langCombo.Top + step,
-                Math.Max(langCombo.Width, (int)Math.Round(130 * currentDPI)), langCombo.Height);
+                langCombo.Width, langCombo.Height);
 
             // Make room: the rows that were right below "Language" move down one step.
             int below = langCombo.Bottom;
@@ -190,10 +190,10 @@ namespace Watch_Face_Editor
             bool orange = id == "orange";
             switch (CultureInfo.CurrentUICulture.TwoLetterISOLanguageName)
             {
-                case "pt": return orange ? "Laranja (Zepp OS)" : "Azul (app Zepp)";
-                case "ru": return orange ? "Оранжевая (Zepp OS)" : "Синяя (Zepp)";
-                case "uk": return orange ? "Помаранчева (Zepp OS)" : "Синя (Zepp)";
-                default: return orange ? "Orange (Zepp OS)" : "Blue (Zepp app)";
+                case "pt": return orange ? "Laranja" : "Azul";
+                case "ru": return orange ? "Оранжевая" : "Синяя";
+                case "uk": return orange ? "Помаранчева" : "Синя";
+                default: return orange ? "Orange" : "Blue";
             }
         }
 

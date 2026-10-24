@@ -6993,4 +6993,19 @@ PayPal: sashacx75@gmail.com</value>
         AACAAQAAgAEAAIABAAAAAAAAAAAAAAAAAAAAAAAAgAEAAIABAACAAQAAwAMAAOAHAAD8PwAA
 </value>
   </data>
+  <data name="radioButton_unlimited_fp.Text" xml:space="preserve">
+    <value>Ilimitado</value>
+  </data>
+  <data name="radioButton_1hour_fp.Text" xml:space="preserve">
+    <value>1 hora</value>
+  </data>
+  <data name="radioButton_12hours_fp.Text" xml:space="preserve">
+    <value>12 horas</value>
+  </data>
+  <data name="radioButton_3days_fp.Text" xml:space="preserve">
+    <value>3 dias</value>
+  </data>
+  <data name="radioButton_1day_fp.Text" xml:space="preserve">
+    <value>1 dia</value>
+  </data>
 </root>

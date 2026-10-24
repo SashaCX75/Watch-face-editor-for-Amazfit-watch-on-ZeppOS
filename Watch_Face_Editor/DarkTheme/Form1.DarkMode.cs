@@ -12,7 +12,7 @@ namespace Watch_Face_Editor
     public partial class Form1
     {
         private ThemeToggle button_ThemeToggle;
-        private ComboBox comboBox_DarkTheme;
+        private AccentOption[] themeOptions;
         private Label label_DarkTheme;
 
         /// <summary>Called right after InitializeComponent.</summary>
@@ -126,35 +126,44 @@ namespace Watch_Face_Editor
             label_DarkTheme.Font = langLabel.Font;
             label_DarkTheme.Text = DarkMode_ThemeLabel();
             label_DarkTheme.Location = new Point(langLabel.Left, langLabel.Top + step);
+            page.Controls.Add(label_DarkTheme);
 
-            comboBox_DarkTheme = new ComboBox();
-            comboBox_DarkTheme.Name = "comboBox_DarkTheme";
-            comboBox_DarkTheme.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox_DarkTheme.Font = langCombo.Font;
-            foreach (string id in DarkThemeIds) comboBox_DarkTheme.Items.Add(DarkMode_ThemeName(id));
             string current = ProgramSettings != null && "orange".Equals(ProgramSettings.DarkAccent, StringComparison.OrdinalIgnoreCase)
                 ? "orange" : "blue";
-            comboBox_DarkTheme.SelectedIndex = Array.IndexOf(DarkThemeIds, current);
-            comboBox_DarkTheme.SelectedIndexChanged += comboBox_DarkTheme_SelectedIndexChanged;
-
-            page.Controls.Add(label_DarkTheme);
-            page.Controls.Add(comboBox_DarkTheme);
-
-            // Sizes are known only once the label has measured its text.
-            int left = Math.Max(langCombo.Left, label_DarkTheme.Right + (int)Math.Round(4 * currentDPI));
-            comboBox_DarkTheme.Bounds = new Rectangle(left, langCombo.Top + step,
-                langCombo.Width, langCombo.Height);
+            themeOptions = new AccentOption[]
+            {
+                new AccentOption("blue", DarkMode_ThemeName("blue"), Color.FromArgb(0x3E, 0x5F, 0x86), Color.FromArgb(0x5A, 0xA0, 0xE6), langLabel.Font, currentDPI),
+                new AccentOption("orange", DarkMode_ThemeName("orange"), Color.FromArgb(0xFF, 0x6C, 0x36), Color.FromArgb(0xF3, 0x59, 0x30), langLabel.Font, currentDPI)
+            };
+            // first option lines up with the Language list; the rows are centred on the label
+            int x = Math.Max(langCombo.Left, label_DarkTheme.Right + (int)Math.Round(4 * currentDPI));
+            int gap = (int)Math.Round(14 * currentDPI);
+            foreach (AccentOption o in themeOptions)
+            {
+                o.Selected = o.AccentName == current;
+                o.Location = new Point(x, label_DarkTheme.Top + label_DarkTheme.Height / 2 - o.Height / 2);
+                o.Click += AccentOption_Click;
+                page.Controls.Add(o);
+                x = o.Right + gap;
+            }
 
             // Make room: the rows that were right below "Language" move down one step.
             int below = langCombo.Bottom;
             foreach (Control c in page.Controls)
             {
-                if (c == label_DarkTheme || c == comboBox_DarkTheme) continue;
+                if (DarkMode_IsNew(c)) continue;
                 if (c.Top >= below && c.Left >= langLabel.Left - (int)Math.Round(10 * currentDPI) &&
                     c.Bottom + step <= page.ClientSize.Height + (int)Math.Round(4 * currentDPI) &&
                     !DarkMode_Overlaps(page, c, step))
                     c.Top += step;
             }
+        }
+
+        private bool DarkMode_IsNew(Control c)
+        {
+            if (c == label_DarkTheme) return true;
+            if (themeOptions != null) foreach (AccentOption o in themeOptions) if (c == o) return true;
+            return false;
         }
 
         // Only move a control if its new place does not cover another control (e.g. the "Reset" button).
@@ -163,7 +172,7 @@ namespace Watch_Face_Editor
             Rectangle target = new Rectangle(moving.Left, moving.Top + step, moving.Width, moving.Height);
             foreach (Control other in page.Controls)
             {
-                if (other == moving || other == label_DarkTheme || other == comboBox_DarkTheme) continue;
+                if (other == moving || DarkMode_IsNew(other)) continue;
                 if (other.Top >= moving.Top && other.Top < moving.Top + step + moving.Height &&
                     other.Left >= moving.Left - (int)Math.Round(10 * currentDPI)) continue; // moves too
                 if (target.IntersectsWith(other.Bounds)) return true;
@@ -171,12 +180,12 @@ namespace Watch_Face_Editor
             return false;
         }
 
-        private void comboBox_DarkTheme_SelectedIndexChanged(object sender, EventArgs e)
+        private void AccentOption_Click(object sender, EventArgs e)
         {
-            if (ProgramSettings == null || comboBox_DarkTheme.SelectedIndex < 0) return;
-            string id = DarkThemeIds[comboBox_DarkTheme.SelectedIndex];
-            if (id.Equals(ProgramSettings.DarkAccent, StringComparison.OrdinalIgnoreCase)) return;
-            ProgramSettings.DarkAccent = id;
+            AccentOption picked = (AccentOption)sender;
+            if (ProgramSettings == null || picked.Selected) return;
+            foreach (AccentOption o in themeOptions) o.Selected = o == picked;
+            ProgramSettings.DarkAccent = picked.AccentName;
             Save_Settings();
             if (ProgramSettings.DarkMode) DarkMode_AskRestart(); // in light mode it is only remembered
         }
@@ -201,6 +210,59 @@ namespace Watch_Face_Editor
                 case "ru": return orange ? "Оранжевая" : "Синяя";
                 case "uk": return orange ? "Помаранчева" : "Синя";
                 default: return orange ? "Orange" : "Blue";
+            }
+        }
+
+        /// <summary>Color dot + name; the selected one gets a light ring around the dot.</summary>
+        private class AccentOption : Control
+        {
+            public readonly string AccentName;
+            private readonly Color fill, rim;
+            private readonly int dot, pad;
+            private bool selected, hot;
+
+            public AccentOption(string id, string caption, Color fillColor, Color rimColor, Font font, float dpi)
+            {
+                AccentName = id; fill = fillColor; rim = rimColor;
+                Text = caption; Font = font;
+                Tag = "no-theme"; // the theme must not recolor it
+                Cursor = Cursors.Hand;
+                SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer |
+                         ControlStyles.UserPaint | ControlStyles.ResizeRedraw | ControlStyles.SupportsTransparentBackColor, true);
+                BackColor = Color.Transparent;
+                dot = (int)Math.Round(14 * dpi);
+                pad = (int)Math.Round(5 * dpi);
+                Size textSize = TextRenderer.MeasureText(caption, font);
+                Size = new Size(dot + pad + textSize.Width, Math.Max(dot, textSize.Height) + 2);
+            }
+
+            public bool Selected { get { return selected; } set { selected = value; Invalidate(); } }
+
+            protected override void OnMouseEnter(EventArgs e) { hot = true; Invalidate(); base.OnMouseEnter(e); }
+            protected override void OnMouseLeave(EventArgs e) { hot = false; Invalidate(); base.OnMouseLeave(e); }
+
+            protected override void OnPaint(PaintEventArgs e)
+            {
+                Graphics g = e.Graphics;
+                g.SmoothingMode = SmoothingMode.AntiAlias;
+                bool dark = DarkTheme.ThemeManager.Enabled;
+                Rectangle r = new Rectangle(0, (Height - dot) / 2, dot - 1, dot - 1);
+                if (selected)
+                {
+                    Color ringColor = dark ? Color.FromArgb(0xE0, 0xE0, 0xE0) : Color.FromArgb(0x40, 0x40, 0x40);
+                    using (Pen ring = new Pen(ringColor, 1.5f)) g.DrawEllipse(ring, r);
+                    r.Inflate(-3, -3);
+                }
+                else if (hot) r.Inflate(-1, -1);
+                else r.Inflate(-2, -2);
+                using (SolidBrush b = new SolidBrush(fill)) g.FillEllipse(b, r);
+                using (Pen p = new Pen(rim, 1f)) g.DrawEllipse(p, r);
+
+                Color text = dark ? (selected || hot ? Color.White : Color.FromArgb(0xC0, 0xC0, 0xC0))
+                                  : (selected || hot ? Color.Black : Color.FromArgb(0x40, 0x40, 0x40));
+                Rectangle tr = new Rectangle(dot + pad, 0, Width - dot - pad, Height);
+                TextRenderer.DrawText(g, Text, Font, tr, text,
+                    TextFormatFlags.VerticalCenter | TextFormatFlags.Left | TextFormatFlags.NoPadding);
             }
         }
 

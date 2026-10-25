@@ -471,6 +471,68 @@ namespace Watch_Face_Editor.DarkTheme
             }
             Color nf;
             if (foreMap.TryGetValue(Key(b.ForeColor), out nf)) b.ForeColor = nf;
+            if (!row && b.BackgroundImage == null)
+                AttachOnce(b, "disabledText", () => { if (!HasPaintHandler(b)) b.Paint += DisabledButton_Paint; });
+        }
+
+        // Flat buttons draw disabled text with ControlPaint.Dark(BackColor): on 484848 that is almost black.
+        // Repaint the content of disabled buttons with TextDim (and a disabled image, if any).
+        private static void DisabledButton_Paint(object sender, PaintEventArgs e)
+        {
+            WinButton b = (WinButton)sender;
+            if (!Enabled || b.Enabled || IsExcluded(b) || b.BackgroundImage != null) return;
+            if (string.IsNullOrEmpty(b.Text) && b.Image == null) return;
+            Graphics g = e.Graphics;
+            int bw = Math.Max(1, b.FlatAppearance.BorderSize);
+            Rectangle inner = Rectangle.Inflate(b.ClientRectangle, -bw, -bw);
+            Color back = b.BackColor.A == 255 ? b.BackColor : EffectiveBack(b);
+            using (SolidBrush bg = new SolidBrush(back)) g.FillRectangle(bg, inner);
+            Rectangle content = new Rectangle(inner.Left + b.Padding.Left + 1, inner.Top + b.Padding.Top,
+                Math.Max(0, inner.Width - b.Padding.Horizontal - 2), Math.Max(0, inner.Height - b.Padding.Vertical));
+            TextFormatFlags f = AlignFlags(b.TextAlign) | TextFormatFlags.WordBreak;
+            if (b.UseMnemonic) f &= ~TextFormatFlags.NoPrefix;
+            Image img = b.Image;
+            if (img == null) { TextRenderer.DrawText(g, b.Text, b.Font, content, TextDim, f); return; }
+
+            Size ts = string.IsNullOrEmpty(b.Text) ? Size.Empty : TextRenderer.MeasureText(g, b.Text, b.Font);
+            if (b.TextImageRelation == TextImageRelation.ImageBeforeText || b.TextImageRelation == TextImageRelation.TextBeforeImage)
+            {
+                int gap = ts.Width > 0 ? 2 : 0;
+                int x = content.Left + Math.Max(0, (content.Width - (img.Width + gap + ts.Width)) / 2);
+                bool imageFirst = b.TextImageRelation == TextImageRelation.ImageBeforeText;
+                int ix = imageFirst ? x : x + ts.Width + gap;
+                int tx = imageFirst ? x + img.Width + gap : x;
+                ControlPaint.DrawImageDisabled(g, img, ix, content.Top + (content.Height - img.Height) / 2, back);
+                if (ts.Width > 0)
+                    TextRenderer.DrawText(g, b.Text, b.Font, new Rectangle(tx, content.Top, ts.Width + 2, content.Height), TextDim,
+                        TextFormatFlags.VerticalCenter | TextFormatFlags.Left | TextFormatFlags.NoPadding | (f & TextFormatFlags.NoPrefix));
+            }
+            else
+            {
+                Point ip = AlignPoint(img.Size, content, b.ImageAlign);
+                ControlPaint.DrawImageDisabled(g, img, ip.X, ip.Y, back);
+                if (ts.Width > 0) TextRenderer.DrawText(g, b.Text, b.Font, content, TextDim, f);
+            }
+        }
+
+        private static Point AlignPoint(Size s, Rectangle r, ContentAlignment a)
+        {
+            int x = r.Left, y = r.Top;
+            switch (a)
+            {
+                case ContentAlignment.TopCenter: case ContentAlignment.MiddleCenter: case ContentAlignment.BottomCenter:
+                    x = r.Left + (r.Width - s.Width) / 2; break;
+                case ContentAlignment.TopRight: case ContentAlignment.MiddleRight: case ContentAlignment.BottomRight:
+                    x = r.Right - s.Width; break;
+            }
+            switch (a)
+            {
+                case ContentAlignment.MiddleLeft: case ContentAlignment.MiddleCenter: case ContentAlignment.MiddleRight:
+                    y = r.Top + (r.Height - s.Height) / 2; break;
+                case ContentAlignment.BottomLeft: case ContentAlignment.BottomCenter: case ContentAlignment.BottomRight:
+                    y = r.Bottom - s.Height; break;
+            }
+            return new Point(x, y);
         }
 
         // ---------------------------------------------------------------- painted-over parts
@@ -1294,10 +1356,25 @@ namespace Watch_Face_Editor.DarkTheme
                 // Image previews: dark neutral background (the images themselves are never touched).
                 if (col is DataGridViewImageColumn)
                 {
-                    // Images list: the first preview column (ColumnImage) uses the panel gray 383838, so
-                    // dark and light images can be told apart from the second column (ImageCell).
-                    bool panelColumn = g.Name == "dataGridView_ImagesList" && col.Name == "ColumnImage";
-                    col.DefaultCellStyle.BackColor = panelColumn ? Panel : ImageCell;
+                    // The author colors one preview column on purpose (black in the light theme) so each image
+                    // is seen on a dark and on a light background. In dark mode that contrast column turns white;
+                    // the other one stays dark (383838 in the images list, ImageCell elsewhere).
+                    Color own = col.DefaultCellStyle.BackColor;
+                    bool contrast = own == Color.Black || own == Color.White;
+                    if (contrast)
+                    {
+                        col.DefaultCellStyle.BackColor = Color.White;
+                        col.DefaultCellStyle.ForeColor = Color.Black;
+                    }
+                    else if (!own.IsEmpty && own.A == 255 && Key(own) != Key(SystemColors.Window) && Key(own) != Key(SystemColors.Control))
+                    {
+                        // already themed in an earlier pass: keep it
+                    }
+                    else
+                    {
+                        bool panelColumn = g.Name == "dataGridView_ImagesList" && col.Name == "ColumnImage";
+                        col.DefaultCellStyle.BackColor = panelColumn ? Panel : ImageCell;
+                    }
                     col.DefaultCellStyle.SelectionBackColor = Selected;
                 }
             }

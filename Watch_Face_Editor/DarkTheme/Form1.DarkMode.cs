@@ -194,10 +194,10 @@ namespace Watch_Face_Editor
         {
             switch (CultureInfo.CurrentUICulture.TwoLetterISOLanguageName)
             {
-                case "pt": return "Tema escuro:";
-                case "ru": return "Тёмная тема:";
-                case "uk": return "Темна тема:";
-                default: return "Dark theme:";
+                case "pt": return "Estilo do tema escuro:";
+                case "ru": return "Стиль тёмной темы:";
+                case "uk": return "Стиль темної теми:";
+                default: return "Style for dark theme:";
             }
         }
 

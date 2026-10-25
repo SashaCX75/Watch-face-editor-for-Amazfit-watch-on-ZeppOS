@@ -42,6 +42,8 @@ namespace Watch_Face_Editor.DarkTheme
         public static readonly Color PreviewBack = Hex(0x1D1D1D); // behind the watch-face preview
         public static Color Accent = Hex(0x5AA0E6);  // check mark / radio dot                  [accent]
         public static readonly Color ImageCell = Hex(0x202020); // background behind image previews in lists
+        public static readonly Color ImageDark = Hex(0x000000);  // image tables: dark sample column (watch screen)
+        public static readonly Color ImageLight = Hex(0xB6B6B6); // image tables: light sample column (no glare)
         public static Color Link = Hex(0x009BB7);     // links (was 0000FF)                     [accent]
         public static readonly Color LinkActive = Hex(0xFFFFFF); // link while clicking
         public static readonly Color TipsBack = Hex(0x383838);  // "Dicas de uso" page
@@ -1351,33 +1353,40 @@ namespace Watch_Face_Editor.DarkTheme
             g.ColumnHeadersDefaultCellStyle.ForeColor = Text;
             g.RowHeadersDefaultCellStyle.BackColor = Raised;
             g.RowHeadersDefaultCellStyle.ForeColor = Text;
+            // The author colors one preview column on purpose (black in the light theme) so each image is seen
+            // on a dark and on a light background. In dark mode: that column stays black (the watch screen) and its
+            // partner becomes a light grey instead of white, so the check works without a big bright block.
+            bool pair = false;
+            foreach (DataGridViewColumn c0 in g.Columns)
+                if (c0 is DataGridViewImageColumn && IsSampleColor(c0.DefaultCellStyle.BackColor)) pair = true;
             foreach (DataGridViewColumn col in g.Columns)
             {
-                // Image previews: dark neutral background (the images themselves are never touched).
-                if (col is DataGridViewImageColumn)
+                if (!(col is DataGridViewImageColumn)) continue; // the images themselves are never touched
+                Color own = col.DefaultCellStyle.BackColor;
+                if (IsSampleColor(own))
                 {
-                    // The author colors one preview column on purpose (black in the light theme) so each image
-                    // is seen on a dark and on a light background. In dark mode that contrast column turns white;
-                    // the other one stays dark (383838 in the images list, ImageCell elsewhere).
-                    Color own = col.DefaultCellStyle.BackColor;
-                    bool contrast = own == Color.Black || own == Color.White;
-                    if (contrast)
-                    {
-                        col.DefaultCellStyle.BackColor = Color.White;
-                        col.DefaultCellStyle.ForeColor = Color.Black;
-                    }
-                    else if (!own.IsEmpty && own.A == 255 && Key(own) != Key(SystemColors.Window) && Key(own) != Key(SystemColors.Control))
-                    {
-                        // already themed in an earlier pass: keep it
-                    }
-                    else
-                    {
-                        bool panelColumn = g.Name == "dataGridView_ImagesList" && col.Name == "ColumnImage";
-                        col.DefaultCellStyle.BackColor = panelColumn ? Panel : ImageCell;
-                    }
-                    col.DefaultCellStyle.SelectionBackColor = Selected;
+                    col.DefaultCellStyle.BackColor = ImageDark;
+                    col.DefaultCellStyle.ForeColor = Color.White;
                 }
+                else if (Key(own) == Key(ImageLight) || Key(own) == Key(ImageCell))
+                {
+                    // already themed in an earlier pass: keep it
+                }
+                else
+                {
+                    col.DefaultCellStyle.BackColor = pair ? ImageLight : ImageCell;
+                    if (pair) col.DefaultCellStyle.ForeColor = Color.Black;
+                }
+                col.DefaultCellStyle.SelectionBackColor = Selected;
             }
+        }
+
+        // black (author's light theme) or white (author's own code when Windows itself is dark)
+        private static bool IsSampleColor(Color c)
+        {
+            if (c.IsEmpty) return false;
+            int k = c.ToArgb();
+            return k == Color.Black.ToArgb() || k == Color.White.ToArgb() || k == ImageDark.ToArgb();
         }
 
         // ---------------------------------------------------------------- menus

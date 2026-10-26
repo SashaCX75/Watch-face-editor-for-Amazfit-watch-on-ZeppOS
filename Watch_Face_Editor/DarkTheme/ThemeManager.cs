@@ -598,8 +598,9 @@ namespace Watch_Face_Editor.DarkTheme
             Color back = sel ? Selected : (edit ? e.BackColor : Surface);
             using (SolidBrush bg = new SolidBrush(back)) e.Graphics.FillRectangle(bg, e.Bounds);
             Rectangle tr = new Rectangle(e.Bounds.X + 2, e.Bounds.Y, Math.Max(0, e.Bounds.Width - 2), e.Bounds.Height);
+            // back color passed to GDI: ClearType then blends the letter edges with it (not with black)
             TextRenderer.DrawText(e.Graphics, cb.GetItemText(cb.Items[e.Index]), cb.Font, tr,
-                !cb.Enabled ? TextDim : (sel ? Color.White : Text),
+                !cb.Enabled ? TextDim : (sel ? Color.White : Text), back,
                 TextFormatFlags.Left | TextFormatFlags.VerticalCenter | TextFormatFlags.SingleLine |
                 TextFormatFlags.NoPrefix | TextFormatFlags.EndEllipsis);
         }
@@ -664,7 +665,7 @@ namespace Watch_Face_Editor.DarkTheme
             // accent color and draw the thumbnail again, with the editor's own layout.
             if (sel) RedrawThumbnail(cb, e, thumb);
             TextRenderer.DrawText(e.Graphics, cb.Items[e.Index].ToString(), cb.Font, tr,
-                sel ? Color.White : (cb.Enabled ? Text : TextDim),
+                sel ? Color.White : (cb.Enabled ? Text : TextDim), sel ? Selected : e.BackColor,
                 TextFormatFlags.Left | TextFormatFlags.VerticalCenter | TextFormatFlags.SingleLine |
                 TextFormatFlags.NoPrefix | TextFormatFlags.EndEllipsis);
             if ((e.State & DrawItemState.Focus) != 0 && (e.State & DrawItemState.NoFocusRect) == 0) e.DrawFocusRectangle();
@@ -1369,7 +1370,7 @@ namespace Watch_Face_Editor.DarkTheme
                 {
                     if (focused) using (SolidBrush sb = new SolidBrush(Selected)) g.FillRectangle(sb, item);
                     TextRenderer.DrawText(g, cb.Text, cb.Font, new Rectangle(item.X + 1, item.Y, item.Width - 1, item.Height),
-                        !cb.Enabled ? TextDim : (focused ? Color.White : cb.ForeColor),
+                        !cb.Enabled ? TextDim : (focused ? Color.White : cb.ForeColor), focused ? Selected : back,
                         TextFormatFlags.Left | TextFormatFlags.VerticalCenter | TextFormatFlags.SingleLine |
                         TextFormatFlags.NoPrefix | TextFormatFlags.EndEllipsis);
                 }

@@ -353,6 +353,7 @@ namespace Watch_Face_Editor.DarkTheme
             else if (c is TextBoxBase && !(c is RichTextBox) && c.Parent is UpDownBase)
             {
                 ForceColors(c, Surface, Text); // inner edit of a NumericUpDown: no own border
+                OverPainter.Attach(c);         // disabled text is drawn by Windows in its own gray
             }
             else if (c is TextBoxBase && !(c is RichTextBox))
             {
@@ -851,6 +852,24 @@ namespace Watch_Face_Editor.DarkTheme
                 {
                     if (PaintComboBuffered(full, Handle)) { m.Result = IntPtr.Zero; return; }
                 }
+                TextBoxBase tbb = owner as TextBoxBase;
+                if (tbb != null && ThemeManager.Enabled)
+                {
+                    // Hover: the themed edit repaints its light "hot" frame, then we painted ours on top: flicker.
+                    // Without scrollbars the frame is all ours, so Windows does not paint it first.
+                    if (m.Msg == WM_NCPAINT && !HasScrollBars(tbb))
+                    {
+                        PaintTextBorder(owner, Handle);
+                        m.Result = IntPtr.Zero;
+                        return;
+                    }
+                    // Disabled single-line fields: Windows always uses its own gray (6D6D6D) and ignores ours.
+                    if (m.Msg == WM_PAINT && !tbb.Enabled && !tbb.Multiline && PaintDisabledEdit(tbb, Handle))
+                    {
+                        m.Result = IntPtr.Zero;
+                        return;
+                    }
+                }
                 base.WndProc(ref m);
                 if (!ThemeManager.Enabled) return;
                 if (m.Msg == WM_NCPAINT && owner is TextBoxBase) { PaintTextBorder(owner, Handle); return; }
@@ -910,6 +929,39 @@ namespace Watch_Face_Editor.DarkTheme
         [DllImport("user32.dll")] private static extern int ReleaseDC(IntPtr hWnd, IntPtr hDC);
 
         // TextBox borders live in the non-client area: draw ours after Windows draws its light one.
+        private static bool HasScrollBars(TextBoxBase t)
+        {
+            TextBox tb = t as TextBox;
+            if (tb != null) return tb.Multiline && tb.ScrollBars != ScrollBars.None;
+            return t.Multiline;
+        }
+
+        private static bool PaintDisabledEdit(TextBoxBase t, IntPtr hwnd)
+        {
+            TextBox tb = t as TextBox;
+            if (tb != null && (tb.PasswordChar != '\0' || tb.UseSystemPasswordChar)) return false;
+            PAINTSTRUCT ps;
+            IntPtr dc = BeginPaint(hwnd, out ps);
+            try
+            {
+                using (Graphics g = Graphics.FromHdc(dc))
+                {
+                    Rectangle r = t.ClientRectangle;
+                    Color back = t.BackColor.A == 255 ? t.BackColor : Surface;
+                    using (SolidBrush b = new SolidBrush(back)) g.FillRectangle(b, r);
+                    TextFormatFlags f = TextFormatFlags.TextBoxControl | TextFormatFlags.SingleLine | TextFormatFlags.NoPrefix;
+                    HorizontalAlignment a = tb != null ? tb.TextAlign : HorizontalAlignment.Left;
+                    if (a == HorizontalAlignment.Center) f |= TextFormatFlags.HorizontalCenter;
+                    else if (a == HorizontalAlignment.Right) f |= TextFormatFlags.Right;
+                    Rectangle tr = new Rectangle(r.X + 1, r.Y, Math.Max(0, r.Width - 2), r.Height);
+                    TextRenderer.DrawText(g, t.Text, t.Font, tr, TextDim, back, f);
+                }
+            }
+            catch (Exception) { }
+            finally { EndPaint(hwnd, ref ps); }
+            return true;
+        }
+
         private static void PaintTextBorder(Control c, IntPtr hwnd)
         {
             TextBox tb = c as TextBox;
@@ -1351,6 +1403,11 @@ namespace Watch_Face_Editor.DarkTheme
             g.DefaultCellStyle.SelectionForeColor = Color.White;
             g.ColumnHeadersDefaultCellStyle.BackColor = Raised;
             g.ColumnHeadersDefaultCellStyle.ForeColor = Text;
+            g.ColumnHeadersDefaultCellStyle.SelectionBackColor = Selected; // was the system blue (Highlight)
+            g.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;
+            g.RowHeadersDefaultCellStyle.SelectionBackColor = Selected;
+            g.RowHeadersDefaultCellStyle.SelectionForeColor = Color.White;
+            AttachOnce(g, "checkcells", () => g.CellPainting += Grid_CellPainting);
             g.RowHeadersDefaultCellStyle.BackColor = Raised;
             g.RowHeadersDefaultCellStyle.ForeColor = Text;
             // The author colors one preview column on purpose (black in the light theme) so each image is seen
@@ -1379,6 +1436,55 @@ namespace Watch_Face_Editor.DarkTheme
                 }
                 col.DefaultCellStyle.SelectionBackColor = Selected;
             }
+        }
+
+        // Check box cells are drawn by Windows with the system accent (blue): draw them like our check boxes.
+        private static void Grid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (!Enabled || e.RowIndex < 0 || e.ColumnIndex < 0) return;
+            DataGridView g = (DataGridView)sender;
+            if (!(g.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn)) return;
+            try
+            {
+                e.PaintBackground(e.ClipBounds, true);
+                object v = e.FormattedValue;
+                bool on = false, mixed = false;
+                if (v is bool) on = (bool)v;
+                else if (v is CheckState) { on = (CheckState)v == CheckState.Checked; mixed = (CheckState)v == CheckState.Indeterminate; }
+                bool en = g.Enabled;
+                int size = Math.Min(13, Math.Max(8, e.CellBounds.Height - 6));
+                Rectangle r = new Rectangle(e.CellBounds.X + (e.CellBounds.Width - size) / 2,
+                                            e.CellBounds.Y + (e.CellBounds.Height - size) / 2, size - 1, size - 1);
+                Graphics gr = e.Graphics;
+                using (SolidBrush fill = new SolidBrush(Deep)) gr.FillRectangle(fill, r);
+                using (Pen pen = new Pen(Border)) gr.DrawRectangle(pen, r);
+                if (mixed)
+                {
+                    using (SolidBrush ab = new SolidBrush(en ? Accent : TextDim)) gr.FillRectangle(ab, Rectangle.Inflate(r, -3, -3));
+                }
+                else if (on)
+                {
+                    var old = gr.SmoothingMode;
+                    gr.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                    float w = r.Width, h = r.Height;
+                    PointF[] tick =
+                    {
+                        new PointF(r.X + w * 0.22f, r.Y + h * 0.52f),
+                        new PointF(r.X + w * 0.42f, r.Y + h * 0.72f),
+                        new PointF(r.X + w * 0.78f, r.Y + h * 0.30f)
+                    };
+                    using (Pen tp = new Pen(en ? Accent : TextDim, Math.Max(1.6f, w / 7f)))
+                    {
+                        tp.StartCap = System.Drawing.Drawing2D.LineCap.Round;
+                        tp.EndCap = System.Drawing.Drawing2D.LineCap.Round;
+                        tp.LineJoin = System.Drawing.Drawing2D.LineJoin.Round;
+                        gr.DrawLines(tp, tick);
+                    }
+                    gr.SmoothingMode = old;
+                }
+                e.Handled = true;
+            }
+            catch (Exception) { /* fall back to the default drawing */ }
         }
 
         // black (author's light theme) or white (author's own code when Windows itself is dark)

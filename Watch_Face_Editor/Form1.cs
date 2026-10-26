@@ -31,6 +31,8 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 using ZXing;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
+using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
+using SaveFileDialog = System.Windows.Forms.SaveFileDialog;
 
 namespace Watch_Face_Editor
 {
@@ -608,6 +610,32 @@ namespace Watch_Face_Editor
 
             FirstSendSystemInfo();
 
+            // востанавливаем проект при перезагрузке
+            string restartFile = Path.Combine( Application.StartupPath, "restart_project.txt");
+
+            if (File.Exists(restartFile))
+            {
+                string restartFileName = File.ReadAllText(restartFile).Trim();
+                File.Delete(restartFile);
+
+                if (File.Exists(restartFileName))
+                {
+                    if ((File.Exists(restartFileName)) && (Path.GetExtension(restartFileName) == ".json"))
+                    {
+                        Logger.WriteLine("args[0] - *.json");
+                        StartFileNameJson = restartFileName;
+                        Logger.WriteLine("Программа запущена с аргументом: " + restartFileName);
+                    }
+                    if ((File.Exists(restartFileName)) && (Path.GetExtension(restartFileName) == ".zip"))
+                    {
+                        Logger.WriteLine("args[0] - *.zip");
+                        StartFileNameZip = restartFileName;
+                        Logger.WriteLine("Программа запущена с аргументом: " + restartFileName);
+                    }
+
+                }
+            }
+
             if (StartFileNameJson != null && StartFileNameJson.Length > 0)
             {
                 Logger.WriteLine("Загружаем Json файл из значения аргумента " + StartFileNameJson);
@@ -646,16 +674,13 @@ namespace Watch_Face_Editor
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-
             Logger.WriteLine("* FormClosing");
-
-            /*// Copy window location to app settings
-            Properties.Settings.Default.FormLocation = this.Location;*/
 
             // Save settings
             Properties.Settings.Default.Save();
 #if !DEBUG
-            if(SaveRequest() == DialogResult.Cancel) 
+            bool showCancel = e.CloseReason != CloseReason.ApplicationExitCall;
+            if (SaveRequest(showCancel) == DialogResult.Cancel) 
             {
                 e.Cancel = true;
                 return;
@@ -666,6 +691,18 @@ namespace Watch_Face_Editor
                 if (File.Exists(fullfilename)) File.Delete(fullfilename); 
             }
 
+            if (e.CloseReason == CloseReason.ApplicationExitCall)
+            {
+                Logger.WriteLine("* FormClosing(Application.Restart)");
+                string projectPath = ProjectDir != null && FileName != null
+                    ? Path.Combine(ProjectDir, FileName)
+                    : null;
+
+                string restartFile = Path.Combine(Application.StartupPath, "restart_project.txt");
+
+                if (!string.IsNullOrEmpty(projectPath)) File.WriteAllText(restartFile, projectPath);
+                else if (File.Exists(restartFile)) File.Delete(restartFile);
+            }
             string tempDir = Path.Combine(Application.StartupPath, "Temp");
             if (Directory.Exists(tempDir)) DeleteDirectory(tempDir);
 #endif
@@ -834,13 +871,44 @@ namespace Watch_Face_Editor
             if (!Settings_Load)
             {
                 if (MessageBox.Show(Properties.FormStrings.Message_Restart_Text1 + Environment.NewLine +
-                                Properties.FormStrings.Message_Restart_Text2, Properties.FormStrings.Message_Restart_Caption,
+                                Properties.FormStrings.Message_Restart_Text2, 
+                                Properties.FormStrings.Message_Restart_Caption,
                                 MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     Application.Restart();
                 }
             }
         }
+
+        //private void comboBox_Language_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if (Settings_Load) return;
+
+        //    ProgramSettings.language = comboBox_Language.Text;
+        //    SetLanguage();
+        //    Save_Settings();
+
+        //    if (MessageBox.Show(
+        //        Properties.FormStrings.Message_Restart_Text1 + Environment.NewLine +
+        //        Properties.FormStrings.Message_Restart_Text2,
+        //        Properties.FormStrings.Message_Restart_Caption,
+        //        MessageBoxButtons.YesNo) == DialogResult.Yes)
+        //    {
+        //        string projectPath = ProjectDir != null && FileName != null
+        //            ? Path.Combine(ProjectDir, FileName)
+        //            : null;
+
+        //        string restartFile = Path.Combine(
+        //            Application.StartupPath, "restart_project.txt");
+
+        //        if (!string.IsNullOrEmpty(projectPath))
+        //            File.WriteAllText(restartFile, projectPath);
+        //        else if (File.Exists(restartFile))
+        //            File.Delete(restartFile);
+
+        //        Application.Restart();
+        //    }
+        //}
 
         private void comboBox_Animation_Preview_Speed_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -3201,7 +3269,7 @@ namespace Watch_Face_Editor
             //    System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Build.ToString() +"." +
             //    System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Revision.ToString();
 
-            bool result = await DeviceRegistration.RegisterAsync(ProgramSettings.language);
+            bool result = await DeviceRegistration.RegisterAsync(ProgramSettings.language, ProgramSettings.Watch_Model);
             Logger.WriteLine(
                 result
                     ? "The device has been registered"
@@ -4789,16 +4857,20 @@ namespace Watch_Face_Editor
             PreviewView = true;
         }
 
-        private DialogResult SaveRequest()
+        private DialogResult SaveRequest(bool showCancel = true)
         {
             // сохранение если файл не сохранен
             if (JSON_Modified)
             {
                 if (FileName != null)
                 {
-                    DialogResult dr = MessageBox.Show(Properties.FormStrings.Message_Save_JSON_Modified_Text1 +
+                    DialogResult dr;
+                    if (showCancel) dr = MessageBox.Show(Properties.FormStrings.Message_Save_JSON_Modified_Text1 +
                         Path.GetFileNameWithoutExtension(FileName) + Properties.FormStrings.Message_Save_JSON_Modified_Text2,
                         Properties.FormStrings.Message_Save_JSON_Modified_Caption, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
+                    else dr = MessageBox.Show(Properties.FormStrings.Message_Save_JSON_Modified_Text1 +
+                       Path.GetFileNameWithoutExtension(FileName) + Properties.FormStrings.Message_Save_JSON_Modified_Text2,
+                       Properties.FormStrings.Message_Save_JSON_Modified_Caption, MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                     if (dr == DialogResult.Yes)
                     {
                         string fullfilename = Path.Combine(ProjectDir, FileName);
@@ -6814,6 +6886,9 @@ namespace Watch_Face_Editor
 
             if (Watch_Face == null)
             {
+                progressBar1.Visible = false;
+                //tableLayoutPanel_ElemetsWatchFace.Visible = true;
+
                 PreviewView = true;
                 return;
             }
@@ -29005,6 +29080,8 @@ namespace Watch_Face_Editor
         {
             // сохранение если файл не сохранен
             //if (SaveRequest() == DialogResult.Cancel) return;
+            if (ProjectDir == null || FileName == null) return;
+            if (Watch_Face == null) return;
 
             string name = Path.GetFileNameWithoutExtension(FileName);
             if (Watch_Face.WatchFace_Info.WatchFaceName != null && Watch_Face.WatchFace_Info.WatchFaceName != "")

@@ -26,6 +26,7 @@ namespace Watch_Face_Editor.DarkTheme
         // ===================== PALETTE (edit here) =====================
         public static readonly Color Panel = Hex(0x383838);   // F0F0F0 SystemColors.Control (window background)
         public static readonly Color Raised = Hex(0x484848);  // FDFDFD buttons, tab headers, grid headers
+        public static readonly Color RaisedDim = Hex(0x3E3E3E); // ControlLight on buttons: hidden elements in the list
         public static readonly Color Surface = Hex(0x2C2C2C); // FFFFFF SystemColors.Window (lists, text boxes)
         public static readonly Color Workspace = Hex(0x262626); // ABABAB AppWorkspace (empty grid area)
         public static Color Selected = Hex(0x3E5F86); // ActiveCaption (selected element)      [accent]
@@ -435,6 +436,17 @@ namespace Watch_Face_Editor.DarkTheme
             catch (Exception ex) { Debug("swatch " + Describe(cb) + ": " + ex.Message); }
         }
 
+        private static Color MapRowHover(Color c, WinButton b)
+        {
+            int k = Key(c);
+            if (k == Key(SystemColors.ActiveCaption) || k == Key(Selected) || k == Key(SelectedHover)) return Selected;
+            Color row = b.Parent != null ? EffectiveBack(b.Parent) : Panel;
+            if (k == Key(SystemColors.Control) || k == Key(SystemColors.Window) || k == Key(Hex(0xFDFDFD)) ||
+                k == Key(Panel) || k == Key(Raised) || k == Key(Surface) || k == Key(FormBack) || k == Key(Hover) ||
+                k == Key(Pressed) || k == Key(SystemColors.ControlLight)) return row;
+            return c;
+        }
+
         private static Color MapHover(Color c, Color normal)
         {
             int k = Key(c);
@@ -449,8 +461,19 @@ namespace Watch_Face_Editor.DarkTheme
         {
             if (!Enabled || IsExcluded(b)) return;
             FlatButtonAppearance fa = b.FlatAppearance;
-            Color over = MapHover(fa.MouseOverBackColor, Hover);
-            Color down = MapHover(fa.MouseDownBackColor, Pressed);
+            Color over, down;
+            if (fa.BorderSize == 0)
+            {
+                // Borderless rows (sub-items of an element): the editor sets hover = row color on purpose,
+                // so nothing lights up behind the text. Keep it that way in dark mode.
+                over = MapRowHover(fa.MouseOverBackColor, b);
+                down = MapRowHover(fa.MouseDownBackColor, b);
+            }
+            else
+            {
+                over = MapHover(fa.MouseOverBackColor, Hover);
+                down = MapHover(fa.MouseDownBackColor, Pressed);
+            }
             if (Key(over) != Key(fa.MouseOverBackColor)) fa.MouseOverBackColor = over;
             if (Key(down) != Key(fa.MouseDownBackColor)) fa.MouseDownBackColor = down;
         }
@@ -478,7 +501,13 @@ namespace Watch_Face_Editor.DarkTheme
             // in the light theme they blended with the row, so they stay transparent instead of button-colored.
             bool row = b.FlatAppearance.BorderSize == 0;
             // transparent icon buttons stay transparent; selected/custom colors are left alone
-            if (b.BackColor.A == 255 && (k == Key(Panel) || k == Key(Surface) || k == Key(SystemColors.Control) ||
+            // The element list shows hidden elements on ControlLight (E3E3E3) instead of Control (F0F0F0).
+            if (!row && b.BackColor.A == 255 && (k == Key(SystemColors.ControlLight) || k == Key(Light)))
+            {
+                busy = true;
+                try { b.BackColor = RaisedDim; } finally { busy = false; }
+            }
+            else if (b.BackColor.A == 255 && (k == Key(Panel) || k == Key(Surface) || k == Key(SystemColors.Control) ||
                 k == Key(SystemColors.Window) || k == Key(Hex(0xFDFDFD)) || k == Key(FormBack) || (row && k == Key(Raised))))
             {
                 busy = true;

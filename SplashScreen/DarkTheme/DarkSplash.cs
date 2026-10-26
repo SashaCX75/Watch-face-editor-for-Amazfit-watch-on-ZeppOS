@@ -21,7 +21,10 @@ namespace SplashScreen
             {
                 string json = DarkSplash_Settings();
                 if (json == null || !Regex.IsMatch(json, "\"DarkMode\"\\s*:\\s*true", RegexOptions.IgnoreCase)) return;
-                // One dark splash for both accents: the Zepp OS logo keeps its original colors.
+                // One dark background for both accents (the Zepp OS logo keeps its original colors);
+                // the spinning ring follows the accent: blue (default, as in the light theme) or orange.
+                bool orange = Regex.IsMatch(json, "\"DarkAccent\"\\s*:\\s*\"orange\"", RegexOptions.IgnoreCase);
+                string ring = orange ? "" : "blue/";
 
                 Image background = DarkSplash_Load("fundo_649x449.png");
                 if (background == null) return;
@@ -29,7 +32,7 @@ namespace SplashScreen
                 List<Image> frames = new List<Image>();
                 for (int i = 1; i <= 24; i++)
                 {
-                    Image f = DarkSplash_Load("loader_flash_" + i.ToString("00") + ".png");
+                    Image f = DarkSplash_Load(ring + "loader_flash_" + i.ToString("00") + ".png");
                     if (f == null) { frames = null; break; }
                     frames.Add(f);
                 }

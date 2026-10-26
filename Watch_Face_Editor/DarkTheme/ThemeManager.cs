@@ -604,6 +604,54 @@ namespace Watch_Face_Editor.DarkTheme
                 TextFormatFlags.NoPrefix | TextFormatFlags.EndEllipsis);
         }
 
+        private static void RedrawThumbnail(ComboBox cb, DrawItemEventArgs e, int thumb)
+        {
+            try
+            {
+                Rectangle sq = new Rectangle(e.Bounds.X, e.Bounds.Y, thumb, e.Bounds.Height);
+                using (SolidBrush b = new SolidBrush(Selected)) e.Graphics.FillRectangle(b, sq);
+                string path = ImagePathFor(cb, e.Index);
+                if (path == null || !File.Exists(path)) return;
+                int itemWidth = e.Bounds.Height, itemHeight = e.Bounds.Height - 4;
+                using (FileStream stream = new FileStream(path, FileMode.Open, FileAccess.Read))
+                using (Image image = Image.FromStream(stream))
+                {
+                    float scale = (float)itemWidth / image.Width;
+                    if ((float)itemHeight / image.Height < scale) scale = (float)itemHeight / image.Height;
+                    float w = image.Width * scale, h = image.Height * scale;
+                    Rectangle r = new Rectangle((int)(itemWidth - w) / 2 + 2,
+                        e.Bounds.Top + (int)(itemHeight - h) / 2 + 2, (int)w, (int)h);
+                    e.Graphics.DrawImage(image, r);
+                }
+            }
+            catch (Exception) { /* cosmetic only */ }
+        }
+
+        // The image pickers keep their file list in a private field "ListImagesFullName" of the control that
+        // owns the comboBox_DrawItem handler.
+        private static string ImagePathFor(ComboBox cb, int index)
+        {
+            try
+            {
+                FieldInfo kf = typeof(ComboBox).GetField("EVENT_DRAWITEM", BindingFlags.NonPublic | BindingFlags.Static);
+                if (kf == null || eventsProperty == null) return null;
+                System.ComponentModel.EventHandlerList list =
+                    (System.ComponentModel.EventHandlerList)eventsProperty.GetValue(cb, null);
+                Delegate d = list != null ? list[kf.GetValue(null)] : null;
+                if (d == null) return null;
+                foreach (Delegate x in d.GetInvocationList())
+                {
+                    if (x.Method.Name != "comboBox_DrawItem" || x.Target == null) continue;
+                    FieldInfo f = x.Target.GetType().GetField("ListImagesFullName",
+                        BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
+                    System.Collections.IList paths = f != null ? f.GetValue(x.Target) as System.Collections.IList : null;
+                    if (paths != null && index >= 0 && index < paths.Count) return paths[index] as string;
+                }
+            }
+            catch (Exception) { }
+            return null;
+        }
+
         private static void ImageCombo_DrawItem(object sender, DrawItemEventArgs e)
         {
             ComboBox cb = (ComboBox)sender;
@@ -612,6 +660,9 @@ namespace Watch_Face_Editor.DarkTheme
             Rectangle tr = new Rectangle(e.Bounds.X + thumb, e.Bounds.Y, Math.Max(0, e.Bounds.Width - thumb), e.Bounds.Height);
             bool sel = (e.State & DrawItemState.Selected) != 0;
             using (SolidBrush bg = new SolidBrush(sel ? Selected : e.BackColor)) e.Graphics.FillRectangle(bg, tr);
+            // The editor filled the thumbnail square with the system blue (e.DrawBackground): repaint it in the
+            // accent color and draw the thumbnail again, with the editor's own layout.
+            if (sel) RedrawThumbnail(cb, e, thumb);
             TextRenderer.DrawText(e.Graphics, cb.Items[e.Index].ToString(), cb.Font, tr,
                 sel ? Color.White : (cb.Enabled ? Text : TextDim),
                 TextFormatFlags.Left | TextFormatFlags.VerticalCenter | TextFormatFlags.SingleLine |

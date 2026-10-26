@@ -1121,7 +1121,9 @@ namespace Watch_Face_Editor.DarkTheme
             IntPtr hdc = BeginPaint(hwnd, out ps);
             try
             {
-                using (Bitmap buf = new Bitmap(w, h))
+                // Opaque buffer: on a 32bpp ARGB bitmap GDI ClearType blends the letter edges with black
+                // (dark outline around white text on the orange/blue focus fill).
+                using (Bitmap buf = new Bitmap(w, h, System.Drawing.Imaging.PixelFormat.Format24bppRgb))
                 {
                     using (Graphics g = Graphics.FromImage(buf)) PaintComboContent(cb, g, edit.IsEmpty);
                     using (Graphics screen = Graphics.FromHdc(hdc))

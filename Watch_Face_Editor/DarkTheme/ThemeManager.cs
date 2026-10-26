@@ -336,6 +336,14 @@ namespace Watch_Face_Editor.DarkTheme
                 // Image pickers: the editor draws item text in hard-coded black. Repaint just the text, after it.
                 if (cb.DrawMode != DrawMode.Normal && HasHandlerNamed(cb, "EVENT_DRAWITEM", "comboBox_DrawItem"))
                     AttachOnce(cb, "imgtext", () => cb.DrawItem += ImageCombo_DrawItem);
+                // Plain lists: Windows highlights the item under the mouse with the system blue.
+                if (cb.DrawMode == DrawMode.Normal && !IsExcluded(cb))
+                {
+                    int h = cb.ItemHeight;
+                    cb.DrawMode = DrawMode.OwnerDrawFixed;
+                    cb.ItemHeight = h;
+                    AttachOnce(cb, "darkitems", () => cb.DrawItem += DarkCombo_DrawItem);
+                }
                 OverPainter.Attach(cb);
             }
             else if (c is UpDownBase)
@@ -460,6 +468,10 @@ namespace Watch_Face_Editor.DarkTheme
             {
                 b.MouseEnter += (s, e) => FixHover((WinButton)s);
                 b.MouseDown += (s, e) => FixHover((WinButton)s);
+                // The editor sets ActiveCaption as hover color in its Click handler (runs before ours):
+                // fix it again right after, otherwise the light-theme blue shows while the mouse is still over it.
+                b.Click += (s, e) => { FixHover((WinButton)s); ((WinButton)s).Invalidate(); };
+                b.MouseUp += (s, e) => { FixHover((WinButton)s); ((WinButton)s).Invalidate(); };
             });
             int k = Key(b.BackColor);
             // Borderless flat buttons are list rows (e.g. "Imagens", "Valores numéricos" inside an element):
@@ -577,6 +589,21 @@ namespace Watch_Face_Editor.DarkTheme
             catch (Exception) { return false; }
         }
 
+        private static void DarkCombo_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            ComboBox cb = (ComboBox)sender;
+            if (!Enabled || e.Index < 0 || e.Index >= cb.Items.Count) return;
+            bool sel = (e.State & DrawItemState.Selected) != 0;
+            bool edit = (e.State & DrawItemState.ComboBoxEdit) != 0;
+            Color back = sel ? Selected : (edit ? e.BackColor : Surface);
+            using (SolidBrush bg = new SolidBrush(back)) e.Graphics.FillRectangle(bg, e.Bounds);
+            Rectangle tr = new Rectangle(e.Bounds.X + 2, e.Bounds.Y, Math.Max(0, e.Bounds.Width - 2), e.Bounds.Height);
+            TextRenderer.DrawText(e.Graphics, cb.GetItemText(cb.Items[e.Index]), cb.Font, tr,
+                !cb.Enabled ? TextDim : (sel ? Color.White : Text),
+                TextFormatFlags.Left | TextFormatFlags.VerticalCenter | TextFormatFlags.SingleLine |
+                TextFormatFlags.NoPrefix | TextFormatFlags.EndEllipsis);
+        }
+
         private static void ImageCombo_DrawItem(object sender, DrawItemEventArgs e)
         {
             ComboBox cb = (ComboBox)sender;
@@ -584,7 +611,7 @@ namespace Watch_Face_Editor.DarkTheme
             int thumb = e.Bounds.Height; // same layout as the editor: thumbnail square on the left
             Rectangle tr = new Rectangle(e.Bounds.X + thumb, e.Bounds.Y, Math.Max(0, e.Bounds.Width - thumb), e.Bounds.Height);
             bool sel = (e.State & DrawItemState.Selected) != 0;
-            using (SolidBrush bg = new SolidBrush(e.BackColor)) e.Graphics.FillRectangle(bg, tr);
+            using (SolidBrush bg = new SolidBrush(sel ? Selected : e.BackColor)) e.Graphics.FillRectangle(bg, tr);
             TextRenderer.DrawText(e.Graphics, cb.Items[e.Index].ToString(), cb.Font, tr,
                 sel ? Color.White : (cb.Enabled ? Text : TextDim),
                 TextFormatFlags.Left | TextFormatFlags.VerticalCenter | TextFormatFlags.SingleLine |

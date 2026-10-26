@@ -963,7 +963,8 @@ namespace Watch_Face_Editor.DarkTheme
                         if (cb != null) { PaintComboButton(cb, g); return; }
                         UpDownBase ud = owner as UpDownBase;
                         if (ud != null) { PaintUpDownBorder(ud, g); return; }
-                        if (owner.Parent is UpDownBase) PaintUpDownButtons(owner, g);
+                        // only the ▲▼ part: the inner edit box of a NumericUpDown is also a child of it
+                        if (owner.Parent is UpDownBase && !(owner is TextBoxBase)) PaintUpDownButtons(owner, g);
                     }
                 }
                 catch (Exception) { /* cosmetic only */ }

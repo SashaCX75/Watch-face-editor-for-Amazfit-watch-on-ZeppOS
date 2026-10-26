@@ -1938,7 +1938,55 @@ namespace Watch_Face_Editor.DarkTheme
             if (!cb.IsHandleCreated) return;
             COMBOBOXINFO info = new COMBOBOXINFO();
             info.cbSize = Marshal.SizeOf(typeof(COMBOBOXINFO));
-            if (GetComboBoxInfo(cb.Handle, ref info)) DarkHwnd(info.hwndList);
+            if (!GetComboBoxInfo(cb.Handle, ref info)) return;
+            DarkHwnd(info.hwndList);
+            ListBorder.Attach(info.hwndList);
+        }
+
+        // The open list's 1px frame is drawn by Windows in the system accent (blue): repaint it in our accent.
+        [DllImport("user32.dll")] private static extern bool GetWindowRect(IntPtr h, out RECT r);
+        private class ListBorder : NativeWindow
+        {
+            private const int WM_NCPAINT = 0x0085, WM_PAINT = 0x000F, WM_NCDESTROY = 0x0082;
+            private static readonly Dictionary<IntPtr, ListBorder> all = new Dictionary<IntPtr, ListBorder>();
+
+            public static void Attach(IntPtr h)
+            {
+                if (h == IntPtr.Zero || all.ContainsKey(h)) return;
+                ListBorder lb = new ListBorder();
+                lb.AssignHandle(h);
+                all[h] = lb;
+            }
+
+            protected override void WndProc(ref Message m)
+            {
+                if (m.Msg == WM_NCDESTROY)
+                {
+                    IntPtr h = Handle;
+                    base.WndProc(ref m);
+                    ReleaseHandle();
+                    all.Remove(h);
+                    return;
+                }
+                base.WndProc(ref m);
+                if (ThemeManager.Enabled && (m.Msg == WM_NCPAINT || m.Msg == WM_PAINT)) PaintFrame(Handle);
+            }
+
+            private static void PaintFrame(IntPtr h)
+            {
+                RECT r;
+                if (!GetWindowRect(h, out r)) return;
+                int w = r.Right - r.Left, ht = r.Bottom - r.Top;
+                IntPtr dc = GetWindowDC(h);
+                if (dc == IntPtr.Zero) return;
+                try
+                {
+                    using (Graphics g = Graphics.FromHdc(dc))
+                    using (Pen p = new Pen(Selected)) g.DrawRectangle(p, 0, 0, w - 1, ht - 1);
+                }
+                catch (Exception) { }
+                finally { ReleaseDC(h, dc); }
+            }
         }
 
         private static void NativeDark(Control c)

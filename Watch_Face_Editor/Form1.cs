@@ -532,6 +532,7 @@ namespace Watch_Face_Editor
             StartJsonPreview();
             SetPreferences(userCtrl_Set1);
             PreviewView = true;
+            InitImageDragDrop();
             Logger.WriteLine("* Form1_Load (end)");
         }
 
@@ -3733,29 +3734,32 @@ namespace Watch_Face_Editor
             openFileDialog.Title = Properties.FormStrings.Dialog_Title_Dial_Settings;
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                //FileName = Path.GetFileName(openFileDialog.FileName);
-                //ProjectDir = Path.GetDirectoryName(openFileDialog.FileName);
-
-                Logger.WriteLine("* Add_Images_Click");
-                string dirName = ProjectDir + @"\assets\";
-                foreach(string fileFullName in openFileDialog.FileNames)
-                {
-                    string fileName = Path.GetFileName(fileFullName);
-                    fileName = fileName.Replace(" ", "_");
-                    string newFileName = dirName + fileName;
-                    if (File.Exists(newFileName))
-                    {
-                        DialogResult dialogResult = MessageBox.Show(Properties.FormStrings.Message_Warning_Image_Exist1
-                            + fileName + Environment.NewLine + Properties.FormStrings.Message_Warning_Image_Exist2, 
-                            Properties.FormStrings.Message_Warning_Caption,
-                        MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
-                        if (dialogResult == DialogResult.Yes) File.Copy(fileFullName, newFileName, true); ;
-                    }
-                    else File.Copy(fileFullName, newFileName, true);
-                }
-                LoadImage(dirName);
+                AddImagesToProject(openFileDialog.FileNames);
             }
             Logger.WriteLine("* Add_Images (end)");
+        }
+
+        // Copies image files into the project. Shared by the button and by drag and drop.
+        private void AddImagesToProject(string[] fileNames)
+        {
+            Logger.WriteLine("* Add_Images_Click");
+            string dirName = ProjectDir + @"\assets\";
+            foreach(string fileFullName in fileNames)
+            {
+                string fileName = Path.GetFileName(fileFullName);
+                fileName = fileName.Replace(" ", "_");
+                string newFileName = dirName + fileName;
+                if (File.Exists(newFileName))
+                {
+                    DialogResult dialogResult = MessageBox.Show(Properties.FormStrings.Message_Warning_Image_Exist1
+                        + fileName + Environment.NewLine + Properties.FormStrings.Message_Warning_Image_Exist2, 
+                        Properties.FormStrings.Message_Warning_Caption,
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                    if (dialogResult == DialogResult.Yes) File.Copy(fileFullName, newFileName, true); ;
+                }
+                else File.Copy(fileFullName, newFileName, true);
+            }
+            LoadImage(dirName);
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -28639,32 +28643,35 @@ namespace Watch_Face_Editor
             openFileDialog.Title = Properties.FormStrings.Dialog_Title_Dial_Settings;
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                //FileName = Path.GetFileName(openFileDialog.FileName);
-                //ProjectDir = Path.GetDirectoryName(openFileDialog.FileName);
-
-                Logger.WriteLine("* Add_Images_Click");
-                string dirImgName = ProjectDir + @"\assets\";
-                string dirName = ProjectDir + @"\assets\animation\";
-                if (!Directory.Exists(dirName)) Directory.CreateDirectory(dirName);
-                foreach (string fileFullName in openFileDialog.FileNames)
-                {
-                    string fileName = Path.GetFileName(fileFullName);
-                    fileName = fileName.Replace(" ", "_");
-                    if (fileName.IndexOf("_") < 0) fileName = "anim_" + fileName;
-                    string newFileName = dirName + fileName;
-                    if (File.Exists(newFileName))
-                    {
-                        DialogResult dialogResult = MessageBox.Show(Properties.FormStrings.Message_Warning_Image_Exist1
-                            + fileName + Environment.NewLine + Properties.FormStrings.Message_Warning_Image_Exist2,
-                            Properties.FormStrings.Message_Warning_Caption,
-                        MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
-                        if (dialogResult == DialogResult.Yes) File.Copy(fileFullName, newFileName, true); ;
-                    }
-                    else File.Copy(fileFullName, newFileName, true);
-                }
-                LoadImage(dirImgName);
+                AddAnimImagesToProject(openFileDialog.FileNames);
             }
             Logger.WriteLine("* Add_Anim_Images (end)");
+        }
+
+        // Copies animation frames into the project. Shared by the button and by drag and drop.
+        private void AddAnimImagesToProject(string[] fileNames)
+        {
+            Logger.WriteLine("* Add_Images_Click");
+            string dirImgName = ProjectDir + @"\assets\";
+            string dirName = ProjectDir + @"\assets\animation\";
+            if (!Directory.Exists(dirName)) Directory.CreateDirectory(dirName);
+            foreach (string fileFullName in fileNames)
+            {
+                string fileName = Path.GetFileName(fileFullName);
+                fileName = fileName.Replace(" ", "_");
+                if (fileName.IndexOf("_") < 0) fileName = "anim_" + fileName;
+                string newFileName = dirName + fileName;
+                if (File.Exists(newFileName))
+                {
+                    DialogResult dialogResult = MessageBox.Show(Properties.FormStrings.Message_Warning_Image_Exist1
+                        + fileName + Environment.NewLine + Properties.FormStrings.Message_Warning_Image_Exist2,
+                        Properties.FormStrings.Message_Warning_Caption,
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                    if (dialogResult == DialogResult.Yes) File.Copy(fileFullName, newFileName, true); ;
+                }
+                else File.Copy(fileFullName, newFileName, true);
+            }
+            LoadImage(dirImgName);
         }
 
         private void uCtrl_Animation_Elm_ShowAnimation(object sender, EventArgs eventArgs)

@@ -17,7 +17,7 @@ using WinButton = System.Windows.Forms.Button;
 namespace Watch_Face_Editor.DarkTheme
 {
     /// <summary>
-    /// Experimental dark mode (local branch experimento/dark-mode).
+    /// Optional dark mode (off by default, enabled in Settings).
     /// With DarkMode off, Install/Apply return immediately: the editor behaves exactly as before.
     /// Never touches the watch face being edited: only UI colors and UI icons.
     /// </summary>
@@ -211,8 +211,6 @@ namespace Watch_Face_Editor.DarkTheme
             try
             {
                 ApplyTree(f);
-                // diagnostics only on demand: create an empty "DarkTheme.debug" file next to the exe
-                if (f is Form1 && File.Exists(Path.Combine(Application.StartupPath, "DarkTheme.debug"))) WriteDebugDump(f);
             }
             catch (Exception ex) { Debug("Form_Shown: " + ex); }
         }
@@ -1895,62 +1893,17 @@ namespace Watch_Face_Editor.DarkTheme
 
         // ---------------------------------------------------------------- diagnostics
 
-        private static readonly System.Text.StringBuilder debugLog = new System.Text.StringBuilder();
-
         private static int debugLines;
 
         private static void Debug(string line)
         {
             if (++debugLines > 300) return; // a paint-time error must not grow memory forever
-            debugLog.AppendLine(line);
             Logger.WriteLine("DarkTheme: " + line);
         }
 
         private static string Describe(Control c)
         {
             return c.GetType().Name + " '" + c.Name + "'";
-        }
-
-        private static string HexOf(Color c)
-        {
-            return (c.IsNamedColor ? c.Name + "=" : "") + (c.ToArgb() & 0xFFFFFF).ToString("X6") + (c.A < 255 ? " a" + c.A : "");
-        }
-
-        private static void WriteDebugDump(Control root)
-        {
-            System.Text.StringBuilder sb = new System.Text.StringBuilder();
-            sb.AppendLine("DarkTheme debug " + DateTime.Now);
-            sb.AppendLine("icons loaded: " + darkByPixels.Count);
-            sb.AppendLine("--- errors/notes ---");
-            sb.Append(debugLog);
-            sb.AppendLine("--- buttons / tabs / grids ---");
-            DumpTree(root, sb, 0);
-            try { File.WriteAllText(Path.Combine(Application.StartupPath, "DarkTheme_debug.txt"), sb.ToString()); }
-            catch (Exception) { }
-        }
-
-        private static void DumpTree(Control c, System.Text.StringBuilder sb, int depth)
-        {
-            object o;
-            bool hk = hooked.TryGetValue(c, out o);
-            if (c is ButtonBase || c is TabControl || c is TabPage || c is GroupBox || c is Panel ||
-                c is DataGridView || c is ComboBox || c is UpDownBase || !hk)
-            {
-                sb.Append(new string(' ', depth * 2)).Append(Describe(c))
-                  .Append(" hooked=").Append(hk)
-                  .Append(" back=").Append(HexOf(c.BackColor))
-                  .Append(" fore=").Append(HexOf(c.ForeColor));
-                ButtonBase b = c as ButtonBase;
-                if (b != null) sb.Append(" flat=").Append(b.FlatStyle).Append(" uvs=").Append(b.UseVisualStyleBackColor).Append(" en=").Append(b.Enabled);
-                TabControl t = c as TabControl;
-                if (t != null) sb.Append(" draw=").Append(t.DrawMode).Append(" appearance=").Append(t.Appearance);
-                ComboBox cbx = c as ComboBox;
-                if (cbx != null) sb.Append(" flat=").Append(cbx.FlatStyle).Append(" draw=").Append(cbx.DrawMode).Append(" style=").Append(cbx.DropDownStyle);
-                if (c is UpDownBase) foreach (Control part in c.Controls) sb.Append(" [").Append(part.GetType().Name).Append(" back=").Append(HexOf(part.BackColor)).Append("]");
-                if (IsExcluded(c)) sb.Append(" EXCLUDED");
-                sb.AppendLine();
-            }
-            foreach (Control ch in c.Controls) DumpTree(ch, sb, depth + 1);
         }
 
         // ---------------------------------------------------------------- native (title bar, scrollbars)

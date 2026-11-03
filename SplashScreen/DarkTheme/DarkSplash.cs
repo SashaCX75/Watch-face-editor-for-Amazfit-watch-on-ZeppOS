@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace SplashScreen
 {
-    // Experimental dark mode (local branch experimento/dark-mode).
+    // Optional dark mode (off by default, enabled in the editor Settings).
     // The splash starts before the editor reads its settings, so it checks Settings.json itself.
     public partial class SplashScreen
     {

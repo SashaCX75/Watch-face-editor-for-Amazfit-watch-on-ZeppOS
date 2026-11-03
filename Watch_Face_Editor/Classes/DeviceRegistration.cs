@@ -68,7 +68,7 @@ namespace Watch_Face_Editor
         /// Регистрирует компьютер в Supabase.
         /// Ошибка сети не должна мешать работе приложения.
         /// </summary>
-        public static async Task<bool> RegisterAsync(string _appLanguage)
+        public static async Task<bool> RegisterAsync(string _appLanguage, string _watchModel = null)
         {
             Logger.WriteLine("* Sending device info (start)");
 
@@ -87,7 +87,8 @@ namespace Watch_Face_Editor
                         NetFrameworkVersion = SystemInfo.GetNetFrameworkVersion(),
                         NetVersion = SystemInfo.GetDotNetVersion(),
                         AspNetCoreVersion = SystemInfo.GetAspNetCoreVersion(),
-                        WindowsDesktopVersion = SystemInfo.GetWindowsDesktopVersion()
+                        WindowsDesktopVersion = SystemInfo.GetWindowsDesktopVersion(),
+                        WatchModel = _watchModel,
                     };
                 });
 
@@ -139,6 +140,12 @@ namespace Watch_Face_Editor
                         150,
                         "windows_desktop_version");
 
+                string watchModel =
+                    LimitLength(
+                        systemInfo.WatchModel ?? "Amazfit",
+                        50,
+                        "watch_model");
+
 
                 string json =
                     "{"
@@ -151,6 +158,7 @@ namespace Watch_Face_Editor
                     + "\"net_version\":\"" + EscapeJson(netVersion) + "\","
                     + "\"aspnet_core_version\":\"" + EscapeJson(aspNetCoreVersion) + "\","
                     + "\"windows_desktop_version\":\"" + EscapeJson(windowsDesktopVersion) + "\""
+                    + ",\"watch_model\":\"" + EscapeJson(watchModel ?? "Amazfit") + "\""
                     + "}";
 
 

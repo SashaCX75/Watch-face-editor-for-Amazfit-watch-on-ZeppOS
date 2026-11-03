@@ -142,6 +142,11 @@ namespace ControlLibrary
         public event DelElementHandler DelElement;
         public delegate void DelElementHandler(object sender, EventArgs eventArgs);
 
+        public void SecondsOnAOD(bool status)
+        {
+            panel_Number_Seconds.Enabled = status;
+        }
+
         private void button_ElementName_Click(object sender, EventArgs e)
         {
             visibility_elements = !visibility_elements;

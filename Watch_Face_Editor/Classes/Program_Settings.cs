@@ -69,6 +69,7 @@ namespace Watch_Face_Editor
         public int AutoSaveTime = 0;
         public bool DevelopmentMode = false;
 
+        public string ZeppOsPlayerPath = "";
         public string ZeppPlayerPath = "";
         public string FilePost_API_key = "";
         public string GitHub_owner = "";

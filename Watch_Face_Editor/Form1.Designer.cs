@@ -315,6 +315,14 @@ namespace Watch_Face_Editor
             this.textBox_ZeppPlayerPath = new System.Windows.Forms.TextBox();
             this.linkLabel_ZeppPlayer = new System.Windows.Forms.LinkLabel();
             this.label19 = new System.Windows.Forms.Label();
+            this.groupBox_ZeppOsPlayer = new System.Windows.Forms.GroupBox();
+            this.button_ZeppOsPlayer_UpdateScreenPos = new System.Windows.Forms.Button();
+            this.checkBox_ZeppOsPlayerCapture = new System.Windows.Forms.CheckBox();
+            this.button_ZeppOsPlayerSend = new System.Windows.Forms.Button();
+            this.button_ZeppOsPlayerBrowse = new System.Windows.Forms.Button();
+            this.textBox_ZeppOsPlayerPath = new System.Windows.Forms.TextBox();
+            this.linkLabel_ZeppOsPlayer = new System.Windows.Forms.LinkLabel();
+            this.label22 = new System.Windows.Forms.Label();
             this.groupBox_UploadToLitterbox = new System.Windows.Forms.GroupBox();
             this.radioButton_GitHub = new System.Windows.Forms.RadioButton();
             this.checkBox_AddPreviewQR = new System.Windows.Forms.CheckBox();
@@ -346,6 +354,11 @@ namespace Watch_Face_Editor
             this.textBox_GitHub_token = new System.Windows.Forms.TextBox();
             this.label_repoName = new System.Windows.Forms.Label();
             this.panel_FilePost = new System.Windows.Forms.Panel();
+            this.radioButton_unlimited_fp = new System.Windows.Forms.RadioButton();
+            this.radioButton_1hour_fp = new System.Windows.Forms.RadioButton();
+            this.radioButton_12hours_fp = new System.Windows.Forms.RadioButton();
+            this.radioButton_3days_fp = new System.Windows.Forms.RadioButton();
+            this.radioButton_1day_fp = new System.Windows.Forms.RadioButton();
             this.linkLabel_FilePost_API_key = new System.Windows.Forms.LinkLabel();
             this.textBox_FilePost_API_key = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -568,6 +581,7 @@ namespace Watch_Face_Editor
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_CaptureHeight)).BeginInit();
             this.groupBox_simulator.SuspendLayout();
             this.groupBox_ZeppPlayer.SuspendLayout();
+            this.groupBox_ZeppOsPlayer.SuspendLayout();
             this.groupBox_UploadToLitterbox.SuspendLayout();
             this.panel_FilePost_info.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxQRCode)).BeginInit();
@@ -2990,6 +3004,7 @@ namespace Watch_Face_Editor
             this.tabPage_Test.Controls.Add(this.panel_SimulatorCapture);
             this.tabPage_Test.Controls.Add(this.groupBox_simulator);
             this.tabPage_Test.Controls.Add(this.groupBox_ZeppPlayer);
+            this.tabPage_Test.Controls.Add(this.groupBox_ZeppOsPlayer);
             this.tabPage_Test.Controls.Add(this.groupBox_UploadToLitterbox);
             resources.ApplyResources(this.tabPage_Test, "tabPage_Test");
             this.tabPage_Test.Name = "tabPage_Test";
@@ -3427,6 +3442,68 @@ namespace Watch_Face_Editor
             resources.ApplyResources(this.label19, "label19");
             this.label19.Name = "label19";
             // 
+            // groupBox_ZeppOsPlayer
+            // 
+            this.groupBox_ZeppOsPlayer.Controls.Add(this.button_ZeppOsPlayer_UpdateScreenPos);
+            this.groupBox_ZeppOsPlayer.Controls.Add(this.checkBox_ZeppOsPlayerCapture);
+            this.groupBox_ZeppOsPlayer.Controls.Add(this.button_ZeppOsPlayerSend);
+            this.groupBox_ZeppOsPlayer.Controls.Add(this.button_ZeppOsPlayerBrowse);
+            this.groupBox_ZeppOsPlayer.Controls.Add(this.textBox_ZeppOsPlayerPath);
+            this.groupBox_ZeppOsPlayer.Controls.Add(this.linkLabel_ZeppOsPlayer);
+            this.groupBox_ZeppOsPlayer.Controls.Add(this.label22);
+            resources.ApplyResources(this.groupBox_ZeppOsPlayer, "groupBox_ZeppOsPlayer");
+            this.groupBox_ZeppOsPlayer.Name = "groupBox_ZeppOsPlayer";
+            this.groupBox_ZeppOsPlayer.TabStop = false;
+            // 
+            // button_ZeppOsPlayer_UpdateScreenPos
+            // 
+            resources.ApplyResources(this.button_ZeppOsPlayer_UpdateScreenPos, "button_ZeppOsPlayer_UpdateScreenPos");
+            this.button_ZeppOsPlayer_UpdateScreenPos.Name = "button_ZeppOsPlayer_UpdateScreenPos";
+            this.button_ZeppOsPlayer_UpdateScreenPos.UseVisualStyleBackColor = true;
+            this.button_ZeppOsPlayer_UpdateScreenPos.Click += new System.EventHandler(this.button_ZeppOsPlayer_UpdateScreenPos_Click);
+            // 
+            // checkBox_ZeppOsPlayerCapture
+            // 
+            resources.ApplyResources(this.checkBox_ZeppOsPlayerCapture, "checkBox_ZeppOsPlayerCapture");
+            this.checkBox_ZeppOsPlayerCapture.Name = "checkBox_ZeppOsPlayerCapture";
+            this.checkBox_ZeppOsPlayerCapture.UseVisualStyleBackColor = true;
+            this.checkBox_ZeppOsPlayerCapture.CheckedChanged += new System.EventHandler(this.checkBox_ZeppOsPlayerCapture_CheckedChanged);
+            // 
+            // button_ZeppOsPlayerSend
+            // 
+            resources.ApplyResources(this.button_ZeppOsPlayerSend, "button_ZeppOsPlayerSend");
+            this.button_ZeppOsPlayerSend.Name = "button_ZeppOsPlayerSend";
+            this.button_ZeppOsPlayerSend.UseVisualStyleBackColor = true;
+            this.button_ZeppOsPlayerSend.Click += new System.EventHandler(this.button_ZeppOsPlayerSend_Click);
+            // 
+            // button_ZeppOsPlayerBrowse
+            // 
+            resources.ApplyResources(this.button_ZeppOsPlayerBrowse, "button_ZeppOsPlayerBrowse");
+            this.button_ZeppOsPlayerBrowse.Name = "button_ZeppOsPlayerBrowse";
+            this.button_ZeppOsPlayerBrowse.UseVisualStyleBackColor = true;
+            this.button_ZeppOsPlayerBrowse.Click += new System.EventHandler(this.button_ZeppOsPlayerBrowse_Click);
+            // 
+            // textBox_ZeppOsPlayerPath
+            // 
+            this.textBox_ZeppOsPlayerPath.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox_ZeppOsPlayerPath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            resources.ApplyResources(this.textBox_ZeppOsPlayerPath, "textBox_ZeppOsPlayerPath");
+            this.textBox_ZeppOsPlayerPath.Name = "textBox_ZeppOsPlayerPath";
+            this.textBox_ZeppOsPlayerPath.ReadOnly = true;
+            this.textBox_ZeppOsPlayerPath.TextChanged += new System.EventHandler(this.textBox_ZeppOsPlayerPath_TextChanged);
+            // 
+            // linkLabel_ZeppOsPlayer
+            // 
+            resources.ApplyResources(this.linkLabel_ZeppOsPlayer, "linkLabel_ZeppOsPlayer");
+            this.linkLabel_ZeppOsPlayer.Name = "linkLabel_ZeppOsPlayer";
+            this.linkLabel_ZeppOsPlayer.TabStop = true;
+            this.linkLabel_ZeppOsPlayer.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_ZeppOsPlayer_LinkClicked);
+            // 
+            // label22
+            // 
+            resources.ApplyResources(this.label22, "label22");
+            this.label22.Name = "label22";
+            // 
             // groupBox_UploadToLitterbox
             // 
             this.groupBox_UploadToLitterbox.Controls.Add(this.radioButton_GitHub);
@@ -3643,12 +3720,49 @@ namespace Watch_Face_Editor
             // panel_FilePost
             // 
             resources.ApplyResources(this.panel_FilePost, "panel_FilePost");
+            this.panel_FilePost.Controls.Add(this.radioButton_unlimited_fp);
+            this.panel_FilePost.Controls.Add(this.radioButton_1hour_fp);
+            this.panel_FilePost.Controls.Add(this.radioButton_12hours_fp);
+            this.panel_FilePost.Controls.Add(this.radioButton_3days_fp);
+            this.panel_FilePost.Controls.Add(this.radioButton_1day_fp);
             this.panel_FilePost.Controls.Add(this.linkLabel_FilePost_API_key);
             this.panel_FilePost.Controls.Add(this.textBox_FilePost_API_key);
             this.panel_FilePost.Controls.Add(this.label8);
             this.panel_FilePost.Controls.Add(this.label7);
             this.panel_FilePost.Controls.Add(this.btnUploadToFilePost);
             this.panel_FilePost.Name = "panel_FilePost";
+            // 
+            // radioButton_unlimited_fp
+            // 
+            resources.ApplyResources(this.radioButton_unlimited_fp, "radioButton_unlimited_fp");
+            this.radioButton_unlimited_fp.Checked = true;
+            this.radioButton_unlimited_fp.Name = "radioButton_unlimited_fp";
+            this.radioButton_unlimited_fp.TabStop = true;
+            this.radioButton_unlimited_fp.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_1hour_fp
+            // 
+            resources.ApplyResources(this.radioButton_1hour_fp, "radioButton_1hour_fp");
+            this.radioButton_1hour_fp.Name = "radioButton_1hour_fp";
+            this.radioButton_1hour_fp.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_12hours_fp
+            // 
+            resources.ApplyResources(this.radioButton_12hours_fp, "radioButton_12hours_fp");
+            this.radioButton_12hours_fp.Name = "radioButton_12hours_fp";
+            this.radioButton_12hours_fp.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_3days_fp
+            // 
+            resources.ApplyResources(this.radioButton_3days_fp, "radioButton_3days_fp");
+            this.radioButton_3days_fp.Name = "radioButton_3days_fp";
+            this.radioButton_3days_fp.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_1day_fp
+            // 
+            resources.ApplyResources(this.radioButton_1day_fp, "radioButton_1day_fp");
+            this.radioButton_1day_fp.Name = "radioButton_1day_fp";
+            this.radioButton_1day_fp.UseVisualStyleBackColor = true;
             // 
             // linkLabel_FilePost_API_key
             // 
@@ -4096,7 +4210,8 @@ namespace Watch_Face_Editor
             resources.GetString("comboBox_Language.Items5"),
             resources.GetString("comboBox_Language.Items6"),
             resources.GetString("comboBox_Language.Items7"),
-            resources.GetString("comboBox_Language.Items8")});
+            resources.GetString("comboBox_Language.Items8"),
+            resources.GetString("comboBox_Language.Items9")});
             resources.ApplyResources(this.comboBox_Language, "comboBox_Language");
             this.comboBox_Language.Name = "comboBox_Language";
             this.comboBox_Language.SelectedIndexChanged += new System.EventHandler(this.comboBox_Language_SelectedIndexChanged);
@@ -4862,6 +4977,8 @@ namespace Watch_Face_Editor
             this.groupBox_simulator.PerformLayout();
             this.groupBox_ZeppPlayer.ResumeLayout(false);
             this.groupBox_ZeppPlayer.PerformLayout();
+            this.groupBox_ZeppOsPlayer.ResumeLayout(false);
+            this.groupBox_ZeppOsPlayer.PerformLayout();
             this.groupBox_UploadToLitterbox.ResumeLayout(false);
             this.groupBox_UploadToLitterbox.PerformLayout();
             this.panel_FilePost_info.ResumeLayout(false);
@@ -5346,6 +5463,19 @@ namespace Watch_Face_Editor
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.CheckBox checkBox_GitHub_AskConfirmation;
         private System.Windows.Forms.CheckBox checkBox_SendSystemInfo;
+        private System.Windows.Forms.GroupBox groupBox_ZeppOsPlayer;
+        private System.Windows.Forms.Button button_ZeppOsPlayer_UpdateScreenPos;
+        private System.Windows.Forms.CheckBox checkBox_ZeppOsPlayerCapture;
+        private System.Windows.Forms.Button button_ZeppOsPlayerSend;
+        private System.Windows.Forms.Button button_ZeppOsPlayerBrowse;
+        private System.Windows.Forms.TextBox textBox_ZeppOsPlayerPath;
+        private System.Windows.Forms.LinkLabel linkLabel_ZeppOsPlayer;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.RadioButton radioButton_unlimited_fp;
+        private System.Windows.Forms.RadioButton radioButton_1hour_fp;
+        private System.Windows.Forms.RadioButton radioButton_12hours_fp;
+        private System.Windows.Forms.RadioButton radioButton_3days_fp;
+        private System.Windows.Forms.RadioButton radioButton_1day_fp;
     }
 }
 

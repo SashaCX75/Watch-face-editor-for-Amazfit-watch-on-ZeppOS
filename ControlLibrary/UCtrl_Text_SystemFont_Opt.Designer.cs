@@ -536,8 +536,7 @@ namespace ControlLibrary
             // 
             resources.ApplyResources(this.textBox_DOW, "textBox_DOW");
             this.textBox_DOW.Name = "textBox_DOW";
-            this.toolTip_Hint360.SetToolTip(this.textBox_DOW, resources.GetString("textBox_DOW.ToolTip"));
-            this.toolTip.SetToolTip(this.textBox_DOW, resources.GetString("textBox_DOW.ToolTip1"));
+            this.toolTip.SetToolTip(this.textBox_DOW, resources.GetString("textBox_DOW.ToolTip"));
             this.textBox_DOW.TextChanged += new System.EventHandler(this.textBox_unit_string_TextChanged);
             // 
             // numericUpDown_radius

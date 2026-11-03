@@ -576,6 +576,15 @@
   <data name="Message_Wrong_Preview_Exists" xml:space="preserve">
     <value>Не вдалося створити зображення попереднього перегляду. Можливо, це зображення вже існує.</value>
   </data>
+  <data name="Message_ZeppOsPlayerAppNotFound1" xml:space="preserve">
+    <value>Не вдалося знайти запущений ZeppOS-Player.</value>
+  </data>
+  <data name="Message_ZeppOsPlayerAppNotFound2" xml:space="preserve">
+    <value>Запустіть додаток ZeppOS-Player або вкажіть координати вручну.</value>
+  </data>
+  <data name="Message_ZeppOsPlayerNotFound" xml:space="preserve">
+    <value>ZeppOS-Player не знайдено за вказаним шляхом.</value>
+  </data>
   <data name="Message_ZeppPlayerNotFound" xml:space="preserve">
     <value>ZeppPlayer не знайдено за вказаним шляхом.</value>
   </data>

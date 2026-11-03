@@ -433,4 +433,7 @@ verticalement</value>
   <data name="radioButton_counterclockwise.Text" xml:space="preserve">
     <value>Sens anti-horaire</value>
   </data>
+  <data name="textBox_DOW.ToolTip" xml:space="preserve">
+    <value>Les noms des jours de la semaine, en commençant par lundi, séparés par des virgules.</value>
+  </data>
 </root>

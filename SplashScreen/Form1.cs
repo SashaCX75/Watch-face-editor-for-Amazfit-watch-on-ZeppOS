@@ -16,6 +16,7 @@ namespace SplashScreen
         public SplashScreen()
         {
             InitializeComponent();
+            DarkSplash_Apply(); // experimental dark mode (DarkTheme/DarkSplash.cs)
             pictureBox_SplashScreen.Image = imageList1.Images[imageIndex];
         }
 

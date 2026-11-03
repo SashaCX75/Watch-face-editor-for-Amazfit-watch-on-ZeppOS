@@ -37,6 +37,8 @@ namespace Watch_Face_Editor
         public bool Show_Buttons = true;
         public bool Show_CircleScale_Area = false;
         public bool Show_Widgets_Area = true;
+        public bool DarkMode = false; // experimental dark mode
+        public string DarkAccent = "blue"; // dark mode identity: "blue" (Zepp app) or "orange" (Zepp OS)
 
         public bool Shortcuts_Area = true;
         public bool Shortcuts_Border = true;

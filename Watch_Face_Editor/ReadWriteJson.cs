@@ -4388,10 +4388,11 @@ namespace Watch_Face_Editor
                                     unitAmStr = unitAmStr.ToUpper();
                                     unitPmStr = unitPmStr.ToUpper();
                                 }
-                                items += Environment.NewLine + TabInString(8) + "if (!timeSensor.is24Hour) hour = hour % 12 || 12;";
+                                items += Environment.NewLine + TabInString(8) + "let hour_formated = hour;";
+                                items += Environment.NewLine + TabInString(8) + "if (!timeSensor.is24Hour) hour_formated = hour % 12 || 12;";
                                 if (WorldClock.Time.padding) 
-                                    items += Environment.NewLine + TabInString(8) + "let " + optionNameStart + "hourStr = hour.toString().padStart(2, '0');";
-                                else items += Environment.NewLine + TabInString(8) + "let " + optionNameStart + "hourStr = hour.toString();";
+                                    items += Environment.NewLine + TabInString(8) + "let " + optionNameStart + "hourStr = hour_formated.toString().padStart(2, '0');";
+                                else items += Environment.NewLine + TabInString(8) + "let " + optionNameStart + "hourStr = hour_formated.toString();";
                                 items += Environment.NewLine + TabInString(8) + "let " + optionNameStart + "minuteStr = minute.toString().padStart(2, '0');";
                                 items += Environment.NewLine + TabInString(8) + timeStr + " = " + optionNameStart + "hourStr" + " + '" + 
                                     delimeter + "' + " + optionNameStart + "minuteStr;";
@@ -4446,8 +4447,8 @@ namespace Watch_Face_Editor
                                     }
 
                                     if (WorldClock.Time.padding)
-                                        insetrStr += Environment.NewLine + TabInString(8) + "let " + optionNameStart + "hourStr = hour.toString().padStart(2, '0');";
-                                    else insetrStr += Environment.NewLine + TabInString(8) + "let " + optionNameStart + "hourStr = hour.toString();";
+                                        insetrStr += Environment.NewLine + TabInString(8) + "let " + optionNameStart + "hourStr = hour_formated.toString().padStart(2, '0');";
+                                    else insetrStr += Environment.NewLine + TabInString(8) + "let " + optionNameStart + "hourStr = hour_formated.toString();";
                                     insetrStr += Environment.NewLine + TabInString(8) + "let " + optionNameStart + "minuteStr = minute.toString().padStart(2, '0');";
                                     insetrStr += Environment.NewLine + TabInString(8) + timeStr + " = " + optionNameStart + "hourStr" + " + '" +
                                         delimeter + "' + " + optionNameStart + "minuteStr;";

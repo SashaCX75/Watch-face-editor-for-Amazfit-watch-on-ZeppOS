@@ -238,6 +238,7 @@
     </Compile>
     <Compile Include="Form1.ImageDragDrop.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormAddEditableElement.cs">
       <SubType>Form</SubType>

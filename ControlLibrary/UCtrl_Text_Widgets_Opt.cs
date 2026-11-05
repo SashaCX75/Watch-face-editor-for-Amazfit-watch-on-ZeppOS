@@ -20,6 +20,7 @@ namespace ControlLibrary
         private int[] CustomColors = { }; // пользовательские цвета
 
         private bool Font_mode;
+        private bool TextCircle_mode = true;
         public Dictionary<string, Object> WidgetProperty = new Dictionary<string, Object>();
 
         public UCtrl_Text_Widgets_Opt()
@@ -318,6 +319,21 @@ namespace ControlLibrary
                 comboBox_fonts.Enabled = Font_mode;
                 button_AddFont.Enabled = Font_mode;
                 button_AddFont.Enabled = Font_mode;
+            }
+        }
+
+        /// <summary>Доступность настроек текста по окружности (ZeppOS 3 и выше)</summary>
+        [Description("Доступность настроек текста по окружности (ZeppOS 3 и выше)")]
+        public virtual bool TextCircle
+        {
+            get
+            {
+                return TextCircle_mode;
+            }
+            set
+            {
+                TextCircle_mode = value;
+                panel1.Enabled = TextCircle_mode;
             }
         }
 

@@ -37,6 +37,7 @@ namespace ControlLibrary
         private bool Alignments_enabled = true;
         private bool Use_2_color = false;
         private bool Alpha_mode = false;
+        private bool TextCircle_mode = true;
         private bool SityName_mode = false;
 
         public UCtrl_Text_SystemFont_Opt()
@@ -489,6 +490,21 @@ namespace ControlLibrary
                 Alpha_mode = value;
                 label_alpha.Enabled = Alpha_mode;
                 numericUpDown_Alpha.Enabled = Alpha_mode;
+            }
+        }
+
+        /// <summary>Доступность настроек текста по окружности (ZeppOS 3 и выше)</summary>
+        [Description("Доступность настроек текста по окружности (ZeppOS 3 и выше)")]
+        public virtual bool TextCircle
+        {
+            get
+            {
+                return TextCircle_mode;
+            }
+            set
+            {
+                TextCircle_mode = value;
+                panel1.Enabled = TextCircle_mode;
             }
         }
 

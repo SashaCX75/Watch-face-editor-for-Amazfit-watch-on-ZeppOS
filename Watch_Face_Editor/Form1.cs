@@ -12357,6 +12357,8 @@ namespace Watch_Face_Editor
             uCtrl_Weather_FewDay_Elm.GraphUse = SelectedModel.versionOS >= 3;
             uCtrl_HRV_Elm.Progress_available = SelectedModel.versionOS >= 5;
             uCtrl_Wind_Elm.WindSpeed_available = SelectedModel.versionOS > 4;
+            uCtrl_Text_SystemFont_Opt.TextCircle = SelectedModel.versionOS >= 3;
+            uCtrl_Text_Widgets_Opt.TextCircle = SelectedModel.versionOS >= 3;
 
             uCtrl_AnalogTime_Elm.SecondsOnAOD((SelectedModel.versionOS < 4.4 || radioButton_ScreenNormal.Checked));
             uCtrl_DigitalTime_Elm_v2.SecondsOnAOD((SelectedModel.versionOS < 4.4 || radioButton_ScreenNormal.Checked));

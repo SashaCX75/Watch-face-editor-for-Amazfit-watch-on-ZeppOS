@@ -2316,6 +2316,7 @@ namespace Watch_Face_Editor
             uCtrl_Text_SystemFont_Opt.DOWMode = DOWMode;
             uCtrl_Text_SystemFont_Opt.MonthMode = MonthMode;
             uCtrl_Text_SystemFont_Opt.Alpha = SelectedModel.versionOS >= 3.5;
+            uCtrl_Text_SystemFont_Opt.TextCircle = SelectedModel.versionOS >= 3;
 
             uCtrl_Text_SystemFont_Opt._ElementWithSystemFont = system_font;
             //uCtrl_Text_SystemFont_Opt.fonts_path = ProjectDir + @"\assets\fonts\";
@@ -2512,6 +2513,7 @@ namespace Watch_Face_Editor
             uCtrl_Text_Widgets_Opt.SettingsClear(ProgramSettings.CustomColors);
             uCtrl_Text_Widgets_Opt.Visible = true;
             if (SelectedModel.versionOS >= 2) uCtrl_Text_Widgets_Opt.UserFont = true;
+            uCtrl_Text_Widgets_Opt.TextCircle = SelectedModel.versionOS >= 3;
             uCtrl_Text_Widgets_Opt._TextWidgets = textWidgets;
 
             if (textWidgets.Text == null) textWidgets.Text = new List<hmUI_widget_TEXT>();

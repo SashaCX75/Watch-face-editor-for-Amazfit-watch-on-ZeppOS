@@ -20,7 +20,7 @@ msbuild "AmazFit_Editor_(Watch_Face_Type_GT3).sln" /p:Configuration=Release
 
 - MSBuild is installed at `C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\MSBuild.exe`. The `packages/` folder is gitignored, so a fresh worktree needs the restore step first.
 - Output goes to `Watch_Face_Editor/bin/<Config>/`. A **post-build event** (cmd syntax) moves all `*.dll` and `SplashScreen.*` into `Libs\` and the satellite resource folders (`de`, `en`, `cs`, …) into `Language\`. `App.config` sets `<probing privatePath="Libs;Language" />` so they still load. New dependencies and new languages must fit that layout.
-- **CI:** every push to `master` (and every `v *.*` tag) builds and publishes a GitHub Release. The release/tag name comes from the last commit message. Pushing to `master` therefore ships a release.
+- **CI:** pushing a `v*.*` tag, or running the workflow manually, builds and publishes a GitHub Release. Without a tag, the release name comes from the last commit message. On the `test` branch the push-to-branch trigger is commented out. On `master` the workflow still releases on every push to `master`, so check which version of `release.yml` is in effect before pushing.
 
 ## Solution layout
 
@@ -47,6 +47,8 @@ Nearly all application logic lives in `partial class Form1`, split across severa
 | `JSON_Scale.cs` | Rescales a whole project between device resolutions |
 | `ImageConversion.cs`, `ImgConvert.cs`, `Classes/ConvertingImages/` | PNG ↔ ZeppOS image format conversion |
 | `WatchFace_Testing.cs` | Integration with the Zepp simulator / ZeppPlayer (window capture via BitBlt/DXGI, UI Automation), GitHub upload helpers |
+| `Form1.ImageDragDrop.cs` | Drag-and-drop of `.png` files from Explorer into the image lists. It reuses the "Add images" code path |
+| `DarkTheme/Form1.DarkMode.cs`, `DarkTheme/ThemeManager.cs` | Optional dark UI theme, off by default and enabled in Settings. It recolors only the editor UI, never the watch face. Replacement icons in `DarkTheme/Icons/{dark,orig}/…` are embedded through a wildcard `EmbeddedResource` with `LogicalName` `DarkIcons/…` |
 
 ### Data model (`Classes/WatchFace/`)
 

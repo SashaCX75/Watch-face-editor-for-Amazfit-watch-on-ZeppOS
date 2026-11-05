@@ -171,7 +171,7 @@
     <value>NoControl</value>
   </data>
   <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>220, 176</value>
+    <value>220, 226</value>
   </data>
   <data name="checkBox_CityName.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -202,7 +202,7 @@
     <value>NoControl</value>
   </data>
   <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="panel_CityName" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_ButtonPrev" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_TimeDiff" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_Time" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_TimeZone" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_ButtonNext" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_Icon" Row="6" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="panel_CityName" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_ButtonPrev" Row="6" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_TimeDiff" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_Time" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_TimeZone" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_ButtonNext" Row="7" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_Icon" Row="8" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_HourPointer" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel_MinutePointer" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="button_TimeDiff.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -271,7 +271,7 @@
     <value>True</value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>220, 280</value>
+    <value>220, 330</value>
   </data>
   <data name="checkBox_TimeZone.Size" type="System.Drawing.Size, System.Drawing">
     <value>15, 14</value>
@@ -352,7 +352,7 @@
     <value>panel_CityName</value>
   </data>
   <data name="panel_TimeZone.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1, 26</value>
+    <value>1, 76</value>
   </data>
   <data name="button_ButtonPrev.Location" type="System.Drawing.Point, System.Drawing">
     <value>33, 0</value>
@@ -496,7 +496,7 @@
     <value>160, 24</value>
   </data>
   <data name="panel_TimeDiff.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1, 76</value>
+    <value>1, 126</value>
   </data>
   <data name="checkBox_TimeDiff.Location" type="System.Drawing.Point, System.Drawing">
     <value>20, 5</value>
@@ -511,7 +511,7 @@
     <value>145, 24</value>
   </data>
   <data name="panel_CityName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1, 51</value>
+    <value>1, 101</value>
   </data>
   <data name="panel_TimeZone.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -556,7 +556,7 @@
     <value>button_TimeDiff</value>
   </data>
   <data name="tableLayoutPanel1.RowCount" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="button_ElementName.Text" xml:space="preserve">
     <value>Мировое время</value>
@@ -721,7 +721,7 @@
     <value>0</value>
   </data>
   <data name="panel_ButtonNext.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1, 126</value>
+    <value>1, 176</value>
   </data>
   <data name="checkBox_ButtonNext.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -745,7 +745,7 @@
     <value>131, 2</value>
   </data>
   <data name="panel_ButtonPrev.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1, 101</value>
+    <value>1, 151</value>
   </data>
   <data name="panel_ButtonPrev.TabIndex" type="System.Int32, mscorlib">
     <value>29</value>
@@ -955,7 +955,7 @@
     <value>checkBox_ButtonPrev</value>
   </data>
   <data name="panel_Icon.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1, 151</value>
+    <value>1, 201</value>
   </data>
   <data name="&gt;&gt;panel_Icon.ZOrder" xml:space="preserve">
     <value>6</value>
@@ -996,4 +996,184 @@
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="panel_HourPointer.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="panel_HourPointer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 26</value>
+  </data>
+  <data name="panel_HourPointer.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="panel_HourPointer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>218, 24</value>
+  </data>
+  <data name="panel_HourPointer.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;panel_HourPointer.Name" xml:space="preserve">
+    <value>panel_HourPointer</value>
+  </data>
+  <data name="&gt;&gt;panel_HourPointer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel_HourPointer.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;panel_HourPointer.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="checkBox_HourPointer.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="checkBox_HourPointer.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="checkBox_HourPointer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 5</value>
+  </data>
+  <data name="checkBox_HourPointer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>15, 14</value>
+  </data>
+  <data name="checkBox_HourPointer.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;checkBox_HourPointer.Name" xml:space="preserve">
+    <value>checkBox_HourPointer</value>
+  </data>
+  <data name="&gt;&gt;checkBox_HourPointer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBox_HourPointer.Parent" xml:space="preserve">
+    <value>panel_HourPointer</value>
+  </data>
+  <data name="&gt;&gt;checkBox_HourPointer.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="button_HourPointer.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="button_HourPointer.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="button_HourPointer.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="button_HourPointer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>33, 0</value>
+  </data>
+  <data name="button_HourPointer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>145, 24</value>
+  </data>
+  <data name="button_HourPointer.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="button_HourPointer.Text" xml:space="preserve">
+    <value>Часовая стрелка</value>
+  </data>
+  <data name="button_HourPointer.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageBeforeText</value>
+  </data>
+  <data name="&gt;&gt;button_HourPointer.Name" xml:space="preserve">
+    <value>button_HourPointer</value>
+  </data>
+  <data name="&gt;&gt;button_HourPointer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button_HourPointer.Parent" xml:space="preserve">
+    <value>panel_HourPointer</value>
+  </data>
+  <data name="&gt;&gt;button_HourPointer.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="panel_MinutePointer.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="panel_MinutePointer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 51</value>
+  </data>
+  <data name="panel_MinutePointer.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="panel_MinutePointer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>218, 24</value>
+  </data>
+  <data name="panel_MinutePointer.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;panel_MinutePointer.Name" xml:space="preserve">
+    <value>panel_MinutePointer</value>
+  </data>
+  <data name="&gt;&gt;panel_MinutePointer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel_MinutePointer.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;panel_MinutePointer.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="checkBox_MinutePointer.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="checkBox_MinutePointer.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="checkBox_MinutePointer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 5</value>
+  </data>
+  <data name="checkBox_MinutePointer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>15, 14</value>
+  </data>
+  <data name="checkBox_MinutePointer.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;checkBox_MinutePointer.Name" xml:space="preserve">
+    <value>checkBox_MinutePointer</value>
+  </data>
+  <data name="&gt;&gt;checkBox_MinutePointer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBox_MinutePointer.Parent" xml:space="preserve">
+    <value>panel_MinutePointer</value>
+  </data>
+  <data name="&gt;&gt;checkBox_MinutePointer.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="button_MinutePointer.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="button_MinutePointer.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="button_MinutePointer.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="button_MinutePointer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>33, 0</value>
+  </data>
+  <data name="button_MinutePointer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>145, 24</value>
+  </data>
+  <data name="button_MinutePointer.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="button_MinutePointer.Text" xml:space="preserve">
+    <value>Минутная стрелка</value>
+  </data>
+  <data name="button_MinutePointer.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageBeforeText</value>
+  </data>
+  <data name="&gt;&gt;button_MinutePointer.Name" xml:space="preserve">
+    <value>button_MinutePointer</value>
+  </data>
+  <data name="&gt;&gt;button_MinutePointer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button_MinutePointer.Parent" xml:space="preserve">
+    <value>panel_MinutePointer</value>
+  </data>
+  <data name="&gt;&gt;button_MinutePointer.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
 </root>

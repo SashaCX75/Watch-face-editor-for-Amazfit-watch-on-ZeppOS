@@ -141,4 +141,10 @@
   <data name="button_ElementName.Text" xml:space="preserve">
     <value>Всесвітній час</value>
   </data>
+  <data name="button_HourPointer.Text" xml:space="preserve">
+    <value>Годинна стрілка</value>
+  </data>
+  <data name="button_MinutePointer.Text" xml:space="preserve">
+    <value>Хвилинна стрілка</value>
+  </data>
 </root>

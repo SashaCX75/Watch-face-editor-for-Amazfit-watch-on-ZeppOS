@@ -141,4 +141,10 @@
   <data name="button_ElementName.Text" xml:space="preserve">
     <value>World time</value>
   </data>
+  <data name="button_HourPointer.Text" xml:space="preserve">
+    <value>Hour hand</value>
+  </data>
+  <data name="button_MinutePointer.Text" xml:space="preserve">
+    <value>Minute hand</value>
+  </data>
 </root>

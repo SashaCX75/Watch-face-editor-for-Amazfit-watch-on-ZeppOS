@@ -14,6 +14,8 @@ namespace ControlLibrary
     {
         private bool setValue; // режим задания параметров
         bool highlight_time = false;
+        bool highlight_hour_pointer = false;
+        bool highlight_minute_pointer = false;
         bool highlight_time_zone = false;
         bool highlight_city_name = false;
         bool highlight_time_diff = false;
@@ -133,6 +135,8 @@ namespace ControlLibrary
             selectedElement = "";
 
             highlight_time = false;
+            highlight_hour_pointer = false;
+            highlight_minute_pointer = false;
             highlight_time_zone = false;
             highlight_city_name = false;
             highlight_time_diff = false;
@@ -156,6 +160,32 @@ namespace ControlLibrary
                 panel_Time.BackColor = SystemColors.Control;
                 button_Time.FlatAppearance.MouseOverBackColor = SystemColors.Control;
                 button_Time.FlatAppearance.MouseDownBackColor = SystemColors.Control;
+            }
+
+            if (highlight_hour_pointer)
+            {
+                panel_HourPointer.BackColor = SystemColors.ActiveCaption;
+                button_HourPointer.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption;
+                button_HourPointer.FlatAppearance.MouseDownBackColor = SystemColors.ActiveCaption;
+            }
+            else
+            {
+                panel_HourPointer.BackColor = SystemColors.Control;
+                button_HourPointer.FlatAppearance.MouseOverBackColor = SystemColors.Control;
+                button_HourPointer.FlatAppearance.MouseDownBackColor = SystemColors.Control;
+            }
+
+            if (highlight_minute_pointer)
+            {
+                panel_MinutePointer.BackColor = SystemColors.ActiveCaption;
+                button_MinutePointer.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption;
+                button_MinutePointer.FlatAppearance.MouseDownBackColor = SystemColors.ActiveCaption;
+            }
+            else
+            {
+                panel_MinutePointer.BackColor = SystemColors.Control;
+                button_MinutePointer.FlatAppearance.MouseOverBackColor = SystemColors.Control;
+                button_MinutePointer.FlatAppearance.MouseDownBackColor = SystemColors.Control;
             }
 
             if (highlight_time_zone)
@@ -242,6 +272,54 @@ namespace ControlLibrary
             selectedElement = "Time";
 
             highlight_time = true;
+            highlight_hour_pointer = false;
+            highlight_minute_pointer = false;
+            highlight_time_zone = false;
+            highlight_city_name = false;
+            highlight_time_diff = false;
+            highlight_previous_city = false;
+            highlight_next_city = false;
+            highlight_icon = false;
+
+            SelectElement();
+
+            if (SelectChanged != null)
+            {
+                EventArgs eventArgs = new EventArgs();
+                SelectChanged(this, eventArgs);
+            }
+        }
+
+        private void panel_HourPointer_Click(object sender, EventArgs e)
+        {
+            selectedElement = "HourPointer";
+
+            highlight_time = false;
+            highlight_hour_pointer = true;
+            highlight_minute_pointer = false;
+            highlight_time_zone = false;
+            highlight_city_name = false;
+            highlight_time_diff = false;
+            highlight_previous_city = false;
+            highlight_next_city = false;
+            highlight_icon = false;
+
+            SelectElement();
+
+            if (SelectChanged != null)
+            {
+                EventArgs eventArgs = new EventArgs();
+                SelectChanged(this, eventArgs);
+            }
+        }
+
+        private void panel_MinutePointer_Click(object sender, EventArgs e)
+        {
+            selectedElement = "MinutePointer";
+
+            highlight_time = false;
+            highlight_hour_pointer = false;
+            highlight_minute_pointer = true;
             highlight_time_zone = false;
             highlight_city_name = false;
             highlight_time_diff = false;
@@ -263,6 +341,8 @@ namespace ControlLibrary
             selectedElement = "TimeZone";
 
             highlight_time = false;
+            highlight_hour_pointer = false;
+            highlight_minute_pointer = false;
             highlight_time_zone = true;
             highlight_city_name = false;
             highlight_time_diff = false;
@@ -284,6 +364,8 @@ namespace ControlLibrary
             selectedElement = "CityName";
 
             highlight_time = false;
+            highlight_hour_pointer = false;
+            highlight_minute_pointer = false;
             highlight_time_zone = false;
             highlight_city_name = true;
             highlight_time_diff = false;
@@ -305,6 +387,8 @@ namespace ControlLibrary
             selectedElement = "TimeDiff";
 
             highlight_time = false;
+            highlight_hour_pointer = false;
+            highlight_minute_pointer = false;
             highlight_time_zone = false;
             highlight_city_name = false;
             highlight_time_diff = true;
@@ -326,6 +410,8 @@ namespace ControlLibrary
             selectedElement = "ButtonPrev";
 
             highlight_time = false;
+            highlight_hour_pointer = false;
+            highlight_minute_pointer = false;
             highlight_time_zone = false;
             highlight_city_name = false;
             highlight_time_diff = false;
@@ -347,6 +433,8 @@ namespace ControlLibrary
             selectedElement = "ButtonNext";
 
             highlight_time = false;
+            highlight_hour_pointer = false;
+            highlight_minute_pointer = false;
             highlight_time_zone = false;
             highlight_city_name = false;
             highlight_time_diff = false;
@@ -368,6 +456,8 @@ namespace ControlLibrary
             selectedElement = "Icon";
 
             highlight_time = false;
+            highlight_hour_pointer = false;
+            highlight_minute_pointer = false;
             highlight_time_zone = false;
             highlight_city_name = false;
             highlight_time_diff = false;
@@ -514,9 +604,9 @@ namespace ControlLibrary
 
             pictureBox_Del.Location = new Point(button_ElementName.Width - pictureBox_Del.Width - 4, 2);
 
-            if (tableLayoutPanel1.Height > 220)
+            if (tableLayoutPanel1.Height > 285)
             {
-                float currentDPI = tableLayoutPanel1.Height / 176f;
+                float currentDPI = tableLayoutPanel1.Height / 226f;
                 button_ElementName.Image = (Image)(new Bitmap(button_ElementName.Image,
                     new Size((int)(16 * currentDPI), (int)(16 * currentDPI))));
 
@@ -619,6 +709,12 @@ namespace ControlLibrary
                 case "Time":
                     checkBox_Time.Checked = status;
                     break;
+                case "HourPointer":
+                    checkBox_HourPointer.Checked = status;
+                    break;
+                case "MinutePointer":
+                    checkBox_MinutePointer.Checked = status;
+                    break;
                 case "TimeZone":
                     checkBox_TimeZone.Checked = status;
                     break;
@@ -655,6 +751,12 @@ namespace ControlLibrary
                     {
                         case "Time":
                             panel = panel_Time;
+                            break;
+                        case "HourPointer":
+                            panel = panel_HourPointer;
+                            break;
+                        case "MinutePointer":
+                            panel = panel_MinutePointer;
                             break;
                         case "TimeZone":
                             panel = panel_TimeZone;
@@ -719,6 +821,12 @@ namespace ControlLibrary
                     case "panel_Time":
                         elementOptions.Add("Time", count - i);
                         break;
+                    case "panel_HourPointer":
+                        elementOptions.Add("HourPointer", count - i);
+                        break;
+                    case "panel_MinutePointer":
+                        elementOptions.Add("MinutePointer", count - i);
+                        break;
                     case "panel_TimeZone":
                         elementOptions.Add("TimeZone", count - i);
                         break;
@@ -754,10 +862,14 @@ namespace ControlLibrary
             elementOptions.Add(index++, "TimeDifference");
             elementOptions.Add(index++, "CityName");
             elementOptions.Add(index++, "TimeZone");
+            elementOptions.Add(index++, "MinutePointer");
+            elementOptions.Add(index++, "HourPointer");
             elementOptions.Add(index++, "Time");
             SetOptionsPosition(elementOptions);
 
             checkBox_Time.Checked = false;
+            checkBox_HourPointer.Checked = false;
+            checkBox_MinutePointer.Checked = false;
             checkBox_TimeZone.Checked = false;
             checkBox_CityName.Checked = false;
             checkBox_TimeDiff.Checked = false;

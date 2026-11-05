@@ -584,6 +584,7 @@ namespace Watch_Face_Editor
             uCtrl_TemperatureGraph_Opt.AutoSize = true;
             uCtrl_SleepChart_Opt.AutoSize = true;
             uCtrl_Text_Widgets_Opt.AutoSize = true;
+            uCtrl_Image_Widgets_Opt.AutoSize = true;
             uCtrl_JS_script_Opt.AutoSize = true;
 
             groupBox_UploadToLitterbox.AutoSize = true;
@@ -1533,6 +1534,7 @@ namespace Watch_Face_Editor
             if (e.Data.GetDataPresent(typeof(UCtrl_BioCharge_Elm))) typeReturn = false;
             if (e.Data.GetDataPresent(typeof(UCtrl_Sleep_Elm))) typeReturn = false;
             if (e.Data.GetDataPresent(typeof(UCtrl_TextWidgets_Elm))) typeReturn = false;
+            if (e.Data.GetDataPresent(typeof(UCtrl_Images_Elm))) typeReturn = false;
 
             if (e.Data.GetDataPresent(typeof(UCtrl_JSscript_Elm))) typeReturn = false;
             //if (typeReturn) return;
@@ -1945,6 +1947,14 @@ namespace Watch_Face_Editor
                         if (draggedUCtrl_Elm != null) draggedPanel = (Panel)draggedUCtrl_Elm.Parent;
                         break;
 
+                    case "ControlLibrary.UCtrl_Images_Elm":
+                        ElementImages images =
+                            (ElementImages)Elements.Find(e1 => e1.GetType().Name == "ElementImages");
+                        index = Elements.IndexOf(images);
+                        draggedUCtrl_Elm = (UCtrl_Images_Elm)e.Data.GetData(typeof(UCtrl_Images_Elm));
+                        if (draggedUCtrl_Elm != null) draggedPanel = (Panel)draggedUCtrl_Elm.Parent;
+                        break;
+
 
 
                     case "ControlLibrary.UCtrl_JSscript_Elm":
@@ -2162,6 +2172,9 @@ namespace Watch_Face_Editor
                 case "TextWidgets":
                     uCtrl_Text_Widgets_Opt.Visible = true;
                     break;
+                case "ImageWidgets":
+                    uCtrl_Image_Widgets_Opt.Visible = true;
+                    break;
                 case "Script":
                     uCtrl_JS_script_Opt.Visible = true;
                     break;
@@ -2206,6 +2219,7 @@ namespace Watch_Face_Editor
             uCtrl_TemperatureGraph_Opt.Visible = false;
             uCtrl_SleepChart_Opt.Visible = false;
             uCtrl_Text_Widgets_Opt.Visible = false;
+            uCtrl_Image_Widgets_Opt.Visible = false;
             uCtrl_JS_script_Opt.Visible = false;
         }
 
@@ -2266,6 +2280,7 @@ namespace Watch_Face_Editor
             if (selectElementName != "BioCharge") uCtrl_BioCharge_Elm.ResetHighlightState();
             if (selectElementName != "Sleep") uCtrl_Sleep_Elm.ResetHighlightState();
             if (selectElementName != "TextWidgets") uCtrl_TextWidgets_Elm.ResetHighlightState();
+            if (selectElementName != "Images") uCtrl_Images_Elm.ResetHighlightState();
 
             if (selectElementName != "DisconnectAlert") uCtrl_DisconnectAlert_Elm.ResetHighlightState();
             if (selectElementName != "RepeatingAlert") uCtrl_RepeatingAlert_Elm.ResetHighlightState();
@@ -2353,6 +2368,7 @@ namespace Watch_Face_Editor
             uCtrl_BioCharge_Elm.SettingsClear();
             uCtrl_Sleep_Elm.SettingsClear();
             uCtrl_TextWidgets_Elm.SettingsClear();
+            uCtrl_Images_Elm.SettingsClear();
 
             uCtrl_DisconnectAlert_Elm.SettingsClear();
             uCtrl_RepeatingAlert_Elm.SettingsClear();
@@ -3435,6 +3451,7 @@ namespace Watch_Face_Editor
             uCtrl_Segments_Opt.ComboBoxAddItems(ListImages, ListImagesFullName);
             uCtrl_Linear_Scale_Opt.ComboBoxAddItems(ListImages, ListImagesFullName);
             uCtrl_Icon_Opt.ComboBoxAddItems(ListImages, ListImagesFullName);
+            uCtrl_Image_Widgets_Opt.ComboBoxAddItems(ListImages, ListImagesFullName);
             uCtrl_Weather_FewDays_Opt.ComboBoxAddItems(ListImages, ListImagesFullName);
             uCtrl_SleepChart_Opt.ComboBoxAddItems(ListImages, ListImagesFullName);
             uCtrl_Shortcut_Opt.ComboBoxAddItems(ListImages, ListImagesFullName);
@@ -4776,6 +4793,19 @@ namespace Watch_Face_Editor
             }
             if (comboBox_AddSystem.SelectedIndex == 8)
             {
+                if (AddImages())
+                {
+                    ShowElemetsWatchFace();
+                    JSON_Modified = true;
+                    FormText();
+
+                    panel_WatchfaceElements.AutoScrollPosition = new Point(
+                        Math.Abs(panel_WatchfaceElements.AutoScrollPosition.X),
+                        panel_WatchfaceElements.VerticalScroll.Maximum);
+                }
+            }
+            if (comboBox_AddSystem.SelectedIndex == 9)
+            {
                 if (radioButton_ScreenNormal.Checked)
                 {
                     if (AddTopImage())
@@ -4788,7 +4818,7 @@ namespace Watch_Face_Editor
                 else MessageBox.Show(Properties.FormStrings.Message_ElementAOD_Text, Properties.FormStrings.Message_Warning_Caption,
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            if (comboBox_AddSystem.SelectedIndex == 9)
+            if (comboBox_AddSystem.SelectedIndex == 10)
             {
                 if (radioButton_ScreenNormal.Checked)
                 {
@@ -4802,7 +4832,7 @@ namespace Watch_Face_Editor
                 else MessageBox.Show(Properties.FormStrings.Message_ElementAOD_Text, Properties.FormStrings.Message_Warning_Caption,
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            if (comboBox_AddSystem.SelectedIndex == 10)
+            if (comboBox_AddSystem.SelectedIndex == 11)
             {
                 if (AddScript())
                 {
@@ -4815,7 +4845,7 @@ namespace Watch_Face_Editor
                         panel_WatchfaceElements.VerticalScroll.Maximum);
                 }
             }
-            if (comboBox_AddSystem.SelectedIndex == 11)
+            if (comboBox_AddSystem.SelectedIndex == 12)
             {
                 if (SelectedModel.versionOS >= 2)
                 {
@@ -4838,7 +4868,7 @@ namespace Watch_Face_Editor
                 else MessageBox.Show(Properties.FormStrings.Message_Old_OS, Properties.FormStrings.Message_Warning_Caption,
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            if (comboBox_AddSystem.SelectedIndex == 12)
+            if (comboBox_AddSystem.SelectedIndex == 13)
             {
                 if (AddAlarmClock())
                 {
@@ -4851,7 +4881,7 @@ namespace Watch_Face_Editor
                         panel_WatchfaceElements.VerticalScroll.Maximum);
                 }
             }
-            if (comboBox_AddSystem.SelectedIndex == 13)
+            if (comboBox_AddSystem.SelectedIndex == 14)
             {
                 if (AddBodyTemp())
                 {
@@ -4864,7 +4894,7 @@ namespace Watch_Face_Editor
                         panel_WatchfaceElements.VerticalScroll.Maximum);
                 }
             }
-            if (comboBox_AddSystem.SelectedIndex == 14)
+            if (comboBox_AddSystem.SelectedIndex == 15)
             {
                 if (AddTextWidgets())
                 {
@@ -6832,6 +6862,40 @@ namespace Watch_Face_Editor
             return false;
         }
 
+        /// <summary>Добавляем набор изображений в циферблат</summary>
+        private bool AddImages()
+        {
+            if (!PreviewView) return false;
+            List<object> Elements = new List<object>();
+            if (Watch_Face == null) Watch_Face = new WATCH_FACE();
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face.ScreenNormal == null) Watch_Face.ScreenNormal = new ScreenNormal();
+                if (Watch_Face.ScreenNormal.Elements == null) Watch_Face.ScreenNormal.Elements = new List<object>();
+                Elements = Watch_Face.ScreenNormal.Elements;
+            }
+            else
+            {
+                if (Watch_Face.ScreenAOD == null) Watch_Face.ScreenAOD = new ScreenAOD();
+                if (Watch_Face.ScreenAOD.Elements == null) Watch_Face.ScreenAOD.Elements = new List<object>();
+                Elements = Watch_Face.ScreenAOD.Elements;
+            }
+
+            bool exists = Elements.Exists(e => e.GetType().Name == "ElementImages"); // проверяем что такого элемента нет
+            if (!exists)
+            {
+                ElementImages images = new ElementImages();
+                images.visible = true;
+                images.Images = new List<hmUI_widget_IMG>();
+                Elements.Insert(0, images);
+                uCtrl_Images_Elm.SettingsClear();
+                return true;
+            }
+            else MessageBox.Show(Properties.FormStrings.Message_Widget_Exists, Properties.FormStrings.Message_Warning_Caption,
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return false;
+        }
+
 
         /// <summary>Отображаем элемынты в соответствии с json файлом</summary>
         private void ShowElemetsWatchFace()
@@ -6899,6 +6963,7 @@ namespace Watch_Face_Editor
             uCtrl_BioCharge_Elm.Visible = false;
             uCtrl_Sleep_Elm.Visible = false;
             uCtrl_TextWidgets_Elm.Visible = false;
+            uCtrl_Images_Elm.Visible = false;
 
             uCtrl_DisconnectAlert_Elm.Visible = false;
             uCtrl_RepeatingAlert_Elm.Visible = false;
@@ -9477,6 +9542,16 @@ namespace Watch_Face_Editor
                                 //SetElementPositionInGUI(type, i + 1);
                                 break;
                             #endregion
+
+                            #region ElementImages
+                            case "ElementImages":
+                                ElementImages Images = (ElementImages)element;
+                                uCtrl_Images_Elm.SetVisibilityElementStatus(Images.visible);
+
+                                uCtrl_Images_Elm.Visible = true;
+                                SetElementPositionInGUI(type, count - i - 2);
+                                break;
+                            #endregion
                     }
 
 #if !DEBUG
@@ -9962,6 +10037,13 @@ namespace Watch_Face_Editor
                     break;
                 #endregion
 
+                #region ElementImages
+                case "ElementImages":
+                    uCtrl_Images_Elm.Visible = true;
+                    SetElementPositionInGUI(type, count - i - 2);
+                    break;
+                #endregion
+
                 #region ElementScript
                 case "ElementScript":
                     uCtrl_JSscript_Elm.Visible = true;
@@ -10132,6 +10214,9 @@ namespace Watch_Face_Editor
                     break;
                 case "ElementTextWidgets":
                     panel = panel_UC_TextWidgets;
+                    break;
+                case "ElementImages":
+                    panel = panel_UC_Images;
                     break;
 
                 case "Buttons":
@@ -10924,6 +11009,9 @@ namespace Watch_Face_Editor
                     break;
                 case "UCtrl_TextWidgets_Elm":
                     objectName = "ElementTextWidgets";
+                    break;
+                case "UCtrl_Images_Elm":
+                    objectName = "ElementImages";
                     break;
 
                 case "UCtrl_JSscript_Elm":
@@ -19627,6 +19715,44 @@ namespace Watch_Face_Editor
             }
         }
 
+        /// <summary>Находим набор изображений на текущем экране (основной/AOD)</summary>
+        private ElementImages FindImagesElement()
+        {
+            List<object> elements = null;
+            if (radioButton_ScreenNormal.Checked)
+            {
+                if (Watch_Face != null && Watch_Face.ScreenNormal != null) elements = Watch_Face.ScreenNormal.Elements;
+            }
+            else
+            {
+                if (Watch_Face != null && Watch_Face.ScreenAOD != null) elements = Watch_Face.ScreenAOD.Elements;
+            }
+            if (elements == null) return null;
+            return (ElementImages)elements.Find(e => e.GetType().Name == "ElementImages");
+        }
+
+        private void uCtrl_Images_Elm_SelectChanged(object sender, EventArgs eventArgs)
+        {
+            ResetHighlightState("Images");
+
+            ElementImages images = FindImagesElement();
+            if (images != null)
+            {
+                Read_ImageWidgets_Options(images);
+                ShowElemenOptions("ImageWidgets");
+            }
+        }
+
+        private void uCtrl_Images_Elm_VisibleElementChanged(object sender, EventArgs eventArgs, bool visible)
+        {
+            ElementImages images = FindImagesElement();
+            if (images != null) images.visible = visible;
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
         private void uCtrl_Image_Elm_SelectChanged(object sender, EventArgs eventArgs)
         {
             ResetHighlightState("Image");
@@ -20668,6 +20794,13 @@ namespace Watch_Face_Editor
                                 textWidgetsElementNew.Text.Add(textWidget.Copy());
                             }
                             Watch_Face.ScreenAOD.Elements.Add(textWidgetsElementNew);
+                            break;
+                        #endregion
+
+                        #region ElementImages
+                        case "ElementImages":
+                            ElementImages imagesElement = (ElementImages)element;
+                            Watch_Face.ScreenAOD.Elements.Add((ElementImages)imagesElement.Clone());
                             break;
                             #endregion
 

@@ -1261,6 +1261,26 @@ namespace Watch_Face_Editor
                         break;
                     #endregion
 
+                    #region ElementImages
+                    case "ElementImages":
+                        ElementImages Images = null;
+                        try
+                        {
+                            Images = JsonConvert.DeserializeObject<ElementImages>(elementStr, new JsonSerializerSettings
+                            {
+                                //DefaultValueHandling = DefaultValueHandling.Ignore,
+                                NullValueHandling = NullValueHandling.Ignore
+                            });
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(Properties.FormStrings.Message_JsonError_Text + Environment.NewLine + ex,
+                                Properties.FormStrings.Message_Error_Caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        if (Images != null) NewElements.Add(Images);
+                        break;
+                    #endregion
+
                     #region ElementTextWidgets
                     case "ElementTextWidgets":
                         ElementTextWidgets TextWidgets = null;
@@ -2525,6 +2545,148 @@ namespace Watch_Face_Editor
 
             PreviewView = true;
         }
+
+        #region ImageWidgets
+        /// <summary>Читаем настройки набора изображений</summary>
+        private void Read_ImageWidgets_Options(ElementImages images)
+        {
+            PreviewView = false;
+
+            uCtrl_Image_Widgets_Opt.SettingsClear();
+            uCtrl_Image_Widgets_Opt.Visible = true;
+            uCtrl_Image_Widgets_Opt.Alpha = SelectedModel.versionOS >= 2.1;
+            uCtrl_Image_Widgets_Opt._ImageWidgets = images;
+
+            if (images.Images == null) images.Images = new List<hmUI_widget_IMG>();
+            uCtrl_Image_Widgets_Opt.UpdateImageList(ImageWidgets_NameList(images.Images), ImageWidgets_VisibleList(images.Images));
+
+            PreviewView = true;
+        }
+
+        private List<hmUI_widget_IMG> ImageWidgets_List()
+        {
+            ElementImages images = (ElementImages)uCtrl_Image_Widgets_Opt._ImageWidgets;
+            if (images == null) return null;
+            if (images.Images == null) images.Images = new List<hmUI_widget_IMG>();
+            return images.Images;
+        }
+
+        private List<String> ImageWidgets_NameList(List<hmUI_widget_IMG> imagesList)
+        {
+            List<String> nameList = new List<String>();
+            if (imagesList == null) return nameList;
+            foreach (hmUI_widget_IMG img in imagesList) nameList.Add(img.src ?? "");
+            return nameList;
+        }
+
+        private List<bool> ImageWidgets_VisibleList(List<hmUI_widget_IMG> imagesList)
+        {
+            List<bool> visibleList = new List<bool>();
+            if (imagesList == null) return visibleList;
+            foreach (hmUI_widget_IMG img in imagesList) visibleList.Add(img.visible);
+            return visibleList;
+        }
+
+        /// <summary>Читаем настройки для выбранного изображения</summary>
+        private void uCtrl_Image_Widgets_Opt_SelectImageWidget(int rowIndex)
+        {
+            List<hmUI_widget_IMG> imagesList = ImageWidgets_List();
+            if (imagesList == null) return;
+
+            bool previewView = PreviewView;
+            PreviewView = false;
+            if (rowIndex >= 0 && rowIndex < imagesList.Count)
+            {
+                hmUI_widget_IMG img = imagesList[rowIndex];
+                uCtrl_Image_Widgets_Opt.SetImage(img.src);
+                uCtrl_Image_Widgets_Opt.numericUpDown_X.Value = img.x;
+                uCtrl_Image_Widgets_Opt.numericUpDown_Y.Value = img.y;
+                uCtrl_Image_Widgets_Opt.numericUpDown_Alpha.Value = img.alpha;
+            }
+            PreviewView = previewView;
+        }
+
+        private void uCtrl_Image_Widgets_Opt_ValueChanged(object sender, EventArgs eventArgs, int rowIndex)
+        {
+            if (!PreviewView) return;
+            List<hmUI_widget_IMG> imagesList = ImageWidgets_List();
+            if (imagesList == null) return;
+
+            if (rowIndex >= 0 && rowIndex < imagesList.Count)
+            {
+                hmUI_widget_IMG img = imagesList[rowIndex];
+                img.src = uCtrl_Image_Widgets_Opt.GetImage();
+                img.x = (int)uCtrl_Image_Widgets_Opt.numericUpDown_X.Value;
+                img.y = (int)uCtrl_Image_Widgets_Opt.numericUpDown_Y.Value;
+                img.alpha = (int)uCtrl_Image_Widgets_Opt.numericUpDown_Alpha.Value;
+
+                JSON_Modified = true;
+                PreviewImage();
+                FormText();
+            }
+        }
+
+        private void uCtrl_Image_Widgets_Opt_VisibleImageChanged(int rowIndex, bool visible)
+        {
+            if (!PreviewView) return;
+            List<hmUI_widget_IMG> imagesList = ImageWidgets_List();
+            if (imagesList == null) return;
+
+            if (rowIndex >= 0 && rowIndex < imagesList.Count)
+            {
+                imagesList[rowIndex].visible = visible;
+
+                JSON_Modified = true;
+                PreviewImage();
+                FormText();
+            }
+        }
+
+        private void uCtrl_Image_Widgets_Opt_AddImage(int rowIndex)
+        {
+            List<hmUI_widget_IMG> imagesList = ImageWidgets_List();
+            if (imagesList == null) return;
+
+            // новое изображение берет параметры выбранного, чтобы его было удобно сдвинуть
+            hmUI_widget_IMG img = new hmUI_widget_IMG();
+            if (imagesList.Count > 0)
+            {
+                img.src = uCtrl_Image_Widgets_Opt.GetImage();
+                img.x = (int)uCtrl_Image_Widgets_Opt.numericUpDown_X.Value;
+                img.y = (int)uCtrl_Image_Widgets_Opt.numericUpDown_Y.Value;
+                img.alpha = (int)uCtrl_Image_Widgets_Opt.numericUpDown_Alpha.Value;
+            }
+            img.visible = true;
+
+            if (rowIndex < 0 || rowIndex >= imagesList.Count - 1)
+            {
+                imagesList.Add(img);
+                rowIndex = imagesList.Count - 1;
+            }
+            else imagesList.Insert(++rowIndex, img);
+
+            uCtrl_Image_Widgets_Opt.UpdateImageList(ImageWidgets_NameList(imagesList), ImageWidgets_VisibleList(imagesList), rowIndex);
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+
+        private void uCtrl_Image_Widgets_Opt_DelImage(int rowIndex)
+        {
+            List<hmUI_widget_IMG> imagesList = ImageWidgets_List();
+            if (imagesList == null) return;
+
+            if (rowIndex >= 0 && rowIndex < imagesList.Count) imagesList.RemoveAt(rowIndex);
+            if (rowIndex >= imagesList.Count) rowIndex = imagesList.Count - 1;
+
+            uCtrl_Image_Widgets_Opt.UpdateImageList(ImageWidgets_NameList(imagesList), ImageWidgets_VisibleList(imagesList), rowIndex);
+
+            JSON_Modified = true;
+            PreviewImage();
+            FormText();
+        }
+        #endregion
 
         /// <summary>Читаем настройки кнопки</summary>
         private void Read_ButtonOne_Options(Button button)

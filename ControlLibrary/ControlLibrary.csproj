@@ -531,6 +531,18 @@
     <Compile Include="Elements\UCtrl_Image_Elm.Designer.cs">
       <DependentUpon>UCtrl_Image_Elm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Elements\UCtrl_Images_Elm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Elements\UCtrl_Images_Elm.Designer.cs">
+      <DependentUpon>UCtrl_Images_Elm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCtrl_Image_Widgets_Opt.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCtrl_Image_Widgets_Opt.Designer.cs">
+      <DependentUpon>UCtrl_Image_Widgets_Opt.cs</DependentUpon>
+    </Compile>
     <Compile Include="UCtrl_JS_script_Opt.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1603,6 +1615,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_Image_Elm.zh.resx">
       <DependentUpon>UCtrl_Image_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Images_Elm.resx">
+      <DependentUpon>UCtrl_Images_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Images_Elm.en.resx">
+      <DependentUpon>UCtrl_Images_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Elements\UCtrl_Images_Elm.uk.resx">
+      <DependentUpon>UCtrl_Images_Elm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_Image_Widgets_Opt.resx">
+      <DependentUpon>UCtrl_Image_Widgets_Opt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_Image_Widgets_Opt.en.resx">
+      <DependentUpon>UCtrl_Image_Widgets_Opt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCtrl_Image_Widgets_Opt.uk.resx">
+      <DependentUpon>UCtrl_Image_Widgets_Opt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Elements\UCtrl_JSscript_Elm.cs.resx">
       <DependentUpon>UCtrl_JSscript_Elm.cs</DependentUpon>

@@ -12271,6 +12271,53 @@ namespace Watch_Face_Editor
         public bool visible = true;
     }
 
+    /// <summary>Набор из нескольких изображений</summary>
+    public class ElementImages : ICloneable
+    {
+        public string elementName = "ElementImages";
+
+        /// <summary>Видимость элемента</summary>
+        public bool visible = true;
+
+        /// <summary>Список изображений</summary>
+        public List<hmUI_widget_IMG> Images { get; set; }
+
+        public static hmUI_widget_IMG CopyImage(hmUI_widget_IMG img)
+        {
+            if (img == null) return null;
+            return new hmUI_widget_IMG
+            {
+                x = img.x,
+                y = img.y,
+                w = img.w,
+                h = img.h,
+                src = img.src,
+                alpha = img.alpha,
+
+                position = img.position,
+                visible = img.visible,
+                show_level = img.show_level,
+            };
+        }
+
+        public object Clone()
+        {
+            List<hmUI_widget_IMG> images = null;
+            if (this.Images != null)
+            {
+                images = new List<hmUI_widget_IMG>();
+                foreach (hmUI_widget_IMG img in this.Images) images.Add(CopyImage(img));
+            }
+
+            return new ElementImages
+            {
+                elementName = this.elementName,
+                visible = this.visible,
+                Images = images,
+            };
+        }
+    }
+
     public class ElementImage : ICloneable
     {
         public string elementName = "ElementImage";

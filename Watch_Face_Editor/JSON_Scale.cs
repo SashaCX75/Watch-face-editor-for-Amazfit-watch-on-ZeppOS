@@ -629,6 +629,13 @@ namespace Watch_Face_Editor
                     ElementImage elementImage = (ElementImage)elements;
                     Scale_IMG(elementImage.Icon, scale);
                     break;
+                case "ElementImages":
+                    ElementImages elementImages = (ElementImages)elements;
+                    if (elementImages.Images != null)
+                    {
+                        foreach (hmUI_widget_IMG img in elementImages.Images) Scale_IMG(img, scale);
+                    }
+                    break;
                 case "ElementCompass":
                     ElementCompass elementCompass = (ElementCompass)elements;
                     Scale_IMG_LEVEL(elementCompass.Images, scale);

@@ -5435,6 +5435,35 @@ namespace Watch_Face_Editor
                     break;
                 #endregion
 
+                #region ElementImages
+                case "ElementImages":
+                    ElementImages elementImages = (ElementImages)element;
+                    if (!elementImages.visible) return;
+                    if (elementImages.Images == null) break;
+
+                    foreach (hmUI_widget_IMG img in elementImages.Images)
+                    {
+                        if (img == null || !img.visible || img.src == null || img.src.Length == 0) continue;
+                        int imageIndex = ListImages.IndexOf(img.src);
+                        if (imageIndex < 0 || imageIndex >= ListImagesFullName.Count) continue;
+
+                        Bitmap imgSrc = OpenFileStream(ListImagesFullName[imageIndex]);
+                        if (imgSrc == null) continue;
+                        if (SelectedModel.versionOS >= 2.1 && img.alpha != 255)
+                        {
+                            ColorMatrix colorMatrix = new ColorMatrix();
+                            colorMatrix.Matrix33 = img.alpha / 255f;
+                            ImageAttributes imgAttributes = new ImageAttributes();
+                            imgAttributes.SetColorMatrix(colorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+                            Rectangle rect_alpha = new Rectangle(img.x, img.y, imgSrc.Width, imgSrc.Height);
+                            gPanel.DrawImage(imgSrc, rect_alpha, 0, 0, imgSrc.Width, imgSrc.Height, GraphicsUnit.Pixel, imgAttributes);
+                        }
+                        else gPanel.DrawImage(imgSrc, img.x, img.y);
+                        imgSrc.Dispose();
+                    }
+                    break;
+                #endregion
+
 
                 #region ElementAnimation
                 case "ElementAnimation":

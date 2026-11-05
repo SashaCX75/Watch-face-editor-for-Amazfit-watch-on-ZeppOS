@@ -196,8 +196,11 @@ namespace Watch_Face_Editor
             this.uCtrl_Sleep_Elm = new ControlLibrary.UCtrl_Sleep_Elm();
             this.panel_UC_TextWidgets = new System.Windows.Forms.Panel();
             this.uCtrl_TextWidgets_Elm = new ControlLibrary.UCtrl_TextWidgets_Elm();
+            this.panel_UC_Images = new System.Windows.Forms.Panel();
+            this.uCtrl_Images_Elm = new ControlLibrary.UCtrl_Images_Elm();
             this.panel_ElementsOpt = new System.Windows.Forms.Panel();
             this.uCtrl_Text_Widgets_Opt = new ControlLibrary.UCtrl_Text_Widgets_Opt();
+            this.uCtrl_Image_Widgets_Opt = new ControlLibrary.UCtrl_Image_Widgets_Opt();
             this.uCtrl_SleepChart_Opt = new ControlLibrary.UCtrl_SleepChart_Opt();
             this.uCtrl_Switch_BG_Color_Opt = new ControlLibrary.UCtrl_Switch_BG_Color_Opt();
             this.uCtrl_Switch_Background_Opt = new ControlLibrary.UCtrl_Switch_Background_Opt();
@@ -559,6 +562,7 @@ namespace Watch_Face_Editor
             this.panel_UC_BioCharge.SuspendLayout();
             this.panel_UC_Sleep.SuspendLayout();
             this.panel_UC_TextWidgets.SuspendLayout();
+            this.panel_UC_Images.SuspendLayout();
             this.panel_ElementsOpt.SuspendLayout();
             this.panel_MainScreen_AOD.SuspendLayout();
             this.tabPage_Show_Set.SuspendLayout();
@@ -999,6 +1003,7 @@ namespace Watch_Face_Editor
             resources.GetString("comboBox_AddSystem.Items6"),
             resources.GetString("comboBox_AddSystem.Items7"),
             resources.GetString("comboBox_AddSystem.Items8"),
+            resources.GetString("comboBox_AddSystem.Items16"),
             resources.GetString("comboBox_AddSystem.Items9"),
             resources.GetString("comboBox_AddSystem.Items10"),
             resources.GetString("comboBox_AddSystem.Items11"),
@@ -1111,7 +1116,7 @@ namespace Watch_Face_Editor
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_RepeatingAlert, 0, 4);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_DateMonth, 0, 15);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_DateYear, 0, 16);
-            this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Background, 0, 55);
+            this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Background, 0, 56);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_DateWeek, 0, 17);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Steps, 0, 20);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Statuses, 0, 19);
@@ -1134,13 +1139,13 @@ namespace Watch_Face_Editor
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Sunrise, 0, 37);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Wind, 0, 38);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Moon, 0, 40);
-            this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Animation, 0, 54);
+            this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Animation, 0, 55);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_DisconnectAlert, 0, 3);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_AnalogTimePro, 0, 7);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Image, 0, 39);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_TopImage, 0, 5);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Buttons, 0, 2);
-            this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_JS, 0, 53);
+            this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_JS, 0, 54);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Compass, 0, 41);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Weather_v2, 0, 30);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Weather_FewDay, 0, 31);
@@ -1160,6 +1165,7 @@ namespace Watch_Face_Editor
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_BioCharge, 0, 50);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Sleep, 0, 51);
             this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_TextWidgets, 0, 52);
+            this.tableLayoutPanel_ElemetsWatchFace.Controls.Add(this.panel_UC_Images, 0, 53);
             this.tableLayoutPanel_ElemetsWatchFace.Name = "tableLayoutPanel_ElemetsWatchFace";
             this.tableLayoutPanel_ElemetsWatchFace.DragOver += new System.Windows.Forms.DragEventHandler(this.tableLayoutPanel1_DragOver);
             // 
@@ -2218,11 +2224,29 @@ namespace Watch_Face_Editor
             this.uCtrl_TextWidgets_Elm.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Control_MouseDown);
             this.uCtrl_TextWidgets_Elm.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Control_MouseMove);
             this.uCtrl_TextWidgets_Elm.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Control_MouseUp);
-            // 
+            //
+            // panel_UC_Images
+            //
+            resources.ApplyResources(this.panel_UC_Images, "panel_UC_Images");
+            this.panel_UC_Images.Controls.Add(this.uCtrl_Images_Elm);
+            this.panel_UC_Images.Name = "panel_UC_Images";
+            //
+            // uCtrl_Images_Elm
+            //
+            resources.ApplyResources(this.uCtrl_Images_Elm, "uCtrl_Images_Elm");
+            this.uCtrl_Images_Elm.Name = "uCtrl_Images_Elm";
+            this.uCtrl_Images_Elm.SelectChanged += new ControlLibrary.UCtrl_Images_Elm.SelectChangedHandler(this.uCtrl_Images_Elm_SelectChanged);
+            this.uCtrl_Images_Elm.VisibleElementChanged += new ControlLibrary.UCtrl_Images_Elm.VisibleElementChangedHandler(this.uCtrl_Images_Elm_VisibleElementChanged);
+            this.uCtrl_Images_Elm.DelElement += new ControlLibrary.UCtrl_Images_Elm.DelElementHandler(this.uCtrl_Elm_DelElement);
+            this.uCtrl_Images_Elm.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Control_MouseDown);
+            this.uCtrl_Images_Elm.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Control_MouseMove);
+            this.uCtrl_Images_Elm.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Control_MouseUp);
+            //
             // panel_ElementsOpt
-            // 
+            //
             resources.ApplyResources(this.panel_ElementsOpt, "panel_ElementsOpt");
             this.panel_ElementsOpt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_ElementsOpt.Controls.Add(this.uCtrl_Image_Widgets_Opt);
             this.panel_ElementsOpt.Controls.Add(this.uCtrl_Text_Widgets_Opt);
             this.panel_ElementsOpt.Controls.Add(this.uCtrl_SleepChart_Opt);
             this.panel_ElementsOpt.Controls.Add(this.uCtrl_Switch_BG_Color_Opt);
@@ -2273,6 +2297,16 @@ namespace Watch_Face_Editor
             this.uCtrl_Text_Widgets_Opt.WidgetProperty_Copy += new ControlLibrary.UCtrl_Text_Widgets_Opt.WidgetProperty_Copy_Handler(this.uCtrl_Text_Widgets_Opt_WidgetProperty_Copy);
             this.uCtrl_Text_Widgets_Opt.WidgetProperty_Paste += new ControlLibrary.UCtrl_Text_Widgets_Opt.WidgetProperty_Paste_Handler(this.uCtrl_Text_Widgets_Opt_WidgetProperty_Paste);
             this.uCtrl_Text_Widgets_Opt.CustomColorsChanged += new ControlLibrary.UCtrl_Text_Widgets_Opt.CustomColorsChangedHandler(this.uCtrl_Text_Widgets_Opt_CustomColorsChanged);
+            //
+            // uCtrl_Image_Widgets_Opt
+            //
+            resources.ApplyResources(this.uCtrl_Image_Widgets_Opt, "uCtrl_Image_Widgets_Opt");
+            this.uCtrl_Image_Widgets_Opt.Name = "uCtrl_Image_Widgets_Opt";
+            this.uCtrl_Image_Widgets_Opt.ValueChanged += new ControlLibrary.UCtrl_Image_Widgets_Opt.ValueChangedHandler(this.uCtrl_Image_Widgets_Opt_ValueChanged);
+            this.uCtrl_Image_Widgets_Opt.AddImage += new ControlLibrary.UCtrl_Image_Widgets_Opt.AddImageHandler(this.uCtrl_Image_Widgets_Opt_AddImage);
+            this.uCtrl_Image_Widgets_Opt.DelImage += new ControlLibrary.UCtrl_Image_Widgets_Opt.DelImageHandler(this.uCtrl_Image_Widgets_Opt_DelImage);
+            this.uCtrl_Image_Widgets_Opt.SelectImageWidget += new ControlLibrary.UCtrl_Image_Widgets_Opt.SelectImageWidgetHandler(this.uCtrl_Image_Widgets_Opt_SelectImageWidget);
+            this.uCtrl_Image_Widgets_Opt.VisibleImageChanged += new ControlLibrary.UCtrl_Image_Widgets_Opt.VisibleImageChangedHandler(this.uCtrl_Image_Widgets_Opt_VisibleImageChanged);
             // 
             // uCtrl_SleepChart_Opt
             // 
@@ -4948,6 +4982,8 @@ namespace Watch_Face_Editor
             this.panel_UC_Sleep.PerformLayout();
             this.panel_UC_TextWidgets.ResumeLayout(false);
             this.panel_UC_TextWidgets.PerformLayout();
+            this.panel_UC_Images.ResumeLayout(false);
+            this.panel_UC_Images.PerformLayout();
             this.panel_ElementsOpt.ResumeLayout(false);
             this.panel_MainScreen_AOD.ResumeLayout(false);
             this.panel_MainScreen_AOD.PerformLayout();
@@ -5364,6 +5400,9 @@ namespace Watch_Face_Editor
         private System.Windows.Forms.Panel panel_UC_TextWidgets;
         private ControlLibrary.UCtrl_TextWidgets_Elm uCtrl_TextWidgets_Elm;
         private ControlLibrary.UCtrl_Text_Widgets_Opt uCtrl_Text_Widgets_Opt;
+        private System.Windows.Forms.Panel panel_UC_Images;
+        private ControlLibrary.UCtrl_Images_Elm uCtrl_Images_Elm;
+        private ControlLibrary.UCtrl_Image_Widgets_Opt uCtrl_Image_Widgets_Opt;
         private System.Windows.Forms.Button button_createZAB;
         internal System.Windows.Forms.CheckBox checkBox_Shortcuts_In_Gif;
         internal System.Windows.Forms.CheckBox checkBox_Buttons_In_Gif;

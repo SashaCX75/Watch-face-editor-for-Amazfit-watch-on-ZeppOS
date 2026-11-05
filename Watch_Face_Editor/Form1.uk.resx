@@ -6910,4 +6910,7 @@ PayPal: sashacx75@gmail.com</value>
         AACAAQAAgAEAAIABAAAAAAAAAAAAAAAAAAAAAAAAgAEAAIABAACAAQAAwAMAAOAHAAD8PwAA
 </value>
   </data>
+  <data name="comboBox_AddSystem.Items16" xml:space="preserve">
+    <value>Набір зображень</value>
+  </data>
 </root>

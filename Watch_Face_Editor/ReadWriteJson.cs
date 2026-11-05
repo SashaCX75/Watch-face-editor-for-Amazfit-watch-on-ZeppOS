@@ -13453,6 +13453,30 @@ namespace Watch_Face_Editor
                     break;
                 #endregion
 
+                #region ElementImages
+                case "ElementImages":
+                    ElementImages Images = (ElementImages)element;
+                    if (!Images.visible || Images.Images == null) return;
+
+                    // номер в имени = номер строки в списке, чтобы при чтении сохранить порядок
+                    for (int imageNumber = 1; imageNumber <= Images.Images.Count; imageNumber++)
+                    {
+                        hmUI_widget_IMG imageWidget = Images.Images[imageNumber - 1];
+                        if (imageWidget == null || !imageWidget.visible) continue;
+                        string imageOptions = IMG_Options(imageWidget, show_level);
+                        if (imageOptions.Length <= 5) continue;
+
+                        string imageName = optionNameStart + "widget_img_" + imageNumber.ToString();
+                        variables += TabInString(4) + "let " + imageName + " = ''" + Environment.NewLine;
+                        items += Environment.NewLine + TabInString(6) + imageName +
+                            " = hmUI.createWidget(hmUI.widget.IMG, {" + imageOptions + TabInString(6) + "});" + Environment.NewLine;
+
+                        if (imageWidget.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) +
+                                imageName + ".setAlpha(" + imageWidget.alpha.ToString() + ");" + Environment.NewLine;
+                    }
+                    break;
+                #endregion
+
                 #region ElementCompass
                 case "ElementCompass":
                     ElementCompass Compass = (ElementCompass)element;
@@ -27377,6 +27401,37 @@ namespace Watch_Face_Editor
                                     }
                                 }
 
+                            }
+
+                            if (objectName.Contains("widget_img_") && elementsList != null)
+                            {
+                                ElementImages images = (ElementImages)elementsList.Find(e => e.GetType().Name == "ElementImages");
+                                if (images == null)
+                                {
+                                    images = new ElementImages();
+                                    elementsList.Add(images);
+                                }
+                                if (images.Images == null) images.Images = new List<hmUI_widget_IMG>();
+
+                                int imageNumber = -1;
+                                int numberPos = objectName.LastIndexOf('_');
+                                if (numberPos >= 0 && numberPos < objectName.Length - 1)
+                                    int.TryParse(objectName.Substring(numberPos + 1), out imageNumber);
+
+                                hmUI_widget_IMG image_widget = new hmUI_widget_IMG();
+                                image_widget.src = img.src;
+                                image_widget.x = img.x;
+                                image_widget.y = img.y;
+                                image_widget.alpha = img.alpha;
+                                image_widget.visible = true;
+
+                                // скрытые изображения в JS не попадают: на их место ставим пустые невидимые
+                                while (imageNumber > images.Images.Count + 1)
+                                    images.Images.Add(new hmUI_widget_IMG() { visible = false });
+                                if (imageNumber >= 1 && imageNumber <= images.Images.Count &&
+                                    !images.Images[imageNumber - 1].visible && images.Images[imageNumber - 1].src == null)
+                                    images.Images[imageNumber - 1] = image_widget;
+                                else images.Images.Add(image_widget);
                             }
 
                             if (objectName.EndsWith("image_img"))

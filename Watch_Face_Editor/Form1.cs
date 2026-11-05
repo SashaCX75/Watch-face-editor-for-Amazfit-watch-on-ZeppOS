@@ -3001,6 +3001,7 @@ namespace Watch_Face_Editor
                 hmUI_widget_IMG icon = null;
                 hmUI_widget_TEXT text = null;
                 Button button = null;
+                hmUI_widget_IMG_POINTER img_pointer = null;
 
                 switch (selectElement)
                 {
@@ -3010,6 +3011,26 @@ namespace Watch_Face_Editor
                             text = worldClock.Time;
                             Read_Text_Options(text, true, true, true, true);
                             ShowElemenOptions("SystemFont");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "HourPointer":
+                        if (uCtrl_WorldClock_Elm.checkBox_HourPointer.Checked)
+                        {
+                            img_pointer = worldClock.HourPointer;
+                            Read_ImgPointer_Options(img_pointer, false);
+                            uCtrl_Pointer_Opt.TimeMode = false;
+                            ShowElemenOptions("Pointer");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "MinutePointer":
+                        if (uCtrl_WorldClock_Elm.checkBox_MinutePointer.Checked)
+                        {
+                            img_pointer = worldClock.MinutePointer;
+                            Read_ImgPointer_Options(img_pointer, false);
+                            uCtrl_Pointer_Opt.TimeMode = false;
+                            ShowElemenOptions("Pointer");
                         }
                         else HideAllElemenrOptions();
                         break;
@@ -7298,6 +7319,16 @@ namespace Watch_Face_Editor
                                 {
                                     uCtrl_WorldClock_Elm.checkBox_Icon.Checked = WorldClock.Icon.visible;
                                     elementOptions.Add(WorldClock.Icon.position, "Icon");
+                                }
+                                if (WorldClock.HourPointer != null)
+                                {
+                                    uCtrl_WorldClock_Elm.checkBox_HourPointer.Checked = WorldClock.HourPointer.visible;
+                                    elementOptions.Add(WorldClock.HourPointer.position, "HourPointer");
+                                }
+                                if (WorldClock.MinutePointer != null)
+                                {
+                                    uCtrl_WorldClock_Elm.checkBox_MinutePointer.Checked = WorldClock.MinutePointer.visible;
+                                    elementOptions.Add(WorldClock.MinutePointer.position, "MinutePointer");
                                 }
 
                             uCtrl_WorldClock_Elm.SetOptionsPosition(elementOptions);
@@ -14640,6 +14671,8 @@ namespace Watch_Face_Editor
                 if (worldClock.ButtonPrev == null) worldClock.ButtonPrev = new Button();
                 if (worldClock.ButtonNext == null) worldClock.ButtonNext = new Button();
                 if (worldClock.Icon == null) worldClock.Icon = new hmUI_widget_IMG();
+                if (worldClock.HourPointer == null) worldClock.HourPointer = new hmUI_widget_IMG_POINTER();
+                if (worldClock.MinutePointer == null) worldClock.MinutePointer = new hmUI_widget_IMG_POINTER();
 
                 Dictionary<string, int> elementOptions = uCtrl_WorldClock_Elm.GetOptionsPosition();
                 if (elementOptions.ContainsKey("Time")) worldClock.Time.position = elementOptions["Time"];
@@ -14649,6 +14682,8 @@ namespace Watch_Face_Editor
                 if (elementOptions.ContainsKey("ButtonPrev")) worldClock.ButtonPrev.position = elementOptions["ButtonPrev"];
                 if (elementOptions.ContainsKey("ButtonNext")) worldClock.ButtonNext.position = elementOptions["ButtonNext"];
                 if (elementOptions.ContainsKey("Icon")) worldClock.Icon.position = elementOptions["Icon"];
+                if (elementOptions.ContainsKey("HourPointer")) worldClock.HourPointer.position = elementOptions["HourPointer"];
+                if (elementOptions.ContainsKey("MinutePointer")) worldClock.MinutePointer.position = elementOptions["MinutePointer"];
 
                 CheckBox checkBox = (CheckBox)sender;
                 string name = checkBox.Name;
@@ -14674,6 +14709,12 @@ namespace Watch_Face_Editor
                         break;
                     case "checkBox_Icon":
                         worldClock.Icon.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_HourPointer":
+                        worldClock.HourPointer.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_MinutePointer":
+                        worldClock.MinutePointer.visible = checkBox.Checked;
                         break;
                 }
 
@@ -14722,6 +14763,8 @@ namespace Watch_Face_Editor
                 if (worldClock.ButtonPrev == null) worldClock.ButtonPrev = new Button();
                 if (worldClock.ButtonNext == null) worldClock.ButtonNext = new Button();
                 if (worldClock.Icon == null) worldClock.Icon = new hmUI_widget_IMG();
+                if (worldClock.HourPointer == null) worldClock.HourPointer = new hmUI_widget_IMG_POINTER();
+                if (worldClock.MinutePointer == null) worldClock.MinutePointer = new hmUI_widget_IMG_POINTER();
 
                 //Dictionary<string, int> elementOptions = uCtrl_AnalogTime_Elm.GetOptionsPosition();
                 if (elementOptions.ContainsKey("Time")) worldClock.Time.position = elementOptions["Time"];
@@ -14731,6 +14774,8 @@ namespace Watch_Face_Editor
                 if (elementOptions.ContainsKey("ButtonPrev")) worldClock.ButtonPrev.position = elementOptions["ButtonPrev"];
                 if (elementOptions.ContainsKey("ButtonNext")) worldClock.ButtonNext.position = elementOptions["ButtonNext"];
                 if (elementOptions.ContainsKey("Icon")) worldClock.Icon.position = elementOptions["Icon"];
+                if (elementOptions.ContainsKey("HourPointer")) worldClock.HourPointer.position = elementOptions["HourPointer"];
+                if (elementOptions.ContainsKey("MinutePointer")) worldClock.MinutePointer.position = elementOptions["MinutePointer"];
 
             }
 

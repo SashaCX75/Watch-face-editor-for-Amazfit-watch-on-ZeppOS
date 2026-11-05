@@ -13367,8 +13367,53 @@ namespace Watch_Face_Editor
                             src.Dispose();
                         }
                     }
+
+                    // стрелки мирового времени (время города = время предпросмотра - 1 час, как у текста)
+                    int worldHour = WatchFacePreviewSet.DateTime.Time.Hour - 1;
+                    if (worldHour < 0) worldHour += 24;
+                    int worldMinute = WatchFacePreviewSet.DateTime.Time.Minute;
+
+                    hmUI_widget_IMG_POINTER hourPointer = worldClock.HourPointer;
+                    if (hourPointer != null && hourPointer.src != null && hourPointer.src.Length > 0 &&
+                        index == hourPointer.position && hourPointer.visible)
+                    {
+                        int fullAngl = hourPointer.end_angle - hourPointer.start_angle;
+                        int hour12 = worldHour % 12;
+                        float angle = hourPointer.start_angle + fullAngl * hour12 / 12f + fullAngl * worldMinute / (60f * 12);
+                        DrawWorldClockPointer(gPanel, hourPointer, angle, showCentrHend);
+                    }
+
+                    hmUI_widget_IMG_POINTER minutePointer = worldClock.MinutePointer;
+                    if (minutePointer != null && minutePointer.src != null && minutePointer.src.Length > 0 &&
+                        index == minutePointer.position && minutePointer.visible)
+                    {
+                        int fullAngl = minutePointer.end_angle - minutePointer.start_angle;
+                        float angle = minutePointer.start_angle + fullAngl * worldMinute / 60f;
+                        DrawWorldClockPointer(gPanel, minutePointer, angle, showCentrHend);
+                    }
                 }
 
+            }
+        }
+
+        /// <summary>Рисуем стрелку мирового времени и ее центральную накладку</summary>
+        private void DrawWorldClockPointer(Graphics gPanel, hmUI_widget_IMG_POINTER pointer, float angle, bool showCentrHend)
+        {
+            int image_index = ListImages.IndexOf(pointer.src);
+            DrawPointer(gPanel, pointer.center_x, pointer.center_y, pointer.pos_x, pointer.pos_y, image_index, angle, showCentrHend);
+
+            if (pointer.cover_path != null && pointer.cover_path.Length > 0)
+            {
+                int cover_index = ListImages.IndexOf(pointer.cover_path);
+                if (cover_index >= 0 && cover_index < ListImagesFullName.Count)
+                {
+                    Bitmap cover = OpenFileStream(ListImagesFullName[cover_index]);
+                    if (cover != null)
+                    {
+                        gPanel.DrawImage(cover, pointer.cover_x, pointer.cover_y);
+                        cover.Dispose();
+                    }
+                }
             }
         }
 

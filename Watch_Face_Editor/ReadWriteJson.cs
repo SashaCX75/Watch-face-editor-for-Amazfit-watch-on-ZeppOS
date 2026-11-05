@@ -1017,6 +1017,10 @@ namespace Watch_Face_Editor
             {
                 updateWorldTime += Environment.NewLine + TabInString(7) + "updateTimeDifferenceGMT();";
             }
+            if (items.Contains("function updatePointersGMT()"))
+            {
+                updateWorldTime += Environment.NewLine + TabInString(7) + "updatePointersGMT();";
+            }
             if (updateWorldTime.Length > 5)
             {
                 items += Environment.NewLine + TabInString(6) + "//#region updateWorldTime";
@@ -4318,9 +4322,25 @@ namespace Watch_Face_Editor
                         hmUI_widget_IMG img_icon = WorldClock.Icon;
                         iconOptions = IMG_Options(img_icon, show_level);
                     }
+                    int hourPointerGMTPosition = 99;
+                    int minutePointerGMTPosition = 99;
+                    if (WorldClock.HourPointer != null && WorldClock.HourPointer.visible)
+                        hourPointerGMTPosition = WorldClock.HourPointer.position;
+                    if (WorldClock.MinutePointer != null && WorldClock.MinutePointer.visible)
+                        minutePointerGMTPosition = WorldClock.MinutePointer.position;
 
                     for (int index = 1; index <= 10; index++)
                     {
+                        // Hour pointer
+                        if (index == hourPointerGMTPosition)
+                            AddWorldClockPointerToJS(WorldClock.HourPointer, true, optionNameStart, show_level,
+                                ref variables, ref items, ref resume_call, ref pause_call);
+
+                        // Minute pointer
+                        if (index == minutePointerGMTPosition)
+                            AddWorldClockPointerToJS(WorldClock.MinutePointer, false, optionNameStart, show_level,
+                                ref variables, ref items, ref resume_call, ref pause_call);
+
                         // Time
                         if (index == timePosition && timeOptions.Length > 5)
                         {
@@ -25453,6 +25473,124 @@ namespace Watch_Face_Editor
             return returnStr;
         }
 
+        /// <summary>Добавляем часовую или минутную стрелку мирового времени</summary>
+        /// <param name="pointer">Параметры стрелки</param>
+        /// <param name="isHour">true - часовая стрелка, false - минутная</param>
+        private void AddWorldClockPointerToJS(hmUI_widget_IMG_POINTER pointer, bool isHour, string optionNameStart, string show_level,
+            ref string variables, ref string items, ref string resume_call, ref string pause_call)
+        {
+            if (pointer == null || !pointer.visible) return;
+            string pointerOptions = TIME_PRO_POINTER_Options(pointer, show_level);
+            if (pointerOptions.Length <= 5) return;
+
+            string typeName = isHour ? "hour" : "minute";
+            string readOptions = CUSTOM_POINTER_OptionsRead(pointer, optionNameStart,
+                isHour ? "WORLD_CLOCK_HOUR" : "WORLD_CLOCK_MINUTE", show_level);
+            string coverOptions = IMG_Pointer_Cover_Options(pointer, show_level);
+            string widgetName = optionNameStart + "gmt_" + typeName + "_pointer_img";
+
+            variables += TabInString(4) + "let " + widgetName + " = ''" + Environment.NewLine;
+            if (variables.IndexOf("let worldClockIndex = 0") < 0)
+                variables += TabInString(4) + "let worldClockIndex = 0" + Environment.NewLine;
+
+            if (items.IndexOf("const deviceInfo = hmSetting.getDeviceInfo();") < 0)
+                items += Environment.NewLine + TabInString(6) + "const deviceInfo = hmSetting.getDeviceInfo();";
+
+            if (items.IndexOf("worldClock = hmSensor.createSensor(hmSensor.id.WORLD_CLOCK);") < 0)
+            {
+                items += TabInString(6) + Environment.NewLine;
+                items += TabInString(6) + "if (!worldClock) {" + Environment.NewLine;
+                items += TabInString(7) + "worldClock = hmSensor.createSensor(hmSensor.id.WORLD_CLOCK);" + Environment.NewLine;
+                items += TabInString(7) + "worldClock.init();" + Environment.NewLine;
+                items += TabInString(6) + "};" + Environment.NewLine;
+            }
+
+            items += readOptions + Environment.NewLine;
+            items += Environment.NewLine + TabInString(6) + widgetName + " = hmUI.createWidget(hmUI.widget.IMG, {" +
+                pointerOptions + TabInString(6) + "});" + Environment.NewLine;
+
+            if (coverOptions.Length > 5)
+            {
+                string coverName = optionNameStart + "gmt_" + typeName + "_cover_pointer_img";
+                variables += TabInString(4) + "let " + coverName + " = ''" + Environment.NewLine;
+                items += Environment.NewLine + TabInString(6) + coverName + " = hmUI.createWidget(hmUI.widget.IMG, {" +
+                    coverOptions + TabInString(6) + "});" + Environment.NewLine;
+            }
+
+            // поворот стрелки по времени выбранного города
+            string fullAngleName = optionNameStart + "gmt_fullAngle_" + typeName;
+            string angleName = optionNameStart + "gmt_angle_" + typeName;
+            string angleCode = Environment.NewLine + TabInString(8) + "let " + fullAngleName + " = " +
+                (pointer.end_angle - pointer.start_angle).ToString() + ";";
+            if (isHour)
+                angleCode += Environment.NewLine + TabInString(8) + "let " + angleName + " = " + pointer.start_angle.ToString() +
+                    " + " + fullAngleName + "*(hour % 12)/12 + (" + fullAngleName + "/12)*minute/60;";
+            else
+                angleCode += Environment.NewLine + TabInString(8) + "let " + angleName + " = " + pointer.start_angle.ToString() +
+                    " + " + fullAngleName + "*minute/60;";
+            angleCode += Environment.NewLine + TabInString(8) + "if (" + widgetName + ") " + widgetName +
+                ".setProperty(hmUI.prop.ANGLE, " + angleName + ");";
+
+            string endMarker = Environment.NewLine + TabInString(7) + "} // end updatePointersGMT";
+            int functionPos = items.IndexOf("function updatePointersGMT() {");
+            if (functionPos < 0)
+            {
+                items += Environment.NewLine + TabInString(6) + "//#region updatePointersGMT";
+                items += Environment.NewLine + TabInString(6) + "function updatePointersGMT() {";
+                items += Environment.NewLine + TabInString(7) + "console.log('updatePointersGMT()');";
+                items += Environment.NewLine + TabInString(7) + "let count = worldClock.getWorldClockCount();";
+                items += Environment.NewLine + TabInString(7) + "if (count > 0) {";
+                items += Environment.NewLine + TabInString(8) + "if (worldClockIndex >= count) worldClockIndex = count-1;";
+                items += Environment.NewLine + TabInString(8) + "let worldData = worldClock.getWorldClockInfo(worldClockIndex);";
+                items += Environment.NewLine + TabInString(8) + "let hour = worldData.hour;";
+                items += Environment.NewLine + TabInString(8) + "let minute = worldData.minute;";
+                items += angleCode;
+                items += endMarker;
+                items += Environment.NewLine + TabInString(6) + "};";
+                items += Environment.NewLine + TabInString(6) + "//#endregion" + Environment.NewLine;
+            }
+            else
+            {
+                int endPos = items.IndexOf(endMarker, functionPos);
+                if (endPos > 0) items = items.Insert(endPos, angleCode);
+            }
+
+            AddWorldClockTimerJS(ref variables, ref resume_call, ref pause_call);
+        }
+
+        /// <summary>Добавляем таймер обновления мирового времени (если его еще нет)</summary>
+        private void AddWorldClockTimerJS(ref string variables, ref string resume_call, ref string pause_call)
+        {
+            if (resume_call.IndexOf("updateWorldTime(") >= 0) return;
+
+            string timerName = "worldClockTimer";
+            if (!variables.Contains("let " + timerName + ";"))
+            {
+                variables += TabInString(4) + "let " + timerName + ";" + Environment.NewLine;
+                variables += TabInString(4) + "let worldClockTimerCount = 0;" + Environment.NewLine;
+            }
+            if (!resume_call.Contains(timerName + " = timer.createTimer"))
+            {
+                resume_call += TabInString(8) + "if (worldClock.getWorldClockCount()) updateWorldTime(true);" + Environment.NewLine;
+                resume_call += TabInString(8) + "if (!" + timerName + ") {" + Environment.NewLine;
+                resume_call += TabInString(9) + timerName + " = timer.createTimer(500, 1000, (function (option) {" + Environment.NewLine;
+                resume_call += TabInString(10) + "if (worldClockTimerCount == 0 && worldClock.getWorldClockCount() > 0) {" + Environment.NewLine;
+                resume_call += TabInString(11) + "updateWorldTime();" + Environment.NewLine;
+                resume_call += TabInString(10) + "} else {" + Environment.NewLine;
+                resume_call += TabInString(11) + "worldClock.uninit();" + Environment.NewLine;
+                resume_call += TabInString(11) + "worldClock.init();" + Environment.NewLine;
+                resume_call += TabInString(11) + "updateWorldTime(true);" + Environment.NewLine;
+                resume_call += TabInString(10) + "}" + Environment.NewLine;
+                resume_call += TabInString(9) + "}));  // end timer " + Environment.NewLine;
+                resume_call += TabInString(8) + "};  // end timer check" + Environment.NewLine;
+
+                pause_call += TabInString(8) + "if (" + timerName + ") {" + Environment.NewLine;
+                pause_call += TabInString(9) + "timer.stopTimer(" + timerName + ");" + Environment.NewLine;
+                pause_call += TabInString(9) + timerName + " = undefined;" + Environment.NewLine;
+                pause_call += TabInString(8) + "}" + Environment.NewLine;
+            }
+        }
+
         /// <summary>Распознаем текст и преобразуем JS в Json</summary>
         private void JSToJson(string fileName, out string user_functions, out string user_script_start, out string user_script, out string user_script_AOD, out string user_script_beforeShortcuts, 
             out string user_script_end, out string resume_call, out string pause_call)
@@ -26303,6 +26441,8 @@ namespace Watch_Face_Editor
                                         if (worldClock.ButtonNext != null) offset++;
                                         if (worldClock.ButtonPrev != null) offset++;
                                         //if (worldClock.Icon != null) offset++;
+                                        if (worldClock.HourPointer != null) offset++;
+                                        if (worldClock.MinutePointer != null) offset++;
 
                                         worldClock.Icon = new hmUI_widget_IMG();
                                         worldClock.Icon.src = img.src;
@@ -38141,6 +38281,50 @@ namespace Watch_Face_Editor
                             }
                         }
 
+                        if (customPointer.type == "WORLD_CLOCK_HOUR" || customPointer.type == "WORLD_CLOCK_MINUTE")
+                        {
+                            ElementWorldClock worldClock = (ElementWorldClock)elementsList.Find(e => e.GetType().Name == "ElementWorldClock");
+                            if (worldClock == null)
+                            {
+                                elementsList.Add(new ElementWorldClock());
+                                worldClock = (ElementWorldClock)elementsList.Find(e => e.GetType().Name == "ElementWorldClock");
+                            }
+                            if (worldClock != null)
+                            {
+                                bool isHour = customPointer.type == "WORLD_CLOCK_HOUR";
+                                int offset = 1;
+                                if (worldClock.Time != null) offset++;
+                                if (worldClock.TimeZone != null) offset++;
+                                if (worldClock.CityName != null) offset++;
+                                if (worldClock.TimeDifference != null) offset++;
+                                if (worldClock.ButtonNext != null) offset++;
+                                if (worldClock.ButtonPrev != null) offset++;
+                                if (worldClock.Icon != null) offset++;
+                                if (!isHour && worldClock.HourPointer != null) offset++;
+                                if (isHour && worldClock.MinutePointer != null) offset++;
+
+                                hmUI_widget_IMG_POINTER worldClockPointer = new hmUI_widget_IMG_POINTER();
+                                worldClockPointer.src = customPointer.src;
+                                worldClockPointer.center_x = customPointer.center_x;
+                                worldClockPointer.center_y = customPointer.center_y;
+                                worldClockPointer.pos_x = customPointer.pos_x;
+                                worldClockPointer.pos_y = customPointer.pos_y;
+                                worldClockPointer.start_angle = customPointer.start_angle;
+                                worldClockPointer.end_angle = customPointer.end_angle;
+                                worldClockPointer.cover_path = customPointer.cover_path;
+                                worldClockPointer.cover_x = customPointer.cover_x;
+                                worldClockPointer.cover_y = customPointer.cover_y;
+                                worldClockPointer.scale = customPointer.scale;
+                                worldClockPointer.scale_x = customPointer.scale_x;
+                                worldClockPointer.scale_y = customPointer.scale_y;
+                                worldClockPointer.visible = true;
+                                worldClockPointer.position = offset;
+
+                                if (isHour) worldClock.HourPointer = worldClockPointer;
+                                else worldClock.MinutePointer = worldClockPointer;
+                            }
+                        }
+
                         break;
                     #endregion
 
@@ -39263,6 +39447,8 @@ namespace Watch_Face_Editor
                                 if (worldClock.ButtonNext != null) offset++;
                                 if (worldClock.ButtonPrev != null) offset++;
                                 if (worldClock.Icon != null) offset++;
+                                if (worldClock.HourPointer != null) offset++;
+                                if (worldClock.MinutePointer != null) offset++;
 
                                 worldClock.Time = new hmUI_widget_TEXT();
                                 worldClock.Time.x = text.x;
@@ -39321,6 +39507,8 @@ namespace Watch_Face_Editor
                                 if (worldClock.ButtonNext != null) offset++;
                                 if (worldClock.ButtonPrev != null) offset++;
                                 if (worldClock.Icon != null) offset++;
+                                if (worldClock.HourPointer != null) offset++;
+                                if (worldClock.MinutePointer != null) offset++;
 
                                 worldClock.TimeZone = new hmUI_widget_TEXT();
                                 worldClock.TimeZone.x = text.x;
@@ -39379,6 +39567,8 @@ namespace Watch_Face_Editor
                                 if (worldClock.ButtonNext != null) offset++;
                                 if (worldClock.ButtonPrev != null) offset++;
                                 if (worldClock.Icon != null) offset++;
+                                if (worldClock.HourPointer != null) offset++;
+                                if (worldClock.MinutePointer != null) offset++;
 
                                 worldClock.CityName = new hmUI_widget_TEXT();
                                 worldClock.CityName.x = text.x;
@@ -39437,6 +39627,8 @@ namespace Watch_Face_Editor
                                 if (worldClock.ButtonNext != null) offset++;
                                 if (worldClock.ButtonPrev != null) offset++;
                                 if (worldClock.Icon != null) offset++;
+                                if (worldClock.HourPointer != null) offset++;
+                                if (worldClock.MinutePointer != null) offset++;
 
                                 worldClock.TimeDifference = new hmUI_widget_TEXT();
                                 worldClock.TimeDifference.x = text.x;
@@ -44002,6 +44194,8 @@ namespace Watch_Face_Editor
                                 //if (worldClock.ButtonNext != null) offset++;
                                 if (worldClock.ButtonPrev != null) offset++;
                                 if (worldClock.Icon != null) offset++;
+                                if (worldClock.HourPointer != null) offset++;
+                                if (worldClock.MinutePointer != null) offset++;
 
                                 worldClock.ButtonNext = new Button();
                                 worldClock.ButtonNext.x = button.x;
@@ -44043,6 +44237,8 @@ namespace Watch_Face_Editor
                                 if (worldClock.ButtonNext != null) offset++;
                                 //if (worldClock.ButtonPrev != null) offset++;
                                 if (worldClock.Icon != null) offset++;
+                                if (worldClock.HourPointer != null) offset++;
+                                if (worldClock.MinutePointer != null) offset++;
 
                                 worldClock.ButtonPrev = new Button();
                                 worldClock.ButtonPrev.x = button.x;

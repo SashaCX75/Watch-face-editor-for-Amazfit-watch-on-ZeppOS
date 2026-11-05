@@ -303,6 +303,8 @@ namespace Watch_Face_Editor
                     Scale_Button(elementWorldClock.ButtonPrev, scale);
                     Scale_Button(elementWorldClock.ButtonNext, scale);
                     Scale_IMG(elementWorldClock.Icon, scale);
+                    Scale_IMG_POINTER(elementWorldClock.HourPointer, scale);
+                    Scale_IMG_POINTER(elementWorldClock.MinutePointer, scale);
                     break;
                 case "ElementDateDay":
                     ElementDateDay elementDateDay = (ElementDateDay)elements;

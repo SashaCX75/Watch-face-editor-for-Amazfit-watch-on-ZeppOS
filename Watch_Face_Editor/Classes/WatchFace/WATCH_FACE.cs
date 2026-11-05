@@ -1411,6 +1411,38 @@ namespace Watch_Face_Editor
         public Button ButtonPrev { get; set; }
         public hmUI_widget_IMG Icon { get; set; }
 
+        /// <summary>Часовая стрелка мирового времени</summary>
+        public hmUI_widget_IMG_POINTER HourPointer { get; set; }
+
+        /// <summary>Минутная стрелка мирового времени</summary>
+        public hmUI_widget_IMG_POINTER MinutePointer { get; set; }
+
+        private static hmUI_widget_IMG_POINTER ClonePointer(hmUI_widget_IMG_POINTER pointer)
+        {
+            if (pointer == null) return null;
+            return new hmUI_widget_IMG_POINTER
+            {
+                src = pointer.src,
+                center_x = pointer.center_x,
+                center_y = pointer.center_y,
+                pos_x = pointer.pos_x,
+                pos_y = pointer.pos_y,
+                start_angle = pointer.start_angle,
+                end_angle = pointer.end_angle,
+                cover_path = pointer.cover_path,
+                cover_x = pointer.cover_x,
+                cover_y = pointer.cover_y,
+                scale = pointer.scale,
+                scale_x = pointer.scale_x,
+                scale_y = pointer.scale_y,
+
+                position = pointer.position,
+                visible = pointer.visible,
+                show_level = pointer.show_level,
+                type = pointer.type,
+            };
+        }
+
         public object Clone()
         {
             hmUI_widget_TEXT Time = null;
@@ -1649,6 +1681,8 @@ namespace Watch_Face_Editor
                 ButtonNext = ButtonNext,
                 ButtonPrev = ButtonPrev,
                 Icon = Icon,
+                HourPointer = ClonePointer(this.HourPointer),
+                MinutePointer = ClonePointer(this.MinutePointer),
             };
         }
     }

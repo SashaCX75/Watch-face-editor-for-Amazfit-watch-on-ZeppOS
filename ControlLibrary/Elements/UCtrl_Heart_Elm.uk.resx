@@ -194,4 +194,16 @@
   <data name="button_Icon.Text" xml:space="preserve">
     <value>Іконка</value>
   </data>
+  <data name="button_Number_Max.Text" xml:space="preserve">
+    <value>Максимальне значення</value>
+  </data>
+  <data name="button_Number_Max_Font.Text" xml:space="preserve">
+    <value>Max шрифтом</value>
+  </data>
+  <data name="button_Number_Min.Text" xml:space="preserve">
+    <value>Мінімальне значення</value>
+  </data>
+  <data name="button_Number_Min_Font.Text" xml:space="preserve">
+    <value>Min шрифтом</value>
+  </data>
 </root>

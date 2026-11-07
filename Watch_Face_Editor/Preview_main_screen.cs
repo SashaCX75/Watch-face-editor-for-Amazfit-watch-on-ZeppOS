@@ -4224,10 +4224,16 @@ namespace Watch_Face_Editor
                         valueSegmentIndex = IMG_progress_index(elementValue, goal, segmentCount, "ElementHeart");
                     }
 
+                    // для предпросмотра: минимум/максимум за день не меньше/не больше текущего пульса
+                    int heartMax = Math.Max(WatchFacePreviewSet.Activity.HeartRate, 132);
+                    int heartMin = Math.Min(WatchFacePreviewSet.Activity.HeartRate, 56);
+
                     DrawActivity(gPanel, img_level, img_prorgess, img_number, font_number, text_rotation, text_circle, img_number_target, font_number_target,
                         text_rotation_target, text_circle_target, img_pointer, circle_scale, linear_scale, icon, elementValue, value_lenght, goal,
                         progress, valueImgIndex, valueSegmentIndex, BBorder, showProgressArea,
-                        showCentrHend, "ElementHeart");
+                        showCentrHend, "ElementHeart", false,
+                        activityElementHeart.Number_Max, activityElementHeart.Number_Max_Font, heartMax,
+                        activityElementHeart.Number_Min, activityElementHeart.Number_Min_Font, heartMin);
 
 
                     break;
@@ -6184,7 +6190,9 @@ namespace Watch_Face_Editor
             hmUI_widget_TEXT numberTarget_font, hmUI_widget_IMG_NUMBER text_rotationTarget, Text_Circle text_circleTarget, hmUI_widget_IMG_POINTER pointer, Circle_Scale circleScale, Linear_Scale linearScale,
             hmUI_widget_IMG icon, float value, int value_lenght, int goal, float progress,
             int valueImgIndex, int valueSegmentIndex, bool BBorder, bool showProgressArea, bool showCentrHend, string elementName,
-            bool ActivityGoal_Calories = false)
+            bool ActivityGoal_Calories = false,
+            hmUI_widget_IMG_NUMBER numberMax = null, hmUI_widget_TEXT numberMax_font = null, int valueMax = 0,
+            hmUI_widget_IMG_NUMBER numberMin = null, hmUI_widget_TEXT numberMin_font = null, int valueMin = 0)
         {
             if (progress < 0) progress = 0;
             if (progress > 1) progress = 1;
@@ -6631,6 +6639,15 @@ namespace Watch_Face_Editor
                     }
                 }
 
+                if (numberMax != null && index == numberMax.position && numberMax.visible)
+                    DrawNumberValue(gPanel, numberMax, valueMax, value_lenght, BBorder);
+                if (numberMax_font != null && index == numberMax_font.position && numberMax_font.visible)
+                    DrawFontValue(gPanel, numberMax_font, valueMax, value_lenght, unit, BBorder, showCentrHend);
+                if (numberMin != null && index == numberMin.position && numberMin.visible)
+                    DrawNumberValue(gPanel, numberMin, valueMin, value_lenght, BBorder);
+                if (numberMin_font != null && index == numberMin_font.position && numberMin_font.visible)
+                    DrawFontValue(gPanel, numberMin_font, valueMin, value_lenght, unit, BBorder, showCentrHend);
+
                 if (text_rotationTarget != null && text_rotationTarget.img_First != null && text_rotationTarget.img_First.Length > 0 &&
                     index == text_rotationTarget.position && text_rotationTarget.visible)
                 {
@@ -6846,6 +6863,92 @@ namespace Watch_Face_Editor
         /// <param name="BBorder">Рисовать рамку по координатам, вокруг элементов с выравниванием</param>
         /// <param name="showProgressArea">Подсвечивать круговую шкалу при наличии фонового изображения</param>
         /// <param name="showCentrHend">Подсвечивать центр стрелки</param>
+        /// <summary>Рисуем число картинками (с иконкой-разделителем)</summary>
+        private void DrawNumberValue(Graphics gPanel, hmUI_widget_IMG_NUMBER number, int value, int value_lenght, bool BBorder)
+        {
+            if (number.img_First == null || number.img_First.Length == 0) return;
+            int imageIndex = ListImages.IndexOf(number.img_First);
+            int separator_index = -1;
+            if (number.unit != null && number.unit.Length > 0)
+                separator_index = ListImages.IndexOf(number.unit);
+
+            Draw_dagital_text(gPanel, imageIndex, number.imageX, number.imageY, number.space, AlignmentToInt(number.align),
+                value, number.alpha, number.zero, value_lenght, separator_index, number.angle, BBorder);
+
+            if (number.icon != null && number.icon.Length > 0)
+            {
+                imageIndex = ListImages.IndexOf(number.icon);
+                if (imageIndex < 0) return;
+                Bitmap src = OpenFileStream(ListImagesFullName[imageIndex]);
+                int x = number.iconPosX;
+                int y = number.iconPosY;
+                if (SelectedModel.versionOS >= 2.1 && number.icon_alpha != 255)
+                {
+                    ColorMatrix colorMatrix = new ColorMatrix();
+                    colorMatrix.Matrix33 = number.icon_alpha / 255f;
+                    ImageAttributes imgAttributes = new ImageAttributes();
+                    imgAttributes.SetColorMatrix(colorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+                    gPanel.DrawImage(src, new Rectangle(x, y, src.Width, src.Height), 0, 0, src.Width, src.Height, GraphicsUnit.Pixel, imgAttributes);
+                }
+                else gPanel.DrawImage(src, x, y);
+            }
+        }
+
+        /// <summary>Рисуем число системным или пользовательским шрифтом</summary>
+        private void DrawFontValue(Graphics gPanel, hmUI_widget_TEXT number_font, int value, int value_lenght, string unit,
+            bool BBorder, bool showCentrHend)
+        {
+            int x = number_font.x;
+            int y = number_font.y;
+            int h = number_font.h;
+            int w = number_font.w;
+            int size = number_font.text_size;
+            Color color = StringToColor(number_font.color);
+            string align_h = number_font.align_h;
+            string align_v = number_font.align_v;
+
+            string valueStr = value.ToString();
+            if (number_font.padding) valueStr = valueStr.PadLeft(value_lenght, '0');
+            if (number_font.unit_type > 0)
+            {
+                string unitStr = unit;
+                if (number_font.unit_type == 2) unitStr = unitStr.ToUpper();
+                valueStr += unitStr;
+            }
+
+            if (number_font.centreHorizontally)
+            {
+                x = (SelectedModel.background.w - w) / 2;
+                align_h = "CENTER_H";
+            }
+            if (number_font.centreVertically)
+            {
+                y = (SelectedModel.background.h - h) / 2;
+                align_v = "CENTER_V";
+            }
+
+            if (number_font.font != null && number_font.font.Length > 3 && FontsList.ContainsKey(number_font.font) &&
+                SelectedModel.versionOS >= 2 && File.Exists(FontsList[number_font.font]))
+            {
+                Font drawFont = null;
+                using (System.Drawing.Text.PrivateFontCollection fonts = new System.Drawing.Text.PrivateFontCollection())
+                {
+                    fonts.AddFontFile(FontsList[number_font.font]);
+                    drawFont = new Font(fonts.Families[0], size, GraphicsUnit.World);
+                }
+
+                Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, number_font.char_space, number_font.line_space, color, number_font.alpha,
+                    valueStr, align_h, align_v, number_font.text_style, BBorder, showCentrHend,
+                    number_font.use_text_circle, number_font.radius, number_font.start_angle, number_font.end_angle, number_font.mode);
+            }
+            else
+            {
+                Draw_text(gPanel, x, y, w, h, size, number_font.char_space, number_font.line_space, color, number_font.alpha,
+                    valueStr, align_h, align_v, number_font.text_style, BBorder, showCentrHend,
+                    number_font.use_text_circle, number_font.radius, number_font.start_angle, number_font.end_angle, number_font.mode);
+            }
+        }
+
         private void DrawDistance(Graphics gPanel, hmUI_widget_IMG_NUMBER number, hmUI_widget_TEXT number_font, hmUI_widget_IMG_NUMBER text_rotation,
             Text_Circle text_circle, hmUI_widget_IMG icon, float distance_value, bool BBorder, bool showCentrHend)
         {

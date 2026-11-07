@@ -406,6 +406,10 @@ namespace Watch_Face_Editor
                     Scale_Circle_Scale(elementHeart.Circle_Scale, scale);
                     Scale_Linear_Scale(elementHeart.Linear_Scale, scale);
                     Scale_IMG(elementHeart.Icon, scale);
+                    Scale_IMG_NUMBER(elementHeart.Number_Max, scale);
+                    Scale_TEXT(elementHeart.Number_Max_Font, scale);
+                    Scale_IMG_NUMBER(elementHeart.Number_Min, scale);
+                    Scale_TEXT(elementHeart.Number_Min_Font, scale);
                     break;
                 case "ElementPAI":
                     ElementPAI elementPAI = (ElementPAI)elements;

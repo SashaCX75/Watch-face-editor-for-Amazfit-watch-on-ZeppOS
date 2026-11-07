@@ -7933,6 +7933,26 @@ namespace Watch_Face_Editor
                                     uCtrl_Heart_Elm.checkBox_Icon.Checked = Heart.Icon.visible;
                                     elementOptions.Add(Heart.Icon.position, "Icon");
                                 }
+                                if (Heart.Number_Max != null)
+                                {
+                                    uCtrl_Heart_Elm.checkBox_Number_Max.Checked = Heart.Number_Max.visible;
+                                    elementOptions.Add(Heart.Number_Max.position, "Number_Max");
+                                }
+                                if (Heart.Number_Max_Font != null)
+                                {
+                                    uCtrl_Heart_Elm.checkBox_Number_Max_Font.Checked = Heart.Number_Max_Font.visible;
+                                    elementOptions.Add(Heart.Number_Max_Font.position, "Number_Max_Font");
+                                }
+                                if (Heart.Number_Min != null)
+                                {
+                                    uCtrl_Heart_Elm.checkBox_Number_Min.Checked = Heart.Number_Min.visible;
+                                    elementOptions.Add(Heart.Number_Min.position, "Number_Min");
+                                }
+                                if (Heart.Number_Min_Font != null)
+                                {
+                                    uCtrl_Heart_Elm.checkBox_Number_Min_Font.Checked = Heart.Number_Min_Font.visible;
+                                    elementOptions.Add(Heart.Number_Min_Font.position, "Number_Min_Font");
+                                }
 
                                 uCtrl_Heart_Elm.SetOptionsPosition(elementOptions);
 
@@ -16276,6 +16296,42 @@ namespace Watch_Face_Editor
                         }
                         else HideAllElemenrOptions();
                         break;
+                    case "Number_Max":
+                        if (uCtrl_Heart_Elm.checkBox_Number_Max.Checked)
+                        {
+                            img_number = heart.Number_Max;
+                            Read_ImgNumber_Options(img_number, false, false, "", false, false, true, true);
+                            ShowElemenOptions("Text");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Number_Max_Font":
+                        if (uCtrl_Heart_Elm.checkBox_Number_Max_Font.Checked)
+                        {
+                            text = heart.Number_Max_Font;
+                            Read_Text_Options(text, true, true);
+                            ShowElemenOptions("SystemFont");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Number_Min":
+                        if (uCtrl_Heart_Elm.checkBox_Number_Min.Checked)
+                        {
+                            img_number = heart.Number_Min;
+                            Read_ImgNumber_Options(img_number, false, false, "", false, false, true, true);
+                            ShowElemenOptions("Text");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
+                    case "Number_Min_Font":
+                        if (uCtrl_Heart_Elm.checkBox_Number_Min_Font.Checked)
+                        {
+                            text = heart.Number_Min_Font;
+                            Read_Text_Options(text, true, true);
+                            ShowElemenOptions("SystemFont");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
                 }
 
             }
@@ -21147,6 +21203,10 @@ namespace Watch_Face_Editor
                 if (heart.Circle_Scale == null) heart.Circle_Scale = new Circle_Scale();
                 if (heart.Linear_Scale == null) heart.Linear_Scale = new Linear_Scale();
                 if (heart.Icon == null) heart.Icon = new hmUI_widget_IMG();
+                if (heart.Number_Max == null) heart.Number_Max = new hmUI_widget_IMG_NUMBER();
+                if (heart.Number_Max_Font == null) heart.Number_Max_Font = new hmUI_widget_TEXT();
+                if (heart.Number_Min == null) heart.Number_Min = new hmUI_widget_IMG_NUMBER();
+                if (heart.Number_Min_Font == null) heart.Number_Min_Font = new hmUI_widget_TEXT();
 
                 if (elementOptions.ContainsKey("Images")) heart.Images.position = elementOptions["Images"];
                 if (elementOptions.ContainsKey("Segments")) heart.Segments.position = elementOptions["Segments"];
@@ -21158,6 +21218,10 @@ namespace Watch_Face_Editor
                 if (elementOptions.ContainsKey("Circle_Scale")) heart.Circle_Scale.position = elementOptions["Circle_Scale"];
                 if (elementOptions.ContainsKey("Linear_Scale")) heart.Linear_Scale.position = elementOptions["Linear_Scale"];
                 if (elementOptions.ContainsKey("Icon")) heart.Icon.position = elementOptions["Icon"];
+                if (elementOptions.ContainsKey("Number_Max")) heart.Number_Max.position = elementOptions["Number_Max"];
+                if (elementOptions.ContainsKey("Number_Max_Font")) heart.Number_Max_Font.position = elementOptions["Number_Max_Font"];
+                if (elementOptions.ContainsKey("Number_Min")) heart.Number_Min.position = elementOptions["Number_Min"];
+                if (elementOptions.ContainsKey("Number_Min_Font")) heart.Number_Min_Font.position = elementOptions["Number_Min_Font"];
 
             }
 
@@ -24588,6 +24652,18 @@ namespace Watch_Face_Editor
                     if (LastColor.last_color != null) heart.Linear_Scale.color = ColorToString((Color)LastColor.last_color);
                 }
                 if (heart.Icon == null) heart.Icon = new hmUI_widget_IMG();
+                if (heart.Number_Max == null) heart.Number_Max = new hmUI_widget_IMG_NUMBER();
+                if (heart.Number_Max_Font == null)
+                {
+                    heart.Number_Max_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) heart.Number_Max_Font.color = ColorToString((Color)LastColor.last_color);
+                }
+                if (heart.Number_Min == null) heart.Number_Min = new hmUI_widget_IMG_NUMBER();
+                if (heart.Number_Min_Font == null)
+                {
+                    heart.Number_Min_Font = new hmUI_widget_TEXT();
+                    if (LastColor.last_color != null) heart.Number_Min_Font.color = ColorToString((Color)LastColor.last_color);
+                }
 
                 Dictionary<string, int> elementOptions = uCtrl_Heart_Elm.GetOptionsPosition();
                 if (elementOptions.ContainsKey("Images")) heart.Images.position = elementOptions["Images"];
@@ -24600,11 +24676,27 @@ namespace Watch_Face_Editor
                 if (elementOptions.ContainsKey("Circle_Scale")) heart.Circle_Scale.position = elementOptions["Circle_Scale"];
                 if (elementOptions.ContainsKey("Linear_Scale")) heart.Linear_Scale.position = elementOptions["Linear_Scale"];
                 if (elementOptions.ContainsKey("Icon")) heart.Icon.position = elementOptions["Icon"];
+                if (elementOptions.ContainsKey("Number_Max")) heart.Number_Max.position = elementOptions["Number_Max"];
+                if (elementOptions.ContainsKey("Number_Max_Font")) heart.Number_Max_Font.position = elementOptions["Number_Max_Font"];
+                if (elementOptions.ContainsKey("Number_Min")) heart.Number_Min.position = elementOptions["Number_Min"];
+                if (elementOptions.ContainsKey("Number_Min_Font")) heart.Number_Min_Font.position = elementOptions["Number_Min_Font"];
 
                 CheckBox checkBox = (CheckBox)sender;
                 string name = checkBox.Name;
                 switch (name)
                 {
+                    case "checkBox_Number_Max":
+                        heart.Number_Max.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Number_Max_Font":
+                        heart.Number_Max_Font.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Number_Min":
+                        heart.Number_Min.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Number_Min_Font":
+                        heart.Number_Min_Font.visible = checkBox.Checked;
+                        break;
                     case "checkBox_Images":
                         heart.Images.visible = checkBox.Checked;
                         break;

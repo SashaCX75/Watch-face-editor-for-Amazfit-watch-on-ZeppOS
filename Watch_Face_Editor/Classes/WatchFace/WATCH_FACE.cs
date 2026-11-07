@@ -4497,6 +4497,86 @@ namespace Watch_Face_Editor
         public Linear_Scale Linear_Scale { get; set; }
         public hmUI_widget_IMG Icon { get; set; }
 
+        /// <summary>Максимальный пульс за сегодня (картинками)</summary>
+        public hmUI_widget_IMG_NUMBER Number_Max { get; set; }
+        /// <summary>Максимальный пульс за сегодня (шрифтом)</summary>
+        public hmUI_widget_TEXT Number_Max_Font { get; set; }
+        /// <summary>Минимальный пульс за сегодня (картинками)</summary>
+        public hmUI_widget_IMG_NUMBER Number_Min { get; set; }
+        /// <summary>Минимальный пульс за сегодня (шрифтом)</summary>
+        public hmUI_widget_TEXT Number_Min_Font { get; set; }
+
+        private static hmUI_widget_IMG_NUMBER CloneNumber(hmUI_widget_IMG_NUMBER source)
+        {
+            if (source == null) return null;
+            return new hmUI_widget_IMG_NUMBER
+            {
+                imageX = source.imageX,
+                imageY = source.imageY,
+                space = source.space,
+                angle = source.angle,
+                zero = source.zero,
+                align = source.align,
+                img_First = source.img_First,
+                unit = source.unit,
+                imperial_unit = source.imperial_unit,
+                icon = source.icon,
+                iconPosX = source.iconPosX,
+                iconPosY = source.iconPosY,
+                negative_image = source.negative_image,
+                invalid_image = source.invalid_image,
+                dot_image = source.dot_image,
+                follow = source.follow,
+                alpha = source.alpha,
+                icon_alpha = source.icon_alpha,
+
+                position = source.position,
+                visible = source.visible,
+                show_level = source.show_level,
+                type = source.type,
+            };
+        }
+
+        private static hmUI_widget_TEXT CloneText(hmUI_widget_TEXT source)
+        {
+            if (source == null) return null;
+            return new hmUI_widget_TEXT
+            {
+                x = source.x,
+                y = source.y,
+                w = source.w,
+                h = source.h,
+                color = source.color,
+                color_2 = source.color_2,
+                use_color_2 = source.use_color_2,
+                align_h = source.align_h,
+                align_v = source.align_v,
+                text_size = source.text_size,
+                text_style = source.text_style,
+                line_space = source.line_space,
+                char_space = source.char_space,
+                font = source.font,
+                padding = source.padding,
+                unit_type = source.unit_type,
+                unit_string = source.unit_string,
+                unit_end = source.unit_end,
+                centreHorizontally = source.centreHorizontally,
+                centreVertically = source.centreVertically,
+                alpha = source.alpha,
+
+                use_text_circle = source.use_text_circle,
+                radius = source.radius,
+                start_angle = source.start_angle,
+                end_angle = source.end_angle,
+                mode = source.mode,
+
+                position = source.position,
+                visible = source.visible,
+                show_level = source.show_level,
+                type = source.type,
+            };
+        }
+
         public object Clone()
         {
 
@@ -4774,6 +4854,10 @@ namespace Watch_Face_Editor
                 Circle_Scale = Circle_Scale,
                 Linear_Scale = Linear_Scale,
                 Icon = Icon,
+                Number_Max = CloneNumber(this.Number_Max),
+                Number_Max_Font = CloneText(this.Number_Max_Font),
+                Number_Min = CloneNumber(this.Number_Min),
+                Number_Min_Font = CloneText(this.Number_Min_Font),
             };
         }
     }

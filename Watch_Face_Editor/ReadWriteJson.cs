@@ -7992,8 +7992,75 @@ namespace Watch_Face_Editor
                         iconOptions = IMG_Options(img_icon, show_level);
                     }
 
+                    // Максимальный/минимальный пульс за сегодня. Значение задаётся в text_update,
+                    // поэтому type закомментирован и используется только при чтении JS
+                    int heartMaxPosition = 99;
+                    int heartMaxFontPosition = 99;
+                    int heartMinPosition = 99;
+                    int heartMinFontPosition = 99;
+                    string heartMaxOptions = "";
+                    string heartMaxOptions_separator = "";
+                    string heartMaxFontOptions = "";
+                    string heartMinOptions = "";
+                    string heartMinOptions_separator = "";
+                    string heartMinFontOptions = "";
+                    if (Heart.Number_Max != null && Heart.Number_Max.visible)
+                    {
+                        heartMaxPosition = Heart.Number_Max.position;
+                        heartMaxOptions = IMG_NUMBER_Options(Heart.Number_Max, "HEART_MAX", show_level).
+                            Replace("type: hmUI.data_type.HEART_MAX,", "// type: hmUI.data_type.HEART_MAX,");
+                        heartMaxOptions_separator = IMG_Separator_Options(Heart.Number_Max, show_level);
+                    }
+                    if (Heart.Number_Max_Font != null && Heart.Number_Max_Font.visible)
+                    {
+                        heartMaxFontPosition = Heart.Number_Max_Font.position;
+                        heartMaxFontOptions = TEXT_Options(Heart.Number_Max_Font, show_level) +
+                            TabInString(7) + "// type: hmUI.data_type.HEART_MAX," + Environment.NewLine;
+                    }
+                    if (Heart.Number_Min != null && Heart.Number_Min.visible)
+                    {
+                        heartMinPosition = Heart.Number_Min.position;
+                        heartMinOptions = IMG_NUMBER_Options(Heart.Number_Min, "HEART_MIN", show_level).
+                            Replace("type: hmUI.data_type.HEART_MIN,", "// type: hmUI.data_type.HEART_MIN,");
+                        heartMinOptions_separator = IMG_Separator_Options(Heart.Number_Min, show_level);
+                    }
+                    if (Heart.Number_Min_Font != null && Heart.Number_Min_Font.visible)
+                    {
+                        heartMinFontPosition = Heart.Number_Min_Font.position;
+                        heartMinFontOptions = TEXT_Options(Heart.Number_Min_Font, show_level) +
+                            TabInString(7) + "// type: hmUI.data_type.HEART_MIN," + Environment.NewLine;
+                    }
+
                     for (int index = 1; index <= 20; index++)
                     {
+                        // Number_Max
+                        if (index == heartMaxPosition && heartMaxOptions.Length > 5)
+                        {
+                            AddHeartMaxMinNumberJS(Heart.Number_Max, "max", heartMaxOptions, heartMaxOptions_separator,
+                                optionNameStart, ref variables, ref items, ref text_update);
+                        }
+
+                        // Number_Max_Font
+                        if (index == heartMaxFontPosition && heartMaxFontOptions.Length > 5)
+                        {
+                            AddHeartMaxMinFontJS(Heart.Number_Max_Font, "max", heartMaxFontOptions,
+                                optionNameStart, ref variables, ref items, ref text_update, ref fonts_cache);
+                        }
+
+                        // Number_Min
+                        if (index == heartMinPosition && heartMinOptions.Length > 5)
+                        {
+                            AddHeartMaxMinNumberJS(Heart.Number_Min, "min", heartMinOptions, heartMinOptions_separator,
+                                optionNameStart, ref variables, ref items, ref text_update);
+                        }
+
+                        // Number_Min_Font
+                        if (index == heartMinFontPosition && heartMinFontOptions.Length > 5)
+                        {
+                            AddHeartMaxMinFontJS(Heart.Number_Min_Font, "min", heartMinFontOptions,
+                                optionNameStart, ref variables, ref items, ref text_update, ref fonts_cache);
+                        }
+
                         // Images
                         if (index == imagesPosition && imagesOptions.Length > 5)
                         {
@@ -11311,9 +11378,9 @@ namespace Watch_Face_Editor
                         imagesPosition = Weather.Images.position;
 
                         if (Weather.Group_Current != null && Weather.Group_Current.position < Weather.Images.position) imagesPosition += 4;
-                        if (Weather.Group_Min != null && Weather.Group_Current.position < Weather.Images.position) imagesPosition += 4;
-                        if (Weather.Group_Max != null && Weather.Group_Current.position < Weather.Images.position) imagesPosition += 4;
-                        if (Weather.Group_Max_Min != null && Weather.Group_Current.position < Weather.Images.position) imagesPosition += 4;
+                        if (Weather.Group_Min != null && Weather.Group_Min.position < Weather.Images.position) imagesPosition += 4;
+                        if (Weather.Group_Max != null && Weather.Group_Max.position < Weather.Images.position) imagesPosition += 4;
+                        if (Weather.Group_Max_Min != null && Weather.Group_Max_Min.position < Weather.Images.position) imagesPosition += 4;
 
                         hmUI_widget_IMG_LEVEL img_images = Weather.Images;
                         imagesOptions = IMG_IMAGES_Options(img_images, "WEATHER_CURRENT", show_level);
@@ -11492,9 +11559,9 @@ namespace Watch_Face_Editor
                         cityNamePosition = Weather.City_Name.position;
 
                         if (Weather.Group_Current != null && Weather.Group_Current.position < Weather.City_Name.position) cityNamePosition += 4;
-                        if (Weather.Group_Min != null && Weather.Group_Current.position < Weather.City_Name.position) cityNamePosition += 4;
-                        if (Weather.Group_Max != null && Weather.Group_Current.position < Weather.City_Name.position) cityNamePosition += 4;
-                        if (Weather.Group_Max_Min != null && Weather.Group_Current.position < Weather.City_Name.position) cityNamePosition += 4;
+                        if (Weather.Group_Min != null && Weather.Group_Min.position < Weather.City_Name.position) cityNamePosition += 4;
+                        if (Weather.Group_Max != null && Weather.Group_Max.position < Weather.City_Name.position) cityNamePosition += 4;
+                        if (Weather.Group_Max_Min != null && Weather.Group_Max_Min.position < Weather.City_Name.position) cityNamePosition += 4;
 
                         hmUI_widget_TEXT text = Weather.City_Name;
                         cityNameOptions = TEXT_Options(text, show_level, false);
@@ -11505,9 +11572,9 @@ namespace Watch_Face_Editor
                         iconPosition = Weather.Icon.position;
 
                         if (Weather.Group_Current != null && Weather.Group_Current.position < Weather.Icon.position) iconPosition += 4;
-                        if (Weather.Group_Min != null && Weather.Group_Current.position < Weather.Icon.position) iconPosition += 4;
-                        if (Weather.Group_Max != null && Weather.Group_Current.position < Weather.Icon.position) iconPosition += 4;
-                        if (Weather.Group_Max_Min != null && Weather.Group_Current.position < Weather.Icon.position) iconPosition += 4;
+                        if (Weather.Group_Min != null && Weather.Group_Min.position < Weather.Icon.position) iconPosition += 4;
+                        if (Weather.Group_Max != null && Weather.Group_Max.position < Weather.Icon.position) iconPosition += 4;
+                        if (Weather.Group_Max_Min != null && Weather.Group_Max_Min.position < Weather.Icon.position) iconPosition += 4;
 
                         hmUI_widget_IMG img_icon = Weather.Icon;
                         iconOptions = IMG_Options(img_icon, show_level);
@@ -11751,13 +11818,13 @@ namespace Watch_Face_Editor
                                     hmUI_widget_IMG_NUMBER img_number = group.Number;
                                     img_number.imperial_unit = Weather.Group_Max.Number.unit;
                                     img_number.unit = Weather.Group_Max.Number.imperial_unit;
-                                    numberMaxOptions_separator = IMG_NUMBER_Options(img_number, "WEATHER_HIGH", show_level, 1);
+                                    numberMaxOptions = IMG_NUMBER_Options(img_number, "WEATHER_HIGH", show_level, 1);
 
                                     //items += Environment.NewLine + TabInString(6) + "//start of ignored block";
                                     items += Environment.NewLine + TabInString(6) + "//#region temperatureUnit";
                                     items += Environment.NewLine + TabInString(6) + "if (temperatureUnit == 1) {";
                                     items += Environment.NewLine + TabInString(7) + optionNameStart + "temperature_high_text_img.setProperty(hmUI.prop.MORE, {";
-                                    items += numberMaxOptions_separator + TabInString(7) + "});";
+                                    items += numberMaxOptions + TabInString(7) + "});";
                                     items += Environment.NewLine + TabInString(6) + "};";
                                     items += Environment.NewLine + TabInString(6) + "//#endregion" + Environment.NewLine;
                                     //items += Environment.NewLine + TabInString(6) + "//end of ignored block" + Environment.NewLine;
@@ -11825,7 +11892,7 @@ namespace Watch_Face_Editor
                                     "temperature_max_min_separator_img = ''" + Environment.NewLine;
                                 items += Environment.NewLine + TabInString(6) +
                                     optionNameStart + "temperature_max_min_separator_img = hmUI.createWidget(hmUI.widget.IMG, {" +
-                                        numberOptions_separator + TabInString(6) + "});" + Environment.NewLine;
+                                        numberMaxMinOptions_separator + TabInString(6) + "});" + Environment.NewLine;
 
                                 if (Weather.Group_Max_Min.Number.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "temperature_max_min_separator_img.setAlpha(" + Weather.Group_Max_Min.Number.icon_alpha.ToString() + ");" + Environment.NewLine;
@@ -11861,7 +11928,7 @@ namespace Watch_Face_Editor
                         // Number_Min_Max_Font
                         if (index == numberMaxMinFontPosition && numberMaxMinFontOptions.Length > 5)
                         {
-                            if (Weather.Group_Max_Min.Number_Font.font != null && Weather.Group_Max_Min.Number_Font.font.Length > 3)
+                            if (SelectedModel.versionOS >= 2 && Weather.Group_Max_Min.Number_Font.font != null && Weather.Group_Max_Min.Number_Font.font.Length > 3)
                             {
                                 string cacheName = "// FontName: " + Weather.Group_Max_Min.Number_Font.font + "; FontSize: " + 
                                     Weather.Group_Max_Min.Number_Font.text_size.ToString();
@@ -26039,6 +26106,21 @@ namespace Watch_Face_Editor
                                     }
                                 }
 
+                                if (objectName.EndsWith("heart_rate_max_separator_img") || objectName.EndsWith("heart_rate_min_separator_img"))
+                                {
+                                    ElementHeart heart = (ElementHeart)elementsList.Find(e => e.GetType().Name == "ElementHeart");
+                                    hmUI_widget_IMG_NUMBER heartNumber = null;
+                                    if (heart != null)
+                                        heartNumber = objectName.EndsWith("heart_rate_max_separator_img") ? heart.Number_Max : heart.Number_Min;
+                                    if (heartNumber != null)
+                                    {
+                                        heartNumber.icon = img.src;
+                                        heartNumber.iconPosX = img.x;
+                                        heartNumber.iconPosY = img.y;
+                                        heartNumber.icon_alpha = img.alpha;
+                                    }
+                                }
+
                                 if (objectName.EndsWith("pai_day_separator_img"))
                                 {
                                     ElementPAI pai_day = null;
@@ -26625,6 +26707,10 @@ namespace Watch_Face_Editor
                                         if (heart.Pointer != null) offset++;
                                         if (heart.Circle_Scale != null) offset++;
                                         if (heart.Linear_Scale != null) offset++;
+                                        if (heart.Number_Max != null) offset++;
+                                        if (heart.Number_Max_Font != null) offset++;
+                                        if (heart.Number_Min != null) offset++;
+                                        if (heart.Number_Min_Font != null) offset++;
 
                                         heart.Icon = new hmUI_widget_IMG();
                                         heart.Icon.src = img.src;
@@ -30123,6 +30209,10 @@ namespace Watch_Face_Editor
                                 if (heart.Pointer != null) offset++;
                                 if (heart.Circle_Scale != null) offset++;
                                 if (heart.Linear_Scale != null) offset++;
+                                if (heart.Number_Max != null) offset++;
+                                if (heart.Number_Max_Font != null) offset++;
+                                if (heart.Number_Min != null) offset++;
+                                if (heart.Number_Min_Font != null) offset++;
 
                                 if (heart.Icon == null)
                                 {
@@ -31463,6 +31553,10 @@ namespace Watch_Face_Editor
                                 if (heart.Pointer != null) offset++;
                                 if (heart.Circle_Scale != null) offset++;
                                 if (heart.Linear_Scale != null) offset++;
+                                if (heart.Number_Max != null) offset++;
+                                if (heart.Number_Max_Font != null) offset++;
+                                if (heart.Number_Min != null) offset++;
+                                if (heart.Number_Min_Font != null) offset++;
                                 if (heart.Icon != null) offset++;
 
                                 heart.Images = new hmUI_widget_IMG_LEVEL();
@@ -32368,6 +32462,10 @@ namespace Watch_Face_Editor
                                 if (heart.Pointer != null) offset++;
                                 if (heart.Circle_Scale != null) offset++;
                                 if (heart.Linear_Scale != null) offset++;
+                                if (heart.Number_Max != null) offset++;
+                                if (heart.Number_Max_Font != null) offset++;
+                                if (heart.Number_Min != null) offset++;
+                                if (heart.Number_Min_Font != null) offset++;
                                 if (heart.Icon != null) offset++;
 
                                 heart.Segments = new hmUI_widget_IMG_PROGRESS();
@@ -33110,6 +33208,10 @@ namespace Watch_Face_Editor
                                 if (heart.Pointer != null) offset++;
                                 if (heart.Circle_Scale != null) offset++;
                                 if (heart.Linear_Scale != null) offset++;
+                                if (heart.Number_Max != null) offset++;
+                                if (heart.Number_Max_Font != null) offset++;
+                                if (heart.Number_Min != null) offset++;
+                                if (heart.Number_Min_Font != null) offset++;
                                 if (heart.Icon != null) offset++;
 
                                 heart.Number = new hmUI_widget_IMG_NUMBER();
@@ -33128,6 +33230,38 @@ namespace Watch_Face_Editor
                                 heart.Number.alpha = imgNumber.alpha;
                                 heart.Number.visible = true;
                                 heart.Number.position = offset;
+                            }
+                        }
+
+                        if (imgNumber.type == "HEART_MAX" || imgNumber.type == "HEART_MIN")
+                        {
+                            ElementHeart heart = (ElementHeart)elementsList.Find(e => e.GetType().Name == "ElementHeart");
+                            if (heart == null)
+                            {
+                                elementsList.Add(new ElementHeart());
+                                heart = (ElementHeart)elementsList.Find(e => e.GetType().Name == "ElementHeart");
+                            }
+                            if (heart != null)
+                            {
+                                hmUI_widget_IMG_NUMBER heartNumber = new hmUI_widget_IMG_NUMBER();
+                                heartNumber.img_First = imgNumber.img_First;
+                                heartNumber.imageX = imgNumber.imageX;
+                                heartNumber.imageY = imgNumber.imageY;
+                                heartNumber.space = imgNumber.space;
+                                heartNumber.angle = imgNumber.angle;
+                                heartNumber.zero = imgNumber.zero;
+                                heartNumber.unit = imgNumber.unit;
+                                heartNumber.imperial_unit = imgNumber.imperial_unit;
+                                heartNumber.negative_image = imgNumber.negative_image;
+                                heartNumber.invalid_image = imgNumber.invalid_image;
+                                heartNumber.dot_image = imgNumber.dot_image;
+                                heartNumber.align = imgNumber.align;
+                                heartNumber.alpha = imgNumber.alpha;
+                                heartNumber.visible = true;
+                                heartNumber.position = ElementHeartOffset(heart);
+
+                                if (imgNumber.type == "HEART_MAX") heart.Number_Max = heartNumber;
+                                else heart.Number_Min = heartNumber;
                             }
                         }
 
@@ -35475,6 +35609,10 @@ namespace Watch_Face_Editor
                                 if (heart.Pointer != null) offset++;
                                 if (heart.Circle_Scale != null) offset++;
                                 if (heart.Linear_Scale != null) offset++;
+                                if (heart.Number_Max != null) offset++;
+                                if (heart.Number_Max_Font != null) offset++;
+                                if (heart.Number_Min != null) offset++;
+                                if (heart.Number_Min_Font != null) offset++;
                                 if (heart.Icon != null) offset++;
 
                                 heart.Text_rotation = new hmUI_widget_IMG_NUMBER();
@@ -36703,6 +36841,10 @@ namespace Watch_Face_Editor
                                 if (heart.Pointer != null) offset++;
                                 if (heart.Circle_Scale != null) offset++;
                                 if (heart.Linear_Scale != null) offset++;
+                                if (heart.Number_Max != null) offset++;
+                                if (heart.Number_Max_Font != null) offset++;
+                                if (heart.Number_Min != null) offset++;
+                                if (heart.Number_Min_Font != null) offset++;
                                 if (heart.Icon != null) offset++;
 
                                heart.Text_circle = new Text_Circle();
@@ -37593,6 +37735,10 @@ namespace Watch_Face_Editor
                                 //if (steps.Pointer != null) offset++;
                                 if (heart.Circle_Scale != null) offset++;
                                 if (heart.Linear_Scale != null) offset++;
+                                if (heart.Number_Max != null) offset++;
+                                if (heart.Number_Max_Font != null) offset++;
+                                if (heart.Number_Min != null) offset++;
+                                if (heart.Number_Min_Font != null) offset++;
                                 if (heart.Icon != null) offset++;
 
                                 heart.Pointer = new hmUI_widget_IMG_POINTER();
@@ -38628,6 +38774,10 @@ namespace Watch_Face_Editor
                                 if (heart.Pointer != null) offset++;
                                 //if (steps.Circle_Scale != null) offset++;
                                 if (heart.Linear_Scale != null) offset++;
+                                if (heart.Number_Max != null) offset++;
+                                if (heart.Number_Max_Font != null) offset++;
+                                if (heart.Number_Min != null) offset++;
+                                if (heart.Number_Min_Font != null) offset++;
                                 if (heart.Icon != null) offset++;
 
                                 heart.Circle_Scale = new Circle_Scale();
@@ -38965,6 +39115,10 @@ namespace Watch_Face_Editor
                                 if (heart.Circle_Scale != null) offset++;
                                 //if (steps.Linear_Scale != null) offset++;
                                 if (heart.Icon != null) offset++;
+                                if (heart.Number_Max != null) offset++;
+                                if (heart.Number_Max_Font != null) offset++;
+                                if (heart.Number_Min != null) offset++;
+                                if (heart.Number_Min_Font != null) offset++;
 
                                 heart.Linear_Scale = new Linear_Scale();
                                 heart.Linear_Scale.start_x = linear_Scale.start_x;
@@ -39177,6 +39331,10 @@ namespace Watch_Face_Editor
                                     if (heart.Pointer != null) offset++;
                                     //if (steps.Circle_Scale != null) offset++;
                                     if (heart.Linear_Scale != null) offset++;
+                                    if (heart.Number_Max != null) offset++;
+                                    if (heart.Number_Max_Font != null) offset++;
+                                    if (heart.Number_Min != null) offset++;
+                                    if (heart.Number_Min_Font != null) offset++;
                                     if (heart.Icon != null) offset++;
 
                                     heart.Circle_Scale = new Circle_Scale();
@@ -39483,6 +39641,58 @@ namespace Watch_Face_Editor
                     #region TEXT
                     case "TEXT":
                         hmUI_widget_TEXT text = Object_TEXT(parametrs);
+
+                        if (text.type == "HEART_MAX" || text.type == "HEART_MIN")
+                        {
+                            ElementHeart heart = (ElementHeart)elementsList.Find(e => e.GetType().Name == "ElementHeart");
+                            if (heart == null)
+                            {
+                                elementsList.Add(new ElementHeart());
+                                heart = (ElementHeart)elementsList.Find(e => e.GetType().Name == "ElementHeart");
+                            }
+                            if (heart != null)
+                            {
+                                hmUI_widget_TEXT heartFont = new hmUI_widget_TEXT();
+                                heartFont.x = text.x;
+                                heartFont.y = text.y;
+                                heartFont.w = text.w;
+                                heartFont.h = text.h;
+
+                                heartFont.text_size = text.text_size;
+                                heartFont.char_space = text.char_space;
+                                heartFont.line_space = text.line_space;
+                                heartFont.alpha = text.alpha;
+
+                                heartFont.font = text.font;
+                                heartFont.color = text.color;
+                                heartFont.color_2 = text.color_2;
+                                heartFont.use_color_2 = text.use_color_2;
+
+                                heartFont.align_h = text.align_h;
+                                heartFont.align_v = text.align_v;
+                                heartFont.text_style = text.text_style;
+
+                                heartFont.padding = text.padding;
+                                heartFont.unit_type = text.unit_type;
+                                heartFont.unit_string = text.unit_string;
+                                heartFont.unit_end = text.unit_end;
+
+                                if (text.use_text_circle)
+                                {
+                                    heartFont.use_text_circle = text.use_text_circle;
+                                    heartFont.radius = text.radius;
+                                    heartFont.start_angle = text.start_angle;
+                                    heartFont.end_angle = text.end_angle;
+                                    heartFont.mode = text.mode;
+                                }
+
+                                heartFont.visible = true;
+                                heartFont.position = ElementHeartOffset(heart);
+
+                                if (text.type == "HEART_MAX") heart.Number_Max_Font = heartFont;
+                                else heart.Number_Min_Font = heartFont;
+                            }
+                        }
 
                         if (objectName.EndsWith("time_gmt_text"))
                         {
@@ -41819,6 +42029,10 @@ namespace Watch_Face_Editor
                                 if (heart.Pointer != null) offset++;
                                 if (heart.Circle_Scale != null) offset++;
                                 if (heart.Linear_Scale != null) offset++;
+                                if (heart.Number_Max != null) offset++;
+                                if (heart.Number_Max_Font != null) offset++;
+                                if (heart.Number_Min != null) offset++;
+                                if (heart.Number_Min_Font != null) offset++;
                                 if (heart.Icon != null) offset++;
 
                                 heart.Number_Font = new hmUI_widget_TEXT();
@@ -46898,6 +47112,12 @@ namespace Watch_Face_Editor
                 text.type = typeName;
             }
 
+            if (parametrs.ContainsKey("// type"))
+            {
+                string typeName = parametrs["// type"].Replace("hmUI.data_type.", "");
+                text.type = typeName;
+            }
+
             if (parametrs.ContainsKey("show_level"))
             {
                 paramName = parametrs["show_level"].Replace("hmUI.show_level.", "");
@@ -46907,6 +47127,27 @@ namespace Watch_Face_Editor
             text.position = 1;
 
             return text;
+        }
+
+        /// <summary>Позиция для очередного параметра пульса при чтении JS (1 + количество уже прочитанных параметров)</summary>
+        private int ElementHeartOffset(ElementHeart heart)
+        {
+            int offset = 1;
+            if (heart.Images != null) offset++;
+            if (heart.Segments != null) offset++;
+            if (heart.Number != null) offset++;
+            if (heart.Number_Font != null) offset++;
+            if (heart.Text_rotation != null) offset++;
+            if (heart.Text_circle != null) offset++;
+            if (heart.Pointer != null) offset++;
+            if (heart.Circle_Scale != null) offset++;
+            if (heart.Linear_Scale != null) offset++;
+            if (heart.Icon != null) offset++;
+            if (heart.Number_Max != null) offset++;
+            if (heart.Number_Max_Font != null) offset++;
+            if (heart.Number_Min != null) offset++;
+            if (heart.Number_Min_Font != null) offset++;
+            return offset;
         }
 
         private hmUI_widget_TEXT Object_TEXT_Options(Dictionary<string, string> parametrs)
@@ -47403,7 +47644,106 @@ namespace Watch_Face_Editor
             return returnValue;
         }
 
-        private void AddListener(ref string variables, ref string items, string sensorName, string valueName, string newFunction, 
+        /// <summary>Вычисляем в text_update максимальный и минимальный пульс за сегодня
+        /// (переменные max_heart и min_heart, undefined если данных нет)</summary>
+        private void AddHeartMaxMinSensorJS(ref string text_update)
+        {
+            if (text_update.IndexOf("let heartArr = ") < 0)
+            {
+                text_update += Environment.NewLine + TabInString(7) + "console.log('update text HEART max/min');" + Environment.NewLine;
+                text_update += TabInString(7) + "let heartArr = hmSensor.createSensor(hmSensor.id.HEART).today;" + Environment.NewLine;
+                // минуты без измерения могут храниться как 0 или 255, их не учитываем
+                text_update += TabInString(7) + "let heartArrValid = heartArr ? heartArr.filter(v => v > 0 && v < 255) : [];" + Environment.NewLine;
+                text_update += TabInString(7) + "let max_heart = heartArrValid.length > 0 ? Math.max(...heartArrValid) : undefined;" + Environment.NewLine;
+                text_update += TabInString(7) + "let min_heart = heartArrValid.length > 0 ? Math.min(...heartArrValid) : undefined;" + Environment.NewLine;
+            }
+        }
+
+        /// <summary>Добавляем код для максимального/минимального пульса за сегодня (картинками)</summary>
+        /// <param name="maxMin">"max" или "min"</param>
+        private void AddHeartMaxMinNumberJS(hmUI_widget_IMG_NUMBER img_number, string maxMin, string numberOptions,
+            string numberOptions_separator, string optionNameStart, ref string variables, ref string items, ref string text_update)
+        {
+            string widgetName = optionNameStart + "heart_rate_" + maxMin + "_text_img";
+            variables += TabInString(4) + "let " + widgetName + " = ''" + Environment.NewLine;
+            items += Environment.NewLine + TabInString(6) +
+                widgetName + " = hmUI.createWidget(hmUI.widget.TEXT_IMG, {" + numberOptions + TabInString(6) + "});" + Environment.NewLine;
+
+            if (img_number.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) +
+                    widgetName + ".setAlpha(" + img_number.alpha.ToString() + ");" + Environment.NewLine;
+
+            if (numberOptions_separator.Length > 5)
+            {
+                string separatorName = optionNameStart + "heart_rate_" + maxMin + "_separator_img";
+                variables += TabInString(4) + "let " + separatorName + " = ''" + Environment.NewLine;
+                items += Environment.NewLine + TabInString(6) +
+                    separatorName + " = hmUI.createWidget(hmUI.widget.IMG, {" + numberOptions_separator + TabInString(6) + "});" + Environment.NewLine;
+
+                if (img_number.icon_alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) +
+                        separatorName + ".setAlpha(" + img_number.icon_alpha.ToString() + ");" + Environment.NewLine;
+            }
+
+            AddHeartMaxMinSensorJS(ref text_update);
+
+            string valueName = maxMin + "_heart";
+            string textName = widgetName + "_value";
+            string screenCondition = optionNameStart == "normal_" ? "screenType != hmSetting.screen_type.AOD" : "screenType == hmSetting.screen_type.AOD";
+            text_update += Environment.NewLine + TabInString(7) + "if (" + screenCondition + ") {" + Environment.NewLine;
+            text_update += TabInString(8) + "let " + textName + " = '';" + Environment.NewLine;
+            text_update += TabInString(8) + "if (" + valueName + " != undefined) " + textName + " = String(" + valueName + ")";
+            if (img_number.zero) text_update += ".padStart(3, '0')";
+            text_update += ";" + Environment.NewLine;
+            text_update += TabInString(8) + widgetName + ".setProperty(hmUI.prop.TEXT, " + textName + ");" + Environment.NewLine;
+            text_update += TabInString(7) + "};" + Environment.NewLine;
+        }
+
+        /// <summary>Добавляем код для максимального/минимального пульса за сегодня (шрифтом)</summary>
+        /// <param name="maxMin">"max" или "min"</param>
+        private void AddHeartMaxMinFontJS(hmUI_widget_TEXT text, string maxMin, string fontOptions, string optionNameStart,
+            ref string variables, ref string items, ref string text_update, ref string fonts_cache)
+        {
+            if (SelectedModel.versionOS >= 2 && text.font != null && text.font.Length > 3)
+            {
+                string cacheName = "// FontName: " + text.font + "; FontSize: " + text.text_size.ToString();
+                if (text.unit_type > 0)
+                    cacheName = "// FontName: " + text.font + "; FontSize: " + text.text_size.ToString() + "; Cache: full";
+                if (fonts_cache.IndexOf(cacheName) < 0)
+                {
+                    bool fullCache = text.unit_type > 0;
+                    string fontCacheOptions = TEXT_Cache_Options(text, fullCache);
+                    if (fontCacheOptions.Length > 5)
+                    {
+                        fonts_cache += Environment.NewLine + TabInString(6) + cacheName + Environment.NewLine;
+                        fonts_cache += TabInString(6) + "hmUI.createWidget(hmUI.widget.TEXT, {" + fontCacheOptions +
+                            TabInString(6) + "});" + Environment.NewLine;
+                    }
+                }
+            }
+
+            string widgetName = optionNameStart + "heart_rate_" + maxMin + "_text_font";
+            variables += TabInString(4) + "let " + widgetName + " = ''" + Environment.NewLine;
+            items += Environment.NewLine + TabInString(6) +
+                widgetName + " = hmUI.createWidget(hmUI.widget.TEXT, {" + fontOptions + TabInString(6) + "});" + Environment.NewLine;
+
+            AddHeartMaxMinSensorJS(ref text_update);
+
+            string valueName = maxMin + "_heart";
+            string textName = widgetName + "_value";
+            string screenCondition = optionNameStart == "normal_" ? "screenType != hmSetting.screen_type.AOD" : "screenType == hmSetting.screen_type.AOD";
+            text_update += Environment.NewLine + TabInString(7) + "if (" + screenCondition + ") {" + Environment.NewLine;
+            text_update += TabInString(8) + "let " + textName + " = '--';" + Environment.NewLine;
+            text_update += TabInString(8) + "if (" + valueName + " != undefined) {" + Environment.NewLine;
+            text_update += TabInString(9) + textName + " = String(" + valueName + ")";
+            if (text.padding) text_update += ".padStart(3, '0')";
+            text_update += ";" + Environment.NewLine;
+            if (text.unit_type == 1) text_update += TabInString(9) + textName + " += 'bpm';" + Environment.NewLine;
+            if (text.unit_type == 2) text_update += TabInString(9) + textName + " += 'BPM';" + Environment.NewLine;
+            text_update += TabInString(8) + "};" + Environment.NewLine;
+            text_update += TabInString(8) + widgetName + ".setProperty(hmUI.prop.TEXT, " + textName + ");" + Environment.NewLine;
+            text_update += TabInString(7) + "};" + Environment.NewLine;
+        }
+
+        private void AddListener(ref string variables, ref string items, string sensorName, string valueName, string newFunction,
             ref string resume_call, ref string pause_call, string optionNameStart)
         {
             if (valueName == "hour" || valueName == "minute" || valueName == "second" || valueName == "format_hour" ||

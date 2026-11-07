@@ -4224,9 +4224,11 @@ namespace Watch_Face_Editor
                         valueSegmentIndex = IMG_progress_index(elementValue, goal, segmentCount, "ElementHeart");
                     }
 
-                    // для предпросмотра: минимум/максимум за день не меньше/не больше текущего пульса
-                    int heartMax = Math.Max(WatchFacePreviewSet.Activity.HeartRate, 132);
-                    int heartMin = Math.Min(WatchFacePreviewSet.Activity.HeartRate, 56);
+                    // для предпросмотра: текущий пульс ± 15..30; генератор с зерном от пульса,
+                    // чтобы значения не менялись при каждой перерисовке
+                    Random heartRandom = new Random(WatchFacePreviewSet.Activity.HeartRate);
+                    int heartMax = WatchFacePreviewSet.Activity.HeartRate + heartRandom.Next(15, 31);
+                    int heartMin = Math.Max(WatchFacePreviewSet.Activity.HeartRate - heartRandom.Next(15, 31), 0);
 
                     DrawActivity(gPanel, img_level, img_prorgess, img_number, font_number, text_rotation, text_circle, img_number_target, font_number_target,
                         text_rotation_target, text_circle_target, img_pointer, circle_scale, linear_scale, icon, elementValue, value_lenght, goal,

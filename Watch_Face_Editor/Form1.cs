@@ -16300,7 +16300,8 @@ namespace Watch_Face_Editor
                         if (uCtrl_Heart_Elm.checkBox_Number_Max.Checked)
                         {
                             img_number = heart.Number_Max;
-                            Read_ImgNumber_Options(img_number, false, false, "", false, false, true, true);
+                            // изображение ошибки хранится в negative_image (как у компаса): при отсутствии данных выводится '-'
+                            Read_ImgNumber_Options(img_number, false, false, "", true, false, true, true, _compass: true);
                             ShowElemenOptions("Text");
                         }
                         else HideAllElemenrOptions();
@@ -16318,7 +16319,8 @@ namespace Watch_Face_Editor
                         if (uCtrl_Heart_Elm.checkBox_Number_Min.Checked)
                         {
                             img_number = heart.Number_Min;
-                            Read_ImgNumber_Options(img_number, false, false, "", false, false, true, true);
+                            // изображение ошибки хранится в negative_image (как у компаса): при отсутствии данных выводится '-'
+                            Read_ImgNumber_Options(img_number, false, false, "", true, false, true, true, _compass: true);
                             ShowElemenOptions("Text");
                         }
                         else HideAllElemenrOptions();

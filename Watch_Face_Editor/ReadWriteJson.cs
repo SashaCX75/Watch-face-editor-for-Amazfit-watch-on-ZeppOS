@@ -47688,8 +47688,10 @@ namespace Watch_Face_Editor
             string valueName = maxMin + "_heart";
             string textName = widgetName + "_value";
             string screenCondition = optionNameStart == "normal_" ? "screenType != hmSetting.screen_type.AOD" : "screenType == hmSetting.screen_type.AOD";
+            // нет данных: символ '-' TEXT_IMG рисует картинкой negative_image (изображение ошибки)
+            string errorText = img_number.negative_image != null && img_number.negative_image.Length > 0 ? "'-'" : "''";
             text_update += Environment.NewLine + TabInString(7) + "if (" + screenCondition + ") {" + Environment.NewLine;
-            text_update += TabInString(8) + "let " + textName + " = '';" + Environment.NewLine;
+            text_update += TabInString(8) + "let " + textName + " = " + errorText + ";" + Environment.NewLine;
             text_update += TabInString(8) + "if (" + valueName + " != undefined) " + textName + " = String(" + valueName + ")";
             if (img_number.zero) text_update += ".padStart(3, '0')";
             text_update += ";" + Environment.NewLine;

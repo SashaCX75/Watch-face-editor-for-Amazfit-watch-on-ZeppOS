@@ -30,6 +30,7 @@ namespace ControlLibrary
             InitializeComponent();
             setValue = false;
             comboBox_scaleCircle_lineCap.SelectedIndex = 0;
+            comboBox_arcType.SelectedIndex = 1;
         }
 
         private void comboBox_scaleCircle_color_Click(object sender, EventArgs e)
@@ -153,9 +154,146 @@ namespace ControlLibrary
             set
             {
                 Inverse_mode = value;
-                checkBox_inversion.Enabled = value;
+                UpdateBackgroundState();
             }
         }
+
+        #region Background
+        /// <summary>Выбрана ли картинка фона (шкала рисуется картинкой через IMG_ARC_PROGRESS)</summary>
+        public bool BackgroundSelected
+        {
+            get { return comboBox_background.SelectedIndex >= 0; }
+        }
+
+        /// <summary>С фоном зеркальное отображение и инверсия недоступны,
+        /// а вместо окончания линии выбирается тип шкалы (сектор или дуга)</summary>
+        private void UpdateBackgroundState()
+        {
+            bool noBackground = !BackgroundSelected;
+            checkBox_mirror.Enabled = noBackground;
+            checkBox_inversion.Enabled = Inverse_mode && noBackground;
+
+            label2.Visible = noBackground;
+            comboBox_scaleCircle_lineCap.Visible = noBackground;
+            label_arcType.Visible = !noBackground;
+            comboBox_arcType.Visible = !noBackground;
+        }
+
+        /// <summary>Тип шкалы с фоном: 0 - сектор (hmUI.arc_type.FILL), 1 - дуга (hmUI.arc_type.LINE)</summary>
+        public void SetArcType(int arcType)
+        {
+            comboBox_arcType.SelectedIndex = arcType == 0 ? 0 : 1;
+        }
+
+        /// <summary>Тип шкалы с фоном: 0 - сектор (hmUI.arc_type.FILL), 1 - дуга (hmUI.arc_type.LINE)</summary>
+        public int GetArcType()
+        {
+            return comboBox_arcType.SelectedIndex == 0 ? 0 : 1;
+        }
+
+        public void SetBackground(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                comboBox_background.SelectedIndex = -1;
+                comboBox_background.Text = "";
+            }
+            else
+            {
+                comboBox_background.Text = value;
+                if (comboBox_background.SelectedIndex < 0) comboBox_background.Text = "";
+            }
+            UpdateBackgroundState();
+        }
+
+        /// <summary>Возвращает название выбранной картинки фона</summary>
+        public string GetBackground()
+        {
+            if (comboBox_background.SelectedIndex < 0) return "";
+            return comboBox_background.Text;
+        }
+
+        /// <summary>Добавляет ссылки на картинки в выпадающий список фона</summary>
+        public void ComboBoxAddItems(List<string> ListImages, List<string> _ListImagesFullName)
+        {
+            comboBox_background.Items.Clear();
+            comboBox_background.Items.AddRange(ListImages.ToArray());
+            ListImagesFullName = _ListImagesFullName;
+
+            int count = ListImages.Count;
+            if (count == 0) comboBox_background.DropDownHeight = 1;
+            else if (count < 5) comboBox_background.DropDownHeight = 35 * count + 1;
+            else comboBox_background.DropDownHeight = 106;
+        }
+
+        private void comboBox_background_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateBackgroundState();
+            if (ValueChanged != null && !setValue)
+            {
+                EventArgs eventArgs = new EventArgs();
+                ValueChanged(this, eventArgs);
+            }
+        }
+
+        private void comboBox_background_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.KeyCode == Keys.Delete) || (e.KeyCode == Keys.Back))
+            {
+                comboBox_background.Text = "";
+                comboBox_background.SelectedIndex = -1;
+                UpdateBackgroundState();
+                if (ValueChanged != null && !setValue)
+                {
+                    EventArgs eventArgs = new EventArgs();
+                    ValueChanged(this, eventArgs);
+                }
+            }
+        }
+
+        private void comboBox_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            ComboBox comboBox = sender as ComboBox;
+            float size = comboBox.Font.Size;
+            FontFamily family = comboBox.Font.FontFamily;
+            e.DrawBackground();
+            int itemWidth = e.Bounds.Height;
+            int itemHeight = e.Bounds.Height - 4;
+
+            if (e.Index >= 0 && e.Index < ListImagesFullName.Count)
+            {
+                try
+                {
+                    using (FileStream stream = new FileStream(ListImagesFullName[e.Index], FileMode.Open, FileAccess.Read))
+                    {
+                        Image image = Image.FromStream(stream);
+                        float scale = (float)itemWidth / image.Width;
+                        if ((float)itemHeight / image.Height < scale) scale = (float)itemHeight / image.Height;
+                        float itemWidthRec = image.Width * scale;
+                        float itemHeightRec = image.Height * scale;
+                        Rectangle rectangle = new Rectangle((int)(itemWidth - itemWidthRec) / 2 + 2,
+                            e.Bounds.Top + (int)(itemHeight - itemHeightRec) / 2 + 2, (int)itemWidthRec, (int)itemHeightRec);
+                        e.Graphics.DrawImage(image, rectangle);
+                    }
+                }
+                catch { }
+            }
+            using (Font myFont = new Font(family, size))
+            {
+                StringFormat lineAlignment = new StringFormat();
+                lineAlignment.LineAlignment = StringAlignment.Center;
+                if (e.Index >= 0)
+                    e.Graphics.DrawString(comboBox.Items[e.Index].ToString(), myFont, System.Drawing.Brushes.Black,
+                        new RectangleF(e.Bounds.X + itemWidth, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height), lineAlignment);
+            }
+            e.DrawFocusRectangle();
+        }
+
+        private void comboBox_MeasureItem(object sender, MeasureItemEventArgs e)
+        {
+            e.ItemHeight = 35;
+        }
+        #endregion
 
         /// <summary>Режим доступности прозрачности</summary>
         [Description("Режим доступности прозрачности")]
@@ -395,6 +533,10 @@ namespace ControlLibrary
             checkBox_mirror.Checked = false;
             checkBox_inversion.Checked = false;
             comboBox_scaleCircle_lineCap.SelectedIndex = 0;
+
+            comboBox_background.Text = null;
+            comboBox_background.SelectedIndex = -1;
+            comboBox_arcType.SelectedIndex = 1;
 
             LineCap = false;
             Alpha = false;

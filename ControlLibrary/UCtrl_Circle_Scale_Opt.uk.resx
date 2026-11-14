@@ -331,4 +331,16 @@
   <data name="label_alpha.Text" xml:space="preserve">
     <value>Прозорість</value>
   </data>
+  <data name="label_background.Text" xml:space="preserve">
+    <value>Фон</value>
+  </data>
+  <data name="label_arcType.Text" xml:space="preserve">
+    <value>Тип шкали</value>
+  </data>
+  <data name="comboBox_arcType.Items" xml:space="preserve">
+    <value>Сектор</value>
+  </data>
+  <data name="comboBox_arcType.Items1" xml:space="preserve">
+    <value>Дуга</value>
+  </data>
 </root>

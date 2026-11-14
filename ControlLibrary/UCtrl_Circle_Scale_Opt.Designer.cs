@@ -64,6 +64,10 @@ namespace ControlLibrary
             this.вставитьСвойстваToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.numericUpDown_Alpha = new System.Windows.Forms.NumericUpDown();
             this.label_alpha = new System.Windows.Forms.Label();
+            this.label_background = new System.Windows.Forms.Label();
+            this.comboBox_background = new System.Windows.Forms.ComboBox();
+            this.label_arcType = new System.Windows.Forms.Label();
+            this.comboBox_arcType = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_scaleCircleX)).BeginInit();
             this.contextMenuStrip_X.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_scaleCircleY)).BeginInit();
@@ -382,6 +386,40 @@ namespace ControlLibrary
             resources.ApplyResources(this.label_alpha, "label_alpha");
             this.label_alpha.Name = "label_alpha";
             // 
+            // label_background
+            // 
+            resources.ApplyResources(this.label_background, "label_background");
+            this.label_background.Name = "label_background";
+            // 
+            // comboBox_background
+            // 
+            this.comboBox_background.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.comboBox_background.DropDownWidth = 135;
+            this.comboBox_background.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBox_background, "comboBox_background");
+            this.comboBox_background.Name = "comboBox_background";
+            this.comboBox_background.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.comboBox_DrawItem);
+            this.comboBox_background.MeasureItem += new System.Windows.Forms.MeasureItemEventHandler(this.comboBox_MeasureItem);
+            this.comboBox_background.SelectedIndexChanged += new System.EventHandler(this.comboBox_background_SelectedIndexChanged);
+            this.comboBox_background.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_background_KeyDown);
+            this.comboBox_background.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox_KeyPress);
+            // 
+            // label_arcType
+            // 
+            resources.ApplyResources(this.label_arcType, "label_arcType");
+            this.label_arcType.Name = "label_arcType";
+            // 
+            // comboBox_arcType
+            // 
+            this.comboBox_arcType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            resources.ApplyResources(this.comboBox_arcType, "comboBox_arcType");
+            this.comboBox_arcType.FormattingEnabled = true;
+            this.comboBox_arcType.Items.AddRange(new object[] {
+            resources.GetString("comboBox_arcType.Items"),
+            resources.GetString("comboBox_arcType.Items1")});
+            this.comboBox_arcType.Name = "comboBox_arcType";
+            this.comboBox_arcType.SelectedIndexChanged += new System.EventHandler(this.comboBox_SelectedIndexChanged);
+            // 
             // UCtrl_Circle_Scale_Opt
             // 
             resources.ApplyResources(this, "$this");
@@ -409,6 +447,10 @@ namespace ControlLibrary
             this.Controls.Add(this.label06);
             this.Controls.Add(this.label05);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.label_background);
+            this.Controls.Add(this.comboBox_background);
+            this.Controls.Add(this.label_arcType);
+            this.Controls.Add(this.comboBox_arcType);
             this.Name = "UCtrl_Circle_Scale_Opt";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_scaleCircleX)).EndInit();
             this.contextMenuStrip_X.ResumeLayout(false);
@@ -459,5 +501,9 @@ namespace ControlLibrary
         private System.Windows.Forms.ToolStripMenuItem вставитьСвойстваToolStripMenuItem;
         public System.Windows.Forms.NumericUpDown numericUpDown_Alpha;
         private System.Windows.Forms.Label label_alpha;
+        private System.Windows.Forms.Label label_background;
+        private System.Windows.Forms.ComboBox comboBox_background;
+        private System.Windows.Forms.Label label_arcType;
+        private System.Windows.Forms.ComboBox comboBox_arcType;
     }
 }

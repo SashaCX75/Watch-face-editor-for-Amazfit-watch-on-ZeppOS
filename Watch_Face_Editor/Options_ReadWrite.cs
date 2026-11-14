@@ -2172,6 +2172,8 @@ namespace Watch_Face_Editor
 
             uCtrl_Circle_Scale_Opt.checkBox_mirror.Checked = circle_scale.mirror;
             uCtrl_Circle_Scale_Opt.checkBox_inversion.Checked = circle_scale.inversion;
+            uCtrl_Circle_Scale_Opt.SetBackground(circle_scale.src);
+            uCtrl_Circle_Scale_Opt.SetArcType(circle_scale.arc_type);
 
             PreviewView = true;
         }
@@ -3272,6 +3274,8 @@ namespace Watch_Face_Editor
             if (Watch_Face == null) return;
             Circle_Scale circle_scale = (Circle_Scale)uCtrl_Circle_Scale_Opt._CircleScale;
             if (circle_scale == null) return;
+            int oldRadius = circle_scale.radius;
+            string oldSrc = circle_scale.src;
 
             circle_scale.center_x = (int)uCtrl_Circle_Scale_Opt.numericUpDown_scaleCircleX.Value;
             circle_scale.center_y = (int)uCtrl_Circle_Scale_Opt.numericUpDown_scaleCircleY.Value;
@@ -3288,12 +3292,39 @@ namespace Watch_Face_Editor
 
             circle_scale.color = ColorToString(uCtrl_Circle_Scale_Opt.GetColorScale());
 
-            circle_scale.mirror = uCtrl_Circle_Scale_Opt.checkBox_mirror.Checked;
-            circle_scale.inversion = uCtrl_Circle_Scale_Opt.checkBox_inversion.Checked;
+            circle_scale.src = uCtrl_Circle_Scale_Opt.GetBackground();
+            circle_scale.arc_type = uCtrl_Circle_Scale_Opt.GetArcType();
+            // с фоном шкала рисуется через IMG_ARC_PROGRESS, зеркальное отображение и инверсия не используются
+            bool noBackground = string.IsNullOrEmpty(circle_scale.src);
+            circle_scale.mirror = noBackground && uCtrl_Circle_Scale_Opt.checkBox_mirror.Checked;
+            circle_scale.inversion = noBackground && uCtrl_Circle_Scale_Opt.checkBox_inversion.Checked;
 
             JSON_Modified = true;
             PreviewImage();
             FormText();
+
+            if (!noBackground && (circle_scale.radius != oldRadius || circle_scale.src != oldSrc))
+                CheckCircleScaleBackgroundSize(circle_scale, oldRadius, oldSrc);
+        }
+
+        /// <summary>Предупреждение, если диаметр шкалы с фоном (IMG_ARC_PROGRESS) больше ширины или высоты картинки фона.
+        /// При изменении радиуса предупреждаем только при переходе через границу, чтобы не повторять сообщение на каждом шаге</summary>
+        private void CheckCircleScaleBackgroundSize(Circle_Scale circle_scale, int oldRadius, string oldSrc)
+        {
+            int imageIndex = ListImages.IndexOf(circle_scale.src);
+            if (imageIndex < 0 || imageIndex >= ListImagesFullName.Count) return;
+            Bitmap bg = OpenFileStream(ListImagesFullName[imageIndex]);
+            if (bg == null) return;
+
+            int diameter = 2 * circle_scale.radius;
+            if (diameter <= bg.Width && diameter <= bg.Height) return;
+
+            bool sameBackground = circle_scale.src == oldSrc;
+            int oldDiameter = 2 * oldRadius;
+            if (sameBackground && (oldDiameter > bg.Width || oldDiameter > bg.Height)) return; // уже предупреждали
+
+            MessageBox.Show(string.Format(Properties.FormStrings.Message_CircleScaleBackground_Small, diameter, bg.Width, bg.Height),
+                Properties.FormStrings.Message_Warning_Caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         private void uCtrl_Linear_Scale_Opt_ValueChanged(object sender, EventArgs eventArgs)
@@ -5583,6 +5614,8 @@ namespace Watch_Face_Editor
 
             circle_scale.mirror = uCtrl_Circle_Scale_Opt.checkBox_mirror.Checked;
             circle_scale.inversion = uCtrl_Circle_Scale_Opt.checkBox_inversion.Checked;
+            circle_scale.src = uCtrl_Circle_Scale_Opt.GetBackground();
+            circle_scale.arc_type = uCtrl_Circle_Scale_Opt.GetArcType();
 
             WidgetProperty.Add("Circle_Scale", circle_scale);
             uCtrl_Circle_Scale_Opt.WidgetProperty = WidgetProperty;
@@ -5618,6 +5651,8 @@ namespace Watch_Face_Editor
 
             uCtrl_Circle_Scale_Opt.checkBox_mirror.Checked = circle_scale.mirror;
             uCtrl_Circle_Scale_Opt.checkBox_inversion.Checked = circle_scale.inversion;
+            uCtrl_Circle_Scale_Opt.SetBackground(circle_scale.src);
+            uCtrl_Circle_Scale_Opt.SetArcType(circle_scale.arc_type);
 
             PreviewView = true;
             uCtrl_Circle_Scale_Opt_ValueChanged(sender, eventArgs);

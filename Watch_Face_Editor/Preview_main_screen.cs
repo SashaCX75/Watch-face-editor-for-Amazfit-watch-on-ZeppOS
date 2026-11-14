@@ -2582,10 +2582,10 @@ namespace Watch_Face_Editor
                             }
 
                             DrawScaleCircle(gPanel, x, y, radius, width, lineCap, startAngle, fullAngle, progressCircle,
-                                color, inversion, alpha, showProgressArea, showCentrHend);
+                                color, inversion, alpha, showProgressArea, showCentrHend, circleScaleHour.src, circleScaleHour.arc_type);
 
                             if (mirror) DrawScaleCircle(gPanel, x, y, radius, width, lineCap, startAngle, -fullAngle, progressCircle,
-                                 color, inversion, alpha, showProgressArea, showCentrHend);
+                                 color, inversion, alpha, showProgressArea, showCentrHend, circleScaleHour.src, circleScaleHour.arc_type);
                         }
 
                         if (circleScaleMinute != null && index == circleScaleMinute.position && circleScaleMinute.visible)
@@ -2622,10 +2622,10 @@ namespace Watch_Face_Editor
                             float progressCircle = (minute + second / 60f) / 60f;
 
                             DrawScaleCircle(gPanel, x, y, radius, width, lineCap, startAngle, fullAngle, progressCircle,
-                                color, inversion, alpha, showProgressArea, showCentrHend);
+                                color, inversion, alpha, showProgressArea, showCentrHend, circleScaleMinute.src, circleScaleMinute.arc_type);
 
                             if (mirror) DrawScaleCircle(gPanel, x, y, radius, width, lineCap, startAngle, -fullAngle, progressCircle,
-                                 color, inversion, alpha, showProgressArea, showCentrHend);
+                                 color, inversion, alpha, showProgressArea, showCentrHend, circleScaleMinute.src, circleScaleMinute.arc_type);
                         }
 
                         if (circleScaleSecond != null && index == circleScaleSecond.position && circleScaleSecond.visible)
@@ -2661,10 +2661,10 @@ namespace Watch_Face_Editor
                             float progressCircle = second / 60f;
 
                             DrawScaleCircle(gPanel, x, y, radius, width, lineCap, startAngle, fullAngle, progressCircle,
-                                color, inversion, alpha, showProgressArea, showCentrHend);
+                                color, inversion, alpha, showProgressArea, showCentrHend, circleScaleSecond.src, circleScaleSecond.arc_type);
 
                             if (mirror) DrawScaleCircle(gPanel, x, y, radius, width, lineCap, startAngle, -fullAngle, progressCircle,
-                                 color, inversion, alpha, showProgressArea, showCentrHend);
+                                 color, inversion, alpha, showProgressArea, showCentrHend, circleScaleSecond.src, circleScaleSecond.arc_type);
                         }
                     }
 
@@ -6790,10 +6790,10 @@ namespace Watch_Face_Editor
                         : progress;
 
                     DrawScaleCircle(gPanel, x, y, radius, width, lineCap, startAngle, fullAngle, progressCircle,
-                        color, inversion, alpha, showProgressArea, showCentrHend);
+                        color, inversion, alpha, showProgressArea, showCentrHend, circleScale.src, circleScale.arc_type);
 
                     if (mirror) DrawScaleCircle(gPanel, x, y, radius, width, lineCap, startAngle, -fullAngle, progressCircle,
-                         color, inversion, alpha, showProgressArea, showCentrHend);
+                         color, inversion, alpha, showProgressArea, showCentrHend, circleScale.src, circleScale.arc_type);
                 }
 
                 if (linearScale != null && index == linearScale.position && linearScale.visible)
@@ -16882,10 +16882,24 @@ namespace Watch_Face_Editor
         /// <param name="showProgressArea">Подсвечивать полную длину шкалы</param>
         private void DrawScaleCircle(Graphics graphics, int x, int y, float radius, float width,
             int lineCap, float startAngle, float fullAngle, float position, Color color,
-            bool inversion, int alpha, bool showProgressArea, bool showCentrHend)
+            bool inversion, int alpha, bool showProgressArea, bool showCentrHend, string bg_src = null, int arc_type = 1)
         {
             if (radius <= width) return;
             Logger.WriteLine("* DrawScaleCircle");
+            // фон шкалы (IMG_ARC_PROGRESS): сектор или дуга вырезаются из картинки, левый верхний угол
+            // которой смещён от центра на внешний радиус; у дуги концы скруглённые
+            Bitmap bgImage = null;
+            bool sector = false;
+            if (!string.IsNullOrEmpty(bg_src))
+            {
+                int bgIndex = ListImages.IndexOf(bg_src);
+                if (bgIndex >= 0 && bgIndex < ListImagesFullName.Count)
+                {
+                    bgImage = OpenFileStream(ListImagesFullName[bgIndex]);
+                    sector = arc_type == 0;
+                    lineCap = 0;
+                }
+            }
             startAngle = startAngle - 90;
             if (position > 1) position = 1;
             if (inversion)
@@ -16929,6 +16943,53 @@ namespace Watch_Face_Editor
                     pen.EndCap = LineCap.Round;
                     pen.StartCap = LineCap.Round;
                     break;
+            }
+
+            if (bgImage != null)
+            {
+                Bitmap texture = bgImage;
+                if (SelectedModel.versionOS >= 2.1 && alpha != 255)
+                {
+                    texture = new Bitmap(bgImage.Width, bgImage.Height);
+                    using (Graphics g = Graphics.FromImage(texture))
+                    {
+                        ColorMatrix colorMatrix = new ColorMatrix();
+                        colorMatrix.Matrix33 = alpha / 255f;
+                        ImageAttributes imgAttributes = new ImageAttributes();
+                        imgAttributes.SetColorMatrix(colorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+                        g.DrawImage(bgImage, new Rectangle(0, 0, bgImage.Width, bgImage.Height), 0, 0,
+                            bgImage.Width, bgImage.Height, GraphicsUnit.Pixel, imgAttributes);
+                    }
+                }
+                TextureBrush textureBrush = new TextureBrush(texture, WrapMode.Clamp);
+                textureBrush.TranslateTransform(x - radius, y - radius);
+                pen.Brush = textureBrush;
+
+                if (sector)
+                {
+                    // сектор: заливка от центра до радиуса на угол прогресса
+                    if (Math.Abs(valueAngle) > 0.01)
+                        graphics.FillPie(textureBrush, x - radius, y - radius, 2 * radius, 2 * radius, startAngle, valueAngle);
+                    if (showCentrHend)
+                    {
+                        using (Pen pen1 = new Pen(Color.White, 1))
+                        {
+                            graphics.DrawLine(pen1, new Point(x - 5, y), new Point(x + 5, y));
+                            graphics.DrawLine(pen1, new Point(x, y - 5), new Point(x, y + 5));
+                        }
+                    }
+                    if (showProgressArea)
+                    {
+                        using (Pen pen2 = new Pen(Color.Black, 1))
+                        {
+                            pen2.DashStyle = DashStyle.Dash;
+                            graphics.DrawPie(pen2, x - radius, y - radius, 2 * radius, 2 * radius, startAngle, fullAngle);
+                        }
+                    }
+                    graphics.TextRenderingHint = antiAlias;
+                    graphics.SmoothingMode = smoothingMode;
+                    return;
+                }
             }
 
             int srcX = (int)(x - radius);

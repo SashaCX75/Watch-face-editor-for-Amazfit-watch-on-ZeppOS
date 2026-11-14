@@ -397,6 +397,9 @@
   <data name="Message_ImageCount_Error" xml:space="preserve">
     <value>Выбранные изображения выходят за диапазон имеющихся изображений.</value>
   </data>
+  <data name="Message_CircleScaleBackground_Small" xml:space="preserve">
+    <value>Диаметр шкалы ({0} px) больше размера фона ({1}x{2} px). Часть шкалы не будет закрашена изображением.</value>
+  </data>
   <data name="Message_ImageFix_Error" xml:space="preserve">
     <value>Ошибка конвертации изображения</value>
   </data>

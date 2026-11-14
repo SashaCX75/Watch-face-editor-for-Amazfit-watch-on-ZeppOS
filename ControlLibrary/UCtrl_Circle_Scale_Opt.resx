@@ -975,4 +975,121 @@
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="label_background.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label_background.Location" type="System.Drawing.Point, System.Drawing">
+    <value>124, 165</value>
+  </data>
+  <data name="label_background.Size" type="System.Drawing.Size, System.Drawing">
+    <value>85, 13</value>
+  </data>
+  <data name="label_background.TabIndex" type="System.Int32, mscorlib">
+    <value>202</value>
+  </data>
+  <data name="label_background.Text" xml:space="preserve">
+    <value>Фон</value>
+  </data>
+  <data name="label_background.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>BottomCenter</value>
+  </data>
+  <data name="&gt;&gt;label_background.Name" xml:space="preserve">
+    <value>label_background</value>
+  </data>
+  <data name="&gt;&gt;label_background.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label_background.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label_background.ZOrder" xml:space="preserve">
+    <value>25</value>
+  </data>
+  <data name="comboBox_background.MaxDropDownItems" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="comboBox_background.Location" type="System.Drawing.Point, System.Drawing">
+    <value>124, 181</value>
+  </data>
+  <data name="comboBox_background.Size" type="System.Drawing.Size, System.Drawing">
+    <value>85, 21</value>
+  </data>
+  <data name="comboBox_background.TabIndex" type="System.Int32, mscorlib">
+    <value>203</value>
+  </data>
+  <data name="&gt;&gt;comboBox_background.Name" xml:space="preserve">
+    <value>comboBox_background</value>
+  </data>
+  <data name="&gt;&gt;comboBox_background.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;comboBox_background.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;comboBox_background.ZOrder" xml:space="preserve">
+    <value>26</value>
+  </data>
+  <data name="label_arcType.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label_arcType.Location" type="System.Drawing.Point, System.Drawing">
+    <value>124, 106</value>
+  </data>
+  <data name="label_arcType.Size" type="System.Drawing.Size, System.Drawing">
+    <value>85, 30</value>
+  </data>
+  <data name="label_arcType.TabIndex" type="System.Int32, mscorlib">
+    <value>204</value>
+  </data>
+  <data name="label_arcType.Text" xml:space="preserve">
+    <value>Тип шкалы</value>
+  </data>
+  <data name="label_arcType.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>BottomCenter</value>
+  </data>
+  <data name="label_arcType.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;label_arcType.Name" xml:space="preserve">
+    <value>label_arcType</value>
+  </data>
+  <data name="&gt;&gt;label_arcType.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label_arcType.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label_arcType.ZOrder" xml:space="preserve">
+    <value>27</value>
+  </data>
+  <data name="comboBox_arcType.Items" xml:space="preserve">
+    <value>Сектор</value>
+  </data>
+  <data name="comboBox_arcType.Items1" xml:space="preserve">
+    <value>Дуга</value>
+  </data>
+  <data name="comboBox_arcType.Location" type="System.Drawing.Point, System.Drawing">
+    <value>124, 138</value>
+  </data>
+  <data name="comboBox_arcType.Size" type="System.Drawing.Size, System.Drawing">
+    <value>85, 21</value>
+  </data>
+  <data name="comboBox_arcType.TabIndex" type="System.Int32, mscorlib">
+    <value>205</value>
+  </data>
+  <data name="comboBox_arcType.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;comboBox_arcType.Name" xml:space="preserve">
+    <value>comboBox_arcType</value>
+  </data>
+  <data name="&gt;&gt;comboBox_arcType.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;comboBox_arcType.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;comboBox_arcType.ZOrder" xml:space="preserve">
+    <value>28</value>
+  </data>
 </root>

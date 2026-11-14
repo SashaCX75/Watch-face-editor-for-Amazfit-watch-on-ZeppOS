@@ -1320,6 +1320,8 @@ namespace Watch_Face_Editor
                     line_cap = this.Second.line_cap,
                     mirror = this.Second.mirror,
                     inversion = this.Second.inversion,
+                    src = this.Second.src,
+                    arc_type = this.Second.arc_type,
                     alpha = this.Second.alpha,
 
                     position = this.Second.position,
@@ -1344,6 +1346,8 @@ namespace Watch_Face_Editor
                     line_cap = this.Minute.line_cap,
                     mirror = this.Minute.mirror,
                     inversion = this.Minute.inversion,
+                    src = this.Minute.src,
+                    arc_type = this.Minute.arc_type,
                     alpha = this.Minute.alpha,
 
                     position = this.Minute.position,
@@ -1368,6 +1372,8 @@ namespace Watch_Face_Editor
                     line_cap = this.Hour.line_cap,
                     mirror = this.Hour.mirror,
                     inversion = this.Hour.inversion,
+                    src = this.Hour.src,
+                    arc_type = this.Hour.arc_type,
                     alpha = this.Hour.alpha,
 
                     position = this.Hour.position,
@@ -3661,6 +3667,8 @@ namespace Watch_Face_Editor
                     line_cap = this.Circle_Scale.line_cap,
                     mirror = this.Circle_Scale.mirror,
                     inversion = this.Circle_Scale.inversion,
+                    src = this.Circle_Scale.src,
+                    arc_type = this.Circle_Scale.arc_type,
                     alpha = this.Circle_Scale.alpha,
 
                     position = this.Circle_Scale.position,
@@ -3966,6 +3974,8 @@ namespace Watch_Face_Editor
                     line_cap = this.Circle_Scale.line_cap,
                     mirror = this.Circle_Scale.mirror,
                     inversion = this.Circle_Scale.inversion,
+                    src = this.Circle_Scale.src,
+                    arc_type = this.Circle_Scale.arc_type,
                     alpha = this.Circle_Scale.alpha,
 
                     position = this.Circle_Scale.position,
@@ -4402,6 +4412,8 @@ namespace Watch_Face_Editor
                     line_cap = this.Circle_Scale.line_cap,
                     mirror = this.Circle_Scale.mirror,
                     inversion = this.Circle_Scale.inversion,
+                    src = this.Circle_Scale.src,
+                    arc_type = this.Circle_Scale.arc_type,
                     alpha = this.Circle_Scale.alpha,
 
                     position = this.Circle_Scale.position,
@@ -4788,6 +4800,8 @@ namespace Watch_Face_Editor
                     line_cap = this.Circle_Scale.line_cap,
                     mirror = this.Circle_Scale.mirror,
                     inversion = this.Circle_Scale.inversion,
+                    src = this.Circle_Scale.src,
+                    arc_type = this.Circle_Scale.arc_type,
                     alpha = this.Circle_Scale.alpha,
 
                     position = this.Circle_Scale.position,
@@ -5125,6 +5139,8 @@ namespace Watch_Face_Editor
                     line_cap = this.Circle_Scale.line_cap,
                     mirror = this.Circle_Scale.mirror,
                     inversion = this.Circle_Scale.inversion,
+                    src = this.Circle_Scale.src,
+                    arc_type = this.Circle_Scale.arc_type,
                     alpha = this.Circle_Scale.alpha,
 
                     position = this.Circle_Scale.position,
@@ -5748,6 +5764,8 @@ namespace Watch_Face_Editor
                     line_cap = this.Circle_Scale.line_cap,
                     mirror = this.Circle_Scale.mirror,
                     inversion = this.Circle_Scale.inversion,
+                    src = this.Circle_Scale.src,
+                    arc_type = this.Circle_Scale.arc_type,
                     alpha = this.Circle_Scale.alpha,
 
                     position = this.Circle_Scale.position,
@@ -6069,6 +6087,8 @@ namespace Watch_Face_Editor
                     line_cap = this.Circle_Scale.line_cap,
                     mirror = this.Circle_Scale.mirror,
                     inversion = this.Circle_Scale.inversion,
+                    src = this.Circle_Scale.src,
+                    arc_type = this.Circle_Scale.arc_type,
                     alpha = this.Circle_Scale.alpha,
 
                     position = this.Circle_Scale.position,
@@ -6873,6 +6893,8 @@ namespace Watch_Face_Editor
                     line_cap = this.Circle_Scale.line_cap,
                     mirror = this.Circle_Scale.mirror,
                     inversion = this.Circle_Scale.inversion,
+                    src = this.Circle_Scale.src,
+                    arc_type = this.Circle_Scale.arc_type,
                     alpha = this.Circle_Scale.alpha,
 
                     position = this.Circle_Scale.position,
@@ -10471,6 +10493,8 @@ namespace Watch_Face_Editor
                     line_cap = this.Circle_Scale.line_cap,
                     mirror = this.Circle_Scale.mirror,
                     inversion = this.Circle_Scale.inversion,
+                    src = this.Circle_Scale.src,
+                    arc_type = this.Circle_Scale.arc_type,
                     alpha = this.Circle_Scale.alpha,
 
                     position = this.Circle_Scale.position,
@@ -10683,6 +10707,8 @@ namespace Watch_Face_Editor
                     line_cap = this.Circle_Scale.line_cap,
                     mirror = this.Circle_Scale.mirror,
                     inversion = this.Circle_Scale.inversion,
+                    src = this.Circle_Scale.src,
+                    arc_type = this.Circle_Scale.arc_type,
                     alpha = this.Circle_Scale.alpha,
 
                     position = this.Circle_Scale.position,
@@ -10895,6 +10921,8 @@ namespace Watch_Face_Editor
                     line_cap = this.Circle_Scale.line_cap,
                     mirror = this.Circle_Scale.mirror,
                     inversion = this.Circle_Scale.inversion,
+                    src = this.Circle_Scale.src,
+                    arc_type = this.Circle_Scale.arc_type,
                     alpha = this.Circle_Scale.alpha,
 
                     position = this.Circle_Scale.position,
@@ -11341,6 +11369,8 @@ namespace Watch_Face_Editor
                     line_cap = this.Circle_Scale.line_cap,
                     mirror = this.Circle_Scale.mirror,
                     inversion = this.Circle_Scale.inversion,
+                    src = this.Circle_Scale.src,
+                    arc_type = this.Circle_Scale.arc_type,
                     alpha = this.Circle_Scale.alpha,
 
                     position = this.Circle_Scale.position,
@@ -11553,6 +11583,8 @@ namespace Watch_Face_Editor
                     line_cap = this.Circle_Scale.line_cap,
                     mirror = this.Circle_Scale.mirror,
                     inversion = this.Circle_Scale.inversion,
+                    src = this.Circle_Scale.src,
+                    arc_type = this.Circle_Scale.arc_type,
                     alpha = this.Circle_Scale.alpha,
 
                     position = this.Circle_Scale.position,
@@ -11882,6 +11914,8 @@ namespace Watch_Face_Editor
                     line_cap = this.Circle_Scale.line_cap,
                     mirror = this.Circle_Scale.mirror,
                     inversion = this.Circle_Scale.inversion,
+                    src = this.Circle_Scale.src,
+                    arc_type = this.Circle_Scale.arc_type,
                     alpha = this.Circle_Scale.alpha,
 
                     position = this.Circle_Scale.position,

@@ -3450,6 +3450,7 @@ namespace Watch_Face_Editor
             uCtrl_Images_Opt.ComboBoxAddItems(ListImages, ListImagesFullName);
             uCtrl_Segments_Opt.ComboBoxAddItems(ListImages, ListImagesFullName);
             uCtrl_Linear_Scale_Opt.ComboBoxAddItems(ListImages, ListImagesFullName);
+            uCtrl_Circle_Scale_Opt.ComboBoxAddItems(ListImages, ListImagesFullName);
             uCtrl_Icon_Opt.ComboBoxAddItems(ListImages, ListImagesFullName);
             uCtrl_Image_Widgets_Opt.ComboBoxAddItems(ListImages, ListImagesFullName);
             uCtrl_Weather_FewDays_Opt.ComboBoxAddItems(ListImages, ListImagesFullName);

@@ -584,6 +584,12 @@ namespace Watch_Face_Editor
         /// <summary>Инверсия шкалы</summary>
         public bool inversion { get; set; }
 
+        /// <summary>Фон шкалы. Если задан, шкала рисуется этой картинкой (IMG_ARC_PROGRESS), а зеркальное отображение и инверсия не используются</summary>
+        public string src { get; set; }
+
+        /// <summary>Тип шкалы с фоном: 0 - сектор (hmUI.arc_type.FILL), 1 - дуга (hmUI.arc_type.LINE)</summary>
+        public int arc_type { get; set; } = 1;
+
         /// <summary>Прозрачность</summary>
         public int alpha { get; set; } = 255;
 
@@ -609,6 +615,8 @@ namespace Watch_Face_Editor
             type = source.type;
             mirror = source.mirror;
             inversion = source.inversion;
+            src = source.src;
+            arc_type = source.arc_type;
 
             alpha = source.alpha;
             show_level = source.show_level;

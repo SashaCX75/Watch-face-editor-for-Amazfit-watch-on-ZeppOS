@@ -889,6 +889,15 @@ namespace Watch_Face_Editor.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Диаметр шкалы ({0} px) больше размера фона ({1}x{2} px). Часть шкалы не будет закрашена изображением..
+        /// </summary>
+        internal static string Message_CircleScaleBackground_Small {
+            get {
+                return ResourceManager.GetString("Message_CircleScaleBackground_Small", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Выбранные изображения выходят за диапазон имеющихся изображений..
         /// </summary>
         internal static string Message_ImageCount_Error {

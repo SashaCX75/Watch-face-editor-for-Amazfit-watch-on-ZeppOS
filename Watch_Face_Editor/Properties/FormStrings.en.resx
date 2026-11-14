@@ -396,6 +396,9 @@
   <data name="Message_ImageCount_Error" xml:space="preserve">
     <value>The selected images are out of the range of the available images.</value>
   </data>
+  <data name="Message_CircleScaleBackground_Small" xml:space="preserve">
+    <value>The scale diameter ({0} px) is larger than the background ({1}x{2} px). Part of the scale will not be filled with the image.</value>
+  </data>
   <data name="Message_ImageFix_Error" xml:space="preserve">
     <value>Image conversion error</value>
   </data>

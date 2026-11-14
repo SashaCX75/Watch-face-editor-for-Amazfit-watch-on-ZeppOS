@@ -1280,6 +1280,62 @@ namespace Watch_Face_Editor
             panel_FilePost.Location = panel_Litterbox.Location;
             panel_GitHub.Location = panel_Litterbox.Location;
             panel_FilePost_info.Visible = false;
+
+            RadioButton radioButton = sender as RadioButton;
+            if (Settings_Load || /*uploadServerForced ||*/ radioButton == null || !radioButton.Checked) return;
+            if (radioButton_FilePost.Checked) ProgramSettings.Upload_Server = "FilePost";
+            else if (radioButton_GitHub.Checked) ProgramSettings.Upload_Server = "GitHub";
+            else ProgramSettings.Upload_Server = "Litterbox";
+            Save_Settings();
+        }
+
+        ///// <summary>true, пока сервер выбирается программно (конвертация) и его не нужно запоминать</summary>
+        //private bool uploadServerForced = false;
+
+        /// <summary>Запоминаем срок хранения файла на сервере</summary>
+        private void radioButton_UploadLifetime_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton radioButton = sender as RadioButton;
+            if (Settings_Load || radioButton == null || !radioButton.Checked) return;
+
+            if (radioButton_12hours.Checked) ProgramSettings.Litterbox_Lifetime = "12h";
+            else if (radioButton_1day.Checked) ProgramSettings.Litterbox_Lifetime = "24h";
+            else if (radioButton_3days.Checked) ProgramSettings.Litterbox_Lifetime = "72h";
+            else ProgramSettings.Litterbox_Lifetime = "1h";
+
+            if (radioButton_1hour_fp.Checked) ProgramSettings.FilePost_Lifetime = "1h";
+            else if (radioButton_12hours_fp.Checked) ProgramSettings.FilePost_Lifetime = "12h";
+            else if (radioButton_1day_fp.Checked) ProgramSettings.FilePost_Lifetime = "1d";
+            else if (radioButton_3days_fp.Checked) ProgramSettings.FilePost_Lifetime = "3d";
+            else ProgramSettings.FilePost_Lifetime = "unlimited";
+
+            Save_Settings();
+        }
+
+        /// <summary>Восстанавливаем выбранный сервер и сроки хранения файлов из настроек</summary>
+        private void SetUploadSettings()
+        {
+            switch (ProgramSettings.Litterbox_Lifetime)
+            {
+                case "12h": radioButton_12hours.Checked = true; break;
+                case "24h": radioButton_1day.Checked = true; break;
+                case "72h": radioButton_3days.Checked = true; break;
+                default: radioButton_1hour.Checked = true; break;
+            }
+            switch (ProgramSettings.FilePost_Lifetime)
+            {
+                case "1h": radioButton_1hour_fp.Checked = true; break;
+                case "12h": radioButton_12hours_fp.Checked = true; break;
+                case "1d": radioButton_1day_fp.Checked = true; break;
+                case "3d": radioButton_3days_fp.Checked = true; break;
+                default: radioButton_unlimited_fp.Checked = true; break;
+            }
+            switch (ProgramSettings.Upload_Server)
+            {
+                case "FilePost": radioButton_FilePost.Checked = true; break;
+                case "GitHub": radioButton_GitHub.Checked = true; break;
+                default: radioButton_Litterbox.Checked = true; break;
+            }
         }
 
         private void panel_GitHub_VisibleChanged(object sender, EventArgs e)

@@ -3771,6 +3771,7 @@ namespace Watch_Face_Editor
             resources.ApplyResources(this.radioButton_unlimited_fp, "radioButton_unlimited_fp");
             this.radioButton_unlimited_fp.Checked = true;
             this.radioButton_unlimited_fp.Name = "radioButton_unlimited_fp";
+            this.radioButton_unlimited_fp.CheckedChanged += new System.EventHandler(this.radioButton_UploadLifetime_CheckedChanged);
             this.radioButton_unlimited_fp.TabStop = true;
             this.radioButton_unlimited_fp.UseVisualStyleBackColor = true;
             // 
@@ -3778,24 +3779,28 @@ namespace Watch_Face_Editor
             // 
             resources.ApplyResources(this.radioButton_1hour_fp, "radioButton_1hour_fp");
             this.radioButton_1hour_fp.Name = "radioButton_1hour_fp";
+            this.radioButton_1hour_fp.CheckedChanged += new System.EventHandler(this.radioButton_UploadLifetime_CheckedChanged);
             this.radioButton_1hour_fp.UseVisualStyleBackColor = true;
             // 
             // radioButton_12hours_fp
             // 
             resources.ApplyResources(this.radioButton_12hours_fp, "radioButton_12hours_fp");
             this.radioButton_12hours_fp.Name = "radioButton_12hours_fp";
+            this.radioButton_12hours_fp.CheckedChanged += new System.EventHandler(this.radioButton_UploadLifetime_CheckedChanged);
             this.radioButton_12hours_fp.UseVisualStyleBackColor = true;
             // 
             // radioButton_3days_fp
             // 
             resources.ApplyResources(this.radioButton_3days_fp, "radioButton_3days_fp");
             this.radioButton_3days_fp.Name = "radioButton_3days_fp";
+            this.radioButton_3days_fp.CheckedChanged += new System.EventHandler(this.radioButton_UploadLifetime_CheckedChanged);
             this.radioButton_3days_fp.UseVisualStyleBackColor = true;
             // 
             // radioButton_1day_fp
             // 
             resources.ApplyResources(this.radioButton_1day_fp, "radioButton_1day_fp");
             this.radioButton_1day_fp.Name = "radioButton_1day_fp";
+            this.radioButton_1day_fp.CheckedChanged += new System.EventHandler(this.radioButton_UploadLifetime_CheckedChanged);
             this.radioButton_1day_fp.UseVisualStyleBackColor = true;
             // 
             // linkLabel_FilePost_API_key
@@ -3857,6 +3862,7 @@ namespace Watch_Face_Editor
             resources.ApplyResources(this.radioButton_1hour, "radioButton_1hour");
             this.radioButton_1hour.Checked = true;
             this.radioButton_1hour.Name = "radioButton_1hour";
+            this.radioButton_1hour.CheckedChanged += new System.EventHandler(this.radioButton_UploadLifetime_CheckedChanged);
             this.radioButton_1hour.TabStop = true;
             this.radioButton_1hour.UseVisualStyleBackColor = true;
             // 
@@ -3864,18 +3870,21 @@ namespace Watch_Face_Editor
             // 
             resources.ApplyResources(this.radioButton_12hours, "radioButton_12hours");
             this.radioButton_12hours.Name = "radioButton_12hours";
+            this.radioButton_12hours.CheckedChanged += new System.EventHandler(this.radioButton_UploadLifetime_CheckedChanged);
             this.radioButton_12hours.UseVisualStyleBackColor = true;
             // 
             // radioButton_3days
             // 
             resources.ApplyResources(this.radioButton_3days, "radioButton_3days");
             this.radioButton_3days.Name = "radioButton_3days";
+            this.radioButton_3days.CheckedChanged += new System.EventHandler(this.radioButton_UploadLifetime_CheckedChanged);
             this.radioButton_3days.UseVisualStyleBackColor = true;
             // 
             // radioButton_1day
             // 
             resources.ApplyResources(this.radioButton_1day, "radioButton_1day");
             this.radioButton_1day.Name = "radioButton_1day";
+            this.radioButton_1day.CheckedChanged += new System.EventHandler(this.radioButton_UploadLifetime_CheckedChanged);
             this.radioButton_1day.UseVisualStyleBackColor = true;
             // 
             // tabPage_Settings

@@ -80,6 +80,13 @@ namespace Watch_Face_Editor
         public string GitHub_token = "";
         public bool GitHub_AskConfirmation = false;
 
+        /// <summary>Сервер для загрузки файлов на тестирование: "Litterbox", "FilePost" или "GitHub"</summary>
+        public string Upload_Server = "Litterbox";
+        /// <summary>Срок хранения файла на Litterbox: "1h", "12h", "24h" или "72h"</summary>
+        public string Litterbox_Lifetime = "1h";
+        /// <summary>Срок хранения файла на FilePost: "1h", "12h", "1d", "3d" или "unlimited"</summary>
+        public string FilePost_Lifetime = "unlimited";
+
         public int[] CustomColors = { };
 
         public string language { get; set; }

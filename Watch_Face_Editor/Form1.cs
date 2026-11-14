@@ -481,6 +481,7 @@ namespace Watch_Face_Editor
             textBox_GitHub_repoName.Text = ProgramSettings.GitHub_repoName;
             textBox_GitHub_filePath.Text = ProgramSettings.GitHub_filePath;
             checkBox_GitHub_AskConfirmation.Checked = ProgramSettings.GitHub_AskConfirmation;
+            SetUploadSettings();
 
             //ProgramSettings.CustomColors передаем цвета при открытии свойст виджета
 
@@ -28424,7 +28425,10 @@ namespace Watch_Face_Editor
                 // сохранение если файл не сохранен
                 if (SaveRequest() == DialogResult.Cancel) return;
 
-                radioButton_Litterbox.Checked = true;
+                // выбранный сервер для тестирования при конвертации не сбрасываем
+                //uploadServerForced = true;
+                //radioButton_Litterbox.Checked = true;
+                //uploadServerForced = false;
                 checkBox_ZeppPlayerCapture.Checked = false;
                 checkBox_SimulatorCapture.Checked = false;
 

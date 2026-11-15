@@ -318,22 +318,22 @@
   <data name="comboBox_AddSystem.Items8" xml:space="preserve">
     <value>Bild</value>
   </data>
-  <data name="comboBox_AddSystem.Items9" xml:space="preserve">
+  <data name="comboBox_AddSystem.Items10" xml:space="preserve">
     <value>Oberes Bild</value>
   </data>
-  <data name="comboBox_AddSystem.Items10" xml:space="preserve">
+  <data name="comboBox_AddSystem.Items11" xml:space="preserve">
     <value>Buttons</value>
   </data>
-  <data name="comboBox_AddSystem.Items12" xml:space="preserve">
+  <data name="comboBox_AddSystem.Items13" xml:space="preserve">
     <value>Kompass</value>
   </data>
-  <data name="comboBox_AddSystem.Items13" xml:space="preserve">
+  <data name="comboBox_AddSystem.Items14" xml:space="preserve">
     <value>Wecker</value>
   </data>
-  <data name="comboBox_AddSystem.Items14" xml:space="preserve">
+  <data name="comboBox_AddSystem.Items15" xml:space="preserve">
     <value>Körpertemperatur</value>
   </data>
-  <data name="comboBox_AddSystem.Items15" xml:space="preserve">
+  <data name="comboBox_AddSystem.Items16" xml:space="preserve">
     <value>Text</value>
   </data>
   <data name="comboBox_AddAir.Items" xml:space="preserve">

@@ -178,7 +178,7 @@
   <data name="groupBox1.Text" xml:space="preserve">
     <value>如果解压的表盘名称匹配，则采取行动</value>
   </data>
-  <data name="comboBox_AddSystem.Items13" xml:space="preserve">
+  <data name="comboBox_AddSystem.Items14" xml:space="preserve">
     <value>闹钟</value>
   </data>
   <data name="Column1.HeaderText" xml:space="preserve">
@@ -199,7 +199,7 @@
   <data name="comboBox_AddDate.Items" xml:space="preserve">
     <value>日期</value>
   </data>
-  <data name="comboBox_AddSystem.Items14" xml:space="preserve">
+  <data name="comboBox_AddSystem.Items15" xml:space="preserve">
     <value>体温</value>
   </data>
   <data name="tabPage_About.Text" xml:space="preserve">
@@ -250,7 +250,7 @@
   <data name="checkBox_WatchSkin_Use.Text" xml:space="preserve">
     <value>保存 *.png 和 *.gif 时使用手表图像</value>
   </data>
-  <data name="comboBox_AddSystem.Items15" xml:space="preserve">
+  <data name="comboBox_AddSystem.Items16" xml:space="preserve">
     <value>文本</value>
   </data>
   <data name="tabPage_Show_Set.Text" xml:space="preserve">
@@ -1764,7 +1764,7 @@
   <data name="groupBox6.Text" xml:space="preserve">
     <value>打开项目后</value>
   </data>
-  <data name="comboBox_AddSystem.Items9" xml:space="preserve">
+  <data name="comboBox_AddSystem.Items10" xml:space="preserve">
     <value>顶部图像</value>
   </data>
   <data name="comboBox_AddSystem.Items8" xml:space="preserve">
@@ -1951,7 +1951,7 @@ PayPal: sashacx75@gmail.com</value>
   <data name="comboBox_AddAir.Items8" xml:space="preserve">
     <value>天气(预报)</value>
   </data>
-  <data name="comboBox_AddSystem.Items10" xml:space="preserve">
+  <data name="comboBox_AddSystem.Items11" xml:space="preserve">
     <value>按钮</value>
   </data>
   <data name="checkBox_Shortcuts_In_Gif.Text" xml:space="preserve">
@@ -2017,7 +2017,7 @@ PayPal: sashacx75@gmail.com</value>
   <data name="tabPageConverting.Text" xml:space="preserve">
     <value>转换表盘</value>
   </data>
-  <data name="comboBox_AddSystem.Items12" xml:space="preserve">
+  <data name="comboBox_AddSystem.Items13" xml:space="preserve">
     <value>指南针</value>
   </data>
   <data name="button_SavePNG_shortcut.Text" xml:space="preserve">

@@ -339,22 +339,22 @@
   <data name="comboBox_AddSystem.Items8" xml:space="preserve">
     <value>Image</value>
   </data>
-  <data name="comboBox_AddSystem.Items9" xml:space="preserve">
+  <data name="comboBox_AddSystem.Items10" xml:space="preserve">
     <value>Image supérieure</value>
   </data>
-  <data name="comboBox_AddSystem.Items10" xml:space="preserve">
+  <data name="comboBox_AddSystem.Items11" xml:space="preserve">
     <value>Boutons</value>
   </data>
-  <data name="comboBox_AddSystem.Items12" xml:space="preserve">
+  <data name="comboBox_AddSystem.Items13" xml:space="preserve">
     <value>Boussole</value>
   </data>
-  <data name="comboBox_AddSystem.Items13" xml:space="preserve">
+  <data name="comboBox_AddSystem.Items14" xml:space="preserve">
     <value>Alarme</value>
   </data>
-  <data name="comboBox_AddSystem.Items14" xml:space="preserve">
+  <data name="comboBox_AddSystem.Items15" xml:space="preserve">
     <value>Température corporelle</value>
   </data>
-  <data name="comboBox_AddSystem.Items15" xml:space="preserve">
+  <data name="comboBox_AddSystem.Items16" xml:space="preserve">
     <value>Texte</value>
   </data>
   <data name="comboBox_AddAir.Items" xml:space="preserve">

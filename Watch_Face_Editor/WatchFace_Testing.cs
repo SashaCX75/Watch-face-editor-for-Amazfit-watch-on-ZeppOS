@@ -1336,6 +1336,14 @@ namespace Watch_Face_Editor
                 case "GitHub": radioButton_GitHub.Checked = true; break;
                 default: radioButton_Litterbox.Checked = true; break;
             }
+            checkBox_AddPreviewQR.Checked = ProgramSettings.AddPreviewQR;
+        }
+
+        private void checkBox_AddPreviewQR_CheckedChanged(object sender, EventArgs e)
+        {
+            if (Settings_Load) return;
+            ProgramSettings.AddPreviewQR = checkBox_AddPreviewQR.Checked;
+            Save_Settings();
         }
 
         private void panel_GitHub_VisibleChanged(object sender, EventArgs e)

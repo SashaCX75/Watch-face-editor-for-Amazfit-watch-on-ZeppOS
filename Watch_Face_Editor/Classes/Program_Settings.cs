@@ -86,6 +86,8 @@ namespace Watch_Face_Editor
         public string Litterbox_Lifetime = "1h";
         /// <summary>Срок хранения файла на FilePost: "1h", "12h", "1d", "3d" или "unlimited"</summary>
         public string FilePost_Lifetime = "unlimited";
+        /// <summary>Добавлять к ссылке на файл QR-код с изображением предпросмотра</summary>
+        public bool AddPreviewQR = false;
 
         public int[] CustomColors = { };
 

@@ -342,22 +342,22 @@
   <data name="comboBox_AddSystem.Items8" xml:space="preserve">
     <value>Obrázek</value>
   </data>
-  <data name="comboBox_AddSystem.Items9" xml:space="preserve">
+  <data name="comboBox_AddSystem.Items10" xml:space="preserve">
     <value>Obrázek nahoře</value>
   </data>
-  <data name="comboBox_AddSystem.Items10" xml:space="preserve">
+  <data name="comboBox_AddSystem.Items11" xml:space="preserve">
     <value>Tlačítka</value>
   </data>
-  <data name="comboBox_AddSystem.Items12" xml:space="preserve">
+  <data name="comboBox_AddSystem.Items13" xml:space="preserve">
     <value>Kompas</value>
   </data>
-  <data name="comboBox_AddSystem.Items13" xml:space="preserve">
+  <data name="comboBox_AddSystem.Items14" xml:space="preserve">
     <value>Alarm</value>
   </data>
-  <data name="comboBox_AddSystem.Items14" xml:space="preserve">
+  <data name="comboBox_AddSystem.Items15" xml:space="preserve">
     <value>Tělesná teplota</value>
   </data>
-  <data name="comboBox_AddSystem.Items15" xml:space="preserve">
+  <data name="comboBox_AddSystem.Items16" xml:space="preserve">
     <value>Text</value>
   </data>
   <data name="comboBox_AddAir.Items" xml:space="preserve">

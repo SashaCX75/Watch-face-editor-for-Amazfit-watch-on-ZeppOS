@@ -332,7 +332,7 @@ will decrease the amount of progress.</value>
     <value>Transparency</value>
   </data>
   <data name="label_background.Text" xml:space="preserve">
-    <value>Background</value>
+    <value>Scale background</value>
   </data>
   <data name="label_arcType.Text" xml:space="preserve">
     <value>Scale type</value>

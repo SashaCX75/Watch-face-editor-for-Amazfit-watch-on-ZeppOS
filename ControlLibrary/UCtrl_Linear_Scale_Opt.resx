@@ -141,7 +141,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;comboBox_scaleLinear_image_pointer.ZOrder" xml:space="preserve">
-    <value>22</value>
+    <value>26</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="label02.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
@@ -175,7 +175,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label02.ZOrder" xml:space="preserve">
-    <value>23</value>
+    <value>27</value>
   </data>
   <metadata name="contextMenuStrip_X.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>13, 16</value>
@@ -273,7 +273,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;numericUpDown_scaleLinearX.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>17</value>
   </data>
   <metadata name="contextMenuStrip_Y.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>167, 17</value>
@@ -371,7 +371,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;numericUpDown_scaleLinearY.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>18</value>
   </data>
   <data name="numericUpDown_scaleLinear_length.Location" type="System.Drawing.Point, System.Drawing">
     <value>20, 99</value>
@@ -392,7 +392,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;numericUpDown_scaleLinear_length.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>19</value>
   </data>
   <data name="numericUpDown_scaleLinear_width.Location" type="System.Drawing.Point, System.Drawing">
     <value>93, 99</value>
@@ -413,7 +413,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;numericUpDown_scaleLinear_width.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>20</value>
   </data>
   <data name="label01.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -446,7 +446,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label01.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>21</value>
   </data>
   <data name="label04.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -476,7 +476,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label04.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>22</value>
   </data>
   <data name="label03.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -506,7 +506,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label03.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>23</value>
   </data>
   <data name="label06.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -539,7 +539,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label06.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>24</value>
   </data>
   <data name="label05.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -572,7 +572,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label05.ZOrder" xml:space="preserve">
-    <value>21</value>
+    <value>25</value>
   </data>
   <data name="comboBox_scaleLinear_color.IntegralHeight" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -596,7 +596,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;comboBox_scaleLinear_color.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>16</value>
   </data>
   <data name="label07.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -629,7 +629,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label07.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>15</value>
   </data>
   <data name="radioButton_vertical.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -713,13 +713,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;groupBox_Orientation.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>14</value>
   </data>
   <data name="checkBox_mirror.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="checkBox_mirror.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 234</value>
+    <value>6, 276</value>
   </data>
   <data name="checkBox_mirror.Size" type="System.Drawing.Size, System.Drawing">
     <value>233, 17</value>
@@ -740,13 +740,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;checkBox_mirror.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>13</value>
   </data>
   <data name="checkBox_inversion.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="checkBox_inversion.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 257</value>
+    <value>6, 299</value>
   </data>
   <data name="checkBox_inversion.Size" type="System.Drawing.Size, System.Drawing">
     <value>117, 17</value>
@@ -767,7 +767,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;checkBox_inversion.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>12</value>
   </data>
   <data name="label08.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -776,7 +776,7 @@
     <value>NoControl</value>
   </data>
   <data name="label08.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 280</value>
+    <value>3, 322</value>
   </data>
   <data name="label08.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
@@ -802,7 +802,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label08.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>11</value>
   </data>
   <data name="comboBox_scaleLinear_lineCap.Items" xml:space="preserve">
     <value>Круглое</value>
@@ -829,7 +829,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;comboBox_scaleLinear_lineCap.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>9</value>
   </data>
   <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -859,7 +859,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>10</value>
   </data>
   <metadata name="context_WidgetProperty.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>322, 10</value>
@@ -904,7 +904,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;numericUpDown_Alpha.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>7</value>
   </data>
   <data name="label_alpha.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -937,11 +937,116 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label_alpha.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>8</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="label_background.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 231</value>
+  </data>
+  <data name="label_background.Size" type="System.Drawing.Size, System.Drawing">
+    <value>113, 17</value>
+  </data>
+  <data name="label_background.TabIndex" type="System.Int32, mscorlib">
+    <value>200</value>
+  </data>
+  <data name="label_background.Text" xml:space="preserve">
+    <value>Фон шкалы</value>
+  </data>
+  <data name="label_background.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>BottomCenter</value>
+  </data>
+  <data name="&gt;&gt;label_background.Name" xml:space="preserve">
+    <value>label_background</value>
+  </data>
+  <data name="&gt;&gt;label_background.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label_background.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label_background.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="comboBox_background.MaxDropDownItems" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="comboBox_background.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 251</value>
+  </data>
+  <data name="comboBox_background.Size" type="System.Drawing.Size, System.Drawing">
+    <value>113, 21</value>
+  </data>
+  <data name="comboBox_background.TabIndex" type="System.Int32, mscorlib">
+    <value>201</value>
+  </data>
+  <data name="&gt;&gt;comboBox_background.Name" xml:space="preserve">
+    <value>comboBox_background</value>
+  </data>
+  <data name="&gt;&gt;comboBox_background.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;comboBox_background.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;comboBox_background.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="label_cornerRadius.Location" type="System.Drawing.Point, System.Drawing">
+    <value>147, 231</value>
+  </data>
+  <data name="label_cornerRadius.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 17</value>
+  </data>
+  <data name="label_cornerRadius.TabIndex" type="System.Int32, mscorlib">
+    <value>202</value>
+  </data>
+  <data name="label_cornerRadius.Text" xml:space="preserve">
+    <value>Радиус углов</value>
+  </data>
+  <data name="label_cornerRadius.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>BottomCenter</value>
+  </data>
+  <data name="label_cornerRadius.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;label_cornerRadius.Name" xml:space="preserve">
+    <value>label_cornerRadius</value>
+  </data>
+  <data name="&gt;&gt;label_cornerRadius.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label_cornerRadius.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label_cornerRadius.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="numericUpDown_cornerRadius.Location" type="System.Drawing.Point, System.Drawing">
+    <value>172, 252</value>
+  </data>
+  <data name="numericUpDown_cornerRadius.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 20</value>
+  </data>
+  <data name="numericUpDown_cornerRadius.TabIndex" type="System.Int32, mscorlib">
+    <value>203</value>
+  </data>
+  <data name="numericUpDown_cornerRadius.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown_cornerRadius.Name" xml:space="preserve">
+    <value>numericUpDown_cornerRadius</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown_cornerRadius.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown_cornerRadius.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown_cornerRadius.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>

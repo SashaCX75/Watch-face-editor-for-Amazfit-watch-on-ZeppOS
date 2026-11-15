@@ -165,12 +165,11 @@ namespace ControlLibrary
             get { return comboBox_background.SelectedIndex >= 0; }
         }
 
-        /// <summary>С фоном зеркальное отображение и инверсия недоступны,
+        /// <summary>С фоном инверсия недоступна (зеркальное отображение остаётся),
         /// а вместо окончания линии выбирается тип шкалы (сектор или дуга)</summary>
         private void UpdateBackgroundState()
         {
             bool noBackground = !BackgroundSelected;
-            checkBox_mirror.Enabled = noBackground;
             checkBox_inversion.Enabled = Inverse_mode && noBackground;
 
             label2.Visible = noBackground;

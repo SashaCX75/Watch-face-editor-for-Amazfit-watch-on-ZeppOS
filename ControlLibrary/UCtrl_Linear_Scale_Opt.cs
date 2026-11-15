@@ -194,6 +194,77 @@ namespace ControlLibrary
             }
         }
 
+        #region Background
+        /// <summary>Выбрана ли картинка фона (шкала рисуется картинкой через IMG_LINE_PROGRESS)</summary>
+        public bool BackgroundSelected
+        {
+            get { return comboBox_background.SelectedIndex >= 0; }
+        }
+
+        /// <summary>С фоном зеркальное отображение и инверсия недоступны, цвет и окончание линии не используются,
+        /// а рядом с выбором фона появляется радиус закругления углов</summary>
+        private void UpdateBackgroundState()
+        {
+            bool noBackground = !BackgroundSelected;
+            checkBox_mirror.Enabled = noBackground;
+            checkBox_inversion.Enabled = noBackground;
+            label07.Enabled = noBackground;
+            comboBox_scaleLinear_color.Enabled = noBackground;
+            label2.Enabled = noBackground;
+            comboBox_scaleLinear_lineCap.Enabled = noBackground;
+
+            label_cornerRadius.Visible = !noBackground;
+            numericUpDown_cornerRadius.Visible = !noBackground;
+        }
+
+        public void SetBackground(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                comboBox_background.SelectedIndex = -1;
+                comboBox_background.Text = "";
+            }
+            else
+            {
+                comboBox_background.Text = value;
+                if (comboBox_background.SelectedIndex < 0) comboBox_background.Text = "";
+            }
+            UpdateBackgroundState();
+        }
+
+        /// <summary>Возвращает название выбранной картинки фона</summary>
+        public string GetBackground()
+        {
+            if (comboBox_background.SelectedIndex < 0) return "";
+            return comboBox_background.Text;
+        }
+
+        private void comboBox_background_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateBackgroundState();
+            if (ValueChanged != null && !setValue)
+            {
+                EventArgs eventArgs = new EventArgs();
+                ValueChanged(this, eventArgs);
+            }
+        }
+
+        private void comboBox_background_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.KeyCode == Keys.Delete) || (e.KeyCode == Keys.Back))
+            {
+                comboBox_background.Text = "";
+                comboBox_background.SelectedIndex = -1;
+                UpdateBackgroundState();
+                if (ValueChanged != null && !setValue)
+                {
+                    EventArgs eventArgs = new EventArgs();
+                    ValueChanged(this, eventArgs);
+                }
+            }
+        }
+        #endregion
+
         [Browsable(true)]
         [Description("Происходит при изменении выбора элемента")]
         public event ValueChangedHandler ValueChanged;
@@ -474,8 +545,10 @@ namespace ControlLibrary
         public void ComboBoxAddItems(List<string> ListImages, List<string> _ListImagesFullName)
         {
             comboBox_scaleLinear_image_pointer.Items.Clear();
+            comboBox_background.Items.Clear();
 
             comboBox_scaleLinear_image_pointer.Items.AddRange(ListImages.ToArray());
+            comboBox_background.Items.AddRange(ListImages.ToArray());
 
             ListImagesFullName = _ListImagesFullName;
             comboBox_scaleLinear_lineCap.SelectedIndex = 1;
@@ -484,14 +557,17 @@ namespace ControlLibrary
             if (count == 0)
             {
                 comboBox_scaleLinear_image_pointer.DropDownHeight = 1;
+                comboBox_background.DropDownHeight = 1;
             }
             else if (count < 5)
             {
                 comboBox_scaleLinear_image_pointer.DropDownHeight = 35 * count + 1;
+                comboBox_background.DropDownHeight = 35 * count + 1;
             }
             else
             {
                 comboBox_scaleLinear_image_pointer.DropDownHeight = 106;
+                comboBox_background.DropDownHeight = 106;
             }
         }
 
@@ -514,6 +590,9 @@ namespace ControlLibrary
 
             checkBox_mirror.Checked = false;
             checkBox_inversion.Checked = false;
+
+            numericUpDown_cornerRadius.Value = 0;
+            SetBackground("");
 
             Alpha = false;
 

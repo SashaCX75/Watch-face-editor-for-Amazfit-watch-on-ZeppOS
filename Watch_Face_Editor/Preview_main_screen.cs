@@ -6812,11 +6812,20 @@ namespace Watch_Face_Editor
                     if (linearScale.pointer != null && linearScale.pointer.Length > 0)
                         pointer_index = ListImages.IndexOf(linearScale.pointer);
 
-                    DrawScaleLinear(gPanel, x, y, lenght, width, line_cap, pointer_index, vertical, progress,
-                        color, inversion, alpha, showProgressArea);
+                    if (!string.IsNullOrEmpty(linearScale.src))
+                    {
+                        // шкала с фоном (IMG_LINE_PROGRESS): без зеркала и инверсии
+                        DrawScaleLinearImage(gPanel, x, y, lenght, width, linearScale.src, linearScale.corner_radius,
+                            pointer_index, vertical, progress, alpha, showProgressArea);
+                    }
+                    else
+                    {
+                        DrawScaleLinear(gPanel, x, y, lenght, width, line_cap, pointer_index, vertical, progress,
+                            color, inversion, alpha, showProgressArea);
 
-                    if (mirror) DrawScaleLinear(gPanel, x, y, -lenght, width, line_cap, pointer_index, vertical, progress,
-                        color, inversion, alpha, showProgressArea);
+                        if (mirror) DrawScaleLinear(gPanel, x, y, -lenght, width, line_cap, pointer_index, vertical, progress,
+                            color, inversion, alpha, showProgressArea);
+                    }
                 }
 
                 if (icon != null && icon.src != null && icon.src.Length > 0 &&
@@ -17219,6 +17228,103 @@ namespace Watch_Face_Editor
 
             Logger.WriteLine("* DrawScaleLinear (end)");
 
+        }
+
+        /// <summary>Линейная шкала с фоном (IMG_LINE_PROGRESS): по значению открывается часть картинки,
+        /// левый верхний угол которой совпадает с левым верхним углом шкалы</summary>
+        /// <param name="lenght">Длина шкалы; знак задаёт направление роста (вправо/вниз или влево/вверх)</param>
+        /// <param name="width">Толщина шкалы</param>
+        /// <param name="bg_src">Картинка фона</param>
+        /// <param name="cornerRadius">Радиус закругления углов открытой части</param>
+        /// <param name="position">Отображаемая величина от 0 до 1</param>
+        private void DrawScaleLinearImage(Graphics graphics, int x, int y, int lenght, int width, string bg_src, int cornerRadius,
+            int pointer_index, bool vertical, float position, int alpha, bool showProgressArea)
+        {
+            Logger.WriteLine("* DrawScaleLinearImage");
+            if (position > 1) position = 1;
+            if (position < 0) position = 0;
+            int bgIndex = ListImages.IndexOf(bg_src);
+            if (bgIndex < 0 || bgIndex >= ListImagesFullName.Count) return;
+
+            // полная область шкалы
+            Rectangle area = vertical ?
+                new Rectangle(x, lenght < 0 ? y + lenght : y, width, Math.Abs(lenght)) :
+                new Rectangle(lenght < 0 ? x + lenght : x, y, Math.Abs(lenght), width);
+            if (area.Width <= 0 || area.Height <= 0) return;
+
+            // открытая часть растёт от начала шкалы (start_x/start_y) в сторону длины
+            int realLenght = (int)(lenght * position);
+            Rectangle visible = vertical ?
+                new Rectangle(x, realLenght < 0 ? y + realLenght : y, width, Math.Abs(realLenght)) :
+                new Rectangle(realLenght < 0 ? x + realLenght : x, y, Math.Abs(realLenght), width);
+
+            try
+            {
+                Bitmap bgImage = OpenFileStream(ListImagesFullName[bgIndex]);
+                ImageAttributes imgAttributes = null;
+                if (SelectedModel.versionOS >= 2.1 && alpha != 255)
+                {
+                    ColorMatrix colorMatrix = new ColorMatrix();
+                    colorMatrix.Matrix33 = alpha / 255f;
+                    imgAttributes = new ImageAttributes();
+                    imgAttributes.SetColorMatrix(colorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+                }
+
+                if (visible.Width > 0 && visible.Height > 0)
+                {
+                    GraphicsState state = graphics.Save();
+                    SmoothingMode smoothingMode = graphics.SmoothingMode;
+                    graphics.SmoothingMode = SmoothingMode.AntiAlias;
+                    using (GraphicsPath path = RoundedRectPath(visible, cornerRadius))
+                    {
+                        graphics.SetClip(path, CombineMode.Intersect);
+                        graphics.DrawImage(bgImage, new Rectangle(area.X, area.Y, bgImage.Width, bgImage.Height),
+                            0, 0, bgImage.Width, bgImage.Height, GraphicsUnit.Pixel, imgAttributes);
+                    }
+                    graphics.SmoothingMode = smoothingMode;
+                    graphics.Restore(state);
+                }
+
+                if (pointer_index >= 0 && pointer_index < ListImagesFullName.Count)
+                {
+                    Bitmap pointer = OpenFileStream(ListImagesFullName[pointer_index]);
+                    int pos_x = vertical ? x + width / 2 - pointer.Width / 2 : x + realLenght - pointer.Width / 2;
+                    int pos_y = vertical ? y + realLenght - pointer.Height / 2 : y + width / 2 - pointer.Height / 2;
+                    graphics.DrawImage(pointer, pos_x, pos_y);
+                }
+
+                if (showProgressArea)
+                {
+                    using (HatchBrush lightBrush = new HatchBrush(HatchStyle.Percent20, Color.White, Color.Transparent))
+                    using (HatchBrush darkBrush = new HatchBrush(HatchStyle.Percent10, Color.Black, Color.Transparent))
+                    {
+                        graphics.FillRectangle(lightBrush, area);
+                        graphics.FillRectangle(darkBrush, area);
+                    }
+                }
+            }
+            catch (Exception) { }
+
+            Logger.WriteLine("* DrawScaleLinearImage (end)");
+        }
+
+        /// <summary>Прямоугольник со скруглёнными углами (радиус не больше половины меньшей стороны)</summary>
+        private GraphicsPath RoundedRectPath(Rectangle rect, int radius)
+        {
+            GraphicsPath path = new GraphicsPath();
+            int r = Math.Min(radius, Math.Min(rect.Width, rect.Height) / 2);
+            if (r <= 0)
+            {
+                path.AddRectangle(rect);
+                return path;
+            }
+            int d = 2 * r;
+            path.AddArc(rect.X, rect.Y, d, d, 180, 90);
+            path.AddArc(rect.Right - d, rect.Y, d, d, 270, 90);
+            path.AddArc(rect.Right - d, rect.Bottom - d, d, d, 0, 90);
+            path.AddArc(rect.X, rect.Bottom - d, d, d, 90, 90);
+            path.CloseFigure();
+            return path;
         }
 
         /// <summary>Линейная шкала закругленная</summary>

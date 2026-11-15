@@ -65,6 +65,10 @@ namespace ControlLibrary
             this.вставитьСвойстваToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.numericUpDown_Alpha = new System.Windows.Forms.NumericUpDown();
             this.label_alpha = new System.Windows.Forms.Label();
+            this.label_background = new System.Windows.Forms.Label();
+            this.comboBox_background = new System.Windows.Forms.ComboBox();
+            this.label_cornerRadius = new System.Windows.Forms.Label();
+            this.numericUpDown_cornerRadius = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_scaleLinearX)).BeginInit();
             this.contextMenuStrip_X.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_scaleLinearY)).BeginInit();
@@ -74,6 +78,7 @@ namespace ControlLibrary
             this.groupBox_Orientation.SuspendLayout();
             this.context_WidgetProperty.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Alpha)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_cornerRadius)).BeginInit();
             this.SuspendLayout();
             // 
             // comboBox_scaleLinear_image_pointer
@@ -378,11 +383,49 @@ namespace ControlLibrary
             resources.ApplyResources(this.label_alpha, "label_alpha");
             this.label_alpha.Name = "label_alpha";
             // 
+            // label_background
+            // 
+            resources.ApplyResources(this.label_background, "label_background");
+            this.label_background.Name = "label_background";
+            // 
+            // comboBox_background
+            // 
+            this.comboBox_background.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.comboBox_background.DropDownWidth = 135;
+            this.comboBox_background.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBox_background, "comboBox_background");
+            this.comboBox_background.Name = "comboBox_background";
+            this.comboBox_background.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.comboBox_DrawItem);
+            this.comboBox_background.MeasureItem += new System.Windows.Forms.MeasureItemEventHandler(this.comboBox_MeasureItem);
+            this.comboBox_background.SelectedIndexChanged += new System.EventHandler(this.comboBox_background_SelectedIndexChanged);
+            this.comboBox_background.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_background_KeyDown);
+            this.comboBox_background.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox_KeyPress);
+            // 
+            // label_cornerRadius
+            // 
+            resources.ApplyResources(this.label_cornerRadius, "label_cornerRadius");
+            this.label_cornerRadius.Name = "label_cornerRadius";
+            // 
+            // numericUpDown_cornerRadius
+            // 
+            resources.ApplyResources(this.numericUpDown_cornerRadius, "numericUpDown_cornerRadius");
+            this.numericUpDown_cornerRadius.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.numericUpDown_cornerRadius.Name = "numericUpDown_cornerRadius";
+            this.numericUpDown_cornerRadius.ValueChanged += new System.EventHandler(this.numericUpDown_ValueChanged);
+            // 
             // UCtrl_Linear_Scale_Opt
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ContextMenuStrip = this.context_WidgetProperty;
+            this.Controls.Add(this.numericUpDown_cornerRadius);
+            this.Controls.Add(this.label_cornerRadius);
+            this.Controls.Add(this.comboBox_background);
+            this.Controls.Add(this.label_background);
             this.Controls.Add(this.numericUpDown_Alpha);
             this.Controls.Add(this.label_alpha);
             this.Controls.Add(this.comboBox_scaleLinear_lineCap);
@@ -415,6 +458,7 @@ namespace ControlLibrary
             this.groupBox_Orientation.PerformLayout();
             this.context_WidgetProperty.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Alpha)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_cornerRadius)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -456,5 +500,9 @@ namespace ControlLibrary
         private System.Windows.Forms.ToolStripMenuItem вставитьСвойстваToolStripMenuItem;
         public System.Windows.Forms.NumericUpDown numericUpDown_Alpha;
         private System.Windows.Forms.Label label_alpha;
+        private System.Windows.Forms.Label label_background;
+        private System.Windows.Forms.ComboBox comboBox_background;
+        private System.Windows.Forms.Label label_cornerRadius;
+        public System.Windows.Forms.NumericUpDown numericUpDown_cornerRadius;
     }
 }

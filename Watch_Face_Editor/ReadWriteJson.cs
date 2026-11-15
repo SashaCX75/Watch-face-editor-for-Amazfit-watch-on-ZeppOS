@@ -6935,7 +6935,8 @@ namespace Watch_Face_Editor
                             else items += Environment.NewLine + TabInString(6) + "if (screenType == hmSetting.screen_type.AOD) {";
 
                             items += Environment.NewLine + TabInString(7) +
-                                optionNameStart + "step_linear_scale = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
+                                optionNameStart + "step_linear_scale = " + Linear_Scale_Widget_JS(linear_scale, "STEP", show_level, 7) + ";" + Environment.NewLine;
+                            Linear_Scale_Image_Refresh_JS(linear_scale, optionNameStart + "step_linear_scale", ref resume_call);
 
                             if (Steps.Linear_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "step_linear_scale.setAlpha(" + Steps.Linear_Scale.alpha.ToString() + ");" + Environment.NewLine;
@@ -6960,45 +6961,49 @@ namespace Watch_Face_Editor
                             items += linearScaleOptions;
 
 
-                            scale_update_function += Environment.NewLine + TabInString(8) + "console.log('update scales STEP');" + Environment.NewLine;
-                            if (items.IndexOf("const step = hmSensor.createSensor(hmSensor.id.STEP);") < 0)
+                            // шкале с фоном (IMG_LINE_PROGRESS) значение задаёт type, scale_call нужен только указателю
+                            if (Linear_Scale_Need_Update(linear_scale))
                             {
-                                items += TabInString(6) + Environment.NewLine;
-                                items += TabInString(6) + "const step = hmSensor.createSensor(hmSensor.id.STEP);" + Environment.NewLine;
-                            }
-                            AddListener(ref variables, ref items, "step", "valueStep", "scale_call();", ref resume_call, ref pause_call, optionNameStart);
+                                scale_update_function += Environment.NewLine + TabInString(8) + "console.log('update scales STEP');" + Environment.NewLine;
+                                if (items.IndexOf("const step = hmSensor.createSensor(hmSensor.id.STEP);") < 0)
+                                {
+                                    items += TabInString(6) + Environment.NewLine;
+                                    items += TabInString(6) + "const step = hmSensor.createSensor(hmSensor.id.STEP);" + Environment.NewLine;
+                                }
+                                AddListener(ref variables, ref items, "step", "valueStep", "scale_call();", ref resume_call, ref pause_call, optionNameStart);
 
-                            if (scale_update_function.IndexOf("progressStep") < 0)
-                            {
-                                scale_update_function += TabInString(8) + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let valueStep = step.current;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let targetStep = step.target;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let progressStep = valueStep/targetStep;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "if (progressStep > 1) progressStep = 1;" + Environment.NewLine;
-                            }
-                            if (linear_scale.inversion)
-                            {
-                                scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
-                                "step = 1 - progressStep;" + Environment.NewLine;
-                            }
-                            else
-                            {
-                                scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
-                                "step = progressStep;" + Environment.NewLine;
-                            }
-                            if (optionNameStart == "normal_")
-                            {
-                                scale_update_function += Environment.NewLine + TabInString(8) + 
-                                    "if (screenType != hmSetting.screen_type.AOD) {" + Environment.NewLine;
-                                scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "step", show_level);
-                                scale_update_function += TabInString(8) + "};" + Environment.NewLine;
-                            }
-                            else
-                            {
-                                scale_update_function += Environment.NewLine + TabInString(8) + 
-                                    "if (screenType == hmSetting.screen_type.AOD) {" + Environment.NewLine;
-                                scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "step", show_level);
-                                scale_update_function += TabInString(8) + "};" + Environment.NewLine;
+                                if (scale_update_function.IndexOf("progressStep") < 0)
+                                {
+                                    scale_update_function += TabInString(8) + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let valueStep = step.current;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let targetStep = step.target;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let progressStep = valueStep/targetStep;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "if (progressStep > 1) progressStep = 1;" + Environment.NewLine;
+                                }
+                                if (linear_scale.inversion)
+                                {
+                                    scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
+                                    "step = 1 - progressStep;" + Environment.NewLine;
+                                }
+                                else
+                                {
+                                    scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
+                                    "step = progressStep;" + Environment.NewLine;
+                                }
+                                if (optionNameStart == "normal_")
+                                {
+                                    scale_update_function += Environment.NewLine + TabInString(8) + 
+                                        "if (screenType != hmSetting.screen_type.AOD) {" + Environment.NewLine;
+                                    scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "step", show_level);
+                                    scale_update_function += TabInString(8) + "};" + Environment.NewLine;
+                                }
+                                else
+                                {
+                                    scale_update_function += Environment.NewLine + TabInString(8) + 
+                                        "if (screenType == hmSetting.screen_type.AOD) {" + Environment.NewLine;
+                                    scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "step", show_level);
+                                    scale_update_function += TabInString(8) + "};" + Environment.NewLine;
+                                }
                             }
 
 
@@ -7326,7 +7331,8 @@ namespace Watch_Face_Editor
                             else items += Environment.NewLine + TabInString(6) + "if (screenType == hmSetting.screen_type.AOD) {";
 
                             items += Environment.NewLine + TabInString(7) +
-                                optionNameStart + "battery_linear_scale = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
+                                optionNameStart + "battery_linear_scale = " + Linear_Scale_Widget_JS(linear_scale, "BATTERY", show_level, 7) + ";" + Environment.NewLine;
+                            Linear_Scale_Image_Refresh_JS(linear_scale, optionNameStart + "battery_linear_scale", ref resume_call);
 
                             if (Battery.Linear_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "battery_linear_scale.setAlpha(" + Battery.Linear_Scale.alpha.ToString() + ");" + Environment.NewLine;
@@ -7351,52 +7357,56 @@ namespace Watch_Face_Editor
                             items += linearScaleOptions;
 
 
-                            scale_update_function += Environment.NewLine + TabInString(8) + "console.log('update scales BATTERY');" + Environment.NewLine;
-                            if (items.IndexOf("const battery = hmSensor.createSensor(hmSensor.id.BATTERY);") < 0)
+                            // шкале с фоном (IMG_LINE_PROGRESS) значение задаёт type, scale_call нужен только указателю
+                            if (Linear_Scale_Need_Update(linear_scale))
                             {
-                                items += TabInString(6) + Environment.NewLine;
-                                items += TabInString(6) + "const battery = hmSensor.createSensor(hmSensor.id.BATTERY);" + Environment.NewLine;
-                                if (items.IndexOf("battery.addEventListener") < 0)
+                                scale_update_function += Environment.NewLine + TabInString(8) + "console.log('update scales BATTERY');" + Environment.NewLine;
+                                if (items.IndexOf("const battery = hmSensor.createSensor(hmSensor.id.BATTERY);") < 0)
                                 {
-                                    items += TabInString(6) + "battery.addEventListener(hmSensor.event.CHANGE, function() {" + Environment.NewLine;
-                                    items += TabInString(7) + "scale_call();" + Environment.NewLine;
-                                    items += TabInString(6) + "});" + Environment.NewLine;
+                                    items += TabInString(6) + Environment.NewLine;
+                                    items += TabInString(6) + "const battery = hmSensor.createSensor(hmSensor.id.BATTERY);" + Environment.NewLine;
+                                    if (items.IndexOf("battery.addEventListener") < 0)
+                                    {
+                                        items += TabInString(6) + "battery.addEventListener(hmSensor.event.CHANGE, function() {" + Environment.NewLine;
+                                        items += TabInString(7) + "scale_call();" + Environment.NewLine;
+                                        items += TabInString(6) + "});" + Environment.NewLine;
+                                    }
                                 }
-                            }
 
-                            if (scale_update_function.IndexOf("progressBattery") < 0)
-                            {
-                                scale_update_function += TabInString(8) + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let valueBattery = battery.current;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let targetBattery = 100;" + Environment.NewLine;
-                                //scale_update_function += TabInString(8) + "let targetBattery = battery.target;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let progressBattery = valueBattery/targetBattery;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "if (progressBattery > 1) progressBattery = 1;" + Environment.NewLine;
-                            }
+                                if (scale_update_function.IndexOf("progressBattery") < 0)
+                                {
+                                    scale_update_function += TabInString(8) + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let valueBattery = battery.current;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let targetBattery = 100;" + Environment.NewLine;
+                                    //scale_update_function += TabInString(8) + "let targetBattery = battery.target;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let progressBattery = valueBattery/targetBattery;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "if (progressBattery > 1) progressBattery = 1;" + Environment.NewLine;
+                                }
 
-                            if (linear_scale.inversion)
-                            {
-                                scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
-                                "battery = 1 - progressBattery;" + Environment.NewLine;
-                            }
-                            else
-                            {
-                                scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
-                                "battery = progressBattery;" + Environment.NewLine;
-                            }
-                            if (optionNameStart == "normal_")
-                            {
-                                scale_update_function += Environment.NewLine + TabInString(8) +
-                                    "if (screenType != hmSetting.screen_type.AOD) {" + Environment.NewLine;
-                                scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "battery", show_level);
-                                scale_update_function += TabInString(8) + "};" + Environment.NewLine;
-                            }
-                            else
-                            {
-                                scale_update_function += Environment.NewLine + TabInString(8) +
-                                    "if (screenType == hmSetting.screen_type.AOD) {" + Environment.NewLine;
-                                scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "battery", show_level);
-                                scale_update_function += TabInString(8) + "};" + Environment.NewLine;
+                                if (linear_scale.inversion)
+                                {
+                                    scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
+                                    "battery = 1 - progressBattery;" + Environment.NewLine;
+                                }
+                                else
+                                {
+                                    scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
+                                    "battery = progressBattery;" + Environment.NewLine;
+                                }
+                                if (optionNameStart == "normal_")
+                                {
+                                    scale_update_function += Environment.NewLine + TabInString(8) +
+                                        "if (screenType != hmSetting.screen_type.AOD) {" + Environment.NewLine;
+                                    scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "battery", show_level);
+                                    scale_update_function += TabInString(8) + "};" + Environment.NewLine;
+                                }
+                                else
+                                {
+                                    scale_update_function += Environment.NewLine + TabInString(8) +
+                                        "if (screenType == hmSetting.screen_type.AOD) {" + Environment.NewLine;
+                                    scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "battery", show_level);
+                                    scale_update_function += TabInString(8) + "};" + Environment.NewLine;
+                                }
                             }
 
 
@@ -7818,7 +7828,8 @@ namespace Watch_Face_Editor
                             else items += Environment.NewLine + TabInString(6) + "if (screenType == hmSetting.screen_type.AOD) {";
 
                             items += Environment.NewLine + TabInString(7) +
-                                optionNameStart + "calorie_linear_scale = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
+                                optionNameStart + "calorie_linear_scale = " + Linear_Scale_Widget_JS(linear_scale, "CAL", show_level, 7) + ";" + Environment.NewLine;
+                            Linear_Scale_Image_Refresh_JS(linear_scale, optionNameStart + "calorie_linear_scale", ref resume_call);
 
                             if (Calories.Linear_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "calorie_linear_scale.setAlpha(" + Calories.Linear_Scale.alpha.ToString() + ");" + Environment.NewLine;
@@ -7843,51 +7854,55 @@ namespace Watch_Face_Editor
                             items += linearScaleOptions;
 
 
-                            scale_update_function += Environment.NewLine + TabInString(8) + "console.log('update scales CALORIE');" + Environment.NewLine;
-                            if (items.IndexOf("const calorie = hmSensor.createSensor(hmSensor.id.CALORIE);") < 0)
+                            // шкале с фоном (IMG_LINE_PROGRESS) значение задаёт type, scale_call нужен только указателю
+                            if (Linear_Scale_Need_Update(linear_scale))
                             {
-                                items += TabInString(6) + Environment.NewLine;
-                                items += TabInString(6) + "const calorie = hmSensor.createSensor(hmSensor.id.CALORIE);" + Environment.NewLine;
-                                if (items.IndexOf("calorie.addEventListener") < 0)
+                                scale_update_function += Environment.NewLine + TabInString(8) + "console.log('update scales CALORIE');" + Environment.NewLine;
+                                if (items.IndexOf("const calorie = hmSensor.createSensor(hmSensor.id.CALORIE);") < 0)
                                 {
-                                    items += TabInString(6) + "calorie.addEventListener(hmSensor.event.CHANGE, function() {" + Environment.NewLine;
-                                    items += TabInString(7) + "scale_call();" + Environment.NewLine;
-                                    items += TabInString(6) + "});" + Environment.NewLine;
+                                    items += TabInString(6) + Environment.NewLine;
+                                    items += TabInString(6) + "const calorie = hmSensor.createSensor(hmSensor.id.CALORIE);" + Environment.NewLine;
+                                    if (items.IndexOf("calorie.addEventListener") < 0)
+                                    {
+                                        items += TabInString(6) + "calorie.addEventListener(hmSensor.event.CHANGE, function() {" + Environment.NewLine;
+                                        items += TabInString(7) + "scale_call();" + Environment.NewLine;
+                                        items += TabInString(6) + "});" + Environment.NewLine;
+                                    }
                                 }
-                            }
 
-                            if (scale_update_function.IndexOf("progressCalories") < 0)
-                            {
-                                scale_update_function += TabInString(8) + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let valueCalories = calorie.current;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let targetCalories = calorie.target;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let progressCalories = valueCalories/targetCalories;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "if (progressCalories > 1) progressCalories = 1;" + Environment.NewLine;
-                            }
+                                if (scale_update_function.IndexOf("progressCalories") < 0)
+                                {
+                                    scale_update_function += TabInString(8) + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let valueCalories = calorie.current;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let targetCalories = calorie.target;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let progressCalories = valueCalories/targetCalories;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "if (progressCalories > 1) progressCalories = 1;" + Environment.NewLine;
+                                }
 
-                            if (linear_scale.inversion)
-                            {
-                                scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
-                                "calorie = 1 - progressCalories;" + Environment.NewLine;
-                            }
-                            else
-                            {
-                                scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
-                                "calorie = progressCalories;" + Environment.NewLine;
-                            }
-                            if (optionNameStart == "normal_")
-                            {
-                                scale_update_function += Environment.NewLine + TabInString(8) +
-                                    "if (screenType != hmSetting.screen_type.AOD) {" + Environment.NewLine;
-                                scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "calorie", show_level);
-                                scale_update_function += TabInString(8) + "};" + Environment.NewLine;
-                            }
-                            else
-                            {
-                                scale_update_function += Environment.NewLine + TabInString(8) +
-                                    "if (screenType == hmSetting.screen_type.AOD) {" + Environment.NewLine;
-                                scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "calorie", show_level);
-                                scale_update_function += TabInString(8) + "};" + Environment.NewLine;
+                                if (linear_scale.inversion)
+                                {
+                                    scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
+                                    "calorie = 1 - progressCalories;" + Environment.NewLine;
+                                }
+                                else
+                                {
+                                    scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
+                                    "calorie = progressCalories;" + Environment.NewLine;
+                                }
+                                if (optionNameStart == "normal_")
+                                {
+                                    scale_update_function += Environment.NewLine + TabInString(8) +
+                                        "if (screenType != hmSetting.screen_type.AOD) {" + Environment.NewLine;
+                                    scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "calorie", show_level);
+                                    scale_update_function += TabInString(8) + "};" + Environment.NewLine;
+                                }
+                                else
+                                {
+                                    scale_update_function += Environment.NewLine + TabInString(8) +
+                                        "if (screenType == hmSetting.screen_type.AOD) {" + Environment.NewLine;
+                                    scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "calorie", show_level);
+                                    scale_update_function += TabInString(8) + "};" + Environment.NewLine;
+                                }
                             }
 
 
@@ -8301,7 +8316,8 @@ namespace Watch_Face_Editor
                             else items += Environment.NewLine + TabInString(6) + "if (screenType == hmSetting.screen_type.AOD) {";
 
                             items += Environment.NewLine + TabInString(7) +
-                                optionNameStart + "heart_rate_linear_scale = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
+                                optionNameStart + "heart_rate_linear_scale = " + Linear_Scale_Widget_JS(linear_scale, "HEART", show_level, 7) + ";" + Environment.NewLine;
+                            Linear_Scale_Image_Refresh_JS(linear_scale, optionNameStart + "heart_rate_linear_scale", ref resume_call);
 
                             if (Heart.Linear_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "heart_rate_linear_scale.setAlpha(" + Heart.Linear_Scale.alpha.ToString() + ");" + Environment.NewLine;
@@ -8326,55 +8342,59 @@ namespace Watch_Face_Editor
                             items += linearScaleOptions;
 
 
-                            scale_update_function += Environment.NewLine + TabInString(8) + "console.log('update scales HEART');" + Environment.NewLine;
-                            if (items.IndexOf("const heart_rate = hmSensor.createSensor(hmSensor.id.HEART);") < 0)
+                            // шкале с фоном (IMG_LINE_PROGRESS) значение задаёт type, scale_call нужен только указателю
+                            if (Linear_Scale_Need_Update(linear_scale))
                             {
-                                items += TabInString(6) + Environment.NewLine;
-                                items += TabInString(6) + "const heart_rate = hmSensor.createSensor(hmSensor.id.HEART);" + Environment.NewLine;
-                                if (items.IndexOf("heart_rate.addEventListener") < 0)
+                                scale_update_function += Environment.NewLine + TabInString(8) + "console.log('update scales HEART');" + Environment.NewLine;
+                                if (items.IndexOf("const heart_rate = hmSensor.createSensor(hmSensor.id.HEART);") < 0)
                                 {
-                                    items += TabInString(6) + "heart_rate.addEventListener(hmSensor.event.CHANGE, function() {" + Environment.NewLine;
-                                    items += TabInString(7) + "scale_call();" + Environment.NewLine;
-                                    items += TabInString(6) + "});" + Environment.NewLine;
+                                    items += TabInString(6) + Environment.NewLine;
+                                    items += TabInString(6) + "const heart_rate = hmSensor.createSensor(hmSensor.id.HEART);" + Environment.NewLine;
+                                    if (items.IndexOf("heart_rate.addEventListener") < 0)
+                                    {
+                                        items += TabInString(6) + "heart_rate.addEventListener(hmSensor.event.CHANGE, function() {" + Environment.NewLine;
+                                        items += TabInString(7) + "scale_call();" + Environment.NewLine;
+                                        items += TabInString(6) + "});" + Environment.NewLine;
+                                    }
                                 }
-                            }
                             
-                            if (scale_update_function.IndexOf("progressHeartRate") < 0)
-                            {
-                                scale_update_function += TabInString(8) + Environment.NewLine;
-                                //scale_update_function += TabInString(8) + "const heart_rate = hmSensor.createSensor(hmSensor.id.HEART);" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let valueHeartRate = heart_rate.last;" + Environment.NewLine;
-                                //scale_update_function += TabInString(8) + "let valueHeartRate = heart_rate.current;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let targetHeartRate = 184;" + Environment.NewLine;
-                                //scale_update_function += TabInString(8) + "let targetHeartRate = heart_rate.target;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let progressHeartRate = (valueHeartRate - 30)/(targetHeartRate - 30);" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "if (progressHeartRate < 0) progressHeartRate = 0;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "if (progressHeartRate > 1) progressHeartRate = 1;" + Environment.NewLine;
-                            }
+                                if (scale_update_function.IndexOf("progressHeartRate") < 0)
+                                {
+                                    scale_update_function += TabInString(8) + Environment.NewLine;
+                                    //scale_update_function += TabInString(8) + "const heart_rate = hmSensor.createSensor(hmSensor.id.HEART);" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let valueHeartRate = heart_rate.last;" + Environment.NewLine;
+                                    //scale_update_function += TabInString(8) + "let valueHeartRate = heart_rate.current;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let targetHeartRate = 184;" + Environment.NewLine;
+                                    //scale_update_function += TabInString(8) + "let targetHeartRate = heart_rate.target;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let progressHeartRate = (valueHeartRate - 30)/(targetHeartRate - 30);" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "if (progressHeartRate < 0) progressHeartRate = 0;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "if (progressHeartRate > 1) progressHeartRate = 1;" + Environment.NewLine;
+                                }
                             
-                            if (linear_scale.inversion)
-                            {
-                                scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
-                                "heart_rate = 1 - progressHeartRate;" + Environment.NewLine;
-                            }
-                            else
-                            {
-                                scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
-                                "heart_rate = progressHeartRate;" + Environment.NewLine;
-                            }
-                            if (optionNameStart == "normal_")
-                            {
-                                scale_update_function += Environment.NewLine + TabInString(8) +
-                                    "if (screenType != hmSetting.screen_type.AOD) {" + Environment.NewLine;
-                                scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "heart_rate", show_level);
-                                scale_update_function += TabInString(8) + "};" + Environment.NewLine;
-                            }
-                            else
-                            {
-                                scale_update_function += Environment.NewLine + TabInString(8) +
-                                    "if (screenType == hmSetting.screen_type.AOD) {" + Environment.NewLine;
-                                scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "heart_rate", show_level);
-                                scale_update_function += TabInString(8) + "};" + Environment.NewLine;
+                                if (linear_scale.inversion)
+                                {
+                                    scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
+                                    "heart_rate = 1 - progressHeartRate;" + Environment.NewLine;
+                                }
+                                else
+                                {
+                                    scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
+                                    "heart_rate = progressHeartRate;" + Environment.NewLine;
+                                }
+                                if (optionNameStart == "normal_")
+                                {
+                                    scale_update_function += Environment.NewLine + TabInString(8) +
+                                        "if (screenType != hmSetting.screen_type.AOD) {" + Environment.NewLine;
+                                    scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "heart_rate", show_level);
+                                    scale_update_function += TabInString(8) + "};" + Environment.NewLine;
+                                }
+                                else
+                                {
+                                    scale_update_function += Environment.NewLine + TabInString(8) +
+                                        "if (screenType == hmSetting.screen_type.AOD) {" + Environment.NewLine;
+                                    scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "heart_rate", show_level);
+                                    scale_update_function += TabInString(8) + "};" + Environment.NewLine;
+                                }
                             }
 
 
@@ -8746,7 +8766,8 @@ namespace Watch_Face_Editor
                             else items += Environment.NewLine + TabInString(6) + "if (screenType == hmSetting.screen_type.AOD) {";
 
                             items += Environment.NewLine + TabInString(7) +
-                                optionNameStart + "pai_linear_scale = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
+                                optionNameStart + "pai_linear_scale = " + Linear_Scale_Widget_JS(linear_scale, "PAI_WEEKLY", show_level, 7) + ";" + Environment.NewLine;
+                            Linear_Scale_Image_Refresh_JS(linear_scale, optionNameStart + "pai_linear_scale", ref resume_call);
 
                             if (PAI.Linear_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "pai_linear_scale.setAlpha(" + PAI.Linear_Scale.alpha.ToString() + ");" + Environment.NewLine;
@@ -8771,52 +8792,56 @@ namespace Watch_Face_Editor
                             items += linearScaleOptions;
 
 
-                            scale_update_function += Environment.NewLine + TabInString(8) + "console.log('update scales PAI');" + Environment.NewLine;
-                            if (items.IndexOf("const pai = hmSensor.createSensor(hmSensor.id.PAI);") < 0)
+                            // шкале с фоном (IMG_LINE_PROGRESS) значение задаёт type, scale_call нужен только указателю
+                            if (Linear_Scale_Need_Update(linear_scale))
                             {
-                                items += TabInString(6) + Environment.NewLine;
-                                items += TabInString(6) + "const pai = hmSensor.createSensor(hmSensor.id.PAI);" + Environment.NewLine;
-                                if (items.IndexOf("calorie.addEventListener") < 0)
+                                scale_update_function += Environment.NewLine + TabInString(8) + "console.log('update scales PAI');" + Environment.NewLine;
+                                if (items.IndexOf("const pai = hmSensor.createSensor(hmSensor.id.PAI);") < 0)
                                 {
-                                    items += TabInString(6) + "pai.addEventListener(hmSensor.event.CHANGE, function() {" + Environment.NewLine;
-                                    items += TabInString(7) + "scale_call();" + Environment.NewLine;
-                                    items += TabInString(6) + "});" + Environment.NewLine;
+                                    items += TabInString(6) + Environment.NewLine;
+                                    items += TabInString(6) + "const pai = hmSensor.createSensor(hmSensor.id.PAI);" + Environment.NewLine;
+                                    if (items.IndexOf("calorie.addEventListener") < 0)
+                                    {
+                                        items += TabInString(6) + "pai.addEventListener(hmSensor.event.CHANGE, function() {" + Environment.NewLine;
+                                        items += TabInString(7) + "scale_call();" + Environment.NewLine;
+                                        items += TabInString(6) + "});" + Environment.NewLine;
+                                    }
                                 }
-                            }
 
-                            if (scale_update_function.IndexOf("progressPAI") < 0)
-                            {
-                                scale_update_function += TabInString(8) + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let valuePAI = pai.totalpai;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let targetPAI = 100;" + Environment.NewLine;
-                                //scale_update_function += TabInString(8) + "let targetPAI = pai.target;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let progressPAI = valuePAI/targetPAI;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "if (progressPAI > 1) progressPAI = 1;" + Environment.NewLine;
-                            }
+                                if (scale_update_function.IndexOf("progressPAI") < 0)
+                                {
+                                    scale_update_function += TabInString(8) + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let valuePAI = pai.totalpai;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let targetPAI = 100;" + Environment.NewLine;
+                                    //scale_update_function += TabInString(8) + "let targetPAI = pai.target;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let progressPAI = valuePAI/targetPAI;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "if (progressPAI > 1) progressPAI = 1;" + Environment.NewLine;
+                                }
 
-                            if (linear_scale.inversion)
-                            {
-                                scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
-                                "pai = 1 - progressPAI;" + Environment.NewLine;
-                            }
-                            else
-                            {
-                                scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
-                                "pai = progressPAI;" + Environment.NewLine;
-                            }
-                            if (optionNameStart == "normal_")
-                            {
-                                scale_update_function += Environment.NewLine + TabInString(8) +
-                                    "if (screenType != hmSetting.screen_type.AOD) {" + Environment.NewLine;
-                                scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "pai", show_level);
-                                scale_update_function += TabInString(8) + "};" + Environment.NewLine;
-                            }
-                            else
-                            {
-                                scale_update_function += Environment.NewLine + TabInString(8) +
-                                    "if (screenType == hmSetting.screen_type.AOD) {" + Environment.NewLine;
-                                scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "pai", show_level);
-                                scale_update_function += TabInString(8) + "};" + Environment.NewLine;
+                                if (linear_scale.inversion)
+                                {
+                                    scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
+                                    "pai = 1 - progressPAI;" + Environment.NewLine;
+                                }
+                                else
+                                {
+                                    scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
+                                    "pai = progressPAI;" + Environment.NewLine;
+                                }
+                                if (optionNameStart == "normal_")
+                                {
+                                    scale_update_function += Environment.NewLine + TabInString(8) +
+                                        "if (screenType != hmSetting.screen_type.AOD) {" + Environment.NewLine;
+                                    scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "pai", show_level);
+                                    scale_update_function += TabInString(8) + "};" + Environment.NewLine;
+                                }
+                                else
+                                {
+                                    scale_update_function += Environment.NewLine + TabInString(8) +
+                                        "if (screenType == hmSetting.screen_type.AOD) {" + Environment.NewLine;
+                                    scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "pai", show_level);
+                                    scale_update_function += TabInString(8) + "};" + Environment.NewLine;
+                                }
                             }
 
 
@@ -9690,7 +9715,8 @@ namespace Watch_Face_Editor
                             else items += Environment.NewLine + TabInString(6) + "if (screenType == hmSetting.screen_type.AOD) {";
 
                             items += Environment.NewLine + TabInString(7) +
-                                optionNameStart + "stand_linear_scale = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
+                                optionNameStart + "stand_linear_scale = " + Linear_Scale_Widget_JS(linear_scale, "STAND", show_level, 7) + ";" + Environment.NewLine;
+                            Linear_Scale_Image_Refresh_JS(linear_scale, optionNameStart + "stand_linear_scale", ref resume_call);
 
                             if (Stand.Linear_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "stand_linear_scale.setAlpha(" + Stand.Linear_Scale.alpha.ToString() + ");" + Environment.NewLine;
@@ -9715,45 +9741,49 @@ namespace Watch_Face_Editor
                             items += linearScaleOptions;
 
 
-                            scale_update_function += Environment.NewLine + TabInString(8) + "console.log('update scales STAND');" + Environment.NewLine;
-                            if (items.IndexOf("const stand = hmSensor.createSensor(hmSensor.id.STAND);") < 0 )
+                            // шкале с фоном (IMG_LINE_PROGRESS) значение задаёт type, scale_call нужен только указателю
+                            if (Linear_Scale_Need_Update(linear_scale))
                             {
-                                items += TabInString(6) + Environment.NewLine;
-                                items += TabInString(6) + "const stand = hmSensor.createSensor(hmSensor.id.STAND);" + Environment.NewLine;
-                            }
-                            AddListener(ref variables, ref items, "stand", "valueStand", "scale_call();", ref resume_call, ref pause_call, optionNameStart);
+                                scale_update_function += Environment.NewLine + TabInString(8) + "console.log('update scales STAND');" + Environment.NewLine;
+                                if (items.IndexOf("const stand = hmSensor.createSensor(hmSensor.id.STAND);") < 0 )
+                                {
+                                    items += TabInString(6) + Environment.NewLine;
+                                    items += TabInString(6) + "const stand = hmSensor.createSensor(hmSensor.id.STAND);" + Environment.NewLine;
+                                }
+                                AddListener(ref variables, ref items, "stand", "valueStand", "scale_call();", ref resume_call, ref pause_call, optionNameStart);
 
-                            if (scale_update_function.IndexOf("progressStand") < 0)
-                            {
-                                scale_update_function += TabInString(8) + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let valueStand = stand.current;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let targetStand = stand.target;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let progressStand = valueStand/targetStand;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "if (progressStand > 1) progressStand = 1;" + Environment.NewLine;
-                            }
-                            if (linear_scale.inversion)
-                            {
-                                scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
-                                "stand = 1 - progressStand;" + Environment.NewLine;
-                            }
-                            else
-                            {
-                                scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
-                                "stand = progressStand;" + Environment.NewLine;
-                            }
-                            if (optionNameStart == "normal_")
-                            {
-                                scale_update_function += Environment.NewLine + TabInString(8) +
-                                    "if (screenType != hmSetting.screen_type.AOD) {" + Environment.NewLine;
-                                scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "stand", show_level);
-                                scale_update_function += TabInString(8) + "};" + Environment.NewLine;
-                            }
-                            else
-                            {
-                                scale_update_function += Environment.NewLine + TabInString(8) +
-                                    "if (screenType == hmSetting.screen_type.AOD) {" + Environment.NewLine;
-                                scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "stand", show_level);
-                                scale_update_function += TabInString(8) + "};" + Environment.NewLine;
+                                if (scale_update_function.IndexOf("progressStand") < 0)
+                                {
+                                    scale_update_function += TabInString(8) + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let valueStand = stand.current;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let targetStand = stand.target;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let progressStand = valueStand/targetStand;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "if (progressStand > 1) progressStand = 1;" + Environment.NewLine;
+                                }
+                                if (linear_scale.inversion)
+                                {
+                                    scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
+                                    "stand = 1 - progressStand;" + Environment.NewLine;
+                                }
+                                else
+                                {
+                                    scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
+                                    "stand = progressStand;" + Environment.NewLine;
+                                }
+                                if (optionNameStart == "normal_")
+                                {
+                                    scale_update_function += Environment.NewLine + TabInString(8) +
+                                        "if (screenType != hmSetting.screen_type.AOD) {" + Environment.NewLine;
+                                    scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "stand", show_level);
+                                    scale_update_function += TabInString(8) + "};" + Environment.NewLine;
+                                }
+                                else
+                                {
+                                    scale_update_function += Environment.NewLine + TabInString(8) +
+                                        "if (screenType == hmSetting.screen_type.AOD) {" + Environment.NewLine;
+                                    scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "stand", show_level);
+                                    scale_update_function += TabInString(8) + "};" + Environment.NewLine;
+                                }
                             }
 
                         }
@@ -10099,7 +10129,8 @@ namespace Watch_Face_Editor
                             else items += Environment.NewLine + TabInString(6) + "if (screenType == hmSetting.screen_type.AOD) {";
 
                             items += Environment.NewLine + TabInString(7) +
-                                optionNameStart + "activity_linear_scale = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
+                                optionNameStart + "activity_linear_scale = " + Linear_Scale_Widget_JS(linear_scale, "ACTIVITY", show_level, 7) + ";" + Environment.NewLine;
+                            Linear_Scale_Image_Refresh_JS(linear_scale, optionNameStart + "activity_linear_scale", ref resume_call);
 
                             if (Activity.Linear_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "activity_linear_scale.setAlpha(" + Activity.Linear_Scale.alpha.ToString() + ");" + Environment.NewLine;
@@ -10124,50 +10155,54 @@ namespace Watch_Face_Editor
                             items += linearScaleOptions;
 
 
-                            scale_update_function += Environment.NewLine + TabInString(8) + "console.log('update scales ACTIVITY');" + Environment.NewLine;
-                            if (items.IndexOf("const activity = hmSensor.createSensor(hmSensor.id.ACTIVITY);") < 0 )
+                            // шкале с фоном (IMG_LINE_PROGRESS) значение задаёт type, scale_call нужен только указателю
+                            if (Linear_Scale_Need_Update(linear_scale))
                             {
-                                items += TabInString(6) + Environment.NewLine;
-                                items += TabInString(6) + "const activity = hmSensor.createSensor(hmSensor.id.ACTIVITY);" + Environment.NewLine;
-                                if (items.IndexOf("activity.addEventListener") < 0)
+                                scale_update_function += Environment.NewLine + TabInString(8) + "console.log('update scales ACTIVITY');" + Environment.NewLine;
+                                if (items.IndexOf("const activity = hmSensor.createSensor(hmSensor.id.ACTIVITY);") < 0 )
                                 {
-                                    items += TabInString(6) + "activity.addEventListener(hmSensor.event.CHANGE, function() {" + Environment.NewLine;
-                                    items += TabInString(7) + "scale_call();" + Environment.NewLine;
-                                    items += TabInString(6) + "});" + Environment.NewLine;
+                                    items += TabInString(6) + Environment.NewLine;
+                                    items += TabInString(6) + "const activity = hmSensor.createSensor(hmSensor.id.ACTIVITY);" + Environment.NewLine;
+                                    if (items.IndexOf("activity.addEventListener") < 0)
+                                    {
+                                        items += TabInString(6) + "activity.addEventListener(hmSensor.event.CHANGE, function() {" + Environment.NewLine;
+                                        items += TabInString(7) + "scale_call();" + Environment.NewLine;
+                                        items += TabInString(6) + "});" + Environment.NewLine;
+                                    }
                                 }
-                            }
 
-                            if (scale_update_function.IndexOf("progressActivity") < 0)
-                            {
-                                scale_update_function += TabInString(8) + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let valueActivity = activity.current;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let targetActivity = activity.target;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let progressActivity = valueActivity/targetActivity;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "if (progressActivity > 1) progressActivity = 1;" + Environment.NewLine;
-                            }
-                            if (linear_scale.inversion)
-                            {
-                                scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
-                                "activity = 1 - progressActivity;" + Environment.NewLine;
-                            }
-                            else
-                            {
-                                scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
-                                "activity = progressActivity;" + Environment.NewLine;
-                            }
-                            if (optionNameStart == "normal_")
-                            {
-                                scale_update_function += Environment.NewLine + TabInString(8) +
-                                    "if (screenType != hmSetting.screen_type.AOD) {" + Environment.NewLine;
-                                scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "activity", show_level);
-                                scale_update_function += TabInString(8) + "};" + Environment.NewLine;
-                            }
-                            else
-                            {
-                                scale_update_function += Environment.NewLine + TabInString(8) +
-                                    "if (screenType == hmSetting.screen_type.AOD) {" + Environment.NewLine;
-                                scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "activity", show_level);
-                                scale_update_function += TabInString(8) + "};" + Environment.NewLine;
+                                if (scale_update_function.IndexOf("progressActivity") < 0)
+                                {
+                                    scale_update_function += TabInString(8) + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let valueActivity = activity.current;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let targetActivity = activity.target;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let progressActivity = valueActivity/targetActivity;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "if (progressActivity > 1) progressActivity = 1;" + Environment.NewLine;
+                                }
+                                if (linear_scale.inversion)
+                                {
+                                    scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
+                                    "activity = 1 - progressActivity;" + Environment.NewLine;
+                                }
+                                else
+                                {
+                                    scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
+                                    "activity = progressActivity;" + Environment.NewLine;
+                                }
+                                if (optionNameStart == "normal_")
+                                {
+                                    scale_update_function += Environment.NewLine + TabInString(8) +
+                                        "if (screenType != hmSetting.screen_type.AOD) {" + Environment.NewLine;
+                                    scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "activity", show_level);
+                                    scale_update_function += TabInString(8) + "};" + Environment.NewLine;
+                                }
+                                else
+                                {
+                                    scale_update_function += Environment.NewLine + TabInString(8) +
+                                        "if (screenType == hmSetting.screen_type.AOD) {" + Environment.NewLine;
+                                    scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "activity", show_level);
+                                    scale_update_function += TabInString(8) + "};" + Environment.NewLine;
+                                }
                             }
 
 
@@ -10857,7 +10892,8 @@ namespace Watch_Face_Editor
                             else items += Environment.NewLine + TabInString(6) + "if (screenType == hmSetting.screen_type.AOD) {";
 
                             items += Environment.NewLine + TabInString(7) +
-                                optionNameStart + "fat_burning_linear_scale = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
+                                optionNameStart + "fat_burning_linear_scale = " + Linear_Scale_Widget_JS(linear_scale, "FAT_BURNING", show_level, 7) + ";" + Environment.NewLine;
+                            Linear_Scale_Image_Refresh_JS(linear_scale, optionNameStart + "fat_burning_linear_scale", ref resume_call);
 
                             if (FatBurning.Linear_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                     "fat_burning_linear_scale.setAlpha(" + FatBurning.Linear_Scale.alpha.ToString() + ");" + Environment.NewLine;
@@ -10882,45 +10918,49 @@ namespace Watch_Face_Editor
                             items += linearScaleOptions;
 
 
-                            scale_update_function += Environment.NewLine + TabInString(8) + "console.log('update scales FAT_BURNING');" + Environment.NewLine;
-                            if (items.IndexOf("const fat_burning = hmSensor.createSensor(hmSensor.id.FAT_BURRING);") < 0)
+                            // шкале с фоном (IMG_LINE_PROGRESS) значение задаёт type, scale_call нужен только указателю
+                            if (Linear_Scale_Need_Update(linear_scale))
                             {
-                                items += TabInString(6) + Environment.NewLine;
-                                items += TabInString(6) + "const fat_burning = hmSensor.createSensor(hmSensor.id.FAT_BURRING);" + Environment.NewLine;
-                            }
-                            AddListener(ref variables, ref items, "fat_burning", "valueFatBurning", "scale_call();", ref resume_call, ref pause_call, optionNameStart);
+                                scale_update_function += Environment.NewLine + TabInString(8) + "console.log('update scales FAT_BURNING');" + Environment.NewLine;
+                                if (items.IndexOf("const fat_burning = hmSensor.createSensor(hmSensor.id.FAT_BURRING);") < 0)
+                                {
+                                    items += TabInString(6) + Environment.NewLine;
+                                    items += TabInString(6) + "const fat_burning = hmSensor.createSensor(hmSensor.id.FAT_BURRING);" + Environment.NewLine;
+                                }
+                                AddListener(ref variables, ref items, "fat_burning", "valueFatBurning", "scale_call();", ref resume_call, ref pause_call, optionNameStart);
 
-                            if (scale_update_function.IndexOf("progressFatBurning") < 0)
-                            {
-                                scale_update_function += TabInString(8) + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let valueFatBurning = fat_burning.current;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let targetFatBurning = fat_burning.target;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let progressFatBurning = valueFatBurning/targetFatBurning;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "if (progressFatBurning > 1) progressFatBurning = 1;" + Environment.NewLine;
-                            }
-                            if (linear_scale.inversion)
-                            {
-                                scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
-                                "fat_burning = 1 - progressFatBurning;" + Environment.NewLine;
-                            }
-                            else
-                            {
-                                scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
-                                "fat_burning = progressFatBurning;" + Environment.NewLine;
-                            }
-                            if (optionNameStart == "normal_")
-                            {
-                                scale_update_function += Environment.NewLine + TabInString(8) +
-                                    "if (screenType != hmSetting.screen_type.AOD) {" + Environment.NewLine;
-                                scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "fat_burning", show_level);
-                                scale_update_function += TabInString(8) + "};" + Environment.NewLine;
-                            }
-                            else
-                            {
-                                scale_update_function += Environment.NewLine + TabInString(8) +
-                                    "if (screenType == hmSetting.screen_type.AOD) {" + Environment.NewLine;
-                                scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "fat_burning", show_level);
-                                scale_update_function += TabInString(8) + "};" + Environment.NewLine;
+                                if (scale_update_function.IndexOf("progressFatBurning") < 0)
+                                {
+                                    scale_update_function += TabInString(8) + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let valueFatBurning = fat_burning.current;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let targetFatBurning = fat_burning.target;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let progressFatBurning = valueFatBurning/targetFatBurning;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "if (progressFatBurning > 1) progressFatBurning = 1;" + Environment.NewLine;
+                                }
+                                if (linear_scale.inversion)
+                                {
+                                    scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
+                                    "fat_burning = 1 - progressFatBurning;" + Environment.NewLine;
+                                }
+                                else
+                                {
+                                    scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
+                                    "fat_burning = progressFatBurning;" + Environment.NewLine;
+                                }
+                                if (optionNameStart == "normal_")
+                                {
+                                    scale_update_function += Environment.NewLine + TabInString(8) +
+                                        "if (screenType != hmSetting.screen_type.AOD) {" + Environment.NewLine;
+                                    scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "fat_burning", show_level);
+                                    scale_update_function += TabInString(8) + "};" + Environment.NewLine;
+                                }
+                                else
+                                {
+                                    scale_update_function += Environment.NewLine + TabInString(8) +
+                                        "if (screenType == hmSetting.screen_type.AOD) {" + Environment.NewLine;
+                                    scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "fat_burning", show_level);
+                                    scale_update_function += TabInString(8) + "};" + Environment.NewLine;
+                                }
                             }
 
 
@@ -19336,7 +19376,8 @@ namespace Watch_Face_Editor
                             else outItems += Environment.NewLine + TabInString(8) + "if (screenType == hmSetting.screen_type.WATCHFACE || screenType == hmSetting.screen_type.AOD) {";
 
                             outItems += Environment.NewLine + TabInString(9) +
-                                variableName + " = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
+                                variableName + " = " + Linear_Scale_Widget_JS(linear_scale, "STEP", show_level, 9) + ";" + Environment.NewLine;
+                            Linear_Scale_Image_Refresh_JS(linear_scale, variableName, ref resume_call);
 
                             if (linear_scale.mirror)
                             {
@@ -19355,42 +19396,46 @@ namespace Watch_Face_Editor
                             outItems += linearScaleOptions;
 
 
-                            scale_update_function += Environment.NewLine + TabInString(8) + "console.log('update editable linear_scale STEP');" + Environment.NewLine;
-                            if (outItems.IndexOf("const step = hmSensor.createSensor(hmSensor.id.STEP);") < 0 &&
-                                items.IndexOf("const step = hmSensor.createSensor(hmSensor.id.STEP);") < 0)
+                            // шкале с фоном (IMG_LINE_PROGRESS) значение задаёт type, scale_call нужен только указателю
+                            if (Linear_Scale_Need_Update(linear_scale))
                             {
-                                items += TabInString(6) + Environment.NewLine;
-                                items += TabInString(6) + "const step = hmSensor.createSensor(hmSensor.id.STEP);" + Environment.NewLine;
-                                if (items.IndexOf("step.addEventListener") < 0)
+                                scale_update_function += Environment.NewLine + TabInString(8) + "console.log('update editable linear_scale STEP');" + Environment.NewLine;
+                                if (outItems.IndexOf("const step = hmSensor.createSensor(hmSensor.id.STEP);") < 0 &&
+                                    items.IndexOf("const step = hmSensor.createSensor(hmSensor.id.STEP);") < 0)
                                 {
-                                    outItems += TabInString(8) + "step.addEventListener(hmSensor.event.CHANGE, function() {" + Environment.NewLine;
-                                    outItems += TabInString(9) + "scale_call();" + Environment.NewLine;
-                                    outItems += TabInString(8) + "});" + Environment.NewLine;
+                                    items += TabInString(6) + Environment.NewLine;
+                                    items += TabInString(6) + "const step = hmSensor.createSensor(hmSensor.id.STEP);" + Environment.NewLine;
+                                    if (items.IndexOf("step.addEventListener") < 0)
+                                    {
+                                        outItems += TabInString(8) + "step.addEventListener(hmSensor.event.CHANGE, function() {" + Environment.NewLine;
+                                        outItems += TabInString(9) + "scale_call();" + Environment.NewLine;
+                                        outItems += TabInString(8) + "});" + Environment.NewLine;
+                                    }
                                 }
-                            }
 
-                            if (scale_update_function.IndexOf("progressStep") < 0)
-                            {
-                                scale_update_function += TabInString(8) + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let valueStep = step.current;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let targetStep = step.target;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let progressStep = valueStep/targetStep;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "if (progressStep > 1) progressStep = 1;" + Environment.NewLine;
+                                if (scale_update_function.IndexOf("progressStep") < 0)
+                                {
+                                    scale_update_function += TabInString(8) + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let valueStep = step.current;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let targetStep = step.target;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let progressStep = valueStep/targetStep;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "if (progressStep > 1) progressStep = 1;" + Environment.NewLine;
+                                }
+                                if (linear_scale.inversion)
+                                {
+                                    scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
+                                    "step = 1 - progressStep;" + Environment.NewLine;
+                                }
+                                else
+                                {
+                                    scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
+                                    "step = progressStep;" + Environment.NewLine;
+                                }
+                                scale_update_function += Environment.NewLine + TabInString(8) +
+                                        "if (" + variableName + ") {" + Environment.NewLine;
+                                scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "step", show_level);
+                                scale_update_function += TabInString(8) + "};" + Environment.NewLine;
                             }
-                            if (linear_scale.inversion)
-                            {
-                                scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
-                                "step = 1 - progressStep;" + Environment.NewLine;
-                            }
-                            else
-                            {
-                                scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
-                                "step = progressStep;" + Environment.NewLine;
-                            }
-                            scale_update_function += Environment.NewLine + TabInString(8) +
-                                    "if (" + variableName + ") {" + Environment.NewLine;
-                            scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "step", show_level);
-                            scale_update_function += TabInString(8) + "};" + Environment.NewLine;
 
 
 
@@ -19608,7 +19653,8 @@ namespace Watch_Face_Editor
                             else outItems += Environment.NewLine + TabInString(8) + "if (screenType == hmSetting.screen_type.WATCHFACE || screenType == hmSetting.screen_type.AOD) {";
 
                             outItems += Environment.NewLine + TabInString(9) +
-                                variableName + " = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
+                                variableName + " = " + Linear_Scale_Widget_JS(linear_scale, "BATTERY", show_level, 9) + ";" + Environment.NewLine;
+                            Linear_Scale_Image_Refresh_JS(linear_scale, variableName, ref resume_call);
 
                             if (linear_scale.mirror)
                             {
@@ -19627,42 +19673,46 @@ namespace Watch_Face_Editor
                             outItems += linearScaleOptions;
 
 
-                            scale_update_function += Environment.NewLine + TabInString(8) + "console.log('update editable linear_scale BATTERY');" + Environment.NewLine;
-                            if (outItems.IndexOf("const battery = hmSensor.createSensor(hmSensor.id.BATTERY);") < 0 &&
-                                items.IndexOf("const battery = hmSensor.createSensor(hmSensor.id.BATTERY);") < 0)
+                            // шкале с фоном (IMG_LINE_PROGRESS) значение задаёт type, scale_call нужен только указателю
+                            if (Linear_Scale_Need_Update(linear_scale))
                             {
-                                items += TabInString(6) + Environment.NewLine;
-                                items += TabInString(6) + "const battery = hmSensor.createSensor(hmSensor.id.BATTERY);" + Environment.NewLine;
-                                if (items.IndexOf("battery.addEventListener") < 0)
+                                scale_update_function += Environment.NewLine + TabInString(8) + "console.log('update editable linear_scale BATTERY');" + Environment.NewLine;
+                                if (outItems.IndexOf("const battery = hmSensor.createSensor(hmSensor.id.BATTERY);") < 0 &&
+                                    items.IndexOf("const battery = hmSensor.createSensor(hmSensor.id.BATTERY);") < 0)
                                 {
-                                    outItems += TabInString(8) + "battery.addEventListener(hmSensor.event.CHANGE, function() {" + Environment.NewLine;
-                                    outItems += TabInString(9) + "scale_call();" + Environment.NewLine;
-                                    outItems += TabInString(8) + "});" + Environment.NewLine;
+                                    items += TabInString(6) + Environment.NewLine;
+                                    items += TabInString(6) + "const battery = hmSensor.createSensor(hmSensor.id.BATTERY);" + Environment.NewLine;
+                                    if (items.IndexOf("battery.addEventListener") < 0)
+                                    {
+                                        outItems += TabInString(8) + "battery.addEventListener(hmSensor.event.CHANGE, function() {" + Environment.NewLine;
+                                        outItems += TabInString(9) + "scale_call();" + Environment.NewLine;
+                                        outItems += TabInString(8) + "});" + Environment.NewLine;
+                                    }
                                 }
-                            }
 
-                            if (scale_update_function.IndexOf("progressBattery") < 0)
-                            {
-                                scale_update_function += TabInString(8) + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let valueBattery= battery.current;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let targetBattery = 100;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let progressBattery = valueBattery/targetBattery;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "if (progressBattery > 1) progressBattery = 1;" + Environment.NewLine;
+                                if (scale_update_function.IndexOf("progressBattery") < 0)
+                                {
+                                    scale_update_function += TabInString(8) + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let valueBattery= battery.current;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let targetBattery = 100;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let progressBattery = valueBattery/targetBattery;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "if (progressBattery > 1) progressBattery = 1;" + Environment.NewLine;
+                                }
+                                if (linear_scale.inversion)
+                                {
+                                    scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
+                                    "battery = 1 - progressBattery;" + Environment.NewLine;
+                                }
+                                else
+                                {
+                                    scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
+                                    "battery = progressBattery;" + Environment.NewLine;
+                                }
+                                scale_update_function += Environment.NewLine + TabInString(8) +
+                                        "if (" + variableName + ") {" + Environment.NewLine;
+                                scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "battery", show_level);
+                                scale_update_function += TabInString(8) + "};" + Environment.NewLine;
                             }
-                            if (linear_scale.inversion)
-                            {
-                                scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
-                                "battery = 1 - progressBattery;" + Environment.NewLine;
-                            }
-                            else
-                            {
-                                scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
-                                "battery = progressBattery;" + Environment.NewLine;
-                            }
-                            scale_update_function += Environment.NewLine + TabInString(8) +
-                                    "if (" + variableName + ") {" + Environment.NewLine;
-                            scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "battery", show_level);
-                            scale_update_function += TabInString(8) + "};" + Environment.NewLine;
 
 
 
@@ -19900,7 +19950,8 @@ namespace Watch_Face_Editor
                             else outItems += Environment.NewLine + TabInString(8) + "if (screenType == hmSetting.screen_type.WATCHFACE || screenType == hmSetting.screen_type.AOD) {";
 
                             outItems += Environment.NewLine + TabInString(9) +
-                                variableName + " = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
+                                variableName + " = " + Linear_Scale_Widget_JS(linear_scale, "CAL", show_level, 9) + ";" + Environment.NewLine;
+                            Linear_Scale_Image_Refresh_JS(linear_scale, variableName, ref resume_call);
 
                             if (linear_scale.mirror)
                             {
@@ -19919,42 +19970,46 @@ namespace Watch_Face_Editor
                             outItems += linearScaleOptions;
 
 
-                            scale_update_function += Environment.NewLine + TabInString(8) + "console.log('update editable linear_scale CALORIE');" + Environment.NewLine;
-                            if (outItems.IndexOf("const calorie = hmSensor.createSensor(hmSensor.id.CALORIE);") < 0 &&
-                                items.IndexOf("const calorie = hmSensor.createSensor(hmSensor.id.CALORIE);") < 0)
+                            // шкале с фоном (IMG_LINE_PROGRESS) значение задаёт type, scale_call нужен только указателю
+                            if (Linear_Scale_Need_Update(linear_scale))
                             {
-                                items += TabInString(6) + Environment.NewLine;
-                                items += TabInString(6) + "const calorie = hmSensor.createSensor(hmSensor.id.CALORIE);" + Environment.NewLine;
-                                if (items.IndexOf("calorie.addEventListener") < 0)
+                                scale_update_function += Environment.NewLine + TabInString(8) + "console.log('update editable linear_scale CALORIE');" + Environment.NewLine;
+                                if (outItems.IndexOf("const calorie = hmSensor.createSensor(hmSensor.id.CALORIE);") < 0 &&
+                                    items.IndexOf("const calorie = hmSensor.createSensor(hmSensor.id.CALORIE);") < 0)
                                 {
-                                    outItems += TabInString(8) + "calorie.addEventListener(hmSensor.event.CHANGE, function() {" + Environment.NewLine;
-                                    outItems += TabInString(9) + "scale_call();" + Environment.NewLine;
-                                    outItems += TabInString(8) + "});" + Environment.NewLine;
+                                    items += TabInString(6) + Environment.NewLine;
+                                    items += TabInString(6) + "const calorie = hmSensor.createSensor(hmSensor.id.CALORIE);" + Environment.NewLine;
+                                    if (items.IndexOf("calorie.addEventListener") < 0)
+                                    {
+                                        outItems += TabInString(8) + "calorie.addEventListener(hmSensor.event.CHANGE, function() {" + Environment.NewLine;
+                                        outItems += TabInString(9) + "scale_call();" + Environment.NewLine;
+                                        outItems += TabInString(8) + "});" + Environment.NewLine;
+                                    }
                                 }
-                            }
 
-                            if (scale_update_function.IndexOf("progressCalories") < 0)
-                            {
-                                scale_update_function += TabInString(8) + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let valueCalories = calorie.current;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let targetCalories = calorie.target;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let progressCalories = valueCalories/targetCalories;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "if (progressCalories > 1) progressCalories = 1;" + Environment.NewLine;
+                                if (scale_update_function.IndexOf("progressCalories") < 0)
+                                {
+                                    scale_update_function += TabInString(8) + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let valueCalories = calorie.current;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let targetCalories = calorie.target;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let progressCalories = valueCalories/targetCalories;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "if (progressCalories > 1) progressCalories = 1;" + Environment.NewLine;
+                                }
+                                if (linear_scale.inversion)
+                                {
+                                    scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
+                                    "calorie = 1 - progressCalories;" + Environment.NewLine;
+                                }
+                                else
+                                {
+                                    scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
+                                    "calorie = progressCalories;" + Environment.NewLine;
+                                }
+                                scale_update_function += Environment.NewLine + TabInString(8) +
+                                        "if (" + variableName + ") {" + Environment.NewLine;
+                                scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "calorie", show_level);
+                                scale_update_function += TabInString(8) + "};" + Environment.NewLine;
                             }
-                            if (linear_scale.inversion)
-                            {
-                                scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
-                                "calorie = 1 - progressCalories;" + Environment.NewLine;
-                            }
-                            else
-                            {
-                                scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
-                                "calorie = progressCalories;" + Environment.NewLine;
-                            }
-                            scale_update_function += Environment.NewLine + TabInString(8) +
-                                    "if (" + variableName + ") {" + Environment.NewLine;
-                            scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "calorie", show_level);
-                            scale_update_function += TabInString(8) + "};" + Environment.NewLine;
 
 
 
@@ -20199,7 +20254,8 @@ namespace Watch_Face_Editor
                             else outItems += Environment.NewLine + TabInString(8) + "if (screenType == hmSetting.screen_type.WATCHFACE || screenType == hmSetting.screen_type.AOD) {";
 
                             outItems += Environment.NewLine + TabInString(9) +
-                                variableName + " = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
+                                variableName + " = " + Linear_Scale_Widget_JS(linear_scale, "HEART", show_level, 9) + ";" + Environment.NewLine;
+                            Linear_Scale_Image_Refresh_JS(linear_scale, variableName, ref resume_call);
 
                             if (linear_scale.mirror)
                             {
@@ -20218,46 +20274,50 @@ namespace Watch_Face_Editor
                             outItems += linearScaleOptions;
 
 
-                            scale_update_function += Environment.NewLine + TabInString(8) + "console.log('update editable linear_scale HEART');" + Environment.NewLine;
-                            if (outItems.IndexOf("const heart_rate = hmSensor.createSensor(hmSensor.id.HEART);") < 0 &&
-                                items.IndexOf("const heart_rate = hmSensor.createSensor(hmSensor.id.HEART);") < 0)
+                            // шкале с фоном (IMG_LINE_PROGRESS) значение задаёт type, scale_call нужен только указателю
+                            if (Linear_Scale_Need_Update(linear_scale))
                             {
-                                items += TabInString(6) + Environment.NewLine;
-                                items += TabInString(6) + "const heart_rate = hmSensor.createSensor(hmSensor.id.HEART);" + Environment.NewLine;
-                                if (items.IndexOf("heart_rate.addEventListener") < 0)
+                                scale_update_function += Environment.NewLine + TabInString(8) + "console.log('update editable linear_scale HEART');" + Environment.NewLine;
+                                if (outItems.IndexOf("const heart_rate = hmSensor.createSensor(hmSensor.id.HEART);") < 0 &&
+                                    items.IndexOf("const heart_rate = hmSensor.createSensor(hmSensor.id.HEART);") < 0)
                                 {
-                                    outItems += TabInString(8) + "heart_rate.addEventListener(hmSensor.event.LAST, function() {" + Environment.NewLine;
-                                    outItems += TabInString(9) + "scale_call();" + Environment.NewLine;
-                                    outItems += TabInString(8) + "});" + Environment.NewLine;
+                                    items += TabInString(6) + Environment.NewLine;
+                                    items += TabInString(6) + "const heart_rate = hmSensor.createSensor(hmSensor.id.HEART);" + Environment.NewLine;
+                                    if (items.IndexOf("heart_rate.addEventListener") < 0)
+                                    {
+                                        outItems += TabInString(8) + "heart_rate.addEventListener(hmSensor.event.LAST, function() {" + Environment.NewLine;
+                                        outItems += TabInString(9) + "scale_call();" + Environment.NewLine;
+                                        outItems += TabInString(8) + "});" + Environment.NewLine;
+                                    }
                                 }
-                            }
 
-                            if (scale_update_function.IndexOf("progressHeartRate") < 0)
-                            {
-                                scale_update_function += TabInString(8) + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let valueHeartRate = heart_rate.last;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let targetHeartRate = 184;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let progressHeartRate = (valueHeartRate - 30)/(targetHeartRate - 30);" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "if (progressHeartRate < 0) progressHeartRate = 0;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "if (progressHeartRate > 1) progressHeartRate = 1;" + Environment.NewLine;
-                            }
-                            if (linear_scale.inversion)
-                            {
-                                scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
-                                "heart_rate = 1 - progressHeartRate;" + Environment.NewLine;
-                            }
-                            else
-                            {
-                                scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
-                                "heart_rate = progressHeartRate;" + Environment.NewLine;
-                            }
-                            scale_update_function += Environment.NewLine + TabInString(8) +
-                                    "if (" + variableName + ") {" + Environment.NewLine;
-                            scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "heart_rate", show_level);
-                            scale_update_function += TabInString(8) + "};" + Environment.NewLine;
+                                if (scale_update_function.IndexOf("progressHeartRate") < 0)
+                                {
+                                    scale_update_function += TabInString(8) + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let valueHeartRate = heart_rate.last;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let targetHeartRate = 184;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let progressHeartRate = (valueHeartRate - 30)/(targetHeartRate - 30);" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "if (progressHeartRate < 0) progressHeartRate = 0;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "if (progressHeartRate > 1) progressHeartRate = 1;" + Environment.NewLine;
+                                }
+                                if (linear_scale.inversion)
+                                {
+                                    scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
+                                    "heart_rate = 1 - progressHeartRate;" + Environment.NewLine;
+                                }
+                                else
+                                {
+                                    scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
+                                    "heart_rate = progressHeartRate;" + Environment.NewLine;
+                                }
+                                scale_update_function += Environment.NewLine + TabInString(8) +
+                                        "if (" + variableName + ") {" + Environment.NewLine;
+                                scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "heart_rate", show_level);
+                                scale_update_function += TabInString(8) + "};" + Environment.NewLine;
 
-                            pause_call += TabInString(8) +
-                                "if (heart_rate) heart_rate.removeEventListener(heart_rate.event.LAST, function () {});" + Environment.NewLine;
+                                pause_call += TabInString(8) +
+                                    "if (heart_rate) heart_rate.removeEventListener(heart_rate.event.LAST, function () {});" + Environment.NewLine;
+                            }
                         }
 
                         // Icon
@@ -20493,7 +20553,8 @@ namespace Watch_Face_Editor
                             else outItems += Environment.NewLine + TabInString(8) + "if (screenType == hmSetting.screen_type.WATCHFACE || screenType == hmSetting.screen_type.AOD) {";
 
                             outItems += Environment.NewLine + TabInString(9) +
-                                variableName + " = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
+                                variableName + " = " + Linear_Scale_Widget_JS(linear_scale, "PAI_WEEKLY", show_level, 9) + ";" + Environment.NewLine;
+                            Linear_Scale_Image_Refresh_JS(linear_scale, variableName, ref resume_call);
 
                             if (linear_scale.mirror)
                             {
@@ -20512,42 +20573,46 @@ namespace Watch_Face_Editor
                             outItems += linearScaleOptions;
 
 
-                            scale_update_function += Environment.NewLine + TabInString(8) + "console.log('update editable linear_scale PAI');" + Environment.NewLine;
-                            if (outItems.IndexOf("const pai = hmSensor.createSensor(hmSensor.id.PAI);") < 0 &
-                                items.IndexOf("const pai = hmSensor.createSensor(hmSensor.id.PAI);") < 0)
+                            // шкале с фоном (IMG_LINE_PROGRESS) значение задаёт type, scale_call нужен только указателю
+                            if (Linear_Scale_Need_Update(linear_scale))
                             {
-                                items += TabInString(6) + Environment.NewLine;
-                                items += TabInString(6) + "const pai = hmSensor.createSensor(hmSensor.id.PAI);" + Environment.NewLine;
-                                if (items.IndexOf("pai.addEventListener") < 0)
+                                scale_update_function += Environment.NewLine + TabInString(8) + "console.log('update editable linear_scale PAI');" + Environment.NewLine;
+                                if (outItems.IndexOf("const pai = hmSensor.createSensor(hmSensor.id.PAI);") < 0 &
+                                    items.IndexOf("const pai = hmSensor.createSensor(hmSensor.id.PAI);") < 0)
                                 {
-                                    outItems += TabInString(8) + "pai.addEventListener(hmSensor.event.CHANGE, function() {" + Environment.NewLine;
-                                    outItems += TabInString(9) + "scale_call();" + Environment.NewLine;
-                                    outItems += TabInString(8) + "});" + Environment.NewLine;
+                                    items += TabInString(6) + Environment.NewLine;
+                                    items += TabInString(6) + "const pai = hmSensor.createSensor(hmSensor.id.PAI);" + Environment.NewLine;
+                                    if (items.IndexOf("pai.addEventListener") < 0)
+                                    {
+                                        outItems += TabInString(8) + "pai.addEventListener(hmSensor.event.CHANGE, function() {" + Environment.NewLine;
+                                        outItems += TabInString(9) + "scale_call();" + Environment.NewLine;
+                                        outItems += TabInString(8) + "});" + Environment.NewLine;
+                                    }
                                 }
-                            }
 
-                            if (scale_update_function.IndexOf("progressPAI") < 0)
-                            {
-                                scale_update_function += TabInString(8) + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let valuePAI = pai.totalpai;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let targetPAI = 100;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let progressPAI = valuePAI/targetPAI;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "if (progressPAI > 1) progressPAI = 1;" + Environment.NewLine;
+                                if (scale_update_function.IndexOf("progressPAI") < 0)
+                                {
+                                    scale_update_function += TabInString(8) + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let valuePAI = pai.totalpai;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let targetPAI = 100;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let progressPAI = valuePAI/targetPAI;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "if (progressPAI > 1) progressPAI = 1;" + Environment.NewLine;
+                                }
+                                if (linear_scale.inversion)
+                                {
+                                    scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
+                                    "pai = 1 - progressPAI;" + Environment.NewLine;
+                                }
+                                else
+                                {
+                                    scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
+                                    "pai = progressPAI;" + Environment.NewLine;
+                                }
+                                scale_update_function += Environment.NewLine + TabInString(8) +
+                                        "if (" + variableName + ") {" + Environment.NewLine;
+                                scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "pai", show_level);
+                                scale_update_function += TabInString(8) + "};" + Environment.NewLine;
                             }
-                            if (linear_scale.inversion)
-                            {
-                                scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
-                                "pai = 1 - progressPAI;" + Environment.NewLine;
-                            }
-                            else
-                            {
-                                scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
-                                "pai = progressPAI;" + Environment.NewLine;
-                            }
-                            scale_update_function += Environment.NewLine + TabInString(8) +
-                                    "if (" + variableName + ") {" + Environment.NewLine;
-                            scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "pai", show_level);
-                            scale_update_function += TabInString(8) + "};" + Environment.NewLine;
 
 
 
@@ -20816,7 +20881,8 @@ namespace Watch_Face_Editor
                             else outItems += Environment.NewLine + TabInString(8) + "if (screenType == hmSetting.screen_type.WATCHFACE || screenType == hmSetting.screen_type.AOD) {";
 
                             outItems += Environment.NewLine + TabInString(9) +
-                                variableName + " = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
+                                variableName + " = " + Linear_Scale_Widget_JS(linear_scale, "STAND", show_level, 9) + ";" + Environment.NewLine;
+                            Linear_Scale_Image_Refresh_JS(linear_scale, variableName, ref resume_call);
 
                             if (linear_scale.mirror)
                             {
@@ -20835,42 +20901,46 @@ namespace Watch_Face_Editor
                             outItems += linearScaleOptions;
 
 
-                            scale_update_function += Environment.NewLine + TabInString(8) + "console.log('update editable linear_scale STAND');" + Environment.NewLine;
-                            if (outItems.IndexOf("const stand = hmSensor.createSensor(hmSensor.id.STAND);") < 0 &&
-                                items.IndexOf("const stand = hmSensor.createSensor(hmSensor.id.STAND);") < 0)
+                            // шкале с фоном (IMG_LINE_PROGRESS) значение задаёт type, scale_call нужен только указателю
+                            if (Linear_Scale_Need_Update(linear_scale))
                             {
-                                items += TabInString(6) + Environment.NewLine;
-                                items += TabInString(6) + "const stand = hmSensor.createSensor(hmSensor.id.STAND);" + Environment.NewLine;
-                                if (items.IndexOf("stand.addEventListener") < 0)
+                                scale_update_function += Environment.NewLine + TabInString(8) + "console.log('update editable linear_scale STAND');" + Environment.NewLine;
+                                if (outItems.IndexOf("const stand = hmSensor.createSensor(hmSensor.id.STAND);") < 0 &&
+                                    items.IndexOf("const stand = hmSensor.createSensor(hmSensor.id.STAND);") < 0)
                                 {
-                                    outItems += TabInString(8) + "stand.addEventListener(hmSensor.event.CHANGE, function() {" + Environment.NewLine;
-                                    outItems += TabInString(9) + "scale_call();" + Environment.NewLine;
-                                    outItems += TabInString(8) + "});" + Environment.NewLine;
+                                    items += TabInString(6) + Environment.NewLine;
+                                    items += TabInString(6) + "const stand = hmSensor.createSensor(hmSensor.id.STAND);" + Environment.NewLine;
+                                    if (items.IndexOf("stand.addEventListener") < 0)
+                                    {
+                                        outItems += TabInString(8) + "stand.addEventListener(hmSensor.event.CHANGE, function() {" + Environment.NewLine;
+                                        outItems += TabInString(9) + "scale_call();" + Environment.NewLine;
+                                        outItems += TabInString(8) + "});" + Environment.NewLine;
+                                    }
                                 }
-                            }
 
-                            if (scale_update_function.IndexOf("progressStand") < 0)
-                            {
-                                scale_update_function += TabInString(8) + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let valueStand = stand.current;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let targetStand = stand.target;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let progressStand = valueStand/targetStand;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "if (progressStand > 1) progressStand = 1;" + Environment.NewLine;
+                                if (scale_update_function.IndexOf("progressStand") < 0)
+                                {
+                                    scale_update_function += TabInString(8) + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let valueStand = stand.current;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let targetStand = stand.target;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let progressStand = valueStand/targetStand;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "if (progressStand > 1) progressStand = 1;" + Environment.NewLine;
+                                }
+                                if (linear_scale.inversion)
+                                {
+                                    scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
+                                    "stand = 1 - progressStand;" + Environment.NewLine;
+                                }
+                                else
+                                {
+                                    scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
+                                    "stand = progressStand;" + Environment.NewLine;
+                                }
+                                scale_update_function += Environment.NewLine + TabInString(8) +
+                                        "if (" + variableName + ") {" + Environment.NewLine;
+                                scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "stand", show_level);
+                                scale_update_function += TabInString(8) + "};" + Environment.NewLine;
                             }
-                            if (linear_scale.inversion)
-                            {
-                                scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
-                                "stand = 1 - progressStand;" + Environment.NewLine;
-                            }
-                            else
-                            {
-                                scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
-                                "stand = progressStand;" + Environment.NewLine;
-                            }
-                            scale_update_function += Environment.NewLine + TabInString(8) +
-                                    "if (" + variableName + ") {" + Environment.NewLine;
-                            scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "stand", show_level);
-                            scale_update_function += TabInString(8) + "};" + Environment.NewLine;
 
 
 
@@ -21233,7 +21303,8 @@ namespace Watch_Face_Editor
                             else outItems += Environment.NewLine + TabInString(8) + "if (screenType == hmSetting.screen_type.WATCHFACE || screenType == hmSetting.screen_type.AOD) {";
 
                             outItems += Environment.NewLine + TabInString(9) +
-                                variableName + " = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
+                                variableName + " = " + Linear_Scale_Widget_JS(linear_scale, "FAT_BURNING", show_level, 9) + ";" + Environment.NewLine;
+                            Linear_Scale_Image_Refresh_JS(linear_scale, variableName, ref resume_call);
 
                             if (linear_scale.mirror)
                             {
@@ -21252,42 +21323,46 @@ namespace Watch_Face_Editor
                             outItems += linearScaleOptions;
 
 
-                            scale_update_function += Environment.NewLine + TabInString(8) + "console.log('update editable linear_scale FAT_BURNING');" + Environment.NewLine;
-                            if (outItems.IndexOf("const fat_burning = hmSensor.createSensor(hmSensor.id.FAT_BURRING);") < 0 &&
-                                items.IndexOf("const fat_burning = hmSensor.createSensor(hmSensor.id.FAT_BURRING);") < 0)
+                            // шкале с фоном (IMG_LINE_PROGRESS) значение задаёт type, scale_call нужен только указателю
+                            if (Linear_Scale_Need_Update(linear_scale))
                             {
-                                items += TabInString(6) + Environment.NewLine;
-                                items += TabInString(6) + "const fat_burning = hmSensor.createSensor(hmSensor.id.FAT_BURRING);" + Environment.NewLine;
-                                if (items.IndexOf("fat_burning.addEventListener") < 0)
+                                scale_update_function += Environment.NewLine + TabInString(8) + "console.log('update editable linear_scale FAT_BURNING');" + Environment.NewLine;
+                                if (outItems.IndexOf("const fat_burning = hmSensor.createSensor(hmSensor.id.FAT_BURRING);") < 0 &&
+                                    items.IndexOf("const fat_burning = hmSensor.createSensor(hmSensor.id.FAT_BURRING);") < 0)
                                 {
-                                    outItems += TabInString(8) + "fat_burning.addEventListener(hmSensor.event.CHANGE, function() {" + Environment.NewLine;
-                                    outItems += TabInString(9) + "scale_call();" + Environment.NewLine;
-                                    outItems += TabInString(8) + "});" + Environment.NewLine;
+                                    items += TabInString(6) + Environment.NewLine;
+                                    items += TabInString(6) + "const fat_burning = hmSensor.createSensor(hmSensor.id.FAT_BURRING);" + Environment.NewLine;
+                                    if (items.IndexOf("fat_burning.addEventListener") < 0)
+                                    {
+                                        outItems += TabInString(8) + "fat_burning.addEventListener(hmSensor.event.CHANGE, function() {" + Environment.NewLine;
+                                        outItems += TabInString(9) + "scale_call();" + Environment.NewLine;
+                                        outItems += TabInString(8) + "});" + Environment.NewLine;
+                                    }
                                 }
-                            }
 
-                            if (scale_update_function.IndexOf("progressFatBurning") < 0)
-                            {
-                                scale_update_function += TabInString(8) + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let valueFatBurning = fat_burning.current;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let targetFatBurning = fat_burning.target;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "let progressFatBurning = valueFatBurning/targetFatBurning;" + Environment.NewLine;
-                                scale_update_function += TabInString(8) + "if (progressFatBurning > 1) progressFatBurning = 1;" + Environment.NewLine;
+                                if (scale_update_function.IndexOf("progressFatBurning") < 0)
+                                {
+                                    scale_update_function += TabInString(8) + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let valueFatBurning = fat_burning.current;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let targetFatBurning = fat_burning.target;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "let progressFatBurning = valueFatBurning/targetFatBurning;" + Environment.NewLine;
+                                    scale_update_function += TabInString(8) + "if (progressFatBurning > 1) progressFatBurning = 1;" + Environment.NewLine;
+                                }
+                                if (linear_scale.inversion)
+                                {
+                                    scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
+                                    "fat_burning = 1 - progressFatBurning;" + Environment.NewLine;
+                                }
+                                else
+                                {
+                                    scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
+                                    "fat_burning = progressFatBurning;" + Environment.NewLine;
+                                }
+                                scale_update_function += Environment.NewLine + TabInString(8) +
+                                        "if (" + variableName + ") {" + Environment.NewLine;
+                                scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "fat_burning", show_level);
+                                scale_update_function += TabInString(8) + "};" + Environment.NewLine;
                             }
-                            if (linear_scale.inversion)
-                            {
-                                scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
-                                "fat_burning = 1 - progressFatBurning;" + Environment.NewLine;
-                            }
-                            else
-                            {
-                                scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
-                                "fat_burning = progressFatBurning;" + Environment.NewLine;
-                            }
-                            scale_update_function += Environment.NewLine + TabInString(8) +
-                                    "if (" + variableName + ") {" + Environment.NewLine;
-                            scale_update_function += Linear_Scale_WidgetDelegate_Options(linear_scale, optionNameStart, "fat_burning", show_level);
-                            scale_update_function += TabInString(8) + "};" + Environment.NewLine;
 
 
 
@@ -23310,7 +23385,7 @@ namespace Watch_Face_Editor
         private string Circle_Scale_Progress_Options(Circle_Scale circle_scale, bool mirror, string show_level, string type = "", int tabOffset = 0, bool systemStyle = false)
         {
             if (!string.IsNullOrEmpty(circle_scale.src))
-                return Circle_Scale_Image_Progress_Options(circle_scale, show_level, type, tabOffset, systemStyle);
+                return Circle_Scale_Image_Progress_Options(circle_scale, mirror, show_level, type, tabOffset, systemStyle);
             int radius = circle_scale.radius - circle_scale.line_width/2;
             if (radius < 1) return "";
             int end_angle = circle_scale.end_angle;
@@ -23368,8 +23443,8 @@ namespace Watch_Face_Editor
         /// <summary>Параметры IMG_ARC_PROGRESS: сектор или дуга, вырезанные из картинки фона (src).
         /// src идёт первой строкой: по ней JsonToJS меняет ARC_PROGRESS на IMG_ARC_PROGRESS.
         /// Значение виджет берёт из системных данных (type), level не рассчитывается.
-        /// Зеркальное отображение и инверсия с фоном не используются.</summary>
-        private string Circle_Scale_Image_Progress_Options(Circle_Scale circle_scale, string show_level, string type, int tabOffset, bool systemStyle)
+        /// Инверсия с фоном не используется. Зеркальная шкала (mirror) идёт от того же начального угла в обратную сторону.</summary>
+        private string Circle_Scale_Image_Progress_Options(Circle_Scale circle_scale, bool mirror, string show_level, string type, int tabOffset, bool systemStyle)
         {
             int outerRadius = circle_scale.radius;
             bool sector = circle_scale.arc_type == 0;
@@ -23377,13 +23452,16 @@ namespace Watch_Face_Editor
             // у сектора (FILL) radius — радиус сектора
             int radius = sector ? outerRadius : outerRadius - circle_scale.line_width;
             if (radius < 1) return "";
+            int start_angle = circle_scale.start_angle;
+            int end_angle = circle_scale.end_angle;
+            if (mirror) end_angle = start_angle - (circle_scale.end_angle - circle_scale.start_angle);
             string options = Environment.NewLine;
             options += TabInString(7 + tabOffset) + "src: '" + circle_scale.src + ".png'," + Environment.NewLine;
             options += TabInString(7 + tabOffset) + "center_x: " + circle_scale.center_x.ToString() + "," + Environment.NewLine;
             options += TabInString(7 + tabOffset) + "center_y: " + circle_scale.center_y.ToString() + "," + Environment.NewLine;
             // у IMG_ARC_PROGRESS ноль угла на 90° дальше по часовой стрелке, чем у шкалы в редакторе
-            options += TabInString(7 + tabOffset) + "start_angle: " + (circle_scale.start_angle - 90).ToString() + "," + Environment.NewLine;
-            options += TabInString(7 + tabOffset) + "end_angle: " + (circle_scale.end_angle - 90).ToString() + "," + Environment.NewLine;
+            options += TabInString(7 + tabOffset) + "start_angle: " + (start_angle - 90).ToString() + "," + Environment.NewLine;
+            options += TabInString(7 + tabOffset) + "end_angle: " + (end_angle - 90).ToString() + "," + Environment.NewLine;
             options += TabInString(7 + tabOffset) + "radius: " + radius.ToString() + "," + Environment.NewLine;
             if (!sector) options += TabInString(7 + tabOffset) + "line_width: " + circle_scale.line_width.ToString() + "," + Environment.NewLine;
             // hmUI.arc_type: 0 - FILL (сектор), 1 - LINE (дуга)
@@ -23392,6 +23470,7 @@ namespace Watch_Face_Editor
             // минус внешний радиус — картинка ложится по центру шкалы
             options += TabInString(7 + tabOffset) + "pos_x: " + (-outerRadius).ToString() + "," + Environment.NewLine;
             if (type.Length > 0) options += TabInString(7 + tabOffset) + "type: hmUI.data_type." + type + "," + Environment.NewLine;
+            if (systemStyle) options += TabInString(7 + tabOffset) + "// mirror: " + circle_scale.mirror.ToString() + "," + Environment.NewLine;
             options += TabInString(7 + tabOffset) + "show_level: hmUI.show_level." + show_level + "," + Environment.NewLine;
 
             return options;
@@ -23425,11 +23504,83 @@ namespace Watch_Face_Editor
             options += TabInString(7 + tabOffset) + "// mirror: " + linear_scale.mirror.ToString() + "," + Environment.NewLine;
             options += TabInString(7 + tabOffset) + "// inversion: " + linear_scale.inversion.ToString() + "," + Environment.NewLine;
             options += TabInString(7 + tabOffset) + "// alpha: " + linear_scale.alpha.ToString() + "," + Environment.NewLine;
+            if (!string.IsNullOrEmpty(linear_scale.src))
+            {
+                options += TabInString(7 + tabOffset) + "// src: '" + linear_scale.src + ".png'," + Environment.NewLine;
+                options += TabInString(7 + tabOffset) + "// corner_radius: " + linear_scale.corner_radius.ToString() + "," + Environment.NewLine;
+            }
             options += TabInString(7 + tabOffset) + "// type: hmUI.data_type." + type.ToUpper() + "," + Environment.NewLine;
             options += TabInString(7 + tabOffset) + "// show_level: hmUI.show_level." + show_level + "," + Environment.NewLine;
             options += TabInString(6 + tabOffset) + "// });" + Environment.NewLine;
 
             return options;
+        }
+
+        /// <summary>Создание виджета линейной шкалы: без фона — FILL_RECT (размер задаёт scale_call),
+        /// с фоном — IMG_LINE_PROGRESS, который сам берёт значение из системных данных (type)</summary>
+        /// <param name="tab">Отступ строки, в которой создаётся виджет</param>
+        private string Linear_Scale_Widget_JS(Linear_Scale linear_scale, string type, string show_level, int tab)
+        {
+            if (string.IsNullOrEmpty(linear_scale.src)) return "hmUI.createWidget(hmUI.widget.FILL_RECT)";
+            return "hmUI.createWidget(hmUI.widget.IMG_LINE_PROGRESS, {" +
+                Linear_Scale_Image_Progress_Options(linear_scale, type, show_level, tab + 1) + TabInString(tab) + "})";
+        }
+
+        /// <summary>Параметры IMG_LINE_PROGRESS: открываемая по значению часть картинки фона (src).
+        /// Шкала без инверсии и зеркала; направление роста задаёт знак длины, как и у обычной шкалы:
+        /// горизонтальная при положительной длине растёт вправо, вертикальная — вниз</summary>
+        private string Linear_Scale_Image_Progress_Options(Linear_Scale linear_scale, string type, string show_level, int tab)
+        {
+            int x = linear_scale.start_x;
+            int y = linear_scale.start_y;
+            int lenght = linear_scale.lenght;
+            int w, h;
+            bool inverse;
+            if (linear_scale.vertical)
+            {
+                if (lenght < 0) y += lenght;
+                w = linear_scale.line_width;
+                h = Math.Abs(lenght);
+                // IMG_LINE_PROGRESS по вертикали растёт снизу вверх, inverse — сверху вниз
+                inverse = lenght >= 0;
+            }
+            else
+            {
+                if (lenght < 0) x += lenght;
+                w = Math.Abs(lenght);
+                h = linear_scale.line_width;
+                // по горизонтали растёт слева направо, inverse — справа налево
+                inverse = lenght < 0;
+            }
+
+            string options = Environment.NewLine;
+            options += TabInString(tab) + "src: '" + linear_scale.src + ".png'," + Environment.NewLine;
+            options += TabInString(tab) + "x: " + x.ToString() + "," + Environment.NewLine;
+            options += TabInString(tab) + "y: " + y.ToString() + "," + Environment.NewLine;
+            options += TabInString(tab) + "w: " + w.ToString() + "," + Environment.NewLine;
+            options += TabInString(tab) + "h: " + h.ToString() + "," + Environment.NewLine;
+            if (type.Length > 0) options += TabInString(tab) + "type: hmUI.data_type." + type + "," + Environment.NewLine;
+            if (linear_scale.vertical) options += TabInString(tab) + "vertical: true," + Environment.NewLine;
+            if (inverse) options += TabInString(tab) + "inverse: true," + Environment.NewLine;
+            if (linear_scale.corner_radius > 0)
+                options += TabInString(tab) + "corner_radius: " + linear_scale.corner_radius.ToString() + "," + Environment.NewLine;
+            options += TabInString(tab) + "show_level: hmUI.show_level." + show_level + "," + Environment.NewLine;
+            return options;
+        }
+
+        /// <summary>IMG_LINE_PROGRESS при возобновлении циферблата получает данные, но сам картинку не пересчитывает.
+        /// Вызов hmUI.prop.LEVEL число не использует, а запускает пересчёт по уже полученным данным</summary>
+        private void Linear_Scale_Image_Refresh_JS(Linear_Scale linear_scale, string widgetName, ref string resume_call)
+        {
+            if (string.IsNullOrEmpty(linear_scale.src)) return;
+            string line = "if (" + widgetName + ") " + widgetName + ".setProperty(hmUI.prop.LEVEL, 0);";
+            if (resume_call.IndexOf(line) < 0) resume_call += TabInString(8) + line + Environment.NewLine;
+        }
+
+        /// <summary>scale_call нужен линейной шкале без фона (размер FILL_RECT) или с указателем (его положение)</summary>
+        private bool Linear_Scale_Need_Update(Linear_Scale linear_scale)
+        {
+            return string.IsNullOrEmpty(linear_scale.src) || (linear_scale.pointer != null && linear_scale.pointer.Length > 0);
         }
 
         private string Circle_Scale_WidgetDelegate_Options(Circle_Scale circle_scale, string optionNameStart, string type, int tabOffset = 0)
@@ -23651,16 +23802,20 @@ namespace Watch_Face_Editor
                 options += TabInString(9) + "};" + Environment.NewLine;
             }
 
-            options += TabInString(9) + Environment.NewLine;
-            options += TabInString(9) + optionNameStart + type + "_linear_scale.setProperty(hmUI.prop.MORE, {" + Environment.NewLine;
-            options += TabInString(10) + "x: start_x_" + optionNameStart + type + "_draw," + Environment.NewLine;
-            options += TabInString(10) + "y: start_y_" + optionNameStart + type + "_draw," + Environment.NewLine;
-            options += TabInString(10) + "w: lenght_ls_" + optionNameStart + type + "_draw," + Environment.NewLine;
-            options += TabInString(10) + "h: line_width_ls_" + optionNameStart + type + "_draw," + Environment.NewLine;
-            if(linear_scale.line_cap == "Rounded") 
-                options += TabInString(10) + "radius: " + (linear_scale.line_width/2).ToString() + "," + Environment.NewLine;
-            options += TabInString(10) + "color: color_ls_" + optionNameStart + type + "," + Environment.NewLine;
-            options += TabInString(9) + "});" + Environment.NewLine;
+            // шкала с фоном (IMG_LINE_PROGRESS) заполняется сама по type, здесь двигается только указатель
+            if (string.IsNullOrEmpty(linear_scale.src))
+            {
+                options += TabInString(9) + Environment.NewLine;
+                options += TabInString(9) + optionNameStart + type + "_linear_scale.setProperty(hmUI.prop.MORE, {" + Environment.NewLine;
+                options += TabInString(10) + "x: start_x_" + optionNameStart + type + "_draw," + Environment.NewLine;
+                options += TabInString(10) + "y: start_y_" + optionNameStart + type + "_draw," + Environment.NewLine;
+                options += TabInString(10) + "w: lenght_ls_" + optionNameStart + type + "_draw," + Environment.NewLine;
+                options += TabInString(10) + "h: line_width_ls_" + optionNameStart + type + "_draw," + Environment.NewLine;
+                if(linear_scale.line_cap == "Rounded")
+                    options += TabInString(10) + "radius: " + (linear_scale.line_width/2).ToString() + "," + Environment.NewLine;
+                options += TabInString(10) + "color: color_ls_" + optionNameStart + type + "," + Environment.NewLine;
+                options += TabInString(9) + "});" + Environment.NewLine;
+            }
 
 
             if (linear_scale.pointer != null && linear_scale.pointer.Length > 0)
@@ -39131,6 +39286,8 @@ namespace Watch_Face_Editor
                                 steps.Linear_Scale.inversion = linear_Scale.inversion;
                                 steps.Linear_Scale.alpha = linear_Scale.alpha;
                                 steps.Linear_Scale.vertical = linear_Scale.vertical;
+                                steps.Linear_Scale.src = linear_Scale.src;
+                                steps.Linear_Scale.corner_radius = linear_Scale.corner_radius;
                                 steps.Linear_Scale.pointer = linear_Scale.pointer;
                                 steps.Linear_Scale.visible = true;
                                 steps.Linear_Scale.position = offset;
@@ -39170,6 +39327,8 @@ namespace Watch_Face_Editor
                                 battery.Linear_Scale.inversion = linear_Scale.inversion;
                                 battery.Linear_Scale.alpha = linear_Scale.alpha;
                                 battery.Linear_Scale.vertical = linear_Scale.vertical;
+                                battery.Linear_Scale.src = linear_Scale.src;
+                                battery.Linear_Scale.corner_radius = linear_Scale.corner_radius;
                                 battery.Linear_Scale.pointer = linear_Scale.pointer;
                                 battery.Linear_Scale.visible = true;
                                 battery.Linear_Scale.position = offset;
@@ -39213,6 +39372,8 @@ namespace Watch_Face_Editor
                                 calorie.Linear_Scale.inversion = linear_Scale.inversion;
                                 calorie.Linear_Scale.alpha = linear_Scale.alpha;
                                 calorie.Linear_Scale.vertical = linear_Scale.vertical;
+                                calorie.Linear_Scale.src = linear_Scale.src;
+                                calorie.Linear_Scale.corner_radius = linear_Scale.corner_radius;
                                 calorie.Linear_Scale.pointer = linear_Scale.pointer;
                                 calorie.Linear_Scale.visible = true;
                                 calorie.Linear_Scale.position = offset;
@@ -39256,6 +39417,8 @@ namespace Watch_Face_Editor
                                 heart.Linear_Scale.inversion = linear_Scale.inversion;
                                 heart.Linear_Scale.alpha = linear_Scale.alpha;
                                 heart.Linear_Scale.vertical = linear_Scale.vertical;
+                                heart.Linear_Scale.src = linear_Scale.src;
+                                heart.Linear_Scale.corner_radius = linear_Scale.corner_radius;
                                 heart.Linear_Scale.pointer = linear_Scale.pointer;
                                 heart.Linear_Scale.visible = true;
                                 heart.Linear_Scale.position = offset;
@@ -39296,6 +39459,8 @@ namespace Watch_Face_Editor
                                 pai.Linear_Scale.inversion = linear_Scale.inversion;
                                 pai.Linear_Scale.alpha = linear_Scale.alpha;
                                 pai.Linear_Scale.vertical = linear_Scale.vertical;
+                                pai.Linear_Scale.src = linear_Scale.src;
+                                pai.Linear_Scale.corner_radius = linear_Scale.corner_radius;
                                 pai.Linear_Scale.pointer = linear_Scale.pointer;
                                 pai.Linear_Scale.visible = true;
                                 pai.Linear_Scale.position = offset;
@@ -39339,6 +39504,8 @@ namespace Watch_Face_Editor
                                 stand.Linear_Scale.inversion = linear_Scale.inversion;
                                 stand.Linear_Scale.alpha = linear_Scale.alpha;
                                 stand.Linear_Scale.vertical = linear_Scale.vertical;
+                                stand.Linear_Scale.src = linear_Scale.src;
+                                stand.Linear_Scale.corner_radius = linear_Scale.corner_radius;
                                 stand.Linear_Scale.pointer = linear_Scale.pointer;
                                 stand.Linear_Scale.visible = true;
                                 stand.Linear_Scale.position = offset;
@@ -39378,6 +39545,8 @@ namespace Watch_Face_Editor
                                 activity.Linear_Scale.inversion = linear_Scale.inversion;
                                 activity.Linear_Scale.alpha = linear_Scale.alpha;
                                 activity.Linear_Scale.vertical = linear_Scale.vertical;
+                                activity.Linear_Scale.src = linear_Scale.src;
+                                activity.Linear_Scale.corner_radius = linear_Scale.corner_radius;
                                 activity.Linear_Scale.pointer = linear_Scale.pointer;
                                 activity.Linear_Scale.visible = true;
                                 activity.Linear_Scale.position = offset;
@@ -39421,6 +39590,8 @@ namespace Watch_Face_Editor
                                 fat_burning.Linear_Scale.inversion = linear_Scale.inversion;
                                 fat_burning.Linear_Scale.alpha = linear_Scale.alpha;
                                 fat_burning.Linear_Scale.vertical = linear_Scale.vertical;
+                                fat_burning.Linear_Scale.src = linear_Scale.src;
+                                fat_burning.Linear_Scale.corner_radius = linear_Scale.corner_radius;
                                 fat_burning.Linear_Scale.pointer = linear_Scale.pointer;
                                 fat_burning.Linear_Scale.visible = true;
                                 fat_burning.Linear_Scale.position = offset;
@@ -47038,6 +47209,10 @@ namespace Watch_Face_Editor
             if (parametrs.ContainsKey("// mirror")) element_Linear_Scale.mirror = StringToBool(parametrs["// mirror"]);
             if (parametrs.ContainsKey("// inversion")) element_Linear_Scale.inversion = StringToBool(parametrs["// inversion"]);
             if (parametrs.ContainsKey("// vertical")) element_Linear_Scale.vertical = StringToBool(parametrs["// vertical"]);
+            if (parametrs.ContainsKey("// src") && parametrs["// src"].Length > 0)
+                element_Linear_Scale.src = Path.GetFileNameWithoutExtension(parametrs["// src"].Replace("'", "").Replace("\"", ""));
+            if (parametrs.ContainsKey("// corner_radius") && Int32.TryParse(parametrs["// corner_radius"], out value))
+                element_Linear_Scale.corner_radius = value;
 
             if (parametrs.ContainsKey("// pointer") && parametrs["// pointer"].Length > 0)
             {
@@ -47148,6 +47323,8 @@ namespace Watch_Face_Editor
 
             if (parametrs.ContainsKey("src") && parametrs["src"].Length > 0)
                 element_Circle_Scale.src = Path.GetFileNameWithoutExtension(parametrs["src"].Replace("'", "").Replace("\"", ""));
+
+            if (parametrs.ContainsKey("// mirror")) element_Circle_Scale.mirror = StringToBool(parametrs["// mirror"]);
 
             if (parametrs.ContainsKey("type"))
                 element_Circle_Scale.type = parametrs["type"].Replace("hmUI.data_type.", "");

@@ -2221,6 +2221,9 @@ namespace Watch_Face_Editor
             uCtrl_Linear_Scale_Opt.radioButton_horizontal.Checked = !linear_scale.vertical;
             uCtrl_Linear_Scale_Opt.radioButton_vertical.Checked = linear_scale.vertical;
 
+            uCtrl_Linear_Scale_Opt.numericUpDown_cornerRadius.Value = Math.Max(0, Math.Min(999, linear_scale.corner_radius));
+            uCtrl_Linear_Scale_Opt.SetBackground(linear_scale.src);
+
             PreviewView = true;
         }
 
@@ -3294,9 +3297,9 @@ namespace Watch_Face_Editor
 
             circle_scale.src = uCtrl_Circle_Scale_Opt.GetBackground();
             circle_scale.arc_type = uCtrl_Circle_Scale_Opt.GetArcType();
-            // с фоном шкала рисуется через IMG_ARC_PROGRESS, зеркальное отображение и инверсия не используются
+            // с фоном шкала рисуется через IMG_ARC_PROGRESS, инверсия не используется
             bool noBackground = string.IsNullOrEmpty(circle_scale.src);
-            circle_scale.mirror = noBackground && uCtrl_Circle_Scale_Opt.checkBox_mirror.Checked;
+            circle_scale.mirror = uCtrl_Circle_Scale_Opt.checkBox_mirror.Checked;
             circle_scale.inversion = noBackground && uCtrl_Circle_Scale_Opt.checkBox_inversion.Checked;
 
             JSON_Modified = true;
@@ -3347,8 +3350,12 @@ namespace Watch_Face_Editor
 
             linear_scale.vertical = uCtrl_Linear_Scale_Opt.radioButton_vertical.Checked;
 
-            linear_scale.mirror = uCtrl_Linear_Scale_Opt.checkBox_mirror.Checked;
-            linear_scale.inversion = uCtrl_Linear_Scale_Opt.checkBox_inversion.Checked;
+            linear_scale.src = uCtrl_Linear_Scale_Opt.GetBackground();
+            linear_scale.corner_radius = (int)uCtrl_Linear_Scale_Opt.numericUpDown_cornerRadius.Value;
+            // с фоном шкала рисуется через IMG_LINE_PROGRESS, зеркальное отображение и инверсия не используются
+            bool noBackground = string.IsNullOrEmpty(linear_scale.src);
+            linear_scale.mirror = noBackground && uCtrl_Linear_Scale_Opt.checkBox_mirror.Checked;
+            linear_scale.inversion = noBackground && uCtrl_Linear_Scale_Opt.checkBox_inversion.Checked;
 
             JSON_Modified = true;
             PreviewImage();
@@ -5679,6 +5686,9 @@ namespace Watch_Face_Editor
             linear_scale.mirror = uCtrl_Linear_Scale_Opt.checkBox_mirror.Checked;
             linear_scale.inversion = uCtrl_Linear_Scale_Opt.checkBox_inversion.Checked;
 
+            linear_scale.src = uCtrl_Linear_Scale_Opt.GetBackground();
+            linear_scale.corner_radius = (int)uCtrl_Linear_Scale_Opt.numericUpDown_cornerRadius.Value;
+
             WidgetProperty.Add("Linear_Scale", linear_scale);
             uCtrl_Linear_Scale_Opt.WidgetProperty = WidgetProperty;
         }
@@ -5723,6 +5733,9 @@ namespace Watch_Face_Editor
 
             uCtrl_Linear_Scale_Opt.radioButton_horizontal.Checked = !linear_scale.vertical;
             uCtrl_Linear_Scale_Opt.radioButton_vertical.Checked = linear_scale.vertical;
+
+            uCtrl_Linear_Scale_Opt.numericUpDown_cornerRadius.Value = Math.Max(0, Math.Min(999, linear_scale.corner_radius));
+            uCtrl_Linear_Scale_Opt.SetBackground(linear_scale.src);
 
             PreviewView = true;
             uCtrl_Linear_Scale_Opt_ValueChanged(sender, eventArgs);

@@ -671,6 +671,12 @@ namespace Watch_Face_Editor
         /// <summary>Прозрачность</summary>
         public int alpha { get; set; } = 255;
 
+        /// <summary>Картинка фона. Если задана, шкала рисуется картинкой через IMG_LINE_PROGRESS</summary>
+        public string src { get; set; }
+
+        /// <summary>Радиус закругления углов шкалы с фоном (IMG_LINE_PROGRESS)</summary>
+        public int corner_radius { get; set; }
+
         /// <summary>Основной экран или AOD</summary>
         public string show_level = "";
     }

@@ -979,16 +979,16 @@
     <value>NoControl</value>
   </data>
   <data name="label_background.Location" type="System.Drawing.Point, System.Drawing">
-    <value>124, 165</value>
+    <value>117, 165</value>
   </data>
   <data name="label_background.Size" type="System.Drawing.Size, System.Drawing">
-    <value>85, 13</value>
+    <value>100, 13</value>
   </data>
   <data name="label_background.TabIndex" type="System.Int32, mscorlib">
     <value>202</value>
   </data>
   <data name="label_background.Text" xml:space="preserve">
-    <value>Фон</value>
+    <value>Фон шкалы</value>
   </data>
   <data name="label_background.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomCenter</value>

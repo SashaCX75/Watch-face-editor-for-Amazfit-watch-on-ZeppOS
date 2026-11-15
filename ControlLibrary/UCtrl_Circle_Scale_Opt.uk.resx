@@ -332,7 +332,7 @@
     <value>Прозорість</value>
   </data>
   <data name="label_background.Text" xml:space="preserve">
-    <value>Фон</value>
+    <value>Фон шкали</value>
   </data>
   <data name="label_arcType.Text" xml:space="preserve">
     <value>Тип шкали</value>

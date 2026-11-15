@@ -771,6 +771,7 @@ namespace Watch_Face_Editor
             linear_scale.start_y = (int)Math.Round(linear_scale.start_y * scale, MidpointRounding.AwayFromZero);
             linear_scale.line_width = (int)Math.Round(linear_scale.line_width * scale, MidpointRounding.AwayFromZero);
             linear_scale.lenght = (int)Math.Round(linear_scale.lenght * scale, MidpointRounding.AwayFromZero);
+            linear_scale.corner_radius = (int)Math.Round(linear_scale.corner_radius * scale, MidpointRounding.AwayFromZero);
         }
 
         private void Scale_Circle_Scale(Circle_Scale circle_scale, float scale)

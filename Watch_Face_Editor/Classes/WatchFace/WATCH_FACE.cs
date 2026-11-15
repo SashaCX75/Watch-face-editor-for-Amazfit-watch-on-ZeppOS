@@ -3694,6 +3694,8 @@ namespace Watch_Face_Editor
                     inversion = this.Linear_Scale.inversion,
                     vertical = this.Linear_Scale.vertical,
                     alpha = this.Linear_Scale.alpha,
+                    src = this.Linear_Scale.src,
+                    corner_radius = this.Linear_Scale.corner_radius,
 
                     position = this.Linear_Scale.position,
                     visible = this.Linear_Scale.visible,
@@ -4001,6 +4003,8 @@ namespace Watch_Face_Editor
                     inversion = this.Linear_Scale.inversion,
                     vertical = this.Linear_Scale.vertical,
                     alpha = this.Linear_Scale.alpha,
+                    src = this.Linear_Scale.src,
+                    corner_radius = this.Linear_Scale.corner_radius,
 
                     position = this.Linear_Scale.position,
                     visible = this.Linear_Scale.visible,
@@ -4439,6 +4443,8 @@ namespace Watch_Face_Editor
                     inversion = this.Linear_Scale.inversion,
                     vertical = this.Linear_Scale.vertical,
                     alpha = this.Linear_Scale.alpha,
+                    src = this.Linear_Scale.src,
+                    corner_radius = this.Linear_Scale.corner_radius,
 
                     position = this.Linear_Scale.position,
                     visible = this.Linear_Scale.visible,
@@ -4827,6 +4833,8 @@ namespace Watch_Face_Editor
                     inversion = this.Linear_Scale.inversion,
                     vertical = this.Linear_Scale.vertical,
                     alpha = this.Linear_Scale.alpha,
+                    src = this.Linear_Scale.src,
+                    corner_radius = this.Linear_Scale.corner_radius,
 
                     position = this.Linear_Scale.position,
                     visible = this.Linear_Scale.visible,
@@ -5166,6 +5174,8 @@ namespace Watch_Face_Editor
                     inversion = this.Linear_Scale.inversion,
                     vertical = this.Linear_Scale.vertical,
                     alpha = this.Linear_Scale.alpha,
+                    src = this.Linear_Scale.src,
+                    corner_radius = this.Linear_Scale.corner_radius,
 
                     position = this.Linear_Scale.position,
                     visible = this.Linear_Scale.visible,
@@ -5791,6 +5801,8 @@ namespace Watch_Face_Editor
                     inversion = this.Linear_Scale.inversion,
                     vertical = this.Linear_Scale.vertical,
                     alpha = this.Linear_Scale.alpha,
+                    src = this.Linear_Scale.src,
+                    corner_radius = this.Linear_Scale.corner_radius,
 
                     position = this.Linear_Scale.position,
                     visible = this.Linear_Scale.visible,
@@ -6114,6 +6126,8 @@ namespace Watch_Face_Editor
                     inversion = this.Linear_Scale.inversion,
                     vertical = this.Linear_Scale.vertical,
                     alpha = this.Linear_Scale.alpha,
+                    src = this.Linear_Scale.src,
+                    corner_radius = this.Linear_Scale.corner_radius,
 
                     position = this.Linear_Scale.position,
                     visible = this.Linear_Scale.visible,
@@ -6920,6 +6934,8 @@ namespace Watch_Face_Editor
                     inversion = this.Linear_Scale.inversion,
                     vertical = this.Linear_Scale.vertical,
                     alpha = this.Linear_Scale.alpha,
+                    src = this.Linear_Scale.src,
+                    corner_radius = this.Linear_Scale.corner_radius,
 
                     position = this.Linear_Scale.position,
                     visible = this.Linear_Scale.visible,

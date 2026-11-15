@@ -331,4 +331,10 @@
   <data name="label_alpha.Text" xml:space="preserve">
     <value>Прозорість</value>
   </data>
+  <data name="label_background.Text" xml:space="preserve">
+    <value>Фон шкали</value>
+  </data>
+  <data name="label_cornerRadius.Text" xml:space="preserve">
+    <value>Радіус кутів</value>
+  </data>
 </root>

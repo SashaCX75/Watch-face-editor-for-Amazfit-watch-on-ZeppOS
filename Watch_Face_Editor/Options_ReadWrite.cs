@@ -3336,6 +3336,9 @@ namespace Watch_Face_Editor
             if (Watch_Face == null) return;
             Linear_Scale linear_scale = (Linear_Scale)uCtrl_Linear_Scale_Opt._LinearScale;
             if (linear_scale == null) return;
+            bool oldRadiusTooBig = !string.IsNullOrEmpty(linear_scale.src) && linear_scale.corner_radius > linear_scale.line_width / 2;
+            string oldSrc = linear_scale.src;
+            int oldLenght = linear_scale.lenght;
 
             linear_scale.pointer = uCtrl_Linear_Scale_Opt.GetImagePointer();
             linear_scale.color = ColorToString(uCtrl_Linear_Scale_Opt.GetColorScale());
@@ -3352,14 +3355,52 @@ namespace Watch_Face_Editor
 
             linear_scale.src = uCtrl_Linear_Scale_Opt.GetBackground();
             linear_scale.corner_radius = (int)uCtrl_Linear_Scale_Opt.numericUpDown_cornerRadius.Value;
-            // с фоном шкала рисуется через IMG_LINE_PROGRESS, зеркальное отображение и инверсия не используются
-            bool noBackground = string.IsNullOrEmpty(linear_scale.src);
-            linear_scale.mirror = noBackground && uCtrl_Linear_Scale_Opt.checkBox_mirror.Checked;
-            linear_scale.inversion = noBackground && uCtrl_Linear_Scale_Opt.checkBox_inversion.Checked;
+            // с фоном шкала рисуется через IMG_LINE_PROGRESS; зеркало и инверсия с фоном оставлены для проверки на часах
+            //bool noBackground = string.IsNullOrEmpty(linear_scale.src);
+            //linear_scale.mirror = noBackground && uCtrl_Linear_Scale_Opt.checkBox_mirror.Checked;
+            //linear_scale.inversion = noBackground && uCtrl_Linear_Scale_Opt.checkBox_inversion.Checked;
+            linear_scale.mirror = uCtrl_Linear_Scale_Opt.checkBox_mirror.Checked;
+            linear_scale.inversion = uCtrl_Linear_Scale_Opt.checkBox_inversion.Checked;
 
             JSON_Modified = true;
             PreviewImage();
             FormText();
+
+            // радиус углов шкалы с фоном больше половины толщины шкалы: в JS он будет уменьшен.
+            // Предупреждаем только при переходе через границу, чтобы не повторять сообщение на каждом шаге
+            bool radiusTooBig = !string.IsNullOrEmpty(linear_scale.src) && linear_scale.corner_radius > linear_scale.line_width / 2;
+            if (radiusTooBig && !oldRadiusTooBig)
+                MessageBox.Show(string.Format(Properties.FormStrings.Message_LinearScaleCornerRadius_Big,
+                    linear_scale.corner_radius, linear_scale.line_width, linear_scale.line_width / 2),
+                    Properties.FormStrings.Message_Warning_Caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            if (!string.IsNullOrEmpty(linear_scale.src) && (linear_scale.src != oldSrc || linear_scale.lenght != oldLenght))
+                CheckLinearScaleBackgroundSize(linear_scale, oldLenght, oldSrc);
+        }
+
+        /// <summary>Предупреждение, если длина шкалы с фоном (IMG_LINE_PROGRESS) больше ширины картинки фона
+        /// (у вертикальной шкалы — больше высоты). С зеркалом картинка должна покрывать обе половины, то есть две длины шкалы.
+        /// При изменении длины предупреждаем только при переходе через границу, чтобы не повторять сообщение на каждом шаге</summary>
+        private void CheckLinearScaleBackgroundSize(Linear_Scale linear_scale, int oldLenght, string oldSrc)
+        {
+            int imageIndex = ListImages.IndexOf(linear_scale.src);
+            if (imageIndex < 0 || imageIndex >= ListImagesFullName.Count) return;
+            Bitmap bg = OpenFileStream(ListImagesFullName[imageIndex]);
+            if (bg == null) return;
+
+            int factor = linear_scale.mirror ? 2 : 1;
+            int imageLenght = linear_scale.vertical ? bg.Height : bg.Width;
+            int needLenght = factor * Math.Abs(linear_scale.lenght);
+            if (needLenght <= imageLenght) return;
+
+            bool sameBackground = linear_scale.src == oldSrc;
+            if (sameBackground && factor * Math.Abs(oldLenght) > imageLenght) return; // уже предупреждали
+
+            string text = string.Format(linear_scale.vertical ?
+                Properties.FormStrings.Message_LinearScaleBackground_Height : Properties.FormStrings.Message_LinearScaleBackground_Width,
+                needLenght, imageLenght);
+            if (linear_scale.mirror) text += Environment.NewLine + Environment.NewLine + Properties.FormStrings.Message_LinearScaleBackground_Mirror;
+            MessageBox.Show(text, Properties.FormStrings.Message_Warning_Caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         private void uCtrl_Icon_Opt_ValueChanged(object sender, EventArgs eventArgs)

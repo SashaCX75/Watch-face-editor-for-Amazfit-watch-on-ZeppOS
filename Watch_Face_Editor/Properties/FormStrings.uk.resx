@@ -396,6 +396,9 @@
   <data name="Message_ImageCount_Error" xml:space="preserve">
     <value>Вибрані зображення перевершують діапазон доступних зображень.</value>
   </data>
+  <data name="Message_LinearScaleCornerRadius_Big" xml:space="preserve">
+    <value>Радіус кутів шкали ({0} px) більший за половину її товщини ({1} px). Під час створення циферблата радіус буде зменшено до {2} px.</value>
+  </data>
   <data name="Message_CircleScaleBackground_Small" xml:space="preserve">
     <value>Діаметр шкали ({0} px) більший за розмір фону ({1}x{2} px). Частина шкали не буде зафарбована зображенням.</value>
   </data>
@@ -608,5 +611,42 @@
   </data>
   <data name="ToastBG" xml:space="preserve">
     <value>Фон %s</value>
+  </data>
+  <data name="Message_NetworkError_Caption" xml:space="preserve">
+    <value>Немає зв'язку з сервером</value>
+  </data>
+  <data name="Message_NetworkError_Text" xml:space="preserve">
+    <value>Не вдалося зв'язатися із сервером {0}.
+Перевірте підключення до інтернету та спробуйте ще раз.</value>
+  </data>
+  <data name="Message_NetworkError_Reason" xml:space="preserve">
+    <value>Причина: {0}</value>
+  </data>
+  <data name="NetworkError_NoNetwork" xml:space="preserve">
+    <value>комп'ютер не підключено до мережі.</value>
+  </data>
+  <data name="NetworkError_NameResolution" xml:space="preserve">
+    <value>не вдалося знайти сервер за іменем (немає доступу до інтернету або не працює DNS).</value>
+  </data>
+  <data name="NetworkError_ConnectFailure" xml:space="preserve">
+    <value>сервер недоступний або підключення до нього заблоковано.</value>
+  </data>
+  <data name="NetworkError_Timeout" xml:space="preserve">
+    <value>сервер не відповів за відведений час.</value>
+  </data>
+  <data name="NetworkError_SecureChannel" xml:space="preserve">
+    <value>не вдалося встановити захищене з'єднання (HTTPS).</value>
+  </data>
+  <data name="NetworkError_ConnectionLost" xml:space="preserve">
+    <value>з'єднання із сервером було перервано.</value>
+  </data>
+  <data name="Message_LinearScaleBackground_Width" xml:space="preserve">
+    <value>Довжина шкали ({0} px) більша за ширину зображення фону ({1} px). Частина шкали не буде зафарбована зображенням.</value>
+  </data>
+  <data name="Message_LinearScaleBackground_Height" xml:space="preserve">
+    <value>Довжина шкали ({0} px) більша за висоту зображення фону ({1} px). Частина шкали не буде зафарбована зображенням.</value>
+  </data>
+  <data name="Message_LinearScaleBackground_Mirror" xml:space="preserve">
+    <value>З дзеркальним відображенням зображення фону має покривати обидві половини шкали, тому враховується подвійна довжина шкали.</value>
   </data>
 </root>

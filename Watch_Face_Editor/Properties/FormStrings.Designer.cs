@@ -889,6 +889,123 @@ namespace Watch_Face_Editor.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на "Нет связи с сервером".
+        /// </summary>
+        internal static string Message_NetworkError_Caption {
+            get {
+                return ResourceManager.GetString("Message_NetworkError_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на "Не удалось связаться с сервером {0}. Проверьте под...".
+        /// </summary>
+        internal static string Message_NetworkError_Text {
+            get {
+                return ResourceManager.GetString("Message_NetworkError_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на "Причина: {0}".
+        /// </summary>
+        internal static string Message_NetworkError_Reason {
+            get {
+                return ResourceManager.GetString("Message_NetworkError_Reason", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на "компьютер не подключён к сети.".
+        /// </summary>
+        internal static string NetworkError_NoNetwork {
+            get {
+                return ResourceManager.GetString("NetworkError_NoNetwork", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на "не удалось найти сервер по имени (нет доступа к ин...".
+        /// </summary>
+        internal static string NetworkError_NameResolution {
+            get {
+                return ResourceManager.GetString("NetworkError_NameResolution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на "сервер недоступен или подключение к нему заблокиро...".
+        /// </summary>
+        internal static string NetworkError_ConnectFailure {
+            get {
+                return ResourceManager.GetString("NetworkError_ConnectFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на "сервер не ответил за отведённое время.".
+        /// </summary>
+        internal static string NetworkError_Timeout {
+            get {
+                return ResourceManager.GetString("NetworkError_Timeout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на "не удалось установить защищённое соединение (HTTPS...".
+        /// </summary>
+        internal static string NetworkError_SecureChannel {
+            get {
+                return ResourceManager.GetString("NetworkError_SecureChannel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на "соединение с сервером было прервано.".
+        /// </summary>
+        internal static string NetworkError_ConnectionLost {
+            get {
+                return ResourceManager.GetString("NetworkError_ConnectionLost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на "Длина шкалы ({0} px) больше ширины картинки фона (...".
+        /// </summary>
+        internal static string Message_LinearScaleBackground_Width {
+            get {
+                return ResourceManager.GetString("Message_LinearScaleBackground_Width", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на "Длина шкалы ({0} px) больше высоты картинки фона (...".
+        /// </summary>
+        internal static string Message_LinearScaleBackground_Height {
+            get {
+                return ResourceManager.GetString("Message_LinearScaleBackground_Height", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на "С зеркальным отображением картинка фона должна пок...".
+        /// </summary>
+        internal static string Message_LinearScaleBackground_Mirror {
+            get {
+                return ResourceManager.GetString("Message_LinearScaleBackground_Mirror", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на "Радиус углов шкалы ({0} px) больше половины её толщины ({1} px)...".
+        /// </summary>
+        internal static string Message_LinearScaleCornerRadius_Big {
+            get {
+                return ResourceManager.GetString("Message_LinearScaleCornerRadius_Big", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Диаметр шкалы ({0} px) больше размера фона ({1}x{2} px). Часть шкалы не будет закрашена изображением..
         /// </summary>
         internal static string Message_CircleScaleBackground_Small {

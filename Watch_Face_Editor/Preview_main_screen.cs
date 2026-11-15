@@ -6814,9 +6814,12 @@ namespace Watch_Face_Editor
 
                     if (!string.IsNullOrEmpty(linearScale.src))
                     {
-                        // шкала с фоном (IMG_LINE_PROGRESS): без зеркала и инверсии
+                        // шкала с фоном (IMG_LINE_PROGRESS); инверсия меняет сторону, от которой заполняется шкала
                         DrawScaleLinearImage(gPanel, x, y, lenght, width, linearScale.src, linearScale.corner_radius,
-                            pointer_index, vertical, progress, alpha, showProgressArea);
+                            pointer_index, vertical, progress, inversion, alpha, showProgressArea, mirror);
+
+                        if (mirror) DrawScaleLinearImage(gPanel, x, y, -lenght, width, linearScale.src, linearScale.corner_radius,
+                            pointer_index, vertical, progress, inversion, alpha, showProgressArea, mirror);
                     }
                     else
                     {
@@ -17237,9 +17240,13 @@ namespace Watch_Face_Editor
         /// <param name="bg_src">Картинка фона</param>
         /// <param name="cornerRadius">Радиус закругления углов открытой части</param>
         /// <param name="position">Отображаемая величина от 0 до 1</param>
+        /// <param name="inversion">Заполнение с дальнего конца шкалы (inverse у IMG_LINE_PROGRESS)</param>
+        /// <param name="mirror">Шкала с зеркалом: одна картинка на обе половины, правая (нижняя) половина
+        /// открывает часть картинки, смещённую на длину шкалы (start_x/start_y у IMG_LINE_PROGRESS)</param>
         private void DrawScaleLinearImage(Graphics graphics, int x, int y, int lenght, int width, string bg_src, int cornerRadius,
-            int pointer_index, bool vertical, float position, int alpha, bool showProgressArea)
+            int pointer_index, bool vertical, float position, bool inversion, int alpha, bool showProgressArea, bool mirror = false)
         {
+            int imageOffset = mirror && lenght > 0 ? lenght : 0;
             Logger.WriteLine("* DrawScaleLinearImage");
             if (position > 1) position = 1;
             if (position < 0) position = 0;
@@ -17252,7 +17259,14 @@ namespace Watch_Face_Editor
                 new Rectangle(lenght < 0 ? x + lenght : x, y, Math.Abs(lenght), width);
             if (area.Width <= 0 || area.Height <= 0) return;
 
-            // открытая часть растёт от начала шкалы (start_x/start_y) в сторону длины
+            // открытая часть растёт от начала шкалы (start_x/start_y) в сторону длины,
+            // при инверсии — от конца шкалы навстречу началу
+            if (inversion)
+            {
+                if (vertical) y += lenght;
+                else x += lenght;
+                lenght = -lenght;
+            }
             int realLenght = (int)(lenght * position);
             Rectangle visible = vertical ?
                 new Rectangle(x, realLenght < 0 ? y + realLenght : y, width, Math.Abs(realLenght)) :
@@ -17278,7 +17292,9 @@ namespace Watch_Face_Editor
                     using (GraphicsPath path = RoundedRectPath(visible, cornerRadius))
                     {
                         graphics.SetClip(path, CombineMode.Intersect);
-                        graphics.DrawImage(bgImage, new Rectangle(area.X, area.Y, bgImage.Width, bgImage.Height),
+                        int imageX = vertical ? area.X : area.X - imageOffset;
+                        int imageY = vertical ? area.Y - imageOffset : area.Y;
+                        graphics.DrawImage(bgImage, new Rectangle(imageX, imageY, bgImage.Width, bgImage.Height),
                             0, 0, bgImage.Width, bgImage.Height, GraphicsUnit.Pixel, imgAttributes);
                     }
                     graphics.SmoothingMode = smoothingMode;

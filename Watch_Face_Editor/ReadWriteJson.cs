@@ -6950,7 +6950,8 @@ namespace Watch_Face_Editor
                                         "step_linear_scale_pointer_img_mirror = ''" + Environment.NewLine;
 
                                 items += TabInString(7) + optionNameStart +
-                                    "step_linear_scale_mirror = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
+                                    "step_linear_scale_mirror = " + Linear_Scale_Widget_JS(linear_scale, "STEP", show_level, 7, true) + ";" + Environment.NewLine;
+                                Linear_Scale_Image_Refresh_JS(linear_scale, optionNameStart + "step_linear_scale_mirror", ref resume_call);
 
                                 if (Steps.Linear_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "step_linear_scale_mirror.setAlpha(" + Steps.Linear_Scale.alpha.ToString() + ");" + Environment.NewLine;
@@ -6980,7 +6981,7 @@ namespace Watch_Face_Editor
                                     scale_update_function += TabInString(8) + "let progressStep = valueStep/targetStep;" + Environment.NewLine;
                                     scale_update_function += TabInString(8) + "if (progressStep > 1) progressStep = 1;" + Environment.NewLine;
                                 }
-                                if (linear_scale.inversion)
+                                if (linear_scale.inversion && string.IsNullOrEmpty(linear_scale.src))
                                 {
                                     scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
                                     "step = 1 - progressStep;" + Environment.NewLine;
@@ -7346,7 +7347,8 @@ namespace Watch_Face_Editor
                                         "battery_linear_scale_pointer_img_mirror = ''" + Environment.NewLine;
 
                                 items += TabInString(7) + optionNameStart +
-                                    "battery_linear_scale_mirror = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
+                                    "battery_linear_scale_mirror = " + Linear_Scale_Widget_JS(linear_scale, "BATTERY", show_level, 7, true) + ";" + Environment.NewLine;
+                                Linear_Scale_Image_Refresh_JS(linear_scale, optionNameStart + "battery_linear_scale_mirror", ref resume_call);
 
                                 if (Battery.Linear_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "battery_linear_scale_mirror.setAlpha(" + Battery.Linear_Scale.alpha.ToString() + ");" + Environment.NewLine;
@@ -7383,7 +7385,7 @@ namespace Watch_Face_Editor
                                     scale_update_function += TabInString(8) + "if (progressBattery > 1) progressBattery = 1;" + Environment.NewLine;
                                 }
 
-                                if (linear_scale.inversion)
+                                if (linear_scale.inversion && string.IsNullOrEmpty(linear_scale.src))
                                 {
                                     scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
                                     "battery = 1 - progressBattery;" + Environment.NewLine;
@@ -7843,7 +7845,8 @@ namespace Watch_Face_Editor
                                         "calorie_linear_scale_pointer_img_mirror = ''" + Environment.NewLine;
 
                                 items += TabInString(7) + optionNameStart +
-                                    "calorie_linear_scale_mirror = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
+                                    "calorie_linear_scale_mirror = " + Linear_Scale_Widget_JS(linear_scale, "CAL", show_level, 7, true) + ";" + Environment.NewLine;
+                                Linear_Scale_Image_Refresh_JS(linear_scale, optionNameStart + "calorie_linear_scale_mirror", ref resume_call);
 
                                 if (Calories.Linear_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "calorie_linear_scale_mirror.setAlpha(" + Calories.Linear_Scale.alpha.ToString() + ");" + Environment.NewLine;
@@ -7879,7 +7882,7 @@ namespace Watch_Face_Editor
                                     scale_update_function += TabInString(8) + "if (progressCalories > 1) progressCalories = 1;" + Environment.NewLine;
                                 }
 
-                                if (linear_scale.inversion)
+                                if (linear_scale.inversion && string.IsNullOrEmpty(linear_scale.src))
                                 {
                                     scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
                                     "calorie = 1 - progressCalories;" + Environment.NewLine;
@@ -8331,7 +8334,8 @@ namespace Watch_Face_Editor
                                         "heart_rate_linear_scale_pointer_img_mirror = ''" + Environment.NewLine;
 
                                 items += TabInString(7) + optionNameStart +
-                                    "heart_rate_linear_scale_mirror = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
+                                    "heart_rate_linear_scale_mirror = " + Linear_Scale_Widget_JS(linear_scale, "HEART", show_level, 7, true) + ";" + Environment.NewLine;
+                                Linear_Scale_Image_Refresh_JS(linear_scale, optionNameStart + "heart_rate_linear_scale_mirror", ref resume_call);
 
                                 if (Heart.Linear_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "heart_rate_linear_scale_mirror.setAlpha(" + Heart.Linear_Scale.alpha.ToString() + ");" + Environment.NewLine;
@@ -8371,7 +8375,7 @@ namespace Watch_Face_Editor
                                     scale_update_function += TabInString(8) + "if (progressHeartRate > 1) progressHeartRate = 1;" + Environment.NewLine;
                                 }
                             
-                                if (linear_scale.inversion)
+                                if (linear_scale.inversion && string.IsNullOrEmpty(linear_scale.src))
                                 {
                                     scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
                                     "heart_rate = 1 - progressHeartRate;" + Environment.NewLine;
@@ -8781,7 +8785,8 @@ namespace Watch_Face_Editor
                                         "pai_linear_scale_pointer_img_mirror = ''" + Environment.NewLine;
 
                                 items += TabInString(7) + optionNameStart +
-                                    "pai_linear_scale_mirror = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
+                                    "pai_linear_scale_mirror = " + Linear_Scale_Widget_JS(linear_scale, "PAI_WEEKLY", show_level, 7, true) + ";" + Environment.NewLine;
+                                Linear_Scale_Image_Refresh_JS(linear_scale, optionNameStart + "pai_linear_scale_mirror", ref resume_call);
 
                                 if (PAI.Linear_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "pai_linear_scale_mirror.setAlpha(" + PAI.Linear_Scale.alpha.ToString() + ");" + Environment.NewLine;
@@ -8818,7 +8823,7 @@ namespace Watch_Face_Editor
                                     scale_update_function += TabInString(8) + "if (progressPAI > 1) progressPAI = 1;" + Environment.NewLine;
                                 }
 
-                                if (linear_scale.inversion)
+                                if (linear_scale.inversion && string.IsNullOrEmpty(linear_scale.src))
                                 {
                                     scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
                                     "pai = 1 - progressPAI;" + Environment.NewLine;
@@ -9730,7 +9735,8 @@ namespace Watch_Face_Editor
                                         "stand_linear_scale_pointer_img_mirror = ''" + Environment.NewLine;
 
                                 items += TabInString(7) + optionNameStart +
-                                    "stand_linear_scale_mirror = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
+                                    "stand_linear_scale_mirror = " + Linear_Scale_Widget_JS(linear_scale, "STAND", show_level, 7, true) + ";" + Environment.NewLine;
+                                Linear_Scale_Image_Refresh_JS(linear_scale, optionNameStart + "stand_linear_scale_mirror", ref resume_call);
 
                                 if (Stand.Linear_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "stand_linear_scale_mirror.setAlpha(" + Stand.Linear_Scale.alpha.ToString() + ");" + Environment.NewLine;
@@ -9760,7 +9766,7 @@ namespace Watch_Face_Editor
                                     scale_update_function += TabInString(8) + "let progressStand = valueStand/targetStand;" + Environment.NewLine;
                                     scale_update_function += TabInString(8) + "if (progressStand > 1) progressStand = 1;" + Environment.NewLine;
                                 }
-                                if (linear_scale.inversion)
+                                if (linear_scale.inversion && string.IsNullOrEmpty(linear_scale.src))
                                 {
                                     scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
                                     "stand = 1 - progressStand;" + Environment.NewLine;
@@ -10144,7 +10150,8 @@ namespace Watch_Face_Editor
                                         "activity_linear_scale_pointer_img_mirror = ''" + Environment.NewLine;
 
                                 items += TabInString(7) + optionNameStart +
-                                    "activity_linear_scale_mirror = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
+                                    "activity_linear_scale_mirror = " + Linear_Scale_Widget_JS(linear_scale, "ACTIVITY", show_level, 7, true) + ";" + Environment.NewLine;
+                                Linear_Scale_Image_Refresh_JS(linear_scale, optionNameStart + "activity_linear_scale_mirror", ref resume_call);
 
                                 if (Activity.Linear_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "activity_linear_scale_mirror.setAlpha(" + Activity.Linear_Scale.alpha.ToString() + ");" + Environment.NewLine;
@@ -10179,7 +10186,7 @@ namespace Watch_Face_Editor
                                     scale_update_function += TabInString(8) + "let progressActivity = valueActivity/targetActivity;" + Environment.NewLine;
                                     scale_update_function += TabInString(8) + "if (progressActivity > 1) progressActivity = 1;" + Environment.NewLine;
                                 }
-                                if (linear_scale.inversion)
+                                if (linear_scale.inversion && string.IsNullOrEmpty(linear_scale.src))
                                 {
                                     scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
                                     "activity = 1 - progressActivity;" + Environment.NewLine;
@@ -10907,7 +10914,8 @@ namespace Watch_Face_Editor
                                         "fat_burning_linear_scale_pointer_img_mirror = ''" + Environment.NewLine;
 
                                 items += TabInString(7) + optionNameStart +
-                                    "fat_burning_linear_scale_mirror = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
+                                    "fat_burning_linear_scale_mirror = " + Linear_Scale_Widget_JS(linear_scale, "FAT_BURNING", show_level, 7, true) + ";" + Environment.NewLine;
+                                Linear_Scale_Image_Refresh_JS(linear_scale, optionNameStart + "fat_burning_linear_scale_mirror", ref resume_call);
 
                                 if (FatBurning.Linear_Scale.alpha != 255 && SelectedModel.versionOS >= 2.1) items += Environment.NewLine + TabInString(6) + optionNameStart +
                                         "fat_burning_linear_scale_mirror.setAlpha(" + FatBurning.Linear_Scale.alpha.ToString() + ");" + Environment.NewLine;
@@ -10937,7 +10945,7 @@ namespace Watch_Face_Editor
                                     scale_update_function += TabInString(8) + "let progressFatBurning = valueFatBurning/targetFatBurning;" + Environment.NewLine;
                                     scale_update_function += TabInString(8) + "if (progressFatBurning > 1) progressFatBurning = 1;" + Environment.NewLine;
                                 }
-                                if (linear_scale.inversion)
+                                if (linear_scale.inversion && string.IsNullOrEmpty(linear_scale.src))
                                 {
                                     scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
                                     "fat_burning = 1 - progressFatBurning;" + Environment.NewLine;
@@ -19388,7 +19396,8 @@ namespace Watch_Face_Editor
                                         "_pointer_img_mirror = ''" + Environment.NewLine;
 
                                 outItems += TabInString(9) + variableName +
-                                    "_mirror = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
+                                    "_mirror = " + Linear_Scale_Widget_JS(linear_scale, "STEP", show_level, 9, true) + ";" + Environment.NewLine;
+                                Linear_Scale_Image_Refresh_JS(linear_scale, variableName + "_mirror", ref resume_call);
                             }
 
                             outItems += TabInString(8) + "};" + Environment.NewLine;
@@ -19421,7 +19430,7 @@ namespace Watch_Face_Editor
                                     scale_update_function += TabInString(8) + "let progressStep = valueStep/targetStep;" + Environment.NewLine;
                                     scale_update_function += TabInString(8) + "if (progressStep > 1) progressStep = 1;" + Environment.NewLine;
                                 }
-                                if (linear_scale.inversion)
+                                if (linear_scale.inversion && string.IsNullOrEmpty(linear_scale.src))
                                 {
                                     scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
                                     "step = 1 - progressStep;" + Environment.NewLine;
@@ -19665,7 +19674,8 @@ namespace Watch_Face_Editor
                                         "_pointer_img_mirror = ''" + Environment.NewLine;
 
                                 outItems += TabInString(9) + variableName +
-                                    "_mirror = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
+                                    "_mirror = " + Linear_Scale_Widget_JS(linear_scale, "BATTERY", show_level, 9, true) + ";" + Environment.NewLine;
+                                Linear_Scale_Image_Refresh_JS(linear_scale, variableName + "_mirror", ref resume_call);
                             }
 
                             outItems += TabInString(8) + "};" + Environment.NewLine;
@@ -19698,7 +19708,7 @@ namespace Watch_Face_Editor
                                     scale_update_function += TabInString(8) + "let progressBattery = valueBattery/targetBattery;" + Environment.NewLine;
                                     scale_update_function += TabInString(8) + "if (progressBattery > 1) progressBattery = 1;" + Environment.NewLine;
                                 }
-                                if (linear_scale.inversion)
+                                if (linear_scale.inversion && string.IsNullOrEmpty(linear_scale.src))
                                 {
                                     scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
                                     "battery = 1 - progressBattery;" + Environment.NewLine;
@@ -19962,7 +19972,8 @@ namespace Watch_Face_Editor
                                         "_pointer_img_mirror = ''" + Environment.NewLine;
 
                                 outItems += TabInString(9) + variableName +
-                                    "_mirror = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
+                                    "_mirror = " + Linear_Scale_Widget_JS(linear_scale, "CAL", show_level, 9, true) + ";" + Environment.NewLine;
+                                Linear_Scale_Image_Refresh_JS(linear_scale, variableName + "_mirror", ref resume_call);
                             }
 
                             outItems += TabInString(8) + "};" + Environment.NewLine;
@@ -19995,7 +20006,7 @@ namespace Watch_Face_Editor
                                     scale_update_function += TabInString(8) + "let progressCalories = valueCalories/targetCalories;" + Environment.NewLine;
                                     scale_update_function += TabInString(8) + "if (progressCalories > 1) progressCalories = 1;" + Environment.NewLine;
                                 }
-                                if (linear_scale.inversion)
+                                if (linear_scale.inversion && string.IsNullOrEmpty(linear_scale.src))
                                 {
                                     scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
                                     "calorie = 1 - progressCalories;" + Environment.NewLine;
@@ -20266,7 +20277,8 @@ namespace Watch_Face_Editor
                                         "_pointer_img_mirror = ''" + Environment.NewLine;
 
                                 outItems += TabInString(9) + variableName +
-                                    "_mirror = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
+                                    "_mirror = " + Linear_Scale_Widget_JS(linear_scale, "HEART", show_level, 9, true) + ";" + Environment.NewLine;
+                                Linear_Scale_Image_Refresh_JS(linear_scale, variableName + "_mirror", ref resume_call);
                             }
 
                             outItems += TabInString(8) + "};" + Environment.NewLine;
@@ -20300,7 +20312,7 @@ namespace Watch_Face_Editor
                                     scale_update_function += TabInString(8) + "if (progressHeartRate < 0) progressHeartRate = 0;" + Environment.NewLine;
                                     scale_update_function += TabInString(8) + "if (progressHeartRate > 1) progressHeartRate = 1;" + Environment.NewLine;
                                 }
-                                if (linear_scale.inversion)
+                                if (linear_scale.inversion && string.IsNullOrEmpty(linear_scale.src))
                                 {
                                     scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
                                     "heart_rate = 1 - progressHeartRate;" + Environment.NewLine;
@@ -20565,7 +20577,8 @@ namespace Watch_Face_Editor
                                         "_pointer_img_mirror = ''" + Environment.NewLine;
 
                                 outItems += TabInString(9) + variableName +
-                                    "_mirror = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
+                                    "_mirror = " + Linear_Scale_Widget_JS(linear_scale, "PAI_WEEKLY", show_level, 9, true) + ";" + Environment.NewLine;
+                                Linear_Scale_Image_Refresh_JS(linear_scale, variableName + "_mirror", ref resume_call);
                             }
 
                             outItems += TabInString(8) + "};" + Environment.NewLine;
@@ -20598,7 +20611,7 @@ namespace Watch_Face_Editor
                                     scale_update_function += TabInString(8) + "let progressPAI = valuePAI/targetPAI;" + Environment.NewLine;
                                     scale_update_function += TabInString(8) + "if (progressPAI > 1) progressPAI = 1;" + Environment.NewLine;
                                 }
-                                if (linear_scale.inversion)
+                                if (linear_scale.inversion && string.IsNullOrEmpty(linear_scale.src))
                                 {
                                     scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
                                     "pai = 1 - progressPAI;" + Environment.NewLine;
@@ -20893,7 +20906,8 @@ namespace Watch_Face_Editor
                                         "_pointer_img_mirror = ''" + Environment.NewLine;
 
                                 outItems += TabInString(9) + variableName +
-                                    "_mirror = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
+                                    "_mirror = " + Linear_Scale_Widget_JS(linear_scale, "STAND", show_level, 9, true) + ";" + Environment.NewLine;
+                                Linear_Scale_Image_Refresh_JS(linear_scale, variableName + "_mirror", ref resume_call);
                             }
 
                             outItems += TabInString(8) + "};" + Environment.NewLine;
@@ -20926,7 +20940,7 @@ namespace Watch_Face_Editor
                                     scale_update_function += TabInString(8) + "let progressStand = valueStand/targetStand;" + Environment.NewLine;
                                     scale_update_function += TabInString(8) + "if (progressStand > 1) progressStand = 1;" + Environment.NewLine;
                                 }
-                                if (linear_scale.inversion)
+                                if (linear_scale.inversion && string.IsNullOrEmpty(linear_scale.src))
                                 {
                                     scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
                                     "stand = 1 - progressStand;" + Environment.NewLine;
@@ -21315,7 +21329,8 @@ namespace Watch_Face_Editor
                                         "_pointer_img_mirror = ''" + Environment.NewLine;
 
                                 outItems += TabInString(9) + variableName +
-                                    "_mirror = hmUI.createWidget(hmUI.widget.FILL_RECT);" + Environment.NewLine;
+                                    "_mirror = " + Linear_Scale_Widget_JS(linear_scale, "FAT_BURNING", show_level, 9, true) + ";" + Environment.NewLine;
+                                Linear_Scale_Image_Refresh_JS(linear_scale, variableName + "_mirror", ref resume_call);
                             }
 
                             outItems += TabInString(8) + "};" + Environment.NewLine;
@@ -21348,7 +21363,7 @@ namespace Watch_Face_Editor
                                     scale_update_function += TabInString(8) + "let progressFatBurning = valueFatBurning/targetFatBurning;" + Environment.NewLine;
                                     scale_update_function += TabInString(8) + "if (progressFatBurning > 1) progressFatBurning = 1;" + Environment.NewLine;
                                 }
-                                if (linear_scale.inversion)
+                                if (linear_scale.inversion && string.IsNullOrEmpty(linear_scale.src))
                                 {
                                     scale_update_function += TabInString(8) + "let progress_ls_" + optionNameStart +
                                     "fat_burning = 1 - progressFatBurning;" + Environment.NewLine;
@@ -23519,21 +23534,24 @@ namespace Watch_Face_Editor
         /// <summary>Создание виджета линейной шкалы: без фона — FILL_RECT (размер задаёт scale_call),
         /// с фоном — IMG_LINE_PROGRESS, который сам берёт значение из системных данных (type)</summary>
         /// <param name="tab">Отступ строки, в которой создаётся виджет</param>
-        private string Linear_Scale_Widget_JS(Linear_Scale linear_scale, string type, string show_level, int tab)
+        /// <param name="mirror">Зеркальная шкала (откладывается от начала в обратную сторону)</param>
+        private string Linear_Scale_Widget_JS(Linear_Scale linear_scale, string type, string show_level, int tab, bool mirror = false)
         {
             if (string.IsNullOrEmpty(linear_scale.src)) return "hmUI.createWidget(hmUI.widget.FILL_RECT)";
             return "hmUI.createWidget(hmUI.widget.IMG_LINE_PROGRESS, {" +
-                Linear_Scale_Image_Progress_Options(linear_scale, type, show_level, tab + 1) + TabInString(tab) + "})";
+                Linear_Scale_Image_Progress_Options(linear_scale, type, show_level, tab + 1, mirror) + TabInString(tab) + "})";
         }
 
         /// <summary>Параметры IMG_LINE_PROGRESS: открываемая по значению часть картинки фона (src).
-        /// Шкала без инверсии и зеркала; направление роста задаёт знак длины, как и у обычной шкалы:
-        /// горизонтальная при положительной длине растёт вправо, вертикальная — вниз</summary>
-        private string Linear_Scale_Image_Progress_Options(Linear_Scale linear_scale, string type, string show_level, int tab)
+        /// Направление роста задаёт знак длины, как и у обычной шкалы:
+        /// горизонтальная при положительной длине растёт вправо, вертикальная — вниз.
+        /// Зеркальная шкала откладывается от начала в обратную сторону. Инверсия (проверка на часах)
+        /// меняет сторону, от которой заполняется шкала (inverse), — уменьшения шкалы при росте значения, как у обычной инверсии, нет</summary>
+        private string Linear_Scale_Image_Progress_Options(Linear_Scale linear_scale, string type, string show_level, int tab, bool mirror = false)
         {
             int x = linear_scale.start_x;
             int y = linear_scale.start_y;
-            int lenght = linear_scale.lenght;
+            int lenght = mirror ? -linear_scale.lenght : linear_scale.lenght;
             int w, h;
             bool inverse;
             if (linear_scale.vertical)
@@ -23552,6 +23570,37 @@ namespace Watch_Face_Editor
                 // по горизонтали растёт слева направо, inverse — справа налево
                 inverse = lenght < 0;
             }
+            if (linear_scale.inversion) inverse = !inverse;
+
+            // открываемая область картинки (start/end) задаётся всегда: так виджет работает стабильнее.
+            // Без зеркала это вся шкала от левого верхнего угла картинки.
+            // С зеркалом одна картинка (длиной в две шкалы) накрывает обе половины: левая/верхняя половина
+            // открывает начало картинки, правая/нижняя — её вторую часть, смещённую на длину шкалы
+            string areaOptions = "";
+            {
+                int offset = linear_scale.mirror && lenght > 0 ? Math.Abs(lenght) : 0;
+                int start_x = linear_scale.vertical ? 0 : offset;
+                int start_y = linear_scale.vertical ? offset : 0;
+                areaOptions += TabInString(tab) + "start_x: " + start_x.ToString() + "," + Environment.NewLine;
+                areaOptions += TabInString(tab) + "start_y: " + start_y.ToString() + "," + Environment.NewLine;
+                areaOptions += TabInString(tab) + "end_x: " + (start_x + w).ToString() + "," + Environment.NewLine;
+                areaOptions += TabInString(tab) + "end_y: " + (start_y + h).ToString() + "," + Environment.NewLine;
+                // у половины со смещённой областью картинки виджет вдвое длиннее
+                // и начинается на длину шкалы раньше (левее или выше)
+                if (offset > 0)
+                {
+                    if (linear_scale.vertical)
+                    {
+                        y -= offset;
+                        h *= 2;
+                    }
+                    else
+                    {
+                        x -= offset;
+                        w *= 2;
+                    }
+                }
+            }
 
             string options = Environment.NewLine;
             options += TabInString(tab) + "src: '" + linear_scale.src + ".png'," + Environment.NewLine;
@@ -23559,11 +23608,14 @@ namespace Watch_Face_Editor
             options += TabInString(tab) + "y: " + y.ToString() + "," + Environment.NewLine;
             options += TabInString(tab) + "w: " + w.ToString() + "," + Environment.NewLine;
             options += TabInString(tab) + "h: " + h.ToString() + "," + Environment.NewLine;
-            if (type.Length > 0) options += TabInString(tab) + "type: hmUI.data_type." + type + "," + Environment.NewLine;
+            options += areaOptions;
+            // радиус углов не больше половины толщины шкалы
+            int corner_radius = Math.Min(linear_scale.corner_radius, linear_scale.line_width / 2);
+            if (corner_radius > 0)
+                options += TabInString(tab) + "corner_radius: " + corner_radius.ToString() + "," + Environment.NewLine;
             if (linear_scale.vertical) options += TabInString(tab) + "vertical: true," + Environment.NewLine;
             if (inverse) options += TabInString(tab) + "inverse: true," + Environment.NewLine;
-            if (linear_scale.corner_radius > 0)
-                options += TabInString(tab) + "corner_radius: " + linear_scale.corner_radius.ToString() + "," + Environment.NewLine;
+            if (type.Length > 0) options += TabInString(tab) + "type: hmUI.data_type." + type + "," + Environment.NewLine;
             options += TabInString(tab) + "show_level: hmUI.show_level." + show_level + "," + Environment.NewLine;
             return options;
         }
@@ -23943,16 +23995,20 @@ namespace Watch_Face_Editor
                     options += TabInString(9) + "};" + Environment.NewLine;
                 }
 
-                options += TabInString(9) + Environment.NewLine;
-                options += TabInString(9) + optionNameStart + type + "_linear_scale_mirror.setProperty(hmUI.prop.MORE, {" + Environment.NewLine;
-                options += TabInString(10) + "x: start_x_" + optionNameStart + type + "_draw_mirror," + Environment.NewLine;
-                options += TabInString(10) + "y: start_y_" + optionNameStart + type + "_draw_mirror," + Environment.NewLine;
-                options += TabInString(10) + "w: lenght_ls_" + optionNameStart + type + "_draw_mirror," + Environment.NewLine;
-                options += TabInString(10) + "h: line_width_ls_" + optionNameStart + type + "_draw_mirror," + Environment.NewLine;
-                if (linear_scale.line_cap == "Rounded")
-                    options += TabInString(10) + "radius: " + (linear_scale.line_width / 2).ToString() + "," + Environment.NewLine;
-                options += TabInString(10) + "color: color_ls_" + optionNameStart + type + "," + Environment.NewLine;
-                options += TabInString(9) + "});" + Environment.NewLine;
+                // зеркальная шкала с фоном (IMG_LINE_PROGRESS) заполняется сама по type
+                if (string.IsNullOrEmpty(linear_scale.src))
+                {
+                    options += TabInString(9) + Environment.NewLine;
+                    options += TabInString(9) + optionNameStart + type + "_linear_scale_mirror.setProperty(hmUI.prop.MORE, {" + Environment.NewLine;
+                    options += TabInString(10) + "x: start_x_" + optionNameStart + type + "_draw_mirror," + Environment.NewLine;
+                    options += TabInString(10) + "y: start_y_" + optionNameStart + type + "_draw_mirror," + Environment.NewLine;
+                    options += TabInString(10) + "w: lenght_ls_" + optionNameStart + type + "_draw_mirror," + Environment.NewLine;
+                    options += TabInString(10) + "h: line_width_ls_" + optionNameStart + type + "_draw_mirror," + Environment.NewLine;
+                    if (linear_scale.line_cap == "Rounded")
+                        options += TabInString(10) + "radius: " + (linear_scale.line_width / 2).ToString() + "," + Environment.NewLine;
+                    options += TabInString(10) + "color: color_ls_" + optionNameStart + type + "," + Environment.NewLine;
+                    options += TabInString(9) + "});" + Environment.NewLine;
+                }
 
 
                 if (linear_scale.pointer != null && linear_scale.pointer.Length > 0)

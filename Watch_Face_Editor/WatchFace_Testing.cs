@@ -82,6 +82,113 @@ namespace Watch_Face_Editor
 
         # region Файлообменники
 
+        /// <summary>Определяет, вызвана ли ошибка отсутствием связи с сервером (нет интернета, не найден сервер,
+        /// тайм-аут, прерванное соединение), и возвращает понятную причину</summary>
+        private static bool TryGetNetworkErrorReason(Exception ex, out string reason)
+        {
+            reason = null;
+            for (Exception e = ex; e != null; e = e.InnerException)
+            {
+                if (e is AggregateException aggregate && aggregate.InnerExceptions.Count > 0)
+                {
+                    if (TryGetNetworkErrorReason(aggregate.InnerExceptions[0], out reason)) break;
+                    continue;
+                }
+                if (e is WebException webEx)
+                {
+                    switch (webEx.Status)
+                    {
+                        case WebExceptionStatus.NameResolutionFailure:
+                        case WebExceptionStatus.ProxyNameResolutionFailure:
+                            reason = Properties.FormStrings.NetworkError_NameResolution;
+                            break;
+                        case WebExceptionStatus.ConnectFailure:
+                            reason = Properties.FormStrings.NetworkError_ConnectFailure;
+                            break;
+                        case WebExceptionStatus.Timeout:
+                            reason = Properties.FormStrings.NetworkError_Timeout;
+                            break;
+                        case WebExceptionStatus.SecureChannelFailure:
+                        case WebExceptionStatus.TrustFailure:
+                            reason = Properties.FormStrings.NetworkError_SecureChannel;
+                            break;
+                        case WebExceptionStatus.ConnectionClosed:
+                        case WebExceptionStatus.ReceiveFailure:
+                        case WebExceptionStatus.SendFailure:
+                        case WebExceptionStatus.KeepAliveFailure:
+                        case WebExceptionStatus.PipelineFailure:
+                            reason = Properties.FormStrings.NetworkError_ConnectionLost;
+                            break;
+                    }
+                    if (reason != null) break;
+                }
+                else if (e is SocketException socketEx)
+                {
+                    switch (socketEx.SocketErrorCode)
+                    {
+                        case SocketError.HostNotFound:
+                        case SocketError.TryAgain:
+                        case SocketError.NoData:
+                            reason = Properties.FormStrings.NetworkError_NameResolution;
+                            break;
+                        case SocketError.TimedOut:
+                            reason = Properties.FormStrings.NetworkError_Timeout;
+                            break;
+                        case SocketError.ConnectionReset:
+                        case SocketError.ConnectionAborted:
+                        case SocketError.Shutdown:
+                            reason = Properties.FormStrings.NetworkError_ConnectionLost;
+                            break;
+                        default:
+                            reason = Properties.FormStrings.NetworkError_ConnectFailure;
+                            break;
+                    }
+                    break;
+                }
+                else if (e is TaskCanceledException)
+                {
+                    // HttpClient сообщает о тайм-ауте отменой задачи
+                    reason = Properties.FormStrings.NetworkError_Timeout;
+                    break;
+                }
+                else if (e is HttpRequestException && e.InnerException == null)
+                {
+                    reason = Properties.FormStrings.NetworkError_ConnectFailure;
+                    break;
+                }
+            }
+            if (reason == null) return false;
+
+            // если у компьютера вообще нет активного сетевого подключения, это и есть причина
+            try
+            {
+                if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+                    reason = Properties.FormStrings.NetworkError_NoNetwork;
+            }
+            catch { }
+            return true;
+        }
+
+        /// <summary>Сообщение об ошибке обмена с сервером. Если причина в сети — предупреждение с понятной причиной,
+        /// иначе — исходный текст ошибки</summary>
+        /// <param name="server">Имя сервера для сообщения (например, filepost.dev)</param>
+        /// <returns>true, если это была сетевая ошибка</returns>
+        private bool ShowServerError(Exception ex, string server, string caption)
+        {
+            if (TryGetNetworkErrorReason(ex, out string reason))
+            {
+                MessageBox.Show(
+                    string.Format(Properties.FormStrings.Message_NetworkError_Text, server) + Environment.NewLine + Environment.NewLine +
+                        string.Format(Properties.FormStrings.Message_NetworkError_Reason, reason),
+                    Properties.FormStrings.Message_NetworkError_Caption,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return true;
+            }
+            MessageBox.Show(ex.Message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return false;
+        }
+
         private async void btnUploadToLitterbox_Click(object sender, EventArgs e)
         {
             string zpkName = "";
@@ -154,13 +261,8 @@ namespace Watch_Face_Editor
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(
-                        ex.Message,
-                        "Upload error",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error
-                    );
-
+                    progressBar1.Visible = false;
+                    ShowServerError(ex, "litterbox.catbox.moe", "Upload error");
                 }
 
                 string tempDir = Application.StartupPath + @"\Temp";
@@ -171,7 +273,17 @@ namespace Watch_Face_Editor
         private async void btnUploadToFilePost_Click(object sender, EventArgs e)
         {
             string apiKey = textBox_FilePost_API_key.Text;
-            bool isApiKeyValid = await CheckFilePostApiKeyAsync(apiKey);
+            bool isApiKeyValid;
+            try
+            {
+                isApiKeyValid = await CheckFilePostApiKeyAsync(apiKey);
+            }
+            catch (Exception ex)
+            {
+                // без интернета или при сбое сервера проверка ключа не проходит — дальше не идём
+                ShowServerError(ex, "filepost.dev", Properties.FormStrings.Message_Error_Caption);
+                return;
+            }
 
             if (!isApiKeyValid)
             {
@@ -254,13 +366,14 @@ namespace Watch_Face_Editor
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(
-                        ex.Message,
-                        "Upload error",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error
-                    );
-
+                    progressBar1.Visible = false;
+                    if (ShowServerError(ex, "filepost.dev", "Upload error"))
+                    {
+                        // связи нет — сведения об аккаунте запрашивать бессмысленно
+                        string tempDirectory = Application.StartupPath + @"\Temp";
+                        if (Directory.Exists(tempDirectory)) DeleteDirectory(tempDirectory);
+                        return;
+                    }
                 }
 
                 panel_FilePost_info.Visible = true;
@@ -292,12 +405,7 @@ namespace Watch_Face_Editor
                     label_FilePost_info_email.Text = "E-mail: -";
                     label_FilePost_info_uploads_month.Text = Properties.FormStrings.FilePost_info_uploads_month + ": -";
                     label_FilePost_info_storage_used.Text = Properties.FormStrings.FilePost_info_storage_used + ": -";
-                    MessageBox.Show(
-                        ex.Message,
-                        "Get account info error",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error
-                    );
+                    ShowServerError(ex, "filepost.dev", "Get account info error");
                 }
             }
         }
@@ -432,8 +540,9 @@ namespace Watch_Face_Editor
                     catch (Exception ex)
                     {
                         Console.WriteLine($"\nНепредвиденная ошибка: {ex.Message}");
-                        MessageBox.Show(ex.Message, Properties.FormStrings.Message_Error_Caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        lblStatus.Text = Properties.FormStrings.Message_Error_Caption;
+                        if (ShowServerError(ex, "github.com", Properties.FormStrings.Message_Error_Caption))
+                            lblStatus.Text = Properties.FormStrings.Message_NetworkError_Caption;
+                        else lblStatus.Text = Properties.FormStrings.Message_Error_Caption;
                     }
                     finally
                     {
@@ -2534,7 +2643,8 @@ namespace Watch_Face_Editor
             {
                 // Прочие ошибки (например, проблемы с сетью)
                 //throw new Exception($"Ошибка проверки авторизации: {ex.Message}", ex);
-                throw new Exception(Properties.FormStrings.GitHub_AuthError + ": " + ex.Message + ", " + ex);
+                // исходная ошибка сохраняется во InnerException: по ней распознаётся отсутствие сети
+                throw new Exception(Properties.FormStrings.GitHub_AuthError + ": " + ex.Message + ", " + ex, ex);
             }
         }
         
@@ -2568,7 +2678,8 @@ namespace Watch_Face_Editor
             catch (Exception ex) when (!(ex is NotFoundException || ex is UnauthorizedAccessException))
             {
                 //throw new Exception($"Ошибка при проверке репозитория: {ex.Message}", ex);
-                throw new Exception(Properties.FormStrings.GitHub_RepositoryCheckError + ": " + ex.Message + ". " + ex);
+                // исходная ошибка сохраняется во InnerException: по ней распознаётся отсутствие сети
+                throw new Exception(Properties.FormStrings.GitHub_RepositoryCheckError + ": " + ex.Message + ". " + ex, ex);
             }
         }
     }

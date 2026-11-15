@@ -206,8 +206,9 @@ namespace ControlLibrary
         private void UpdateBackgroundState()
         {
             bool noBackground = !BackgroundSelected;
-            checkBox_mirror.Enabled = noBackground;
-            checkBox_inversion.Enabled = noBackground;
+            // проверка на часах: зеркало и инверсия с фоном пока доступны
+            //checkBox_mirror.Enabled = noBackground;
+            //checkBox_inversion.Enabled = noBackground;
             label07.Enabled = noBackground;
             comboBox_scaleLinear_color.Enabled = noBackground;
             label2.Enabled = noBackground;

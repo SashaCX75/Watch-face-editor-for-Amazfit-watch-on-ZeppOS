@@ -397,6 +397,9 @@
   <data name="Message_ImageCount_Error" xml:space="preserve">
     <value>Выбранные изображения выходят за диапазон имеющихся изображений.</value>
   </data>
+  <data name="Message_LinearScaleCornerRadius_Big" xml:space="preserve">
+    <value>Радиус углов шкалы ({0} px) больше половины её толщины ({1} px). При создании циферблата радиус будет уменьшен до {2} px.</value>
+  </data>
   <data name="Message_CircleScaleBackground_Small" xml:space="preserve">
     <value>Диаметр шкалы ({0} px) больше размера фона ({1}x{2} px). Часть шкалы не будет закрашена изображением.</value>
   </data>
@@ -612,5 +615,42 @@
   </data>
   <data name="ToastBG" xml:space="preserve">
     <value>Фон %s</value>
+  </data>
+  <data name="Message_NetworkError_Caption" xml:space="preserve">
+    <value>Нет связи с сервером</value>
+  </data>
+  <data name="Message_NetworkError_Text" xml:space="preserve">
+    <value>Не удалось связаться с сервером {0}.
+Проверьте подключение к интернету и попробуйте ещё раз.</value>
+  </data>
+  <data name="Message_NetworkError_Reason" xml:space="preserve">
+    <value>Причина: {0}</value>
+  </data>
+  <data name="NetworkError_NoNetwork" xml:space="preserve">
+    <value>компьютер не подключён к сети.</value>
+  </data>
+  <data name="NetworkError_NameResolution" xml:space="preserve">
+    <value>не удалось найти сервер по имени (нет доступа к интернету или не работает DNS).</value>
+  </data>
+  <data name="NetworkError_ConnectFailure" xml:space="preserve">
+    <value>сервер недоступен или подключение к нему заблокировано.</value>
+  </data>
+  <data name="NetworkError_Timeout" xml:space="preserve">
+    <value>сервер не ответил за отведённое время.</value>
+  </data>
+  <data name="NetworkError_SecureChannel" xml:space="preserve">
+    <value>не удалось установить защищённое соединение (HTTPS).</value>
+  </data>
+  <data name="NetworkError_ConnectionLost" xml:space="preserve">
+    <value>соединение с сервером было прервано.</value>
+  </data>
+  <data name="Message_LinearScaleBackground_Width" xml:space="preserve">
+    <value>Длина шкалы ({0} px) больше ширины картинки фона ({1} px). Часть шкалы не будет закрашена изображением.</value>
+  </data>
+  <data name="Message_LinearScaleBackground_Height" xml:space="preserve">
+    <value>Длина шкалы ({0} px) больше высоты картинки фона ({1} px). Часть шкалы не будет закрашена изображением.</value>
+  </data>
+  <data name="Message_LinearScaleBackground_Mirror" xml:space="preserve">
+    <value>С зеркальным отображением картинка фона должна покрывать обе половины шкалы, поэтому учитывается двойная длина шкалы.</value>
   </data>
 </root>

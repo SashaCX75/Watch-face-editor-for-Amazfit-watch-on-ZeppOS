@@ -978,6 +978,18 @@ namespace ControlLibrary
             else return textBox_DOW.Text;
         }
 
+        /// <summary>Разделитель, когда одновременно задаются названия месяцев (поле разделителя отдельно от списка названий)</summary>
+        public void SetSeparatorText(string text)
+        {
+            textBox_unit_string.Text = text ?? "";
+        }
+
+        /// <summary>Разделитель, когда одновременно задаются названия месяцев</summary>
+        public string GetSeparatorText()
+        {
+            return textBox_unit_string.Text;
+        }
+
         public void SetMode(int mode)
         {
             if (mode == 1) radioButton_counterclockwise.Checked = true;

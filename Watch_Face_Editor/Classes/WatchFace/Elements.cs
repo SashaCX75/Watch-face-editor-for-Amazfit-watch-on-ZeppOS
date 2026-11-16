@@ -804,6 +804,9 @@ namespace Watch_Face_Editor
         /// <summary>Строка для единиц измерения</summary>
         public string unit_string { get; set; } = "";
 
+        /// <summary>Разделитель (для строк, где unit_string занят списком названий, например число и название месяца)</summary>
+        public string separator { get; set; }
+
         /// <summary>am/pm в конце</summary>
         [JsonConverter(typeof(BoolToIntConverter))]
         public int unit_end { get; set; } = 0;

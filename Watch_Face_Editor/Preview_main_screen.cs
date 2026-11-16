@@ -3353,6 +3353,81 @@ namespace Watch_Face_Editor
                             }
                         }
 
+                        if (DateMonth.Day_Month_Name_Font != null && index == DateMonth.Day_Month_Name_Font.position && DateMonth.Day_Month_Name_Font.visible)
+                        {
+                            hmUI_widget_TEXT day_month_font = DateMonth.Day_Month_Name_Font;
+                            string[] monthArrey = (day_month_font.unit_string ?? "").Split(',');
+
+                            if (monthArrey.Length == 12)
+                            {
+                                string valueDayStr = WatchFacePreviewSet.DateTime.Date.Day.ToString();
+                                string valueMonthStr = monthArrey[WatchFacePreviewSet.DateTime.Date.Month - 1].Trim();
+                                string delimeter = string.IsNullOrEmpty(day_month_font.separator) ? " " : day_month_font.separator;
+                                string valueStr = valueDayStr + delimeter + valueMonthStr;
+
+                                int x = day_month_font.x;
+                                int y = day_month_font.y;
+                                int h = day_month_font.h;
+                                int w = day_month_font.w;
+
+                                int size = day_month_font.text_size;
+                                int space_h = day_month_font.char_space;
+                                int space_v = day_month_font.line_space;
+
+                                Color color = StringToColor(day_month_font.color);
+                                int alpha = day_month_font.alpha;
+                                string align_h = day_month_font.align_h;
+                                string align_v = day_month_font.align_v;
+                                string text_style = day_month_font.text_style;
+
+                                if (day_month_font.centreHorizontally)
+                                {
+                                    x = (SelectedModel.background.w - w) / 2;
+                                    align_h = "CENTER_H";
+                                }
+                                if (day_month_font.centreVertically)
+                                {
+                                    y = (SelectedModel.background.h - h) / 2;
+                                    align_v = "CENTER_V";
+                                }
+
+                                bool use_text_circle = day_month_font.use_text_circle;
+                                int radius = day_month_font.radius;
+                                int start_angle = day_month_font.start_angle;
+                                int end_angle = day_month_font.end_angle;
+                                int mode = day_month_font.mode;
+
+                                if (day_month_font.font != null && day_month_font.font.Length > 3 && FontsList.ContainsKey(day_month_font.font))
+                                {
+                                    string font_fileName = FontsList[day_month_font.font];
+                                    if (SelectedModel.versionOS >= 2 && File.Exists(font_fileName))
+                                    {
+                                        Font drawFont = null;
+                                        using (System.Drawing.Text.PrivateFontCollection fonts = new System.Drawing.Text.PrivateFontCollection())
+                                        {
+                                            fonts.AddFontFile(font_fileName);
+                                            drawFont = new Font(fonts.Families[0], size, GraphicsUnit.World);
+                                        }
+
+                                        Draw_text_userFont(gPanel, x, y, w, h, drawFont, size, space_h, space_v, color, alpha, valueStr,
+                                            align_h, align_v, text_style, BBorder,
+                                            showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                                    }
+                                    else
+                                    {
+                                        Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                                    }
+
+                                }
+                                else
+                                {
+                                    Draw_text(gPanel, x, y, w, h, size, space_h, space_v, color, alpha, valueStr, align_h, align_v, text_style, BBorder,
+                                                    showCentrHend, use_text_circle, radius, start_angle, end_angle, mode);
+                                }
+                            }
+                        }
+
                         if (DateMonth.Text_rotation != null && DateMonth.Text_rotation.img_First != null && DateMonth.Text_rotation.img_First.Length > 0 &&
                             index == DateMonth.Text_rotation.position && DateMonth.Text_rotation.visible)
                         {

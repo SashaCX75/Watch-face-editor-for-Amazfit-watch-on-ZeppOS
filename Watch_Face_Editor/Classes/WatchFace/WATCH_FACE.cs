@@ -2017,6 +2017,7 @@ namespace Watch_Face_Editor
         public hmUI_widget_IMG_NUMBER Number { get; set; }
         public hmUI_widget_TEXT Number_Font { get; set; }
         public hmUI_widget_TEXT Month_Font { get; set; }
+        public hmUI_widget_TEXT Day_Month_Name_Font { get; set; }
         public hmUI_widget_IMG_NUMBER Text_rotation { get; set; }
         public Text_Circle Text_circle { get; set; }
         public hmUI_widget_IMG_LEVEL Images { get; set; }
@@ -2160,6 +2161,47 @@ namespace Watch_Face_Editor
                 };
             }
 
+            hmUI_widget_TEXT Day_Month_Name_Font = null;
+            if (this.Day_Month_Name_Font != null)
+            {
+                Day_Month_Name_Font = new hmUI_widget_TEXT
+                {
+                    x = this.Day_Month_Name_Font.x,
+                    y = this.Day_Month_Name_Font.y,
+                    w = this.Day_Month_Name_Font.w,
+                    h = this.Day_Month_Name_Font.h,
+                    color = this.Day_Month_Name_Font.color,
+                    color_2 = this.Day_Month_Name_Font.color_2,
+                    use_color_2 = this.Day_Month_Name_Font.use_color_2,
+                    align_h = this.Day_Month_Name_Font.align_h,
+                    align_v = this.Day_Month_Name_Font.align_v,
+                    text_size = this.Day_Month_Name_Font.text_size,
+                    text_style = this.Day_Month_Name_Font.text_style,
+                    line_space = this.Day_Month_Name_Font.line_space,
+                    char_space = this.Day_Month_Name_Font.char_space,
+                    font = this.Day_Month_Name_Font.font,
+                    padding = this.Day_Month_Name_Font.padding,
+                    unit_type = this.Day_Month_Name_Font.unit_type,
+                    unit_string = this.Day_Month_Name_Font.unit_string,
+                    separator = this.Day_Month_Name_Font.separator,
+                    unit_end = this.Day_Month_Name_Font.unit_end,
+                    centreHorizontally = this.Day_Month_Name_Font.centreHorizontally,
+                    centreVertically = this.Day_Month_Name_Font.centreVertically,
+                    alpha = this.Day_Month_Name_Font.alpha,
+
+                    use_text_circle = this.Day_Month_Name_Font.use_text_circle,
+                    radius = this.Day_Month_Name_Font.radius,
+                    start_angle = this.Day_Month_Name_Font.start_angle,
+                    end_angle = this.Day_Month_Name_Font.end_angle,
+                    mode = this.Day_Month_Name_Font.mode,
+
+                    position = this.Day_Month_Name_Font.position,
+                    visible = this.Day_Month_Name_Font.visible,
+                    show_level = this.Day_Month_Name_Font.show_level,
+                    type = this.Day_Month_Name_Font.type,
+                };
+            }
+
             hmUI_widget_IMG_NUMBER Text_rotation = null;
             if (this.Text_rotation != null)
             {
@@ -2246,6 +2288,7 @@ namespace Watch_Face_Editor
                 Number = Number,
                 Number_Font = Number_Font,
                 Month_Font = Month_Font,
+                Day_Month_Name_Font = Day_Month_Name_Font,
                 Text_rotation = Text_rotation,
                 Text_circle = Text_circle,
                 Images = Images,

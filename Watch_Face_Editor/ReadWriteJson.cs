@@ -5382,6 +5382,9 @@ namespace Watch_Face_Editor
                     string optionsImagesMonth = "";
                     string monthFontOptions = "";
                     string[] Month_Array = null;
+                    int dayMonthNameFontPosition = 99;
+                    string dayMonthNameFontOptions = "";
+                    string[] Day_Month_Name_Array = null;
 
                     if (DateMonth.Pointer != null && DateMonth.Pointer.visible)
                     {
@@ -5411,6 +5414,14 @@ namespace Watch_Face_Editor
                         hmUI_widget_TEXT text = DateMonth.Month_Font;
                         monthFontOptions = TEXT_Options(text, show_level);
                         Month_Array = DateMonth.Month_Font.unit_string.Split(',');
+                    }
+
+                    if (DateMonth.Day_Month_Name_Font != null && DateMonth.Day_Month_Name_Font.visible)
+                    {
+                        dayMonthNameFontPosition = DateMonth.Day_Month_Name_Font.position;
+                        hmUI_widget_TEXT text = DateMonth.Day_Month_Name_Font;
+                        dayMonthNameFontOptions = TEXT_Options(text, show_level);
+                        Day_Month_Name_Array = (DateMonth.Day_Month_Name_Font.unit_string ?? "").Split(',');
                     }
 
                     if (DateMonth.Text_rotation != null && DateMonth.Text_rotation.visible)
@@ -5577,6 +5588,65 @@ namespace Watch_Face_Editor
 
                             time_update += Environment.NewLine + TabInString(7) + "};" + Environment.NewLine;
 
+                        }
+
+                        // Day_Month_Name_Font
+                        if (index == dayMonthNameFontPosition && dayMonthNameFontOptions.Length > 5 && Day_Month_Name_Array.Length == 12)
+                        {
+                            if (SelectedModel.versionOS >= 2 && DateMonth.Day_Month_Name_Font.font != null && DateMonth.Day_Month_Name_Font.font.Length > 3)
+                            {
+                                string cacheName = "// FontName: " + DateMonth.Day_Month_Name_Font.font + "; FontSize: " + DateMonth.Day_Month_Name_Font.text_size.ToString() + "; Cache: full";
+                                if (fonts_cache.IndexOf(cacheName) < 0)
+                                {
+                                    string fontCacheOptions = TEXT_Cache_Options(DateMonth.Day_Month_Name_Font, true);
+                                    if (fontCacheOptions.Length > 5)
+                                    {
+                                        fonts_cache += Environment.NewLine + TabInString(6) + cacheName + Environment.NewLine;
+                                        fonts_cache += TabInString(6) + "hmUI.createWidget(hmUI.widget.TEXT, {" + fontCacheOptions +
+                                            TabInString(6) + "});" + Environment.NewLine;
+                                    }
+                                }
+                            }
+
+                            string variableName = optionNameStart + "day_monthname_font";
+                            string arrayName = optionNameStart + "Day_Month_Name_Array";
+                            variables += TabInString(4) + "let " + variableName + " = ''" + Environment.NewLine;
+                            variables += TabInString(4) + "let " + arrayName + " = [";
+                            foreach (string str in Day_Month_Name_Array)
+                            {
+                                variables += "'" + str.Trim() + "', ";
+                            }
+                            variables += "];" + Environment.NewLine;
+
+                            if (items.IndexOf("if (!timeSensor) timeSensor = hmSensor.createSensor(hmSensor.id.TIME);") < 0)
+                                items += Environment.NewLine + TabInString(6) + "if (!timeSensor) timeSensor = hmSensor.createSensor(hmSensor.id.TIME);";
+                            if (items.IndexOf("timeSensor.addEventListener(timeSensor.event.DAYCHANGE, function() {") < 0)
+                            {
+                                items += Environment.NewLine + TabInString(6) + "timeSensor.addEventListener(timeSensor.event.DAYCHANGE, function() {";
+                                items += Environment.NewLine + TabInString(7) + "time_update(true);";
+                                items += Environment.NewLine + TabInString(6) + "});" + Environment.NewLine;
+                            }
+
+                            items += Environment.NewLine + TabInString(6) + variableName + " = hmUI.createWidget(hmUI.widget.TEXT, {" +
+                                    dayMonthNameFontOptions + TabInString(6) + "});" + Environment.NewLine;
+
+                            string delimeter = string.IsNullOrEmpty(DateMonth.Day_Month_Name_Font.separator) ? " " : DateMonth.Day_Month_Name_Font.separator;
+                            delimeter = delimeter.Replace("\\", "\\\\").Replace("'", "\\'");
+                            string DayStr = optionNameStart + "DayNameStr";
+                            string MonthNameStr = optionNameStart + "MonthNameStr";
+                            string DayMonthNameStr = optionNameStart + "DayMonthNameStr";
+
+                            time_update += Environment.NewLine + TabInString(7) + "console.log('day/month name font');";
+                            time_update += Environment.NewLine + TabInString(7) + "if (updateHour) {";
+                            time_update += Environment.NewLine + TabInString(8) + "let " + DayStr + " = timeSensor.day.toString();";
+                            time_update += Environment.NewLine + TabInString(8) + "let " + MonthNameStr + " = " + arrayName + "[timeSensor.month-1];";
+                            time_update += Environment.NewLine + TabInString(8) + "let " + DayMonthNameStr + " = " + DayStr + " + '" + delimeter + "' + " + MonthNameStr + ";";
+                            time_update += Environment.NewLine + TabInString(8) + "const dateFormat = hmSetting.getDateFormat();";
+                            time_update += Environment.NewLine + TabInString(8) + "if (dateFormat == 0 || dateFormat == 2) {";
+                            time_update += Environment.NewLine + TabInString(9) + DayMonthNameStr + " = " + MonthNameStr + " + '" + delimeter + "' + " + DayStr + ";";
+                            time_update += Environment.NewLine + TabInString(8) + "}";
+                            time_update += Environment.NewLine + TabInString(8) + variableName + ".setProperty(hmUI.prop.TEXT, " + DayMonthNameStr + " );";
+                            time_update += Environment.NewLine + TabInString(7) + "};" + Environment.NewLine;
                         }
 
                         // Text_Rotate
@@ -25007,6 +25077,7 @@ namespace Watch_Face_Editor
             if (text.unit_type > 0) options += TabInString(7 + tabOffset) + "// unit_type: " + text.unit_type.ToString() + "," + Environment.NewLine;
             if (text.unit_end > 0) options += TabInString(7 + tabOffset) + "// unit_end: " + text.unit_end.ToString() + "," + Environment.NewLine;
             if (text.unit_string.Length > 0) options += TabInString(7 + tabOffset) + "// unit_string: " + text.unit_string + "," + Environment.NewLine;
+            if (!string.IsNullOrEmpty(text.separator)) options += TabInString(7 + tabOffset) + "// separator: '" + text.separator + "'," + Environment.NewLine;
 
 #if DEBUG
             options += TabInString(7 + tabOffset) + "text: 'Test String'," + Environment.NewLine;
@@ -25063,6 +25134,7 @@ namespace Watch_Face_Editor
             if (text.unit_type > 0) options += TabInString(7 + tabOffset) + "// unit_type: " + text.unit_type.ToString() + "," + Environment.NewLine;
             if (text.unit_end > 0) options += TabInString(7 + tabOffset) + "// unit_end: " + text.unit_end.ToString() + "," + Environment.NewLine;
             if (text.unit_string.Length > 0) options += TabInString(7 + tabOffset) + "// unit_string: " + text.unit_string + "," + Environment.NewLine;
+            if (!string.IsNullOrEmpty(text.separator)) options += TabInString(7 + tabOffset) + "// separator: '" + text.separator + "'," + Environment.NewLine;
 
 #if DEBUG
             options += TabInString(7 + tabOffset) + "// text: 'Text'," + Environment.NewLine;
@@ -31565,6 +31637,7 @@ namespace Watch_Face_Editor
                                         int offsetNumber = 1;
                                         if (dateMonth.Number_Font != null) offsetNumber++;
                                         if (dateMonth.Month_Font != null) offsetNumber++;
+                                        if (dateMonth.Day_Month_Name_Font != null) offsetNumber++;
                                         if (dateMonth.Pointer != null) offsetNumber++;
                                         if (dateMonth.Images != null) offsetNumber++;
                                         if (dateMonth.Text_rotation != null) offsetNumber++;
@@ -31619,6 +31692,7 @@ namespace Watch_Face_Editor
                                         if (dateMonth.Number != null) offsetNumber++;
                                         if (dateMonth.Number_Font != null) offsetNumber++;
                                         if (dateMonth.Month_Font != null) offsetNumber++;
+                                        if (dateMonth.Day_Month_Name_Font != null) offsetNumber++;
                                         if (dateMonth.Text_rotation != null) offsetNumber++;
                                         if (dateMonth.Text_circle != null) offsetNumber++;
 
@@ -31678,6 +31752,7 @@ namespace Watch_Face_Editor
                                 if (dateMonth.Number != null) offsetPointer++;
                                 if (dateMonth.Number_Font != null) offsetPointer++;
                                 if (dateMonth.Month_Font != null) offsetPointer++;
+                                if (dateMonth.Day_Month_Name_Font != null) offsetPointer++;
                                 if (dateMonth.Images != null) offsetPointer++;
                                 if (dateMonth.Text_rotation != null) offsetPointer++;
                                 if (dateMonth.Text_circle != null) offsetPointer++;
@@ -35621,6 +35696,7 @@ namespace Watch_Face_Editor
                                 if (month.Number != null) offset++;
                                 if (month.Number_Font != null) offset++;
                                 if (month.Month_Font != null) offset++;
+                                if (month.Day_Month_Name_Font != null) offset++;
                                 //if (month.Text_rotation != null) offset++;
                                 if (month.Text_circle != null) offset++;
                                 if (month.Pointer != null) offset++;
@@ -36839,6 +36915,7 @@ namespace Watch_Face_Editor
                                 if (month.Number != null) offset++;
                                 if (month.Number_Font != null) offset++;
                                 if (month.Month_Font != null) offset++;
+                                if (month.Day_Month_Name_Font != null) offset++;
                                 if (month.Text_rotation != null) offset++;
                                 //if (month.Text_circle != null) offset++;
                                 if (month.Pointer != null) offset++;
@@ -40615,6 +40692,7 @@ namespace Watch_Face_Editor
                                 if (dateMonth.Number != null) offset++;
                                 //if (dateMonth.Number_Font != null) offset++;
                                 if (dateMonth.Month_Font != null) offset++;
+                                if (dateMonth.Day_Month_Name_Font != null) offset++;
                                 if (dateMonth.Pointer != null) offset++;
                                 if (dateMonth.Text_circle != null) offset++;
                                 if (dateMonth.Text_rotation != null) offset++;
@@ -40673,6 +40751,7 @@ namespace Watch_Face_Editor
                                 if (dateMonth.Number != null) offset++;
                                 if (dateMonth.Number_Font != null) offset++;
                                 //if (dateMonth.Month_Font != null) offset++;
+                                if (dateMonth.Day_Month_Name_Font != null) offset++;
                                 if (dateMonth.Pointer != null) offset++;
                                 if (dateMonth.Text_circle != null) offset++;
                                 if (dateMonth.Text_rotation != null) offset++;
@@ -40713,6 +40792,66 @@ namespace Watch_Face_Editor
 
                                 dateMonth.Month_Font.visible = true;
                                 dateMonth.Month_Font.position = offset;
+                            }
+                        }
+
+                        if (objectName.EndsWith("day_monthname_font"))
+                        {
+                            ElementDateMonth dateMonth = (ElementDateMonth)elementsList.Find(e => e.GetType().Name == "ElementDateMonth");
+                            if (dateMonth == null)
+                            {
+                                elementsList.Add(new ElementDateMonth());
+                                dateMonth = (ElementDateMonth)elementsList.Find(e => e.GetType().Name == "ElementDateMonth");
+                            }
+                            if (dateMonth != null)
+                            {
+                                int offset = 1;
+                                if (dateMonth.Images != null) offset++;
+                                if (dateMonth.Number != null) offset++;
+                                if (dateMonth.Number_Font != null) offset++;
+                                if (dateMonth.Month_Font != null) offset++;
+                                //if (dateMonth.Day_Month_Name_Font != null) offset++;
+                                if (dateMonth.Pointer != null) offset++;
+                                if (dateMonth.Text_circle != null) offset++;
+                                if (dateMonth.Text_rotation != null) offset++;
+
+                                dateMonth.Day_Month_Name_Font = new hmUI_widget_TEXT();
+                                dateMonth.Day_Month_Name_Font.x = text.x;
+                                dateMonth.Day_Month_Name_Font.y = text.y;
+                                dateMonth.Day_Month_Name_Font.w = text.w;
+                                dateMonth.Day_Month_Name_Font.h = text.h;
+
+                                dateMonth.Day_Month_Name_Font.text_size = text.text_size;
+                                dateMonth.Day_Month_Name_Font.char_space = text.char_space;
+                                dateMonth.Day_Month_Name_Font.line_space = text.line_space;
+                                dateMonth.Day_Month_Name_Font.alpha = text.alpha;
+
+                                dateMonth.Day_Month_Name_Font.font = text.font;
+                                dateMonth.Day_Month_Name_Font.color = text.color;
+                                dateMonth.Day_Month_Name_Font.color_2 = text.color_2;
+                                dateMonth.Day_Month_Name_Font.use_color_2 = text.use_color_2;
+
+                                dateMonth.Day_Month_Name_Font.align_h = text.align_h;
+                                dateMonth.Day_Month_Name_Font.align_v = text.align_v;
+                                dateMonth.Day_Month_Name_Font.text_style = text.text_style;
+
+                                dateMonth.Day_Month_Name_Font.padding = text.padding;
+                                dateMonth.Day_Month_Name_Font.unit_type = text.unit_type;
+                                dateMonth.Day_Month_Name_Font.unit_string = text.unit_string;
+                                dateMonth.Day_Month_Name_Font.separator = text.separator;
+                                dateMonth.Day_Month_Name_Font.unit_end = text.unit_end;
+
+                                if (text.use_text_circle)
+                                {
+                                    dateMonth.Day_Month_Name_Font.use_text_circle = text.use_text_circle;
+                                    dateMonth.Day_Month_Name_Font.radius = text.radius;
+                                    dateMonth.Day_Month_Name_Font.start_angle = text.start_angle;
+                                    dateMonth.Day_Month_Name_Font.end_angle = text.end_angle;
+                                    dateMonth.Day_Month_Name_Font.mode = text.mode;
+                                }
+
+                                dateMonth.Day_Month_Name_Font.visible = true;
+                                dateMonth.Day_Month_Name_Font.position = offset;
                             }
                         }
 
@@ -47513,6 +47652,12 @@ namespace Watch_Face_Editor
             if (parametrs.ContainsKey("unit_type") && Int32.TryParse(parametrs["unit_type"], out value)) text.unit_type = value;
             if (parametrs.ContainsKey("// unit_end") && Int32.TryParse(parametrs["// unit_end"], out value)) text.unit_end = value;
             if (parametrs.ContainsKey("// unit_string")) text.unit_string = parametrs["// unit_string"];
+            if (parametrs.ContainsKey("// separator"))
+            {
+                string separator = parametrs["// separator"];
+                if (separator.Length >= 2 && separator.StartsWith("'") && separator.EndsWith("'")) separator = separator.Substring(1, separator.Length - 2);
+                text.separator = separator;
+            }
 
             if (parametrs.ContainsKey("// use_text_circle")) text.use_text_circle = StringToBool(parametrs["// use_text_circle"]);
             if (text.use_text_circle)
@@ -47616,6 +47761,12 @@ namespace Watch_Face_Editor
             if (parametrs.ContainsKey("// unit_type") && Int32.TryParse(parametrs["// unit_type"], out value)) text.unit_type = value;
             if (parametrs.ContainsKey("// unit_end") && Int32.TryParse(parametrs["// unit_end"], out value)) text.unit_end = value;
             if (parametrs.ContainsKey("// unit_string")) text.unit_string = parametrs["// unit_string"];
+            if (parametrs.ContainsKey("// separator"))
+            {
+                string separator = parametrs["// separator"];
+                if (separator.Length >= 2 && separator.StartsWith("'") && separator.EndsWith("'")) separator = separator.Substring(1, separator.Length - 2);
+                text.separator = separator;
+            }
 
             if (parametrs.ContainsKey("// type"))
             {

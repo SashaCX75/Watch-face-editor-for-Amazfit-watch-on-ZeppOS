@@ -7476,6 +7476,11 @@ namespace Watch_Face_Editor
                                     uCtrl_DateMonth_Elm.checkBox_Month_Font.Checked = DateMonth.Month_Font.visible;
                                     elementOptions.Add(DateMonth.Month_Font.position, "Month_Font");
                                 }
+                                if (DateMonth.Day_Month_Name_Font != null)
+                                {
+                                    uCtrl_DateMonth_Elm.checkBox_Day_Month_Name_Font.Checked = DateMonth.Day_Month_Name_Font.visible;
+                                    elementOptions.Add(DateMonth.Day_Month_Name_Font.position, "Day_Month_Name_Font");
+                                }
                                 if (DateMonth.Text_rotation != null)
                                 {
                                     uCtrl_DateMonth_Elm.checkBox_Text_rotation.Checked = DateMonth.Text_rotation.visible;
@@ -15252,6 +15257,15 @@ namespace Watch_Face_Editor
                         }
                         else HideAllElemenrOptions();
                         break;
+                    case "Day_Month_Name_Font":
+                        if (uCtrl_DateMonth_Elm.checkBox_Day_Month_Name_Font.Checked)
+                        {
+                            text = dateMonth.Day_Month_Name_Font;
+                            Read_Text_Options(text, false, false, true, false, false, true);
+                            ShowElemenOptions("SystemFont");
+                        }
+                        else HideAllElemenrOptions();
+                        break;
                     case "Text_rotation":
                         if (uCtrl_DateMonth_Elm.checkBox_Text_rotation.Checked)
                         {
@@ -20109,11 +20123,18 @@ namespace Watch_Face_Editor
                     dateMonth.Month_Font.unit_string = Properties.FormStrings.Month_StrArray;
                     if (LastColor.last_color != null) dateMonth.Month_Font.color = ColorToString((Color)LastColor.last_color);
                 }
+                if (dateMonth.Day_Month_Name_Font == null)
+                {
+                    dateMonth.Day_Month_Name_Font = new hmUI_widget_TEXT();
+                    dateMonth.Day_Month_Name_Font.unit_string = Properties.FormStrings.Month_StrArray;
+                    if (LastColor.last_color != null) dateMonth.Day_Month_Name_Font.color = ColorToString((Color)LastColor.last_color);
+                }
 
                 Dictionary<string, int> elementOptions = uCtrl_DateMonth_Elm.GetOptionsPosition();
                 if (elementOptions.ContainsKey("Number")) dateMonth.Number.position = elementOptions["Number"];
                 if (elementOptions.ContainsKey("Number_Font")) dateMonth.Number_Font.position = elementOptions["Number_Font"];
                 if (elementOptions.ContainsKey("Month_Font")) dateMonth.Month_Font.position = elementOptions["Month_Font"];
+                if (elementOptions.ContainsKey("Day_Month_Name_Font")) dateMonth.Day_Month_Name_Font.position = elementOptions["Day_Month_Name_Font"];
                 if (elementOptions.ContainsKey("Text_rotation")) dateMonth.Text_rotation.position = elementOptions["Text_rotation"];
                 if (elementOptions.ContainsKey("Text_circle")) dateMonth.Text_circle.position = elementOptions["Text_circle"];
                 if (elementOptions.ContainsKey("Pointer")) dateMonth.Pointer.position = elementOptions["Pointer"];
@@ -20134,6 +20155,9 @@ namespace Watch_Face_Editor
                         break;
                     case "checkBox_Month_Font":
                         dateMonth.Month_Font.visible = checkBox.Checked;
+                        break;
+                    case "checkBox_Day_Month_Name_Font":
+                        dateMonth.Day_Month_Name_Font.visible = checkBox.Checked;
                         break;
                     case "checkBox_Text_rotation":
                         dateMonth.Text_rotation.visible = checkBox.Checked;
@@ -20394,11 +20418,17 @@ namespace Watch_Face_Editor
                     dateMonth.Month_Font = new hmUI_widget_TEXT();
                     dateMonth.Month_Font.unit_string = Properties.FormStrings.Month_StrArray;
                 }
+                if (dateMonth.Day_Month_Name_Font == null)
+                {
+                    dateMonth.Day_Month_Name_Font = new hmUI_widget_TEXT();
+                    dateMonth.Day_Month_Name_Font.unit_string = Properties.FormStrings.Month_StrArray;
+                }
 
                 //Dictionary<string, int> elementOptions = uCtrl_AnalogTime_Elm.GetOptionsPosition();
                 if (elementOptions.ContainsKey("Number")) dateMonth.Number.position = elementOptions["Number"];
                 if (elementOptions.ContainsKey("Number_Font")) dateMonth.Number_Font.position = elementOptions["Number_Font"];
                 if (elementOptions.ContainsKey("Month_Font")) dateMonth.Month_Font.position = elementOptions["Month_Font"];
+                if (elementOptions.ContainsKey("Day_Month_Name_Font")) dateMonth.Day_Month_Name_Font.position = elementOptions["Day_Month_Name_Font"];
                 if (elementOptions.ContainsKey("Text_rotation")) dateMonth.Text_rotation.position = elementOptions["Text_rotation"];
                 if (elementOptions.ContainsKey("Text_circle")) dateMonth.Text_circle.position = elementOptions["Text_circle"];
                 if (elementOptions.ContainsKey("Pointer")) dateMonth.Pointer.position = elementOptions["Pointer"];

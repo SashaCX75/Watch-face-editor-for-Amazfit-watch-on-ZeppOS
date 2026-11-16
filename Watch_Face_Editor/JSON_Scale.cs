@@ -321,6 +321,7 @@ namespace Watch_Face_Editor
                     Scale_IMG_NUMBER(elementDateMonth.Number, scale);
                     Scale_TEXT(elementDateMonth.Number_Font, scale);
                     Scale_TEXT(elementDateMonth.Month_Font, scale);
+                    Scale_TEXT(elementDateMonth.Day_Month_Name_Font, scale);
                     Scale_IMG_NUMBER(elementDateMonth.Text_rotation, scale);
                     Scale_Text_Circle(elementDateMonth.Text_circle, scale);
                     Scale_IMG_POINTER(elementDateMonth.Pointer, scale);

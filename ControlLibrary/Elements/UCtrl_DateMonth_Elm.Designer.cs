@@ -31,6 +31,9 @@ namespace ControlLibrary
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCtrl_DateMonth_Elm));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel_Day_Month_Name_Font = new System.Windows.Forms.Panel();
+            this.button_Day_Month_Name_Font = new System.Windows.Forms.Button();
+            this.checkBox_Day_Month_Name_Font = new System.Windows.Forms.CheckBox();
             this.panel_Month_Font = new System.Windows.Forms.Panel();
             this.button_Month_Font = new System.Windows.Forms.Button();
             this.checkBox_Month_Font = new System.Windows.Forms.CheckBox();
@@ -59,6 +62,7 @@ namespace ControlLibrary
             this.pictureBox_Del = new System.Windows.Forms.PictureBox();
             this.button_ElementName = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
+            this.panel_Day_Month_Name_Font.SuspendLayout();
             this.panel_Month_Font.SuspendLayout();
             this.panel_Number_Font.SuspendLayout();
             this.panel_Text_circle.SuspendLayout();
@@ -77,16 +81,50 @@ namespace ControlLibrary
             // 
             resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
             this.tableLayoutPanel1.AllowDrop = true;
+            this.tableLayoutPanel1.Controls.Add(this.panel_Day_Month_Name_Font, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.panel_Month_Font, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.panel_Number_Font, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.panel_Text_circle, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.panel_Text_rotation, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.panel_Text_circle, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.panel_Text_rotation, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.panel_Number, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.panel_Images, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.panel_Images, 0, 7);
             this.tableLayoutPanel1.Controls.Add(this.panel_Pointer, 0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.DragDrop += new System.Windows.Forms.DragEventHandler(this.tableLayoutPanel1_DragDrop);
             this.tableLayoutPanel1.DragOver += new System.Windows.Forms.DragEventHandler(this.tableLayoutPanel1_DragOver);
+            // 
+            // panel_Day_Month_Name_Font
+            // 
+            resources.ApplyResources(this.panel_Day_Month_Name_Font, "panel_Day_Month_Name_Font");
+            this.panel_Day_Month_Name_Font.BackColor = System.Drawing.SystemColors.Control;
+            this.panel_Day_Month_Name_Font.Controls.Add(this.button_Day_Month_Name_Font);
+            this.panel_Day_Month_Name_Font.Controls.Add(this.checkBox_Day_Month_Name_Font);
+            this.panel_Day_Month_Name_Font.Name = "panel_Day_Month_Name_Font";
+            this.panel_Day_Month_Name_Font.Click += new System.EventHandler(this.panel_Day_Month_Name_Font_Click);
+            this.panel_Day_Month_Name_Font.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Control_MouseDown);
+            this.panel_Day_Month_Name_Font.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Control_MouseMove);
+            this.panel_Day_Month_Name_Font.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Control_MouseUp);
+            // 
+            // button_Day_Month_Name_Font
+            // 
+            resources.ApplyResources(this.button_Day_Month_Name_Font, "button_Day_Month_Name_Font");
+            this.button_Day_Month_Name_Font.FlatAppearance.BorderSize = 0;
+            this.button_Day_Month_Name_Font.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.button_Day_Month_Name_Font.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.button_Day_Month_Name_Font.Image = global::ControlLibrary.Properties.Resources.text_fields;
+            this.button_Day_Month_Name_Font.Name = "button_Day_Month_Name_Font";
+            this.button_Day_Month_Name_Font.UseVisualStyleBackColor = true;
+            this.button_Day_Month_Name_Font.Click += new System.EventHandler(this.panel_Day_Month_Name_Font_Click);
+            this.button_Day_Month_Name_Font.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Control_MouseDown);
+            this.button_Day_Month_Name_Font.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Control_MouseMove);
+            this.button_Day_Month_Name_Font.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Control_MouseUp);
+            // 
+            // checkBox_Day_Month_Name_Font
+            // 
+            resources.ApplyResources(this.checkBox_Day_Month_Name_Font, "checkBox_Day_Month_Name_Font");
+            this.checkBox_Day_Month_Name_Font.Name = "checkBox_Day_Month_Name_Font";
+            this.checkBox_Day_Month_Name_Font.UseVisualStyleBackColor = true;
+            this.checkBox_Day_Month_Name_Font.CheckedChanged += new System.EventHandler(this.checkBox_Elements_CheckedChanged);
             // 
             // panel_Month_Font
             // 
@@ -382,6 +420,8 @@ namespace ControlLibrary
             this.Controls.Add(this.button_ElementName);
             this.Name = "UCtrl_DateMonth_Elm";
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.panel_Day_Month_Name_Font.ResumeLayout(false);
+            this.panel_Day_Month_Name_Font.PerformLayout();
             this.panel_Month_Font.ResumeLayout(false);
             this.panel_Month_Font.PerformLayout();
             this.panel_Number_Font.ResumeLayout(false);
@@ -436,5 +476,8 @@ namespace ControlLibrary
         private System.Windows.Forms.Panel panel_Month_Font;
         private System.Windows.Forms.Button button_Month_Font;
         public System.Windows.Forms.CheckBox checkBox_Month_Font;
+        private System.Windows.Forms.Panel panel_Day_Month_Name_Font;
+        private System.Windows.Forms.Button button_Day_Month_Name_Font;
+        public System.Windows.Forms.CheckBox checkBox_Day_Month_Name_Font;
     }
 }

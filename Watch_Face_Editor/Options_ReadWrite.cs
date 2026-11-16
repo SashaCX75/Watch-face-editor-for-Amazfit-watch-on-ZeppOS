@@ -2371,6 +2371,8 @@ namespace Watch_Face_Editor
             uCtrl_Text_SystemFont_Opt.SetFont(system_font.font);
 
             uCtrl_Text_SystemFont_Opt.SetUnitText(system_font.unit_string);
+            // список названий и разделитель одновременно (число и название месяца)
+            if (unitStrMode && (DOWMode || MonthMode)) uCtrl_Text_SystemFont_Opt.SetSeparatorText(system_font.separator == " " ? "" : system_font.separator); // пустое поле = один пробел
 
             uCtrl_Text_SystemFont_Opt.checkBox_addZero.Checked = system_font.padding;
             uCtrl_Text_SystemFont_Opt.SetUnitType(system_font.unit_type);
@@ -3482,6 +3484,8 @@ namespace Watch_Face_Editor
 
             systemFont.font = uCtrl_Text_SystemFont_Opt.GetFont();
             systemFont.unit_string = uCtrl_Text_SystemFont_Opt.GetUnitText();
+            if (uCtrl_Text_SystemFont_Opt.UnitStrMode && (uCtrl_Text_SystemFont_Opt.DOWMode || uCtrl_Text_SystemFont_Opt.MonthMode))
+                systemFont.separator = uCtrl_Text_SystemFont_Opt.GetSeparatorText();
 
             systemFont.padding = uCtrl_Text_SystemFont_Opt.checkBox_addZero.Checked;
             systemFont.unit_type = uCtrl_Text_SystemFont_Opt.GetUnitType();
@@ -5918,6 +5922,8 @@ namespace Watch_Face_Editor
 
             systemFont.font = uCtrl_Text_SystemFont_Opt.GetFont();
             systemFont.unit_string = uCtrl_Text_SystemFont_Opt.GetUnitText();
+            if (uCtrl_Text_SystemFont_Opt.UnitStrMode && (uCtrl_Text_SystemFont_Opt.DOWMode || uCtrl_Text_SystemFont_Opt.MonthMode))
+                systemFont.separator = uCtrl_Text_SystemFont_Opt.GetSeparatorText();
 
             systemFont.padding = uCtrl_Text_SystemFont_Opt.checkBox_addZero.Checked;
             systemFont.unit_type = uCtrl_Text_SystemFont_Opt.GetUnitType();
@@ -5967,6 +5973,9 @@ namespace Watch_Face_Editor
 
             uCtrl_Text_SystemFont_Opt.SetFont(system_font.font);
             uCtrl_Text_SystemFont_Opt.SetUnitText(system_font.unit_string);
+            if (system_font.separator != null && uCtrl_Text_SystemFont_Opt.UnitStrMode &&
+                (uCtrl_Text_SystemFont_Opt.DOWMode || uCtrl_Text_SystemFont_Opt.MonthMode))
+                uCtrl_Text_SystemFont_Opt.SetSeparatorText(system_font.separator == " " ? "" : system_font.separator); // пустое поле = один пробел
 
             uCtrl_Text_SystemFont_Opt.checkBox_addZero.Checked = system_font.padding;
             uCtrl_Text_SystemFont_Opt.SetUnitType(system_font.unit_type);

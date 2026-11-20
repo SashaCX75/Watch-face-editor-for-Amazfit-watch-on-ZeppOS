@@ -330,6 +330,9 @@ namespace Watch_Face_Editor
         /// <summary>Высота</summary>
         public int? h { get; set; }
 
+        /// <summary>Масштабировать изображение пропорционально под размер w/h (auto_scale + auto_scale_obj_fit)</summary>
+        public bool? auto_scale { get; set; }
+
         /// <summary>Изображение</summary>
         public string src { get; set; }
 

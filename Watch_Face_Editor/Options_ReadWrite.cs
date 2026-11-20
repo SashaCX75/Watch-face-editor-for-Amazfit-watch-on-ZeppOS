@@ -1678,6 +1678,7 @@ namespace Watch_Face_Editor
             uCtrl_Icon_Opt.numericUpDown_iconX.Value = img.x;
             uCtrl_Icon_Opt.numericUpDown_iconY.Value = img.y;
             uCtrl_Icon_Opt.numericUpDown_Alpha.Value = img.alpha;
+            uCtrl_Icon_Opt.SetSize(img.w, img.h, img.auto_scale);
 
             PreviewView = true;
         }
@@ -1691,6 +1692,7 @@ namespace Watch_Face_Editor
 
             uCtrl_Icon_Opt._Icon = img_status;
             uCtrl_Icon_Opt.Alpha = SelectedModel.versionOS >= 2.1;
+            uCtrl_Icon_Opt.SizeMode = false; // у статусов размер не задается
 
             //userCtrl_Background_Options.SettingsClear();
 
@@ -2609,6 +2611,7 @@ namespace Watch_Face_Editor
                 uCtrl_Image_Widgets_Opt.numericUpDown_X.Value = img.x;
                 uCtrl_Image_Widgets_Opt.numericUpDown_Y.Value = img.y;
                 uCtrl_Image_Widgets_Opt.numericUpDown_Alpha.Value = img.alpha;
+                uCtrl_Image_Widgets_Opt.SetSize(img.w, img.h, img.auto_scale);
             }
             PreviewView = previewView;
         }
@@ -2626,6 +2629,9 @@ namespace Watch_Face_Editor
                 img.x = (int)uCtrl_Image_Widgets_Opt.numericUpDown_X.Value;
                 img.y = (int)uCtrl_Image_Widgets_Opt.numericUpDown_Y.Value;
                 img.alpha = (int)uCtrl_Image_Widgets_Opt.numericUpDown_Alpha.Value;
+                img.w = uCtrl_Image_Widgets_Opt.GetWidth();
+                img.h = uCtrl_Image_Widgets_Opt.GetHeight();
+                img.auto_scale = uCtrl_Image_Widgets_Opt.GetAutoScale();
 
                 JSON_Modified = true;
                 PreviewImage();
@@ -2662,6 +2668,9 @@ namespace Watch_Face_Editor
                 img.x = (int)uCtrl_Image_Widgets_Opt.numericUpDown_X.Value;
                 img.y = (int)uCtrl_Image_Widgets_Opt.numericUpDown_Y.Value;
                 img.alpha = (int)uCtrl_Image_Widgets_Opt.numericUpDown_Alpha.Value;
+                img.w = uCtrl_Image_Widgets_Opt.GetWidth();
+                img.h = uCtrl_Image_Widgets_Opt.GetHeight();
+                img.auto_scale = uCtrl_Image_Widgets_Opt.GetAutoScale();
             }
             img.visible = true;
 
@@ -3419,6 +3428,9 @@ namespace Watch_Face_Editor
                 icon.x = (int)uCtrl_Icon_Opt.numericUpDown_iconX.Value;
                 icon.y = (int)uCtrl_Icon_Opt.numericUpDown_iconY.Value;
                 icon.alpha = (int)uCtrl_Icon_Opt.numericUpDown_Alpha.Value;
+                icon.w = uCtrl_Icon_Opt.GetWidth();
+                icon.h = uCtrl_Icon_Opt.GetHeight();
+                icon.auto_scale = uCtrl_Icon_Opt.GetAutoScale();
             }
             else if (type == "hmUI_widget_IMG_STATUS")
             {
@@ -5456,6 +5468,90 @@ namespace Watch_Face_Editor
         }
 
         ///////////
+        /// <summary>Свойства изображения для копирования (общие для иконок и набора изображений)</summary>
+        private hmUI_widget_IMG ImgWidgetPropertyFromControl(string src, int x, int y, int alpha, int? w, int? h, bool? autoScale)
+        {
+            hmUI_widget_IMG img = new hmUI_widget_IMG();
+            img.src = src;
+            img.x = x;
+            img.y = y;
+            img.alpha = alpha;
+            img.w = w;
+            img.h = h;
+            img.auto_scale = autoScale;
+            return img;
+        }
+
+        private void uCtrl_Icon_Opt_WidgetProperty_Copy(object sender, EventArgs eventArgs)
+        {
+            if (WidgetProperty.ContainsKey("hmUI_widget_IMG")) WidgetProperty.Remove("hmUI_widget_IMG");
+            hmUI_widget_IMG img = ImgWidgetPropertyFromControl(uCtrl_Icon_Opt.GetIcon(),
+                (int)uCtrl_Icon_Opt.numericUpDown_iconX.Value, (int)uCtrl_Icon_Opt.numericUpDown_iconY.Value,
+                (int)uCtrl_Icon_Opt.numericUpDown_Alpha.Value,
+                uCtrl_Icon_Opt.GetWidth(), uCtrl_Icon_Opt.GetHeight(), uCtrl_Icon_Opt.GetAutoScale());
+
+            WidgetProperty.Add("hmUI_widget_IMG", img);
+            uCtrl_Icon_Opt.WidgetProperty = WidgetProperty;
+            uCtrl_Image_Widgets_Opt.WidgetProperty = WidgetProperty;
+        }
+
+        private void uCtrl_Icon_Opt_WidgetProperty_Paste(object sender, EventArgs eventArgs)
+        {
+            if (!WidgetProperty.ContainsKey("hmUI_widget_IMG")) return;
+            Object obj = null;
+            WidgetProperty.TryGetValue("hmUI_widget_IMG", out obj);
+            if (obj == null) return;
+            hmUI_widget_IMG img = (hmUI_widget_IMG)obj;
+            if (uCtrl_Icon_Opt._Icon == null) return;
+
+            PreviewView = false;
+
+            uCtrl_Icon_Opt.SetIcon(img.src);
+            uCtrl_Icon_Opt.numericUpDown_iconX.Value = img.x;
+            uCtrl_Icon_Opt.numericUpDown_iconY.Value = img.y;
+            if (uCtrl_Icon_Opt.Alpha) uCtrl_Icon_Opt.numericUpDown_Alpha.Value = img.alpha;
+            if (uCtrl_Icon_Opt.SizeMode) uCtrl_Icon_Opt.SetSize(img.w, img.h, img.auto_scale);
+
+            PreviewView = true;
+            uCtrl_Icon_Opt_ValueChanged(sender, eventArgs);
+        }
+
+        private void uCtrl_Image_Widgets_Opt_WidgetProperty_Copy(object sender, EventArgs eventArgs)
+        {
+            if (uCtrl_Image_Widgets_Opt.GetSelectedRowIndex() < 0) return;
+            if (WidgetProperty.ContainsKey("hmUI_widget_IMG")) WidgetProperty.Remove("hmUI_widget_IMG");
+            hmUI_widget_IMG img = ImgWidgetPropertyFromControl(uCtrl_Image_Widgets_Opt.GetImage(),
+                (int)uCtrl_Image_Widgets_Opt.numericUpDown_X.Value, (int)uCtrl_Image_Widgets_Opt.numericUpDown_Y.Value,
+                (int)uCtrl_Image_Widgets_Opt.numericUpDown_Alpha.Value,
+                uCtrl_Image_Widgets_Opt.GetWidth(), uCtrl_Image_Widgets_Opt.GetHeight(), uCtrl_Image_Widgets_Opt.GetAutoScale());
+
+            WidgetProperty.Add("hmUI_widget_IMG", img);
+            uCtrl_Icon_Opt.WidgetProperty = WidgetProperty;
+            uCtrl_Image_Widgets_Opt.WidgetProperty = WidgetProperty;
+        }
+
+        private void uCtrl_Image_Widgets_Opt_WidgetProperty_Paste(object sender, EventArgs eventArgs)
+        {
+            if (!WidgetProperty.ContainsKey("hmUI_widget_IMG")) return;
+            Object obj = null;
+            WidgetProperty.TryGetValue("hmUI_widget_IMG", out obj);
+            if (obj == null) return;
+            hmUI_widget_IMG img = (hmUI_widget_IMG)obj;
+            int rowIndex = uCtrl_Image_Widgets_Opt.GetSelectedRowIndex();
+            if (rowIndex < 0) return;
+
+            PreviewView = false;
+
+            uCtrl_Image_Widgets_Opt.SetImage(img.src);
+            uCtrl_Image_Widgets_Opt.numericUpDown_X.Value = img.x;
+            uCtrl_Image_Widgets_Opt.numericUpDown_Y.Value = img.y;
+            if (uCtrl_Image_Widgets_Opt.Alpha) uCtrl_Image_Widgets_Opt.numericUpDown_Alpha.Value = img.alpha;
+            uCtrl_Image_Widgets_Opt.SetSize(img.w, img.h, img.auto_scale);
+
+            PreviewView = true;
+            uCtrl_Image_Widgets_Opt_ValueChanged(sender, eventArgs, rowIndex);
+        }
+
         private void uCtrl_Text_Opt_WidgetProperty_Copy(object sender, EventArgs eventArgs)
         {
             if (WidgetProperty.ContainsKey("hmUI_widget_IMG_NUMBER")) WidgetProperty.Remove("hmUI_widget_IMG_NUMBER");

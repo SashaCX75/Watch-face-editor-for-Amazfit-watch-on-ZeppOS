@@ -39,6 +39,9 @@ namespace ControlLibrary
         private bool Alpha_mode = false;
         private bool TextCircle_mode = true;
         private bool SityName_mode = false;
+        private bool ZeroBottom_mode = false;
+        private int zeroBottomShift = 0; // на сколько сдвинуты подписи под panel1
+        private bool zeroSync = false;
 
         public UCtrl_Text_SystemFont_Opt()
         {
@@ -429,6 +432,52 @@ namespace ControlLibrary
             }
         }
 
+        /// <summary>Дублирующий переключатель ведущих нулей над panel1 (под списком названий). Нужен, когда основной закрыт
+        /// списком названий (число и название месяца). Позиция считается от текущих размеров, поэтому не зависит от масштаба экрана</summary>
+        [Description("Дублирующий переключатель ведущих нулей над панелью текста по окружности")]
+        public virtual bool ZeroBottomMode
+        {
+            get
+            {
+                return ZeroBottom_mode;
+            }
+            set
+            {
+                if (value == ZeroBottom_mode) return;
+                ZeroBottom_mode = value;
+
+                this.SuspendLayout();
+                if (ZeroBottom_mode)
+                {
+                    // встает между списком названий и panel1, panel1 и подписи под ней сдвигаются вниз
+                    int gap = Math.Max(0, panel1.Top - textBox_DOW.Bottom);
+                    checkBox_addZero_bottom.Text = checkBox_addZero.Text;
+                    checkBox_addZero_bottom.Left = checkBox_addZero.Left;
+                    checkBox_addZero_bottom.Top = panel1.Top;
+                    zeroBottomShift = checkBox_addZero_bottom.Height + gap;
+
+                    zeroSync = true;
+                    checkBox_addZero_bottom.Checked = checkBox_addZero.Checked;
+                    zeroSync = false;
+                }
+                panel1.Top += ZeroBottom_mode ? zeroBottomShift : -zeroBottomShift;
+                label8.Top += ZeroBottom_mode ? zeroBottomShift : -zeroBottomShift;
+                label5.Top += ZeroBottom_mode ? zeroBottomShift : -zeroBottomShift;
+                label7.Top += ZeroBottom_mode ? zeroBottomShift : -zeroBottomShift;
+                if (!ZeroBottom_mode) zeroBottomShift = 0;
+                checkBox_addZero_bottom.Visible = ZeroBottom_mode;
+                this.ResumeLayout();
+            }
+        }
+
+        private void checkBox_addZero_bottom_CheckedChanged(object sender, EventArgs e)
+        {
+            if (zeroSync) return;
+            zeroSync = true;
+            checkBox_addZero.Checked = checkBox_addZero_bottom.Checked; // событие изменения идет от основного переключателя
+            zeroSync = false;
+        }
+
         /// <summary>Режим отображения года</summary>
         [Description("Режим отображения года")]
         public virtual bool Year
@@ -700,6 +749,12 @@ namespace ControlLibrary
 
         private void checkBox_CheckedChanged(object sender, EventArgs e)
         {
+            if (sender == checkBox_addZero && ZeroBottom_mode && !zeroSync)
+            {
+                zeroSync = true;
+                checkBox_addZero_bottom.Checked = checkBox_addZero.Checked;
+                zeroSync = false;
+            }
             if (ValueChanged != null && !setValue)
             {
                 EventArgs eventArgs = new EventArgs();
@@ -1028,6 +1083,7 @@ namespace ControlLibrary
             comboBox_alignmentVertical.Enabled = true;
             checkBox_CentreVertically.Checked = false;
 
+            ZeroBottomMode = false;
             checkBox_unit.CheckState = CheckState.Unchecked;
             checkBox_addZero.Checked = false;
             checkBox_inEnd.Checked = false;

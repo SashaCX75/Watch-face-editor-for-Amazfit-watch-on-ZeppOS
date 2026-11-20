@@ -411,23 +411,7 @@ namespace Watch_Face_Editor
                         if (imageIndex < ListImagesFullName.Count)
                         {
                             src = OpenFileStream(ListImagesFullName[imageIndex]);
-                            if (SelectedModel.versionOS >= 2.1 && icon.alpha != 255)
-                            {
-                                int w = src.Width;
-                                int h = src.Height;
-                                // Создаем матрицу цветов для изменения прозрачности (альфа-канал)
-                                ColorMatrix colorMatrix = new ColorMatrix();
-                                colorMatrix.Matrix33 = icon.alpha / 255f; // значение от 0 до 1
-
-                                // Создаем объект ImageAttributes и применяем к нему матрицу цветов
-                                ImageAttributes imgAttributes = new ImageAttributes();
-                                imgAttributes.SetColorMatrix(colorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
-
-                                // Указываем прямоугольник, куда будет помещено изображение
-                                Rectangle rect_alpha = new Rectangle(x, y, w, h);
-                                gPanel.DrawImage(src, rect_alpha, 0, 0, w, h, GraphicsUnit.Pixel, imgAttributes);
-                            }
-                            else gPanel.DrawImage(src, x, y);
+                            DrawImgWidget(gPanel, src, icon, x, y, BBorder);
                             //gPanel.DrawImage(src, x, y);
                         }
                     } 
@@ -3361,6 +3345,7 @@ namespace Watch_Face_Editor
                             if (monthArrey.Length == 12)
                             {
                                 string valueDayStr = WatchFacePreviewSet.DateTime.Date.Day.ToString();
+                                if (day_month_font.padding) valueDayStr = valueDayStr.PadLeft(2, '0');
                                 string valueMonthStr = monthArrey[WatchFacePreviewSet.DateTime.Date.Month - 1].Trim();
                                 string delimeter = string.IsNullOrEmpty(day_month_font.separator) ? " " : day_month_font.separator;
                                 string valueStr = valueDayStr + delimeter + valueMonthStr;
@@ -3731,23 +3716,7 @@ namespace Watch_Face_Editor
                         if (imageIndex < ListImagesFullName.Count)
                         {
                             src = OpenFileStream(ListImagesFullName[imageIndex]);
-                                if (SelectedModel.versionOS >= 2.1 && icon.alpha != 255)
-                                {
-                                    int w = src.Width;
-                                    int h = src.Height;
-                                    // Создаем матрицу цветов для изменения прозрачности (альфа-канал)
-                                    ColorMatrix colorMatrix = new ColorMatrix();
-                                    colorMatrix.Matrix33 = icon.alpha / 255f; // значение от 0 до 1
-
-                                    // Создаем объект ImageAttributes и применяем к нему матрицу цветов
-                                    ImageAttributes imgAttributes = new ImageAttributes();
-                                    imgAttributes.SetColorMatrix(colorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
-
-                                    // Указываем прямоугольник, куда будет помещено изображение
-                                    Rectangle rect_alpha = new Rectangle(x, y, w, h);
-                                    gPanel.DrawImage(src, rect_alpha, 0, 0, w, h, GraphicsUnit.Pixel, imgAttributes);
-                                }
-                                else gPanel.DrawImage(src, x, y);
+                                DrawImgWidget(gPanel, src, icon, x, y, BBorder);
                         }
                     }
                     }
@@ -5532,16 +5501,7 @@ namespace Watch_Face_Editor
 
                         Bitmap imgSrc = OpenFileStream(ListImagesFullName[imageIndex]);
                         if (imgSrc == null) continue;
-                        if (SelectedModel.versionOS >= 2.1 && img.alpha != 255)
-                        {
-                            ColorMatrix colorMatrix = new ColorMatrix();
-                            colorMatrix.Matrix33 = img.alpha / 255f;
-                            ImageAttributes imgAttributes = new ImageAttributes();
-                            imgAttributes.SetColorMatrix(colorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
-                            Rectangle rect_alpha = new Rectangle(img.x, img.y, imgSrc.Width, imgSrc.Height);
-                            gPanel.DrawImage(imgSrc, rect_alpha, 0, 0, imgSrc.Width, imgSrc.Height, GraphicsUnit.Pixel, imgAttributes);
-                        }
-                        else gPanel.DrawImage(imgSrc, img.x, img.y);
+                        DrawImgWidget(gPanel, imgSrc, img, img.x, img.y, BBorder);
                         imgSrc.Dispose();
                     }
                     break;
@@ -6916,23 +6876,7 @@ namespace Watch_Face_Editor
                     if (imageIndex < ListImagesFullName.Count)
                     {
                         src = OpenFileStream(ListImagesFullName[imageIndex]);
-                        if (SelectedModel.versionOS >= 2.1 && icon.alpha != 255)
-                        {
-                            int w = src.Width;
-                            int h = src.Height;
-                            // Создаем матрицу цветов для изменения прозрачности (альфа-канал)
-                            ColorMatrix colorMatrix = new ColorMatrix();
-                            colorMatrix.Matrix33 = icon.alpha / 255f; // значение от 0 до 1
-
-                            // Создаем объект ImageAttributes и применяем к нему матрицу цветов
-                            ImageAttributes imgAttributes = new ImageAttributes();
-                            imgAttributes.SetColorMatrix(colorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
-
-                            // Указываем прямоугольник, куда будет помещено изображение
-                            Rectangle rect_alpha = new Rectangle(x, y, w, h);
-                            gPanel.DrawImage(src, rect_alpha, 0, 0, w, h, GraphicsUnit.Pixel, imgAttributes);
-                        }
-                        else gPanel.DrawImage(src, x, y);
+                        DrawImgWidget(gPanel, src, icon, x, y, BBorder);
                         //gPanel.DrawImage(src, x, y);
                     }
                 }
@@ -7249,23 +7193,7 @@ namespace Watch_Face_Editor
                     if (imageIndex < ListImagesFullName.Count)
                     {
                         src = OpenFileStream(ListImagesFullName[imageIndex]);
-                        if (SelectedModel.versionOS >= 2.1 && icon.alpha != 255)
-                        {
-                            int w = src.Width;
-                            int h = src.Height;
-                            // Создаем матрицу цветов для изменения прозрачности (альфа-канал)
-                            ColorMatrix colorMatrix = new ColorMatrix();
-                            colorMatrix.Matrix33 = icon.alpha / 255f; // значение от 0 до 1
-
-                            // Создаем объект ImageAttributes и применяем к нему матрицу цветов
-                            ImageAttributes imgAttributes = new ImageAttributes();
-                            imgAttributes.SetColorMatrix(colorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
-
-                            // Указываем прямоугольник, куда будет помещено изображение
-                            Rectangle rect_alpha = new Rectangle(x, y, w, h);
-                            gPanel.DrawImage(src, rect_alpha, 0, 0, w, h, GraphicsUnit.Pixel, imgAttributes);
-                        }
-                        else gPanel.DrawImage(src, x, y);
+                        DrawImgWidget(gPanel, src, icon, x, y, BBorder);
                     }
                 }
 
@@ -7435,23 +7363,7 @@ namespace Watch_Face_Editor
                     if (imageIndex < ListImagesFullName.Count)
                     {
                         src = OpenFileStream(ListImagesFullName[imageIndex]);
-                        if (SelectedModel.versionOS >= 2.1 && icon.alpha != 255)
-                        {
-                            int w = src.Width;
-                            int h = src.Height;
-                            // Создаем матрицу цветов для изменения прозрачности (альфа-канал)
-                            ColorMatrix colorMatrix = new ColorMatrix();
-                            colorMatrix.Matrix33 = icon.alpha / 255f; // значение от 0 до 1
-
-                            // Создаем объект ImageAttributes и применяем к нему матрицу цветов
-                            ImageAttributes imgAttributes = new ImageAttributes();
-                            imgAttributes.SetColorMatrix(colorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
-
-                            // Указываем прямоугольник, куда будет помещено изображение
-                            Rectangle rect_alpha = new Rectangle(x, y, w, h);
-                            gPanel.DrawImage(src, rect_alpha, 0, 0, w, h, GraphicsUnit.Pixel, imgAttributes);
-                        }
-                        else gPanel.DrawImage(src, x, y);
+                        DrawImgWidget(gPanel, src, icon, x, y, BBorder);
                     }
                 }
 
@@ -8137,23 +8049,7 @@ namespace Watch_Face_Editor
                     if (imageIndex < ListImagesFullName.Count)
                     {
                         src = OpenFileStream(ListImagesFullName[imageIndex]);
-                        if (SelectedModel.versionOS >= 2.1 && icon.alpha != 255)
-                        {
-                            int w = src.Width;
-                            int h = src.Height;
-                            // Создаем матрицу цветов для изменения прозрачности (альфа-канал)
-                            ColorMatrix colorMatrix = new ColorMatrix();
-                            colorMatrix.Matrix33 = icon.alpha / 255f; // значение от 0 до 1
-
-                            // Создаем объект ImageAttributes и применяем к нему матрицу цветов
-                            ImageAttributes imgAttributes = new ImageAttributes();
-                            imgAttributes.SetColorMatrix(colorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
-
-                            // Указываем прямоугольник, куда будет помещено изображение
-                            Rectangle rect_alpha = new Rectangle(x, y, w, h);
-                            gPanel.DrawImage(src, rect_alpha, 0, 0, w, h, GraphicsUnit.Pixel, imgAttributes);
-                        }
-                        else gPanel.DrawImage(src, x, y);
+                        DrawImgWidget(gPanel, src, icon, x, y, BBorder);
                     }
                 }
 
@@ -9215,23 +9111,7 @@ namespace Watch_Face_Editor
                     if (imageIndex < ListImagesFullName.Count)
                     {
                         src = OpenFileStream(ListImagesFullName[imageIndex]);
-                        if (SelectedModel.versionOS >= 2.1 && icon.alpha != 255)
-                        {
-                            int w = src.Width;
-                            int h = src.Height;
-                            // Создаем матрицу цветов для изменения прозрачности (альфа-канал)
-                            ColorMatrix colorMatrix = new ColorMatrix();
-                            colorMatrix.Matrix33 = icon.alpha / 255f; // значение от 0 до 1
-
-                            // Создаем объект ImageAttributes и применяем к нему матрицу цветов
-                            ImageAttributes imgAttributes = new ImageAttributes();
-                            imgAttributes.SetColorMatrix(colorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
-
-                            // Указываем прямоугольник, куда будет помещено изображение
-                            Rectangle rect_alpha = new Rectangle(x, y, w, h);
-                            gPanel.DrawImage(src, rect_alpha, 0, 0, w, h, GraphicsUnit.Pixel, imgAttributes);
-                        }
-                        else gPanel.DrawImage(src, x, y);
+                        DrawImgWidget(gPanel, src, icon, x, y, BBorder);
                         //gPanel.DrawImage(src, x, y);
                     }
                 }
@@ -10130,23 +10010,7 @@ namespace Watch_Face_Editor
                     if (imageIndex < ListImagesFullName.Count)
                     {
                         src = OpenFileStream(ListImagesFullName[imageIndex]);
-                        if (SelectedModel.versionOS >= 2.1 && weather_FewDays.Icon.alpha != 255)
-                        {
-                            int w = src.Width;
-                            int h = src.Height;
-                            // Создаем матрицу цветов для изменения прозрачности (альфа-канал)
-                            ColorMatrix colorMatrix = new ColorMatrix();
-                            colorMatrix.Matrix33 = weather_FewDays.Icon.alpha / 255f; // значение от 0 до 1
-
-                            // Создаем объект ImageAttributes и применяем к нему матрицу цветов
-                            ImageAttributes imgAttributes = new ImageAttributes();
-                            imgAttributes.SetColorMatrix(colorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
-
-                            // Указываем прямоугольник, куда будет помещено изображение
-                            Rectangle rect_alpha = new Rectangle(iconPosX, iconPosY, w, h);
-                            gPanel.DrawImage(src, rect_alpha, 0, 0, w, h, GraphicsUnit.Pixel, imgAttributes);
-                        }
-                        else gPanel.DrawImage(src, iconPosX, iconPosY);
+                        DrawImgWidget(gPanel, src, weather_FewDays.Icon, iconPosX, iconPosY, BBorder);
                         //gPanel.DrawImage(src, iconPosX, iconPosY);
                     }
                 }
@@ -10871,23 +10735,7 @@ namespace Watch_Face_Editor
                     if (imageIndex < ListImagesFullName.Count)
                     {
                         src = OpenFileStream(ListImagesFullName[imageIndex]);
-                        if (SelectedModel.versionOS >= 2.1 && sleep.Icon.alpha != 255)
-                        {
-                            int w = src.Width;
-                            int h = src.Height;
-                            // Создаем матрицу цветов для изменения прозрачности (альфа-канал)
-                            ColorMatrix colorMatrix = new ColorMatrix();
-                            colorMatrix.Matrix33 = sleep.Icon.alpha / 255f; // значение от 0 до 1
-
-                            // Создаем объект ImageAttributes и применяем к нему матрицу цветов
-                            ImageAttributes imgAttributes = new ImageAttributes();
-                            imgAttributes.SetColorMatrix(colorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
-
-                            // Указываем прямоугольник, куда будет помещено изображение
-                            Rectangle rect_alpha = new Rectangle(iconPosX, iconPosY, w, h);
-                            gPanel.DrawImage(src, rect_alpha, 0, 0, w, h, GraphicsUnit.Pixel, imgAttributes);
-                        }
-                        else gPanel.DrawImage(src, iconPosX, iconPosY);
+                        DrawImgWidget(gPanel, src, sleep.Icon, iconPosX, iconPosY, BBorder);
                         //gPanel.DrawImage(src, iconPosX, iconPosY);
                     }
                 }
@@ -11616,23 +11464,7 @@ namespace Watch_Face_Editor
                     if (imageIndex < ListImagesFullName.Count)
                     {
                         src = OpenFileStream(ListImagesFullName[imageIndex]);
-                        if (SelectedModel.versionOS >= 2.1 && icon.alpha != 255)
-                        {
-                            int w = src.Width;
-                            int h = src.Height;
-                            // Создаем матрицу цветов для изменения прозрачности (альфа-канал)
-                            ColorMatrix colorMatrix = new ColorMatrix();
-                            colorMatrix.Matrix33 = icon.alpha / 255f; // значение от 0 до 1
-
-                            // Создаем объект ImageAttributes и применяем к нему матрицу цветов
-                            ImageAttributes imgAttributes = new ImageAttributes();
-                            imgAttributes.SetColorMatrix(colorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
-
-                            // Указываем прямоугольник, куда будет помещено изображение
-                            Rectangle rect_alpha = new Rectangle(x, y, w, h);
-                            gPanel.DrawImage(src, rect_alpha, 0, 0, w, h, GraphicsUnit.Pixel, imgAttributes);
-                        }
-                        else gPanel.DrawImage(src, x, y);
+                        DrawImgWidget(gPanel, src, icon, x, y, BBorder);
                         //gPanel.DrawImage(src, x, y);
                     }
                 }
@@ -12125,23 +11957,7 @@ namespace Watch_Face_Editor
                     if (imageIndex < ListImagesFullName.Count)
                     {
                         src = OpenFileStream(ListImagesFullName[imageIndex]);
-                        if (SelectedModel.versionOS >= 2.1 && icon.alpha != 255)
-                        {
-                            int w = src.Width;
-                            int h = src.Height;
-                            // Создаем матрицу цветов для изменения прозрачности (альфа-канал)
-                            ColorMatrix colorMatrix = new ColorMatrix();
-                            colorMatrix.Matrix33 = icon.alpha / 255f; // значение от 0 до 1
-
-                            // Создаем объект ImageAttributes и применяем к нему матрицу цветов
-                            ImageAttributes imgAttributes = new ImageAttributes();
-                            imgAttributes.SetColorMatrix(colorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
-
-                            // Указываем прямоугольник, куда будет помещено изображение
-                            Rectangle rect_alpha = new Rectangle(x, y, w, h);
-                            gPanel.DrawImage(src, rect_alpha, 0, 0, w, h, GraphicsUnit.Pixel, imgAttributes);
-                        }
-                        else gPanel.DrawImage(src, x, y);
+                        DrawImgWidget(gPanel, src, icon, x, y, BBorder);
                         //gPanel.DrawImage(src, x, y);
                     }
                 }
@@ -12548,23 +12364,7 @@ namespace Watch_Face_Editor
                     if (imageIndex < ListImagesFullName.Count)
                     {
                         src = OpenFileStream(ListImagesFullName[imageIndex]);
-                        if (SelectedModel.versionOS >= 2.1 && icon.alpha != 255)
-                        {
-                            int w = src.Width;
-                            int h = src.Height;
-                            // Создаем матрицу цветов для изменения прозрачности (альфа-канал)
-                            ColorMatrix colorMatrix = new ColorMatrix();
-                            colorMatrix.Matrix33 = icon.alpha / 255f; // значение от 0 до 1
-
-                            // Создаем объект ImageAttributes и применяем к нему матрицу цветов
-                            ImageAttributes imgAttributes = new ImageAttributes();
-                            imgAttributes.SetColorMatrix(colorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
-
-                            // Указываем прямоугольник, куда будет помещено изображение
-                            Rectangle rect_alpha = new Rectangle(x, y, w, h);
-                            gPanel.DrawImage(src, rect_alpha, 0, 0, w, h, GraphicsUnit.Pixel, imgAttributes);
-                        }
-                        else gPanel.DrawImage(src, x, y);
+                        DrawImgWidget(gPanel, src, icon, x, y, BBorder);
                         //gPanel.DrawImage(src, x, y);
                     }
                 }
@@ -12992,23 +12792,7 @@ namespace Watch_Face_Editor
                     if (imageIndex < ListImagesFullName.Count)
                     {
                         src = OpenFileStream(ListImagesFullName[imageIndex]);
-                        if (SelectedModel.versionOS >= 2.1 && icon.alpha != 255)
-                        {
-                            int w = src.Width;
-                            int h = src.Height;
-                            // Создаем матрицу цветов для изменения прозрачности (альфа-канал)
-                            ColorMatrix colorMatrix = new ColorMatrix();
-                            colorMatrix.Matrix33 = icon.alpha / 255f; // значение от 0 до 1
-
-                            // Создаем объект ImageAttributes и применяем к нему матрицу цветов
-                            ImageAttributes imgAttributes = new ImageAttributes();
-                            imgAttributes.SetColorMatrix(colorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
-
-                            // Указываем прямоугольник, куда будет помещено изображение
-                            Rectangle rect_alpha = new Rectangle(x, y, w, h);
-                            gPanel.DrawImage(src, rect_alpha, 0, 0, w, h, GraphicsUnit.Pixel, imgAttributes);
-                        }
-                        else gPanel.DrawImage(src, x, y);
+                        DrawImgWidget(gPanel, src, icon, x, y, BBorder);
                         gPanel.DrawImage(src, x, y);
                     }
                 }
@@ -13184,23 +12968,7 @@ namespace Watch_Face_Editor
                     if (imageIndex < ListImagesFullName.Count)
                     {
                         src = OpenFileStream(ListImagesFullName[imageIndex]);
-                        if (SelectedModel.versionOS >= 2.1 && icon.alpha != 255)
-                        {
-                            int w = src.Width;
-                            int h = src.Height;
-                            // Создаем матрицу цветов для изменения прозрачности (альфа-канал)
-                            ColorMatrix colorMatrix = new ColorMatrix();
-                            colorMatrix.Matrix33 = icon.alpha / 255f; // значение от 0 до 1
-
-                            // Создаем объект ImageAttributes и применяем к нему матрицу цветов
-                            ImageAttributes imgAttributes = new ImageAttributes();
-                            imgAttributes.SetColorMatrix(colorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
-
-                            // Указываем прямоугольник, куда будет помещено изображение
-                            Rectangle rect_alpha = new Rectangle(x, y, w, h);
-                            gPanel.DrawImage(src, rect_alpha, 0, 0, w, h, GraphicsUnit.Pixel, imgAttributes);
-                        }
-                        else gPanel.DrawImage(src, x, y);
+                        DrawImgWidget(gPanel, src, icon, x, y, BBorder);
                         //gPanel.DrawImage(src, x, y);
                     }
                 }
@@ -13568,23 +13336,7 @@ namespace Watch_Face_Editor
                         {
                             Bitmap src = new Bitmap(1, 1);
                             src = OpenFileStream(ListImagesFullName[imageIndex]);
-                            if (SelectedModel.versionOS >= 2.1 && icon.alpha != 255)
-                            {
-                                int w = src.Width;
-                                int h = src.Height;
-                                // Создаем матрицу цветов для изменения прозрачности (альфа-канал)
-                                ColorMatrix colorMatrix = new ColorMatrix();
-                                colorMatrix.Matrix33 = icon.alpha / 255f; // значение от 0 до 1
-
-                                // Создаем объект ImageAttributes и применяем к нему матрицу цветов
-                                ImageAttributes imgAttributes = new ImageAttributes();
-                                imgAttributes.SetColorMatrix(colorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
-
-                                // Указываем прямоугольник, куда будет помещено изображение
-                                Rectangle rect_alpha = new Rectangle(x, y, w, h);
-                                gPanel.DrawImage(src, rect_alpha, 0, 0, w, h, GraphicsUnit.Pixel, imgAttributes);
-                            }
-                            else gPanel.DrawImage(src, x, y);
+                            DrawImgWidget(gPanel, src, icon, x, y, BBorder);
                             src.Dispose();
                         }
                     }
@@ -14174,7 +13926,7 @@ namespace Watch_Face_Editor
                 }
                 using (Pen pen2 = new Pen(Color.Black, 1))
                 {
-                    pen2.DashStyle = DashStyle.Dot;
+                    pen2.DashPattern = new float[] { 4, 4 }; // как в DrawImgWidgetBorder
                     graphics.DrawRectangle(pen2, rect);
                 }
             }
@@ -14459,7 +14211,7 @@ namespace Watch_Face_Editor
                 }
                 using (Pen pen2 = new Pen(Color.Black, 1))
                 {
-                    pen2.DashStyle = DashStyle.Dot;
+                    pen2.DashPattern = new float[] { 4, 4 }; // как в DrawImgWidgetBorder
                     graphics.DrawRectangle(pen2, rect);
                 }
             }
@@ -14737,7 +14489,7 @@ namespace Watch_Face_Editor
                 }
                 using (Pen pen2 = new Pen(Color.Black, 1))
                 {
-                    pen2.DashStyle = DashStyle.Dot;
+                    pen2.DashPattern = new float[] { 4, 4 }; // как в DrawImgWidgetBorder
                     graphics.DrawRectangle(pen2, rect);
                 }
             }
@@ -15025,7 +14777,7 @@ namespace Watch_Face_Editor
                 }
                 using (Pen pen2 = new Pen(Color.Black, 1))
                 {
-                    pen2.DashStyle = DashStyle.Dot;
+                    pen2.DashPattern = new float[] { 4, 4 }; // как в DrawImgWidgetBorder
                     graphics.DrawRectangle(pen2, rect);
                 }
             }
@@ -15249,7 +15001,7 @@ namespace Watch_Face_Editor
                     }
                     using (Pen pen2 = new Pen(Color.Black, 1))
                     {
-                        pen2.DashStyle = DashStyle.Dot;
+                        pen2.DashPattern = new float[] { 4, 4 }; // как в DrawImgWidgetBorder
                         graphics.DrawRectangle(pen2, rect);
                     }
                 }
@@ -15500,7 +15252,7 @@ namespace Watch_Face_Editor
                     }
                     using (Pen pen2 = new Pen(Color.Black, 1))
                     {
-                        pen2.DashStyle = DashStyle.Dot;
+                        pen2.DashPattern = new float[] { 4, 4 }; // как в DrawImgWidgetBorder
                         graphics.DrawRectangle(pen2, rect);
                     }
                 }
@@ -15736,7 +15488,7 @@ namespace Watch_Face_Editor
                     }
                     using (Pen pen2 = new Pen(Color.Black, 1))
                     {
-                        pen2.DashStyle = DashStyle.Dot;
+                        pen2.DashPattern = new float[] { 4, 4 }; // как в DrawImgWidgetBorder
                         graphics.DrawRectangle(pen2, rect);
                     }
                 }
@@ -15935,7 +15687,7 @@ namespace Watch_Face_Editor
                 }
                 using (Pen pen2 = new Pen(Color.Black, 1))
                 {
-                    pen2.DashStyle = DashStyle.Dot;
+                    pen2.DashPattern = new float[] { 4, 4 }; // как в DrawImgWidgetBorder
                     graphics.DrawRectangle(pen2, rect);
                 }
                 graphics.Transform = transformMatrix;
@@ -16295,7 +16047,7 @@ namespace Watch_Face_Editor
                 }
                 using (Pen pen1 = new Pen(Color.Black, 1))
                 {
-                    pen1.DashStyle = DashStyle.Dash;
+                    pen1.DashPattern = new float[] { 4, 4 }; // как в DrawImgWidgetBorder
                     graphics.DrawArc(pen1, x - radius, y - radius, 2 * radius, 2 * radius, startAngle, (float)fullAngle);
                     int ArcWidth = (int)(radius - image_height);
                     if (reverse_direction) ArcWidth = (int)(radius + image_height);
@@ -16573,7 +16325,7 @@ namespace Watch_Face_Editor
                 }
                 using (Pen pen2 = new Pen(Color.Black, 1))
                 {
-                    pen2.DashStyle = DashStyle.Dash;
+                    pen2.DashPattern = new float[] { 4, 4 }; // как в DrawImgWidgetBorder
                     graphics.DrawArc(pen2, centerX - radius - size / 2, centerY - radius - size / 2, radius * 2 + size, radius * 2 + size, startAngle, sweepAngle);
                     graphics.DrawArc(pen2, centerX - smallRadius - size / 2, centerY - smallRadius - size / 2, smallRadius * 2 + size, smallRadius * 2 + size, startAngle, sweepAngle);
                 }
@@ -16942,7 +16694,7 @@ namespace Watch_Face_Editor
                 }
                 using (Pen pen2 = new Pen(Color.Black, 1))
                 {
-                    pen2.DashStyle = DashStyle.Dot;
+                    pen2.DashPattern = new float[] { 4, 4 }; // как в DrawImgWidgetBorder
                     graphics.DrawRectangle(pen2, rect);
                 }
             }
@@ -18158,6 +17910,85 @@ namespace Watch_Face_Editor
                 size = TextRenderer.MeasureText(graphics, stringCache, drawFont);
             }
             return size;
+        }
+
+        /// <summary>Рисует виджет IMG (иконку, картинку) с учетом прозрачности и размеров w/h.
+        /// Без масштабирования изображение обрезается по w/h, с масштабированием вписывается пропорционально</summary>
+        private void DrawImgWidget(Graphics gPanel, Bitmap src, hmUI_widget_IMG img, int x, int y, bool BBorder)
+        {
+            if (src == null || img == null) return;
+            int imgW = src.Width;
+            int imgH = src.Height;
+            // обрезка и масштабирование только если заданы и ширина, и высота
+            bool sizeMode = img.w > 0 && img.h > 0;
+            bool alphaMode = SelectedModel.versionOS >= 2.1 && img.alpha != 255;
+
+            // область виджета: заданный размер или размер изображения
+            int boxW = sizeMode ? img.w.Value : imgW;
+            int boxH = sizeMode ? img.h.Value : imgH;
+
+            if (!sizeMode && !alphaMode)
+            {
+                gPanel.DrawImage(src, x, y);
+                DrawImgWidgetBorder(gPanel, x, y, boxW, boxH, BBorder);
+                return;
+            }
+
+            ImageAttributes imgAttributes = null;
+            if (alphaMode)
+            {
+                // Создаем матрицу цветов для изменения прозрачности (альфа-канал)
+                ColorMatrix colorMatrix = new ColorMatrix();
+                colorMatrix.Matrix33 = img.alpha / 255f; // значение от 0 до 1
+                imgAttributes = new ImageAttributes();
+                imgAttributes.SetColorMatrix(colorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+            }
+
+            if (img.auto_scale == true && sizeMode)
+            {
+                // пропорционально вписываем в заданный размер, выравнивание по левому верхнему углу
+                float scale = Math.Min((float)boxW / imgW, (float)boxH / imgH);
+                int drawW = Math.Max(1, (int)Math.Round(imgW * scale));
+                int drawH = Math.Max(1, (int)Math.Round(imgH * scale));
+                Rectangle rect = new Rectangle(x, y, drawW, drawH);
+                gPanel.DrawImage(src, rect, 0, 0, imgW, imgH, GraphicsUnit.Pixel, imgAttributes);
+            }
+            else
+            {
+                // обрезаем по заданному размеру
+                int drawW = Math.Min(boxW, imgW);
+                int drawH = Math.Min(boxH, imgH);
+                Rectangle rect = new Rectangle(x, y, drawW, drawH);
+                gPanel.DrawImage(src, rect, 0, 0, drawW, drawH, GraphicsUnit.Pixel, imgAttributes);
+            }
+            DrawImgWidgetBorder(gPanel, x, y, boxW, boxH, BBorder);
+        }
+
+        /// <summary>Подсветка контура области виджета IMG (переключатель checkBox_border)</summary>
+        private void DrawImgWidgetBorder(Graphics gPanel, int x, int y, int w, int h, bool BBorder)
+        {
+            if (!BBorder || w <= 0 || h <= 0) return;
+            Rectangle rect = new Rectangle(x, y, w - 1, h - 1);
+            //using (Pen pen1 = new Pen(Color.White, 1))
+            //{
+            //    gPanel.DrawRectangle(pen1, rect);
+            //}
+            //using (Pen pen2 = new Pen(Color.Black, 1))
+            //{
+            //    pen2.DashStyle = DashStyle.Dot;
+            //    gPanel.DrawRectangle(pen2, rect);
+            //}
+
+            // белая линия + черные штрихи 4/4 (лучше видно на любом фоне)
+            using (Pen pen1 = new Pen(Color.White, 1))
+            {
+                gPanel.DrawRectangle(pen1, rect);
+            }
+            using (Pen pen2 = new Pen(Color.Black, 1))
+            {
+                pen2.DashPattern = new float[] { 4, 4 };
+                gPanel.DrawRectangle(pen2, rect);
+            }
         }
     }
 }

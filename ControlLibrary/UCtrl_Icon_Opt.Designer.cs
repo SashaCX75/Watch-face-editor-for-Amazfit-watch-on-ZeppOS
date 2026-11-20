@@ -48,11 +48,23 @@ namespace ControlLibrary
             this.label05 = new System.Windows.Forms.Label();
             this.numericUpDown_Alpha = new System.Windows.Forms.NumericUpDown();
             this.label_alpha = new System.Windows.Forms.Label();
+            this.label_size = new System.Windows.Forms.Label();
+            this.label_width = new System.Windows.Forms.Label();
+            this.numericUpDown_width = new System.Windows.Forms.NumericUpDown();
+            this.label_height = new System.Windows.Forms.Label();
+            this.numericUpDown_height = new System.Windows.Forms.NumericUpDown();
+            this.checkBox_auto_scale = new System.Windows.Forms.CheckBox();
+            this.context_WidgetProperty = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.копироватьСвойстваToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.вставитьСвойстваToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_iconX)).BeginInit();
             this.contextMenuStrip_X.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_iconY)).BeginInit();
             this.contextMenuStrip_Y.SuspendLayout();
+            this.context_WidgetProperty.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Alpha)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_width)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_height)).BeginInit();
             this.SuspendLayout();
             // 
             // comboBox_icon_image
@@ -205,11 +217,88 @@ namespace ControlLibrary
             resources.ApplyResources(this.label_alpha, "label_alpha");
             this.label_alpha.BackColor = System.Drawing.Color.Transparent;
             this.label_alpha.Name = "label_alpha";
+            //
+            // label_size
+            //
+            resources.ApplyResources(this.label_size, "label_size");
+            this.label_size.Name = "label_size";
+            //
+            // label_width
+            //
+            resources.ApplyResources(this.label_width, "label_width");
+            this.label_width.Name = "label_width";
+            //
+            // numericUpDown_width
+            //
+            resources.ApplyResources(this.numericUpDown_width, "numericUpDown_width");
+            this.numericUpDown_width.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.numericUpDown_width.Name = "numericUpDown_width";
+            this.numericUpDown_width.ValueChanged += new System.EventHandler(this.numericUpDown_size_ValueChanged);
+            this.numericUpDown_width.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.numericUpDown_width_MouseDoubleClick);
+            //
+            // label_height
+            //
+            resources.ApplyResources(this.label_height, "label_height");
+            this.label_height.Name = "label_height";
+            //
+            // numericUpDown_height
+            //
+            resources.ApplyResources(this.numericUpDown_height, "numericUpDown_height");
+            this.numericUpDown_height.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.numericUpDown_height.Name = "numericUpDown_height";
+            this.numericUpDown_height.ValueChanged += new System.EventHandler(this.numericUpDown_size_ValueChanged);
+            this.numericUpDown_height.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.numericUpDown_height_MouseDoubleClick);
+            //
+            // checkBox_auto_scale
+            //
+            resources.ApplyResources(this.checkBox_auto_scale, "checkBox_auto_scale");
+            this.checkBox_auto_scale.Name = "checkBox_auto_scale";
+            this.checkBox_auto_scale.UseVisualStyleBackColor = true;
+            this.checkBox_auto_scale.CheckedChanged += new System.EventHandler(this.checkBox_auto_scale_CheckedChanged);
+            //
+            // context_WidgetProperty
+            //
+            resources.ApplyResources(this.context_WidgetProperty, "context_WidgetProperty");
+            this.context_WidgetProperty.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.context_WidgetProperty.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.копироватьСвойстваToolStripMenuItem,
+            this.вставитьСвойстваToolStripMenuItem});
+            this.context_WidgetProperty.Name = "context_WidgetProperty";
+            this.context_WidgetProperty.Opening += new System.ComponentModel.CancelEventHandler(this.context_WidgetProperty_Opening);
+            //
+            // копироватьСвойстваToolStripMenuItem
+            //
+            resources.ApplyResources(this.копироватьСвойстваToolStripMenuItem, "копироватьСвойстваToolStripMenuItem");
+            this.копироватьСвойстваToolStripMenuItem.Image = global::ControlLibrary.Properties.Resources.copy_prop;
+            this.копироватьСвойстваToolStripMenuItem.Name = "копироватьСвойстваToolStripMenuItem";
+            this.копироватьСвойстваToolStripMenuItem.Click += new System.EventHandler(this.копироватьСвойстваToolStripMenuItem_Click);
+            //
+            // вставитьСвойстваToolStripMenuItem
+            //
+            resources.ApplyResources(this.вставитьСвойстваToolStripMenuItem, "вставитьСвойстваToolStripMenuItem");
+            this.вставитьСвойстваToolStripMenuItem.Image = global::ControlLibrary.Properties.Resources.paste_prop;
+            this.вставитьСвойстваToolStripMenuItem.Name = "вставитьСвойстваToolStripMenuItem";
+            this.вставитьСвойстваToolStripMenuItem.Click += new System.EventHandler(this.вставитьСвойстваToolStripMenuItem_Click);
             // 
             // UCtrl_Icon_Opt
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ContextMenuStrip = this.context_WidgetProperty;
+            this.Controls.Add(this.checkBox_auto_scale);
+            this.Controls.Add(this.numericUpDown_height);
+            this.Controls.Add(this.label_height);
+            this.Controls.Add(this.numericUpDown_width);
+            this.Controls.Add(this.label_width);
+            this.Controls.Add(this.label_size);
             this.Controls.Add(this.numericUpDown_Alpha);
             this.Controls.Add(this.label_alpha);
             this.Controls.Add(this.comboBox_icon_image);
@@ -224,7 +313,10 @@ namespace ControlLibrary
             this.contextMenuStrip_X.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_iconY)).EndInit();
             this.contextMenuStrip_Y.ResumeLayout(false);
+            this.context_WidgetProperty.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Alpha)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_width)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_height)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -249,5 +341,14 @@ namespace ControlLibrary
         public System.Windows.Forms.NumericUpDown numericUpDown_iconY;
         public System.Windows.Forms.NumericUpDown numericUpDown_Alpha;
         private System.Windows.Forms.Label label_alpha;
+        private System.Windows.Forms.Label label_size;
+        private System.Windows.Forms.Label label_width;
+        public System.Windows.Forms.NumericUpDown numericUpDown_width;
+        private System.Windows.Forms.Label label_height;
+        public System.Windows.Forms.NumericUpDown numericUpDown_height;
+        public System.Windows.Forms.CheckBox checkBox_auto_scale;
+        private System.Windows.Forms.ContextMenuStrip context_WidgetProperty;
+        private System.Windows.Forms.ToolStripMenuItem копироватьСвойстваToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem вставитьСвойстваToolStripMenuItem;
     }
 }

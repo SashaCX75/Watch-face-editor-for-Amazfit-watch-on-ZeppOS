@@ -269,4 +269,25 @@
   <data name="label_alpha.Text" xml:space="preserve">
     <value>Прозорість</value>
   </data>
+  <data name="label_size.Text" xml:space="preserve">
+    <value>Розмір</value>
+  </data>
+  <data name="checkBox_auto_scale.Text" xml:space="preserve">
+    <value>Масштабувати зображення</value>
+  </data>
+  <data name="копироватьСвойстваToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>199, 26</value>
+  </data>
+  <data name="копироватьСвойстваToolStripMenuItem.Text" xml:space="preserve">
+    <value>Копіювати властивості</value>
+  </data>
+  <data name="вставитьСвойстваToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>199, 26</value>
+  </data>
+  <data name="вставитьСвойстваToolStripMenuItem.Text" xml:space="preserve">
+    <value>Вставити властивості</value>
+  </data>
+  <data name="context_WidgetProperty.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 56</value>
+  </data>
 </root>

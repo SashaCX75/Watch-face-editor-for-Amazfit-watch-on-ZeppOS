@@ -71,6 +71,7 @@ namespace ControlLibrary
             this.checkBox_CentreHorizontally = new System.Windows.Forms.CheckBox();
             this.checkBox_CentreVertically = new System.Windows.Forms.CheckBox();
             this.checkBox_addZero = new System.Windows.Forms.CheckBox();
+            this.checkBox_addZero_bottom = new System.Windows.Forms.CheckBox();
             this.checkBox_unit = new System.Windows.Forms.CheckBox();
             this.label8 = new System.Windows.Forms.Label();
             this.context_WidgetProperty = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -477,6 +478,13 @@ namespace ControlLibrary
             this.checkBox_addZero.UseVisualStyleBackColor = true;
             this.checkBox_addZero.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
+            // checkBox_addZero_bottom
+            // 
+            resources.ApplyResources(this.checkBox_addZero_bottom, "checkBox_addZero_bottom");
+            this.checkBox_addZero_bottom.Name = "checkBox_addZero_bottom";
+            this.checkBox_addZero_bottom.UseVisualStyleBackColor = true;
+            this.checkBox_addZero_bottom.CheckedChanged += new System.EventHandler(this.checkBox_addZero_bottom_CheckedChanged);
+            // 
             // checkBox_unit
             // 
             resources.ApplyResources(this.checkBox_unit, "checkBox_unit");
@@ -724,6 +732,7 @@ namespace ControlLibrary
             this.Controls.Add(this.label8);
             this.Controls.Add(this.checkBox_unit);
             this.Controls.Add(this.checkBox_addZero);
+            this.Controls.Add(this.checkBox_addZero_bottom);
             this.Controls.Add(this.checkBox_CentreVertically);
             this.Controls.Add(this.checkBox_CentreHorizontally);
             this.Controls.Add(this.button_DelFont);
@@ -817,6 +826,7 @@ namespace ControlLibrary
         public System.Windows.Forms.CheckBox checkBox_CentreHorizontally;
         public System.Windows.Forms.CheckBox checkBox_CentreVertically;
         public System.Windows.Forms.CheckBox checkBox_addZero;
+        private System.Windows.Forms.CheckBox checkBox_addZero_bottom;
         private System.Windows.Forms.CheckBox checkBox_unit;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ContextMenuStrip context_WidgetProperty;

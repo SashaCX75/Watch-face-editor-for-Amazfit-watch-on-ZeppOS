@@ -20,6 +20,29 @@ namespace ControlLibrary
             InitializeComponent();
             setValue = false;
             dataGridView_images.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            // копирование/вставка свойств: то же меню, что у настроек изображения
+            this.ContextMenuStrip = uCtrl_Icon_Opt.WidgetPropertyMenu;
+            dataGridView_images.ContextMenuStrip = uCtrl_Icon_Opt.WidgetPropertyMenu;
+            uCtrl_Icon_Opt.WidgetProperty_Copy += (s, e) => { if (WidgetProperty_Copy != null && !setValue) WidgetProperty_Copy(this, e); };
+            uCtrl_Icon_Opt.WidgetProperty_Paste += (s, e) => { if (WidgetProperty_Paste != null && !setValue) WidgetProperty_Paste(this, e); };
+        }
+
+        [Browsable(true)]
+        [Description("Происходит при копировании свойст виджета")]
+        public event WidgetProperty_Copy_Handler WidgetProperty_Copy;
+        public delegate void WidgetProperty_Copy_Handler(object sender, EventArgs eventArgs);
+
+        [Browsable(true)]
+        [Description("Происходит при вставке свойст виджета")]
+        public event WidgetProperty_Paste_Handler WidgetProperty_Paste;
+        public delegate void WidgetProperty_Paste_Handler(object sender, EventArgs eventArgs);
+
+        /// <summary>Скопированные свойства виджетов (общий словарь редактора)</summary>
+        public Dictionary<string, Object> WidgetProperty
+        {
+            get { return uCtrl_Icon_Opt.WidgetProperty; }
+            set { uCtrl_Icon_Opt.WidgetProperty = value; }
         }
 
         [Browsable(true)]
@@ -76,6 +99,21 @@ namespace ControlLibrary
         public NumericUpDown numericUpDown_X { get { return uCtrl_Icon_Opt.numericUpDown_iconX; } }
         public NumericUpDown numericUpDown_Y { get { return uCtrl_Icon_Opt.numericUpDown_iconY; } }
         public NumericUpDown numericUpDown_Alpha { get { return uCtrl_Icon_Opt.numericUpDown_Alpha; } }
+
+        /// <summary>Устанавливает размер и масштабирование выбранного изображения</summary>
+        public void SetSize(int? width, int? height, bool? autoScale)
+        {
+            uCtrl_Icon_Opt.SetSize(width, height, autoScale);
+        }
+
+        /// <summary>Ширина или null, если не задана</summary>
+        public int? GetWidth() { return uCtrl_Icon_Opt.GetWidth(); }
+
+        /// <summary>Высота или null, если не задана</summary>
+        public int? GetHeight() { return uCtrl_Icon_Opt.GetHeight(); }
+
+        /// <summary>true, если масштабирование включено</summary>
+        public bool? GetAutoScale() { return uCtrl_Icon_Opt.GetAutoScale(); }
 
         /// <summary>Индекс выбранной строки или -1</summary>
         public int GetSelectedRowIndex()

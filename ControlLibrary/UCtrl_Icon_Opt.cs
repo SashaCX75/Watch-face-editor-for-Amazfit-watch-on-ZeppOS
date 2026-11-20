@@ -16,18 +16,59 @@ namespace ControlLibrary
         private bool setValue; // режим задания параметров
         private List<string> ListImagesFullName = new List<string>(); // перечень путей к файлам с картинками
         public Object _Icon;
+        public Dictionary<string, Object> WidgetProperty = new Dictionary<string, Object>();
         private bool Alpha_mode = false;
+        private bool Size_mode = true;
 
         public UCtrl_Icon_Opt()
         {
             InitializeComponent();
             setValue = false;
+            UpdateAutoScaleState();
         }
 
         [Browsable(true)]
         [Description("Происходит при изменении выбора элемента")]
         public event ValueChangedHandler ValueChanged;
         public delegate void ValueChangedHandler(object sender, EventArgs eventArgs);
+
+        [Browsable(true)]
+        [Description("Происходит при копировании свойст виджета")]
+        public event WidgetProperty_Copy_Handler WidgetProperty_Copy;
+        public delegate void WidgetProperty_Copy_Handler(object sender, EventArgs eventArgs);
+
+        [Browsable(true)]
+        [Description("Происходит при вставке свойст виджета")]
+        public event WidgetProperty_Paste_Handler WidgetProperty_Paste;
+        public delegate void WidgetProperty_Paste_Handler(object sender, EventArgs eventArgs);
+
+        /// <summary>Контекстное меню копирования/вставки свойств (используется и родительскими элементами)</summary>
+        public ContextMenuStrip WidgetPropertyMenu { get { return context_WidgetProperty; } }
+
+        private void context_WidgetProperty_Opening(object sender, CancelEventArgs e)
+        {
+            context_WidgetProperty.Items[0].Enabled = this.Enabled;
+            context_WidgetProperty.Items[1].Enabled = this.Enabled && WidgetProperty.ContainsKey("hmUI_widget_IMG");
+        }
+
+        private void копироватьСвойстваToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (WidgetProperty_Copy != null && !setValue)
+            {
+                EventArgs eventArgs = new EventArgs();
+                WidgetProperty_Copy(this, eventArgs);
+            }
+        }
+
+        private void вставитьСвойстваToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Focus();
+            if (WidgetProperty_Paste != null && !setValue)
+            {
+                EventArgs eventArgs = new EventArgs();
+                WidgetProperty_Paste(this, eventArgs);
+            }
+        }
 
         public void SetIcon(string value)
         {
@@ -61,6 +102,80 @@ namespace ControlLibrary
                 Alpha_mode = value;
                 label_alpha.Enabled = Alpha_mode;
                 numericUpDown_Alpha.Enabled = Alpha_mode;
+            }
+        }
+
+        /// <summary>Доступность настроек размера (ширина, высота, масштабирование)</summary>
+        [Description("Доступность настроек размера (ширина, высота, масштабирование)")]
+        public virtual bool SizeMode
+        {
+            get
+            {
+                return Size_mode;
+            }
+            set
+            {
+                Size_mode = value;
+                label_size.Visible = Size_mode;
+                label_width.Visible = Size_mode;
+                numericUpDown_width.Visible = Size_mode;
+                label_height.Visible = Size_mode;
+                numericUpDown_height.Visible = Size_mode;
+                checkBox_auto_scale.Visible = Size_mode;
+            }
+        }
+
+        /// <summary>Устанавливает размер и масштабирование (null или 0 - размер не задан)</summary>
+        public void SetSize(int? width, int? height, bool? autoScale)
+        {
+            bool oldSetValue = setValue;
+            setValue = true;
+            numericUpDown_width.Value = Math.Max(0, Math.Min((int)numericUpDown_width.Maximum, width ?? 0));
+            numericUpDown_height.Value = Math.Max(0, Math.Min((int)numericUpDown_height.Maximum, height ?? 0));
+            checkBox_auto_scale.Checked = autoScale == true;
+            UpdateAutoScaleState();
+            setValue = oldSetValue;
+        }
+
+        /// <summary>Ширина или null, если не задана</summary>
+        public int? GetWidth()
+        {
+            if (!Size_mode || numericUpDown_width.Value <= 0) return null;
+            return (int)numericUpDown_width.Value;
+        }
+
+        /// <summary>Высота или null, если не задана</summary>
+        public int? GetHeight()
+        {
+            if (!Size_mode || numericUpDown_height.Value <= 0) return null;
+            return (int)numericUpDown_height.Value;
+        }
+
+        /// <summary>true, если масштабирование включено и задан размер; иначе null</summary>
+        public bool? GetAutoScale()
+        {
+            if (Size_mode && checkBox_auto_scale.Checked && checkBox_auto_scale.Enabled) return true;
+            return null;
+        }
+
+        /// <summary>Масштабирование доступно только когда заданы и ширина, и высота</summary>
+        private void UpdateAutoScaleState()
+        {
+            checkBox_auto_scale.Enabled = numericUpDown_width.Value > 0 && numericUpDown_height.Value > 0;
+        }
+
+        private void numericUpDown_size_ValueChanged(object sender, EventArgs e)
+        {
+            UpdateAutoScaleState();
+            numericUpDown_ValueChanged(sender, e);
+        }
+
+        private void checkBox_auto_scale_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ValueChanged != null && !setValue)
+            {
+                EventArgs eventArgs = new EventArgs();
+                ValueChanged(this, eventArgs);
             }
         }
 
@@ -172,8 +287,13 @@ namespace ControlLibrary
 
             numericUpDown_iconX.Value = 0;
             numericUpDown_iconY.Value = 0;
+            numericUpDown_width.Value = 0;
+            numericUpDown_height.Value = 0;
+            checkBox_auto_scale.Checked = false;
+            UpdateAutoScaleState();
 
             Alpha = false;
+            SizeMode = true;
 
             setValue = false;
         }
@@ -327,6 +447,32 @@ namespace ControlLibrary
             {
                 // Click is in text area
                 numericUpDown.Value = MouseСoordinates.Y;
+            }
+        }
+
+        /// <summary>Ширина: координата X из памяти минус X изображения</summary>
+        private void numericUpDown_width_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (MouseСoordinates.X < 0) return;
+            NumericUpDown numericUpDown = sender as NumericUpDown;
+            if (e.X <= numericUpDown.Controls[1].Width + 1)
+            {
+                // Click is in text area
+                decimal value = MouseСoordinates.X - numericUpDown_iconX.Value;
+                numericUpDown.Value = Math.Max(numericUpDown.Minimum, Math.Min(numericUpDown.Maximum, value));
+            }
+        }
+
+        /// <summary>Высота: координата Y из памяти минус Y изображения</summary>
+        private void numericUpDown_height_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (MouseСoordinates.Y < 0) return;
+            NumericUpDown numericUpDown = sender as NumericUpDown;
+            if (e.X <= numericUpDown.Controls[1].Width + 1)
+            {
+                // Click is in text area
+                decimal value = MouseСoordinates.Y - numericUpDown_iconY.Value;
+                numericUpDown.Value = Math.Max(numericUpDown.Minimum, Math.Min(numericUpDown.Maximum, value));
             }
         }
 

@@ -15262,6 +15262,7 @@ namespace Watch_Face_Editor
                         {
                             text = dateMonth.Day_Month_Name_Font;
                             Read_Text_Options(text, false, false, true, false, false, true);
+                            uCtrl_Text_SystemFont_Opt.ZeroBottomMode = true; // ведущий ноль у числа (дополнительный переключатель)
                             ShowElemenOptions("SystemFont");
                         }
                         else HideAllElemenrOptions();

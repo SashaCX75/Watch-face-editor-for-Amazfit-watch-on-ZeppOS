@@ -5639,6 +5639,8 @@ namespace Watch_Face_Editor
                             time_update += Environment.NewLine + TabInString(7) + "console.log('day/month name font');";
                             time_update += Environment.NewLine + TabInString(7) + "if (updateHour) {";
                             time_update += Environment.NewLine + TabInString(8) + "let " + DayStr + " = timeSensor.day.toString();";
+                            if (DateMonth.Day_Month_Name_Font.padding)
+                                time_update += Environment.NewLine + TabInString(8) + DayStr + " = " + DayStr + ".padStart(2, '0');";
                             time_update += Environment.NewLine + TabInString(8) + "let " + MonthNameStr + " = " + arrayName + "[timeSensor.month-1];";
                             time_update += Environment.NewLine + TabInString(8) + "let " + DayMonthNameStr + " = " + DayStr + " + '" + delimeter + "' + " + MonthNameStr + ";";
                             time_update += Environment.NewLine + TabInString(8) + "const dateFormat = hmSetting.getDateFormat();";
@@ -22176,8 +22178,17 @@ namespace Watch_Face_Editor
             {
                 options += TabInString(7 + tabOffset) + "x: " + img.x.ToString() + "," + Environment.NewLine;
                 options += TabInString(7 + tabOffset) + "y: " + img.y.ToString() + "," + Environment.NewLine;
-                if (img.w != null) options += TabInString(7 + tabOffset) + "w: " + img.w.ToString() + "," + Environment.NewLine;
-                if (img.h != null) options += TabInString(7 + tabOffset) + "h: " + img.h.ToString() + "," + Environment.NewLine;
+                // размер и масштабирование только если заданы и ширина, и высота
+                if (img.w > 0 && img.h > 0)
+                {
+                    options += TabInString(7 + tabOffset) + "w: " + img.w.ToString() + "," + Environment.NewLine;
+                    options += TabInString(7 + tabOffset) + "h: " + img.h.ToString() + "," + Environment.NewLine;
+                    if (img.auto_scale == true)
+                    {
+                        options += TabInString(7 + tabOffset) + "auto_scale: true," + Environment.NewLine;
+                        options += TabInString(7 + tabOffset) + "auto_scale_obj_fit: false," + Environment.NewLine;
+                    }
+                }
                 options += TabInString(7 + tabOffset) + "src: '" + img.src + ".png'," + Environment.NewLine;
 
                 if (img.alpha != 255 && SelectedModel.versionOS >= 2.1)
@@ -22203,8 +22214,17 @@ namespace Watch_Face_Editor
             {
                 options += TabInString(7 + tabOffset) + "// x: " + img.x.ToString() + "," + Environment.NewLine;
                 options += TabInString(7 + tabOffset) + "// y: " + img.y.ToString() + "," + Environment.NewLine;
-                if (img.w != null) options += TabInString(7 + tabOffset) + "// w: " + img.w.ToString() + "," + Environment.NewLine;
-                if (img.h != null) options += TabInString(7 + tabOffset) + "// h: " + img.h.ToString() + "," + Environment.NewLine;
+                // размер и масштабирование только если заданы и ширина, и высота
+                if (img.w > 0 && img.h > 0)
+                {
+                    options += TabInString(7 + tabOffset) + "// w: " + img.w.ToString() + "," + Environment.NewLine;
+                    options += TabInString(7 + tabOffset) + "// h: " + img.h.ToString() + "," + Environment.NewLine;
+                    if (img.auto_scale == true)
+                    {
+                        options += TabInString(7 + tabOffset) + "// auto_scale: true," + Environment.NewLine;
+                        options += TabInString(7 + tabOffset) + "// auto_scale_obj_fit: false," + Environment.NewLine;
+                    }
+                }
                 options += TabInString(7 + tabOffset) + "// src: '" + img.src + ".png'," + Environment.NewLine;
 
                 if (img.alpha != 255 && SelectedModel.versionOS >= 2.1)
@@ -26937,6 +26957,9 @@ namespace Watch_Face_Editor
                                         worldClock.Icon = new hmUI_widget_IMG();
                                         worldClock.Icon.src = img.src;
                                         worldClock.Icon.x = img.x;
+                                        worldClock.Icon.w = img.w;
+                                        worldClock.Icon.h = img.h;
+                                        worldClock.Icon.auto_scale = img.auto_scale;
                                         worldClock.Icon.y = img.y;
                                         worldClock.Icon.alpha = img.alpha;
                                         worldClock.Icon.visible = true;
@@ -26963,6 +26986,9 @@ namespace Watch_Face_Editor
                                         year.Icon = new hmUI_widget_IMG();
                                         year.Icon.src = img.src;
                                         year.Icon.x = img.x;
+                                        year.Icon.w = img.w;
+                                        year.Icon.h = img.h;
+                                        year.Icon.auto_scale = img.auto_scale;
                                         year.Icon.y = img.y;
                                         year.Icon.alpha = img.alpha;
                                         year.Icon.visible = true;
@@ -26998,6 +27024,9 @@ namespace Watch_Face_Editor
                                         steps.Icon = new hmUI_widget_IMG();
                                         steps.Icon.src = img.src;
                                         steps.Icon.x = img.x;
+                                        steps.Icon.w = img.w;
+                                        steps.Icon.h = img.h;
+                                        steps.Icon.auto_scale = img.auto_scale;
                                         steps.Icon.y = img.y;
                                         steps.Icon.alpha = img.alpha;
                                         steps.Icon.visible = true;
@@ -27029,6 +27058,9 @@ namespace Watch_Face_Editor
                                         battery.Icon = new hmUI_widget_IMG();
                                         battery.Icon.src = img.src;
                                         battery.Icon.x = img.x;
+                                        battery.Icon.w = img.w;
+                                        battery.Icon.h = img.h;
+                                        battery.Icon.auto_scale = img.auto_scale;
                                         battery.Icon.y = img.y;
                                         battery.Icon.alpha = img.alpha;
                                         battery.Icon.visible = true;
@@ -27064,6 +27096,9 @@ namespace Watch_Face_Editor
                                         calorie.Icon = new hmUI_widget_IMG();
                                         calorie.Icon.src = img.src;
                                         calorie.Icon.x = img.x;
+                                        calorie.Icon.w = img.w;
+                                        calorie.Icon.h = img.h;
+                                        calorie.Icon.auto_scale = img.auto_scale;
                                         calorie.Icon.y = img.y;
                                         calorie.Icon.alpha = img.alpha;
                                         calorie.Icon.visible = true;
@@ -27099,6 +27134,9 @@ namespace Watch_Face_Editor
                                         heart.Icon = new hmUI_widget_IMG();
                                         heart.Icon.src = img.src;
                                         heart.Icon.x = img.x;
+                                        heart.Icon.w = img.w;
+                                        heart.Icon.h = img.h;
+                                        heart.Icon.auto_scale = img.auto_scale;
                                         heart.Icon.y = img.y;
                                         heart.Icon.alpha = img.alpha;
                                         heart.Icon.visible = true;
@@ -27132,6 +27170,9 @@ namespace Watch_Face_Editor
                                         pai.Icon = new hmUI_widget_IMG();
                                         pai.Icon.src = img.src;
                                         pai.Icon.x = img.x;
+                                        pai.Icon.w = img.w;
+                                        pai.Icon.h = img.h;
+                                        pai.Icon.auto_scale = img.auto_scale;
                                         pai.Icon.y = img.y;
                                         pai.Icon.alpha = img.alpha;
                                         pai.Icon.visible = true;
@@ -27158,6 +27199,9 @@ namespace Watch_Face_Editor
                                         distance.Icon = new hmUI_widget_IMG();
                                         distance.Icon.src = img.src;
                                         distance.Icon.x = img.x;
+                                        distance.Icon.w = img.w;
+                                        distance.Icon.h = img.h;
+                                        distance.Icon.auto_scale = img.auto_scale;
                                         distance.Icon.y = img.y;
                                         distance.Icon.alpha = img.alpha;
                                         distance.Icon.visible = true;
@@ -27193,6 +27237,9 @@ namespace Watch_Face_Editor
                                         stand.Icon = new hmUI_widget_IMG();
                                         stand.Icon.src = img.src;
                                         stand.Icon.x = img.x;
+                                        stand.Icon.w = img.w;
+                                        stand.Icon.h = img.h;
+                                        stand.Icon.auto_scale = img.auto_scale;
                                         stand.Icon.y = img.y;
                                         stand.Icon.alpha = img.alpha;
                                         stand.Icon.visible = true;
@@ -27224,6 +27271,9 @@ namespace Watch_Face_Editor
                                         activity.Icon = new hmUI_widget_IMG();
                                         activity.Icon.src = img.src;
                                         activity.Icon.x = img.x;
+                                        activity.Icon.w = img.w;
+                                        activity.Icon.h = img.h;
+                                        activity.Icon.auto_scale = img.auto_scale;
                                         activity.Icon.y = img.y;
                                         activity.Icon.alpha = img.alpha;
                                         activity.Icon.visible = true;
@@ -27250,6 +27300,9 @@ namespace Watch_Face_Editor
                                         spo2.Icon = new hmUI_widget_IMG();
                                         spo2.Icon.src = img.src;
                                         spo2.Icon.x = img.x;
+                                        spo2.Icon.w = img.w;
+                                        spo2.Icon.h = img.h;
+                                        spo2.Icon.auto_scale = img.auto_scale;
                                         spo2.Icon.y = img.y;
                                         spo2.Icon.alpha = img.alpha;
                                         spo2.Icon.visible = true;
@@ -27277,6 +27330,9 @@ namespace Watch_Face_Editor
                                         stress.Icon = new hmUI_widget_IMG();
                                         stress.Icon.src = img.src;
                                         stress.Icon.x = img.x;
+                                        stress.Icon.w = img.w;
+                                        stress.Icon.h = img.h;
+                                        stress.Icon.auto_scale = img.auto_scale;
                                         stress.Icon.y = img.y;
                                         stress.Icon.alpha = img.alpha;
                                         stress.Icon.visible = true;
@@ -27312,6 +27368,9 @@ namespace Watch_Face_Editor
                                         fat_burning.Icon = new hmUI_widget_IMG();
                                         fat_burning.Icon.src = img.src;
                                         fat_burning.Icon.x = img.x;
+                                        fat_burning.Icon.w = img.w;
+                                        fat_burning.Icon.h = img.h;
+                                        fat_burning.Icon.auto_scale = img.auto_scale;
                                         fat_burning.Icon.y = img.y;
                                         fat_burning.Icon.alpha = img.alpha;
                                         fat_burning.Icon.visible = true;
@@ -27342,6 +27401,9 @@ namespace Watch_Face_Editor
                                         weather.Icon = new hmUI_widget_IMG();
                                         weather.Icon.src = img.src;
                                         weather.Icon.x = img.x;
+                                        weather.Icon.w = img.w;
+                                        weather.Icon.h = img.h;
+                                        weather.Icon.auto_scale = img.auto_scale;
                                         weather.Icon.y = img.y;
                                         weather.Icon.alpha = img.alpha;
                                         weather.Icon.visible = true;
@@ -27377,6 +27439,9 @@ namespace Watch_Face_Editor
                                         wfd_icon.Icon = new hmUI_widget_IMG();
                                         wfd_icon.Icon.src = img.src;
                                         wfd_icon.Icon.x = img.x;
+                                        wfd_icon.Icon.w = img.w;
+                                        wfd_icon.Icon.h = img.h;
+                                        wfd_icon.Icon.auto_scale = img.auto_scale;
                                         wfd_icon.Icon.y = img.y;
                                         wfd_icon.Icon.alpha = img.alpha;
                                         wfd_icon.Icon.visible = true;
@@ -27410,6 +27475,9 @@ namespace Watch_Face_Editor
                                         uv_index.Icon = new hmUI_widget_IMG();
                                         uv_index.Icon.src = img.src;
                                         uv_index.Icon.x = img.x;
+                                        uv_index.Icon.w = img.w;
+                                        uv_index.Icon.h = img.h;
+                                        uv_index.Icon.auto_scale = img.auto_scale;
                                         uv_index.Icon.y = img.y;
                                         uv_index.Icon.alpha = img.alpha;
                                         uv_index.Icon.visible = true;
@@ -27437,6 +27505,9 @@ namespace Watch_Face_Editor
                                         humidity.Icon = new hmUI_widget_IMG();
                                         humidity.Icon.src = img.src;
                                         humidity.Icon.x = img.x;
+                                        humidity.Icon.w = img.w;
+                                        humidity.Icon.h = img.h;
+                                        humidity.Icon.auto_scale = img.auto_scale;
                                         humidity.Icon.y = img.y;
                                         humidity.Icon.alpha = img.alpha;
                                         humidity.Icon.visible = true;
@@ -27467,6 +27538,9 @@ namespace Watch_Face_Editor
                                         altimeter.Icon = new hmUI_widget_IMG();
                                         altimeter.Icon.src = img.src;
                                         altimeter.Icon.x = img.x;
+                                        altimeter.Icon.w = img.w;
+                                        altimeter.Icon.h = img.h;
+                                        altimeter.Icon.auto_scale = img.auto_scale;
                                         altimeter.Icon.y = img.y;
                                         altimeter.Icon.alpha = img.alpha;
                                         altimeter.Icon.visible = true;
@@ -27501,6 +27575,9 @@ namespace Watch_Face_Editor
                                         sunrise.Icon = new hmUI_widget_IMG();
                                         sunrise.Icon.src = img.src;
                                         sunrise.Icon.x = img.x;
+                                        sunrise.Icon.w = img.w;
+                                        sunrise.Icon.h = img.h;
+                                        sunrise.Icon.auto_scale = img.auto_scale;
                                         sunrise.Icon.y = img.y;
                                         sunrise.Icon.alpha = img.alpha;
                                         sunrise.Icon.visible = true;
@@ -27530,6 +27607,9 @@ namespace Watch_Face_Editor
                                         moon.Icon = new hmUI_widget_IMG();
                                         moon.Icon.src = img.src;
                                         moon.Icon.x = img.x;
+                                        moon.Icon.w = img.w;
+                                        moon.Icon.h = img.h;
+                                        moon.Icon.auto_scale = img.auto_scale;
                                         moon.Icon.y = img.y;
                                         moon.Icon.alpha = img.alpha;
                                         moon.Icon.visible = true;
@@ -27560,6 +27640,9 @@ namespace Watch_Face_Editor
                                         wind.Icon = new hmUI_widget_IMG();
                                         wind.Icon.src = img.src;
                                         wind.Icon.x = img.x;
+                                        wind.Icon.w = img.w;
+                                        wind.Icon.h = img.h;
+                                        wind.Icon.auto_scale = img.auto_scale;
                                         wind.Icon.y = img.y;
                                         wind.Icon.alpha = img.alpha;
                                         wind.Icon.visible = true;
@@ -27588,6 +27671,9 @@ namespace Watch_Face_Editor
                                         compass.Icon = new hmUI_widget_IMG();
                                         compass.Icon.src = img.src;
                                         compass.Icon.x = img.x;
+                                        compass.Icon.w = img.w;
+                                        compass.Icon.h = img.h;
+                                        compass.Icon.auto_scale = img.auto_scale;
                                         compass.Icon.y = img.y;
                                         compass.Icon.alpha = img.alpha;
                                         compass.Icon.visible = true;
@@ -27614,6 +27700,9 @@ namespace Watch_Face_Editor
                                         alarm_clock.Icon = new hmUI_widget_IMG();
                                         alarm_clock.Icon.src = img.src;
                                         alarm_clock.Icon.x = img.x;
+                                        alarm_clock.Icon.w = img.w;
+                                        alarm_clock.Icon.h = img.h;
+                                        alarm_clock.Icon.auto_scale = img.auto_scale;
                                         alarm_clock.Icon.y = img.y;
                                         alarm_clock.Icon.alpha = img.alpha;
                                         alarm_clock.Icon.visible = true;
@@ -27642,6 +27731,9 @@ namespace Watch_Face_Editor
                                         training_load.Icon = new hmUI_widget_IMG();
                                         training_load.Icon.src = img.src;
                                         training_load.Icon.x = img.x;
+                                        training_load.Icon.w = img.w;
+                                        training_load.Icon.h = img.h;
+                                        training_load.Icon.auto_scale = img.auto_scale;
                                         training_load.Icon.y = img.y;
                                         training_load.Icon.alpha = img.alpha;
                                         training_load.Icon.visible = true;
@@ -27670,6 +27762,9 @@ namespace Watch_Face_Editor
                                         vo2max.Icon = new hmUI_widget_IMG();
                                         vo2max.Icon.src = img.src;
                                         vo2max.Icon.x = img.x;
+                                        vo2max.Icon.w = img.w;
+                                        vo2max.Icon.h = img.h;
+                                        vo2max.Icon.auto_scale = img.auto_scale;
                                         vo2max.Icon.y = img.y;
                                         vo2max.Icon.alpha = img.alpha;
                                         vo2max.Icon.visible = true;
@@ -27698,6 +27793,9 @@ namespace Watch_Face_Editor
                                         aqi.Icon = new hmUI_widget_IMG();
                                         aqi.Icon.src = img.src;
                                         aqi.Icon.x = img.x;
+                                        aqi.Icon.w = img.w;
+                                        aqi.Icon.h = img.h;
+                                        aqi.Icon.auto_scale = img.auto_scale;
                                         aqi.Icon.y = img.y;
                                         aqi.Icon.alpha = img.alpha;
                                         aqi.Icon.visible = true;
@@ -27722,6 +27820,9 @@ namespace Watch_Face_Editor
                                         body_temp.Icon = new hmUI_widget_IMG();
                                         body_temp.Icon.src = img.src;
                                         body_temp.Icon.x = img.x;
+                                        body_temp.Icon.w = img.w;
+                                        body_temp.Icon.h = img.h;
+                                        body_temp.Icon.auto_scale = img.auto_scale;
                                         body_temp.Icon.y = img.y;
                                         body_temp.Icon.alpha = img.alpha;
                                         body_temp.Icon.visible = true;
@@ -27746,6 +27847,9 @@ namespace Watch_Face_Editor
                                         floor.Icon = new hmUI_widget_IMG();
                                         floor.Icon.src = img.src;
                                         floor.Icon.x = img.x;
+                                        floor.Icon.w = img.w;
+                                        floor.Icon.h = img.h;
+                                        floor.Icon.auto_scale = img.auto_scale;
                                         floor.Icon.y = img.y;
                                         floor.Icon.alpha = img.alpha;
                                         floor.Icon.visible = true;
@@ -27774,6 +27878,9 @@ namespace Watch_Face_Editor
                                         readiness.Icon = new hmUI_widget_IMG();
                                         readiness.Icon.src = img.src;
                                         readiness.Icon.x = img.x;
+                                        readiness.Icon.w = img.w;
+                                        readiness.Icon.h = img.h;
+                                        readiness.Icon.auto_scale = img.auto_scale;
                                         readiness.Icon.y = img.y;
                                         readiness.Icon.alpha = img.alpha;
                                         readiness.Icon.visible = true;
@@ -27803,6 +27910,9 @@ namespace Watch_Face_Editor
                                         hrv.Icon = new hmUI_widget_IMG();
                                         hrv.Icon.src = img.src;
                                         hrv.Icon.x = img.x;
+                                        hrv.Icon.w = img.w;
+                                        hrv.Icon.h = img.h;
+                                        hrv.Icon.auto_scale = img.auto_scale;
                                         hrv.Icon.y = img.y;
                                         hrv.Icon.alpha = img.alpha;
                                         hrv.Icon.visible = true;
@@ -27831,6 +27941,9 @@ namespace Watch_Face_Editor
                                         bio_charge.Icon = new hmUI_widget_IMG();
                                         bio_charge.Icon.src = img.src;
                                         bio_charge.Icon.x = img.x;
+                                        bio_charge.Icon.w = img.w;
+                                        bio_charge.Icon.h = img.h;
+                                        bio_charge.Icon.auto_scale = img.auto_scale;
                                         bio_charge.Icon.y = img.y;
                                         bio_charge.Icon.alpha = img.alpha;
                                         bio_charge.Icon.visible = true;
@@ -27864,6 +27977,9 @@ namespace Watch_Face_Editor
                                         sleep.Icon = new hmUI_widget_IMG();
                                         sleep.Icon.src = img.src;
                                         sleep.Icon.x = img.x;
+                                        sleep.Icon.w = img.w;
+                                        sleep.Icon.h = img.h;
+                                        sleep.Icon.auto_scale = img.auto_scale;
                                         sleep.Icon.y = img.y;
                                         sleep.Icon.alpha = img.alpha;
                                         sleep.Icon.visible = true;
@@ -27891,6 +28007,9 @@ namespace Watch_Face_Editor
                                 hmUI_widget_IMG image_widget = new hmUI_widget_IMG();
                                 image_widget.src = img.src;
                                 image_widget.x = img.x;
+                                image_widget.w = img.w;
+                                image_widget.h = img.h;
+                                image_widget.auto_scale = img.auto_scale;
                                 image_widget.y = img.y;
                                 image_widget.alpha = img.alpha;
                                 image_widget.visible = true;
@@ -27918,6 +28037,9 @@ namespace Watch_Face_Editor
                                     image.Icon = new hmUI_widget_IMG();
                                     image.Icon.src = img.src;
                                     image.Icon.x = img.x;
+                                    image.Icon.w = img.w;
+                                    image.Icon.h = img.h;
+                                    image.Icon.auto_scale = img.auto_scale;
                                     image.Icon.y = img.y;
                                     image.Icon.alpha = img.alpha;
                                     image.Icon.position = 1;
@@ -27933,6 +28055,9 @@ namespace Watch_Face_Editor
                                     editablePointers.cover = new hmUI_widget_IMG();
                                     editablePointers.cover.src = img.src;
                                     editablePointers.cover.x = img.x;
+                                    editablePointers.cover.w = img.w;
+                                    editablePointers.cover.h = img.h;
+                                    editablePointers.cover.auto_scale = img.auto_scale;
                                     editablePointers.cover.y = img.y;
                                     editablePointers.cover.visible = true;
                                     editablePointers.cover.position = -1;
@@ -27949,6 +28074,9 @@ namespace Watch_Face_Editor
                                     topImage.Icon = new hmUI_widget_IMG();
                                     topImage.Icon.src = img.src;
                                     topImage.Icon.x = img.x;
+                                    topImage.Icon.w = img.w;
+                                    topImage.Icon.h = img.h;
+                                    topImage.Icon.auto_scale = img.auto_scale;
                                     topImage.Icon.y = img.y;
                                     topImage.Icon.alpha = img.alpha;
                                     if (img.show_level == "ONLY_NORMAL | ONLY_AOD") topImage.showInAOD = true;
@@ -30431,6 +30559,9 @@ namespace Watch_Face_Editor
                                     battery.Icon = new hmUI_widget_IMG();
                                     battery.Icon.src = img.src;
                                     battery.Icon.x = img.x;
+                                    battery.Icon.w = img.w;
+                                    battery.Icon.h = img.h;
+                                    battery.Icon.auto_scale = img.auto_scale;
                                     battery.Icon.y = img.y;
                                     battery.Icon.visible = true;
                                     battery.Icon.position = offset;
@@ -30451,6 +30582,9 @@ namespace Watch_Face_Editor
 
                                         battery.Icon.src = img.src;
                                         battery.Icon.x = img.x;
+                                        battery.Icon.w = img.w;
+                                        battery.Icon.h = img.h;
+                                        battery.Icon.auto_scale = img.auto_scale;
                                         battery.Icon.y = img.y;
                                         battery.Icon.visible = true;
                                         battery.Icon.position = offset;
@@ -30489,6 +30623,9 @@ namespace Watch_Face_Editor
                                     steps.Icon = new hmUI_widget_IMG();
                                     steps.Icon.src = img.src;
                                     steps.Icon.x = img.x;
+                                    steps.Icon.w = img.w;
+                                    steps.Icon.h = img.h;
+                                    steps.Icon.auto_scale = img.auto_scale;
                                     steps.Icon.y = img.y;
                                     steps.Icon.visible = true;
                                     steps.Icon.position = offset;
@@ -30509,6 +30646,9 @@ namespace Watch_Face_Editor
 
                                         steps.Icon.src = img.src;
                                         steps.Icon.x = img.x;
+                                        steps.Icon.w = img.w;
+                                        steps.Icon.h = img.h;
+                                        steps.Icon.auto_scale = img.auto_scale;
                                         steps.Icon.y = img.y;
                                         steps.Icon.visible = true;
                                         steps.Icon.position = offset;
@@ -30547,6 +30687,9 @@ namespace Watch_Face_Editor
                                     calorie.Icon = new hmUI_widget_IMG();
                                     calorie.Icon.src = img.src;
                                     calorie.Icon.x = img.x;
+                                    calorie.Icon.w = img.w;
+                                    calorie.Icon.h = img.h;
+                                    calorie.Icon.auto_scale = img.auto_scale;
                                     calorie.Icon.y = img.y;
                                     calorie.Icon.visible = true;
                                     calorie.Icon.position = offset;
@@ -30567,6 +30710,9 @@ namespace Watch_Face_Editor
 
                                         calorie.Icon.src = img.src;
                                         calorie.Icon.x = img.x;
+                                        calorie.Icon.w = img.w;
+                                        calorie.Icon.h = img.h;
+                                        calorie.Icon.auto_scale = img.auto_scale;
                                         calorie.Icon.y = img.y;
                                         calorie.Icon.visible = true;
                                         calorie.Icon.position = offset;
@@ -30605,6 +30751,9 @@ namespace Watch_Face_Editor
                                     heart.Icon = new hmUI_widget_IMG();
                                     heart.Icon.src = img.src;
                                     heart.Icon.x = img.x;
+                                    heart.Icon.w = img.w;
+                                    heart.Icon.h = img.h;
+                                    heart.Icon.auto_scale = img.auto_scale;
                                     heart.Icon.y = img.y;
                                     heart.Icon.visible = true;
                                     heart.Icon.position = offset;
@@ -30625,6 +30774,9 @@ namespace Watch_Face_Editor
 
                                         heart.Icon.src = img.src;
                                         heart.Icon.x = img.x;
+                                        heart.Icon.w = img.w;
+                                        heart.Icon.h = img.h;
+                                        heart.Icon.auto_scale = img.auto_scale;
                                         heart.Icon.y = img.y;
                                         heart.Icon.visible = true;
                                         heart.Icon.position = offset;
@@ -30660,6 +30812,9 @@ namespace Watch_Face_Editor
                                     pai.Icon = new hmUI_widget_IMG();
                                     pai.Icon.src = img.src;
                                     pai.Icon.x = img.x;
+                                    pai.Icon.w = img.w;
+                                    pai.Icon.h = img.h;
+                                    pai.Icon.auto_scale = img.auto_scale;
                                     pai.Icon.y = img.y;
                                     pai.Icon.visible = true;
                                     pai.Icon.position = offset;
@@ -30680,6 +30835,9 @@ namespace Watch_Face_Editor
 
                                         pai.Icon.src = img.src;
                                         pai.Icon.x = img.x;
+                                        pai.Icon.w = img.w;
+                                        pai.Icon.h = img.h;
+                                        pai.Icon.auto_scale = img.auto_scale;
                                         pai.Icon.y = img.y;
                                         pai.Icon.visible = true;
                                         pai.Icon.position = offset;
@@ -30709,6 +30867,9 @@ namespace Watch_Face_Editor
                                     distance.Icon = new hmUI_widget_IMG();
                                     distance.Icon.src = img.src;
                                     distance.Icon.x = img.x;
+                                    distance.Icon.w = img.w;
+                                    distance.Icon.h = img.h;
+                                    distance.Icon.auto_scale = img.auto_scale;
                                     distance.Icon.y = img.y;
                                     distance.Icon.visible = true;
                                     distance.Icon.position = offset;
@@ -30729,6 +30890,9 @@ namespace Watch_Face_Editor
 
                                         distance.Icon.src = img.src;
                                         distance.Icon.x = img.x;
+                                        distance.Icon.w = img.w;
+                                        distance.Icon.h = img.h;
+                                        distance.Icon.auto_scale = img.auto_scale;
                                         distance.Icon.y = img.y;
                                         distance.Icon.visible = true;
                                         distance.Icon.position = offset;
@@ -30768,6 +30932,9 @@ namespace Watch_Face_Editor
                                     stand.Icon = new hmUI_widget_IMG();
                                     stand.Icon.src = img.src;
                                     stand.Icon.x = img.x;
+                                    stand.Icon.w = img.w;
+                                    stand.Icon.h = img.h;
+                                    stand.Icon.auto_scale = img.auto_scale;
                                     stand.Icon.y = img.y;
                                     stand.Icon.visible = true;
                                     stand.Icon.position = offset;
@@ -30788,6 +30955,9 @@ namespace Watch_Face_Editor
 
                                         stand.Icon.src = img.src;
                                         stand.Icon.x = img.x;
+                                        stand.Icon.w = img.w;
+                                        stand.Icon.h = img.h;
+                                        stand.Icon.auto_scale = img.auto_scale;
                                         stand.Icon.y = img.y;
                                         stand.Icon.visible = true;
                                         stand.Icon.position = offset;
@@ -30818,6 +30988,9 @@ namespace Watch_Face_Editor
                                     stress.Icon = new hmUI_widget_IMG();
                                     stress.Icon.src = img.src;
                                     stress.Icon.x = img.x;
+                                    stress.Icon.w = img.w;
+                                    stress.Icon.h = img.h;
+                                    stress.Icon.auto_scale = img.auto_scale;
                                     stress.Icon.y = img.y;
                                     stress.Icon.visible = true;
                                     stress.Icon.position = offset;
@@ -30838,6 +31011,9 @@ namespace Watch_Face_Editor
 
                                         stress.Icon.src = img.src;
                                         stress.Icon.x = img.x;
+                                        stress.Icon.w = img.w;
+                                        stress.Icon.h = img.h;
+                                        stress.Icon.auto_scale = img.auto_scale;
                                         stress.Icon.y = img.y;
                                         stress.Icon.visible = true;
                                         stress.Icon.position = offset;
@@ -30876,6 +31052,9 @@ namespace Watch_Face_Editor
                                     fat_burning.Icon = new hmUI_widget_IMG();
                                     fat_burning.Icon.src = img.src;
                                     fat_burning.Icon.x = img.x;
+                                    fat_burning.Icon.w = img.w;
+                                    fat_burning.Icon.h = img.h;
+                                    fat_burning.Icon.auto_scale = img.auto_scale;
                                     fat_burning.Icon.y = img.y;
                                     fat_burning.Icon.visible = true;
                                     fat_burning.Icon.position = offset;
@@ -30896,6 +31075,9 @@ namespace Watch_Face_Editor
 
                                         fat_burning.Icon.src = img.src;
                                         fat_burning.Icon.x = img.x;
+                                        fat_burning.Icon.w = img.w;
+                                        fat_burning.Icon.h = img.h;
+                                        fat_burning.Icon.auto_scale = img.auto_scale;
                                         fat_burning.Icon.y = img.y;
                                         fat_burning.Icon.visible = true;
                                         fat_burning.Icon.position = offset;
@@ -30920,6 +31102,9 @@ namespace Watch_Face_Editor
                                     spo2.Icon = new hmUI_widget_IMG();
                                     spo2.Icon.src = img.src;
                                     spo2.Icon.x = img.x;
+                                    spo2.Icon.w = img.w;
+                                    spo2.Icon.h = img.h;
+                                    spo2.Icon.auto_scale = img.auto_scale;
                                     spo2.Icon.y = img.y;
                                     spo2.Icon.visible = true;
                                     spo2.Icon.position = offset;
@@ -30940,6 +31125,9 @@ namespace Watch_Face_Editor
 
                                         spo2.Icon.src = img.src;
                                         spo2.Icon.x = img.x;
+                                        spo2.Icon.w = img.w;
+                                        spo2.Icon.h = img.h;
+                                        spo2.Icon.auto_scale = img.auto_scale;
                                         spo2.Icon.y = img.y;
                                         spo2.Icon.visible = true;
                                         spo2.Icon.position = offset;
@@ -30981,6 +31169,9 @@ namespace Watch_Face_Editor
                                     weather.Icon = new hmUI_widget_IMG();
                                     weather.Icon.src = img.src;
                                     weather.Icon.x = img.x;
+                                    weather.Icon.w = img.w;
+                                    weather.Icon.h = img.h;
+                                    weather.Icon.auto_scale = img.auto_scale;
                                     weather.Icon.y = img.y;
                                     weather.Icon.visible = true;
                                     weather.Icon.position = offset;
@@ -31001,6 +31192,9 @@ namespace Watch_Face_Editor
 
                                         weather.Icon.src = img.src;
                                         weather.Icon.x = img.x;
+                                        weather.Icon.w = img.w;
+                                        weather.Icon.h = img.h;
+                                        weather.Icon.auto_scale = img.auto_scale;
                                         weather.Icon.y = img.y;
                                         weather.Icon.visible = true;
                                         weather.Icon.position = offset;
@@ -31022,6 +31216,9 @@ namespace Watch_Face_Editor
 
                                         weather.Icon.src = img.src;
                                         weather.Icon.x = img.x;
+                                        weather.Icon.w = img.w;
+                                        weather.Icon.h = img.h;
+                                        weather.Icon.auto_scale = img.auto_scale;
                                         weather.Icon.y = img.y;
                                         weather.Icon.visible = true;
                                         weather.Icon.position = offset;
@@ -31043,6 +31240,9 @@ namespace Watch_Face_Editor
 
                                         weather.Icon.src = img.src;
                                         weather.Icon.x = img.x;
+                                        weather.Icon.w = img.w;
+                                        weather.Icon.h = img.h;
+                                        weather.Icon.auto_scale = img.auto_scale;
                                         weather.Icon.y = img.y;
                                         weather.Icon.visible = true;
                                         weather.Icon.position = offset;
@@ -31073,6 +31273,9 @@ namespace Watch_Face_Editor
                                     uv_index.Icon = new hmUI_widget_IMG();
                                     uv_index.Icon.src = img.src;
                                     uv_index.Icon.x = img.x;
+                                    uv_index.Icon.w = img.w;
+                                    uv_index.Icon.h = img.h;
+                                    uv_index.Icon.auto_scale = img.auto_scale;
                                     uv_index.Icon.y = img.y;
                                     uv_index.Icon.visible = true;
                                     uv_index.Icon.position = offset;
@@ -31093,6 +31296,9 @@ namespace Watch_Face_Editor
 
                                         uv_index.Icon.src = img.src;
                                         uv_index.Icon.x = img.x;
+                                        uv_index.Icon.w = img.w;
+                                        uv_index.Icon.h = img.h;
+                                        uv_index.Icon.auto_scale = img.auto_scale;
                                         uv_index.Icon.y = img.y;
                                         uv_index.Icon.visible = true;
                                         uv_index.Icon.position = offset;
@@ -31123,6 +31329,9 @@ namespace Watch_Face_Editor
                                     humidity.Icon = new hmUI_widget_IMG();
                                     humidity.Icon.src = img.src;
                                     humidity.Icon.x = img.x;
+                                    humidity.Icon.w = img.w;
+                                    humidity.Icon.h = img.h;
+                                    humidity.Icon.auto_scale = img.auto_scale;
                                     humidity.Icon.y = img.y;
                                     humidity.Icon.visible = true;
                                     humidity.Icon.position = offset;
@@ -31143,6 +31352,9 @@ namespace Watch_Face_Editor
 
                                         humidity.Icon.src = img.src;
                                         humidity.Icon.x = img.x;
+                                        humidity.Icon.w = img.w;
+                                        humidity.Icon.h = img.h;
+                                        humidity.Icon.auto_scale = img.auto_scale;
                                         humidity.Icon.y = img.y;
                                         humidity.Icon.visible = true;
                                         humidity.Icon.position = offset;
@@ -31174,6 +31386,9 @@ namespace Watch_Face_Editor
                                     altimeter.Icon = new hmUI_widget_IMG();
                                     altimeter.Icon.src = img.src;
                                     altimeter.Icon.x = img.x;
+                                    altimeter.Icon.w = img.w;
+                                    altimeter.Icon.h = img.h;
+                                    altimeter.Icon.auto_scale = img.auto_scale;
                                     altimeter.Icon.y = img.y;
                                     altimeter.Icon.visible = true;
                                     altimeter.Icon.position = offset;
@@ -31194,6 +31409,9 @@ namespace Watch_Face_Editor
 
                                         altimeter.Icon.src = img.src;
                                         altimeter.Icon.x = img.x;
+                                        altimeter.Icon.w = img.w;
+                                        altimeter.Icon.h = img.h;
+                                        altimeter.Icon.auto_scale = img.auto_scale;
                                         altimeter.Icon.y = img.y;
                                         altimeter.Icon.visible = true;
                                         altimeter.Icon.position = offset;
@@ -31231,6 +31449,9 @@ namespace Watch_Face_Editor
                                     sunrise.Icon = new hmUI_widget_IMG();
                                     sunrise.Icon.src = img.src;
                                     sunrise.Icon.x = img.x;
+                                    sunrise.Icon.w = img.w;
+                                    sunrise.Icon.h = img.h;
+                                    sunrise.Icon.auto_scale = img.auto_scale;
                                     sunrise.Icon.y = img.y;
                                     sunrise.Icon.visible = true;
                                     sunrise.Icon.position = offset;
@@ -31251,6 +31472,9 @@ namespace Watch_Face_Editor
 
                                         sunrise.Icon.src = img.src;
                                         sunrise.Icon.x = img.x;
+                                        sunrise.Icon.w = img.w;
+                                        sunrise.Icon.h = img.h;
+                                        sunrise.Icon.auto_scale = img.auto_scale;
                                         sunrise.Icon.y = img.y;
                                         sunrise.Icon.visible = true;
                                         sunrise.Icon.position = offset;
@@ -31272,6 +31496,9 @@ namespace Watch_Face_Editor
 
                                         sunrise.Icon.src = img.src;
                                         sunrise.Icon.x = img.x;
+                                        sunrise.Icon.w = img.w;
+                                        sunrise.Icon.h = img.h;
+                                        sunrise.Icon.auto_scale = img.auto_scale;
                                         sunrise.Icon.y = img.y;
                                         sunrise.Icon.visible = true;
                                         sunrise.Icon.position = offset;
@@ -31293,6 +31520,9 @@ namespace Watch_Face_Editor
 
                                         sunrise.Icon.src = img.src;
                                         sunrise.Icon.x = img.x;
+                                        sunrise.Icon.w = img.w;
+                                        sunrise.Icon.h = img.h;
+                                        sunrise.Icon.auto_scale = img.auto_scale;
                                         sunrise.Icon.y = img.y;
                                         sunrise.Icon.visible = true;
                                         sunrise.Icon.position = offset;
@@ -31324,6 +31554,9 @@ namespace Watch_Face_Editor
                                     wind.Icon = new hmUI_widget_IMG();
                                     wind.Icon.src = img.src;
                                     wind.Icon.x = img.x;
+                                    wind.Icon.w = img.w;
+                                    wind.Icon.h = img.h;
+                                    wind.Icon.auto_scale = img.auto_scale;
                                     wind.Icon.y = img.y;
                                     wind.Icon.visible = true;
                                     wind.Icon.position = offset;
@@ -31344,6 +31577,9 @@ namespace Watch_Face_Editor
 
                                         wind.Icon.src = img.src;
                                         wind.Icon.x = img.x;
+                                        wind.Icon.w = img.w;
+                                        wind.Icon.h = img.h;
+                                        wind.Icon.auto_scale = img.auto_scale;
                                         wind.Icon.y = img.y;
                                         wind.Icon.visible = true;
                                         wind.Icon.position = offset;
@@ -31375,6 +31611,9 @@ namespace Watch_Face_Editor
                                     compass.Icon = new hmUI_widget_IMG();
                                     compass.Icon.src = img.src;
                                     compass.Icon.x = img.x;
+                                    compass.Icon.w = img.w;
+                                    compass.Icon.h = img.h;
+                                    compass.Icon.auto_scale = img.auto_scale;
                                     compass.Icon.y = img.y;
                                     compass.Icon.visible = true;
                                     compass.Icon.position = offset;
@@ -31395,6 +31634,9 @@ namespace Watch_Face_Editor
 
                                         compass.Icon.src = img.src;
                                         compass.Icon.x = img.x;
+                                        compass.Icon.w = img.w;
+                                        compass.Icon.h = img.h;
+                                        compass.Icon.auto_scale = img.auto_scale;
                                         compass.Icon.y = img.y;
                                         compass.Icon.visible = true;
                                         compass.Icon.position = offset;
@@ -45526,6 +45768,7 @@ namespace Watch_Face_Editor
                 if (parametrs.ContainsKey("// y") && Int32.TryParse(parametrs["// y"], out value)) img.y = value;
                 if (parametrs.ContainsKey("// h") && Int32.TryParse(parametrs["// h"], out value)) img.h = value;
                 if (parametrs.ContainsKey("// w") && Int32.TryParse(parametrs["// w"], out value)) img.w = value;
+                if (parametrs.ContainsKey("// auto_scale") && StringToBool(parametrs["// auto_scale"])) img.auto_scale = true;
                 if (parametrs.ContainsKey("// alpha") && Int32.TryParse(parametrs["// alpha"], out value)) img.alpha = value;
 
                 if (parametrs.ContainsKey("// show_level"))
@@ -45547,6 +45790,7 @@ namespace Watch_Face_Editor
                 if (parametrs.ContainsKey("y") && Int32.TryParse(parametrs["y"], out value)) img.y = value;
                 if (parametrs.ContainsKey("h") && Int32.TryParse(parametrs["h"], out value)) img.h = value;
                 if (parametrs.ContainsKey("w") && Int32.TryParse(parametrs["w"], out value)) img.w = value;
+                if (parametrs.ContainsKey("auto_scale") && StringToBool(parametrs["auto_scale"])) img.auto_scale = true;
                 if (parametrs.ContainsKey("// alpha") && Int32.TryParse(parametrs["// alpha"], out value)) img.alpha = value;
 
                 if (parametrs.ContainsKey("show_level"))

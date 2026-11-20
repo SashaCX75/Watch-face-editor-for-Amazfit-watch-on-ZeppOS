@@ -98,6 +98,7 @@ namespace Watch_Face_Editor
                 {
                     src = this.BackgroundImage.src,
                     x = this.BackgroundImage.x,
+                    auto_scale = this.BackgroundImage.auto_scale,
                     y = this.BackgroundImage.y,
                     h = this.BackgroundImage.h,
                     w = this.BackgroundImage.w,
@@ -1663,6 +1664,7 @@ namespace Watch_Face_Editor
                 Icon = new hmUI_widget_IMG
                 {
                     x = this.Icon.x,
+                    auto_scale = this.Icon.auto_scale,
                     y = this.Icon.y,
                     w = this.Icon.w,
                     h = this.Icon.h,
@@ -2451,6 +2453,7 @@ namespace Watch_Face_Editor
                 Icon = new hmUI_widget_IMG
                 {
                     x = this.Icon.x,
+                    auto_scale = this.Icon.auto_scale,
                     y = this.Icon.y,
                     w = this.Icon.w,
                     h = this.Icon.h,
@@ -3753,6 +3756,7 @@ namespace Watch_Face_Editor
                 Icon = new hmUI_widget_IMG
                 {
                     x = this.Icon.x,
+                    auto_scale = this.Icon.auto_scale,
                     y = this.Icon.y,
                     w = this.Icon.w,
                     h = this.Icon.h,
@@ -4062,6 +4066,7 @@ namespace Watch_Face_Editor
                 Icon = new hmUI_widget_IMG
                 {
                     x = this.Icon.x,
+                    auto_scale = this.Icon.auto_scale,
                     y = this.Icon.y,
                     w = this.Icon.w,
                     h = this.Icon.h,
@@ -4502,6 +4507,7 @@ namespace Watch_Face_Editor
                 Icon = new hmUI_widget_IMG
                 {
                     x = this.Icon.x,
+                    auto_scale = this.Icon.auto_scale,
                     y = this.Icon.y,
                     w = this.Icon.w,
                     h = this.Icon.h,
@@ -4892,6 +4898,7 @@ namespace Watch_Face_Editor
                 Icon = new hmUI_widget_IMG
                 {
                     x = this.Icon.x,
+                    auto_scale = this.Icon.auto_scale,
                     y = this.Icon.y,
                     w = this.Icon.w,
                     h = this.Icon.h,
@@ -5233,6 +5240,7 @@ namespace Watch_Face_Editor
                 Icon = new hmUI_widget_IMG
                 {
                     x = this.Icon.x,
+                    auto_scale = this.Icon.auto_scale,
                     y = this.Icon.y,
                     w = this.Icon.w,
                     h = this.Icon.h,
@@ -5425,6 +5433,7 @@ namespace Watch_Face_Editor
                 Icon = new hmUI_widget_IMG
                 {
                     x = this.Icon.x,
+                    auto_scale = this.Icon.auto_scale,
                     y = this.Icon.y,
                     w = this.Icon.w,
                     h = this.Icon.h,
@@ -5860,6 +5869,7 @@ namespace Watch_Face_Editor
                 Icon = new hmUI_widget_IMG
                 {
                     x = this.Icon.x,
+                    auto_scale = this.Icon.auto_scale,
                     y = this.Icon.y,
                     w = this.Icon.w,
                     h = this.Icon.h,
@@ -6185,6 +6195,7 @@ namespace Watch_Face_Editor
                 Icon = new hmUI_widget_IMG
                 {
                     x = this.Icon.x,
+                    auto_scale = this.Icon.auto_scale,
                     y = this.Icon.y,
                     w = this.Icon.w,
                     h = this.Icon.h,
@@ -6372,6 +6383,7 @@ namespace Watch_Face_Editor
                 Icon = new hmUI_widget_IMG
                 {
                     x = this.Icon.x,
+                    auto_scale = this.Icon.auto_scale,
                     y = this.Icon.y,
                     w = this.Icon.w,
                     h = this.Icon.h,
@@ -6557,6 +6569,7 @@ namespace Watch_Face_Editor
                 Icon = new hmUI_widget_IMG
                 {
                     x = this.Icon.x,
+                    auto_scale = this.Icon.auto_scale,
                     y = this.Icon.y,
                     w = this.Icon.w,
                     h = this.Icon.h,
@@ -6993,6 +7006,7 @@ namespace Watch_Face_Editor
                 Icon = new hmUI_widget_IMG
                 {
                     x = this.Icon.x,
+                    auto_scale = this.Icon.auto_scale,
                     y = this.Icon.y,
                     w = this.Icon.w,
                     h = this.Icon.h,
@@ -7504,6 +7518,7 @@ namespace Watch_Face_Editor
                 Icon = new hmUI_widget_IMG
                 {
                     x = this.Icon.x,
+                    auto_scale = this.Icon.auto_scale,
                     y = this.Icon.y,
                     w = this.Icon.w,
                     h = this.Icon.h,
@@ -7649,6 +7664,7 @@ namespace Watch_Face_Editor
                 Icon = new hmUI_widget_IMG
                 {
                     x = this.Icon.x,
+                    auto_scale = this.Icon.auto_scale,
                     y = this.Icon.y,
                     w = this.Icon.w,
                     h = this.Icon.h,
@@ -8153,6 +8169,7 @@ namespace Watch_Face_Editor
                 Icon = new hmUI_widget_IMG
                 {
                     x = this.Icon.x,
+                    auto_scale = this.Icon.auto_scale,
                     y = this.Icon.y,
                     w = this.Icon.w,
                     h = this.Icon.h,
@@ -8507,6 +8524,7 @@ namespace Watch_Face_Editor
                 Icon = new hmUI_widget_IMG
                 {
                     x = this.Icon.x,
+                    auto_scale = this.Icon.auto_scale,
                     y = this.Icon.y,
                     w = this.Icon.w,
                     h = this.Icon.h,
@@ -8697,6 +8715,7 @@ namespace Watch_Face_Editor
                 Icon = new hmUI_widget_IMG
                 {
                     x = this.Icon.x,
+                    auto_scale = this.Icon.auto_scale,
                     y = this.Icon.y,
                     w = this.Icon.w,
                     h = this.Icon.h,
@@ -8992,6 +9011,7 @@ namespace Watch_Face_Editor
                 Icon = new hmUI_widget_IMG
                 {
                     x = this.Icon.x,
+                    auto_scale = this.Icon.auto_scale,
                     y = this.Icon.y,
                     w = this.Icon.w,
                     h = this.Icon.h,
@@ -9417,6 +9437,7 @@ namespace Watch_Face_Editor
                 Icon = new hmUI_widget_IMG
                 {
                     x = this.Icon.x,
+                    auto_scale = this.Icon.auto_scale,
                     y = this.Icon.y,
                     w = this.Icon.w,
                     h = this.Icon.h,
@@ -9703,6 +9724,7 @@ namespace Watch_Face_Editor
                 Icon = new hmUI_widget_IMG
                 {
                     x = this.Icon.x,
+                    auto_scale = this.Icon.auto_scale,
                     y = this.Icon.y,
                     w = this.Icon.w,
                     h = this.Icon.h,
@@ -10001,6 +10023,7 @@ namespace Watch_Face_Editor
                 Icon = new hmUI_widget_IMG
                 {
                     x = this.Icon.x,
+                    auto_scale = this.Icon.auto_scale,
                     y = this.Icon.y,
                     w = this.Icon.w,
                     h = this.Icon.h,
@@ -10238,6 +10261,7 @@ namespace Watch_Face_Editor
                 Icon = new hmUI_widget_IMG
                 {
                     x = this.Icon.x,
+                    auto_scale = this.Icon.auto_scale,
                     y = this.Icon.y,
                     w = this.Icon.w,
                     h = this.Icon.h,
@@ -10359,6 +10383,7 @@ namespace Watch_Face_Editor
                 Icon = new hmUI_widget_IMG
                 {
                     x = this.Icon.x,
+                    auto_scale = this.Icon.auto_scale,
                     y = this.Icon.y,
                     w = this.Icon.w,
                     h = this.Icon.h,
@@ -10569,6 +10594,7 @@ namespace Watch_Face_Editor
                 Icon = new hmUI_widget_IMG
                 {
                     x = this.Icon.x,
+                    auto_scale = this.Icon.auto_scale,
                     y = this.Icon.y,
                     w = this.Icon.w,
                     h = this.Icon.h,
@@ -10783,6 +10809,7 @@ namespace Watch_Face_Editor
                 Icon = new hmUI_widget_IMG
                 {
                     x = this.Icon.x,
+                    auto_scale = this.Icon.auto_scale,
                     y = this.Icon.y,
                     w = this.Icon.w,
                     h = this.Icon.h,
@@ -10997,6 +11024,7 @@ namespace Watch_Face_Editor
                 Icon = new hmUI_widget_IMG
                 {
                     x = this.Icon.x,
+                    auto_scale = this.Icon.auto_scale,
                     y = this.Icon.y,
                     w = this.Icon.w,
                     h = this.Icon.h,
@@ -11118,6 +11146,7 @@ namespace Watch_Face_Editor
                 Icon = new hmUI_widget_IMG
                 {
                     x = this.Icon.x,
+                    auto_scale = this.Icon.auto_scale,
                     y = this.Icon.y,
                     w = this.Icon.w,
                     h = this.Icon.h,
@@ -11235,6 +11264,7 @@ namespace Watch_Face_Editor
                 Icon = new hmUI_widget_IMG
                 {
                     x = this.Icon.x,
+                    auto_scale = this.Icon.auto_scale,
                     y = this.Icon.y,
                     w = this.Icon.w,
                     h = this.Icon.h,
@@ -11445,6 +11475,7 @@ namespace Watch_Face_Editor
                 Icon = new hmUI_widget_IMG
                 {
                     x = this.Icon.x,
+                    auto_scale = this.Icon.auto_scale,
                     y = this.Icon.y,
                     w = this.Icon.w,
                     h = this.Icon.h,
@@ -11659,6 +11690,7 @@ namespace Watch_Face_Editor
                 Icon = new hmUI_widget_IMG
                 {
                     x = this.Icon.x,
+                    auto_scale = this.Icon.auto_scale,
                     y = this.Icon.y,
                     w = this.Icon.w,
                     h = this.Icon.h,
@@ -11990,6 +12022,7 @@ namespace Watch_Face_Editor
                 Icon = new hmUI_widget_IMG
                 {
                     x = this.Icon.x,
+                    auto_scale = this.Icon.auto_scale,
                     y = this.Icon.y,
                     w = this.Icon.w,
                     h = this.Icon.h,
@@ -12406,6 +12439,7 @@ namespace Watch_Face_Editor
                 Icon = new hmUI_widget_IMG
                 {
                     x = this.Icon.x,
+                    auto_scale = this.Icon.auto_scale,
                     y = this.Icon.y,
                     w = this.Icon.w,
                     h = this.Icon.h,
@@ -12465,6 +12499,7 @@ namespace Watch_Face_Editor
             return new hmUI_widget_IMG
             {
                 x = img.x,
+                auto_scale = img.auto_scale,
                 y = img.y,
                 w = img.w,
                 h = img.h,
@@ -12516,6 +12551,7 @@ namespace Watch_Face_Editor
                 Icon = new hmUI_widget_IMG
                 {
                     x = this.Icon.x,
+                    auto_scale = this.Icon.auto_scale,
                     y = this.Icon.y,
                     w = this.Icon.w,
                     h = this.Icon.h,

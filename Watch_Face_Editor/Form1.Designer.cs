@@ -2287,6 +2287,8 @@ namespace Watch_Face_Editor
             this.uCtrl_Image_Widgets_Opt.Alpha = false;
             this.uCtrl_Image_Widgets_Opt.Name = "uCtrl_Image_Widgets_Opt";
             this.uCtrl_Image_Widgets_Opt.ValueChanged += new ControlLibrary.UCtrl_Image_Widgets_Opt.ValueChangedHandler(this.uCtrl_Image_Widgets_Opt_ValueChanged);
+            this.uCtrl_Image_Widgets_Opt.WidgetProperty_Copy += new ControlLibrary.UCtrl_Image_Widgets_Opt.WidgetProperty_Copy_Handler(this.uCtrl_Image_Widgets_Opt_WidgetProperty_Copy);
+            this.uCtrl_Image_Widgets_Opt.WidgetProperty_Paste += new ControlLibrary.UCtrl_Image_Widgets_Opt.WidgetProperty_Paste_Handler(this.uCtrl_Image_Widgets_Opt_WidgetProperty_Paste);
             this.uCtrl_Image_Widgets_Opt.AddImage += new ControlLibrary.UCtrl_Image_Widgets_Opt.AddImageHandler(this.uCtrl_Image_Widgets_Opt_AddImage);
             this.uCtrl_Image_Widgets_Opt.DelImage += new ControlLibrary.UCtrl_Image_Widgets_Opt.DelImageHandler(this.uCtrl_Image_Widgets_Opt_DelImage);
             this.uCtrl_Image_Widgets_Opt.SelectImageWidget += new ControlLibrary.UCtrl_Image_Widgets_Opt.SelectImageWidgetHandler(this.uCtrl_Image_Widgets_Opt_SelectImageWidget);
@@ -2534,6 +2536,8 @@ namespace Watch_Face_Editor
             this.uCtrl_Icon_Opt.Alpha = false;
             this.uCtrl_Icon_Opt.Name = "uCtrl_Icon_Opt";
             this.uCtrl_Icon_Opt.ValueChanged += new ControlLibrary.UCtrl_Icon_Opt.ValueChangedHandler(this.uCtrl_Icon_Opt_ValueChanged);
+            this.uCtrl_Icon_Opt.WidgetProperty_Copy += new ControlLibrary.UCtrl_Icon_Opt.WidgetProperty_Copy_Handler(this.uCtrl_Icon_Opt_WidgetProperty_Copy);
+            this.uCtrl_Icon_Opt.WidgetProperty_Paste += new ControlLibrary.UCtrl_Icon_Opt.WidgetProperty_Paste_Handler(this.uCtrl_Icon_Opt_WidgetProperty_Paste);
             // 
             // uCtrl_Linear_Scale_Opt
             // 

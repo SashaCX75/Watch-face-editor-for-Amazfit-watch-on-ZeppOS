@@ -331,4 +331,16 @@ diminuem o progresso.</value>
   <data name="label_alpha.Text" xml:space="preserve">
     <value>Transparência</value>
   </data>
+  <data name="label_background.Text" xml:space="preserve">
+    <value>Fundo</value>
+  </data>
+  <data name="label_arcType.Text" xml:space="preserve">
+    <value>Tipo de escala</value>
+  </data>
+  <data name="comboBox_arcType.Items" xml:space="preserve">
+    <value>Setor</value>
+  </data>
+  <data name="comboBox_arcType.Items1" xml:space="preserve">
+    <value>Arco</value>
+  </data>
 </root>

@@ -606,4 +606,7 @@
   <data name="ToastBG" xml:space="preserve">
     <value>Fundo %s</value>
   </data>
+  <data name="Message_CircleScaleBackground_Small" xml:space="preserve">
+    <value>O diâmetro da escala ({0} px) é maior que o fundo ({1}x{2} px). Parte da escala não será preenchida com a imagem.</value>
+  </data>
 </root>

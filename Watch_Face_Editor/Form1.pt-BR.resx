@@ -7008,4 +7008,7 @@ PayPal: sashacx75@gmail.com</value>
   <data name="radioButton_1day_fp.Text" xml:space="preserve">
     <value>1 dia</value>
   </data>
+  <data name="comboBox_AddSystem.Items16" xml:space="preserve">
+    <value>Imagens</value>
+  </data>
 </root>

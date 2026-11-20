@@ -141,4 +141,10 @@
   <data name="button_ElementName.Text" xml:space="preserve">
     <value>Relógio mundial</value>
   </data>
+  <data name="button_HourPointer.Text" xml:space="preserve">
+    <value>Ponteiro das horas</value>
+  </data>
+  <data name="button_MinutePointer.Text" xml:space="preserve">
+    <value>Ponteiro dos minutos</value>
+  </data>
 </root>

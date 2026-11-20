@@ -197,4 +197,16 @@
   <data name="button_ElementName.Text" xml:space="preserve">
     <value>Frequência cardíaca</value>
   </data>
+  <data name="button_Number_Max.Text" xml:space="preserve">
+    <value>Valor máximo</value>
+  </data>
+  <data name="button_Number_Max_Font.Text" xml:space="preserve">
+    <value>Máximo em fonte</value>
+  </data>
+  <data name="button_Number_Min.Text" xml:space="preserve">
+    <value>Valor mínimo</value>
+  </data>
+  <data name="button_Number_Min_Font.Text" xml:space="preserve">
+    <value>Mínimo em fonte</value>
+  </data>
 </root>

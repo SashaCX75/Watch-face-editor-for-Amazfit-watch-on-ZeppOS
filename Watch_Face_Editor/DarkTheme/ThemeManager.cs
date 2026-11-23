@@ -1770,12 +1770,26 @@ namespace Watch_Face_Editor.DarkTheme
                 if (Parent != parent) { parent.Controls.Add(this); } // only from the timer: never during a tree walk
                 Rectangle r = parent.RectangleToClient(screen);
                 if (Bounds != r) Bounds = r;
-                if (parent.Controls.GetChildIndex(this) != 0) BringToFront();
+                if (!OnTop(parent)) BringToFront();
                 bool changed = mn != min || mx != max || pg != page || (!dragging && ps != pos);
                 min = mn; max = mx; page = pg;
                 if (!dragging) pos = ps;
                 if (!Visible) Visible = true;
                 if (changed) Invalidate();
+            }
+
+            // Above every ordinary sibling? Other overlays in the same parent may stay above us: if each one
+            // insisted on index 0, they would swap places on every tick, and each z-order change makes Windows
+            // send a synthetic WM_MOUSEMOVE to the control under the cursor. A press on a fixed element
+            // (Buttons, Shortcuts...) then starts the editor's DoDragDrop and the click is lost.
+            private bool OnTop(Control parent)
+            {
+                foreach (Control c in parent.Controls)
+                {
+                    if (c == this) return true;
+                    if (!(c is ScrollOverlay)) return false;
+                }
+                return true;
             }
 
             private int LastPos { get { return Math.Max(min, max - page + 1); } }

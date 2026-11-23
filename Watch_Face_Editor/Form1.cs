@@ -19939,11 +19939,13 @@ namespace Watch_Face_Editor
 
         private void uCtrl_Buttons_Elm_SelectChanged(object sender, EventArgs eventArgs)
         {
+            Logger.WriteLine("Buttons_Elm Clicked");
             ResetHighlightState("Buttons");
 
             ElementButtons buttons = null;
             if (Watch_Face != null && Watch_Face.Buttons != null) buttons = Watch_Face.Buttons;
 
+            Logger.WriteLine($"Buttons_Elm Clicked, buttons is null: {buttons == null}");
             if (buttons != null)
             {
                 List<Button> buttonsList = null;
